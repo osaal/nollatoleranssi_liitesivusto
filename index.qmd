@@ -26,7 +26,7 @@ In case of questions, please contact the researcher responsible for the technica
 
 ## Yhteystiedot
 
-Tietoja Nollatoleranssi-hankkeesta: [pelastusopisto.fi/nollatoleranssi](pelastusopisto.fi/nollatoleranssi)
+Tietoja Nollatoleranssi-hankkeesta: [pelastusopisto.fi/nollatoleranssi](https://www.pelastusopisto.fi/nollatoleranssi)
 
 Seuraa aihetunnistetta `#PTNollatoleranssi` sosiaalisessa mediassa.
 
@@ -40,4 +40,4 @@ Käyntiosoite: Hulkontie 83, 70821, Kuopio
 
 Posti: PL 1122, 70821, Kuopio, Finland
 
-[www.pelastusopisto.fi](www.pelastusopisto.fi)
+[www.pelastusopisto.fi](https://www.pelastusopisto.fi)
