@@ -1,11 +1,43 @@
 ---
-title: "nollatoleranssi_liitesivusto"
+title: "Nollatoleranssi-hankkeen liitesivusto"
 ---
 
-This is a Quarto website.
+*In English below.*
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+Tervetuloa Pelastusopiston toteuttaman hankkeen "*Pelastustoimen nollatoleranssi syrjinnälle ja häirinnälle - faktaa vai fiktiota?*" (Nollatoleranssi-hankkeen) tekniselle liitesivustolle.
 
-```{r}
-1 + 1
-```
+Sivustolta löydät kaikki loppuraportin toistettavuuteen liittyvät tutkimukselliset kirjaukset.
+
+Voit selata sivustoa navigointipalkista sivun yläosassa.
+
+Kysymyksissä, olethan yhteydessä liitesivuston toteuttajaan, tutkija Oliver Saal.
+
+------------------------------------------------------------------------
+
+Welcome to the technical supplement for the research project "*Emergency services zero tolerance to discrimination and harassment - fact or fiction?*", conducted by Pelastusopisto - Emergency Services Academy Finland.
+
+This page contains all documentation related to the reproduction of the final report. Please note, that the documentation is produced in Finnish only.
+
+Navigate the page from the navigation bar at the top of the site.
+
+In case of questions, please contact the researcher responsible for the technical supplement, researcher Oliver Saal.
+
+------------------------------------------------------------------------
+
+## Yhteystiedot
+
+Tietoja Nollatoleranssi-hankkeesta: [pelastusopisto.fi/nollatoleranssi](pelastusopisto.fi/nollatoleranssi)
+
+Seuraa aihetunnistetta `#PTNollatoleranssi` sosiaalisessa mediassa.
+
+Tutkija, projektipäällikkö Oliver Saal
+
+Tel.: +358 29 545 3500 / Gsm. +358 50 479 4123
+
+Sähköposti: etunimi.sukunimi \[at\] pelastusopisto.fi
+
+Käyntiosoite: Hulkontie 83, 70821, Kuopio
+
+Posti: PL 1122, 70821, Kuopio, Finland
+
+[www.pelastusopisto.fi](www.pelastusopisto.fi)
