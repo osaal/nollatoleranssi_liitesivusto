@@ -1,12 +1,5 @@
 [
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Nollatoleranssi-hankkeen liitesivusto",
@@ -19,5 +12,12 @@
     "title": "Nollatoleranssi-hankkeen liitesivusto",
     "section": "Yhteystiedot",
     "text": "Yhteystiedot\nTietoja Nollatoleranssi-hankkeesta: pelastusopisto.fi/nollatoleranssi\nSeuraa aihetunnistetta #PTNollatoleranssi sosiaalisessa mediassa.\nTutkija, projektipäällikkö Oliver Saal\nTel.: +358 29 545 3500 / Gsm. +358 50 479 4123\nSähköposti: etunimi.sukunimi [at] pelastusopisto.fi\nKäyntiosoite: Hulkontie 83, 70821, Kuopio\nPosti: PL 1122, 70821, Kuopio, Finland\nwww.pelastusopisto.fi"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
   }
 ]
