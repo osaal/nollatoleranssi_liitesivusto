@@ -1,18 +1,56 @@
 project:
-  type: website
+  type: book
 
-website:
+book:
   title: "Nollatoleranssi-hankkeen liitesivusto"
+  author: "Oliver Saal"
+  
+  chapters:
+    - index.qmd
+    - part: "Kirjallisuuskatsaus"
+      chapters:
+        - kriteeristo.qmd
+        - haku6.qmd
+    - part: "Kyselyn valmistelu"
+      chapters:
+        - kyselynvalmistelu.qmd
+  
   navbar:
+    background: primary
+    search: true
     left:
-      - href: index.qmd
-        text: Etusivu
+      - text: "Etusivu"
+        file: index.qmd
+      - sidebar:kirjallisuuskatsaus
+      - sidebar:kyselynvalmistelu
+  
+  sidebar:
+    - id: kirjallisuuskatsaus
+      title: "Kirjallisuuskatsaus"
+      style: docked
+      background: primary
+      collapse-level: 2
+      contents:
+        - kriteeristo.qmd
+        - haku6.qmd
+    
+    - id: kyselynvalmistelu
+      title: "Kyselyn valmistelu"
+      contents:
+        - kyselynvalmistelu.qmd
 
 format:
   html:
-    theme: cosmo
+    theme:
+      - cosmo
+      - custom.scss
     css: styles.css
     toc: true
+    lang: fi
+    crossref:
+      chapters: true
+    reference-location: margin
+    citation-location: margin
 
 editor: visual
 

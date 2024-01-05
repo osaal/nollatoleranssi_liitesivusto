@@ -24,7 +24,7 @@ In case of questions, please contact the researcher responsible for the technica
 
 ------------------------------------------------------------------------
 
-## Yhteystiedot
+## Yhteystiedot {.unnumbered}
 
 Tietoja Nollatoleranssi-hankkeesta: [pelastusopisto.fi/nollatoleranssi](https://www.pelastusopisto.fi/nollatoleranssi)
 
