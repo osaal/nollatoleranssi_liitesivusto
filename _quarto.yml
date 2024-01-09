@@ -51,10 +51,15 @@ format:
       chapters: true
     reference-location: margin
     citation-location: margin
+    
+    code-fold: true
+    code-overflow: wrap
+    code-summary: "Näytä"
 
 editor: visual
 
 execute:
   freeze: auto
   cache: true
+  eval: false
 
