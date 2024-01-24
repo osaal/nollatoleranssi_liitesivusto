@@ -166,6 +166,6 @@ Hakutulosten seulonta tuotti seuraavan PRISMA-protokollan mukaisen kulkukaavion:
 
 \[TÄHÄN LÄHDELUETTELO KAIKISTA MUKAAN VALITUISTA TUTKIMUSJULKAISUISTA\]
 
-## Kokotekstin pohjalta poisseulotut tutkimukset ja syyt
+## Kokotekstin pohjalta poistetut tutkimukset ja syyt
 
-\[TÄHÄN LÄHDELUETTELO KAIKISTA KOKOTEKSTISTÄ POISSEULOTUISTA TUTKIMUKSISTA PÄÄSYYN MUKAAN.\]
+\[TÄHÄN LÄHDELUETTELO KAIKISTA KOKOTEKSTISTÄ POISTETUISTA TUTKIMUKSISTA PÄÄSYYN MUKAAN.\]

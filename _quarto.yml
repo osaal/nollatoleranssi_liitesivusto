@@ -10,6 +10,7 @@ book:
     - part: "Kirjallisuuskatsaus"
       chapters:
         - kriteeristo.qmd
+        - haku1.qmd
         - haku6.qmd
     - part: "Kyselyn valmistelu"
       chapters:
@@ -32,6 +33,7 @@ book:
       collapse-level: 2
       contents:
         - kriteeristo.qmd
+        - haku1.qmd
         - haku6.qmd
     
     - id: kyselynvalmistelu
