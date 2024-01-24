@@ -1,0 +1,220 @@
+# Haku 4 {#sec-haku-4}
+
+Haku 4 seurasi seuraavia inkluusiokriteerejä:
+
+-   Julkaisuaika: 1.1.2010 - 30.9.2023
+
+-   Metodologia: Empiirinen tutkimus laajasti ymmärrettynä (kvalitatiiviset ja kvantitatiiviset tutkimusasetelmat, toimintatutkimukset joissa kerätään tutkimustietoa, monimenetelmälliset asetelmat)
+
+-   Kohderyhmä: Ensihoito
+
+-   Maantiede: Suomi ja Ahvenanmaa
+
+-   Kieli: Suomi, ruotsi ja englanti
+
+-   Aineistotyyppi: Opinnäytteet
+
+Haku suoritettiin seuraavissa tietolähteissä:
+
+| Tietokanta                     | Korkeakoulu                                    |
+|--------------------------------|------------------------------------------------|
+| Theseus                        | Kaikki ammattikorkeakoulut                     |
+| Aaltodoc                       | Aalto-yliopisto                                |
+| E-thesis                       | Helsingin yliopisto                            |
+| UEF eRepo                      | Itä-Suomen yliopisto                           |
+| JYX                            | Jyväskylän yliopisto                           |
+| Lauda                          | Lapin yliopisto                                |
+| LUTPub                         | Lappeenrannan-Lahden teknillinen yliopisto LUT |
+| Jultika[^haku4-1]              | Oulun yliopisto                                |
+| DHanken                        | Svenska handelshögskolan Hanken                |
+| Taju                           | Taideyliopisto                                 |
+| Trepo                          | Tampereen yliopisto                            |
+| UTUPub                         | Turun yliopisto                                |
+| Osuva                          | Vaasan yliopisto                               |
+| Doria                          | Åbo Akademi, Maanpuolustuskorkeakoulu          |
+| Pelastusopiston verkkokirjasto | Pelastusopiston AMK-opinnäytteet               |
+
+: Haku 4:n tietolähteet {#tbl-haku4-tietolahteet}
+
+[^haku4-1]: Jultika-arkiston käyttö päättyi 28.11.2023 ja korvattiin OuluREPO-arkistolla. Koska vaihto tapahtui julkaisuaikakriteerimme jälkeen, Jultikan tiedot pitäisi sisältää samat kuin OuluREPO:n tiedot. Vaihdon ei siten pitäisi vaikuttaa kirjallisuuskatsauksen tuloksiin. Lisätietoja: <https://www.oulu.fi/fi/uutiset/oulurepo-julkaisuarkisto-korvaa-jultikan> (haettu 24.1.2024).
+
+Haun tuotti HENKILÖT.
+
+## Hakulausekkeet ja tulosten lataaminen
+
+Alla olevassa taulukossa esitetään hakujen suorituspäivämäärät, hakusanat ja hakukonekohtaiset rajaukset sekä osumat.
+
+| Koodi    | Hakukone (tietokannat suluissa)  | Haku-ajankohta | Julkaisujen ajankohtarajaus | Tulos-määrä | Haun jälkeiset rajaukset                                                    |
+|----------|----------------------------------|----------------|-----------------------------|-------------|-----------------------------------------------------------------------------|
+| H4_1_fi  | Theseus                          | 3.1.2024       | *Ei käytetty.*              | 23          | *Ei käytetty.*                                                              |
+| H4_1_sw  | Theseus                          | 10.1.2024      | 2010-2024                   | 17          | *Ei käytetty.*                                                              |
+| H4_1_en  | Theseus                          | 12.1.2024      | 2010-2024                   | 142         | *Ei käytetty.*                                                              |
+| H4_2_fi  | Aaltodoc                         | 3.1.2024       | *Ei käytetty.*              | 0           | *Ei käytetty.*                                                              |
+| H4_2_sw  | Aaltodoc                         | 10.1.2024      | 2010-2024                   | 0           | *Ei käytetty.*                                                              |
+| H4_2_en  | Aaltodoc                         | 17.1.2024      | 2010-2024                   | 49          | *Ei käytetty.*                                                              |
+| H4_3_fi  | E-thesis                         | 3.1.2024       | *Ei käytetty.*              | 0           | *Ei käytetty.*                                                              |
+| H4_3_sw  | E-thesis                         | 10.1.2024      | 2010-2024                   | 0           | *Ei käytetty.*                                                              |
+| H4_3_en  | E-thesis                         | 12.1.2024      | 2010-2024                   | 7           | *Ei käytetty.*                                                              |
+| H4_4_fi  | UEF eRepo                        | 3.1.2024       | *Ei käytetty.*              | 0           | *Ei käytetty.*                                                              |
+| H4_4_sw  | UEF eRepo                        | 10.1.2024      | 2010-2024                   | 0           | Scope: Opinnäytteet                                                         |
+| H4_4_en  | UEF eRepo                        | 17.1.2024      | 2010-2024                   | 21          | Scope: Pro gradut, syventävien opintojen opinnäytetyöt ja muut opinnäytteet |
+| H4_5_fi  | JYX                              | 3.1.2024       | *Ei käytetty.*              | 0           | *Ei käytetty.*                                                              |
+| H4_5_sw  | JYX                              | 10.1.2024      | 2010-2024                   | 0           | *Ei käytetty.*                                                              |
+| H4_5_en  | JYX                              | 12.1.2024      | 2010-2024                   | 26          | *Ei käytetty.*                                                              |
+| H4_6_fi  | Lauda                            | 3.1.2024       | *Ei käytetty.*              | 0           | *Ei käytetty.*                                                              |
+| H4_6_sw  | Lauda                            | 10.1.2024      | 2010-2024                   | 0           | *Ei käytetty.*                                                              |
+| H4_6_en  | Lauda                            | 12.1.2024      | 2010-2024                   | 1           | *Ei käytetty.*                                                              |
+| H4_7_fi  | LUTPub                           | 3.1.2024       | *Ei käytetty.*              | 0           | *Ei käytetty.*                                                              |
+| H4_7_sw  | LUTPub                           | 10.1.2024      | 2010-2024                   | 0           | *Ei käytetty.*                                                              |
+| H4_7_en  | LUTPub                           | 12.1.2024      | 2010-2024                   | 0           | *Ei käytetty.*                                                              |
+| H4_8_fi  | Jultika                          | 3.1.2024       | *Ei käytetty.*              | 0           | *Ei käytetty.*                                                              |
+| H4_8_sw  | Jultika                          | 10.1.2024      | 2010-2024                   | 0           | *Ei käytetty.*                                                              |
+| H4_8_en  | Jultika                          | 12.1.2024      | 2010-2024                   | 0           | *Ei käytetty.*                                                              |
+| H4_9_fi  | DHanken                          | 3.1.2024       | *Ei käytetty.*              | 0           | *Ei käytetty.*                                                              |
+| H4_9_sw  | DHanken                          | 10.1.2024      | 2010-2024                   | 0           | *Ei käytetty.*                                                              |
+| H4_9_en  | DHanken                          | 12.1.2024      | 2010-2024                   | 0           | *Ei käytetty.*                                                              |
+| H4_10_fi | Taju                             | 3.1.2024       | *Ei käytetty.*              | 0           | *Ei käytetty.*                                                              |
+| H4_10_sw | Taju                             | 10.1.2024      | 2010-2024                   | 0           | *Ei käytetty.*                                                              |
+| H4_10_en | Taju                             | 12.1.2024      | 2010-2024                   | 0           | *Ei käytetty.*                                                              |
+| H4_11_fi | Trepo                            | 3.1.2024       | *Ei käytetty.*              | 0           | *Ei käytetty.*                                                              |
+| H4_11_sw | Trepo                            | 10.1.2024      | 2010-2024                   | 0           | *Ei käytetty.*                                                              |
+| H4_11_en | Trepo                            | 12.1.2024      | 2010-2024                   | 127         | *Ei käytetty.*                                                              |
+| H4_12_fi | UTUPub                           | 3.1.2024       | *Ei käytetty.*              | 0           | *Ei käytetty.*                                                              |
+| H4_12_sw | UTUPub                           | 10.1.2024      | 2010-2024                   | 0           | *Ei käytetty.*                                                              |
+| H4_12_en | UTUPub                           | 12.1.2024      | 2010-2024                   | 83          | *Ei käytetty.*                                                              |
+| H4_13_fi | Osuva                            | 3.1.2024       | *Ei käytetty.*              | 0           | *Ei käytetty.*                                                              |
+| H4_13_sw | Osuva                            | 10.1.2024      | 2010-2024                   | 0           | *Ei käytetty.*                                                              |
+| H4_13_en | Osuva                            | 12.1.2024      | 2010-2024                   | 8           | *Ei käytetty.*                                                              |
+| H4_14_fi | Doria (Åbo Akademi)              | 3.1.2024       | *Ei käytetty.*              | 0           | Scope: Åbo Akademi                                                          |
+| H4_14_sw | Doria (Åbo Akademi)              | 10.1.2024      | 2010-2024                   | 0           | Scope: Åbo Akademi                                                          |
+| H4_14_en | Doria (Åbo Akademi)              | 12.1.2024      | 2010-2024                   | 6           | Scope: Åbo Akademi                                                          |
+| H4_15_fi | Doria (Maanpuolustuskorkeakoulu) | 3.1.2024       | *Ei käytetty.*              | 0           | Scope: Maanpuolustuskorkeakoulu                                             |
+| H4_15_sw | Doria (Maanpuolustuskorkeakoulu) | 10.1.2024      | 2010-2024                   | 0           | Scope: Maanpuolustuskorkeakoulu                                             |
+| H4_15_en | Doria (Maanpuolustuskorkeakoulu) | 12.1.2024      | 2010-2024                   | 1           | Scope: Maanpuolustuskorkeakoulu                                             |
+| H4_16    | Pelastusopiston verkkokirjasto   | 5.1.2024       | *Ei käytetty.*              | 4           | Aineistolaji: Opinnäyte                                                     |
+
+: Haku 4:n toteutetut haut {#tbl-haku4-toteutetut-haut}
+
+Jokaisen haun hakulausekkeet ovat listattuna alla hakukoodeittain (ks. @tbl-haku2-toteutetut-haut). Paina osa-hakua vastaavaa koodia nähdäksesi kunkin haun hakulausekkeen. Voit kopioida lausekkeen sellaisenaan leikepöydällesi painamalla kopiointikuvaketta avatun hakulausekkeen yläoikeassa nurkassa.
+
+\[LAUSEKKEET\]
+
+Inhimillisestä virheestä johtuen useista hauista jäi julkaisuajan suodatin sekä tietokantojen rajaus vain opinnäytetöihin pois käytöstä. Rajausten poissaolo kuitenkin vaikuttaa korkeintaan väärien positiivien nousussa, eikä tulosten määrä näytä ongelmalliselta tästä näkökulmasta.
+
+Suuren määrän takia seuraavat haut toteutettiin API-toiminnolla:
+
+-   Theseus, englanti
+
+-   JYX, englanti
+
+-   Trepo, englanti
+
+-   UTUPub, englanti
+
+API-haulla tuotetut tulokset tallennettiin `.json`-tiedostoina. Maksimitulosten määrä per sivu oli 100, joten haut toteutettiin yhtä monta kertaa kuin tulosmäärä vaati, nostaen `start`-numeroa jokaisen kerran. Esimerkki: `start=0`, `start=100`, `start=200`, jne. `.json`-tiedostot muunnettiin taulukkomuotoon Microsoft Excel -ohjelmassa *Power Query* -toiminnolla.
+
+On huomioitava, että API-toiminnolla hakeminen tuottaa lievästi eroavia tuloksia verrattuna käyttöliittymän kautta hakemiseen. Pääsääntöisesti API-haku tuottaa enemmän tuloksia. Epäilemme tämän olevan ongelma API-hakusyntaksissa.
+
+Kaikki muut haut lisättiin Excel-taulukkoon käsin kyseisen haun suorittajan toimesta.
+
+## Hakutulosten seulonta ja valinta
+
+Hakutulokset seulottiin käyttäen seuraavaa menettelyä:
+
+1.  Kaksoiskappaleet tunnistettiin Microsoft Excelin *Solujen korostussäännöt* -työkalulla. Jokaisen kaksoiskappaleeksi tunnistetun tuloksen kohdalla varmistettiin kaksoiskappaluus, ja säilytettiin yksi tuloksista. Muut merkittiin kaksoiskappaleiksi ja suodatettiin pois taulukosta *Suodata* -työkalulla.
+2.  Otsikkojen pohjalta toteutettiin ensimmäinen seulonta. Jos otsikko selkeästi vastasi inkluusiokriteerejä, merkittiin tulokselle arvo 1. Jos otsikko mahdollisesti täytti inkluusiokriteerejä, mutta asiasta ei voinut saada varmuutta, merkittiin tulokselle arvo 2. Jos otsikko selkeästi ei vastannut inkluusiokriteerejä (esim. rikkoi yhden tai useamman kriteerin), jätettiin tyhjä solu. Tyhjät solut suodatettiin sitten pois taulukosta.
+3.  Jokaiselle tulokselle, jolla oli merkitty arvo 2 (epävarma) ensimmäisessä seulonnassa, tarkistettiin tiivistelmä tuloksen verkko-osoitteesta. Jos tiivistelmä selkeästi vastasi inkluusiokriteerejä, merkittiin tulokselle arvo 1. Jos tiivistelmä mahdollisesti täytti inkluusiokriteerejä, mutta asiasta ei voinut saada varmuutta, merkittiin tulokselle arvo 2. Jos tiivistelmä selkeästi ei vastannut inkluusiokriteerejä (esim. rikkoi yhden tai useamman kriteerin), jätettiin tyhjä solu. Tyhjät solut suodatettiin sitten pois taulukosta.
+4.  Seuraavaksi haettiin kaikki tulokset, jotka saivat arvon 1 ensimmäisessä seulonnassa tai arvot 1 tai 2 toisessa seulonnassa. Jos tuloksen sai haettua, merkittiin arvo 1, ja jos tulosta ei saatu haettua, merkittiin arvo x. Yksi tulos oli kirjaluku, jolloin haettiin kirja ja merkittiin arvo \* kommentin kanssa.
+5.  Seuraavaksi tarkistettiin kaikki ne tutkimukset, joille oli merkitty arvo 2 toisessa seulonnassa (epävarma tiivistelmän pohjalta). Tutkija kävi läpi artikkelin menetelmäosiot ja tarkisti, täyttyykö inkluusiokriteerit. Jos kaikki kriteerit täyttyivät, merkittiin arvo 1 (sisällytä kirjallisuuskatsaukseen). Jos osa kriteereistä täyttyivät, merkittiin arvo T (mahdollisesti käytettävissä raportin taustoitukseen, mutta ei kirjallisuuskatsauksessa). Jos kriteerit eivät täyttyneet, tai yksi tai useampi selkeästi rikkoontui, jätettiin tyhjä arvo. Tyhjät solut suodatettiin sitten pois taulukosta.
+6.  Viimeiseksi tarkistettiin vielä kaikki tulokset, jotka saivat arvon 1 ensimmäisessä tai toisessa seulonnassa. Tutkija kävi läpi artikkelin menetelmäosiot ja tarkisti, täyttyykö inkluusiokriteerit. Jos kaikki kriteerit täyttyivät, merkittiin arvo 1 (sisällytä kirjallisuuskatsaukseen). Jos osa kriteereistä täyttyivät, merkittiin arvo T (mahdollisesti käytettävissä raportin taustoitukseen, mutta ei kirjallisuuskatsauksessa). Jos kriteerit eivät täyttyneet, tai yksi tai useampi selkeästi rikkoontui, jätettiin tyhjä arvo. Tyhjät solut suodatettiin sitten pois taulukosta.
+7.  Valintaprosessin jälkeen jokaisesta tutkimuksesta haettiin seuraavat tiedot:
+    1.  Tekijöiden nimet
+    2.  Julkaisuvuosi
+    3.  Tutkimusjulkaisun otsikko
+    4.  Julkaisumuoto (vertaisarvioitu tutkimusartikkeli, organisaatioraportti, kirjateos, kirjan luku, muu)
+    5.  Verkko-osoite (ensisijaisesti DOI-numero)
+    6.  Tiedonkeruun muoto (kysely, haastattelu, rekisteri, havainnointi, audiovisuaalinen aineisto, muu \[kirjattu avotietona\], useampia muotoja \[kirjattu avotietoina\])
+    7.  Kohdepopulaatio (maantieteellinen ja ammatillinen luokittelu)
+    8.  Tutkimuksen tiedonkeruun ajankohta (kuukausitasolla, jos tiedossa)
+    9.  Otoskoko (yksi tai useampi otos)
+    10. Otantamenetelmä (ei tietoa, satunnaistettu otanta, ositettu otanta, ryväsotanta, paneelitutkimus, harkinnanvarainen otanta[^haku4-2], kiintiöotanta, lumipallo-otanta, muu)
+    11. Vastaajien yhteydenottotapa (postitse, sähköpostitse, puhelimitse, sosiaalisen verkoston kautta \[esim. kollegat\], organisaatiojohdon kautta, muun organisaation kautta \[esim. liitto\], kasvokkain, muu[^haku4-3])
+    12. Vastaajien vastausmuistutusten määrä (jos tiedossa)
+
+[^haku4-2]: Jos tutkimus pyrki koko populaation tutkimiseen, kirjattiin "harkinnanvarainen otanta".
+
+[^haku4-3]: Jos käytettiin useampia yhteydenottomuotoja, merkittiin "muu".
+
+## PRISMA-kulkukaavio
+
+Hakutulosten seulonta tuotti seuraavan PRISMA-protokollan mukaisen kulkukaavion:
+
+::: panel-tabset
+## Tietokannat ja rekisterit
+
+```{r}
+#| eval: true
+library("PRISMAstatement")
+
+labels <- c(
+  "Tunnistetut kohteet",
+  "Kaksoiskappaleet poistettu ennen seulontaa",
+  "Seulotut kohteet",
+  "Poisseulotut kohteet",
+  "Haettavat kohteet",
+  "Hakematta jääneet kohteet",
+  "Tarkistetut kohteet",
+  "Poistetut kohteet",
+  "Sisällytetyt kohteet"
+)
+
+counts <- c(515, 503, 38, 36, 23)
+
+flow_exclusions(
+  incl_counts = counts,
+  total_label = labels[1],
+  incl_labels = labels[c(3, 5, 7, 9)],
+  excl_labels = labels[c(2, 4, 6, 8)], 
+  percent_of_total = TRUE,
+  percent_of_prev = FALSE,
+  show_count = TRUE,
+  font_size = 14)
+```
+
+## Muut lähteet
+
+```{r}
+#| eval: true
+library("PRISMAstatement")
+
+labels <- c(
+  "Tunnistetut kohteet",
+  "Kaksoiskappaleet poistettu ennen seulontaa",
+  "Haettavat kohteet",
+  "Hakematta jääneet kohteet",
+  "Tarkistetut kohteet",
+  "Poistetut kohteet",
+  "Sisällytetyt kohteet"
+)
+
+counts <- c(0, 0, 0, 0)
+
+flow_exclusions(
+  incl_counts = counts,
+  total_label = labels[1],
+  incl_labels = labels[c(3, 5, 7)],
+  excl_labels = labels[c(2, 4, 6)], 
+  percent_of_total = TRUE,
+  percent_of_prev = FALSE,
+  show_count = TRUE,
+  font_size = 14)
+```
+:::
+
+## Valitut tutkimusjulkaisut
+
+\[TÄHÄN LÄHDELUETTELO KAIKISTA MUKAAN VALITUISTA TUTKIMUSJULKAISUISTA\]
+
+## Kokotekstin pohjalta poistetut tutkimukset ja syyt
+
+\[TÄHÄN LÄHDELUETTELO KAIKISTA KOKOTEKSTISTÄ POISTETUISTA TUTKIMUKSISTA PÄÄSYYN MUKAAN.\]
