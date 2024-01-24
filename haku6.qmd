@@ -16,15 +16,23 @@ Haku 6 seurasi seuraavia inkluusiokriteerejä:
 
 Haku suoritettiin seuraavissa tietolähteissä:
 
++-----------------------------------------+------------------------------------+
 | Tietokanta                              | Hakukone (jos eri kuin tietokanta) |
-|-----------------------------------------|------------------------------------|
++=========================================+====================================+
 | Scopus                                  |                                    |
++-----------------------------------------+------------------------------------+
 | Web of Science Core Collection          | Web of Science                     |
++-----------------------------------------+------------------------------------+
 | MEDLINE                                 | Web of Science                     |
++-----------------------------------------+------------------------------------+
 | Ebook Central                           | ProQuest                           |
++-----------------------------------------+------------------------------------+
 | Social Science Premium Collection       | ProQuest                           |
++-----------------------------------------+------------------------------------+
 | Bielefeld Academic Search Engine (BASE) |                                    |
++-----------------------------------------+------------------------------------+
 | OpenAlex                                |                                    |
++-----------------------------------------+------------------------------------+
 
 : Haku 6:n tietolähteet {#tbl-haku6-tietolahteet}
 
@@ -34,43 +42,43 @@ Haun toteutti kokonaisuudessaan tutkija, projektipäällikkö Oliver Saal.
 
 Alla olevassa taulukossa esitetään hakujen suorituspäivämäärät, hakusanat ja hakukonekohtaiset rajaukset sekä osumat.
 
-+-------+-------------------------------------------------------------+----------------+-----------------------------+-------------+----------------------------------------------------------------+
-| Koodi | Hakukone (tietokannat suluissa)                             | Haku-ajankohta | Julkaisujen ajankohtarajaus | Tulos-määrä | Haun jälkeiset rajaukset                                       |
-+=======+=============================================================+================+=============================+=============+================================================================+
-| H6_1  | Scopus                                                      | 19.12.2023     | 2010-2023                   | 701         | Tyyppi: Article, Book, Book Chapter NOT Conference Proceedings |
-|       |                                                             |                |                             |             |                                                                |
-|       |                                                             |                |                             |             | Kieli: Englanti                                                |
-|       |                                                             |                |                             |             |                                                                |
-|       |                                                             |                |                             |             | Maat: Eurooppalaiset maat[^haku6-1]                            |
-+-------+-------------------------------------------------------------+----------------+-----------------------------+-------------+----------------------------------------------------------------+
-| H6_2  | Web of Science (WoS Core Collection)                        | 19.12.2023     | 1.1.2023 - 30.9.2023        | 403         | Tyyppi: Article, Book, Book Chapter                            |
-|       |                                                             |                |                             |             |                                                                |
-|       |                                                             |                |                             |             | Kieli: Englanti                                                |
-|       |                                                             |                |                             |             |                                                                |
-|       |                                                             |                |                             |             | Maat: Eurooppalaiset maat[^haku6-2]                            |
-+-------+-------------------------------------------------------------+----------------+-----------------------------+-------------+----------------------------------------------------------------+
-| H6_3  | Web of Science (MEDLINE)                                    | 19.12.2023     | 2010 - 2023                 | 1666        | Tyyppi: Journal Article                                        |
-|       |                                                             |                |                             |             |                                                                |
-|       |                                                             |                |                             |             | Kieli: Englanti                                                |
-+-------+-------------------------------------------------------------+----------------+-----------------------------+-------------+----------------------------------------------------------------+
-| H6_4  | ProQuest (Ebook Central, Social Science Premium Collection) | 20.12.2023     | 1.1.2010 - 30.9.2023        | 514         | Vertaisarvioitu: Kyllä                                         |
-|       |                                                             |                |                             |             |                                                                |
-|       |                                                             |                |                             |             | Lähdetyyppi: Scholarly Articles                                |
-|       |                                                             |                |                             |             |                                                                |
-|       |                                                             |                |                             |             | Tyyppi: Article, Case Study, Undefined                         |
-|       |                                                             |                |                             |             |                                                                |
-|       |                                                             |                |                             |             | Kieli: Englanti                                                |
-|       |                                                             |                |                             |             |                                                                |
-|       |                                                             |                |                             |             | Maat: Eurooppalaiset maat[^haku6-3]                            |
-+-------+-------------------------------------------------------------+----------------+-----------------------------+-------------+----------------------------------------------------------------+
-| H6_5  | BASE                                                        | 20.12.2023     | 2010 - 2023                 | 159         | Tyyppi: Book, Article contribution                             |
-|       |                                                             |                |                             |             |                                                                |
-|       |                                                             |                |                             |             | Kieli: Englanti                                                |
-|       |                                                             |                |                             |             |                                                                |
-|       |                                                             |                |                             |             | Maat: Eurooppa[^haku6-4]                                       |
-+-------+-------------------------------------------------------------+----------------+-----------------------------+-------------+----------------------------------------------------------------+
-| H6_6  | OpenAlex                                                    | 20.12.2023     | 1.1.2010 - 30.9.2023        | 1049        | Tyyppi: Journal Article, Monograph, Report                     |
-+-------+-------------------------------------------------------------+----------------+-----------------------------+-------------+----------------------------------------------------------------+
++---------+-------------------------------------------------------------+----------------+-----------------------------+-------------+----------------------------------------------------------------+
+| Koodi   | Hakukone (tietokannat suluissa)                             | Haku-ajankohta | Julkaisujen ajankohtarajaus | Tulos-määrä | Haun jälkeiset rajaukset                                       |
++=========+=============================================================+================+=============================+=============+================================================================+
+| H6_1    | Scopus                                                      | 19.12.2023     | 2010-2023                   | 701         | Tyyppi: Article, Book, Book Chapter NOT Conference Proceedings |
+|         |                                                             |                |                             |             |                                                                |
+|         |                                                             |                |                             |             | Kieli: Englanti                                                |
+|         |                                                             |                |                             |             |                                                                |
+|         |                                                             |                |                             |             | Maat: Eurooppalaiset maat[^haku6-1]                            |
++---------+-------------------------------------------------------------+----------------+-----------------------------+-------------+----------------------------------------------------------------+
+| H6_2    | Web of Science (WoS Core Collection)                        | 19.12.2023     | 1.1.2023 - 30.9.2023        | 403         | Tyyppi: Article, Book, Book Chapter                            |
+|         |                                                             |                |                             |             |                                                                |
+|         |                                                             |                |                             |             | Kieli: Englanti                                                |
+|         |                                                             |                |                             |             |                                                                |
+|         |                                                             |                |                             |             | Maat: Eurooppalaiset maat[^haku6-2]                            |
++---------+-------------------------------------------------------------+----------------+-----------------------------+-------------+----------------------------------------------------------------+
+| H6_3    | Web of Science (MEDLINE)                                    | 19.12.2023     | 2010 - 2023                 | 1666        | Tyyppi: Journal Article                                        |
+|         |                                                             |                |                             |             |                                                                |
+|         |                                                             |                |                             |             | Kieli: Englanti                                                |
++---------+-------------------------------------------------------------+----------------+-----------------------------+-------------+----------------------------------------------------------------+
+| H6_4    | ProQuest (Ebook Central, Social Science Premium Collection) | 20.12.2023     | 1.1.2010 - 30.9.2023        | 514         | Vertaisarvioitu: Kyllä                                         |
+|         |                                                             |                |                             |             |                                                                |
+|         |                                                             |                |                             |             | Lähdetyyppi: Scholarly Articles                                |
+|         |                                                             |                |                             |             |                                                                |
+|         |                                                             |                |                             |             | Tyyppi: Article, Case Study, Undefined                         |
+|         |                                                             |                |                             |             |                                                                |
+|         |                                                             |                |                             |             | Kieli: Englanti                                                |
+|         |                                                             |                |                             |             |                                                                |
+|         |                                                             |                |                             |             | Maat: Eurooppalaiset maat[^haku6-3]                            |
++---------+-------------------------------------------------------------+----------------+-----------------------------+-------------+----------------------------------------------------------------+
+| H6_5    | BASE                                                        | 20.12.2023     | 2010 - 2023                 | 159         | Tyyppi: Book, Article contribution                             |
+|         |                                                             |                |                             |             |                                                                |
+|         |                                                             |                |                             |             | Kieli: Englanti                                                |
+|         |                                                             |                |                             |             |                                                                |
+|         |                                                             |                |                             |             | Maat: Eurooppa[^haku6-4]                                       |
++---------+-------------------------------------------------------------+----------------+-----------------------------+-------------+----------------------------------------------------------------+
+| H6_6    | OpenAlex                                                    | 20.12.2023     | 1.1.2010 - 30.9.2023        | 1049        | Tyyppi: Journal Article, Monograph, Report                     |
++---------+-------------------------------------------------------------+----------------+-----------------------------+-------------+----------------------------------------------------------------+
 
 : Haku 6:n toteutetut haut {#tbl-haku6-toteutetut-haut}
 
@@ -152,7 +160,67 @@ Hakutulokset seulottiin käyttäen seuraavaa menettelyä:
 
 Hakutulosten seulonta tuotti seuraavan PRISMA-protokollan mukaisen kulkukaavion:
 
-\[TÄHÄN KULKUKAAVIO\]
+::: panel-tabset
+## Tietokannat ja rekisterit
+
+```{r}
+#| eval: true
+library("PRISMAstatement")
+
+labels <- c(
+  "Tunnistetut kohteet",
+  "Kaksoiskappaleet poistettu ennen seulontaa",
+  "Seulotut kohteet",
+  "Poisseulotut kohteet",
+  "Haettavat kohteet",
+  "Hakematta jääneet kohteet",
+  "Tarkistetut kohteet",
+  "Poistetut kohteet",
+  "Sisällytetyt kohteet"
+)
+
+counts <- c(4492, 3420, 137, 119, 33)
+
+flow_exclusions(
+  incl_counts = counts,
+  total_label = labels[1],
+  incl_labels = labels[c(3, 5, 7, 9)],
+  excl_labels = labels[c(2, 4, 6, 8)], 
+  percent_of_total = TRUE,
+  percent_of_prev = FALSE,
+  show_count = TRUE,
+  font_size = 14)
+```
+
+## Muut lähteet
+
+```{r}
+#| eval: true
+library("PRISMAstatement")
+
+labels <- c(
+  "Tunnistetut kohteet",
+  "Kaksoiskappaleet poistettu ennen seulontaa",
+  "Haettavat kohteet",
+  "Hakematta jääneet kohteet",
+  "Tarkistetut kohteet",
+  "Poistetut kohteet",
+  "Sisällytetyt kohteet"
+)
+
+counts <- c(0, 0, 0, 0)
+
+flow_exclusions(
+  incl_counts = counts,
+  total_label = labels[1],
+  incl_labels = labels[c(3, 5, 7)],
+  excl_labels = labels[c(2, 4, 6)], 
+  percent_of_total = TRUE,
+  percent_of_prev = FALSE,
+  show_count = TRUE,
+  font_size = 14)
+```
+:::
 
 ## Valitut tutkimusjulkaisut
 
