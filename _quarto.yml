@@ -11,6 +11,7 @@ book:
       chapters:
         - kriteeristo.qmd
         - haku1.qmd
+        - haku2.qmd
         - haku6.qmd
     - part: "Kyselyn valmistelu"
       chapters:
@@ -34,6 +35,7 @@ book:
       contents:
         - kriteeristo.qmd
         - haku1.qmd
+        - haku2.qmd
         - haku6.qmd
     
     - id: kyselynvalmistelu

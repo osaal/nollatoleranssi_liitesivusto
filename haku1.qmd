@@ -2,7 +2,7 @@
 
 Haku 1 seurasi seuraavia inkluusiokriteerejä:
 
--   Julkaisuaika: 1.1.201 - 30.9.2023
+-   Julkaisuaika: 1.1.2010 - 30.9.2023
 
 -   Metodologia: Empiirinen tutkimus laajasti ymmärrettynä (kvalitatiiviset ja kvantitatiiviset tutkimusasetelmat, toimintatutkimukset joissa kerätään tutkimustietoa, monimenetelmälliset asetelmat)
 
@@ -142,7 +142,7 @@ Alla olevassa taulukossa esitetään hakujen suorituspäivämäärät, hakusanat
 | H1_8_en | Julkari                                                     | 8.1.2024       | *Ei käytetty*               | 0           | *Ei asetettu, koska tuloksia ei ollut.*                                             |
 +---------+-------------------------------------------------------------+----------------+-----------------------------+-------------+-------------------------------------------------------------------------------------+
 
-: Haku 6:n toteutetut haut. Ei sisällä muista lähteistä ladatut tulokset. {#tbl-haku6-toteutetut-haut}
+: Haku 1:n toteutetut haut. Ei sisällä muista lähteistä ladatut tulokset. {#tbl-haku1-toteutetut-haut}
 
 Jokaisen haun hakulausekkeet ovat listattuna alla hakukoodeittain (ks. @tbl-haku1-toteutetut-haut). Paina osa-hakua vastaavaa koodia nähdäksesi kunkin haun hakulausekkeen. Voit kopioida lausekkeen sellaisenaan leikepöydällesi painamalla kopiointikuvaketta avatun hakulausekkeen yläoikeassa nurkassa.
 
