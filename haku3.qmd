@@ -1,0 +1,371 @@
+# Haku 3 {#sec-haku-3}
+
+Haku 3 seurasi seuraavia inkluusiokriteerejä:
+
+-   Julkaisuaika: 1.1.2010 - 30.9.2023
+
+-   Metodologia: Empiirinen tutkimus laajasti ymmärrettynä (kvalitatiiviset ja kvantitatiiviset tutkimusasetelmat, toimintatutkimukset joissa kerätään tutkimustietoa, monimenetelmälliset asetelmat)
+
+-   Kohderyhmä: Ensihoito
+
+-   Maantiede: Suomi ja Ahvenanmaa
+
+-   Kieli: Suomi, ruotsi ja englanti
+
+-   Aineistotyyppi: Vertaisarvioidut tutkimusraportit, viranomaisten ja yhteisöjen tutkimusraportit
+
+Haku suoritettiin seuraavissa tietolähteissä:
+
+| Tietokanta                              | Hakukone (jos eri kuin tietokanta) |
+|-----------------------------------------|------------------------------------|
+| Scopus                                  |                                    |
+| Web of Science Core Collection          | Web of Science                     |
+| MEDLINE                                 | Web of Science                     |
+| Ebook Central                           | ProQuest                           |
+| Social Science Premium Collection       | ProQuest                           |
+| Bielefeld Academic Search Engine (BASE) |                                    |
+| OpenAlex                                |                                    |
+| Valto                                   |                                    |
+| Julkari                                 |                                    |
+
+: Haku 3:n tietolähteet {#tbl-haku3-tietolahteet}
+
+Näiden lisäksi sisällytettiin tuloksia seuraavista organisaatiolähteistä:
+
+-   Pelastusopiston julkaisusarjat A, B ja D
+
+-   Pelastusopiston muut koulutusmateriaalit
+
+-   SPEK:in julkaisut
+
+Haun tuotetti HENKILÖT.
+
+## Hakulausekkeet ja tulosten lataaminen
+
+Alla olevassa taulukossa esitetään hakujen suorituspäivämäärät, hakusanat ja hakukonekohtaiset rajaukset sekä osumat.
+
++---------+-------------------------------------------------------------+---------------------+-----------------------------+-------------+-------------------------------------------------------------------------------------+
+| Koodi   | Hakukone (tietokannat suluissa)                             | Haku-ajankohta      | Julkaisujen ajankohtarajaus | Tulos-määrä | Haun jälkeiset rajaukset                                                            |
++=========+=============================================================+=====================+=============================+=============+=====================================================================================+
+| H3_1_fi | Scopus                                                      | 5.1.2024            | 2010-2023                   | 0           | Tyyppi: Article, Book, Book Chapter NOT Conference Proceedings                      |
++---------+-------------------------------------------------------------+---------------------+-----------------------------+-------------+-------------------------------------------------------------------------------------+
+| H3_1_sw | Scopus                                                      | 5.1.2024            | 2010-2023                   | 0           | Tyyppi: Article, Book, Book Chapter NOT Conference Proceedings                      |
++---------+-------------------------------------------------------------+---------------------+-----------------------------+-------------+-------------------------------------------------------------------------------------+
+| H3_1_en | Scopus                                                      | 5.1.2024            | 2010-2023                   | 61          | Tyyppi: Article, Book, Book Chapter NOT Conference Proceedings                      |
+|         |                                                             |                     |                             |             |                                                                                     |
+|         |                                                             |                     |                             |             | Kieli: Suomi                                                                        |
+|         |                                                             |                     |                             |             |                                                                                     |
+|         |                                                             |                     |                             |             | Maa: Suomi                                                                          |
++---------+-------------------------------------------------------------+---------------------+-----------------------------+-------------+-------------------------------------------------------------------------------------+
+| H3_2_fi | Web of Science (WoS Core Collection)                        | 5.1.2024            | 1.1.2010 - 30.9.2023        | 0           | Tyyppi: Article, Book, Book Chapter                                                 |
++---------+-------------------------------------------------------------+---------------------+-----------------------------+-------------+-------------------------------------------------------------------------------------+
+| H3_2_sw | Web of Science (WoS Core Collection)                        | 5.1.2024            | 1.1.2010 - 30.9.2023        | 0           | Tyyppi: Article, Book, Book Chapter                                                 |
++---------+-------------------------------------------------------------+---------------------+-----------------------------+-------------+-------------------------------------------------------------------------------------+
+| H3_2_en | Web of Science (WoS Core Collection)                        | 5.1.2024            | 1.1.2010 - 30.9.2023        | 43          | Tyyppi: Article, Book, Book Chapter                                                 |
+|         |                                                             |                     |                             |             |                                                                                     |
+|         |                                                             |                     |                             |             | Kieli: Englanti                                                                     |
+|         |                                                             |                     |                             |             |                                                                                     |
+|         |                                                             |                     |                             |             | Maa: Suomi                                                                          |
++---------+-------------------------------------------------------------+---------------------+-----------------------------+-------------+-------------------------------------------------------------------------------------+
+| H3_3_fi | Web of Science (MEDLINE)                                    | 5.1.2024            | 1.1.2010 - 30.9.2023        | 0           | Tyyppi: Article, Book, Book Chapter                                                 |
++---------+-------------------------------------------------------------+---------------------+-----------------------------+-------------+-------------------------------------------------------------------------------------+
+| H3_3_sw | Web of Science (MEDLINE)                                    | 5.1.2024            | 1.1.2010 - 30.9.2023        | 0           | Tyyppi: Article, Book, Book Chapter                                                 |
++---------+-------------------------------------------------------------+---------------------+-----------------------------+-------------+-------------------------------------------------------------------------------------+
+| H3_3_en | Web of Science (MEDLINE)                                    | 5.1.2024            | 1.1.2010 - 30.9.2023        | 25          | Tyyppi: Article, Book, Book Chapter                                                 |
+|         |                                                             |                     |                             |             |                                                                                     |
+|         |                                                             |                     |                             |             | Kieli: Englanti                                                                     |
+|         |                                                             |                     |                             |             |                                                                                     |
+|         |                                                             |                     |                             |             | Maa: Suomi                                                                          |
+|         |                                                             |                     |                             |             |                                                                                     |
+|         |                                                             |                     |                             |             | Exact Search päällä                                                                 |
++---------+-------------------------------------------------------------+---------------------+-----------------------------+-------------+-------------------------------------------------------------------------------------+
+| H3_4_fi | ProQuest (Ebook Central, Social Science Premium Collection) | 8.1.2024            | 1.1.2010 - 30.9.2023        | 0           | Vertaisarvioitu: Kyllä                                                              |
+|         |                                                             |                     |                             |             |                                                                                     |
+|         |                                                             |                     |                             |             | Lähdetyyppi: Books, Covernment & Official Publications, Reports, Scholarly Journals |
+|         |                                                             |                     |                             |             |                                                                                     |
+|         |                                                             |                     |                             |             | Kieli: Suomi                                                                        |
++---------+-------------------------------------------------------------+---------------------+-----------------------------+-------------+-------------------------------------------------------------------------------------+
+| H3_4_sw | ProQuest (Ebook Central, Social Science Premium Collection) | 8.1.2024            | 1.1.2010 - 30.9.2023        | 0           | Vertaisarvioitu: Kyllä                                                              |
+|         |                                                             |                     |                             |             |                                                                                     |
+|         |                                                             |                     |                             |             | Lähdetyyppi: Books, Covernment & Official Publications, Reports, Scholarly Journals |
+|         |                                                             |                     |                             |             |                                                                                     |
+|         |                                                             |                     |                             |             | Kieli: Ruotsi                                                                       |
++---------+-------------------------------------------------------------+---------------------+-----------------------------+-------------+-------------------------------------------------------------------------------------+
+| H3_4_en | ProQuest (Ebook Central, Social Science Premium Collection) | 19.1.2024[^haku3-1] | 1.1.2010 - 30.9.2023        | 48          | Vertaisarvioitu: Kyllä                                                              |
+|         |                                                             |                     |                             |             |                                                                                     |
+|         |                                                             |                     |                             |             | Maa: Suomi                                                                          |
++---------+-------------------------------------------------------------+---------------------+-----------------------------+-------------+-------------------------------------------------------------------------------------+
+| H3_5_fi | BASE                                                        | 5.1.2024            | 2010-2023                   | 2           | Maa: Worldwide                                                                      |
+|         |                                                             |                     |                             |             |                                                                                     |
+|         |                                                             |                     |                             |             | Verbatim Search päällä                                                              |
++---------+-------------------------------------------------------------+---------------------+-----------------------------+-------------+-------------------------------------------------------------------------------------+
+| H3_5_sw | BASE                                                        | 5.1.2024            | 2010-2023                   | 0           | Maa: Worldwide                                                                      |
+|         |                                                             |                     |                             |             |                                                                                     |
+|         |                                                             |                     |                             |             | Verbatim Search päällä                                                              |
++---------+-------------------------------------------------------------+---------------------+-----------------------------+-------------+-------------------------------------------------------------------------------------+
+| H3_5_en | BASE                                                        | 5.1.2024            | 2010-2023                   | 10          | Maa: Worldwide                                                                      |
+|         |                                                             |                     |                             |             |                                                                                     |
+|         |                                                             |                     |                             |             | Verbatim Search päällä                                                              |
++---------+-------------------------------------------------------------+---------------------+-----------------------------+-------------+-------------------------------------------------------------------------------------+
+| H3_6_fi | OpenAlex                                                    | 5.1.2024            | 1.1.2010 - 30.9.2023        | 0           | Tyyppi: Journal Article, Monograph, Report                                          |
++---------+-------------------------------------------------------------+---------------------+-----------------------------+-------------+-------------------------------------------------------------------------------------+
+| H3_6_sw | OpenAlex                                                    | 5.1.2024            | 1.1.2010 - 30.9.2023        | 6           | Tyyppi: Journal Article, Monograph, Report                                          |
++---------+-------------------------------------------------------------+---------------------+-----------------------------+-------------+-------------------------------------------------------------------------------------+
+| H3_6_en | OpenAlex                                                    | 5.1.2024            | 1.1.2010 - 30.9.2023        | 810         | Tyyppi: Journal Article, Monograph, Report                                          |
++---------+-------------------------------------------------------------+---------------------+-----------------------------+-------------+-------------------------------------------------------------------------------------+
+| H3_7_fi | Valto                                                       | 3.1.2024            | *Ei käytetty.*              | 0           | *Ei käytetty.*                                                                      |
++---------+-------------------------------------------------------------+---------------------+-----------------------------+-------------+-------------------------------------------------------------------------------------+
+| H3_7_sw | Valto                                                       | 8.1.2024            | *Ei käytetty.*              | 0           | *Ei käytetty.*                                                                      |
++---------+-------------------------------------------------------------+---------------------+-----------------------------+-------------+-------------------------------------------------------------------------------------+
+| H3_7_en | Valto                                                       | 8.1.2024            | *Ei käytetty.*              | 0           | *Ei käytetty.*                                                                      |
++---------+-------------------------------------------------------------+---------------------+-----------------------------+-------------+-------------------------------------------------------------------------------------+
+| H3_8_fi | Julkari                                                     | 3.1.2024            | *Ei käytetty.*              | 0           | *Ei käytetty.*                                                                      |
++---------+-------------------------------------------------------------+---------------------+-----------------------------+-------------+-------------------------------------------------------------------------------------+
+| H3_8_sw | Julkari                                                     | 8.1.2024            | *Ei käytetty.*              | 0           | *Ei käytetty.*                                                                      |
++---------+-------------------------------------------------------------+---------------------+-----------------------------+-------------+-------------------------------------------------------------------------------------+
+| H3_8_en | Julkari                                                     | 8.1.2024            | *Ei käytetty.*              | 3           | *Ei käytetty.*                                                                      |
++---------+-------------------------------------------------------------+---------------------+-----------------------------+-------------+-------------------------------------------------------------------------------------+
+
+: Haku 3:n toteutetut haut. Ei sisällä muista lähteistä ladatut tulokset. {#tbl-haku3-toteutetut-haut}
+
+[^haku3-1]: Hakujen seulontavaiheessa huomasimme, että alkuperäisestä hausta 8.1.2024 oli jäänyt pois 27 tietuetta. Suoritimme haun siksi uudelleen 19.1.2024 ja latasimme kaikki tietueet. Tarkistimme, että vanhat tiedot vastasivat uusia tietoja.
+
+Jokaisen haun hakulausekkeet ovat listattuna alla hakukoodeittain (ks. @tbl-haku3-toteutetut-haut). Paina osa-hakua vastaavaa koodia nähdäksesi kunkin haun hakulausekkeen. Voit kopioida lausekkeen sellaisenaan leikepöydällesi painamalla kopiointikuvaketta avatun hakulausekkeen yläoikeassa nurkassa.
+
+```{r}
+#| code-summary: "Haku H3_1_fi"
+TITLE-ABS-KEY((ensihoit* OR sairaankuljet* OR ambulanssi*) AND (syrji* OR häirin* OR häirit* OR väkival* OR painost* OR pahoinpi* OR ahdistel* OR epäasialli* OR yhdenvertai* OR tasa-arvo* OR tasapuoli* OR tasavertai*)) AND (PUBYEAR BEF 2024 AND PUBYEAR AFT 2009) AND (DOCTYPE(ar) OR DOCTYPE(bk) OR DOCTYPE(ch)) AND NOT SRCTYPE(p)
+```
+
+```{r}
+#| code-summary: "Haku H3_1_sw"
+TITLE-ABS-KEY(("första hjälp*" OR nödhjälp* OR ambulans* OR sjuktransport* OR förstavårdar*) AND (diskriminer* OR trakasse* OR påtryck* OR våld* OR osaklig* OR opasslig* OR jämlik* OR jämställd*)) AND (PUBYEAR BEF 2024 AND PUBYEAR AFT 2009) AND (DOCTYPE(ar) OR DOCTYPE(bk) OR DOCTYPE(ch)) AND NOT SRCTYPE(p)
+```
+
+```{r}
+#| code-summary: "Haku H3_1_en"
+TITLE-ABS-KEY ( ( {medic} OR "emergency medic*" OR ambulance ) AND ( discriminat* OR harass* OR pressur* OR violen* OR "improper behavior" OR equal* OR equit* ) ) AND ( PUBYEAR < 2024 AND PUBYEAR > 2009 ) AND ( DOCTYPE ( ar ) OR DOCTYPE ( bk ) OR DOCTYPE ( ch ) ) AND NOT SRCTYPE ( p ) AND ( LIMIT-TO ( LANGUAGE , "English" ) ) AND ( LIMIT-TO ( AFFILCOUNTRY , "Finland" ) )
+```
+
+```{r}
+#| code-summary: "Haku H3_2_fi"
+(TS=((ensihoit* OR sairaankuljet* OR ambulanssi*) AND (syrji* OR häirin* OR häirit* OR väkival* OR painost* OR pahoinpi* OR ahdistel* OR epäasialli* OR yhdenvertai* OR tasa$arvo* OR tasapuoli* OR tasavertai*))) AND DOP=(2010-01-01/2023-09-30) AND DT=(Article OR Book OR Book Chapter)
+```
+
+```{r}
+#| code-summary: "Haku H3_2_sw"
+(TS=(("första hjälp*" OR nödhjälp* OR ambulans* OR sjuktransport* OR förstavårdar*) AND (diskriminer* OR trakasse* OR påtryck* OR våld* OR osaklig* OR opasslig* OR jämlik* OR jämställd*))) AND DOP=(2010-01-01/2023-09-30) AND DT=(Article OR Book OR Book Chapter)
+```
+
+```{r}
+#| code-summary: "Haku H3_2_en"
+(TS=(("medic" OR "emergency medic*" OR ambulance) AND (discriminat* OR harass* OR pressur* OR violen* OR "improper behavior" OR equal* OR equit*))) AND DOP=(2010-01-01/2023-09-30) AND DT=(Article OR Book OR Book Chapter)
+```
+
+```{r}
+#| code-summary: "Haku H3_3_fi"
+TS=((ensihoit* OR sairaankuljet* OR ambulanssi*) AND (syrji* OR häirin* OR häirit* OR väkival* OR painost* OR pahoinpi* OR ahdistel* OR epäasialli* OR yhdenvertai* OR tasa$arvo* OR tasapuoli* OR tasavertai*)) AND DT=(Classical Article OR Clinical Study OR Comparative Study OR Controlled Clinical Trial OR Equivalence Trial OR Journal Article OR Observational Study OR Personal Narrative OR Personal Narratives OR Pragmatic Clinical Trial OR Twin Study OR Validation Studies OR Validation Study) AND PY=(2010-2023)
+```
+
+```{r}
+#| code-summary: "Haku H3_3_sw"
+TS=(("första hjälp*" OR nödhjälp* OR ambulans* OR sjuktransport* OR förstavårdar*) AND (diskriminer* OR trakasse* OR påtryck* OR våld* OR osaklig* OR opasslig* OR jämlik* OR jämställd*)) AND DT=(Classical Article OR Clinical Study OR Comparative Study OR Controlled Clinical Trial OR Equivalence Trial OR Journal Article OR Observational Study OR Personal Narrative OR Personal Narratives OR Pragmatic Clinical Trial OR Twin Study OR Validation Studies OR Validation Study) AND PY=(2010-2023)
+```
+
+```{r}
+#| code-summary: "Haku H3_3_en"
+TS=(("medic" OR "emergency medic*" OR ambulance) AND (discriminat* OR harass* OR pressur* OR violen* OR "improper behavior" OR equal* OR equit*) AND (finland OR finnish)) AND LA=(English) AND DT=(Classical Article OR Clinical Study OR Comparative Study OR Controlled Clinical Trial OR Equivalence Trial OR Journal Article OR Observational Study OR Personal Narrative OR Personal Narratives OR Pragmatic Clinical Trial OR Twin Study OR Validation Studies OR Validation Study) AND PY=(2010-2023)
+```
+
+```{r}
+#| code-summary: "Haku H3_4_fi"
+noft((ensihoit* OR sairaankuljet* OR ambulanssi*) AND (syrji* OR häirin* OR häirit* OR väkival* OR painost* OR pahoinpi* OR ahdistel* OR epäasialli* OR yhdenvertai* OR tasa-arvo* OR tasapuoli* OR tasavertai*))
+```
+
+```{r}
+#| code-summary: "Haku H3_4_sw"
+noft(("första hjälp*" OR nödhjälp* OR ambulans* OR sjuktransport* OR förstavårdar*) AND (diskriminer* OR trakasse* OR påtryck* OR våld* OR osaklig* OR opasslig* OR jämlik* OR jämställd*))
+```
+
+```{r}
+#| code-summary: "Haku H3_4_en"
+noft(("medic" OR "emergency medic*" OR ambulance) AND (discriminat* OR harass* OR pressur* OR violen* OR "improper behavio?r" OR equal* OR equit*) AND (finland OR finnish))
+```
+
+```{r}
+#| code-summary: "Haku H3_5_fi"
+(ensihoit* OR sairaankuljet* OR ambulanssi*) AND (syrji* OR häirin* OR häirit* OR väkival* OR painost* OR pahoinpi* OR ahdistel* OR epäasialli* OR yhdenvertai* OR tasa-arvo* OR tasapuoli* OR tasavertai*) doctype:(11* 121) year:[2010 TO 2023]
+```
+
+```{r}
+#| code-summary: "Haku H3_5_sw"
+("första hjälp*" OR nödhjälp* OR ambulans* OR sjuktransport* OR förstavårdar*) AND (diskriminer* OR trakasse* OR påtryck* OR våld* OR osaklig* OR opasslig* OR jämlik* OR jämställd*)
+```
+
+```{r}
+#| code-summary: "Haku H3_5_en"
+("medic" OR "emergency medic*" OR ambulance) AND (discriminat* OR harass* OR pressur* OR violen* OR "improper behavio*r" OR equal* OR equit*) AND (finnish OR finland) doctype:(11* 121) year:[2010 TO 2023]
+```
+
+```{r}
+#| code-summary: "Haku H3_6_fi"
+https://api.openalex.org/works?search=(ensihoit OR sairaankuljet OR ambulanssi) AND (syrji OR häirin OR häirit OR väkival OR painost OR pahoinpi OR ahdistel OR epäasialli OR yhdenvertai OR tasa-arvo OR tasapuoli OR tasavertai)&filter=from_publication_date:2010-01-01,to_publication_date:2023-09-30,type_crossref:journal-article|monograph|report&per_page=200&select=title,publication_year,doi&page=1
+```
+
+```{r}
+#| code-summary: "Haku H3_6_sw"
+https://api.openalex.org/works?search=("första hjälp" OR nödhjälp OR ambulans OR sjuktransport OR förstavårdar) AND (diskriminer OR trakasse OR påtryck OR våld OR osaklig OR opasslig OR jämlik OR jämställd)&filter=from_publication_date:2010-01-01,to_publication_date:2023-09-30,type_crossref:journal-article|monograph|report&per_page=200&select=title,publication_year,doi&page=1
+```
+
+```{r}
+#| code-summary: "Haku H3_6_en"
+https://api.openalex.org/works?search=("medic" OR "emergency medic" OR ambulance) AND (discriminat OR harass OR pressur OR violen OR "improper behavior" OR equal OR equit) AND (finnish OR finland)&filter=from_publication_date:2010-01-01,to_publication_date:2023-09-30,type_crossref:journal-article|monograph|report&per_page=200&select=title,publication_year,doi&page=1
+```
+
+```{r}
+#| code-summary: "Haku H3_7_fi"
+dc.title:((ensihoit* OR sairaankuljet* OR ambulanssi*) AND (syrji* OR häirin* OR häirit* OR väkival* OR painost* OR pahoinpi* OR ahdistel* OR epäasialli* OR yhdenvertai* OR tasa-arvo* OR tasapuoli* OR tasavertai*))
+```
+
+```{r}
+#| code-summary: "Haku H3_7_sw"
+dc.title:("första hjälp*" OR nödhjälp* OR ambulans* OR sjuktransport* OR förstavårdar*) AND dc.title:(diskriminer* OR trakasse* OR påtryck* OR våld* OR osaklig* OR opasslig* OR jämlik* OR jämställd*)
+```
+
+```{r}
+#| code-summary: "Haku H3_7_en"
+dc.title:("medic" OR "emergency medic*" OR ambulance) AND dc.title:(discriminat* OR harass* OR pressur* OR violen* OR "improper behavior" OR equal* OR equit*)
+```
+
+```{r}
+#| code-summary: "Haku H3_8_fi"
+dc.title:((ensihoit* OR sairaankuljet* OR ambulanssi*) AND (syrji* OR häirin* OR häirit* OR väkival* OR painost* OR pahoinpi* OR ahdistel* OR epäasialli* OR yhdenvertai* OR tasa-arvo* OR tasapuoli* OR tasavertai*))
+```
+
+```{r}
+#| code-summary: "Haku H3_8_sw"
+dc.title:("första hjälp*" OR nödhjälp* OR ambulans* OR sjuktransport* OR förstavårdar*) AND dc.title:(diskriminer* OR trakasse* OR påtryck* OR våld* OR osaklig* OR opasslig* OR jämlik* OR jämställd*)
+```
+
+```{r}
+#| code-summary: "Haku H3_8_en"
+dc.title:("medic" OR "emergency medic*" OR ambulance) AND dc.title:(discriminat* OR harass* OR pressur* OR violen* OR "improper behavior" OR equal* OR equit*)
+```
+
+OpenAlex:in kohdalla tulokset haettiin API-menettelyllä. Maksimitulosten määrä per sivu oli 200 dokumentaation mukaan, joten haku toteutettiin kuusi kertaa nostaen `&page=X` -numeroa jokaisen kerran, `1-6`.
+
+Tulokset ladattiin ensisijaisesti `.csv`- tai `.xlsx`-muotoon jos mahdollista (Scopus, Web of Science ja ProQuest). BASE:n kohdalla lataaminen suoritettiin 100 tulosta kerralla `.json`-muotoon. OpenAlex:in tulokset haettiin 200 tulosta kerralla `.xml`-muotoon.
+
+`.xml`- ja `.json`-muotoiset hakutulokset käännettiin taulukkomuotoon Microsoft Excel -ohjelmassa *Power Query* -toiminnolla.
+
+Näiden lisäksi haimme käsin seuraavista organisaatiosivuista:
+
+| Kohde                                             | Hakuajankohta | Osoite                                                                                                             | Tulosmäärä |
+|---------------------------------------------------|---------------|--------------------------------------------------------------------------------------------------------------------|------------|
+| Pelastusopiston julkaisusarja A: Oppimateriaalit  | 9.1.2024      | <https://www.pelastusopisto.fi/kirjasto-ja-tietopalvelut/julkaisut-ja-aineistot/a-julkaisusarja-oppimateriaalit/>  | 0          |
+| Pelastusopiston julkaisusarja B: Tutkimusraportit | 9.1.2024      | <https://www.pelastusopisto.fi/kirjasto-ja-tietopalvelut/julkaisut-ja-aineistot/B-julkaisusarja-tutkimusraportit/> | 3          |
+| Pelastusopiston julkaisusarja D: Muut julkaisut   | 9.1.2024      | <https://www.pelastusopisto.fi/kirjasto-ja-tietopalvelut/julkaisut-ja-aineistot/D-julkaisusarja-muut-julkaisut/>   | 0          |
+| Pelastusopiston muut koulutusmateriaalit          | 9.1.2024      | <https://www.pelastusopisto.fi/kirjasto-ja-tietopalvelut/julkaisut-ja-aineistot/muut-koulutusmateriaalit/>         | 0          |
+| SPEK:in julkaisut                                 | 9.1.2024      | <https://www.spek.fi/vaikuttaminen/tutkimukset/julkaisut/>                                                         | 0          |
+
+## Hakutulosten seulonta ja valinta
+
+Hakutulokset seulottiin käyttäen seuraavaa menettelyä:
+
+1.  Kaksoiskappaleet tunnistettiin Microsoft Excelin *Solujen korostussäännöt* -työkalulla. Jokaisen kaksoiskappaleeksi tunnistetun tuloksen kohdalla varmistettiin kaksoiskappaluus, ja säilytettiin yksi tuloksista. Muut merkittiin kaksoiskappaleiksi ja suodatettiin pois taulukosta *Suodata* -työkalulla.
+2.  Otsikkojen pohjalta toteutettiin ensimmäinen seulonta. Jos otsikko selkeästi vastasi inkluusiokriteerejä, merkittiin tulokselle arvo 1. Jos otsikko mahdollisesti täytti inkluusiokriteerejä, mutta asiasta ei voinut saada varmuutta, merkittiin tulokselle arvo 2. Jos otsikko selkeästi ei vastannut inkluusiokriteerejä (esim. rikkoi yhden tai useamman kriteerin), jätettiin tyhjä solu. Tyhjät solut suodatettiin sitten pois taulukosta.
+3.  Jokaiselle tulokselle, jolla oli merkitty arvo 2 (epävarma) ensimmäisessä seulonnassa, tarkistettiin tiivistelmä tuloksen verkko-osoitteesta. Jos tiivistelmä selkeästi vastasi inkluusiokriteerejä, merkittiin tulokselle arvo 1. Jos tiivistelmä mahdollisesti täytti inkluusiokriteerejä, mutta asiasta ei voinut saada varmuutta, merkittiin tulokselle arvo 2. Jos tiivistelmä selkeästi ei vastannut inkluusiokriteerejä (esim. rikkoi yhden tai useamman kriteerin), jätettiin tyhjä solu. Tyhjät solut suodatettiin sitten pois taulukosta.
+4.  Seuraavaksi haettiin kaikki tulokset, jotka saivat arvon 1 ensimmäisessä seulonnassa tai arvot 1 tai 2 toisessa seulonnassa. Jos tuloksen sai haettua, merkittiin arvo 1, ja jos tulosta ei saatu haettua, merkittiin arvo x. Yksi tulos oli kirjaluku, jolloin haettiin kirja ja merkittiin arvo \* kommentin kanssa.
+5.  Seuraavaksi tarkistettiin kaikki ne tutkimukset, joille oli merkitty arvo 2 toisessa seulonnassa (epävarma tiivistelmän pohjalta). Tutkija kävi läpi artikkelin menetelmäosiot ja tarkisti, täyttyykö inkluusiokriteerit. Jos kaikki kriteerit täyttyivät, merkittiin arvo 1 (sisällytä kirjallisuuskatsaukseen). Jos osa kriteereistä täyttyivät, merkittiin arvo T (mahdollisesti käytettävissä raportin taustoitukseen, mutta ei kirjallisuuskatsauksessa). Jos kriteerit eivät täyttyneet, tai yksi tai useampi selkeästi rikkoontui, jätettiin tyhjä arvo. Tyhjät solut suodatettiin sitten pois taulukosta.
+6.  Viimeiseksi tarkistettiin vielä kaikki tulokset, jotka saivat arvon 1 ensimmäisessä tai toisessa seulonnassa. Tutkija kävi läpi artikkelin menetelmäosiot ja tarkisti, täyttyykö inkluusiokriteerit. Jos kaikki kriteerit täyttyivät, merkittiin arvo 1 (sisällytä kirjallisuuskatsaukseen). Jos osa kriteereistä täyttyivät, merkittiin arvo T (mahdollisesti käytettävissä raportin taustoitukseen, mutta ei kirjallisuuskatsauksessa). Jos kriteerit eivät täyttyneet, tai yksi tai useampi selkeästi rikkoontui, jätettiin tyhjä arvo. Tyhjät solut suodatettiin sitten pois taulukosta.
+7.  Valintaprosessin jälkeen jokaisesta tutkimuksesta haettiin seuraavat tiedot:
+    1.  Tekijöiden nimet
+    2.  Julkaisuvuosi
+    3.  Tutkimusjulkaisun otsikko
+    4.  Julkaisumuoto (vertaisarvioitu tutkimusartikkeli, organisaatioraportti, kirjateos, kirjan luku, muu)
+    5.  Verkko-osoite (ensisijaisesti DOI-numero)
+    6.  Tiedonkeruun muoto (kysely, haastattelu, rekisteri, havainnointi, audiovisuaalinen aineisto, muu \[kirjattu avotietona\], useampia muotoja \[kirjattu avotietoina\])
+    7.  Kohdepopulaatio (maantieteellinen ja ammatillinen luokittelu)
+    8.  Tutkimuksen tiedonkeruun ajankohta (kuukausitasolla, jos tiedossa)
+    9.  Otoskoko (yksi tai useampi otos)
+    10. Otantamenetelmä (ei tietoa, satunnaistettu otanta, ositettu otanta, ryväsotanta, paneelitutkimus, harkinnanvarainen otanta[^haku3-2], kiintiöotanta, lumipallo-otanta, muu)
+    11. Vastaajien yhteydenottotapa (postitse, sähköpostitse, puhelimitse, sosiaalisen verkoston kautta \[esim. kollegat\], organisaatiojohdon kautta, muun organisaation kautta \[esim. liitto\], kasvokkain, muu[^haku3-3])
+    12. Vastaajien vastausmuistutusten määrä (jos tiedossa)
+
+[^haku3-2]: Jos tutkimus pyrki koko populaation tutkimiseen, kirjattiin "harkinnanvarainen otanta".
+
+[^haku3-3]: Jos käytettiin useampia yhteydenottomuotoja, merkittiin "muu".
+
+## PRISMA-kulkukaavio
+
+Hakutulosten seulonta tuotti seuraavan PRISMA-protokollan mukaisen kulkukaavion:
+
+::: panel-tabset
+## Tietokannat ja rekisterit
+
+```{r}
+#| eval: true
+library("PRISMAstatement")
+
+labels <- c(
+  "Tunnistetut kohteet",
+  "Kaksoiskappaleet poistettu ennen seulontaa",
+  "Seulotut kohteet",
+  "Poisseulotut kohteet",
+  "Haettavat kohteet",
+  "Hakematta jääneet kohteet",
+  "Tarkistetut kohteet",
+  "Poistetut kohteet",
+  "Sisällytetyt kohteet"
+)
+
+counts <- c(1008, 910, 35, 35, 6)
+
+flow_exclusions(
+  incl_counts = counts,
+  total_label = labels[1],
+  incl_labels = labels[c(3, 5, 7, 9)],
+  excl_labels = labels[c(2, 4, 6, 8)], 
+  percent_of_total = TRUE,
+  percent_of_prev = FALSE,
+  show_count = TRUE,
+  font_size = 14)
+```
+
+## Muut lähteet
+
+```{r}
+#| eval: true
+library("PRISMAstatement")
+
+labels <- c(
+  "Tunnistetut kohteet",
+  "Kaksoiskappaleet poistettu ennen seulontaa",
+  "Haettavat kohteet",
+  "Hakematta jääneet kohteet",
+  "Tarkistetut kohteet",
+  "Poistetut kohteet",
+  "Sisällytetyt kohteet"
+)
+
+counts <- c(3, 3, 3, 2)
+
+flow_exclusions(
+  incl_counts = counts,
+  total_label = labels[1],
+  incl_labels = labels[c(3, 5, 7)],
+  excl_labels = labels[c(2, 4, 6)], 
+  percent_of_total = TRUE,
+  percent_of_prev = FALSE,
+  show_count = TRUE,
+  font_size = 14)
+```
+:::
+
+## Valitut tutkimusjulkaisut
+
+\[TÄHÄN LÄHDELUETTELO KAIKISTA MUKAAN VALITUISTA TUTKIMUSJULKAISUISTA\]
+
+## Kokotekstin pohjalta poistetut tutkimukset ja syyt
+
+\[TÄHÄN LÄHDELUETTELO KAIKISTA KOKOTEKSTISTÄ POISTETUISTA TUTKIMUKSISTA PÄÄSYYN MUKAAN.\]

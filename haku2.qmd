@@ -45,7 +45,7 @@ Haun tuotti HENKILÖT.
 Alla olevassa taulukossa esitetään hakujen suorituspäivämäärät, hakusanat ja hakukonekohtaiset rajaukset sekä osumat.
 
 | Koodi    | Hakukone (tietokannat suluissa)  | Haku-ajankohta | Julkaisujen ajankohtarajaus | Tulos-määrä | Haun jälkeiset rajaukset                                        |
-|------------|------------|------------|------------|------------|------------|
+|----------|----------------------------------|----------------|-----------------------------|-------------|-----------------------------------------------------------------|
 | H2_1_fi  | Theseus                          | 3.1.2024       | *Ei käytetty.*              | 3           | *Ei käytetty.*                                                  |
 | H2_1_sw  | Theseus                          | 9.1.2024       | 2010-2024                   | 30          | *Ei käytetty.*                                                  |
 | H2_1_en  | Theseus                          | 10.1.2024      | 2010-2024                   | 4           | *Ei käytetty.*                                                  |
