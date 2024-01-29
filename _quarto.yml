@@ -14,6 +14,7 @@ book:
         - haku2.qmd
         - haku3.qmd
         - haku4.qmd
+        - haku5.qmd
         - haku6.qmd
     - part: "Kyselyn valmistelu"
       chapters:
@@ -40,6 +41,7 @@ book:
         - haku2.qmd
         - haku3.qmd
         - haku4.qmd
+        - haku5.qmd
         - haku6.qmd
     
     - id: kyselynvalmistelu
