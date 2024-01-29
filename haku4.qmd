@@ -148,7 +148,7 @@ dc.title:((ensihoit* OR sairaankuljet* OR ambulanssi*) AND (syrji* OR häirin* O
 ```
 
 ```{r}
-#| code-summary "Haku H4_4_sw"
+#| code-summary: "Haku H4_4_sw"
 dc.title:("första hjälp*" OR "nödhjälp*" OR "ambulans*" OR "sjuktransport*" OR "förstavårdar*") AND (diskriminer* OR trakasse* OR påtryck* OR våld* OR osaklig* OR opasslig* OR jämlik* OR jämställd*)
 ```
 
