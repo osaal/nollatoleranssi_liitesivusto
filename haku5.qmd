@@ -16,27 +16,35 @@ Haku 5 seurasi seuraavia inkluusiokriteerejä:
 
 Haku suoritettiin seuraavissa tietolähteissä:
 
-| Tietokanta                              | Hakukone (jos eri kuin tietokanta) |
-|-----------------------------------------|------------------------------------|
-| Poliisiammattikorkeakoulun julkaisut    | Theseus                            |
-| Valto                                   |                                    |
-| Julkari                                 |                                    |
-| Scopus                                  |                                    |
-| Web of Science Core Collection          | Web of Science                     |
-| MEDLINE                                 | Web of Science                     |
-| Ebook Central                           | ProQuest                           |
-| Social Science Premium Collection       | ProQuest                           |
-| Bielefeld Academic Search Engine (BASE) |                                    |
-| OpenAlex                                |                                    |
+| Tietokanta                                    | Hakukone (jos eri kuin tietokanta) |
+|--------------------------------------|----------------------------------|
+| Poliisiammattikorkeakoulun julkaisut          | Theseus                            |
+| Valto                                         |                                    |
+| Julkari                                       |                                    |
+| Scopus                                        |                                    |
+| Web of Science Core Collection                | Web of Science                     |
+| MEDLINE                                       | Web of Science                     |
+| Grants Index                                  | Web of Science                     |
+| Preprint Citation Index                       | Web of Science                     |
+| ProQuest Disserations & Theses Citation Index | Web of Science                     |
+| SciELO Citation Index                         | Web of Science                     |
+| Ebook Central                                 | ProQuest                           |
+| Social Science Premium Collection             | ProQuest                           |
+| Bielefeld Academic Search Engine (BASE)       |                                    |
+| OpenAlex                                      |                                    |
 
 : Haku 5:n tietolähteet {#tbl-haku5-tietolahteet}
+
+Web of Science -hakukoneen käytössä syntyi inhimillinen virhe, jolloin haettiin kaikista palvelun tietokannoista. Tutkimuksen rajauksena oli alunperin vain Web of Science Core Collection- sekä MEDLINE-tietokannat. Virhe huomattiin vasta tulosten koonnin aikana.
+
+Virheellinen haku ei kuitenkaan vaikuta näkemyksemme mukaan juurikaan tulosten luotettavuuteen, kahdesta syystä. Ensimmäiseksi, virheellisesti lisätyt tulokset seulontuivat pois viimeistään kokotekstin tarkistuksessa, jolloin vaikutus rajaantui pääsääntöisesti kokonaistulosmäärään. Toiseksi, kahden tietokannan tulokset seulontuivat pois heti hakumenettelyssä, koska käytimme `country`-rajausta (jolloin KCI-Korean Journal Database sekä SciELO Citation Index ei pitäisi tuottaa mitään tuloksia).
 
 ## Hakulausekkeet ja tulosten lataaminen
 
 Alla olevassa taulukossa esitetään hakujen suorituspäivämäärät, hakusanat ja hakukonekohtaiset rajaukset sekä osumat.
 
 | Koodi   | Hakukone (tietokannat suluissa)                             | Haku-ajankohta | Julkaisujen ajankohtarajaus | Tulos-määrä | Haun jälkeiset rajaukset                   |
-|---------|-------------------------------------------------------------|----------------|-----------------------------|-------------|--------------------------------------------|
+|-----------|------------------|-----------|-----------|-----------|-----------|
 | H5_1_fi | Theseus (Poliisiammattikorkeakoulun julkaisut)              | 12.1.2024      | 2010-2023                   | 40          | *Ei käytetty.*                             |
 | H5_1_sw | Theseus (Poliisiammattikorkeakoulun julkaisut)              | 12.1.2024      | 2010-2023                   | 6           | *Ei käytetty.*                             |
 | H5_1_en | Theseus (Poliisiammattikorkeakoulun julkaisut)              | 12.1.2024      | 2010-2023                   | 0           | *Ei käytetty.*                             |
@@ -46,12 +54,12 @@ Alla olevassa taulukossa esitetään hakujen suorituspäivämäärät, hakusanat
 | H5_3_fi | Julkari                                                     | 12.1.2024      | 2010-2023                   | 10          | *Ei käytetty.*                             |
 | H5_3_sw | Julkari                                                     | 12.1.2024      | 2010-2023                   | 0           | *Ei käytetty.*                             |
 | H5_3_en | Julkari                                                     | 12.1.2024      | 2010-2023                   | 2           | *Ei käytetty.*                             |
-| H5_4_fi | Scopus                                                      | 12.1.2024      | 2010-2023                   | 4           |                                            |
-| H5_4_sw | Scopus                                                      | 12.1.2024      | 2010-2023                   | 0           |                                            |
-| H5_4_en | Scopus                                                      | 12.1.2024      | 2010-2023                   | 169         |                                            |
-| H5_5_fi | Web of Science (WoS Core Collection, MEDLINE)               | 12.1.2024      | 1.1.2010 - 30.9.2023        | 0           |                                            |
-| H5_5_sw | Web of Science (WoS Core Collection, MEDLINE)               | 12.1.2024      | 1.1.2010 - 30.9.2023        | 2           |                                            |
-| H5_5_en | Web of Science (WoS Core Collection, MEDLINE)               | 12.1.2024      | 1.1.2010 - 30.9.2023        | 152         |                                            |
+| H5_4_fi | Scopus                                                      | 12.1.2024      | 2010-2023                   | 4           | Maa: Suomi                                 |
+| H5_4_sw | Scopus                                                      | 12.1.2024      | 2010-2023                   | 0           | Maa: Suomi                                 |
+| H5_4_en | Scopus                                                      | 12.1.2024      | 2010-2023                   | 169         | Maa: Suomi                                 |
+| H5_5_fi | Web of Science (ks. @tbl-haku5-tietolahteet)                | 12.1.2024      | 1.1.2010 - 30.9.2023        | 0           | Maa: Suomi                                 |
+| H5_5_sw | Web of Science (ks. @tbl-haku5-tietolahteet)                | 12.1.2024      | 1.1.2010 - 30.9.2023        | 2           | Maa: Suomi                                 |
+| H5_5_en | Web of Science (ks. @tbl-haku5-tietolahteet)                | 12.1.2024      | 1.1.2010 - 30.9.2023        | 152         | Maa: Suomi                                 |
 | H5_6_fi | ProQuest (Ebook Central, Social Science Premium Collection) | 12.1.2024      | 1.1.2010 - 30.9.2023        | 30          | Tyyppi: Article                            |
 | H5_6_sw | ProQuest (Ebook Central, Social Science Premium Collection) | 12.1.2024      | 1.1.2010 - 30.9.2023        | 27          | Tyyppi: Article                            |
 | H5_6_en | ProQuest (Ebook Central, Social Science Premium Collection) | 12.1.2024      | 1.1.2010 - 30.9.2023        | 40          | Tyyppi: Article                            |

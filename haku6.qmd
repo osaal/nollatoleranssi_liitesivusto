@@ -36,8 +36,6 @@ Haku suoritettiin seuraavissa tietolähteissä:
 
 : Haku 6:n tietolähteet {#tbl-haku6-tietolahteet}
 
-Haun toteutti kokonaisuudessaan tutkija, projektipäällikkö Oliver Saal.
-
 ## Hakulausekkeet ja tulosten lataaminen {#sec-haku6-hakulausekkeet}
 
 Alla olevassa taulukossa esitetään hakujen suorituspäivämäärät, hakusanat ja hakukonekohtaiset rajaukset sekä osumat.
@@ -124,37 +122,9 @@ https://api.openalex.org/works?search=("fire rescue" OR firefighter OR "rescue s
 
 OpenAlex:in kohdalla tulokset haettiin API-menettelyllä. Maksimitulosten määrä per sivu oli 200 dokumentaation mukaan, joten haku toteutettiin kuusi kertaa nostaen `&page=X` -numeroa jokaisen kerran, `1-6`.
 
-Tulokset ladattiin ensisijaisesti `.csv`- tai `.xlsx`-muotoon jos mahdollista (Scopus, Web of Science ja ProQuest). BASE:n kohdalla lataaminen suoritettiin 100 tulosta kerralla `.json`-muotoon. OpenAlex:in tulokset haettiin 200 tulosta kerralla `.xml`-muotoon.
+Tulokset ladattiin ensisijaisesti `.csv`- tai `.xlsx`-muotoon jos mahdollista (Scopus, Web of Science ja ProQuest). BASE:n kohdalla lataaminen suoritettiin 100 tulosta kerralla `.json`-muotoon. OpenAlex:in tulokset haettiin 200 tulosta kerralla `.json`-muotoon.
 
 `.xml`- ja `.json`-muotoiset hakutulokset käännettiin taulukkomuotoon Microsoft Excel -ohjelmassa *Power Query* -toiminnolla.
-
-## Hakutulosten seulonta ja valinta
-
-Hakutulokset seulottiin käyttäen seuraavaa menettelyä:
-
-1.  Kaksoiskappaleet tunnistettiin Microsoft Excelin *Solujen korostussäännöt* -työkalulla. Jokaisen kaksoiskappaleeksi tunnistetun tuloksen kohdalla varmistettiin kaksoiskappaluus, ja säilytettiin yksi tuloksista. Muut merkittiin kaksoiskappaleiksi ja suodatettiin pois taulukosta *Suodata* -työkalulla.
-2.  Otsikkojen pohjalta toteutettiin ensimmäinen seulonta. Jos otsikko selkeästi vastasi inkluusiokriteerejä, merkittiin tulokselle arvo 1. Jos otsikko mahdollisesti täytti inkluusiokriteerejä, mutta asiasta ei voinut saada varmuutta, merkittiin tulokselle arvo 2. Jos otsikko selkeästi ei vastannut inkluusiokriteerejä (esim. rikkoi yhden tai useamman kriteerin), jätettiin tyhjä solu. Tyhjät solut suodatettiin sitten pois taulukosta.
-3.  Jokaiselle tulokselle, jolla oli merkitty arvo 2 (epävarma) ensimmäisessä seulonnassa, tarkistettiin tiivistelmä tuloksen verkko-osoitteesta. Jos tiivistelmä selkeästi vastasi inkluusiokriteerejä, merkittiin tulokselle arvo 1. Jos tiivistelmä mahdollisesti täytti inkluusiokriteerejä, mutta asiasta ei voinut saada varmuutta, merkittiin tulokselle arvo 2. Jos tiivistelmä selkeästi ei vastannut inkluusiokriteerejä (esim. rikkoi yhden tai useamman kriteerin), jätettiin tyhjä solu. Tyhjät solut suodatettiin sitten pois taulukosta.
-4.  Seuraavaksi haettiin kaikki tulokset, jotka saivat arvon 1 ensimmäisessä seulonnassa tai arvot 1 tai 2 toisessa seulonnassa. Jos tuloksen sai haettua, merkittiin arvo 1, ja jos tulosta ei saatu haettua, merkittiin arvo x. Yksi tulos oli kirjaluku, jolloin haettiin kirja ja merkittiin arvo \* kommentin kanssa.
-5.  Seuraavaksi tarkistettiin kaikki ne tutkimukset, joille oli merkitty arvo 2 toisessa seulonnassa (epävarma tiivistelmän pohjalta). Tutkija kävi läpi artikkelin menetelmäosiot ja tarkisti, täyttyykö inkluusiokriteerit. Jos kaikki kriteerit täyttyivät, merkittiin arvo 1 (sisällytä kirjallisuuskatsaukseen). Jos osa kriteereistä täyttyivät, merkittiin arvo T (mahdollisesti käytettävissä raportin taustoitukseen, mutta ei kirjallisuuskatsauksessa). Jos kriteerit eivät täyttyneet, tai yksi tai useampi selkeästi rikkoontui, jätettiin tyhjä arvo. Tyhjät solut suodatettiin sitten pois taulukosta.
-6.  Viimeiseksi tarkistettiin vielä kaikki tulokset, jotka saivat arvon 1 ensimmäisessä tai toisessa seulonnassa. Tutkija kävi läpi artikkelin menetelmäosiot ja tarkisti, täyttyykö inkluusiokriteerit. Jos kaikki kriteerit täyttyivät, merkittiin arvo 1 (sisällytä kirjallisuuskatsaukseen). Jos osa kriteereistä täyttyivät, merkittiin arvo T (mahdollisesti käytettävissä raportin taustoitukseen, mutta ei kirjallisuuskatsauksessa). Jos kriteerit eivät täyttyneet, tai yksi tai useampi selkeästi rikkoontui, jätettiin tyhjä arvo. Tyhjät solut suodatettiin sitten pois taulukosta.
-7.  Valintaprosessin jälkeen jokaisesta tutkimuksesta haettiin seuraavat tiedot:
-    1.  Tekijöiden nimet
-    2.  Julkaisuvuosi
-    3.  Tutkimusjulkaisun otsikko
-    4.  Julkaisumuoto (vertaisarvioitu tutkimusartikkeli, organisaatioraportti, kirjateos, kirjan luku, muu)
-    5.  Verkko-osoite (ensisijaisesti DOI-numero)
-    6.  Tiedonkeruun muoto (kysely, haastattelu, rekisteri, havainnointi, audiovisuaalinen aineisto, muu \[kirjattu avotietona\], useampia muotoja \[kirjattu avotietoina\])
-    7.  Kohdepopulaatio (maantieteellinen ja ammatillinen luokittelu)
-    8.  Tutkimuksen tiedonkeruun ajankohta (kuukausitasolla, jos tiedossa)
-    9.  Otoskoko (yksi tai useampi otos)
-    10. Otantamenetelmä (ei tietoa, satunnaistettu otanta, ositettu otanta, ryväsotanta, paneelitutkimus, harkinnanvarainen otanta[^haku6-5], kiintiöotanta, lumipallo-otanta, muu)
-    11. Vastaajien yhteydenottotapa (postitse, sähköpostitse, puhelimitse, sosiaalisen verkoston kautta \[esim. kollegat\], organisaatiojohdon kautta, muun organisaation kautta \[esim. liitto\], kasvokkain, muu[^haku6-6])
-    12. Vastaajien vastausmuistutusten määrä (jos tiedossa)
-
-[^haku6-5]: Jos tutkimus pyrki koko populaation tutkimiseen, kirjattiin "harkinnanvarainen otanta".
-
-[^haku6-6]: Jos käytettiin useampia yhteydenottomuotoja, merkittiin "muu".
 
 ## PRISMA-kulkukaavio
 

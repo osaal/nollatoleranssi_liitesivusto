@@ -10,6 +10,9 @@ book:
     - part: "Kirjallisuuskatsaus"
       chapters:
         - kriteeristo.qmd
+        - seulontamenetelma.qmd
+    - part: "Katsauksen haut"
+      chapters:
         - haku1.qmd
         - haku2.qmd
         - haku3.qmd
@@ -37,6 +40,11 @@ book:
       collapse-level: 2
       contents:
         - kriteeristo.qmd
+        - seulontamenetelma.qmd
+    
+    - id: katsauksenhaut
+      title: "Katsauksen haut"
+      contents:
         - haku1.qmd
         - haku2.qmd
         - haku3.qmd
