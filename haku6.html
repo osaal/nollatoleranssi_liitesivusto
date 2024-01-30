@@ -101,6 +101,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Hae"
   }
 }</script>
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="site_libs/viz-1.8.2/viz.js"></script>
+<link href="site_libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
+<script src="site_libs/grViz-binding-1.0.10/grViz.js"></script>
 
 
 <link rel="stylesheet" href="styles.css">
@@ -139,6 +143,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li>
     <a class="dropdown-item" href="./seulontamenetelma.html">
  <span class="dropdown-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Seulontamenetelmä</span></span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-katsauksen-haut" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Katsauksen haut</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-katsauksen-haut">    
+        <li>
+    <a class="dropdown-item" href="./haku1.html">
+ <span class="dropdown-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Haku 1</span></span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./haku2.html">
+ <span class="dropdown-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Haku 2</span></span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./haku3.html">
+ <span class="dropdown-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Haku 3</span></span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./haku4.html">
+ <span class="dropdown-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Haku 4</span></span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./haku5.html">
+ <span class="dropdown-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Haku 5</span></span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./haku6.html">
+ <span class="dropdown-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Haku 6</span></span></a>
   </li>  
     </ul>
   </li>
@@ -223,10 +258,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#sec-haku6-hakulausekkeet" id="toc-sec-haku6-hakulausekkeet" class="nav-link active" data-scroll-target="#sec-haku6-hakulausekkeet"><span class="header-section-number">9.1</span> Hakulausekkeet ja tulosten lataaminen</a></li>
-  <li><a href="#hakutulosten-seulonta-ja-valinta" id="toc-hakutulosten-seulonta-ja-valinta" class="nav-link" data-scroll-target="#hakutulosten-seulonta-ja-valinta"><span class="header-section-number">9.2</span> Hakutulosten seulonta ja valinta</a></li>
-  <li><a href="#prisma-kulkukaavio" id="toc-prisma-kulkukaavio" class="nav-link" data-scroll-target="#prisma-kulkukaavio"><span class="header-section-number">9.3</span> PRISMA-kulkukaavio</a></li>
-  <li><a href="#valitut-tutkimusjulkaisut" id="toc-valitut-tutkimusjulkaisut" class="nav-link" data-scroll-target="#valitut-tutkimusjulkaisut"><span class="header-section-number">9.4</span> Valitut tutkimusjulkaisut</a></li>
-  <li><a href="#kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt" id="toc-kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt" class="nav-link" data-scroll-target="#kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt"><span class="header-section-number">9.5</span> Kokotekstin pohjalta poistetut tutkimukset ja syyt</a></li>
+  <li><a href="#prisma-kulkukaavio" id="toc-prisma-kulkukaavio" class="nav-link" data-scroll-target="#prisma-kulkukaavio"><span class="header-section-number">9.2</span> PRISMA-kulkukaavio</a></li>
+  <li><a href="#valitut-tutkimusjulkaisut" id="toc-valitut-tutkimusjulkaisut" class="nav-link" data-scroll-target="#valitut-tutkimusjulkaisut"><span class="header-section-number">9.3</span> Valitut tutkimusjulkaisut</a></li>
+  <li><a href="#kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt" id="toc-kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt" class="nav-link" data-scroll-target="#kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt"><span class="header-section-number">9.4</span> Kokotekstin pohjalta poistetut tutkimukset ja syyt</a></li>
   </ul>
 </nav>
     </div>
@@ -313,7 +347,6 @@ Taulukko&nbsp;9.1: Haku 6:n tietolähteet
 </div>
 </figure>
 </div>
-<p>Haun toteutti kokonaisuudessaan tutkija, projektipäällikkö Oliver Saal.</p>
 <section id="sec-haku6-hakulausekkeet" class="level2 page-columns page-full" data-number="9.1">
 <h2 data-number="9.1" class="anchored" data-anchor-id="sec-haku6-hakulausekkeet"><span class="header-section-number">9.1</span> Hakulausekkeet ja tulosten lataaminen</h2>
 <p>Alla olevassa taulukossa esitetään hakujen suorituspäivämäärät, hakusanat ja hakukonekohtaiset rajaukset sekä osumat.</p>
@@ -326,10 +359,10 @@ Taulukko&nbsp;9.2: Haku 6:n toteutetut haut
 <table class="table">
 <colgroup>
 <col style="width: 4%">
-<col style="width: 30%">
+<col style="width: 31%">
 <col style="width: 8%">
-<col style="width: 14%">
-<col style="width: 6%">
+<col style="width: 15%">
+<col style="width: 7%">
 <col style="width: 32%">
 </colgroup>
 <thead>
@@ -408,84 +441,131 @@ Taulukko&nbsp;9.2: Haku 6:n toteutetut haut
 </figure>
 </div>
 <p>Jokaisen haun hakulausekkeet ovat listattuna alla hakukoodeittain (ks. <a href="#tbl-haku6-toteutetut-haut" class="quarto-xref">Taulukko&nbsp;<span>9.2</span></a>). Paina osa-hakua vastaavaa koodia nähdäksesi kunkin haun hakulausekkeen. Voit kopioida lausekkeen sellaisenaan leikepöydällesi painamalla kopiointikuvaketta avatun hakulausekkeen yläoikeassa nurkassa.</p>
-<div class="cell" data-hash="haku6_cache/html/unnamed-chunk-1_b161af0fcb651a3211f3bc42fea43d59">
+<div class="cell">
 <details class="code-fold">
 <summary>Haku H6_1</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>TITLE<span class="sc">-</span>ABS<span class="sc">-</span><span class="fu">KEY</span> ( ( <span class="st">"fire rescue*"</span> OR <span class="st">"fire*fighter*"</span> OR <span class="st">"rescue service*"</span> OR <span class="st">"emergency respon*"</span> OR <span class="st">"emergency personnel"</span> OR {medic} OR <span class="st">"emergency medic*"</span> OR ambulance ) <span class="fu">AND</span> ( discriminat<span class="sc">*</span> OR harass<span class="sc">*</span> OR violen<span class="sc">*</span> OR <span class="st">"improper behavior"</span> OR equali<span class="sc">*</span> OR equit<span class="sc">*</span> ) ) <span class="fu">AND</span> ( PUBYEAR <span class="sc">&lt;</span> <span class="dv">2024</span> AND PUBYEAR <span class="sc">&gt;</span> <span class="dv">2009</span> ) <span class="fu">AND</span> ( <span class="fu">DOCTYPE</span> ( ar ) OR <span class="fu">DOCTYPE</span> ( bk ) OR <span class="fu">DOCTYPE</span> ( ch ) ) AND NOT <span class="fu">SRCTYPE</span> ( p ) <span class="fu">AND</span> ( LIMIT<span class="sc">-</span><span class="fu">TO</span> ( LANGUAGE , <span class="st">"English"</span> ) ) <span class="fu">AND</span> ( LIMIT<span class="sc">-</span><span class="fu">TO</span> ( AFFILCOUNTRY , <span class="st">"United Kingdom"</span> ) OR LIMIT<span class="sc">-</span><span class="fu">TO</span> ( AFFILCOUNTRY , <span class="st">"Undefined"</span> ) OR LIMIT<span class="sc">-</span><span class="fu">TO</span> ( AFFILCOUNTRY , <span class="st">"Netherlands"</span> ) OR LIMIT<span class="sc">-</span><span class="fu">TO</span> ( AFFILCOUNTRY , <span class="st">"Italy"</span> ) OR LIMIT<span class="sc">-</span><span class="fu">TO</span> ( AFFILCOUNTRY , <span class="st">"Spain"</span> ) OR LIMIT<span class="sc">-</span><span class="fu">TO</span> ( AFFILCOUNTRY , <span class="st">"Sweden"</span> ) OR LIMIT<span class="sc">-</span><span class="fu">TO</span> ( AFFILCOUNTRY , <span class="st">"France"</span> ) OR LIMIT<span class="sc">-</span><span class="fu">TO</span> ( AFFILCOUNTRY , <span class="st">"Turkey"</span> ) OR LIMIT<span class="sc">-</span><span class="fu">TO</span> ( AFFILCOUNTRY , <span class="st">"Germany"</span> ) OR LIMIT<span class="sc">-</span><span class="fu">TO</span> ( AFFILCOUNTRY , <span class="st">"Switzerland"</span> ) OR LIMIT<span class="sc">-</span><span class="fu">TO</span> ( AFFILCOUNTRY , <span class="st">"Belgium"</span> ) OR LIMIT<span class="sc">-</span><span class="fu">TO</span> ( AFFILCOUNTRY , <span class="st">"Norway"</span> ) OR LIMIT<span class="sc">-</span><span class="fu">TO</span> ( AFFILCOUNTRY , <span class="st">"Denmark"</span> ) OR LIMIT<span class="sc">-</span><span class="fu">TO</span> ( AFFILCOUNTRY , <span class="st">"Finland"</span> ) OR LIMIT<span class="sc">-</span><span class="fu">TO</span> ( AFFILCOUNTRY , <span class="st">"Portugal"</span> ) OR LIMIT<span class="sc">-</span><span class="fu">TO</span> ( AFFILCOUNTRY , <span class="st">"Ireland"</span> ) OR LIMIT<span class="sc">-</span><span class="fu">TO</span> ( AFFILCOUNTRY , <span class="st">"Greece"</span> ) OR LIMIT<span class="sc">-</span><span class="fu">TO</span> ( AFFILCOUNTRY , <span class="st">"Austria"</span> ) OR LIMIT<span class="sc">-</span><span class="fu">TO</span> ( AFFILCOUNTRY , <span class="st">"Poland"</span> ) OR LIMIT<span class="sc">-</span><span class="fu">TO</span> ( AFFILCOUNTRY , <span class="st">"Czech Republic"</span> ) OR LIMIT<span class="sc">-</span><span class="fu">TO</span> ( AFFILCOUNTRY , <span class="st">"Hungary"</span> ) OR LIMIT<span class="sc">-</span><span class="fu">TO</span> ( AFFILCOUNTRY , <span class="st">"Romania"</span> ) OR LIMIT<span class="sc">-</span><span class="fu">TO</span> ( AFFILCOUNTRY , <span class="st">"Luxembourg"</span> ) OR LIMIT<span class="sc">-</span><span class="fu">TO</span> ( AFFILCOUNTRY , <span class="st">"Latvia"</span> ) OR LIMIT<span class="sc">-</span><span class="fu">TO</span> ( AFFILCOUNTRY , <span class="st">"Georgia"</span> ) OR LIMIT<span class="sc">-</span><span class="fu">TO</span> ( AFFILCOUNTRY , <span class="st">"Slovenia"</span> ) OR LIMIT<span class="sc">-</span><span class="fu">TO</span> ( AFFILCOUNTRY , <span class="st">"Serbia"</span> ) OR LIMIT<span class="sc">-</span><span class="fu">TO</span> ( AFFILCOUNTRY , <span class="st">"Russian Federation"</span> ) OR LIMIT<span class="sc">-</span><span class="fu">TO</span> ( AFFILCOUNTRY , <span class="st">"Lithuania"</span> ) OR LIMIT<span class="sc">-</span><span class="fu">TO</span> ( AFFILCOUNTRY , <span class="st">"Iceland"</span> ) OR LIMIT<span class="sc">-</span><span class="fu">TO</span> ( AFFILCOUNTRY , <span class="st">"Greenland"</span> ) OR LIMIT<span class="sc">-</span><span class="fu">TO</span> ( AFFILCOUNTRY , <span class="st">"Estonia"</span> ) OR LIMIT<span class="sc">-</span><span class="fu">TO</span> ( AFFILCOUNTRY , <span class="st">"Cyprus"</span> ) OR LIMIT<span class="sc">-</span><span class="fu">TO</span> ( AFFILCOUNTRY , <span class="st">"Croatia"</span> ) OR LIMIT<span class="sc">-</span><span class="fu">TO</span> ( AFFILCOUNTRY , <span class="st">"Armenia"</span> ) )</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell" data-hash="haku6_cache/html/unnamed-chunk-2_71f55f3f33db4540cfb1c02ec9d99002">
+<div class="cell">
 <details class="code-fold">
 <summary>Haku H6_2</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>((<span class="at">TS=</span>((<span class="st">"fire rescue*"</span> OR <span class="st">"fire$fighter*"</span> OR <span class="st">"rescue service*"</span> OR <span class="st">"emergency respon*"</span> OR <span class="st">"emergency personnel"</span> OR <span class="st">"medic"</span> OR <span class="st">"emergency medic*"</span> OR ambulance) <span class="fu">AND</span> (discriminat<span class="sc">*</span> OR harass<span class="sc">*</span> OR violen<span class="sc">*</span> OR <span class="st">"improper behavior"</span> OR equali<span class="sc">*</span> OR equit<span class="sc">*</span>))) AND <span class="at">DOP=</span>(<span class="dv">2010-01-01</span><span class="sc">/</span><span class="dv">2023-09-30</span>)) AND DT<span class="ot">=</span>(Article OR Book OR Book Chapter)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell" data-hash="haku6_cache/html/unnamed-chunk-3_64ec9acbb05861605791bd852b732f08">
+<div class="cell">
 <details class="code-fold">
 <summary>Haku H6_3</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(((((<span class="at">TS=</span>((<span class="st">"fire rescue*"</span> OR <span class="st">"fire$fighter*"</span> OR <span class="st">"rescue service*"</span> OR <span class="st">"emergency respon*"</span> OR <span class="st">"emergency personnel"</span> OR <span class="st">"medic"</span> OR <span class="st">"emergency medic*"</span> OR ambulance) <span class="fu">AND</span> (discriminat<span class="sc">*</span> OR harass<span class="sc">*</span> OR violen<span class="sc">*</span> OR <span class="st">"improper behavior"</span> OR equali<span class="sc">*</span> OR equit<span class="sc">*</span>)))) AND <span class="at">LA=</span>(English)) AND <span class="at">DT=</span>(Classical Article OR Clinical Study OR Comparative Study OR Controlled Clinical Trial OR Equivalence Trial OR Journal Article OR Observational Study OR Personal Narrative OR Personal Narratives OR Pragmatic Clinical Trial OR Twin Study OR Validation Studies OR Validation Study))) AND PY<span class="ot">=</span>(<span class="dv">2010-2023</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell" data-hash="haku6_cache/html/unnamed-chunk-4_13534f75346b9d165be227b0a64482ab">
+<div class="cell">
 <details class="code-fold">
 <summary>Haku H6_4</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(<span class="fu">TIABSU</span>((<span class="st">"fire rescue*"</span> OR <span class="st">"fire?fighter*"</span> OR <span class="st">"rescue service*"</span> OR <span class="st">"emergency respon*"</span> OR <span class="st">"emergency personnel"</span> OR <span class="st">"medic"</span> OR <span class="st">"emergency medic*"</span> OR ambulance) <span class="fu">AND</span> (discriminat<span class="sc">*</span> OR harass<span class="sc">*</span> OR violen<span class="sc">*</span> OR <span class="st">"improper behavio?r"</span> OR equali<span class="sc">*</span> OR equit<span class="sc">*</span>)) AND <span class="fu">PEER</span>(yes) AND <span class="fu">PUBDATE</span>(<span class="dv">20100101-20230930</span>)) <span class="fu">AND</span> (<span class="fu">location.exact</span>(<span class="st">"United Kingdom UK"</span> OR <span class="st">"England"</span> OR <span class="st">"Europe"</span> OR <span class="st">"Italy"</span> OR <span class="st">"Netherlands"</span> OR <span class="st">"Germany"</span> OR <span class="st">"France"</span> OR <span class="st">"Spain"</span> OR <span class="st">"Sweden"</span> OR <span class="st">"Switzerland"</span> OR <span class="st">"Wales"</span> OR <span class="st">"Denmark"</span> OR <span class="st">"Finland"</span> OR <span class="st">"Norway"</span> OR <span class="st">"Portugal"</span> OR <span class="st">"Belgium"</span> OR <span class="st">"Ireland"</span> OR <span class="st">"Scotland"</span> OR <span class="st">"Georgia"</span> OR <span class="st">"Greece"</span> OR <span class="st">"Austria"</span>) AND <span class="fu">at.exact</span>(<span class="st">"Article"</span> OR <span class="st">"Case Study"</span> OR <span class="st">"Undefined"</span>) AND <span class="fu">la.exact</span>(<span class="st">"ENG"</span>) AND <span class="fu">stype.exact</span>(<span class="st">"Scholarly Journals"</span>))</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell" data-hash="haku6_cache/html/unnamed-chunk-5_afddda8571bcf42529e7551ccd8175af">
+<div class="cell">
 <details class="code-fold">
 <summary>Haku H6_5</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(<span class="st">"fire rescue*"</span> OR fire<span class="sc">*</span>fighter<span class="sc">*</span> OR <span class="st">"rescue service*"</span> OR <span class="st">"emergency respon*"</span> OR <span class="st">"emergency personnel"</span> OR <span class="st">"medic"</span> OR <span class="st">"emergency medic*"</span> OR <span class="st">"ambulance"</span>) <span class="fu">AND</span> (discriminat<span class="sc">*</span> OR harass<span class="sc">*</span> OR violen<span class="sc">*</span> OR <span class="st">"improper behavio*r"</span> OR <span class="st">"equali*"</span> OR equit<span class="sc">*</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell" data-hash="haku6_cache/html/unnamed-chunk-6_b77dc182c816ac9b6939a666148cca13">
+<div class="cell">
 <details class="code-fold">
 <summary>Haku H6_6</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>https<span class="sc">:</span><span class="er">//</span>api.openalex.org<span class="sc">/</span>works?search<span class="ot">=</span>(<span class="st">"fire rescue"</span> OR firefighter OR <span class="st">"rescue service"</span> OR <span class="st">"emergency respon"</span> OR <span class="st">"emergency personnel"</span> OR <span class="st">"emergency medic"</span> OR <span class="st">"ambulance"</span>) <span class="fu">AND</span> (discriminat OR harass OR violen OR <span class="st">"improper behavior"</span> OR equali OR <span class="st">"non-discriminat"</span> OR equit)<span class="sc">&amp;</span>filter<span class="ot">=</span>from_publication_date<span class="sc">:</span><span class="dv">2010-01-01</span>,to_publication_date<span class="sc">:</span><span class="dv">2023-09-30</span>,type_crossref<span class="sc">:</span>journal<span class="sc">-</span>article<span class="sc">|</span>monograph<span class="sc">|</span>report<span class="sc">&amp;</span>per_page<span class="ot">=</span><span class="dv">200</span><span class="sc">&amp;</span>select<span class="ot">=</span>title,publication_year,doi<span class="sc">&amp;</span>page<span class="ot">=</span><span class="dv">1</span></span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>OpenAlex:in kohdalla tulokset haettiin API-menettelyllä. Maksimitulosten määrä per sivu oli 200 dokumentaation mukaan, joten haku toteutettiin kuusi kertaa nostaen <code>&amp;page=X</code> -numeroa jokaisen kerran, <code>1-6</code>.</p>
-<p>Tulokset ladattiin ensisijaisesti <code>.csv</code>- tai <code>.xlsx</code>-muotoon jos mahdollista (Scopus, Web of Science ja ProQuest). BASE:n kohdalla lataaminen suoritettiin 100 tulosta kerralla <code>.json</code>-muotoon. OpenAlex:in tulokset haettiin 200 tulosta kerralla <code>.xml</code>-muotoon.</p>
+<p>Tulokset ladattiin ensisijaisesti <code>.csv</code>- tai <code>.xlsx</code>-muotoon jos mahdollista (Scopus, Web of Science ja ProQuest). BASE:n kohdalla lataaminen suoritettiin 100 tulosta kerralla <code>.json</code>-muotoon. OpenAlex:in tulokset haettiin 200 tulosta kerralla <code>.json</code>-muotoon.</p>
 <p><code>.xml</code>- ja <code>.json</code>-muotoiset hakutulokset käännettiin taulukkomuotoon Microsoft Excel -ohjelmassa <em>Power Query</em> -toiminnolla.</p>
 </section>
-<section id="hakutulosten-seulonta-ja-valinta" class="level2 page-columns page-full" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="hakutulosten-seulonta-ja-valinta"><span class="header-section-number">9.2</span> Hakutulosten seulonta ja valinta</h2>
-<p>Hakutulokset seulottiin käyttäen seuraavaa menettelyä:</p>
-<ol type="1">
-<li>Kaksoiskappaleet tunnistettiin Microsoft Excelin <em>Solujen korostussäännöt</em> -työkalulla. Jokaisen kaksoiskappaleeksi tunnistetun tuloksen kohdalla varmistettiin kaksoiskappaluus, ja säilytettiin yksi tuloksista. Muut merkittiin kaksoiskappaleiksi ja suodatettiin pois taulukosta <em>Suodata</em> -työkalulla.</li>
-<li>Otsikkojen pohjalta toteutettiin ensimmäinen seulonta. Jos otsikko selkeästi vastasi inkluusiokriteerejä, merkittiin tulokselle arvo 1. Jos otsikko mahdollisesti täytti inkluusiokriteerejä, mutta asiasta ei voinut saada varmuutta, merkittiin tulokselle arvo 2. Jos otsikko selkeästi ei vastannut inkluusiokriteerejä (esim. rikkoi yhden tai useamman kriteerin), jätettiin tyhjä solu. Tyhjät solut suodatettiin sitten pois taulukosta.</li>
-<li>Jokaiselle tulokselle, jolla oli merkitty arvo 2 (epävarma) ensimmäisessä seulonnassa, tarkistettiin tiivistelmä tuloksen verkko-osoitteesta. Jos tiivistelmä selkeästi vastasi inkluusiokriteerejä, merkittiin tulokselle arvo 1. Jos tiivistelmä mahdollisesti täytti inkluusiokriteerejä, mutta asiasta ei voinut saada varmuutta, merkittiin tulokselle arvo 2. Jos tiivistelmä selkeästi ei vastannut inkluusiokriteerejä (esim. rikkoi yhden tai useamman kriteerin), jätettiin tyhjä solu. Tyhjät solut suodatettiin sitten pois taulukosta.</li>
-<li>Seuraavaksi haettiin kaikki tulokset, jotka saivat arvon 1 ensimmäisessä seulonnassa tai arvot 1 tai 2 toisessa seulonnassa. Jos tuloksen sai haettua, merkittiin arvo 1, ja jos tulosta ei saatu haettua, merkittiin arvo x. Yksi tulos oli kirjaluku, jolloin haettiin kirja ja merkittiin arvo * kommentin kanssa.</li>
-<li>Seuraavaksi tarkistettiin kaikki ne tutkimukset, joille oli merkitty arvo 2 toisessa seulonnassa (epävarma tiivistelmän pohjalta). Tutkija kävi läpi artikkelin menetelmäosiot ja tarkisti, täyttyykö inkluusiokriteerit. Jos kaikki kriteerit täyttyivät, merkittiin arvo 1 (sisällytä kirjallisuuskatsaukseen). Jos osa kriteereistä täyttyivät, merkittiin arvo T (mahdollisesti käytettävissä raportin taustoitukseen, mutta ei kirjallisuuskatsauksessa). Jos kriteerit eivät täyttyneet, tai yksi tai useampi selkeästi rikkoontui, jätettiin tyhjä arvo. Tyhjät solut suodatettiin sitten pois taulukosta.</li>
-<li>Viimeiseksi tarkistettiin vielä kaikki tulokset, jotka saivat arvon 1 ensimmäisessä tai toisessa seulonnassa. Tutkija kävi läpi artikkelin menetelmäosiot ja tarkisti, täyttyykö inkluusiokriteerit. Jos kaikki kriteerit täyttyivät, merkittiin arvo 1 (sisällytä kirjallisuuskatsaukseen). Jos osa kriteereistä täyttyivät, merkittiin arvo T (mahdollisesti käytettävissä raportin taustoitukseen, mutta ei kirjallisuuskatsauksessa). Jos kriteerit eivät täyttyneet, tai yksi tai useampi selkeästi rikkoontui, jätettiin tyhjä arvo. Tyhjät solut suodatettiin sitten pois taulukosta.</li>
-<li>Valintaprosessin jälkeen jokaisesta tutkimuksesta haettiin seuraavat tiedot:
-<ol type="1">
-<li>Tekijöiden nimet</li>
-<li>Julkaisuvuosi</li>
-<li>Tutkimusjulkaisun otsikko</li>
-<li>Julkaisumuoto (vertaisarvioitu tutkimusartikkeli, organisaatioraportti, kirjateos, kirjan luku, muu)</li>
-<li>Verkko-osoite (ensisijaisesti DOI-numero)</li>
-<li>Tiedonkeruun muoto (kysely, haastattelu, rekisteri, havainnointi, audiovisuaalinen aineisto, muu [kirjattu avotietona], useampia muotoja [kirjattu avotietoina])</li>
-<li>Kohdepopulaatio (maantieteellinen ja ammatillinen luokittelu)</li>
-<li>Tutkimuksen tiedonkeruun ajankohta (kuukausitasolla, jos tiedossa)</li>
-<li>Otoskoko (yksi tai useampi otos)</li>
-<li>Otantamenetelmä (ei tietoa, satunnaistettu otanta, ositettu otanta, ryväsotanta, paneelitutkimus, harkinnanvarainen otanta<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>, kiintiöotanta, lumipallo-otanta, muu)</li>
-<li>Vastaajien yhteydenottotapa (postitse, sähköpostitse, puhelimitse, sosiaalisen verkoston kautta [esim. kollegat], organisaatiojohdon kautta, muun organisaation kautta [esim. liitto], kasvokkain, muu<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>)</li>
-<li>Vastaajien vastausmuistutusten määrä (jos tiedossa)</li>
-</ol></li>
-</ol>
-<div class="no-row-height column-margin column-container"><p><sup>5</sup>&nbsp;Jos tutkimus pyrki koko populaation tutkimiseen, kirjattiin “harkinnanvarainen otanta”.</p><p><sup>6</sup>&nbsp;Jos käytettiin useampia yhteydenottomuotoja, merkittiin “muu”.</p></div></section>
-<section id="prisma-kulkukaavio" class="level2" data-number="9.3">
-<h2 data-number="9.3" class="anchored" data-anchor-id="prisma-kulkukaavio"><span class="header-section-number">9.3</span> PRISMA-kulkukaavio</h2>
+<section id="prisma-kulkukaavio" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="prisma-kulkukaavio"><span class="header-section-number">9.2</span> PRISMA-kulkukaavio</h2>
 <p>Hakutulosten seulonta tuotti seuraavan PRISMA-protokollan mukaisen kulkukaavion:</p>
-<p>[TÄHÄN KULKUKAAVIO]</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Tietokannat ja rekisterit</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Muut lähteet</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<details class="code-fold">
+<summary>Näytä</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"PRISMAstatement"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>labels <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Tunnistetut kohteet"</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Kaksoiskappaleet poistettu ennen seulontaa"</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Seulotut kohteet"</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Poisseulotut kohteet"</span>,</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Haettavat kohteet"</span>,</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Hakematta jääneet kohteet"</span>,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Tarkistetut kohteet"</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Poistetut kohteet"</span>,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Sisällytetyt kohteet"</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>counts <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4492</span>, <span class="dv">3420</span>, <span class="dv">137</span>, <span class="dv">119</span>, <span class="dv">33</span>)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="fu">flow_exclusions</span>(</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">incl_counts =</span> counts,</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">total_label =</span> labels[<span class="dv">1</span>],</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">incl_labels =</span> labels[<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>)],</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">excl_labels =</span> labels[<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>)], </span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">percent_of_total =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">percent_of_prev =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_count =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">font_size =</span> <span class="dv">14</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="grViz html-widget html-fill-item" id="htmlwidget-ac8d8ee57e63672c955f" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-ac8d8ee57e63672c955f">{"x":{"diagram":"\n    digraph prisma {\n    node [shape=\"box\" , fontsize = 14];\n    graph [splines=ortho, nodesep=1 ]\n    \nTunnistetutkohteet [label=\"Tunnistetut kohteet\n4492 (100%)\"];\nSeulotutkohteet_A [label=\"Seulotut kohteet\n3420 (76.14%)\"];\nHaettavatkohteet_B [label=\"Haettavat kohteet\n 137 (3.05%)\"];\nTarkistetutkohteet_C [label=\"Tarkistetut kohteet\n 119 (2.65%)\"];\nSisällytetytkohteet_D [label=\"Sisällytetyt kohteet\n  33 (0.73%)\"];\nKaksoiskappaleetpoistettuennenseulontaa_a [label=\"Kaksoiskappaleet poistettu ennen seulontaa\n1072 (23.9%)\"];\nPoisseulotutkohteet_b [label=\"Poisseulotut kohteet\n3283 (73.1%)\"];\nHakemattajääneetkohteet_c [label=\"Hakematta jääneet kohteet\n  18 (0.4%)\"];\nPoistetutkohteet_d [label=\"Poistetut kohteet\n  86 (1.9%)\"];\nTunnistetutkohteet -> {Seulotutkohteet_A; Kaksoiskappaleetpoistettuennenseulontaa_a};\nSeulotutkohteet_A -> {Haettavatkohteet_B; Poisseulotutkohteet_b};\nHaettavatkohteet_B -> {Tarkistetutkohteet_C; Hakemattajääneetkohteet_c};\nTarkistetutkohteet_C -> {Sisällytetytkohteet_D; Poistetutkohteet_d};\n{rank=same; Tunnistetutkohteet Kaksoiskappaleetpoistettuennenseulontaa_a}\n{rank=same; Seulotutkohteet_A Poisseulotutkohteet_b}\n{rank=same; Haettavatkohteet_B Hakemattajääneetkohteet_c}\n{rank=same; Tarkistetutkohteet_C Poistetutkohteet_d}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<details class="code-fold">
+<summary>Näytä</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"PRISMAstatement"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>labels <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Tunnistetut kohteet"</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Kaksoiskappaleet poistettu ennen seulontaa"</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Haettavat kohteet"</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Hakematta jääneet kohteet"</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Tarkistetut kohteet"</span>,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Poistetut kohteet"</span>,</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Sisällytetyt kohteet"</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>counts <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="fu">flow_exclusions</span>(</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">incl_counts =</span> counts,</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">total_label =</span> labels[<span class="dv">1</span>],</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">incl_labels =</span> labels[<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>)],</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">excl_labels =</span> labels[<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>)], </span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">percent_of_total =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">percent_of_prev =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_count =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">font_size =</span> <span class="dv">14</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="grViz html-widget html-fill-item" id="htmlwidget-7fff30c030aec8eefc41" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-7fff30c030aec8eefc41">{"x":{"diagram":"\n    digraph prisma {\n    node [shape=\"box\" , fontsize = 14];\n    graph [splines=ortho, nodesep=1 ]\n    \nTunnistetutkohteet [label=\"Tunnistetut kohteet\n0 (100%)\"];\nHaettavatkohteet_A [label=\"Haettavat kohteet\n0 (NA)\"];\nTarkistetutkohteet_B [label=\"Tarkistetut kohteet\n0 (NA)\"];\nSisällytetytkohteet_C [label=\"Sisällytetyt kohteet\n0 (NA)\"];\nKaksoiskappaleetpoistettuennenseulontaa_a [label=\"Kaksoiskappaleet poistettu ennen seulontaa\n0 (NA)\"];\nHakemattajääneetkohteet_b [label=\"Hakematta jääneet kohteet\n0 (NA)\"];\nPoistetutkohteet_c [label=\"Poistetut kohteet\n0 (NA)\"];\nTunnistetutkohteet -> {Haettavatkohteet_A; Kaksoiskappaleetpoistettuennenseulontaa_a};\nHaettavatkohteet_A -> {Tarkistetutkohteet_B; Hakemattajääneetkohteet_b};\nTarkistetutkohteet_B -> {Sisällytetytkohteet_C; Poistetutkohteet_c};\n{rank=same; Tunnistetutkohteet Kaksoiskappaleetpoistettuennenseulontaa_a}\n{rank=same; Haettavatkohteet_A Hakemattajääneetkohteet_b}\n{rank=same; Tarkistetutkohteet_B Poistetutkohteet_c}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section>
-<section id="valitut-tutkimusjulkaisut" class="level2" data-number="9.4">
-<h2 data-number="9.4" class="anchored" data-anchor-id="valitut-tutkimusjulkaisut"><span class="header-section-number">9.4</span> Valitut tutkimusjulkaisut</h2>
+<section id="valitut-tutkimusjulkaisut" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="valitut-tutkimusjulkaisut"><span class="header-section-number">9.3</span> Valitut tutkimusjulkaisut</h2>
 <p>[TÄHÄN LÄHDELUETTELO KAIKISTA MUKAAN VALITUISTA TUTKIMUSJULKAISUISTA]</p>
 </section>
-<section id="kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt" class="level2" data-number="9.5">
-<h2 data-number="9.5" class="anchored" data-anchor-id="kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt"><span class="header-section-number">9.5</span> Kokotekstin pohjalta poistetut tutkimukset ja syyt</h2>
+<section id="kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt"><span class="header-section-number">9.4</span> Kokotekstin pohjalta poistetut tutkimukset ja syyt</h2>
 <p>[TÄHÄN LÄHDELUETTELO KAIKISTA KOKOTEKSTISTÄ POISTETUISTA TUTKIMUKSISTA PÄÄSYYN MUKAAN.]</p>
 
 
