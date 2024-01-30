@@ -30,6 +30,7 @@ book:
       - text: "Etusivu"
         file: index.qmd
       - sidebar:kirjallisuuskatsaus
+      - sidebar:katsauksenhaut
       - sidebar:kyselynvalmistelu
   
   sidebar:

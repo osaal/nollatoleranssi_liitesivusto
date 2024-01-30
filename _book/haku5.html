@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -99,6 +133,37 @@ ul.task-list li input[type="checkbox"] {
         <li>
     <a class="dropdown-item" href="./seulontamenetelma.html" rel="" target="">
  <span class="dropdown-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Seulontamenetelmä</span></span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-katsauksen-haut" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Katsauksen haut</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-katsauksen-haut">    
+        <li>
+    <a class="dropdown-item" href="./haku1.html" rel="" target="">
+ <span class="dropdown-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Haku 1</span></span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./haku2.html" rel="" target="">
+ <span class="dropdown-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Haku 2</span></span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./haku3.html" rel="" target="">
+ <span class="dropdown-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Haku 3</span></span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./haku4.html" rel="" target="">
+ <span class="dropdown-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Haku 4</span></span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./haku5.html" rel="" target="">
+ <span class="dropdown-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Haku 5</span></span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./haku6.html" rel="" target="">
+ <span class="dropdown-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Haku 6</span></span></a>
   </li>  
     </ul>
   </li>
@@ -301,12 +366,12 @@ ul.task-list li input[type="checkbox"] {
 <table class="table">
 <caption>Taulukko&nbsp;8.2: Haku 5:n toteutetut haut</caption>
 <colgroup>
-<col style="width: 15%">
-<col style="width: 24%">
-<col style="width: 15%">
-<col style="width: 15%">
-<col style="width: 15%">
-<col style="width: 15%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -515,7 +580,160 @@ ul.task-list li input[type="checkbox"] {
 </table>
 </div>
 <p>Jokaisen haun hakulausekkeet ovat listattuna alla hakukoodeittain (ks. <a href="#tbl-haku5-toteutetut-haut">Taulukko&nbsp;<span>8.2</span></a>). Paina osa-hakua vastaavaa koodia nähdäksesi kunkin haun hakulausekkeen. Voit kopioida lausekkeen sellaisenaan leikepöydällesi painamalla kopiointikuvaketta avatun hakulausekkeen yläoikeassa nurkassa.</p>
-<p>[LAUSEKKEET]</p>
+<div class="cell">
+<details>
+<summary>Haku H5_1_fi</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>dc.title<span class="sc">:</span>(poliisi<span class="sc">*</span> OR varti<span class="sc">*</span> OR puolustusvoim<span class="sc">*</span> OR sotila<span class="sc">*</span>) <span class="fu">AND</span> (syrji<span class="sc">*</span> OR häirin<span class="sc">*</span> OR häirit<span class="sc">*</span> OR väkival<span class="sc">*</span> OR painost<span class="sc">*</span> OR pahoinpi<span class="sc">*</span> OR ahdistel<span class="sc">*</span> OR epäasialli<span class="sc">*</span> OR yhdenvertai<span class="sc">*</span> OR tasa<span class="sc">-</span>arvo<span class="sc">*</span> OR tasapuoli<span class="sc">*</span> OR tasavertai<span class="sc">*</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Haku H5_1_sw</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>dc.title<span class="sc">:</span>(polis<span class="sc">*</span> OR ordningsv?kt<span class="sc">*</span> OR försvars<span class="sc">*</span> OR soldat<span class="sc">*</span> OR gränsbevak<span class="sc">*</span> OR gränskontroll<span class="sc">*</span>)  <span class="fu">AND</span> (diskriminer<span class="sc">*</span> OR trakasse<span class="sc">*</span> OR påtryck<span class="sc">*</span> OR våld<span class="sc">*</span> OR osaklig<span class="sc">*</span> OR opasslig<span class="sc">*</span> OR jämlik<span class="sc">*</span> OR jämställd<span class="sc">*</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Haku H5_1_en</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dc.title<span class="sc">:</span>(police OR guard<span class="sc">*</span> OR defen?e contractor<span class="sc">*</span> OR steward OR soldier OR military personnel) <span class="fu">AND</span> (discriminat<span class="sc">*</span> OR harass<span class="sc">*</span> OR pressur<span class="sc">*</span> OR violen<span class="sc">*</span> OR improper behavio?r OR equal<span class="sc">*</span> OR non<span class="sc">-</span>discriminat<span class="sc">*</span> OR equit<span class="sc">*</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Haku H5_2_fi</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>dc.title<span class="sc">:</span>(poliisi<span class="sc">*</span> OR varti<span class="sc">*</span> OR puolustusvoim<span class="sc">*</span> OR sotila<span class="sc">*</span>) <span class="fu">AND</span> (syrji<span class="sc">*</span> OR häirin<span class="sc">*</span> OR häirit<span class="sc">*</span> OR väkival<span class="sc">*</span> OR painost<span class="sc">*</span> OR pahoinpi<span class="sc">*</span> OR ahdistel<span class="sc">*</span> OR epäasialli<span class="sc">*</span> OR yhdenvertai<span class="sc">*</span> OR tasa<span class="sc">-</span>arvo<span class="sc">*</span> OR tasapuoli<span class="sc">*</span> OR tasavertai<span class="sc">*</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Haku H5_2_sw</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dc.title<span class="sc">:</span>(polis<span class="sc">*</span> OR ordningsv?kt<span class="sc">*</span> OR försvars<span class="sc">*</span> OR soldat<span class="sc">*</span> OR gränsbevak<span class="sc">*</span> OR gränskontroll<span class="sc">*</span>) <span class="fu">AND</span> (diskriminer<span class="sc">*</span> OR trakasse<span class="sc">*</span> OR påtryck<span class="sc">*</span> OR våld<span class="sc">*</span> OR osaklig<span class="sc">*</span> OR opasslig<span class="sc">*</span> OR jämlik<span class="sc">*</span> OR jämställd<span class="sc">*</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Haku H5_2_en</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>dc.title<span class="sc">:</span>(police OR guard<span class="sc">*</span> OR defen?e contractor<span class="sc">*</span> OR steward OR soldier OR military personnel) <span class="fu">AND</span> (discriminat<span class="sc">*</span> OR harass<span class="sc">*</span> OR pressur<span class="sc">*</span> OR violen<span class="sc">*</span> OR improper behavio?r OR equal<span class="sc">*</span> OR non<span class="sc">-</span>discriminat<span class="sc">*</span> OR equit<span class="sc">*</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Haku H5_3_fi</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>dc.title<span class="sc">:</span>(poliisi<span class="sc">*</span> OR varti<span class="sc">*</span> OR puolustusvoim<span class="sc">*</span> OR sotila<span class="sc">*</span>) <span class="fu">AND</span> (syrji<span class="sc">*</span> OR häirin<span class="sc">*</span> OR häirit<span class="sc">*</span> OR väkival<span class="sc">*</span> OR painost<span class="sc">*</span> OR pahoinpi<span class="sc">*</span> OR ahdistel<span class="sc">*</span> OR epäasialli<span class="sc">*</span> OR yhdenvertai<span class="sc">*</span> OR tasa<span class="sc">-</span>arvo<span class="sc">*</span> OR tasapuoli<span class="sc">*</span> OR tasavertai<span class="sc">*</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Haku H5_3_sw</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>dc.title<span class="sc">:</span>(polis<span class="sc">*</span> OR ordningsv?kt<span class="sc">*</span> OR försvars<span class="sc">*</span> OR soldat<span class="sc">*</span> OR gränsbevak<span class="sc">*</span> OR gränskontroll<span class="sc">*</span>) <span class="fu">AND</span> (diskriminer<span class="sc">*</span> OR trakasse<span class="sc">*</span> OR påtryck<span class="sc">*</span> OR våld<span class="sc">*</span> OR osaklig<span class="sc">*</span> OR opasslig<span class="sc">*</span> OR jämlik<span class="sc">*</span> OR jämställd<span class="sc">*</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Haku H5_3_en</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>dc.title<span class="sc">:</span>(police OR guard<span class="sc">*</span> OR defen?e contractor<span class="sc">*</span> OR steward OR soldier OR military personnel) <span class="fu">AND</span> (discriminat<span class="sc">*</span> OR harass<span class="sc">*</span> OR pressur<span class="sc">*</span> OR violen<span class="sc">*</span> OR improper behavio?r OR equal<span class="sc">*</span> OR non<span class="sc">-</span>discriminat<span class="sc">*</span> OR equit<span class="sc">*</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Haku H5_4_fi</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>TITLE<span class="sc">-</span>ABS<span class="sc">-</span><span class="fu">KEY</span> ( <span class="st">"poliisi*"</span> OR <span class="st">"varti*"</span> OR <span class="st">"puolustusvoim*"</span> OR <span class="st">"sotila*"</span> ) <span class="fu">AND</span> ( <span class="st">"syrji*"</span> OR <span class="st">"h&amp;#228;irint*"</span> OR <span class="st">"h&amp;#228;irit*"</span> OR <span class="st">"v&amp;#228;kival*"</span> OR <span class="st">"painost*"</span> OR <span class="st">"pahoinpi*"</span> OR <span class="st">"ahdistel*"</span> OR <span class="st">"ep&amp;#228;asialli*"</span> OR <span class="st">"yhdenvertai*"</span> OR <span class="st">"tasa-arvo*"</span> OR <span class="st">"tasapuoli*"</span> OR <span class="st">"tasavertai*"</span> ) AND PUBYEAR <span class="sc">&gt;</span> <span class="dv">2009</span> AND PUBYEAR <span class="sc">&lt;</span> <span class="dv">2024</span></span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Haku H5_4_sw</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>TITLE<span class="sc">-</span>ABS<span class="sc">-</span><span class="fu">KEY</span> ( ( <span class="st">"polis*"</span> OR <span class="st">"ordningsv?kt*"</span> OR <span class="st">"f&amp;#246;rsvars*"</span> OR <span class="st">"soldat*"</span> OR <span class="st">"gr&amp;#228;nsbevak*"</span> OR <span class="st">"gr&amp;#228;nskontroll*"</span> ) <span class="fu">AND</span> ( <span class="st">"diskriminer*"</span> OR <span class="st">"trakasse*"</span> OR <span class="st">"p&amp;#229;tryck*"</span> OR <span class="st">"v&amp;#229;ld*"</span> OR <span class="st">"osaklig*"</span> OR <span class="st">"opasslig*"</span> OR <span class="st">"j&amp;#228;mlik*"</span> OR <span class="st">"j&amp;#228;mst&amp;#228;lld*"</span> ) ) <span class="fu">AND</span> ( PUBYEAR <span class="sc">&lt;</span> <span class="dv">2024</span> AND PUBYEAR <span class="sc">&gt;</span> <span class="dv">2009</span> ) <span class="fu">AND</span> ( <span class="fu">DOCTYPE</span> ( ar ) OR <span class="fu">DOCTYPE</span> ( bk ) OR <span class="fu">DOCTYPE</span> ( ch ) ) AND NOT <span class="fu">SRCTYPE</span> ( p ) <span class="fu">AND</span> ( LIMIT<span class="sc">-</span><span class="fu">TO</span> ( AFFILCOUNTRY , <span class="st">"Finland"</span> ) )</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Haku H5_4_en</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>TITLE<span class="sc">-</span>ABS<span class="sc">-</span><span class="fu">KEY</span> ( ( <span class="st">"police"</span> OR <span class="st">"guard*"</span> OR <span class="st">"defen* contractor*"</span> OR <span class="st">"steward"</span> OR <span class="st">"soldier"</span> OR <span class="st">"military personnel"</span> ) <span class="fu">AND</span> ( <span class="st">"discriminat*"</span> OR <span class="st">"harass*"</span> OR <span class="st">"pressur*"</span> OR <span class="st">"violen*"</span> OR <span class="st">"improper behavio*"</span> OR <span class="st">"equal*"</span> OR <span class="st">"non-discriminat*"</span> OR <span class="st">"equit*"</span> ) ) <span class="fu">AND</span> ( PUBYEAR <span class="sc">&lt;</span> <span class="dv">2024</span> AND PUBYEAR <span class="sc">&gt;</span> <span class="dv">2009</span> ) <span class="fu">AND</span> ( LIMIT<span class="sc">-</span><span class="fu">TO</span> ( AFFILCOUNTRY , <span class="st">"Finland"</span> ) )</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Haku H5_5_fi</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>TS<span class="ot">=</span>((<span class="st">"poliisi*"</span> OR <span class="st">"varti*"</span> OR <span class="st">"puolustusvoim*"</span> OR <span class="st">"sotila*"</span>) <span class="fu">AND</span> (<span class="st">"syrji*"</span> OR <span class="st">"häirin*"</span> OR <span class="st">"häirit*"</span> OR <span class="st">"väkival*"</span> OR <span class="st">"painost*"</span> OR <span class="st">"pahoinpi*"</span> OR <span class="st">"ahdistel*"</span> OR <span class="st">"epäasialli*"</span> OR <span class="st">"yhdenvertai*"</span> OR <span class="st">"tasa-arvo*"</span> OR <span class="st">"tasapuoli*"</span> OR <span class="st">"tasavertai*"</span>))</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Haku H5_5_sw</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>TS<span class="ot">=</span>((<span class="st">"polis*"</span> OR <span class="st">"ordningsv?kt*"</span> OR <span class="st">"försvars*"</span> OR <span class="st">"soldat*"</span> OR <span class="st">"gränsbevak*"</span> OR <span class="st">"gränskontroll*"</span>) <span class="fu">AND</span> (<span class="st">"diskriminer*"</span> OR <span class="st">"trakasse*"</span> OR <span class="st">"påtryck*"</span> OR <span class="st">"våld*"</span> OR <span class="st">"osaklig*"</span> OR <span class="st">"opasslig*"</span> OR <span class="st">"jämlik*"</span> OR <span class="st">"jämställd*"</span>))</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Haku H5_5_en</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>TS<span class="ot">=</span>((<span class="st">"police"</span> OR <span class="st">"guard*"</span> OR <span class="st">"defen?e contractor*"</span> OR <span class="st">"steward"</span> OR <span class="st">"soldier"</span> OR <span class="st">"military personnel"</span>) <span class="fu">AND</span> (<span class="st">"discriminat*"</span> OR <span class="st">"harass*"</span> OR <span class="st">"pressur*"</span> OR <span class="st">"violen*"</span> OR <span class="st">"improper behavio?r"</span> OR <span class="st">"equal*"</span> OR <span class="st">"non-discriminat*"</span> OR <span class="st">"equit*"</span>))</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Haku H5_6_fi</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>(<span class="st">"poliisi*"</span> OR <span class="st">"varti*"</span> OR <span class="st">"puolustusvoim*"</span> OR <span class="st">"sotila*"</span>) <span class="fu">AND</span> (<span class="st">"syrji*"</span> OR <span class="st">"häirin*"</span> OR <span class="st">"häirit*"</span> OR <span class="st">"väkival*"</span> OR <span class="st">"painost*"</span> OR <span class="st">"pahoinpi*"</span> OR <span class="st">"ahdistel*"</span> OR <span class="st">"epäasialli*"</span> OR <span class="st">"yhdenvertai*"</span> OR <span class="st">"tasa-arvo*"</span> OR <span class="st">"tasapuoli*"</span> OR <span class="st">"tasavertai*"</span>) AND <span class="fu">PEER</span>(yes) AND <span class="fu">PUBDATE</span>(<span class="dv">20100101-20230930</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Haku H5_6_sw</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>(<span class="st">"polis*"</span> OR <span class="st">"ordningsv?kt*"</span> OR <span class="st">"försvars*"</span> OR <span class="st">"soldat*"</span> OR <span class="st">"gränsbevak*"</span> OR <span class="st">"gränskontroll*"</span>) <span class="fu">AND</span> (diskriminer<span class="sc">*</span> OR trakasse<span class="sc">*</span> OR påtryck<span class="sc">*</span> OR våld<span class="sc">*</span> OR osaklig<span class="sc">*</span> OR opasslig<span class="sc">*</span> OR jämlik<span class="sc">*</span> OR jämställd<span class="sc">*</span>) AND <span class="fu">PEER</span>(yes) AND <span class="fu">PUBDATE</span>(<span class="dv">20100101-20230930</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Emme tällä hetkellä pysty toistamaan tätä hakua. Selvitämme virhettä ja korjaamme kirjauksen.</span></span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Haku H5_6_en</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>(<span class="st">"police"</span> OR <span class="st">"guard*"</span> OR <span class="st">"defen* contractor*"</span> OR <span class="st">"steward"</span> OR <span class="st">"soldier"</span> OR <span class="st">"military personnel"</span>) <span class="fu">AND</span> (discriminat<span class="sc">*</span> OR harass<span class="sc">*</span> OR pressur<span class="sc">*</span> OR violen<span class="sc">*</span> OR improper behavio<span class="sc">*</span> OR equal<span class="sc">*</span> OR non<span class="sc">-</span>discriminat<span class="sc">*</span> OR equit<span class="sc">*</span>) AND <span class="fu">PEER</span>(yes) AND <span class="fu">PUBDATE</span>(<span class="dv">20100101-20230930</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Emme tällä hetkellä pysty toistamaan tätä hakua. Selvitämme virhettä ja korjaamme kirjauksen.</span></span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Haku H5_7_fi</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>(poliisi<span class="sc">*</span> OR varti<span class="sc">*</span> OR puolustusvoim<span class="sc">*</span> OR sotila<span class="sc">*</span>) <span class="fu">AND</span> (syrji<span class="sc">*</span> OR häirin<span class="sc">*</span> OR häirit<span class="sc">*</span> OR väkival<span class="sc">*</span> OR painost<span class="sc">*</span> OR pahoinpi<span class="sc">*</span> OR ahdistel<span class="sc">*</span> OR epäasialli<span class="sc">*</span> OR yhdenvertai<span class="sc">*</span> OR tasa<span class="sc">-</span>arvo<span class="sc">*</span> OR tasapuoli<span class="sc">*</span> OR tasavertai<span class="sc">*</span>) country<span class="sc">:</span>fi doctype<span class="sc">:</span>(<span class="dv">11</span><span class="sc">*</span> <span class="dv">121</span>) year<span class="sc">:</span>[<span class="dv">2010</span> TO <span class="dv">2023</span>]</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Haku H5_7_sw</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>(polis<span class="sc">*</span> OR ordningsv<span class="sc">*</span> OR försvars<span class="sc">*</span> OR soldat<span class="sc">*</span> OR gränsbevak<span class="sc">*</span> OR gränskontroll<span class="sc">*</span>) <span class="fu">AND</span> (diskriminer<span class="sc">*</span> OR trakasse<span class="sc">*</span> OR påtryck<span class="sc">*</span> OR våld<span class="sc">*</span> OR osaklig<span class="sc">*</span> OR opasslig<span class="sc">*</span> OR jämlik<span class="sc">*</span> OR jämställd<span class="sc">*</span>) country<span class="sc">:</span>fi doctype<span class="sc">:</span>(<span class="dv">11</span><span class="sc">*</span> <span class="dv">121</span>) year<span class="sc">:</span>[<span class="dv">2010</span> TO <span class="dv">2023</span>]</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Haku H5_7_en</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>(police OR guard<span class="sc">*</span> OR defen<span class="sc">*</span> contractor<span class="sc">*</span> OR steward OR soldier OR military personnel) <span class="fu">AND</span> (discriminat<span class="sc">*</span> OR harass<span class="sc">*</span> OR pressur<span class="sc">*</span> OR violen<span class="sc">*</span> OR improper behavio<span class="sc">*</span> OR equal<span class="sc">*</span> OR non<span class="sc">-</span>discriminat<span class="sc">*</span> OR equit<span class="sc">*</span>) country<span class="sc">:</span>fi doctype<span class="sc">:</span>(<span class="dv">11</span><span class="sc">*</span> <span class="dv">121</span>) year<span class="sc">:</span>[<span class="dv">2010</span> TO <span class="dv">2023</span>]</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Haku H5_8_fi</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>https<span class="sc">:</span><span class="er">//</span>api.openalex.org<span class="sc">/</span>works?search<span class="ot">=</span>(poliisi<span class="sc">%20OR%</span>20varti<span class="sc">%20OR%</span>20puolustusvoim<span class="sc">%20OR%</span>20sotila)<span class="sc">%20AND%</span><span class="dv">20</span>(syrji<span class="sc">%20OR%</span>20h<span class="sc">%C3%</span>A4irin<span class="sc">%20OR%</span>20h<span class="sc">%C3%</span>A4irit<span class="sc">%20OR%</span>20v<span class="sc">%C3%</span>A4kival<span class="sc">%20OR%</span>20painost<span class="sc">%20OR%</span>20pahoinpi<span class="sc">%20OR%</span>20ahdistel<span class="sc">%20OR%</span>20ep<span class="sc">%C3%</span>A4asialli<span class="sc">%20OR%</span>20yhdenvertai<span class="sc">%20OR%</span>20tasa<span class="sc">-</span>arvo<span class="sc">%20OR%</span>20tasapuoli<span class="sc">%20OR%</span>20tasavertai)<span class="sc">&amp;</span>filter<span class="ot">=</span>from_publication_date<span class="sc">:</span><span class="dv">2010-01-01</span>,to_publication_date<span class="sc">:</span><span class="dv">2023-09-30</span>,type_crossref<span class="sc">:</span>journal<span class="sc">-</span>article<span class="sc">|</span>monograph<span class="sc">|</span>report<span class="sc">&amp;</span>per_page<span class="ot">=</span><span class="dv">200</span><span class="sc">&amp;</span>select<span class="ot">=</span>title,publication_year,doi<span class="sc">&amp;</span>page<span class="ot">=</span><span class="dv">1</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Emme tällä hetkellä pysty toistamaan tätä hakua. Selvitämme virhettä ja korjaamme kirjauksen.</span></span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Haku H5_8_sw</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>https<span class="sc">:</span><span class="er">//</span>api.openalex.org<span class="sc">/</span>works?search<span class="ot">=</span>(polis<span class="sc">%20OR%</span>20ordningsv<span class="sc">%20OR%</span>20f<span class="sc">%C3%</span>B6rsvars<span class="sc">%20OR%</span>20soldat<span class="sc">%20OR%</span>20gr<span class="sc">%C3%</span>A4nsbevak<span class="sc">%20OR%</span>20gr<span class="sc">%C3%</span>A4nskontroll)<span class="sc">%20AND%</span><span class="dv">20</span>(diskriminer<span class="sc">%20OR%</span>20trakasse<span class="sc">%20ORp%</span>C3<span class="sc">%A5tryck%</span>20OR<span class="sc">%20v%</span>C3<span class="sc">%A5ld%</span>20OR<span class="sc">%20osaklig%</span>20OR<span class="sc">%20opasslig%</span>20ORj<span class="sc">%C3%</span>A4mlik<span class="sc">%20ORj%</span>C3<span class="sc">%A4mst%</span>C3<span class="sc">%A4lld)%</span>20AND<span class="sc">%20(finland%</span>20OR%20finsk)<span class="sc">&amp;</span>filter<span class="ot">=</span>from_publication_date<span class="sc">:</span><span class="dv">2010-01-01</span>,to_publication_date<span class="sc">:</span><span class="dv">2023-09-30</span>,type_crossref<span class="sc">:</span>journal<span class="sc">-</span>article<span class="sc">|</span>monograph<span class="sc">|</span>report<span class="sc">&amp;</span>per_page<span class="ot">=</span><span class="dv">200</span><span class="sc">&amp;</span>select<span class="ot">=</span>title,publication_year,doi<span class="sc">&amp;</span>page<span class="ot">=</span><span class="dv">1</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Emme tällä hetkellä pysty toistamaan tätä hakua. Selvitämme virhettä ja korjaamme kirjauksen.</span></span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Haku H5_8_en</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>https<span class="sc">:</span><span class="er">//</span>api.openalex.org<span class="sc">/</span>works?filter<span class="ot">=</span>title_and_abstract.search<span class="sc">:</span>police<span class="sc">%20OR%</span>20guard<span class="sc">%20OR%</span>20defence<span class="sc">%20contractor%</span>20OR<span class="sc">%20steward%</span>20OR<span class="sc">%20soldier%</span>20OR<span class="sc">%20military%</span>20personne<span class="er">)</span><span class="sc">%20AND%</span><span class="dv">20</span>(discriminat<span class="sc">%20OR%</span>20harass<span class="sc">%20OR%</span>20pressure<span class="sc">%20OR%</span>20violen<span class="sc">%20OR%</span>20improper<span class="sc">%20behavior%</span>20OR<span class="sc">%20equal%</span>20OR<span class="sc">%20equit)%</span>20AND<span class="sc">%20(finland%</span>20OR%20finnish),from_publication_date<span class="sc">:</span><span class="dv">2010-01-01</span>,to_publication_date<span class="sc">:</span><span class="dv">2023-09-30</span>,type_crossref<span class="sc">:</span>journal<span class="sc">-</span>article<span class="sc">|</span>monograph<span class="sc">|</span>report<span class="sc">&amp;</span>per_page<span class="ot">=</span><span class="dv">200</span><span class="sc">&amp;</span>select<span class="ot">=</span>title,publication_year,doi<span class="sc">&amp;</span>page<span class="ot">=</span><span class="dv">1</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Emme tällä hetkellä pysty toistamaan tätä hakua. Selvitämme virhettä ja korjaamme kirjauksen.</span></span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 <p>OpenAlex:in kohdalla tulokset haettiin API-menettelyllä. Maksimitulosten määrä per sivu oli 200 dokumentaation mukaan.</p>
 <p>Tulokset ladattiin ensisijaisesti <code>.csv</code>- tai <code>.xlsx</code>-muotoon jos mahdollista (Scopus, Web of Science ja ProQuest). BASE:n kohdalla lataaminen suoritettiin 100 tulosta kerralla <code>.json</code>-muotoon. OpenAlex:in tulokset haettiin 200 tulosta kerralla <code>.json</code>-muotoon.</p>
 <p><code>.xml</code>- ja <code>.json</code>-muotoiset hakutulokset käännettiin taulukkomuotoon Microsoft Excel -ohjelmassa <em>Power Query</em> -toiminnolla.</p>
