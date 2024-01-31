@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -150,6 +170,10 @@ ul.task-list li input[type="checkbox"] {
   </li>  
     </ul>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./lahteet.html"> 
+<span class="menu-text">Lähteet</span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
@@ -761,9 +785,14 @@ Taulukko&nbsp;2.3: Yliopistojen julkaisukanavat
 <li><p>Bielefeld Academic Search Engine BASE</p></li>
 <li><p>OpenAlex</p></li>
 </ul>
-<div class="no-row-height column-margin column-container"><p><sup>2</sup>&nbsp;Haku 5:ssä haettiin inhimillisen virheen takia kaikista Web of Science-palvelun hakukoneista. Ks. <a href="haku5.html" class="quarto-xref"><span>Luku 8</span></a>.</p></div><p>Nämä tietolähteet valittiin osittain systemaattisten kirjallisuuskatsausten suosituksen myötä (ks. VIITE).</p>
+<div class="no-row-height column-margin column-container"><p><sup>2</sup>&nbsp;Haku 5:ssä haettiin inhimillisen virheen takia kaikista Web of Science-palvelun hakukoneista. Ks. <a href="haku5.html" class="quarto-xref"><span>Luku 8</span></a>.</p></div><p>Nämä tietolähteet valittiin osittain systemaattisten kirjallisuuskatsausten suosituksen myötä <span class="citation" data-cites="gusenbauer2020">(ks. <a href="lahteet.html#ref-gusenbauer2020" role="doc-biblioref">Gusenbauer ja Haddaway 2020</a>)</span>.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-gusenbauer2020" class="csl-entry" role="listitem">
+Gusenbauer, Michael, ja Neal R. Haddaway. 2020. <span>”Which Academic Search Systems Are Suitable for Systematic Reviews or Meta<span>-</span>Analyses? Evaluating Retrieval Qualities of Google Scholar, PubMed, and 26 Other Resources”</span>. <em>Research Synthesis Methods</em> 11 (2): 181–217. <a href="https://doi.org/10.1002/jrsm.1378">https://doi.org/10.1002/jrsm.1378</a>.
+</div>
+</div>
 </section>
 </section>
 
