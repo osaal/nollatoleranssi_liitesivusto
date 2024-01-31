@@ -54,7 +54,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -182,6 +201,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
     </ul>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./lahteet.html" rel="" target="">
+ <span class="menu-text">Lähteet</span></a>
+  </li>  
 </ul>
             <div class="quarto-navbar-tools ms-auto">
 </div>
@@ -252,10 +275,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#hakulausekkeet-ja-tulosten-lataaminen" id="toc-hakulausekkeet-ja-tulosten-lataaminen" class="nav-link active" data-scroll-target="#hakulausekkeet-ja-tulosten-lataaminen"><span class="header-section-number">5.1</span> Hakulausekkeet ja tulosten lataaminen</a></li>
-  <li><a href="#hakutulosten-seulonta-ja-valinta" id="toc-hakutulosten-seulonta-ja-valinta" class="nav-link" data-scroll-target="#hakutulosten-seulonta-ja-valinta"><span class="header-section-number">5.2</span> Hakutulosten seulonta ja valinta</a></li>
-  <li><a href="#prisma-kulkukaavio" id="toc-prisma-kulkukaavio" class="nav-link" data-scroll-target="#prisma-kulkukaavio"><span class="header-section-number">5.3</span> PRISMA-kulkukaavio</a></li>
+  <li><a href="#prisma-kulkukaavio" id="toc-prisma-kulkukaavio" class="nav-link" data-scroll-target="#prisma-kulkukaavio"><span class="header-section-number">5.2</span> PRISMA-kulkukaavio</a></li>
+  <li><a href="#kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt" id="toc-kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt" class="nav-link" data-scroll-target="#kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt"><span class="header-section-number">5.3</span> Kokotekstin pohjalta poistetut tutkimukset ja syyt</a></li>
   <li><a href="#valitut-tutkimusjulkaisut" id="toc-valitut-tutkimusjulkaisut" class="nav-link" data-scroll-target="#valitut-tutkimusjulkaisut"><span class="header-section-number">5.4</span> Valitut tutkimusjulkaisut</a></li>
-  <li><a href="#kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt" id="toc-kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt" class="nav-link" data-scroll-target="#kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt"><span class="header-section-number">5.5</span> Kokotekstin pohjalta poistetut tutkimukset ja syyt</a></li>
   </ul>
 </nav>
     </div>
@@ -362,7 +384,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Jultika-arkiston käyttö päättyi 28.11.2023 ja korvattiin OuluREPO-arkistolla. Koska vaihto tapahtui julkaisuaikakriteerimme jälkeen, Jultikan tiedot pitäisi sisältää samat kuin OuluREPO:n tiedot. Vaihdon ei siten pitäisi vaikuttaa kirjallisuuskatsauksen tuloksiin. Lisätietoja: <a href="https://www.oulu.fi/fi/uutiset/oulurepo-julkaisuarkisto-korvaa-jultikan" class="uri">https://www.oulu.fi/fi/uutiset/oulurepo-julkaisuarkisto-korvaa-jultikan</a> (haettu 24.1.2024).</p></li></div></div>
-<p>Haun tuotti HENKILÖT.</p>
 <section id="hakulausekkeet-ja-tulosten-lataaminen" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="hakulausekkeet-ja-tulosten-lataaminen"><span class="header-section-number">5.1</span> Hakulausekkeet ja tulosten lataaminen</h2>
 <p>Alla olevassa taulukossa esitetään hakujen suorituspäivämäärät, hakusanat ja hakukonekohtaiset rajaukset sekä osumat.</p>
@@ -370,12 +391,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <table class="table">
 <caption>Taulukko&nbsp;5.2: Haku 2:n toteutetut haut</caption>
 <colgroup>
-<col style="width: 5%">
-<col style="width: 20%">
-<col style="width: 9%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
 <col style="width: 17%">
-<col style="width: 7%">
-<col style="width: 38%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -1045,35 +1066,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Inhimillisestä virheestä johtuen useista hauista jäi julkaisuajan suodatin sekä tietokantojen rajaus vain opinnäytetöihin pois käytöstä. Rajausten poissaolo kuitenkin vaikuttaa korkeintaan väärien positiivien nousussa, eikä tulosten määrä näytä ongelmalliselta tästä näkökulmasta.</p>
 <p>Tulokset lisättiin Excel-taulukkoon käsin kyseisen haun suorittajan toimesta.</p>
 </section>
-<section id="hakutulosten-seulonta-ja-valinta" class="level2 page-columns page-full" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="hakutulosten-seulonta-ja-valinta"><span class="header-section-number">5.2</span> Hakutulosten seulonta ja valinta</h2>
-<p>Hakutulokset seulottiin käyttäen seuraavaa menettelyä:</p>
-<ol type="1">
-<li>Kaksoiskappaleet tunnistettiin Microsoft Excelin <em>Solujen korostussäännöt</em> -työkalulla. Jokaisen kaksoiskappaleeksi tunnistetun tuloksen kohdalla varmistettiin kaksoiskappaluus, ja säilytettiin yksi tuloksista. Muut merkittiin kaksoiskappaleiksi ja suodatettiin pois taulukosta <em>Suodata</em> -työkalulla.</li>
-<li>Otsikkojen pohjalta toteutettiin ensimmäinen seulonta. Jos otsikko selkeästi vastasi inkluusiokriteerejä, merkittiin tulokselle arvo 1. Jos otsikko mahdollisesti täytti inkluusiokriteerejä, mutta asiasta ei voinut saada varmuutta, merkittiin tulokselle arvo 2. Jos otsikko selkeästi ei vastannut inkluusiokriteerejä (esim. rikkoi yhden tai useamman kriteerin), jätettiin tyhjä solu. Tyhjät solut suodatettiin sitten pois taulukosta.</li>
-<li>Jokaiselle tulokselle, jolla oli merkitty arvo 2 (epävarma) ensimmäisessä seulonnassa, tarkistettiin tiivistelmä tuloksen verkko-osoitteesta. Jos tiivistelmä selkeästi vastasi inkluusiokriteerejä, merkittiin tulokselle arvo 1. Jos tiivistelmä mahdollisesti täytti inkluusiokriteerejä, mutta asiasta ei voinut saada varmuutta, merkittiin tulokselle arvo 2. Jos tiivistelmä selkeästi ei vastannut inkluusiokriteerejä (esim. rikkoi yhden tai useamman kriteerin), jätettiin tyhjä solu. Tyhjät solut suodatettiin sitten pois taulukosta.</li>
-<li>Seuraavaksi haettiin kaikki tulokset, jotka saivat arvon 1 ensimmäisessä seulonnassa tai arvot 1 tai 2 toisessa seulonnassa. Jos tuloksen sai haettua, merkittiin arvo 1, ja jos tulosta ei saatu haettua, merkittiin arvo x. Yksi tulos oli kirjaluku, jolloin haettiin kirja ja merkittiin arvo * kommentin kanssa.</li>
-<li>Seuraavaksi tarkistettiin kaikki ne tutkimukset, joille oli merkitty arvo 2 toisessa seulonnassa (epävarma tiivistelmän pohjalta). Tutkija kävi läpi artikkelin menetelmäosiot ja tarkisti, täyttyykö inkluusiokriteerit. Jos kaikki kriteerit täyttyivät, merkittiin arvo 1 (sisällytä kirjallisuuskatsaukseen). Jos osa kriteereistä täyttyivät, merkittiin arvo T (mahdollisesti käytettävissä raportin taustoitukseen, mutta ei kirjallisuuskatsauksessa). Jos kriteerit eivät täyttyneet, tai yksi tai useampi selkeästi rikkoontui, jätettiin tyhjä arvo. Tyhjät solut suodatettiin sitten pois taulukosta.</li>
-<li>Viimeiseksi tarkistettiin vielä kaikki tulokset, jotka saivat arvon 1 ensimmäisessä tai toisessa seulonnassa. Tutkija kävi läpi artikkelin menetelmäosiot ja tarkisti, täyttyykö inkluusiokriteerit. Jos kaikki kriteerit täyttyivät, merkittiin arvo 1 (sisällytä kirjallisuuskatsaukseen). Jos osa kriteereistä täyttyivät, merkittiin arvo T (mahdollisesti käytettävissä raportin taustoitukseen, mutta ei kirjallisuuskatsauksessa). Jos kriteerit eivät täyttyneet, tai yksi tai useampi selkeästi rikkoontui, jätettiin tyhjä arvo. Tyhjät solut suodatettiin sitten pois taulukosta.</li>
-<li>Valintaprosessin jälkeen jokaisesta tutkimuksesta haettiin seuraavat tiedot:
-<ol type="1">
-<li>Tekijöiden nimet</li>
-<li>Julkaisuvuosi</li>
-<li>Tutkimusjulkaisun otsikko</li>
-<li>Julkaisumuoto (vertaisarvioitu tutkimusartikkeli, organisaatioraportti, kirjateos, kirjan luku, muu)</li>
-<li>Verkko-osoite (ensisijaisesti DOI-numero)</li>
-<li>Tiedonkeruun muoto (kysely, haastattelu, rekisteri, havainnointi, audiovisuaalinen aineisto, muu [kirjattu avotietona], useampia muotoja [kirjattu avotietoina])</li>
-<li>Kohdepopulaatio (maantieteellinen ja ammatillinen luokittelu)</li>
-<li>Tutkimuksen tiedonkeruun ajankohta (kuukausitasolla, jos tiedossa)</li>
-<li>Otoskoko (yksi tai useampi otos)</li>
-<li>Otantamenetelmä (ei tietoa, satunnaistettu otanta, ositettu otanta, ryväsotanta, paneelitutkimus, harkinnanvarainen otanta<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, kiintiöotanta, lumipallo-otanta, muu)</li>
-<li>Vastaajien yhteydenottotapa (postitse, sähköpostitse, puhelimitse, sosiaalisen verkoston kautta [esim. kollegat], organisaatiojohdon kautta, muun organisaation kautta [esim. liitto], kasvokkain, muu<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>)</li>
-<li>Vastaajien vastausmuistutusten määrä (jos tiedossa)</li>
-</ol></li>
-</ol>
-<div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;Jos tutkimus pyrki koko populaation tutkimiseen, kirjattiin “harkinnanvarainen otanta”.</p></li><li id="fn3"><p><sup>3</sup>&nbsp;Jos käytettiin useampia yhteydenottomuotoja, merkittiin “muu”.</p></li></div></section>
-<section id="prisma-kulkukaavio" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="prisma-kulkukaavio"><span class="header-section-number">5.3</span> PRISMA-kulkukaavio</h2>
+<section id="prisma-kulkukaavio" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="prisma-kulkukaavio"><span class="header-section-number">5.2</span> PRISMA-kulkukaavio</h2>
 <p>Hakutulosten seulonta tuotti seuraavan PRISMA-protokollan mukaisen kulkukaavion:</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Tietokannat ja rekisterit</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Muut lähteet</a></li></ul>
@@ -1109,8 +1103,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb47-25"><a href="#cb47-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">font_size =</span> <span class="dv">14</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-54da7652489a4a090958" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-54da7652489a4a090958">{"x":{"diagram":"\n    digraph prisma {\n    node [shape=\"box\" , fontsize = 14];\n    graph [splines=ortho, nodesep=1 ]\n    \nTunnistetutkohteet [label=\"Tunnistetut kohteet\n74 (100%)\"];\nSeulotutkohteet_A [label=\"Seulotut kohteet\n73 (98.6%)\"];\nHaettavatkohteet_B [label=\"Haettavat kohteet\n10 (13.5%)\"];\nTarkistetutkohteet_C [label=\"Tarkistetut kohteet\n10 (13.5%)\"];\nSisällytetytkohteet_D [label=\"Sisällytetyt kohteet\n 6 (8.1%)\"];\nKaksoiskappaleetpoistettuennenseulontaa_a [label=\"Kaksoiskappaleet poistettu ennen seulontaa\n 1 (1.4%)\"];\nPoisseulotutkohteet_b [label=\"Poisseulotut kohteet\n63 (85.1%)\"];\nHakemattajääneetkohteet_c [label=\"Hakematta jääneet kohteet\n 0 (0.0%)\"];\nPoistetutkohteet_d [label=\"Poistetut kohteet\n 4 (5.4%)\"];\nTunnistetutkohteet -> {Seulotutkohteet_A; Kaksoiskappaleetpoistettuennenseulontaa_a};\nSeulotutkohteet_A -> {Haettavatkohteet_B; Poisseulotutkohteet_b};\nHaettavatkohteet_B -> {Tarkistetutkohteet_C; Hakemattajääneetkohteet_c};\nTarkistetutkohteet_C -> {Sisällytetytkohteet_D; Poistetutkohteet_d};\n{rank=same; Tunnistetutkohteet Kaksoiskappaleetpoistettuennenseulontaa_a}\n{rank=same; Seulotutkohteet_A Poisseulotutkohteet_b}\n{rank=same; Haettavatkohteet_B Hakemattajääneetkohteet_c}\n{rank=same; Tarkistetutkohteet_C Poistetutkohteet_d}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-33e85c04916a43b00d18" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-33e85c04916a43b00d18">{"x":{"diagram":"\n    digraph prisma {\n    node [shape=\"box\" , fontsize = 14];\n    graph [splines=ortho, nodesep=1 ]\n    \nTunnistetutkohteet [label=\"Tunnistetut kohteet\n74 (100%)\"];\nSeulotutkohteet_A [label=\"Seulotut kohteet\n73 (98.6%)\"];\nHaettavatkohteet_B [label=\"Haettavat kohteet\n10 (13.5%)\"];\nTarkistetutkohteet_C [label=\"Tarkistetut kohteet\n10 (13.5%)\"];\nSisällytetytkohteet_D [label=\"Sisällytetyt kohteet\n 6 (8.1%)\"];\nKaksoiskappaleetpoistettuennenseulontaa_a [label=\"Kaksoiskappaleet poistettu ennen seulontaa\n 1 (1.4%)\"];\nPoisseulotutkohteet_b [label=\"Poisseulotut kohteet\n63 (85.1%)\"];\nHakemattajääneetkohteet_c [label=\"Hakematta jääneet kohteet\n 0 (0.0%)\"];\nPoistetutkohteet_d [label=\"Poistetut kohteet\n 4 (5.4%)\"];\nTunnistetutkohteet -> {Seulotutkohteet_A; Kaksoiskappaleetpoistettuennenseulontaa_a};\nSeulotutkohteet_A -> {Haettavatkohteet_B; Poisseulotutkohteet_b};\nHaettavatkohteet_B -> {Tarkistetutkohteet_C; Hakemattajääneetkohteet_c};\nTarkistetutkohteet_C -> {Sisällytetytkohteet_D; Poistetutkohteet_d};\n{rank=same; Tunnistetutkohteet Kaksoiskappaleetpoistettuennenseulontaa_a}\n{rank=same; Seulotutkohteet_A Poisseulotutkohteet_b}\n{rank=same; Haettavatkohteet_B Hakemattajääneetkohteet_c}\n{rank=same; Tarkistetutkohteet_C Poistetutkohteet_d}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
@@ -1143,23 +1137,94 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb48-23"><a href="#cb48-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">font_size =</span> <span class="dv">14</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-df7cb8d32dd9ca3824ad" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-df7cb8d32dd9ca3824ad">{"x":{"diagram":"\n    digraph prisma {\n    node [shape=\"box\" , fontsize = 14];\n    graph [splines=ortho, nodesep=1 ]\n    \nTunnistetutkohteet [label=\"Tunnistetut kohteet\n0 (100%)\"];\nHaettavatkohteet_A [label=\"Haettavat kohteet\n0 (NA)\"];\nTarkistetutkohteet_B [label=\"Tarkistetut kohteet\n0 (NA)\"];\nSisällytetytkohteet_C [label=\"Sisällytetyt kohteet\n0 (NA)\"];\nKaksoiskappaleetpoistettuennenseulontaa_a [label=\"Kaksoiskappaleet poistettu ennen seulontaa\n0 (NA)\"];\nHakemattajääneetkohteet_b [label=\"Hakematta jääneet kohteet\n0 (NA)\"];\nPoistetutkohteet_c [label=\"Poistetut kohteet\n0 (NA)\"];\nTunnistetutkohteet -> {Haettavatkohteet_A; Kaksoiskappaleetpoistettuennenseulontaa_a};\nHaettavatkohteet_A -> {Tarkistetutkohteet_B; Hakemattajääneetkohteet_b};\nTarkistetutkohteet_B -> {Sisällytetytkohteet_C; Poistetutkohteet_c};\n{rank=same; Tunnistetutkohteet Kaksoiskappaleetpoistettuennenseulontaa_a}\n{rank=same; Haettavatkohteet_A Hakemattajääneetkohteet_b}\n{rank=same; Tarkistetutkohteet_B Poistetutkohteet_c}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-ad48891963323bc6230a" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-ad48891963323bc6230a">{"x":{"diagram":"\n    digraph prisma {\n    node [shape=\"box\" , fontsize = 14];\n    graph [splines=ortho, nodesep=1 ]\n    \nTunnistetutkohteet [label=\"Tunnistetut kohteet\n0 (100%)\"];\nHaettavatkohteet_A [label=\"Haettavat kohteet\n0 (NA)\"];\nTarkistetutkohteet_B [label=\"Tarkistetut kohteet\n0 (NA)\"];\nSisällytetytkohteet_C [label=\"Sisällytetyt kohteet\n0 (NA)\"];\nKaksoiskappaleetpoistettuennenseulontaa_a [label=\"Kaksoiskappaleet poistettu ennen seulontaa\n0 (NA)\"];\nHakemattajääneetkohteet_b [label=\"Hakematta jääneet kohteet\n0 (NA)\"];\nPoistetutkohteet_c [label=\"Poistetut kohteet\n0 (NA)\"];\nTunnistetutkohteet -> {Haettavatkohteet_A; Kaksoiskappaleetpoistettuennenseulontaa_a};\nHaettavatkohteet_A -> {Tarkistetutkohteet_B; Hakemattajääneetkohteet_b};\nTarkistetutkohteet_B -> {Sisällytetytkohteet_C; Poistetutkohteet_c};\n{rank=same; Tunnistetutkohteet Kaksoiskappaleetpoistettuennenseulontaa_a}\n{rank=same; Haettavatkohteet_A Hakemattajääneetkohteet_b}\n{rank=same; Tarkistetutkohteet_B Poistetutkohteet_c}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
 </div>
+</div>
+</section>
+<section id="kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt"><span class="header-section-number">5.3</span> Kokotekstin pohjalta poistetut tutkimukset ja syyt</h2>
+<p>Seulonnan jälkeen poistettuja tutkimusjulkaisuja oli yhteensä 4 kappaletta. <a href="#tbl-haku2-poistetut">Taulukko&nbsp;<span>5.3</span></a> on jokaisen julkasun viittaus ja poistosyy(t). Syyt ovat listattuna ensisijaisen syyn mukaan. Päätös poisjättämisestä voitiin tehdä jos yksi inkluusiokriteeri ei täyttynyt, jolloin tutkimuksella voi olla muitakin syitä miksi sitä ei otettu mukaan katsauksen tuloksiin.</p>
+<div id="tbl-haku2-poistetut" class="anchored">
+<table class="table">
+<caption>Taulukko&nbsp;5.3: Haku 2:n poistetut kohteet syineen</caption>
+<colgroup>
+<col style="width: 20%">
+<col style="width: 79%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Kohde</th>
+<th>Syy(t) poistoon</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td>Väärä tutkimusaihe</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="lindström2020">Lindström (<a href="lahteet.html#ref-lindström2020" role="doc-biblioref">2020</a>)</span></td>
+<td>Ei-empiirinen tutkimus, väärä tutkimusaihe</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="markkola2021">Markkola (<a href="lahteet.html#ref-markkola2021" role="doc-biblioref">2021</a>)</span></td>
+<td>Ei-empiirinen tutkimus, väärä kohderyhmä, väärä julkaisumuoto</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="pasma2014">Pasma (<a href="lahteet.html#ref-pasma2014" role="doc-biblioref">2014</a>)</span></td>
+<td>Väärä kohderyhmä, väärä tutkimusaihe</td>
+</tr>
+</tbody>
+</table>
 </div>
 </section>
 <section id="valitut-tutkimusjulkaisut" class="level2" data-number="5.4">
 <h2 data-number="5.4" class="anchored" data-anchor-id="valitut-tutkimusjulkaisut"><span class="header-section-number">5.4</span> Valitut tutkimusjulkaisut</h2>
-<p>[TÄHÄN LÄHDELUETTELO KAIKISTA MUKAAN VALITUISTA TUTKIMUSJULKAISUISTA]</p>
-</section>
-<section id="kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt"><span class="header-section-number">5.5</span> Kokotekstin pohjalta poistetut tutkimukset ja syyt</h2>
-<p>[TÄHÄN LÄHDELUETTELO KAIKISTA KOKOTEKSTISTÄ POISTETUISTA TUTKIMUKSISTA PÄÄSYYN MUKAAN.]</p>
+<p>Haun pohjalta valittiin kuusi tutkimusjulkaisua. Kaikki kuusi valikoituivat mukaan hakuprosessin myötä. Julkaisut ovat:</p>
+<p><span class="citation" data-cites="huttunen2019 kettunen2022 luoma2020 niemi2020 saari2013 virta2020">(<a href="lahteet.html#ref-huttunen2019" role="doc-biblioref">Huttunen ja Rinkinen 2019</a>; <a href="lahteet.html#ref-kettunen2022" role="doc-biblioref">Kettunen 2022</a>; <a href="lahteet.html#ref-luoma2020" role="doc-biblioref">Luoma 2020</a>; <a href="lahteet.html#ref-niemi2020" role="doc-biblioref">Niemi 2020</a>; <a href="lahteet.html#ref-saari2013" role="doc-biblioref">Saari 2013</a>; <a href="lahteet.html#ref-virta2020" role="doc-biblioref">Virta 2020</a>)</span></p>
+<ul>
+<li><p><span class="citation" data-cites="huttunen2019">Huttunen ja Rinkinen (<a href="lahteet.html#ref-huttunen2019" role="doc-biblioref">2019</a>)</span> “Pelastushenkilöstön kokema seksuaalinen ahdistelu työtehtävillä ja työpaikoilla. Tutkimus toteutettuna Rescuebase -applikaatiolla”</p></li>
+<li><p><span class="citation" data-cites="kettunen2022">Kettunen (<a href="lahteet.html#ref-kettunen2022" role="doc-biblioref">2022</a>)</span> “Kohti yhdenvertaisempaa pelastusalaa - yhdenvertaisuussuunnitelma Pohjois-Karjalan pelastuslaitokselle”</p></li>
+<li><p><span class="citation" data-cites="luoma2020">Luoma (<a href="lahteet.html#ref-luoma2020" role="doc-biblioref">2020</a>)</span> “Päätöksenteon ilmiöt yhdenvertaisuuskokemuksissa pelastusalalla Suomessa”</p></li>
+<li><p><span class="citation" data-cites="niemi2020">Niemi (<a href="lahteet.html#ref-niemi2020" role="doc-biblioref">2020</a>)</span> “De inhemska språken hos förstavårdspersonalen vid Österbottens räddningsverk - en fallstudie om språkanvändning, språkfärdigheter och inställningen till språk och tvåspråkighet”</p></li>
+<li><p><span class="citation" data-cites="saari2013">Saari (<a href="lahteet.html#ref-saari2013" role="doc-biblioref">2013</a>)</span> “‘Se kuuluu palokuntakulttuuriin’ - katsaus Länsi-Uudenmaan pelastuslaitoksen tasa-arvotilanteeseen”</p></li>
+<li><p><span class="citation" data-cites="virta2020">Virta (<a href="lahteet.html#ref-virta2020" role="doc-biblioref">2020</a>)</span> “Itä-Uudenmaan pelastuslaitoksen työhyvinvointikyselyn analysointi”</p></li>
+</ul>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-huttunen2019" class="csl-entry" role="listitem">
+Huttunen, Jukka, ja Sanna Rinkinen. 2019. <span>”Pelastushenkilöstön kokema seksuaalinen ahdistelu työtehtävillä ja työpaikoilla. Tutkimus toteutettuna Rescuebase -applikaatiolla”</span>. Tohtorinväitöskirja, Tampere.
+</div>
+<div id="ref-kettunen2022" class="csl-entry" role="listitem">
+Kettunen, Minna. 2022. <span>”Kohti yhdenvertaisempaa pelastusalaa - yhdenvertaisuussuunnitelma Pohjois-Karjalan pelastuslaitokselle”</span>. Tohtorinväitöskirja, Mikkeli.
+</div>
+<div id="ref-lindström2020" class="csl-entry" role="listitem">
+Lindström, Torbjörn. 2020. <span>”Strategiprocessen i praktiken: ur de finländska räddningsverkens perspektiv”</span>. Tohtorinväitöskirja, Turku.
+</div>
+<div id="ref-luoma2020" class="csl-entry" role="listitem">
+Luoma, Katja. 2020. <span>”Päätöksenteon ilmiöt yhdenvertaisuuskokemuksissa pelastusalalla Suomessa”</span>. Tohtorinväitöskirja, Vantaa.
+</div>
+<div id="ref-markkola2021" class="csl-entry" role="listitem">
+Markkola, Pirjo. 2021. <span>”Nordic Gender Equality: Between Administrative Cooperation and Global Branding”</span>. Teoksessa, toimittanut Jani Marjanen, Johan Strang, ja Mary Hilson, 133–52. De Gruyter. <a href="https://doi.org/10.1515/9783110730104-007">https://doi.org/10.1515/9783110730104-007</a>.
+</div>
+<div id="ref-niemi2020" class="csl-entry" role="listitem">
+Niemi, Salla. 2020. <span>”De inhemska språken hos förstavårdspersonalen vid Österbottens räddningsverk - en fallstudie om språkanvändning, språkfärdigheter och inställningen till språk och tvåspråkighet”</span>. Tohtorinväitöskirja, Vaasa.
+</div>
+<div id="ref-pasma2014" class="csl-entry" role="listitem">
+Pasma, Mia. 2014. <span>”Secretaries<span>’</span> Views on the Effects of the Organisational Renewal in the Department for Rescue Services of the Ministry of the Interior”</span>. Tohtorinväitöskirja, Helsinki.
+</div>
+<div id="ref-saari2013" class="csl-entry" role="listitem">
+Saari, Jukka. 2013. <span>”<span>"</span>Se kuuluu palokuntakulttuuriin<span>"</span> - katsaus Länsi-Uudenmaan pelastuslaitoksen tasa-arvotilanteeseen”</span>. Tohtorinväitöskirja, Kuopio.
+</div>
+<div id="ref-virta2020" class="csl-entry" role="listitem">
+Virta, Jouni. 2020. <span>”Itä-Uudenmaan pelastuslaitoksen työhyvinvointikyselyn analysointi”</span>. Tohtorinväitöskirja, Kuopio.
+</div>
+</div>
 </section>
 
 

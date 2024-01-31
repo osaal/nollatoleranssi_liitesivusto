@@ -22,6 +22,7 @@ book:
     - part: "Kyselyn valmistelu"
       chapters:
         - kyselynvalmistelu.qmd
+    - lahteet.qmd
   
   navbar:
     background: primary
@@ -32,6 +33,8 @@ book:
       - sidebar:kirjallisuuskatsaus
       - sidebar:katsauksenhaut
       - sidebar:kyselynvalmistelu
+      - text: "Lähteet"
+        file: lahteet.qmd
   
   sidebar:
     - id: kirjallisuuskatsaus
@@ -69,11 +72,14 @@ format:
     crossref:
       chapters: true
     reference-location: margin
-    citation-location: margin
+    references: references.bib
     
     code-fold: true
     code-overflow: wrap
     code-summary: "Näytä"
+
+bibliography: references.bib
+citation: true
 
 editor: visual
 

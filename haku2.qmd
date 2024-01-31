@@ -43,7 +43,7 @@ Haku suoritettiin seuraavissa tietolähteissä:
 Alla olevassa taulukossa esitetään hakujen suorituspäivämäärät, hakusanat ja hakukonekohtaiset rajaukset sekä osumat.
 
 | Koodi    | Hakukone (tietokannat suluissa)  | Haku-ajankohta | Julkaisujen ajankohtarajaus | Tulos-määrä | Haun jälkeiset rajaukset                                        |
-|-----------|-----------|-----------|-----------|-----------|--------------------|
+|------------|------------|------------|------------|------------|-------------|
 | H2_1_fi  | Theseus                          | 3.1.2024       | *Ei käytetty.*              | 3           | *Ei käytetty.*                                                  |
 | H2_1_sw  | Theseus                          | 9.1.2024       | 2010-2024                   | 30          | *Ei käytetty.*                                                  |
 | H2_1_en  | Theseus                          | 10.1.2024      | 2010-2024                   | 4           | *Ei käytetty.*                                                  |
@@ -401,10 +401,33 @@ flow_exclusions(
 ```
 :::
 
-## Valitut tutkimusjulkaisut
-
-\[TÄHÄN LÄHDELUETTELO KAIKISTA MUKAAN VALITUISTA TUTKIMUSJULKAISUISTA\]
-
 ## Kokotekstin pohjalta poistetut tutkimukset ja syyt
 
-\[TÄHÄN LÄHDELUETTELO KAIKISTA KOKOTEKSTISTÄ POISTETUISTA TUTKIMUKSISTA PÄÄSYYN MUKAAN.\]
+Seulonnan jälkeen poistettuja tutkimusjulkaisuja oli yhteensä 4 kappaletta. @tbl-haku2-poistetut on jokaisen julkasun viittaus ja poistosyy(t). Syyt ovat listattuna ensisijaisen syyn mukaan. Päätös poisjättämisestä voitiin tehdä jos yksi inkluusiokriteeri ei täyttynyt, jolloin tutkimuksella voi olla muitakin syitä miksi sitä ei otettu mukaan katsauksen tuloksiin.
+
+| Kohde          | Syy(t) poistoon                                               |
+|----------------|---------------------------------------------------------------|
+| @harju2020     | Väärä tutkimusaihe                                            |
+| @lindström2020 | Ei-empiirinen tutkimus, väärä tutkimusaihe                    |
+| @markkola2021  | Ei-empiirinen tutkimus, väärä kohderyhmä, väärä julkaisumuoto |
+| @pasma2014     | Väärä kohderyhmä, väärä tutkimusaihe                          |
+
+: Haku 2:n poistetut kohteet syineen {#tbl-haku2-poistetut}
+
+## Valitut tutkimusjulkaisut
+
+Haun pohjalta valittiin kuusi tutkimusjulkaisua. Kaikki kuusi valikoituivat mukaan hakuprosessin myötä. Julkaisut ovat:
+
+[@huttunen2019; @kettunen2022; @luoma2020; @niemi2020; @saari2013; @virta2020]
+
+-   @huttunen2019 "Pelastushenkilöstön kokema seksuaalinen ahdistelu työtehtävillä ja työpaikoilla. Tutkimus toteutettuna Rescuebase -applikaatiolla"
+
+-   @kettunen2022 "Kohti yhdenvertaisempaa pelastusalaa - yhdenvertaisuussuunnitelma Pohjois-Karjalan pelastuslaitokselle"
+
+-   @luoma2020 "Päätöksenteon ilmiöt yhdenvertaisuuskokemuksissa pelastusalalla Suomessa"
+
+-   @niemi2020 "De inhemska språken hos förstavårdspersonalen vid Österbottens räddningsverk - en fallstudie om språkanvändning, språkfärdigheter och inställningen till språk och tvåspråkighet"
+
+-   @saari2013 "'Se kuuluu palokuntakulttuuriin' - katsaus Länsi-Uudenmaan pelastuslaitoksen tasa-arvotilanteeseen"
+
+-   @virta2020 "Itä-Uudenmaan pelastuslaitoksen työhyvinvointikyselyn analysointi"
