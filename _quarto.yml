@@ -85,6 +85,6 @@ citation: true
 editor: visual
 
 execute:
-  freeze: true
+  freeze: auto
   eval: false
 

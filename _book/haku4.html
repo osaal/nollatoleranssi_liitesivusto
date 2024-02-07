@@ -54,7 +54,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -257,8 +276,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#hakulausekkeet-ja-tulosten-lataaminen" id="toc-hakulausekkeet-ja-tulosten-lataaminen" class="nav-link active" data-scroll-target="#hakulausekkeet-ja-tulosten-lataaminen"><span class="header-section-number">7.1</span> Hakulausekkeet ja tulosten lataaminen</a></li>
   <li><a href="#prisma-kulkukaavio" id="toc-prisma-kulkukaavio" class="nav-link" data-scroll-target="#prisma-kulkukaavio"><span class="header-section-number">7.2</span> PRISMA-kulkukaavio</a></li>
-  <li><a href="#valitut-tutkimusjulkaisut" id="toc-valitut-tutkimusjulkaisut" class="nav-link" data-scroll-target="#valitut-tutkimusjulkaisut"><span class="header-section-number">7.3</span> Valitut tutkimusjulkaisut</a></li>
-  <li><a href="#kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt" id="toc-kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt" class="nav-link" data-scroll-target="#kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt"><span class="header-section-number">7.4</span> Kokotekstin pohjalta poistetut tutkimukset ja syyt</a></li>
+  <li><a href="#kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt" id="toc-kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt" class="nav-link" data-scroll-target="#kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt"><span class="header-section-number">7.3</span> Kokotekstin pohjalta poistetut tutkimukset ja syyt</a></li>
+  <li><a href="#valitut-tutkimusjulkaisut" id="toc-valitut-tutkimusjulkaisut" class="nav-link" data-scroll-target="#valitut-tutkimusjulkaisut"><span class="header-section-number">7.4</span> Valitut tutkimusjulkaisut</a></li>
   </ul>
 </nav>
     </div>
@@ -372,12 +391,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <table class="table">
 <caption>Taulukko&nbsp;7.2: Haku 4:n toteutetut haut</caption>
 <colgroup>
-<col style="width: 5%">
-<col style="width: 18%">
-<col style="width: 8%">
-<col style="width: 16%">
-<col style="width: 7%">
-<col style="width: 43%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 30%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -1093,8 +1112,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb47-25"><a href="#cb47-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">font_size =</span> <span class="dv">14</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-73238dca4168cdbe4bc2" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-73238dca4168cdbe4bc2">{"x":{"diagram":"\n    digraph prisma {\n    node [shape=\"box\" , fontsize = 14];\n    graph [splines=ortho, nodesep=1 ]\n    \nTunnistetutkohteet [label=\"Tunnistetut kohteet\n515 (100%)\"];\nSeulotutkohteet_A [label=\"Seulotut kohteet\n503 (97.67%)\"];\nHaettavatkohteet_B [label=\"Haettavat kohteet\n 38 (7.38%)\"];\nTarkistetutkohteet_C [label=\"Tarkistetut kohteet\n 36 (6.99%)\"];\nSisällytetytkohteet_D [label=\"Sisällytetyt kohteet\n 23 (4.47%)\"];\nKaksoiskappaleetpoistettuennenseulontaa_a [label=\"Kaksoiskappaleet poistettu ennen seulontaa\n 12 (2.33%)\"];\nPoisseulotutkohteet_b [label=\"Poisseulotut kohteet\n465 (90.29%)\"];\nHakemattajääneetkohteet_c [label=\"Hakematta jääneet kohteet\n  2 (0.39%)\"];\nPoistetutkohteet_d [label=\"Poistetut kohteet\n 13 (2.52%)\"];\nTunnistetutkohteet -> {Seulotutkohteet_A; Kaksoiskappaleetpoistettuennenseulontaa_a};\nSeulotutkohteet_A -> {Haettavatkohteet_B; Poisseulotutkohteet_b};\nHaettavatkohteet_B -> {Tarkistetutkohteet_C; Hakemattajääneetkohteet_c};\nTarkistetutkohteet_C -> {Sisällytetytkohteet_D; Poistetutkohteet_d};\n{rank=same; Tunnistetutkohteet Kaksoiskappaleetpoistettuennenseulontaa_a}\n{rank=same; Seulotutkohteet_A Poisseulotutkohteet_b}\n{rank=same; Haettavatkohteet_B Hakemattajääneetkohteet_c}\n{rank=same; Tarkistetutkohteet_C Poistetutkohteet_d}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-071eddc883478a9dac21" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-071eddc883478a9dac21">{"x":{"diagram":"\n    digraph prisma {\n    node [shape=\"box\" , fontsize = 14];\n    graph [splines=ortho, nodesep=1 ]\n    \nTunnistetutkohteet [label=\"Tunnistetut kohteet\n515 (100%)\"];\nSeulotutkohteet_A [label=\"Seulotut kohteet\n503 (97.67%)\"];\nHaettavatkohteet_B [label=\"Haettavat kohteet\n 38 (7.38%)\"];\nTarkistetutkohteet_C [label=\"Tarkistetut kohteet\n 36 (6.99%)\"];\nSisällytetytkohteet_D [label=\"Sisällytetyt kohteet\n 23 (4.47%)\"];\nKaksoiskappaleetpoistettuennenseulontaa_a [label=\"Kaksoiskappaleet poistettu ennen seulontaa\n 12 (2.33%)\"];\nPoisseulotutkohteet_b [label=\"Poisseulotut kohteet\n465 (90.29%)\"];\nHakemattajääneetkohteet_c [label=\"Hakematta jääneet kohteet\n  2 (0.39%)\"];\nPoistetutkohteet_d [label=\"Poistetut kohteet\n 13 (2.52%)\"];\nTunnistetutkohteet -> {Seulotutkohteet_A; Kaksoiskappaleetpoistettuennenseulontaa_a};\nSeulotutkohteet_A -> {Haettavatkohteet_B; Poisseulotutkohteet_b};\nHaettavatkohteet_B -> {Tarkistetutkohteet_C; Hakemattajääneetkohteet_c};\nTarkistetutkohteet_C -> {Sisällytetytkohteet_D; Poistetutkohteet_d};\n{rank=same; Tunnistetutkohteet Kaksoiskappaleetpoistettuennenseulontaa_a}\n{rank=same; Seulotutkohteet_A Poisseulotutkohteet_b}\n{rank=same; Haettavatkohteet_B Hakemattajääneetkohteet_c}\n{rank=same; Tarkistetutkohteet_C Poistetutkohteet_d}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
@@ -1127,23 +1146,230 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb48-23"><a href="#cb48-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">font_size =</span> <span class="dv">14</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-8f276b073b462ada55f1" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-8f276b073b462ada55f1">{"x":{"diagram":"\n    digraph prisma {\n    node [shape=\"box\" , fontsize = 14];\n    graph [splines=ortho, nodesep=1 ]\n    \nTunnistetutkohteet [label=\"Tunnistetut kohteet\n0 (100%)\"];\nHaettavatkohteet_A [label=\"Haettavat kohteet\n0 (NA)\"];\nTarkistetutkohteet_B [label=\"Tarkistetut kohteet\n0 (NA)\"];\nSisällytetytkohteet_C [label=\"Sisällytetyt kohteet\n0 (NA)\"];\nKaksoiskappaleetpoistettuennenseulontaa_a [label=\"Kaksoiskappaleet poistettu ennen seulontaa\n0 (NA)\"];\nHakemattajääneetkohteet_b [label=\"Hakematta jääneet kohteet\n0 (NA)\"];\nPoistetutkohteet_c [label=\"Poistetut kohteet\n0 (NA)\"];\nTunnistetutkohteet -> {Haettavatkohteet_A; Kaksoiskappaleetpoistettuennenseulontaa_a};\nHaettavatkohteet_A -> {Tarkistetutkohteet_B; Hakemattajääneetkohteet_b};\nTarkistetutkohteet_B -> {Sisällytetytkohteet_C; Poistetutkohteet_c};\n{rank=same; Tunnistetutkohteet Kaksoiskappaleetpoistettuennenseulontaa_a}\n{rank=same; Haettavatkohteet_A Hakemattajääneetkohteet_b}\n{rank=same; Tarkistetutkohteet_B Poistetutkohteet_c}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-87359dbbd8667048552b" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-87359dbbd8667048552b">{"x":{"diagram":"\n    digraph prisma {\n    node [shape=\"box\" , fontsize = 14];\n    graph [splines=ortho, nodesep=1 ]\n    \nTunnistetutkohteet [label=\"Tunnistetut kohteet\n0 (100%)\"];\nHaettavatkohteet_A [label=\"Haettavat kohteet\n0 (NA)\"];\nTarkistetutkohteet_B [label=\"Tarkistetut kohteet\n0 (NA)\"];\nSisällytetytkohteet_C [label=\"Sisällytetyt kohteet\n0 (NA)\"];\nKaksoiskappaleetpoistettuennenseulontaa_a [label=\"Kaksoiskappaleet poistettu ennen seulontaa\n0 (NA)\"];\nHakemattajääneetkohteet_b [label=\"Hakematta jääneet kohteet\n0 (NA)\"];\nPoistetutkohteet_c [label=\"Poistetut kohteet\n0 (NA)\"];\nTunnistetutkohteet -> {Haettavatkohteet_A; Kaksoiskappaleetpoistettuennenseulontaa_a};\nHaettavatkohteet_A -> {Tarkistetutkohteet_B; Hakemattajääneetkohteet_b};\nTarkistetutkohteet_B -> {Sisällytetytkohteet_C; Poistetutkohteet_c};\n{rank=same; Tunnistetutkohteet Kaksoiskappaleetpoistettuennenseulontaa_a}\n{rank=same; Haettavatkohteet_A Hakemattajääneetkohteet_b}\n{rank=same; Tarkistetutkohteet_B Poistetutkohteet_c}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
 </div>
 </div>
 </section>
-<section id="valitut-tutkimusjulkaisut" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="valitut-tutkimusjulkaisut"><span class="header-section-number">7.3</span> Valitut tutkimusjulkaisut</h2>
-<p>[TÄHÄN LÄHDELUETTELO KAIKISTA MUKAAN VALITUISTA TUTKIMUSJULKAISUISTA]</p>
+<section id="kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt"><span class="header-section-number">7.3</span> Kokotekstin pohjalta poistetut tutkimukset ja syyt</h2>
+<p>Seulonnan jälkeen poistettuja tutkimusjulkaisuja oli yhteensä 14 kappaletta. <a href="#tbl-haku4-poistetut">Taulukko&nbsp;<span>7.3</span></a> on jokaisen julkaisun vittaus ja poistosyy(t). Syyt ovat listattuna ensisijaisen syyn mukaan. Päätös poisjättämisestä voitiin tehdä jos yksi inkluusiokriteeri ei täyttynyt, jolloin tutkimuksell voi olla muitakin syitä miksi sitä ei otettu mukaan katsauksen tuloksiin.</p>
+<div id="tbl-haku4-poistetut" class="anchored">
+<table class="table">
+<caption>Taulukko&nbsp;7.3: Haku 4:n poistetut kohteet syineen</caption>
+<thead>
+<tr class="header">
+<th>Kohde</th>
+<th>Syy(t) poistoon</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="citation" data-cites="antikainen2020">Antikainen, Oinonen, ja Ranta (<a href="lahteet.html#ref-antikainen2020" role="doc-biblioref">2020</a>)</span></td>
+<td>Väärä tutkimusaihe, ei-empiirinen tutkimus</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="azimirad2015">Azimirad (<a href="lahteet.html#ref-azimirad2015" role="doc-biblioref">2015</a>)</span></td>
+<td>Väärä tutkimusaihe</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="ericsson2022">Ericsson ym. (<a href="lahteet.html#ref-ericsson2022" role="doc-biblioref">2022</a>)</span></td>
+<td>Väärä julkaisumuoto</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="haglund2023">Haglund ja Lindbland (<a href="lahteet.html#ref-haglund2023" role="doc-biblioref">2023</a>)</span></td>
+<td>Väärä tutkimusaihe</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="heikkilä2015">Heikkilä ym. (<a href="lahteet.html#ref-heikkilä2015" role="doc-biblioref">2015</a>)</span></td>
+<td>Väärä julkaisumuoto</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="kopponen2020">Kopponen, Nguyen, ja Pihkoluoma (<a href="lahteet.html#ref-kopponen2020" role="doc-biblioref">2020</a>)</span></td>
+<td>Ei-empiirinen aineisto</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="lehto2020">Lehto (<a href="lahteet.html#ref-lehto2020" role="doc-biblioref">2020</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="lohoff2017">Lohoff ja Eriksson (<a href="lahteet.html#ref-lohoff2017" role="doc-biblioref">2017</a>)</span></td>
+<td>Väärä tutkimusaihe</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="luoto2009">Luoto ja Rantanen (<a href="lahteet.html#ref-luoto2009" role="doc-biblioref">2009</a>)</span></td>
+<td>Väärä ajanjakso</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="mahat2019">Mahat (<a href="lahteet.html#ref-mahat2019" role="doc-biblioref">2019</a>)</span></td>
+<td>Väärä kohderyhmä, ei-empiirinen tutkimus</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="mattila2021">Mattila ym. (<a href="lahteet.html#ref-mattila2021" role="doc-biblioref">2021</a>)</span></td>
+<td>Väärä julkaisumuoto</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="miettinen2015">T. Miettinen, Happonen, ja Ollas (<a href="lahteet.html#ref-miettinen2015" role="doc-biblioref">2015</a>)</span></td>
+<td>Ei-empiirinen tutkimus</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="rasi2014">Rasi (<a href="lahteet.html#ref-rasi2014" role="doc-biblioref">2014</a>)</span></td>
+<td>Väärä tutkimusaihe</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="venesoja2023">Venesoja ym. (<a href="lahteet.html#ref-venesoja2023" role="doc-biblioref">2023</a>)</span></td>
+<td>Väärä julkaisumuoto</td>
+</tr>
+</tbody>
+</table>
+</div>
 </section>
-<section id="kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt"><span class="header-section-number">7.4</span> Kokotekstin pohjalta poistetut tutkimukset ja syyt</h2>
-<p>[TÄHÄN LÄHDELUETTELO KAIKISTA KOKOTEKSTISTÄ POISTETUISTA TUTKIMUKSISTA PÄÄSYYN MUKAAN.]</p>
+<section id="valitut-tutkimusjulkaisut" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="valitut-tutkimusjulkaisut"><span class="header-section-number">7.4</span> Valitut tutkimusjulkaisut</h2>
+<p>Haun pohjalta valittiin 23 tutkimusjulkaisua. Kaikki julkaisut valikoituivat mukaan hakuprosessin myötä. Julkaisut ovat:</p>
+<ul>
+<li><p><span class="citation" data-cites="annala2013">Annala ja Moilanen (<a href="lahteet.html#ref-annala2013" role="doc-biblioref">2013</a>)</span> “Ensihoitohenkilöstöön kohdistuva väkivalta työtehtävissä: Kyselytutkimus PSSHP:n Ensihoitokeskuksen työntekijöille”</p></li>
+<li><p><span class="citation" data-cites="halmesmäki2022">Halmesmäki ym. (<a href="lahteet.html#ref-halmesmäki2022" role="doc-biblioref">2022</a>)</span> “Auttaja uhrina – työssä koetun väkivallan jälkeinen tuki esihenkilöiden ja ensihoitajien näkökulmasta: miten organisaatiot tukevat työntekijän rikosoikeudellista, terveydellistä sekä psykososiaalista toipumista työssä koetun väkivallan jälkeen?”</p></li>
+<li><p><span class="citation" data-cites="heikkinen2021">E. Heikkinen, Kuosmanen, ja Merjomaa (<a href="lahteet.html#ref-heikkinen2021" role="doc-biblioref">2021</a>)</span> “Ensihoitajien työssään kohtaama seksuaalinen häirintä”</p></li>
+<li><p><span class="citation" data-cites="heikkinen2023">M. Heikkinen (<a href="lahteet.html#ref-heikkinen2023" role="doc-biblioref">2023</a>)</span> “Ensihoitajien kokemuksia uhka- ja väkivaltatilanteista”</p></li>
+<li><p><span class="citation" data-cites="helin2013">Helin (<a href="lahteet.html#ref-helin2013" role="doc-biblioref">2013</a>)</span> “Uhka- ja väkivaltatilanteet sairaalan ulkopuolisessa ensihoidossa - Varsinais-Suomen pelastuslaitoksen ensihoitohenkilöstön kokemuksia”</p></li>
+<li><p><span class="citation" data-cites="hertteli2015">Hertteli (<a href="lahteet.html#ref-hertteli2015" role="doc-biblioref">2015</a>)</span> “Fyysisen väkivallan kohtaaminen ensihoitotyössä”</p></li>
+<li><p><span class="citation" data-cites="huttunen2019">Huttunen ja Rinkinen (<a href="lahteet.html#ref-huttunen2019" role="doc-biblioref">2019</a>)</span> “Pelastushenkilöstön kokema seksuaalinen ahdistelu työtehtävillä ja työpaikoilla. Tutkimus toteutettuna Rescuebase -applikaatiolla”</p></li>
+<li><p><span class="citation" data-cites="immonen2019">Immonen ja Liuski (<a href="lahteet.html#ref-immonen2019" role="doc-biblioref">2019</a>)</span> “Kyselytutkimus Kainuun soten ensihoitajien kokemista uhka- ja väkivaltatilanteista”</p></li>
+<li><p><span class="citation" data-cites="ingberg2021">Ingberg (<a href="lahteet.html#ref-ingberg2021" role="doc-biblioref">2021</a>)</span> “Oulu-Koillismaan pelastuslaitoksen ensihoitajien raportoimat uhka- ja väkivaltatilanteet”</p></li>
+<li><p><span class="citation" data-cites="inha2018">Inha, Niemelä, ja Pikkarainen (<a href="lahteet.html#ref-inha2018" role="doc-biblioref">2018</a>)</span> “Jokilaaksojen pelastuslaitoksen ensihoitajien kokemuksia uhka- ja väkivaltatilanteista”</p></li>
+<li><p><span class="citation" data-cites="kiviniemi2021">Kiviniemi, Lundell, ja Viirret (<a href="lahteet.html#ref-kiviniemi2021" role="doc-biblioref">2021</a>)</span> “Väkivalta- ja uhkatilanteet ensihoidossa. Kyselytutkimus Eteläpohjanmaan sairaanhoitopiirin ensihoitajille”</p></li>
+<li><p><span class="citation" data-cites="kononen2014">Kononen, Lindgren, ja Miettinen (<a href="lahteet.html#ref-kononen2014" role="doc-biblioref">2014</a>)</span> “Ensihoitohenkilöstön työssä kokema väkivalta ja siitä selviytyminen”</p></li>
+<li><p><span class="citation" data-cites="köykkä2016">Köykkä (<a href="lahteet.html#ref-köykkä2016" role="doc-biblioref">2016</a>)</span> “Lainsuojaton ensihoitaja. 9Lives Oy:n ensihoitajien kokemat uhka- ja väkivaltatilanteet turvallisuusjohtamisen näkökulmasta”</p></li>
+<li><p><span class="citation" data-cites="leppänen2016">P. Leppänen (<a href="lahteet.html#ref-leppänen2016" role="doc-biblioref">2016</a>)</span> “Väkivalta- ja uhkatilanteet ensihoitajien kokemina”</p></li>
+<li><p><span class="citation" data-cites="leppänen2017">T. Leppänen (<a href="lahteet.html#ref-leppänen2017" role="doc-biblioref">2017</a>)</span> “Ensihoidon työturvallisuus uhka- ja väkivaltatilanteiden näkökulmasta ensihoitajien kokemana Pirkanmaalla”</p></li>
+<li><p><span class="citation" data-cites="leppänen2022">T. Leppänen ja Ritala (<a href="lahteet.html#ref-leppänen2022" role="doc-biblioref">2022</a>)</span> “Uhka ja väkivalta ensihoitajan työssä”</p></li>
+<li><p><span class="citation" data-cites="miettinen2022">J. Miettinen, Peräkylä, ja Särkkä (<a href="lahteet.html#ref-miettinen2022" role="doc-biblioref">2022</a>)</span> “Ensihoitajaopiskelijoiden kokemukset väkivaltatilanteisiin perehdyttämisestä ensihoidon harjoitteluissa”</p></li>
+<li><p><span class="citation" data-cites="paavonen2023">Paavonen (<a href="lahteet.html#ref-paavonen2023" role="doc-biblioref">2023</a>)</span> “Erikoissairaanhoidon organisaation arvojen ilmentyminen käytännön harjoittelussa: terveysalan opiskelijoiden näkökulma”</p></li>
+<li><p><span class="citation" data-cites="rajamäki2019">Rajamäki (<a href="lahteet.html#ref-rajamäki2019" role="doc-biblioref">2019</a>)</span> “Ensihoitajiin kohdistuvat uhka- ja väkivaltatilanteet Keski-Uudenmaan pelastuslaitoksella”</p></li>
+<li><p><span class="citation" data-cites="sjöström2020">Sjöström ja Salminen (<a href="lahteet.html#ref-sjöström2020" role="doc-biblioref">2020</a>)</span> “Varför väljer förstavårdare att sluta arbeta i ambulansen? En kvalitativ enkätstudie riktad till Arcada alumner”</p></li>
+<li><p><span class="citation" data-cites="stormblad2023">Stormblad (<a href="lahteet.html#ref-stormblad2023" role="doc-biblioref">2023</a>)</span> “Behovet av debriefing hos förstavårdare. En kvalitativ studie om förstavårdarens upplevelser och behov av debriefing”</p></li>
+<li><p><span class="citation" data-cites="suhonen2023">Suhonen (<a href="lahteet.html#ref-suhonen2023" role="doc-biblioref">2023</a>)</span> “Ensihoitajien kokema potilaan taholta tuleva seksuaalinen häirintä”</p></li>
+<li><p><span class="citation" data-cites="sutinen2010">Sutinen (<a href="lahteet.html#ref-sutinen2010" role="doc-biblioref">2010</a>)</span> “Väkivaltaisen potilaan kohtaaminen sairaalan ulkopuolisessa ensihoidossa. Kyselytutkimus Helsingin pelastuslaitoksen ensihoito- ja sairaankuljetushenkilöstölle”</p></li>
+</ul>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-annala2013" class="csl-entry" role="listitem">
+Annala, Jaakko, ja Samu Moilanen. 2013. <span>”Ensihoitohenkilöstöön kohdistuva väkivalta työtehtävissä. Kyselytutkimus PSSHP:n Ensihoitokeskuksen työntekijöille”</span>. Tohtorinväitöskirja, Kuopio.
+</div>
+<div id="ref-antikainen2020" class="csl-entry" role="listitem">
+Antikainen, Meri, Mila Oinonen, ja Tarja Ranta. 2020. <span>”Uhka- ja väkivaltatilanteisiin valmistava koulutus Saimaan ammattikorkeakoulun ensihoitajaopiskelijoille”</span>. Tohtorinväitöskirja, Lappeenranta.
+</div>
+<div id="ref-azimirad2015" class="csl-entry" role="listitem">
+Azimirad, Mina. 2015. <span>”An Overview on Medical Emergency Team, Characteristics and Analyzing: A Quantitative Retrospective Study in Kuopio University Hospital 2013-2014”</span>. Tohtorinväitöskirja, Kuopio.
+</div>
+<div id="ref-ericsson2022" class="csl-entry" role="listitem">
+Ericsson, Christoffer R., Veronica Lindström, Ann Rudman, ja Hilla Nordquist. 2022. <span>”Paramedics<span>’</span> Perceptions of Job Demands and Resources in Finnish Emergency Medical Services: A Qualitative Study”</span>. <em>BMC Health Services Research</em> 22 (1): 1469. <a href="https://doi.org/10.1186/s12913-022-08856-9">https://doi.org/10.1186/s12913-022-08856-9</a>.
+</div>
+<div id="ref-haglund2023" class="csl-entry" role="listitem">
+Haglund, Sarah, ja Julia Lindbland. 2023. <span>”Upplever förstavårdare att den prehospitala säkerheten gynnas av ett flaggningssystem? En kvalitativ intervjustudie”</span>. Tohtorinväitöskirja, Helsinki.
+</div>
+<div id="ref-halmesmäki2022" class="csl-entry" role="listitem">
+Halmesmäki, Tiina, Sauli Kitunen, Piia Pöntinen, Olli Tuuri, ja Timo Utunen. 2022. <span>”Auttaja uhrina - työssä koetun väkivallan jälkeinen tuki esihenkilöiden ja ensihoitajien näkökulmasta. miten organisaatiot tukevat työntekijän rikosoikeudellista, terveydellistä sekä psykososiaalista toipumista työssä koetun väkivallan jälkeen?”</span> Tohtorinväitöskirja, Oulu.
+</div>
+<div id="ref-heikkilä2015" class="csl-entry" role="listitem">
+Heikkilä, Teppo J., Harri Hyppölä, Jukka Vänskä, Tiina Aine, Hannu Halila, Santero Kujala, Irma Virjo, Markku Sumanen, ja Kari Mattila. 2015. <span>”Factors Important in the Choice of a Medical Career: A Finnish National Study”</span>. <em>BMC Medical Education</em> 15 (1): 169. <a href="https://doi.org/10.1186/s12909-015-0451-x">https://doi.org/10.1186/s12909-015-0451-x</a>.
+</div>
+<div id="ref-heikkinen2021" class="csl-entry" role="listitem">
+Heikkinen, Eero, Paavo Kuosmanen, ja Sauli Merjomaa. 2021. <span>”Ensihoitajien työssään kohtaama seksuaalinen häirintä”</span>. Tohtorinväitöskirja, Lahti.
+</div>
+<div id="ref-heikkinen2023" class="csl-entry" role="listitem">
+Heikkinen, Milla. 2023. <span>”Ensihoitajien kokemuksia uhka- ja väkivaltatilanteista”</span>. Tohtorinväitöskirja, Helsinki.
+</div>
+<div id="ref-helin2013" class="csl-entry" role="listitem">
+Helin, Heidi. 2013. <span>”Uhka- ja väkivaltatilanteet sairaalan ulkopuolisessa ensihoidossa - Varsinais-Suomen pelastuslaitoksen ensihoitohenkilöstön kokemuksia”</span>. Tohtorinväitöskirja, Pori.
+</div>
+<div id="ref-hertteli2015" class="csl-entry" role="listitem">
+Hertteli, Saija. 2015. <span>”Fyysisen väkivallan kohtaaminen ensihoitotyössä”</span>. Tohtorinväitöskirja, Leppävaara.
+</div>
+<div id="ref-huttunen2019" class="csl-entry" role="listitem">
+Huttunen, Jukka, ja Sanna Rinkinen. 2019. <span>”Pelastushenkilöstön kokema seksuaalinen ahdistelu työtehtävillä ja työpaikoilla. Tutkimus toteutettuna Rescuebase -applikaatiolla”</span>. Tohtorinväitöskirja, Tampere.
+</div>
+<div id="ref-immonen2019" class="csl-entry" role="listitem">
+Immonen, Linda, ja Nea Liuski. 2019. <span>”Kyselytutkimus Kainuun soten ensihoitajien kokemista uhka<span></span> ja väkivaltatilanteista”</span>. Tohtorinväitöskirja, Kajaani.
+</div>
+<div id="ref-ingberg2021" class="csl-entry" role="listitem">
+Ingberg, Samuel. 2021. <span>”Oulu-Koillismaan pelastuslaitoksen ensihoitajien raportoimat uhka- ja väkivaltatilanteet”</span>. Tohtorinväitöskirja, Tampere.
+</div>
+<div id="ref-inha2018" class="csl-entry" role="listitem">
+Inha, Matti, Niko Niemelä, ja Miika Pikkarainen. 2018. <span>”Jokilaaksojen pelastuslaitoksen ensihoitajien kokemuksia uhka- ja väkivaltatilanteista”</span>. Tohtorinväitöskirja, Kokkola.
+</div>
+<div id="ref-kiviniemi2021" class="csl-entry" role="listitem">
+Kiviniemi, Elias, Ilona Lundell, ja Ida Viirret. 2021. <span>”Väkivalta- ja uhkatilanteet ensihoidossa. Kyselytutkimus Eteläpohjanmaan sairaanhoitopiirin ensihoitajille”</span>. Tohtorinväitöskirja, Oulu.
+</div>
+<div id="ref-kononen2014" class="csl-entry" role="listitem">
+Kononen, Jari, Sami Lindgren, ja Jussi Miettinen. 2014. <span>”Ensihoitohenkilöstön työssä kokema väkivalta ja siitä selviytyminen”</span>. Tohtorinväitöskirja, Lappeenranta.
+</div>
+<div id="ref-kopponen2020" class="csl-entry" role="listitem">
+Kopponen, Aino-Kaisa, Linda Nguyen, ja Ida Pihkoluoma. 2020. <span>”Aggressiivisen potilaan kohtaaminen ensihoidossa - kuvaileva kirjallisuuskatsaus ensihoitajien työssään kohtaamasta väkivallasta”</span>. Tohtorinväitöskirja, Turku.
+</div>
+<div id="ref-köykkä2016" class="csl-entry" role="listitem">
+Köykkä, Emilia. 2016. <span>”Lainsuojaton ensihoitaja. 9Lives Oy:n ensihoitajien kokemat uhka- ja väkivaltatilanteet turvallisuusjohtamisen näkökulmasta”</span>. Tohtorinväitöskirja, Visamäki.
+</div>
+<div id="ref-lehto2020" class="csl-entry" role="listitem">
+Lehto, Anni. 2020. <span>”Medical Rehabiliton Professionals’ Perceptions on Intercultural Interaction, Competence, and Well-being at Work”</span>. Tohtorinväitöskirja, Jyväskylä.
+</div>
+<div id="ref-leppänen2016" class="csl-entry" role="listitem">
+Leppänen, Pekka. 2016. <span>”Väkivalta- ja uhkatilanteet ensihoitajien kokemina”</span>. Tohtorinväitöskirja, Visamäki.
+</div>
+<div id="ref-leppänen2017" class="csl-entry" role="listitem">
+Leppänen, Tiia. 2017. <span>”Ensihoidon työturvallisuus uhka- ja väkivaltatilanteiden näkökulmasta ensihoitajien kokemana Pirkanmaalla”</span>. Tohtorinväitöskirja, Pori.
+</div>
+<div id="ref-leppänen2022" class="csl-entry" role="listitem">
+Leppänen, Tiia, ja Pauli Ritala. 2022. <span>”Uhka ja väkivalta ensihoitajan työssä”</span>. Tohtorinväitöskirja, Oulu.
+</div>
+<div id="ref-lohoff2017" class="csl-entry" role="listitem">
+Lohoff, Erica, ja Lina Eriksson. 2017. <span>”Arbetsrelaterad stress bland förstavårdare: en kvalitativ intervjustudie om stress inom ambulanssjukvården”</span>. Tohtorinväitöskirja, Vaasa.
+</div>
+<div id="ref-luoto2009" class="csl-entry" role="listitem">
+Luoto, Christina, ja Pilvi-Marika Rantanen. 2009. <span>”Väkivallan uhan tunnistaminen sairaankuljetuksessa - aggression hallintaa MAPA- menetelmällä”</span>. Tohtorinväitöskirja, Hyvinkää.
+</div>
+<div id="ref-mahat2019" class="csl-entry" role="listitem">
+Mahat, Sanu. 2019. <span>”Association Between Nurses’ Work Environment and Medication Errors”</span>. Tohtorinväitöskirja, Kuopio.
+</div>
+<div id="ref-mattila2021" class="csl-entry" role="listitem">
+Mattila, Susanna, Ismo Kinnari, Sari Tappura, ja Mervi Lehto. 2021. <span>”Promoting Occupational Safety, Health, and Well-Being in Emergency Medical Services”</span>. Teoksessa, toimittanut Pedro M. Arezes ja Ronald L. Boring, 262:324–30. Cham: Springer International Publishing. <a href="https://link.springer.com/10.1007/978-3-030-80288-2_40">https://link.springer.com/10.1007/978-3-030-80288-2_40</a>.
+</div>
+<div id="ref-miettinen2022" class="csl-entry" role="listitem">
+Miettinen, Jenna, Hanna Peräkylä, ja Joona Särkkä. 2022. <span>”Ensihoitajaopiskelijoiden kokemukset väkivaltatilanteisiin perehdyttämisestä ensihoidon harjoitteluissa”</span>. Tohtorinväitöskirja, Lahti.
+</div>
+<div id="ref-miettinen2015" class="csl-entry" role="listitem">
+Miettinen, Tommi, Antti Happonen, ja Juha Ollas. 2015. <span>”Ambulanssissa työskentelevän työturvallisuus, väkivaltainen asiakas / Itsepuolustus OC-kaasulla. Koulutusmallin suunnittelu, toteutus sekä arviointi Kymenlaakson pelastuslaitokselle”</span>. Tohtorinväitöskirja, Savonlinna.
+</div>
+<div id="ref-paavonen2023" class="csl-entry" role="listitem">
+Paavonen, Kirsi. 2023. <span>”Erikoissairaanhoidon organisaation arvojen ilmentyminen käytännön harjoittelussa: terveysalan opiskelijoiden näkökulma”</span>. Tohtorinväitöskirja, Kuopio.
+</div>
+<div id="ref-rajamäki2019" class="csl-entry" role="listitem">
+Rajamäki, Jaana-Maria. 2019. <span>”Ensihoitajiin kohdistuvat uhka- ja väkivaltatilanteet Keski-Uudenmaan pelastuslaitoksella”</span>. Tohtorinväitöskirja, Helsinki.
+</div>
+<div id="ref-rasi2014" class="csl-entry" role="listitem">
+Rasi, Matias. 2014. <span>”Comparing Emergency Medical Services and Paramedic Education Between Finland and England”</span>. Tohtorinväitöskirja, Kuopio.
+</div>
+<div id="ref-sjöström2020" class="csl-entry" role="listitem">
+Sjöström, Vilma, ja Melinda Salminen. 2020. <span>”Varför väljer förstavårdare att sluta arbeta i ambulansen? En kvalitativ enkätstudie riktad till Arcada alumner”</span>. Tohtorinväitöskirja, Helsinki.
+</div>
+<div id="ref-stormblad2023" class="csl-entry" role="listitem">
+Stormblad, Anna. 2023. <span>”Behovet av debriefing hos förstavårdare. En kvalitativ studie om förstavårdarens upplevelser och behov av debriefing”</span>. Tohtorinväitöskirja, Vaasa.
+</div>
+<div id="ref-suhonen2023" class="csl-entry" role="listitem">
+Suhonen, Neea. 2023. <span>”Ensihoitajien kokema potilaan taholta tuleva seksuaalinen häirintä”</span>. Tohtorinväitöskirja, Kokkola.
+</div>
+<div id="ref-sutinen2010" class="csl-entry" role="listitem">
+Sutinen, Ilkka. 2010. <span>”Väkivaltaisen potilaan kohtaaminen sairaalan ulkopuolisessa ensihoidossa. Kyselytutkimus Helsingin pelastuslaitoksen ensihoito- ja sairaankuljetushenkilöstölle”</span>. Tohtorinväitöskirja, Helsinki.
+</div>
+<div id="ref-venesoja2023" class="csl-entry" role="listitem">
+Venesoja, Anu, Veronica Lindström, Maaret Castrén, ja Susanna Tella. 2023. <span>”Prehospital Nursing Students’ Experiences of Patient Safety Culture in Emergency Medical Services<span></span>A Qualitative Study”</span>. <em>Journal of Clinical Nursing</em> 32 (5-6): 847–58. <a href="https://doi.org/10.1111/jocn.16396">https://doi.org/10.1111/jocn.16396</a>.
+</div>
+</div>
 </section>
 
 
