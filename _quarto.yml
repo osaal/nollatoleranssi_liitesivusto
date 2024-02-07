@@ -79,6 +79,7 @@ format:
     code-summary: "Näytä"
 
 bibliography: references.bib
+  
 citation: true
 
 editor: visual

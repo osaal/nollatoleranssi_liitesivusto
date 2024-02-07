@@ -54,7 +54,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -257,8 +276,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#hakulausekkeet-ja-tulosten-lataaminen" id="toc-hakulausekkeet-ja-tulosten-lataaminen" class="nav-link active" data-scroll-target="#hakulausekkeet-ja-tulosten-lataaminen"><span class="header-section-number">6.1</span> Hakulausekkeet ja tulosten lataaminen</a></li>
   <li><a href="#prisma-kulkukaavio" id="toc-prisma-kulkukaavio" class="nav-link" data-scroll-target="#prisma-kulkukaavio"><span class="header-section-number">6.2</span> PRISMA-kulkukaavio</a></li>
-  <li><a href="#valitut-tutkimusjulkaisut" id="toc-valitut-tutkimusjulkaisut" class="nav-link" data-scroll-target="#valitut-tutkimusjulkaisut"><span class="header-section-number">6.3</span> Valitut tutkimusjulkaisut</a></li>
-  <li><a href="#kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt" id="toc-kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt" class="nav-link" data-scroll-target="#kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt"><span class="header-section-number">6.4</span> Kokotekstin pohjalta poistetut tutkimukset ja syyt</a></li>
+  <li><a href="#kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt" id="toc-kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt" class="nav-link" data-scroll-target="#kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt"><span class="header-section-number">6.3</span> Kokotekstin pohjalta poistetut tutkimukset ja syyt</a></li>
+  <li><a href="#valitut-tutkimusjulkaisut" id="toc-valitut-tutkimusjulkaisut" class="nav-link" data-scroll-target="#valitut-tutkimusjulkaisut"><span class="header-section-number">6.4</span> Valitut tutkimusjulkaisut</a></li>
   </ul>
 </nav>
     </div>
@@ -815,8 +834,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">font_size =</span> <span class="dv">14</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-e952c1b7b38cb96b2f57" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-e952c1b7b38cb96b2f57">{"x":{"diagram":"\n    digraph prisma {\n    node [shape=\"box\" , fontsize = 14];\n    graph [splines=ortho, nodesep=1 ]\n    \nTunnistetutkohteet [label=\"Tunnistetut kohteet\n1008 (100%)\"];\nSeulotutkohteet_A [label=\"Seulotut kohteet\n910 (90.3%)\"];\nHaettavatkohteet_B [label=\"Haettavat kohteet\n 35 (3.5%)\"];\nTarkistetutkohteet_C [label=\"Tarkistetut kohteet\n 35 (3.5%)\"];\nSisällytetytkohteet_D [label=\"Sisällytetyt kohteet\n  6 (0.6%)\"];\nKaksoiskappaleetpoistettuennenseulontaa_a [label=\"Kaksoiskappaleet poistettu ennen seulontaa\n 98 (9.7%)\"];\nPoisseulotutkohteet_b [label=\"Poisseulotut kohteet\n875 (86.8%)\"];\nHakemattajääneetkohteet_c [label=\"Hakematta jääneet kohteet\n  0 (0.0%)\"];\nPoistetutkohteet_d [label=\"Poistetut kohteet\n 29 (2.9%)\"];\nTunnistetutkohteet -> {Seulotutkohteet_A; Kaksoiskappaleetpoistettuennenseulontaa_a};\nSeulotutkohteet_A -> {Haettavatkohteet_B; Poisseulotutkohteet_b};\nHaettavatkohteet_B -> {Tarkistetutkohteet_C; Hakemattajääneetkohteet_c};\nTarkistetutkohteet_C -> {Sisällytetytkohteet_D; Poistetutkohteet_d};\n{rank=same; Tunnistetutkohteet Kaksoiskappaleetpoistettuennenseulontaa_a}\n{rank=same; Seulotutkohteet_A Poisseulotutkohteet_b}\n{rank=same; Haettavatkohteet_B Hakemattajääneetkohteet_c}\n{rank=same; Tarkistetutkohteet_C Poistetutkohteet_d}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-b75a8365e64ba75aea50" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-b75a8365e64ba75aea50">{"x":{"diagram":"\n    digraph prisma {\n    node [shape=\"box\" , fontsize = 14];\n    graph [splines=ortho, nodesep=1 ]\n    \nTunnistetutkohteet [label=\"Tunnistetut kohteet\n1008 (100%)\"];\nSeulotutkohteet_A [label=\"Seulotut kohteet\n910 (90.3%)\"];\nHaettavatkohteet_B [label=\"Haettavat kohteet\n 35 (3.5%)\"];\nTarkistetutkohteet_C [label=\"Tarkistetut kohteet\n 35 (3.5%)\"];\nSisällytetytkohteet_D [label=\"Sisällytetyt kohteet\n  6 (0.6%)\"];\nKaksoiskappaleetpoistettuennenseulontaa_a [label=\"Kaksoiskappaleet poistettu ennen seulontaa\n 98 (9.7%)\"];\nPoisseulotutkohteet_b [label=\"Poisseulotut kohteet\n875 (86.8%)\"];\nHakemattajääneetkohteet_c [label=\"Hakematta jääneet kohteet\n  0 (0.0%)\"];\nPoistetutkohteet_d [label=\"Poistetut kohteet\n 29 (2.9%)\"];\nTunnistetutkohteet -> {Seulotutkohteet_A; Kaksoiskappaleetpoistettuennenseulontaa_a};\nSeulotutkohteet_A -> {Haettavatkohteet_B; Poisseulotutkohteet_b};\nHaettavatkohteet_B -> {Tarkistetutkohteet_C; Hakemattajääneetkohteet_c};\nTarkistetutkohteet_C -> {Sisällytetytkohteet_D; Poistetutkohteet_d};\n{rank=same; Tunnistetutkohteet Kaksoiskappaleetpoistettuennenseulontaa_a}\n{rank=same; Seulotutkohteet_A Poisseulotutkohteet_b}\n{rank=same; Haettavatkohteet_B Hakemattajääneetkohteet_c}\n{rank=same; Tarkistetutkohteet_C Poistetutkohteet_d}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
@@ -849,23 +868,282 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">font_size =</span> <span class="dv">14</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-86e3542caa59952269d3" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-86e3542caa59952269d3">{"x":{"diagram":"\n    digraph prisma {\n    node [shape=\"box\" , fontsize = 14];\n    graph [splines=ortho, nodesep=1 ]\n    \nTunnistetutkohteet [label=\"Tunnistetut kohteet\n3 (100%)\"];\nHaettavatkohteet_A [label=\"Haettavat kohteet\n3 (100%)\"];\nTarkistetutkohteet_B [label=\"Tarkistetut kohteet\n3 (100%)\"];\nSisällytetytkohteet_C [label=\"Sisällytetyt kohteet\n2 (67%)\"];\nKaksoiskappaleetpoistettuennenseulontaa_a [label=\"Kaksoiskappaleet poistettu ennen seulontaa\n0 (0%)\"];\nHakemattajääneetkohteet_b [label=\"Hakematta jääneet kohteet\n0 (0%)\"];\nPoistetutkohteet_c [label=\"Poistetut kohteet\n1 (33%)\"];\nTunnistetutkohteet -> {Haettavatkohteet_A; Kaksoiskappaleetpoistettuennenseulontaa_a};\nHaettavatkohteet_A -> {Tarkistetutkohteet_B; Hakemattajääneetkohteet_b};\nTarkistetutkohteet_B -> {Sisällytetytkohteet_C; Poistetutkohteet_c};\n{rank=same; Tunnistetutkohteet Kaksoiskappaleetpoistettuennenseulontaa_a}\n{rank=same; Haettavatkohteet_A Hakemattajääneetkohteet_b}\n{rank=same; Tarkistetutkohteet_B Poistetutkohteet_c}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-25a590ebe6b6fe4b69c8" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-25a590ebe6b6fe4b69c8">{"x":{"diagram":"\n    digraph prisma {\n    node [shape=\"box\" , fontsize = 14];\n    graph [splines=ortho, nodesep=1 ]\n    \nTunnistetutkohteet [label=\"Tunnistetut kohteet\n3 (100%)\"];\nHaettavatkohteet_A [label=\"Haettavat kohteet\n3 (100%)\"];\nTarkistetutkohteet_B [label=\"Tarkistetut kohteet\n3 (100%)\"];\nSisällytetytkohteet_C [label=\"Sisällytetyt kohteet\n2 (67%)\"];\nKaksoiskappaleetpoistettuennenseulontaa_a [label=\"Kaksoiskappaleet poistettu ennen seulontaa\n0 (0%)\"];\nHakemattajääneetkohteet_b [label=\"Hakematta jääneet kohteet\n0 (0%)\"];\nPoistetutkohteet_c [label=\"Poistetut kohteet\n1 (33%)\"];\nTunnistetutkohteet -> {Haettavatkohteet_A; Kaksoiskappaleetpoistettuennenseulontaa_a};\nHaettavatkohteet_A -> {Tarkistetutkohteet_B; Hakemattajääneetkohteet_b};\nTarkistetutkohteet_B -> {Sisällytetytkohteet_C; Poistetutkohteet_c};\n{rank=same; Tunnistetutkohteet Kaksoiskappaleetpoistettuennenseulontaa_a}\n{rank=same; Haettavatkohteet_A Hakemattajääneetkohteet_b}\n{rank=same; Tarkistetutkohteet_B Poistetutkohteet_c}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
 </div>
 </div>
 </section>
-<section id="valitut-tutkimusjulkaisut" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="valitut-tutkimusjulkaisut"><span class="header-section-number">6.3</span> Valitut tutkimusjulkaisut</h2>
-<p>[TÄHÄN LÄHDELUETTELO KAIKISTA MUKAAN VALITUISTA TUTKIMUSJULKAISUISTA]</p>
+<section id="kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt"><span class="header-section-number">6.3</span> Kokotekstin pohjalta poistetut tutkimukset ja syyt</h2>
+<p>Seulonnan jälkeen poistettuja tutkimusjulkaisuja oli yhteensä 30 kappaletta. <a href="#tbl-haku3-poistetut">Taulukko&nbsp;<span>6.3</span></a> on jokaisen julkaisun vittaus ja poistosyy(t). Syyt ovat listattuna ensisijaisen syyn mukaan. Päätös poisjättämisestä voitiin tehdä jos yksi inkluusiokriteeri ei täyttynyt, jolloin tutkimuksell voi olla muitakin syitä miksi sitä ei otettu mukaan katsauksen tuloksiin.</p>
+<div id="tbl-haku3-poistetut" class="anchored">
+<table class="table">
+<caption>Taulukko&nbsp;6.3: Haku 3:n poistetut kohteet syineen</caption>
+<colgroup>
+<col style="width: 23%">
+<col style="width: 76%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Kohde</th>
+<th>Syy(t) poistoon</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="citation" data-cites="auvinen2012">Auvinen ja Palukka (<a href="lahteet.html#ref-auvinen2012" role="doc-biblioref">2012</a>)</span></td>
+<td>Väärä tutkimusaihe</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="basu2016">Basu, Yap, ja Mason (<a href="lahteet.html#ref-basu2016" role="doc-biblioref">2016</a>)</span></td>
+<td>Väärä maantieteellinen sijainti</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="beczkowska2020">Bęczkowska ym. (<a href="lahteet.html#ref-beczkowska2020" role="doc-biblioref">2020</a>)</span></td>
+<td>Väärä tutkimusaihe, väärä maantieteellinen sijainti</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="dedele2019">Dėdelė ym. (<a href="lahteet.html#ref-dedele2019" role="doc-biblioref">2019</a>)</span></td>
+<td>Väärä tutkimusaihe, väärä kohderyhmä</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="denisov2021">Denisov, Prokopenko, ja Pfaf (<a href="lahteet.html#ref-denisov2021" role="doc-biblioref">2021</a>)</span></td>
+<td>Ei-empiirinen tutkimus, väärä maantieteellinen sijainti</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="drabecki2023">Drabecki ym. (<a href="lahteet.html#ref-drabecki2023" role="doc-biblioref">2023</a>)</span></td>
+<td>Väärä tutkimusaihe</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="fawzyeldesouky2022">Fawzy Eldesouky ym. (<a href="lahteet.html#ref-fawzyeldesouky2022" role="doc-biblioref">2022</a>)</span></td>
+<td>Väärä maantieteellinen sijainti</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="heinonen2022">Heinonen ym. (<a href="lahteet.html#ref-heinonen2022" role="doc-biblioref">2022</a>)</span></td>
+<td>Väärä tutkimusaihe</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="himanen2023">Himanen ja Salin (<a href="lahteet.html#ref-himanen2023" role="doc-biblioref">2023</a>)</span></td>
+<td>Väärä tutkimusaihe, ei-empiirinen tutkimus</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="ilczak2023">Ilczak ym. (<a href="lahteet.html#ref-ilczak2023" role="doc-biblioref">2023</a>)</span></td>
+<td>Väärä tutkimusaihe</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="innstrand2010">Innstrand, Langballe, ja Falkum (<a href="lahteet.html#ref-innstrand2010" role="doc-biblioref">2010</a>)</span></td>
+<td>Väärä tutkimusaihe, väärä kohderyhmä, väärä maantieteellinen sijainti</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="innstrand2011">Innstrand ym. (<a href="lahteet.html#ref-innstrand2011" role="doc-biblioref">2011</a>)</span></td>
+<td>Väärä kohderyhmä, väärä maantieteellinen sijainti</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="kamau2022">Kamau ym. (<a href="lahteet.html#ref-kamau2022" role="doc-biblioref">2022</a>)</span></td>
+<td>Ei-empiirinen tutkimus</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="koski2019">Koski ja Sumanen (<a href="lahteet.html#ref-koski2019" role="doc-biblioref">2019</a>)</span></td>
+<td>Väärä tutkimusaihe</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="leikkola2016">Leikkola ym. (<a href="lahteet.html#ref-leikkola2016" role="doc-biblioref">2016</a>)</span></td>
+<td>Väärä tutkimusaihe</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="leppäkoski2010">Leppäkoski, Åstedt-Kurki, ja Paavilainen (<a href="lahteet.html#ref-leppäkoski2010" role="doc-biblioref">2010</a>)</span></td>
+<td>Väärä tutkimusaihe</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="lundin2018">Lundin, Hadziabdic, ja Hjelm (<a href="lahteet.html#ref-lundin2018" role="doc-biblioref">2018</a>)</span></td>
+<td>Väärä maantieteellinen sijainti</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="norri-sederholm2014">Norri-Sederholm ym. (<a href="lahteet.html#ref-norri-sederholm2014" role="doc-biblioref">2014</a>)</span></td>
+<td>Väärä tutkimusaihe</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="oldenburg2014">Oldenburg ym. (<a href="lahteet.html#ref-oldenburg2014" role="doc-biblioref">2014</a>)</span></td>
+<td>Väärä tutkimusaihe, väärä maantieteellinen sijainti</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="paavilainen2017">Paavilainen ym. (<a href="lahteet.html#ref-paavilainen2017" role="doc-biblioref">2017</a>)</span></td>
+<td>Väärä tutkimusaihe</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="peluchette2013">Peluchette, Karl, ja Fertig (<a href="lahteet.html#ref-peluchette2013" role="doc-biblioref">2013</a>)</span></td>
+<td>Väärä tutkimusaihe, väärä kohderyhmä, väärä maantieteellinen sijainti</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="purvanova2010">Purvanova ja Muros (<a href="lahteet.html#ref-purvanova2010" role="doc-biblioref">2010</a>)</span></td>
+<td>Väärä kohderyhmä, ei-empiirinen tutkimus</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="ramakrishnan2014">Ramakrishnan, Sambuco, ja Jagsi (<a href="lahteet.html#ref-ramakrishnan2014" role="doc-biblioref">2014</a>)</span></td>
+<td>Väärä kohderyhmä, ei-empiirinen tutkimus</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="saal2021">Saal, Harinen, ja Puustinen (<a href="lahteet.html#ref-saal2021" role="doc-biblioref">2021</a>)</span></td>
+<td>Väärä tutkimusaihe, väärä kohderyhmä</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="schwarzenberg2019">Schwarzenberg (<a href="lahteet.html#ref-schwarzenberg2019" role="doc-biblioref">2019</a>)</span></td>
+<td>Väärä tutkimusaihe</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="sjölin2015">Sjölin ym. (<a href="lahteet.html#ref-sjölin2015" role="doc-biblioref">2015</a>)</span></td>
+<td>Väärä tutkimusaihe, väärä maantieteellinen sijainti</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="torlénwennlund2022">Torlén Wennlund ym. (<a href="lahteet.html#ref-torlénwennlund2022" role="doc-biblioref">2022</a>)</span></td>
+<td>Väärä tutkimusaihe, väärä maantieteellinen sijainti</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="uusitalo2018">Uusitalo (<a href="lahteet.html#ref-uusitalo2018" role="doc-biblioref">2018</a>)</span></td>
+<td>Väärä tutkimusaihe, ei-empiirinen tutkimus</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="venesoja2020">Venesoja ym. (<a href="lahteet.html#ref-venesoja2020" role="doc-biblioref">2020</a>)</span></td>
+<td>Väärä tutkimusaihe</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="virtanen2012">Virtanen ym. (<a href="lahteet.html#ref-virtanen2012" role="doc-biblioref">2012</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+</tbody>
+</table>
+</div>
 </section>
-<section id="kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt"><span class="header-section-number">6.4</span> Kokotekstin pohjalta poistetut tutkimukset ja syyt</h2>
-<p>[TÄHÄN LÄHDELUETTELO KAIKISTA KOKOTEKSTISTÄ POISTETUISTA TUTKIMUKSISTA PÄÄSYYN MUKAAN.]</p>
+<section id="valitut-tutkimusjulkaisut" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="valitut-tutkimusjulkaisut"><span class="header-section-number">6.4</span> Valitut tutkimusjulkaisut</h2>
+<p>Haun pohjalta valittiin kahdeksan tutkimusjulkaisu. Kuusi niistä valikoituivat mukaan hakuprosessin myötä, ja kaksi lisättiin muista lähteistä. Julkaisut ovat:</p>
+<ul>
+<li><p><span class="citation" data-cites="ericsson2022">Ericsson ym. (<a href="lahteet.html#ref-ericsson2022" role="doc-biblioref">2022</a>)</span> “Paramedics’ perceptions of job demands and resources in Finnish emergency medical services: a qualitative study”</p></li>
+<li><p><span class="citation" data-cites="honkavuo2019">Honkavuo, Lammintakanen, ja Norri-Sederholm (<a href="lahteet.html#ref-honkavuo2019" role="doc-biblioref">2019</a>)</span> “Työturvallisuus pelastustoimen ja ensihoitopalvelun uusissa työmuodoissa”</p></li>
+<li><p><span class="citation" data-cites="joensuu2018">Joensuu ym. (<a href="lahteet.html#ref-joensuu2018" role="doc-biblioref">2018</a>)</span> “Pelastustoimen ja ensihoitopalvelun moniammatillinen yksikkö tehokkaasti ihmisen turvana”</p></li>
+<li><p><span class="citation" data-cites="jäntti2022">Jäntti ja Nordquist (<a href="lahteet.html#ref-jäntti2022" role="doc-biblioref">2022</a>)</span> “Ensihoitajien kohtaama työpaikkaväkivalta”</p></li>
+<li><p><span class="citation" data-cites="nordquist2023">Nordquist (<a href="lahteet.html#ref-nordquist2023" role="doc-biblioref">2023</a>)</span> “Kriittiset tilanteet, väkivalta ja niihin liittyvä stressi ensihoitajien työssä”</p></li>
+<li><p><span class="citation" data-cites="pekurinen2017">Pekurinen ym. (<a href="lahteet.html#ref-pekurinen2017" role="doc-biblioref">2017</a>)</span> “Patient Aggression and the Wellbeing of Nurses: A Cross-Sectional Survey Study in Psychiatric and Non-Psychiatric Settings”</p></li>
+<li><p><span class="citation" data-cites="venesoja2023">Venesoja ym. (<a href="lahteet.html#ref-venesoja2023" role="doc-biblioref">2023</a>)</span> “Prehospital nursing students’ experiences of patient safety culture in emergency medical services—A qualitative study”</p></li>
+</ul>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-auvinen2012" class="csl-entry" role="listitem">
+Auvinen, Petra, ja Hannele Palukka. 2012. <span>”Organization of work in interaction between the paramedics and the patient”</span>. <em>Work</em> 41: 42–48. <a href="https://doi.org/10.3233/WOR-2012-0133-42">https://doi.org/10.3233/WOR-2012-0133-42</a>.
+</div>
+<div id="ref-basu2016" class="csl-entry" role="listitem">
+Basu, S., C. Yap, ja S. Mason. 2016. <span>”Examining the Sources of Occupational Stress in an Emergency Department”</span>. <em>Occupational Medicine</em> 66 (9): 737–42. <a href="https://doi.org/10.1093/occmed/kqw155">https://doi.org/10.1093/occmed/kqw155</a>.
+</div>
+<div id="ref-beczkowska2020" class="csl-entry" role="listitem">
+Bęczkowska, Sylwia, Iwona Grabarek, Sławomir Pilip, Leszek Szpakowski, ja Robert Gałązkowski. 2020. <span>”Road ambulances: working conditions of paramedics <span></span> pilot studies”</span>. <em>International Journal of Occupational Medicine and Environmental Health</em> 33 (1): 91–105. <a href="https://doi.org/10.13075/ijomeh.1896.01479">https://doi.org/10.13075/ijomeh.1896.01479</a>.
+</div>
+<div id="ref-dedele2019" class="csl-entry" role="listitem">
+Dėdelė, Miškinytė, Andrušaitytė, ja Bartkutė. 2019. <span>”Perceived Stress Among Different Occupational Groups and the Interaction with Sedentary Behaviour”</span>. <em>International Journal of Environmental Research and Public Health</em> 16 (23): 4595. <a href="https://doi.org/10.3390/ijerph16234595">https://doi.org/10.3390/ijerph16234595</a>.
+</div>
+<div id="ref-denisov2021" class="csl-entry" role="listitem">
+Denisov, Eduard I., Lyudmila V. Prokopenko, ja Victor F. Pfaf. 2021. <span>”Issues of occupational health of healthcare workers and pandemic COVID-19”</span>. <em>Russian Journal of Occupational Health and Industrial Ecology</em> 61 (1): 49–61. <a href="https://doi.org/10.31089/1026-9428-2021-61-1-49-61">https://doi.org/10.31089/1026-9428-2021-61-1-49-61</a>.
+</div>
+<div id="ref-drabecki2023" class="csl-entry" role="listitem">
+Drabecki, Mariusz, Eugeniusz Toczyłowski, Krzysztof Pieńkosz, Grzegorz Honisz, ja Klaudia Kułak. 2023. <span>”Multi-Criteria Assignment Problems for Optimising the Emergency Medical Services (EMS), Considering Non-Homogeneous Speciality of the Emergency Departments and EMS Crews”</span>. <em>Scientific Reports</em> 13 (1): 7496. <a href="https://doi.org/10.1038/s41598-023-33831-7">https://doi.org/10.1038/s41598-023-33831-7</a>.
+</div>
+<div id="ref-ericsson2022" class="csl-entry" role="listitem">
+Ericsson, Christoffer R., Veronica Lindström, Ann Rudman, ja Hilla Nordquist. 2022. <span>”Paramedics<span>’</span> Perceptions of Job Demands and Resources in Finnish Emergency Medical Services: A Qualitative Study”</span>. <em>BMC Health Services Research</em> 22 (1): 1469. <a href="https://doi.org/10.1186/s12913-022-08856-9">https://doi.org/10.1186/s12913-022-08856-9</a>.
+</div>
+<div id="ref-fawzyeldesouky2022" class="csl-entry" role="listitem">
+Fawzy Eldesouky, Hanan, Hala Mostafa El Hady Hashim, Hedya Fathy Mohy El-Deen, ja Taisser Hamido Abosree. 2022. <span>”Occupational Health Hazards Among Workers in Ambulance Center”</span>. <em>Journal of Nursing Science Benha University</em> 3 (2): 383–97. <a href="https://doi.org/10.21608/jnsbu.2022.244495">https://doi.org/10.21608/jnsbu.2022.244495</a>.
+</div>
+<div id="ref-heinonen2022" class="csl-entry" role="listitem">
+Heinonen, Kari, Tuukka Puolakka, Heli Salmi, James Boyd, Mia Laiho, Kari Porthan, Heini Harve-Rytsälä, ja Markku Kuisma. 2022. <span>”Ambulance Crew<span>-</span>Initiated Non<span>-</span>Conveyance in the Helsinki EMS System<span></span>A Retrospective Cohort Study”</span>. <em>Acta Anaesthesiologica Scandinavica</em> 66 (5): 625–33. <a href="https://doi.org/10.1111/aas.14049">https://doi.org/10.1111/aas.14049</a>.
+</div>
+<div id="ref-himanen2023" class="csl-entry" role="listitem">
+Himanen, Sari, ja Sirpa Salin. 2023. <span>”The Influence of Prior Work Experience in Aged Care on Nursing Students’ Views on Aged Care Nursing: A Systematic Review”</span>. <em>Scandinavian Journal of Caring Sciences</em>, kesäkuuta, scs.13192. <a href="https://doi.org/10.1111/scs.13192">https://doi.org/10.1111/scs.13192</a>.
+</div>
+<div id="ref-honkavuo2019" class="csl-entry" role="listitem">
+Honkavuo, Hanna, Johanna Lammintakanen, ja Teija Norri-Sederholm. 2019. <span>”Työturvallisuus pelastustoimen ja ensihoitopalvelun uusissa työmuodoissa”</span>. Kuopio.
+</div>
+<div id="ref-ilczak2023" class="csl-entry" role="listitem">
+Ilczak, Tomasz, Michał Szlagor, Michał Ćwiertnia, Kacper Sumera, Esther Navarro-Illana, Arkadiusz Stasicki, Piotr Białoń, ym. 2023. <span>”Influence of the Workplace on the Feeling of Safety Among Emergency Medical Personnel in Selected European Countries During the COVID-19 Pandemic”</span>. <em>Emergency Medical Service</em> 10 (2): 100–106. <a href="https://doi.org/10.36740/EmeMS202302101">https://doi.org/10.36740/EmeMS202302101</a>.
+</div>
+<div id="ref-innstrand2010" class="csl-entry" role="listitem">
+Innstrand, Siw Tone, Ellen Melbye Langballe, ja Erik Falkum. 2010. <span>”Exploring Occupational Differences in Work<span></span>family Interaction: Who Is at Risk?”</span> <em>International Journal of Stress Management</em> 17 (1): 38–55. <a href="https://doi.org/10.1037/a0018565">https://doi.org/10.1037/a0018565</a>.
+</div>
+<div id="ref-innstrand2011" class="csl-entry" role="listitem">
+Innstrand, Siw Tone, Ellen Melbye Langballe, Erik Falkum, ja Olaf Gjerløw Aasland. 2011. <span>”Exploring Within- and Between-Gender Differences in Burnout: 8 Different Occupational Groups”</span>. <em>International Archives of Occupational and Environmental Health</em> 84 (7): 813–24. <a href="https://doi.org/10.1007/s00420-011-0667-y">https://doi.org/10.1007/s00420-011-0667-y</a>.
+</div>
+<div id="ref-joensuu2018" class="csl-entry" role="listitem">
+Joensuu, Minna, Teija Norri-Sederholm, Henna Huhtakangas, Johanna Lammintakanen, Esa Kokki, Jere Heiskanen, Jouni Kurola, ja Jukka Koponen. 2018. <span>”Pelastustoimen ja ensihoitopalvelun moniammatillinen yksikkö tehokkaasti ihmisen turvana”</span>. Kuop.
+</div>
+<div id="ref-jäntti2022" class="csl-entry" role="listitem">
+Jäntti, Toni, ja Hilla Nordquist. 2022. <span>”Ensihoitajien kohtaama työpaikkaväkivalta”</span>. <em>Yhteiskuntapolitiikka</em> 2022 (87): 5–6.
+</div>
+<div id="ref-kamau2022" class="csl-entry" role="listitem">
+Kamau, Suleiman, Miro Koskenranta, Heli Kuivila, Ashlee Oikarainen, Marco Tomietto, Jonna Juntunen, Anna-Maria Tuomikoski, ja Kristina Mikkonen. 2022. <span>”Integration Strategies and Models to Support Transition and Adaptation of Culturally and Linguistically Diverse Nursing Staff into Healthcare Environments: An Umbrella Review”</span>. <em>International Journal of Nursing Studies</em> 136 (joulukuuta): 104377. <a href="https://doi.org/10.1016/j.ijnurstu.2022.104377">https://doi.org/10.1016/j.ijnurstu.2022.104377</a>.
+</div>
+<div id="ref-koski2019" class="csl-entry" role="listitem">
+Koski, Anssi, ja Hilla Sumanen. 2019. <span>”The Risk Factors Finnish Paramedics Recognize When Performing Emergency Response Driving”</span>. <em>Accident Analysis &amp; Prevention</em> 125 (huhtikuuta): 40–48. <a href="https://doi.org/10.1016/j.aap.2019.01.021">https://doi.org/10.1016/j.aap.2019.01.021</a>.
+</div>
+<div id="ref-leikkola2016" class="csl-entry" role="listitem">
+Leikkola, Päivi K., Riitta K. Mikkola, Mari H. Salminen-Tuomaala, ja Eija E. M. Paavilainen. 2016. <span>”Non-Conveyance of Patients: Challenges to Decision-Making in Emergency Care”</span>. <em>Clinical Nursing Studies</em> 4 (4): 31–39. <a href="https://doi.org/10.5430/cns.v4n4p31">https://doi.org/10.5430/cns.v4n4p31</a>.
+</div>
+<div id="ref-leppäkoski2010" class="csl-entry" role="listitem">
+Leppäkoski, Tuija, Päivi Åstedt-Kurki, ja Eija Paavilainen. 2010. <span>”Identification of Women Exposed to Acute Physical Intimate Partner Violence in an Emergency Department Setting in Finland: Identification of Exposure of Women to Acute Physical Violence”</span>. <em>Scandinavian Journal of Caring Sciences</em> 24 (4): 638–47. <a href="https://doi.org/10.1111/j.1471-6712.2009.00754.x">https://doi.org/10.1111/j.1471-6712.2009.00754.x</a>.
+</div>
+<div id="ref-lundin2018" class="csl-entry" role="listitem">
+Lundin, Christina, Emina Hadziabdic, ja Katarina Hjelm. 2018. <span>”Language Interpretation Conditions and Boundaries in Multilingual and Multicultural Emergency Healthcare”</span>. <em>BMC International Health and Human Rights</em> 18 (1): 23. <a href="https://doi.org/10.1186/s12914-018-0157-3">https://doi.org/10.1186/s12914-018-0157-3</a>.
+</div>
+<div id="ref-nordquist2023" class="csl-entry" role="listitem">
+Nordquist, Hilla. 2023. <span>”Kriittiset tilanteet, väkivalta ja niihin liittyvä stressi ensihoitajien työssä”</span>. <em>Kriminologia</em> 3 (2): 1–20. <a href="https://doi.org/10.54332/krim.125185">https://doi.org/10.54332/krim.125185</a>.
+</div>
+<div id="ref-norri-sederholm2014" class="csl-entry" role="listitem">
+Norri-Sederholm, Teija, Rauno Kuusisto, Jouni Kurola, Kaija Saranto, ja Heikki Paakkonen. 2014. <span>”A Paramedic Field Supervisor’s Situational Awareness in Prehospital Emergency Care”</span>. <em>Prehospital and Disaster Medicine</em> 29 (2): 151–59. <a href="https://doi.org/10.1017/S1049023X14000132">https://doi.org/10.1017/S1049023X14000132</a>.
+</div>
+<div id="ref-oldenburg2014" class="csl-entry" role="listitem">
+Oldenburg, Marcus, Dennis Wilken, Ralf Wegner, Bernd Poschadel, ja Xaver Baur. 2014. <span>”Job-Related Stress and Work Ability of Dispatchers in a Metropolitan Fire Department”</span>. <em>Journal of Occupational Medicine and Toxicology</em> 9 (1): 31. <a href="https://doi.org/10.1186/s12995-014-0031-8">https://doi.org/10.1186/s12995-014-0031-8</a>.
+</div>
+<div id="ref-paavilainen2017" class="csl-entry" role="listitem">
+Paavilainen, Eija, Riitta Mikkola, Mari Salminen-Tuomaala, ja Päivi Leikkola. 2017. <span>”Counseling Patients and Family Members in Out-of-Hospital Emergency Situations: A Survey for Emergency Staff”</span>. <em>BMC Nursing</em> 16 (1): 11. <a href="https://doi.org/10.1186/s12912-017-0205-7">https://doi.org/10.1186/s12912-017-0205-7</a>.
+</div>
+<div id="ref-pekurinen2017" class="csl-entry" role="listitem">
+Pekurinen, Virve, Laura Willman, Marianna Virtanen, Mika Kivimäki, Jussi Vahtera, ja Maritta Välimäki. 2017. <span>”Patient Aggression and the Wellbeing of Nurses: A Cross-Sectional Survey Study in Psychiatric and Non-Psychiatric Settings”</span>. <em>International Journal of Environmental Research and Public Health</em> 14 (10): 1245. <a href="https://doi.org/10.3390/ijerph14101245">https://doi.org/10.3390/ijerph14101245</a>.
+</div>
+<div id="ref-peluchette2013" class="csl-entry" role="listitem">
+Peluchette, Joy Van Eck, Katherine Karl, ja Jason Fertig. 2013. <span>”A Facebook <span>‘</span>Friend<span>’</span> Request from the Boss: Too Close for Comfort?”</span> <em>Business Horizons</em> 56 (3): 291–300. <a href="https://doi.org/10.1016/j.bushor.2013.01.013">https://doi.org/10.1016/j.bushor.2013.01.013</a>.
+</div>
+<div id="ref-purvanova2010" class="csl-entry" role="listitem">
+Purvanova, Radostina K., ja John P. Muros. 2010. <span>”Gender Differences in Burnout: A Meta-Analysis”</span>. <em>Journal of Vocational Behavior</em> 77 (2): 168–85. <a href="https://doi.org/10.1016/j.jvb.2010.04.006">https://doi.org/10.1016/j.jvb.2010.04.006</a>.
+</div>
+<div id="ref-ramakrishnan2014" class="csl-entry" role="listitem">
+Ramakrishnan, Aditi, Dana Sambuco, ja Reshma Jagsi. 2014. <span>”Women’s Participation in the Medical Profession: Insights from Experiences in Japan, Scandinavia, Russia, and Eastern Europe”</span>. <em>Journal of Women’s Health</em> 23 (11): 927–34. <a href="https://doi.org/10.1089/jwh.2014.4736">https://doi.org/10.1089/jwh.2014.4736</a>.
+</div>
+<div id="ref-saal2021" class="csl-entry" role="listitem">
+Saal, Oliver, Aino Harinen, ja Alisa Puustinen. 2021. <span>”Suomalaisten pelastusasenteet 2020”</span>. Kuopio.
+</div>
+<div id="ref-schwarzenberg2019" class="csl-entry" role="listitem">
+Schwarzenberg, Tom. 2019. <span>”Negotiating Invisible Lines: Cross-Border Emergency Care in the Rural North of Scandinavia”</span>. <em>Norsk Geografisk Tidsskrift - Norwegian Journal of Geography</em> 73 (3): 139–55. <a href="https://doi.org/10.1080/00291951.2019.1645731">https://doi.org/10.1080/00291951.2019.1645731</a>.
+</div>
+<div id="ref-sjölin2015" class="csl-entry" role="listitem">
+Sjölin, Helena, Veronica Lindström, Håkan Hult, Charlotte Ringsted, ja Lisa Kurland. 2015. <span>”What an Ambulance Nurse Needs to Know: A Content Analysis of Curricula in the Specialist Nursing Programme in Prehospital Emergency Care”</span>. <em>International Emergency Nursing</em> 23 (2): 127–32. <a href="https://doi.org/10.1016/j.ienj.2014.09.002">https://doi.org/10.1016/j.ienj.2014.09.002</a>.
+</div>
+<div id="ref-torlénwennlund2022" class="csl-entry" role="listitem">
+Torlén Wennlund, Klara, Lisa Kurland, Knut Olanders, Maaret Castrén, ja Katarina Bohm. 2022. <span>”A Registry-Based Observational Study Comparing Emergency Calls Assessed by Emergency Medical Dispatchers with and Without Support by Registered Nurses”</span>. <em>Scandinavian Journal of Trauma, Resuscitation and Emergency Medicine</em> 30 (1): 1. <a href="https://doi.org/10.1186/s13049-021-00987-y">https://doi.org/10.1186/s13049-021-00987-y</a>.
+</div>
+<div id="ref-uusitalo2018" class="csl-entry" role="listitem">
+Uusitalo, Jenna. 2018. <span>”From Legislative Shortcomings Towards Better Human Rights Protection <span></span> Analysis of Legislation on the Emergency Medical Services in Finland and Estonia”</span>. <em>European Journal of Health Law</em> 25 (4): 389–406. <a href="https://doi.org/10.1163/15718093-12540387">https://doi.org/10.1163/15718093-12540387</a>.
+</div>
+<div id="ref-venesoja2020" class="csl-entry" role="listitem">
+Venesoja, Anu, Maaret Castrén, Susanna Tella, ja Veronica Lindström. 2020. <span>”Patients<span>’</span> Perceptions of Safety in Emergency Medical Services: An Interview Study”</span>. <em>BMJ Open</em> 10 (10): e037488. <a href="https://doi.org/10.1136/bmjopen-2020-037488">https://doi.org/10.1136/bmjopen-2020-037488</a>.
+</div>
+<div id="ref-venesoja2023" class="csl-entry" role="listitem">
+Venesoja, Anu, Veronica Lindström, Maaret Castrén, ja Susanna Tella. 2023. <span>”Prehospital Nursing Students’ Experiences of Patient Safety Culture in Emergency Medical Services<span></span>A Qualitative Study”</span>. <em>Journal of Clinical Nursing</em> 32 (5-6): 847–58. <a href="https://doi.org/10.1111/jocn.16396">https://doi.org/10.1111/jocn.16396</a>.
+</div>
+<div id="ref-virtanen2012" class="csl-entry" role="listitem">
+Virtanen, Marianna, Jussi Vahtera, G David Batty, Katinka Tuisku, Tuula Oksanen, Marko Elovainio, Kirsi Ahola, ym. 2012. <span>”Health Risk Behaviors and Morbidity Among Hospital Staff <span>-</span> Comparison Across Hospital Ward Medical Specialties in a Study of 21 Finnish Hospitals”</span>. <em>Scandinavian Journal of Work, Environment &amp; Health</em> 38 (3): 228–37. <a href="https://doi.org/10.5271/sjweh.3264">https://doi.org/10.5271/sjweh.3264</a>.
+</div>
+</div>
 </section>
 
 
