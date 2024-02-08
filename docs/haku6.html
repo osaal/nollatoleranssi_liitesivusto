@@ -54,7 +54,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -256,8 +275,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#sec-haku6-hakulausekkeet" id="toc-sec-haku6-hakulausekkeet" class="nav-link active" data-scroll-target="#sec-haku6-hakulausekkeet"><span class="header-section-number">9.1</span> Hakulausekkeet ja tulosten lataaminen</a></li>
   <li><a href="#prisma-kulkukaavio" id="toc-prisma-kulkukaavio" class="nav-link" data-scroll-target="#prisma-kulkukaavio"><span class="header-section-number">9.2</span> PRISMA-kulkukaavio</a></li>
-  <li><a href="#valitut-tutkimusjulkaisut" id="toc-valitut-tutkimusjulkaisut" class="nav-link" data-scroll-target="#valitut-tutkimusjulkaisut"><span class="header-section-number">9.3</span> Valitut tutkimusjulkaisut</a></li>
-  <li><a href="#kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt" id="toc-kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt" class="nav-link" data-scroll-target="#kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt"><span class="header-section-number">9.4</span> Kokotekstin pohjalta poistetut tutkimukset ja syyt</a></li>
+  <li><a href="#kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt" id="toc-kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt" class="nav-link" data-scroll-target="#kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt"><span class="header-section-number">9.3</span> Kokotekstin pohjalta poistetut tutkimukset ja syyt</a></li>
+  <li><a href="#valitut-tutkimusjulkaisut" id="toc-valitut-tutkimusjulkaisut" class="nav-link" data-scroll-target="#valitut-tutkimusjulkaisut"><span class="header-section-number">9.4</span> Valitut tutkimusjulkaisut</a></li>
   </ul>
 </nav>
     </div>
@@ -344,10 +363,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <caption>Taulukko&nbsp;9.2: Haku 6:n toteutetut haut</caption>
 <colgroup>
 <col style="width: 4%">
-<col style="width: 31%">
+<col style="width: 30%">
 <col style="width: 8%">
-<col style="width: 15%">
-<col style="width: 7%">
+<col style="width: 14%">
+<col style="width: 6%">
 <col style="width: 32%">
 </colgroup>
 <thead>
@@ -501,8 +520,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">font_size =</span> <span class="dv">14</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-ac8d8ee57e63672c955f" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-ac8d8ee57e63672c955f">{"x":{"diagram":"\n    digraph prisma {\n    node [shape=\"box\" , fontsize = 14];\n    graph [splines=ortho, nodesep=1 ]\n    \nTunnistetutkohteet [label=\"Tunnistetut kohteet\n4492 (100%)\"];\nSeulotutkohteet_A [label=\"Seulotut kohteet\n3420 (76.14%)\"];\nHaettavatkohteet_B [label=\"Haettavat kohteet\n 137 (3.05%)\"];\nTarkistetutkohteet_C [label=\"Tarkistetut kohteet\n 119 (2.65%)\"];\nSisällytetytkohteet_D [label=\"Sisällytetyt kohteet\n  33 (0.73%)\"];\nKaksoiskappaleetpoistettuennenseulontaa_a [label=\"Kaksoiskappaleet poistettu ennen seulontaa\n1072 (23.9%)\"];\nPoisseulotutkohteet_b [label=\"Poisseulotut kohteet\n3283 (73.1%)\"];\nHakemattajääneetkohteet_c [label=\"Hakematta jääneet kohteet\n  18 (0.4%)\"];\nPoistetutkohteet_d [label=\"Poistetut kohteet\n  86 (1.9%)\"];\nTunnistetutkohteet -> {Seulotutkohteet_A; Kaksoiskappaleetpoistettuennenseulontaa_a};\nSeulotutkohteet_A -> {Haettavatkohteet_B; Poisseulotutkohteet_b};\nHaettavatkohteet_B -> {Tarkistetutkohteet_C; Hakemattajääneetkohteet_c};\nTarkistetutkohteet_C -> {Sisällytetytkohteet_D; Poistetutkohteet_d};\n{rank=same; Tunnistetutkohteet Kaksoiskappaleetpoistettuennenseulontaa_a}\n{rank=same; Seulotutkohteet_A Poisseulotutkohteet_b}\n{rank=same; Haettavatkohteet_B Hakemattajääneetkohteet_c}\n{rank=same; Tarkistetutkohteet_C Poistetutkohteet_d}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-102a88575463a79f8499" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-102a88575463a79f8499">{"x":{"diagram":"\n    digraph prisma {\n    node [shape=\"box\" , fontsize = 14];\n    graph [splines=ortho, nodesep=1 ]\n    \nTunnistetutkohteet [label=\"Tunnistetut kohteet\n4492 (100%)\"];\nSeulotutkohteet_A [label=\"Seulotut kohteet\n3420 (76.14%)\"];\nHaettavatkohteet_B [label=\"Haettavat kohteet\n 137 (3.05%)\"];\nTarkistetutkohteet_C [label=\"Tarkistetut kohteet\n 119 (2.65%)\"];\nSisällytetytkohteet_D [label=\"Sisällytetyt kohteet\n  33 (0.73%)\"];\nKaksoiskappaleetpoistettuennenseulontaa_a [label=\"Kaksoiskappaleet poistettu ennen seulontaa\n1072 (23.9%)\"];\nPoisseulotutkohteet_b [label=\"Poisseulotut kohteet\n3283 (73.1%)\"];\nHakemattajääneetkohteet_c [label=\"Hakematta jääneet kohteet\n  18 (0.4%)\"];\nPoistetutkohteet_d [label=\"Poistetut kohteet\n  86 (1.9%)\"];\nTunnistetutkohteet -> {Seulotutkohteet_A; Kaksoiskappaleetpoistettuennenseulontaa_a};\nSeulotutkohteet_A -> {Haettavatkohteet_B; Poisseulotutkohteet_b};\nHaettavatkohteet_B -> {Tarkistetutkohteet_C; Hakemattajääneetkohteet_c};\nTarkistetutkohteet_C -> {Sisällytetytkohteet_D; Poistetutkohteet_d};\n{rank=same; Tunnistetutkohteet Kaksoiskappaleetpoistettuennenseulontaa_a}\n{rank=same; Seulotutkohteet_A Poisseulotutkohteet_b}\n{rank=same; Haettavatkohteet_B Hakemattajääneetkohteet_c}\n{rank=same; Tarkistetutkohteet_C Poistetutkohteet_d}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
@@ -535,23 +554,785 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">font_size =</span> <span class="dv">14</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-7fff30c030aec8eefc41" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-7fff30c030aec8eefc41">{"x":{"diagram":"\n    digraph prisma {\n    node [shape=\"box\" , fontsize = 14];\n    graph [splines=ortho, nodesep=1 ]\n    \nTunnistetutkohteet [label=\"Tunnistetut kohteet\n0 (100%)\"];\nHaettavatkohteet_A [label=\"Haettavat kohteet\n0 (NA)\"];\nTarkistetutkohteet_B [label=\"Tarkistetut kohteet\n0 (NA)\"];\nSisällytetytkohteet_C [label=\"Sisällytetyt kohteet\n0 (NA)\"];\nKaksoiskappaleetpoistettuennenseulontaa_a [label=\"Kaksoiskappaleet poistettu ennen seulontaa\n0 (NA)\"];\nHakemattajääneetkohteet_b [label=\"Hakematta jääneet kohteet\n0 (NA)\"];\nPoistetutkohteet_c [label=\"Poistetut kohteet\n0 (NA)\"];\nTunnistetutkohteet -> {Haettavatkohteet_A; Kaksoiskappaleetpoistettuennenseulontaa_a};\nHaettavatkohteet_A -> {Tarkistetutkohteet_B; Hakemattajääneetkohteet_b};\nTarkistetutkohteet_B -> {Sisällytetytkohteet_C; Poistetutkohteet_c};\n{rank=same; Tunnistetutkohteet Kaksoiskappaleetpoistettuennenseulontaa_a}\n{rank=same; Haettavatkohteet_A Hakemattajääneetkohteet_b}\n{rank=same; Tarkistetutkohteet_B Poistetutkohteet_c}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-bf17d6ebf3b45f6ca093" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-bf17d6ebf3b45f6ca093">{"x":{"diagram":"\n    digraph prisma {\n    node [shape=\"box\" , fontsize = 14];\n    graph [splines=ortho, nodesep=1 ]\n    \nTunnistetutkohteet [label=\"Tunnistetut kohteet\n0 (100%)\"];\nHaettavatkohteet_A [label=\"Haettavat kohteet\n0 (NA)\"];\nTarkistetutkohteet_B [label=\"Tarkistetut kohteet\n0 (NA)\"];\nSisällytetytkohteet_C [label=\"Sisällytetyt kohteet\n0 (NA)\"];\nKaksoiskappaleetpoistettuennenseulontaa_a [label=\"Kaksoiskappaleet poistettu ennen seulontaa\n0 (NA)\"];\nHakemattajääneetkohteet_b [label=\"Hakematta jääneet kohteet\n0 (NA)\"];\nPoistetutkohteet_c [label=\"Poistetut kohteet\n0 (NA)\"];\nTunnistetutkohteet -> {Haettavatkohteet_A; Kaksoiskappaleetpoistettuennenseulontaa_a};\nHaettavatkohteet_A -> {Tarkistetutkohteet_B; Hakemattajääneetkohteet_b};\nTarkistetutkohteet_B -> {Sisällytetytkohteet_C; Poistetutkohteet_c};\n{rank=same; Tunnistetutkohteet Kaksoiskappaleetpoistettuennenseulontaa_a}\n{rank=same; Haettavatkohteet_A Hakemattajääneetkohteet_b}\n{rank=same; Tarkistetutkohteet_B Poistetutkohteet_c}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
 </div>
 </div>
 </section>
-<section id="valitut-tutkimusjulkaisut" class="level2" data-number="9.3">
-<h2 data-number="9.3" class="anchored" data-anchor-id="valitut-tutkimusjulkaisut"><span class="header-section-number">9.3</span> Valitut tutkimusjulkaisut</h2>
-<p>[TÄHÄN LÄHDELUETTELO KAIKISTA MUKAAN VALITUISTA TUTKIMUSJULKAISUISTA]</p>
+<section id="kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt"><span class="header-section-number">9.3</span> Kokotekstin pohjalta poistetut tutkimukset ja syyt</h2>
+<p>Seulonnan jälkeen poistettuja tutkimusjulkaisuja oli yhteensä 87 kappaletta. <a href="#tbl-haku6-poistetut">Taulukko&nbsp;<span>9.3</span></a> on jokaisen julkaisun vittaus ja poistosyy(t). Syyt ovat listattuna ensisijaisen syyn mukaan. Päätös poisjättämisestä voitiin tehdä jos yksi inkluusiokriteeri ei täyttynyt, jolloin tutkimuksella voi olla muitakin syitä miksi sitä ei otettu mukaan katsauksen tuloksiin.</p>
+<div id="tbl-haku6-poistetut" class="anchored">
+<table class="table">
+<caption>Taulukko&nbsp;9.3: Haku 6:n poistetut kohteet syineen</caption>
+<colgroup>
+<col style="width: 26%">
+<col style="width: 73%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Kohde</th>
+<th>Syy(t) poistoon</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="citation" data-cites="abbott2023">Abbott ja Whitley (<a href="lahteet.html#ref-abbott2023" role="doc-biblioref">2023</a>)</span></td>
+<td>Ei-empiirinen tutkimus</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="allen2020">Allen ym. (<a href="lahteet.html#ref-allen2020" role="doc-biblioref">2020</a>)</span></td>
+<td>Väärä maantieteellinen sijainti</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="ariza-montes2015">Ariza-Montes, Leal-Rodríguez, ja Leal-Millán (<a href="lahteet.html#ref-ariza-montes2015" role="doc-biblioref">2015</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="basting2023">Basting ym. (<a href="lahteet.html#ref-basting2023" role="doc-biblioref">2023</a>)</span></td>
+<td>Väärä maantieteellinen sijainti</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="bentley2016">Bentley ja Levine (<a href="lahteet.html#ref-bentley2016" role="doc-biblioref">2016</a>)</span></td>
+<td>Väärä maantieteellinen sijainti</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="bigham2014">Bigham ym. (<a href="lahteet.html#ref-bigham2014" role="doc-biblioref">2014</a>)</span></td>
+<td>Väärä maantieteellinen sijainti</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="boyle2017">Boyle ja McKenna (<a href="lahteet.html#ref-boyle2017" role="doc-biblioref">2017</a>)</span></td>
+<td>Väärä maantieteellinen sijainti</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="byron2018">Byron (<a href="lahteet.html#ref-byron2018" role="doc-biblioref">2018</a>)</span></td>
+<td>Ei-empiirinen tutkimus</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="cetin2019">Cetin ym. (<a href="lahteet.html#ref-cetin2019" role="doc-biblioref">2019</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="chazel2023">Chazel ym. (<a href="lahteet.html#ref-chazel2023" role="doc-biblioref">2023</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="clevelandmanchanda2020">Cleveland Manchanda ja Macias-Konstantopoulos (<a href="lahteet.html#ref-clevelandmanchanda2020" role="doc-biblioref">2020</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="copeland2017">Copeland ja Henry (<a href="lahteet.html#ref-copeland2017" role="doc-biblioref">2017</a>)</span></td>
+<td>Väärä kohderyhmä, väärä maantieteellinen sijainti</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="dinhof2023">Dinhof ja Willems (<a href="lahteet.html#ref-dinhof2023" role="doc-biblioref">2023</a>)</span></td>
+<td>Väärä tutkimusaihe</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="donald2023">Donald ja Lindsay (<a href="lahteet.html#ref-donald2023" role="doc-biblioref">2023</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="drew2018">Drew, Tippett, ja Devenish (<a href="lahteet.html#ref-drew2018" role="doc-biblioref">2018</a>)</span></td>
+<td>Ei-empiirinen tutkimus</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="dye2020">Dye ym. (<a href="lahteet.html#ref-dye2020" role="doc-biblioref">2020</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="ericson2014">Ericson (<a href="lahteet.html#ref-ericson2014" role="doc-biblioref">2014</a>)</span></td>
+<td>Väärä tutkimusaihe</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="foghammar2016">Foghammar ym. (<a href="lahteet.html#ref-foghammar2016" role="doc-biblioref">2016</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="furin2015">Furin ym. (<a href="lahteet.html#ref-furin2015" role="doc-biblioref">2015</a>)</span></td>
+<td>Väärä maantieteellinen sijainti</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="geoffrion2020">Geoffrion ym. (<a href="lahteet.html#ref-geoffrion2020" role="doc-biblioref">2020</a>)</span></td>
+<td>Väärä kohderyhmä, ei-empiirinen tutkimus</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="germain2023">Germain ym. (<a href="lahteet.html#ref-germain2023" role="doc-biblioref">2023</a>)</span></td>
+<td>Väärä tutkimusaihe</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="gómez-gutiérrez2014">Gómez-Gutiérrez ym. (<a href="lahteet.html#ref-gómez-gutiérrez2014" role="doc-biblioref">2014</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="gormley2016">Gormley ym. (<a href="lahteet.html#ref-gormley2016" role="doc-biblioref">2016</a>)</span></td>
+<td>Väärä maantieteellinen sijainti</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="graham2021">Graham ym. (<a href="lahteet.html#ref-graham2021" role="doc-biblioref">2021</a>)</span></td>
+<td>Väärä kohderyhmä, väärä maantieteellinen sijainti</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="greenslade2020">Greenslade ym. (<a href="lahteet.html#ref-greenslade2020" role="doc-biblioref">2020</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="grip2016">Grip ym. (<a href="lahteet.html#ref-grip2016" role="doc-biblioref">2016</a>)</span></td>
+<td>Ei-empiirinen tutkimus</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="harrison2019">Harrison ja Daker-White (<a href="lahteet.html#ref-harrison2019" role="doc-biblioref">2019</a>)</span></td>
+<td>Ei-empiirinen tutkimus</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="hassankhani2018">Hassankhani ym. (<a href="lahteet.html#ref-hassankhani2018" role="doc-biblioref">2018</a>)</span></td>
+<td>Väärä maantieteellinen sijainti</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="healy2011">Healy ja Tyrrell (<a href="lahteet.html#ref-healy2011" role="doc-biblioref">2011</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="hom2017">Hom ym. (<a href="lahteet.html#ref-hom2017" role="doc-biblioref">2017</a>)</span></td>
+<td>Väärä maantieteellinen sijainti</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="hosseinikia2018">Hosseinikia ym. (<a href="lahteet.html#ref-hosseinikia2018" role="doc-biblioref">2018</a>)</span></td>
+<td>Väärä maantieteellinen sijainti</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="jacobson2022">Jacobson, Colletti, ja Raukar (<a href="lahteet.html#ref-jacobson2022" role="doc-biblioref">2022</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="jakubowski2021">Jakubowski ja Sitko-Dominik (<a href="lahteet.html#ref-jakubowski2021" role="doc-biblioref">2021</a>)</span></td>
+<td>Väärä tutkimusaihe</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="jamieson2016">Jamieson, Tran, ja Mackenzie (<a href="lahteet.html#ref-jamieson2016" role="doc-biblioref">2016</a>)</span></td>
+<td>Väärä tutkimusaihe, väärä kohderyhmä, väärä maantieteellinen sijainti</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="jung2020">Jung (<a href="lahteet.html#ref-jung2020" role="doc-biblioref">2020</a>)</span></td>
+<td>Väärä kohderyhmä, ei-empiirinen tutkimus</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="kaeser2018">Kaeser ym. (<a href="lahteet.html#ref-kaeser2018" role="doc-biblioref">2018</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="kaltiso2021">Kaltiso ym. (<a href="lahteet.html#ref-kaltiso2021" role="doc-biblioref">2021</a>)</span></td>
+<td>Väärä kohderyhmä, väärä maantieteellinen sijainti</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="kang2022">Kang, Sakong, ja Kim (<a href="lahteet.html#ref-kang2022" role="doc-biblioref">2022</a>)</span></td>
+<td>Väärä maantieteellinen sijainti</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="karaeminogullari2018">Karaeminogullari, Erdogan, ja Bauer (<a href="lahteet.html#ref-karaeminogullari2018" role="doc-biblioref">2018</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="kline2019">Kline ja Lewis (<a href="lahteet.html#ref-kline2019" role="doc-biblioref">2019</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="koeppel2022">Koeppel ym. (<a href="lahteet.html#ref-koeppel2022" role="doc-biblioref">2022</a>)</span></td>
+<td>Väärä maantieteellinen sijainti</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="lamesoo2013">Lamesoo (<a href="lahteet.html#ref-lamesoo2013" role="doc-biblioref">2013</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="lever2019">Lever ym. (<a href="lahteet.html#ref-lever2019" role="doc-biblioref">2019</a>)</span></td>
+<td>Ei-empiirinen tutkimus</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="li2010">Li ym. (<a href="lahteet.html#ref-li2010" role="doc-biblioref">2010</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="lu2020">Lu, Pierce, ym. (<a href="lahteet.html#ref-lu2020" role="doc-biblioref">2020</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="lu2020a">Lu, Lall, ym. (<a href="lahteet.html#ref-lu2020a" role="doc-biblioref">2020</a>)</span></td>
+<td>Väärä kohderyhmä, väärä maantieteellinen sijainti</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="maake2021">Maake ym. (<a href="lahteet.html#ref-maake2021" role="doc-biblioref">2021</a>)</span></td>
+<td>Väärä kohderyhmä, väärä maantieteellinen sijainti</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="maguire2018">Maguire, O’Meara, ym. (<a href="lahteet.html#ref-maguire2018" role="doc-biblioref">2018</a>)</span></td>
+<td>Ei-empiirinen tutkimus</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="maguire2017">Maguire ja O’Neill (<a href="lahteet.html#ref-maguire2017" role="doc-biblioref">2017</a>)</span></td>
+<td>Väärä maantieteellinen sijainti</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="marco2019">Marco ym. (<a href="lahteet.html#ref-marco2019" role="doc-biblioref">2019</a>)</span></td>
+<td>Ei-empiirinen tutkimus, väärä maantieteellinen sijainti</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="martínez-garcía2021">Martínez-García ym. (<a href="lahteet.html#ref-martínez-garcía2021" role="doc-biblioref">2021</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="mendes2015">Mendes (<a href="lahteet.html#ref-mendes2015" role="doc-biblioref">2015</a>)</span></td>
+<td>Ei-empiirinen tutkimus</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="miró2010">Miró ym. (<a href="lahteet.html#ref-miró2010" role="doc-biblioref">2010</a>)</span></td>
+<td>Väärä tutkimusaihe</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="morken2016">Morken, Alsaker, ja Johansen (<a href="lahteet.html#ref-morken2016" role="doc-biblioref">2016</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="morken2013">Morken ja Johansen (<a href="lahteet.html#ref-morken2013" role="doc-biblioref">2013</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="morken2015">Morken, Johansen, ja Alsaker (<a href="lahteet.html#ref-morken2015" role="doc-biblioref">2015</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="morokuma2019">Morokuma ja Chiu (<a href="lahteet.html#ref-morokuma2019" role="doc-biblioref">2019</a>)</span></td>
+<td>Väärä maantieteellinen sijainti</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="murphy2015">Murphy (<a href="lahteet.html#ref-murphy2015" role="doc-biblioref">2015</a>)</span></td>
+<td>Ei-empiirinen tutkimus</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="murray2020">Murray ym. (<a href="lahteet.html#ref-murray2020" role="doc-biblioref">2020</a>)</span></td>
+<td>Ei-empiirinen tutkimus</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="nikathil2017">Nikathil ym. (<a href="lahteet.html#ref-nikathil2017" role="doc-biblioref">2017</a>)</span></td>
+<td>Väärä kohderyhmä, ei-empiirinen tutkimus</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="nikolic2020">Nikolić ja Višnjić (<a href="lahteet.html#ref-nikolic2020" role="doc-biblioref">2020</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="owusu-ansah2023">Owusu-Ansah ym. (<a href="lahteet.html#ref-owusu-ansah2023" role="doc-biblioref">2023</a>)</span></td>
+<td>Ei-empiirinen tutkimus</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="oztermeli2023">Oztermeli ym. (<a href="lahteet.html#ref-oztermeli2023" role="doc-biblioref">2023</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="oztok2018">Oztok ym. (<a href="lahteet.html#ref-oztok2018" role="doc-biblioref">2018</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="péculo-carrasco2021">Péculo-Carrasco ym. (<a href="lahteet.html#ref-péculo-carrasco2021" role="doc-biblioref">2021</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="perina2018">Perina ym. (<a href="lahteet.html#ref-perina2018" role="doc-biblioref">2018</a>)</span></td>
+<td>Väärä kohderyhmä, väärä maantieteellinen sijainti</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="pourshaikhian2016">Pourshaikhian ym. (<a href="lahteet.html#ref-pourshaikhian2016" role="doc-biblioref">2016</a>)</span></td>
+<td>Ei-empiirinen tutkimus</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="powell2023">Powell ym. (<a href="lahteet.html#ref-powell2023" role="doc-biblioref">2023</a>)</span></td>
+<td>Väärä maantieteellinen sijainti</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="punches2023">Punches ym. (<a href="lahteet.html#ref-punches2023" role="doc-biblioref">2023</a>)</span></td>
+<td>Väärä kohderyhmä, väärä maantieteellinen sijainti</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="ramacciati2016">Ramacciati ym. (<a href="lahteet.html#ref-ramacciati2016" role="doc-biblioref">2016</a>)</span></td>
+<td>Ei-empiirinen tutkimus</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="ramacciati2015">Ramacciati, Ceccagnoli, ja Addey (<a href="lahteet.html#ref-ramacciati2015" role="doc-biblioref">2015</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="ramacciati2018">Ramacciati ym. (<a href="lahteet.html#ref-ramacciati2018" role="doc-biblioref">2018</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="ramacciati2019">Ramacciati ym. (<a href="lahteet.html#ref-ramacciati2019" role="doc-biblioref">2019</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="ramacciati2020">Ramacciati ja Giusti (<a href="lahteet.html#ref-ramacciati2020" role="doc-biblioref">2020</a>)</span></td>
+<td>Väärä kohderyhmä, ei-empiirinen tutkimus</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="ravioli2022">Ravioli ym. (<a href="lahteet.html#ref-ravioli2022" role="doc-biblioref">2022</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="reißmann2023">Reißmann ym. (<a href="lahteet.html#ref-reißmann2023" role="doc-biblioref">2023</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="schneider2018">Schneider ja Weigl (<a href="lahteet.html#ref-schneider2018" role="doc-biblioref">2018</a>)</span></td>
+<td>Väärä kohderyhmä, ei-empiirinen tutkimus</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="snavely2021">Snavely ym. (<a href="lahteet.html#ref-snavely2021" role="doc-biblioref">2021</a>)</span></td>
+<td>Väärä kohderyhmä, väärä maantieteellinen sijainti</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="somville2016">Somville, De Gucht, ja Maes (<a href="lahteet.html#ref-somville2016" role="doc-biblioref">2016</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="taylor2015">J. A. Taylor ym. (<a href="lahteet.html#ref-taylor2015" role="doc-biblioref">2015</a>)</span></td>
+<td>Väärä maantieteellinen sijainti</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="taylor2016">Jennifer A. Taylor ym. (<a href="lahteet.html#ref-taylor2016" role="doc-biblioref">2016</a>)</span></td>
+<td>Väärä maantieteellinen sijainti</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="taylor2019">Jennifer A. Taylor ym. (<a href="lahteet.html#ref-taylor2019" role="doc-biblioref">2019</a>)</span></td>
+<td>Väärä maantieteellinen sijainti</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="touriel2021">Touriel ym. (<a href="lahteet.html#ref-touriel2021" role="doc-biblioref">2021</a>)</span></td>
+<td>Väärä maantieteellinen sijainti</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="turkcuer2015">Turkcuer (<a href="lahteet.html#ref-turkcuer2015" role="doc-biblioref">2015</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="venesoja2020">Venesoja ym. (<a href="lahteet.html#ref-venesoja2020" role="doc-biblioref">2020</a>)</span></td>
+<td>Väärä tutkimusaihe</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="zeidan2022">Zeidan ym. (<a href="lahteet.html#ref-zeidan2022" role="doc-biblioref">2022</a>)</span></td>
+<td>Väärä kohderyhmä, väärä maantieteellinen sijainti</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="ziaei2018">Ziaei ym. (<a href="lahteet.html#ref-ziaei2018" role="doc-biblioref">2018</a>)</span></td>
+<td>Väärä kohderyhmä, ei-empiirinen tutkimus</td>
+</tr>
+</tbody>
+</table>
+</div>
 </section>
-<section id="kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt" class="level2" data-number="9.4">
-<h2 data-number="9.4" class="anchored" data-anchor-id="kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt"><span class="header-section-number">9.4</span> Kokotekstin pohjalta poistetut tutkimukset ja syyt</h2>
-<p>[TÄHÄN LÄHDELUETTELO KAIKISTA KOKOTEKSTISTÄ POISTETUISTA TUTKIMUKSISTA PÄÄSYYN MUKAAN.]</p>
+<section id="valitut-tutkimusjulkaisut" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="valitut-tutkimusjulkaisut"><span class="header-section-number">9.4</span> Valitut tutkimusjulkaisut</h2>
+<p>Haun pohjalta valittiin 23 tutkimusjulkaisua. Kaikki julkaisut valikoituivat mukaan hakuprosessin myötä. Julkaisut ovat:</p>
+<ul>
+<li><p><span class="citation" data-cites="bambi2014">Bambi ym. (<a href="lahteet.html#ref-bambi2014" role="doc-biblioref">2014</a>)</span> “Lateral Hostilities Among Nurses Employed in Intensive Care Units, Emergency Departments, Operating Rooms, and Emergency Medical Services: A National Survey in Italy”</p></li>
+<li><p><span class="citation" data-cites="bernaldo-de-quirós2015">Bernaldo-De-Quirós ym. (<a href="lahteet.html#ref-bernaldo-de-quirós2015" role="doc-biblioref">2015</a>)</span> “Psychological consequences of aggression in pre-hospital emergency care: Cross sectional survey”</p></li>
+<li><p><span class="citation" data-cites="blazeviciene2016">Blaževičienė, Zdanavičienė, ja Vaškelytė (<a href="lahteet.html#ref-blazeviciene2016" role="doc-biblioref">2016</a>)</span> “Organisational Factors Influencing Job Performance of Ambulance Health Care Professionals: Cross-Sectional Survey in Lithuania”</p></li>
+<li><p><span class="citation" data-cites="braun2021">Braun ym. (<a href="lahteet.html#ref-braun2021" role="doc-biblioref">2021</a>)</span> “Association between the experience of violence and burnout among paramedics”</p></li>
+<li><p><span class="citation" data-cites="çalikoglu2018">Çalıkoglu ym. (<a href="lahteet.html#ref-çalikoglu2018" role="doc-biblioref">2018</a>)</span> “Sexism, attitudes, and behaviors towards violence against women in medical emergency services workers in Erzurum, Turkey”</p></li>
+<li><p><span class="citation" data-cites="çelebi2023">Çelebi ja Gökkaya (<a href="lahteet.html#ref-çelebi2023" role="doc-biblioref">2023</a>)</span> “Prevalence of anxiety and depression and associated factors among firefighters: a cross-sectional study in Turkey”</p></li>
+<li><p><span class="citation" data-cites="coskuncenk2019">Coskun Cenk (<a href="lahteet.html#ref-coskuncenk2019" role="doc-biblioref">2019</a>)</span> “An analysis of the exposure to violence and burnout levels of ambulance staff”</p></li>
+<li><p><span class="citation" data-cites="credland2022">Credland ja Whitfield (<a href="lahteet.html#ref-credland2022" role="doc-biblioref">2022</a>)</span> “Incidence and impact of incivility in paramedicine: a qualitative study”</p></li>
+<li><p><span class="citation" data-cites="deniz2016">Deniż ym. (<a href="lahteet.html#ref-deniz2016" role="doc-biblioref">2016</a>)</span> “Effect of exposure to violence on the development of burnoutsyndrome in ambulance staff”</p></li>
+<li><p><span class="citation" data-cites="friborg2017">Friborg ym. (<a href="lahteet.html#ref-friborg2017" role="doc-biblioref">2017</a>)</span> “Workplace sexual harassment and depressive symptoms: a cross-sectional multilevel analysis comparing harassment from clients or customers to harassment from other employees amongst 7603 Danish employees from 1041 organizations”</p></li>
+<li><p><span class="citation" data-cites="gümüssoy2021">Gümüşsoy ym. (<a href="lahteet.html#ref-gümüssoy2021" role="doc-biblioref">2021</a>)</span> “Relationship of knowledge about and attitudes towards violence with recognition of violence against women among health staff in pre-hospital emergency medical services”</p></li>
+<li><p><span class="citation" data-cites="hamzaoglu2019">Hamzaoglu ja Türk (<a href="lahteet.html#ref-hamzaoglu2019" role="doc-biblioref">2019</a>)</span> “Prevalence of Physical and Verbal Violence Against Health Care Workers in Turkey”</p></li>
+<li><p><span class="citation" data-cites="hazell2021">Hazell ym. (<a href="lahteet.html#ref-hazell2021" role="doc-biblioref">2021</a>)</span> “Enhancing mental health awareness in emergency services (the ENHANcE I project): cross-sectional survey on mental health stigma among emergency services staff”</p></li>
+<li><p><span class="citation" data-cites="jansson2016">Jansson (<a href="lahteet.html#ref-jansson2016" role="doc-biblioref">2016</a>)</span> “Agents for Change?: Gender Equality Efforts in the Swedish Rescue Services”</p></li>
+<li><p><span class="citation" data-cites="johnsen2020">Johnsen ym. (<a href="lahteet.html#ref-johnsen2020" role="doc-biblioref">2020</a>)</span> “Characteristics of aggressive incidents in emergency primary health care described by the Staff Observation Aggression Scale – Revised Emergency (SOAS-RE)”</p></li>
+<li><p><span class="citation" data-cites="klosiewicz2019">Kłosiewicz ym. (<a href="lahteet.html#ref-klosiewicz2019" role="doc-biblioref">2019</a>)</span> “Emergency healthcare providers perception of workplace dangers in the polish Emergency Medical Service: a multi-centre survey study”</p></li>
+<li><p><span class="citation" data-cites="knor2020">Knor ym. (<a href="lahteet.html#ref-knor2020" role="doc-biblioref">2020</a>)</span> “Qualitative Research of Violent Incidents Toward Young Paramedics in the Czech Republic”</p></li>
+<li><p><span class="citation" data-cites="kowalczuk2017">Kowalczuk ja Krajewska-Kułak (<a href="lahteet.html#ref-kowalczuk2017" role="doc-biblioref">2017</a>)</span> “Patient aggression towards different professional groups of healthcare workers”</p></li>
+<li><p><span class="citation" data-cites="leuchter2020">Leuchter ym. (<a href="lahteet.html#ref-leuchter2020" role="doc-biblioref">2020</a>)</span> “Violence Against Emergency Service Workers”</p></li>
+<li><p><span class="citation" data-cites="maguire2018a">Maguire, Browne, ym. (<a href="lahteet.html#ref-maguire2018a" role="doc-biblioref">2018</a>)</span> “International Survey of Violence Against EMS Personnel: Physical Violence Report”</p></li>
+<li><p><span class="citation" data-cites="maguire2018b">Maguire, O’Neill, ym. (<a href="lahteet.html#ref-maguire2018b" role="doc-biblioref">2018</a>)</span> “Preventing EMS workplace violence: A mixed-methods analysis of insights from assaulted medics”</p></li>
+<li><p><span class="citation" data-cites="newbury-birch2017">Newbury-Birch ym. (<a href="lahteet.html#ref-newbury-birch2017" role="doc-biblioref">2017</a>)</span> “A survey of paramedics and alcohol related work: ascertaining fear of and level of assault in the North East Ambulance Service”</p></li>
+<li><p><span class="citation" data-cites="petzäll2011">Petzäll ym. (<a href="lahteet.html#ref-petzäll2011" role="doc-biblioref">2011</a>)</span> “Threats and violence in the Swedish pre-hospital emergency care”</p></li>
+<li><p><span class="citation" data-cites="savoy2021">Savoy ym. (<a href="lahteet.html#ref-savoy2021" role="doc-biblioref">2021</a>)</span> “Self-Reported Violence Experienced by Swiss Prehospital Emergency Care Providers”</p></li>
+<li><p><span class="citation" data-cites="schablon2022">Schablon ym. (<a href="lahteet.html#ref-schablon2022" role="doc-biblioref">2022</a>)</span> “Risk of Burnout among Emergency Department Staff as a Result of Violence and Aggression from Patients and Their Relatives”</p></li>
+<li><p><span class="citation" data-cites="shkatula2019">Shkatula ym. (<a href="lahteet.html#ref-shkatula2019" role="doc-biblioref">2019</a>)</span> “Emergency Medicine: Problems of Violence and Safety at Work”</p></li>
+<li><p><span class="citation" data-cites="sommovigo2022">Sommovigo ja Setti (<a href="lahteet.html#ref-sommovigo2022" role="doc-biblioref">2022</a>)</span> “Italian version of the Victim Incivility Scale: First psychometric evaluations in a sample of emergency workers”</p></li>
+<li><p><span class="citation" data-cites="stendahl2023">Stendahl ym. (<a href="lahteet.html#ref-stendahl2023" role="doc-biblioref">2023</a>)</span> “‘You have to live with some risk, it’s part of the profession’. Specialist ambulance nurses’ perceptions of assignments involving ongoing lethal violence”</p></li>
+<li><p><span class="citation" data-cites="vandervelden2016">Velden, Bosmans, ja Meulen (<a href="lahteet.html#ref-vandervelden2016" role="doc-biblioref">2016</a>)</span> “Predictors of workplace violence among ambulance personnel: a longitudinal study”</p></li>
+<li><p><span class="citation" data-cites="vanreemst2019">Reemst ja Fischer (<a href="lahteet.html#ref-vanreemst2019" role="doc-biblioref">2019</a>)</span> “Experiencing External Workplace Violence: Differences in Indicators Between Three Types of Emergency Responders”</p></li>
+<li><p><span class="citation" data-cites="vanreemst2021">Reemst ja Jongerling (<a href="lahteet.html#ref-vanreemst2021" role="doc-biblioref">2021</a>)</span> “Measuring and Modeling Exposure to External Workplace Aggression in Three Types of Emergency Responders”</p></li>
+<li><p><span class="citation" data-cites="viking2022">Viking, Hugelius, ja Kurland (<a href="lahteet.html#ref-viking2022" role="doc-biblioref">2022</a>)</span> “Experiences of exposure to workplace violence among ambulance personnel”</p></li>
+<li><p><span class="citation" data-cites="wankhade2016">Wankhade (<a href="lahteet.html#ref-wankhade2016" role="doc-biblioref">2016</a>)</span> “Staff perceptions and changing role of pre-hospital profession in the UK ambulance services: An exploratory study”</p></li>
+</ul>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-abbott2023" class="csl-entry" role="listitem">
+Abbott, Isobel, ja Gregory Adam Whitley. 2023. <span>”What Are Ambulance Personnel Experiences of Sexual Harassment and Sexual Assault in the Workplace? A Rapid Evidence Review”</span>. <em>International Emergency Nursing</em> 71 (marraskuuta): 101376. <a href="https://doi.org/10.1016/j.ienj.2023.101376">https://doi.org/10.1016/j.ienj.2023.101376</a>.
+</div>
+<div id="ref-allen2020" class="csl-entry" role="listitem">
+Allen, Joseph A., Jennifer Taylor, Regan M. Murray, Molly Kilcullen, Lily Cushenbery, Josette Gevers, Lindsay Larson, ym. 2020. <span>”Mitigating Violence Against First Responder Teams: Results and Ideas From the Hackmanathon”</span>. <em>Small Group Research</em> 51 (3): 375–401. <a href="https://doi.org/10.1177/1046496419876342">https://doi.org/10.1177/1046496419876342</a>.
+</div>
+<div id="ref-ariza-montes2015" class="csl-entry" role="listitem">
+Ariza-Montes, Antonio, Antonio L. Leal-Rodríguez, ja Antonio G. Leal-Millán. 2015. <span>”A Comparative Study of Workplace Bullying Among Public and Private Employees in Europe”</span>. <em>Journal of Occupational &amp; Environmental Medicine</em> 57 (6): 695–700. <a href="https://doi.org/10.1097/JOM.0000000000000437">https://doi.org/10.1097/JOM.0000000000000437</a>.
+</div>
+<div id="ref-bambi2014" class="csl-entry" role="listitem">
+Bambi, Stefano, Giovanni Becattini, Gian Domenico Giusti, Andrea Mezzetti, Andrea Guazzini, ja Enrico Lumini. 2014. <span>”Lateral Hostilities Among Nurses Employed in Intensive Care Units, Emergency Departments, Operating Rooms, and Emergency Medical Services: A National Survey in Italy”</span>. <em>Dimensions of Critical Care Nursing</em> 33 (6): 347–54. <a href="https://doi.org/10.1097/DCC.0000000000000077">https://doi.org/10.1097/DCC.0000000000000077</a>.
+</div>
+<div id="ref-basting2023" class="csl-entry" role="listitem">
+Basting, James, John Wong, Daniel Berger, Catherine Caldwell, Satvir Saggi, ja Jessica Mann. 2023. <span>”Prevalence of Social Needs &amp; Social Risks Among EMS Providers”</span>. <em>JEMS exclusives</em> 2023.
+</div>
+<div id="ref-bentley2016" class="csl-entry" role="listitem">
+Bentley, Melissa A, ja Roger Levine. 2016. <span>”A National Assessment of the Health and Safety of Emergency Medical Services Professionals”</span>. <em>Prehospital and Disaster Medicine</em> 31 (S1): S96–104. <a href="https://doi.org/10.1017/S1049023X16001102">https://doi.org/10.1017/S1049023X16001102</a>.
+</div>
+<div id="ref-bernaldo-de-quirós2015" class="csl-entry" role="listitem">
+Bernaldo-De-Quirós, Mónica, Ana T. Piccini, M. Mar Gómez, ja Jose C. Cerdeira. 2015. <span>”Psychological Consequences of Aggression in Pre-Hospital Emergency Care: Cross Sectional Survey”</span>. <em>International Journal of Nursing Studies</em> 52 (1): 260–70. <a href="https://doi.org/10.1016/j.ijnurstu.2014.05.011">https://doi.org/10.1016/j.ijnurstu.2014.05.011</a>.
+</div>
+<div id="ref-bigham2014" class="csl-entry" role="listitem">
+Bigham, Blair L., Jan L. Jensen, Walter Tavares, Ian R. Drennan, Humaira Saleem, Katie N. Dainty, ja Glenn Munro. 2014. <span>”Paramedic Self-Reported Exposure to Violence in the Emergency Medical Services (EMS) Workplace: A Mixed-Methods Cross-Sectional Survey”</span>. <em>Prehospital Emergency Care</em> 18 (4): 489–94. <a href="https://doi.org/10.3109/10903127.2014.912703">https://doi.org/10.3109/10903127.2014.912703</a>.
+</div>
+<div id="ref-blazeviciene2016" class="csl-entry" role="listitem">
+Blaževičienė, Aurelija, Daina Zdanavičienė, ja Alina Vaškelytė. 2016. <span>”Organisational Factors Influencing Job Performance of Ambulance Health Care Professionals: Cross-Sectional Survey in Lithuania”</span>. <em>Nursing Education, Research &amp; Practice</em> 6 (2): 46–51. <a href="https://lsmu.lt/cris/entities/publication/0a5a7002-5fe4-421d-87ca-5a6f7bf3ca43/details">https://lsmu.lt/cris/entities/publication/0a5a7002-5fe4-421d-87ca-5a6f7bf3ca43/details</a>.
+</div>
+<div id="ref-boyle2017" class="csl-entry" role="listitem">
+Boyle, Malcolm, ja Lisa McKenna. 2017. <span>”Paramedic Student Exposure to Workplace Violence During Clinical Placements <span></span> A Cross-Sectional Study”</span>. <em>Nurse Education in Practice</em> 22 (tammikuuta): 93–97. <a href="https://doi.org/10.1016/j.nepr.2017.01.001">https://doi.org/10.1016/j.nepr.2017.01.001</a>.
+</div>
+<div id="ref-braun2021" class="csl-entry" role="listitem">
+Braun, Desiree, Florian Reifferscheid, Thoralf Kerner, Janina L. Dressler, Markus Stuhr, Stephan Wenderoth, ja Katja Petrowski. 2021. <span>”Association Between the Experience of Violence and Burnout Among Paramedics”</span>. <em>International Archives of Occupational and Environmental Health</em> 94 (7): 1559–65. <a href="https://doi.org/10.1007/s00420-021-01693-z">https://doi.org/10.1007/s00420-021-01693-z</a>.
+</div>
+<div id="ref-byron2018" class="csl-entry" role="listitem">
+Byron, Juan. 2018. <span>”Career Paramedic-Firefighter Staffing Problems: Is Recruiting Women Part of the Solution?”</span> Tohtorinväitöskirja, Monterey, CA. <a href="https://www.hsdl.org/c/abstract/?docid=821413">https://www.hsdl.org/c/abstract/?docid=821413</a>.
+</div>
+<div id="ref-çalikoglu2018" class="csl-entry" role="listitem">
+Çalıkoglu, Elif Okşan, Aysun Aras, Maysa Hamza, Ayşegül Aydin, Onur Nacakgedigi, ja Patrick Marius Koga. 2018. <span>”Sexism, Attitudes, and Behaviors Towards Violence Against Women in Medical Emergency Services Workers in Erzurum, Turkey”</span>. <em>Global Health Action</em> 11 (1): 1524541. <a href="https://doi.org/10.1080/16549716.2018.1524541">https://doi.org/10.1080/16549716.2018.1524541</a>.
+</div>
+<div id="ref-çelebi2023" class="csl-entry" role="listitem">
+Çelebi, I., ja E. Gökkaya. 2023. <span>”Prevalence of Anxiety and Depression and Associated Factors Among Firefighters: A Cross-Sectional Study in Turkey”</span>. <em>Rwanda Medical Journal</em> 80 (3): 73–81. <a href="https://doi.org/10.4314/rmj.v80i3.10">https://doi.org/10.4314/rmj.v80i3.10</a>.
+</div>
+<div id="ref-cetin2019" class="csl-entry" role="listitem">
+Cetin, Murat, Sercan Bicakci, Mustafa Emin Canakci, Mevlut Okan Aydin, ja Basak Bayram. 2019. <span>”A Critical Appraisal of Emergency Medicine Specialty Training and Resignation Among Residents in Emergency Medicine in Turkey”</span>. <em>Emergency Medicine International</em> 2019 (helmikuuta): 1–6. <a href="https://doi.org/10.1155/2019/6197618">https://doi.org/10.1155/2019/6197618</a>.
+</div>
+<div id="ref-chazel2023" class="csl-entry" role="listitem">
+Chazel, Muriel, Sandrine Alonso, Jane Price, Sarah Kabani, Christophe Demattei, ja Pascale Fabbro-Peray. 2023. <span>”Violence Against Nurses in the Emergency Department: An Observational Study”</span>. <em>BMJ Open</em> 13 (4): e067354. <a href="https://doi.org/10.1136/bmjopen-2022-067354">https://doi.org/10.1136/bmjopen-2022-067354</a>.
+</div>
+<div id="ref-clevelandmanchanda2020" class="csl-entry" role="listitem">
+Cleveland Manchanda, Emily C, ja Wendy L Macias-Konstantopoulos. 2020. <span>”Tackling Gender and Racial Bias in Academic Emergency Medicine: The Perceived Role of Implicit Bias in Faculty Development”</span>. <em>Cureus</em>, marraskuuta. <a href="https://doi.org/10.7759/cureus.11325">https://doi.org/10.7759/cureus.11325</a>.
+</div>
+<div id="ref-copeland2017" class="csl-entry" role="listitem">
+Copeland, Darcy, ja Melissa Henry. 2017. <span>”Workplace Violence and Perceptions of Safety Among Emergency Department Staff Members: Experiences, Expectations, Tolerance, Reporting, and Recommendations”</span>. <em>Journal of Trauma Nursing</em> 24 (2): 65–77. <a href="https://doi.org/10.1097/JTN.0000000000000269">https://doi.org/10.1097/JTN.0000000000000269</a>.
+</div>
+<div id="ref-coskuncenk2019" class="csl-entry" role="listitem">
+Coskun Cenk, Sibel. 2019. <span>”An Analysis of the Exposure to Violence and Burnout Levels of Ambulance Staff”</span>. <em>Turkish Journal of Emergency Medicine</em> 19 (1): 21–25. <a href="https://doi.org/10.1016/j.tjem.2018.09.002">https://doi.org/10.1016/j.tjem.2018.09.002</a>.
+</div>
+<div id="ref-credland2022" class="csl-entry" role="listitem">
+Credland, Nicola Jane, ja Clare Whitfield. 2022. <span>”Incidence and Impact of Incivility in Paramedicine: A Qualitative Study”</span>. <em>Emergency Medicine Journal</em> 39 (1): 52–56. <a href="https://doi.org/10.1136/emermed-2020-209961">https://doi.org/10.1136/emermed-2020-209961</a>.
+</div>
+<div id="ref-deniz2016" class="csl-entry" role="listitem">
+Deniż, Turgut, Meral Saygun, Oğuz Eroğlu, Hüseyin Ülger, ja Burcu Azapoğlu. 2016. <span>”Effect of Exposure to Violence on the Development of Burnoutsyndrome in Ambulance Staff”</span>. <em>TURKISH JOURNAL OF MEDICAL SCIENCES</em> 46: 296–302. <a href="https://doi.org/10.3906/sag-1406-53">https://doi.org/10.3906/sag-1406-53</a>.
+</div>
+<div id="ref-dinhof2023" class="csl-entry" role="listitem">
+Dinhof, Katharina, ja Jurgen Willems. 2023. <span>”The Odd Woman Out: An (in)congruity Analysis of Gender Stereotyping in Gender<span>-</span>Dominant Public Sector Professions”</span>. <em>Public Administration Review</em>, elokuuta, puar.13703. <a href="https://doi.org/10.1111/puar.13703">https://doi.org/10.1111/puar.13703</a>.
+</div>
+<div id="ref-donald2023" class="csl-entry" role="listitem">
+Donald, Neil, ja Tim Lindsay. 2023. <span>”Incidence and Trends in Workplace Violence Within Emergency Departments in the United Kingdom 2017<span></span>2022: An Observational Time Series Analysis”</span>. <em>Frontiers in Public Health</em> 11 (kesäkuuta): 1211471. <a href="https://doi.org/10.3389/fpubh.2023.1211471">https://doi.org/10.3389/fpubh.2023.1211471</a>.
+</div>
+<div id="ref-drew2018" class="csl-entry" role="listitem">
+Drew, Peter, Vivienne Tippett, ja Scott Devenish. 2018. <span>”Effectiveness of Mitigation Interventions on Occupational Violence Against Emergency Service Workers: A Mixed Methods Systematic Review Protocol”</span>. <em>JBI Database of Systematic Reviews and Implementation Reports</em> 16 (5): 1081–86. <a href="https://doi.org/10.11124/JBISRIR-2017-003412">https://doi.org/10.11124/JBISRIR-2017-003412</a>.
+</div>
+<div id="ref-dye2020" class="csl-entry" role="listitem">
+Dye, Timothy D, Lisette Alcantara, Shazia Siddiqi, Monica Barbosu, Saloni Sharma, Tiffany Panko, ja Eva Pressman. 2020. <span>”Risk of COVID-19-Related Bullying, Harassment and Stigma Among Healthcare Workers: An Analytical Cross-Sectional Global Study”</span>. <em>BMJ Open</em> 10 (12): e046620. <a href="https://doi.org/10.1136/bmjopen-2020-046620">https://doi.org/10.1136/bmjopen-2020-046620</a>.
+</div>
+<div id="ref-ericson2014" class="csl-entry" role="listitem">
+Ericson, Mathias. 2014. <span>”Firefighters as Exceptional: Heroism, Nationalism and Masculinity in Times of Suburban Riots and Anti-Racist Protests”</span>. <em>NORMA</em> 9 (3): 178–90. <a href="https://doi.org/10.1080/18902138.2014.951175">https://doi.org/10.1080/18902138.2014.951175</a>.
+</div>
+<div id="ref-foghammar2016" class="csl-entry" role="listitem">
+Foghammar, Ludvig, Suyoun Jang, Gulzhan Asylbek Kyzy, Nerina Weiss, Katherine A. Sullivan, Fawzia Gibson-Fall, ja Rachel Irwin. 2016. <span>”Challenges in Researching Violence Affecting Health Service Delivery in Complex Security Environments”</span>. <em>Social Science &amp; Medicine</em> 162 (elokuuta): 219–26. <a href="https://doi.org/10.1016/j.socscimed.2016.03.039">https://doi.org/10.1016/j.socscimed.2016.03.039</a>.
+</div>
+<div id="ref-friborg2017" class="csl-entry" role="listitem">
+Friborg, Maria K., Jørgen V. Hansen, Per T. Aldrich, Anna P. Folker, Susie Kjær, Maj Britt D. Nielsen, Reiner Rugulies, ja Ida E. H. Madsen. 2017. <span>”Workplace Sexual Harassment and Depressive Symptoms: A Cross-Sectional Multilevel Analysis Comparing Harassment from Clients or Customers to Harassment from Other Employees Amongst 7603 Danish Employees from 1041 Organizations”</span>. <em>BMC Public Health</em> 17 (1): 675. <a href="https://doi.org/10.1186/s12889-017-4669-x">https://doi.org/10.1186/s12889-017-4669-x</a>.
+</div>
+<div id="ref-furin2015" class="csl-entry" role="listitem">
+Furin, Molly, Laura Eliseo, Breanne Langlois, William Fernandez, Patricia Mitchell, ja Kathryn Dyer. 2015. <span>”Self-Reported Provider Safety in an Urban Emergency Medical System”</span>. <em>Western Journal of Emergency Medicine</em> 16 (3): 459–64. <a href="https://doi.org/10.5811/westjem.2015.2.24124">https://doi.org/10.5811/westjem.2015.2.24124</a>.
+</div>
+<div id="ref-geoffrion2020" class="csl-entry" role="listitem">
+Geoffrion, Steve, Danny J Hills, Heather M Ross, Jacqueline Pich, April T Hill, Therese K Dalsbø, Sanaz Riahi, Begoña Martínez-Jarreta, ja Stéphane Guay. 2020. <span>”Education and Training for Preventing and Minimizing Workplace Aggression Directed Toward Healthcare Workers”</span>. Toimittanut Cochrane Work Group. <em>Cochrane Database of Systematic Reviews</em> 2020 (9). <a href="https://doi.org/10.1002/14651858.CD011860.pub2">https://doi.org/10.1002/14651858.CD011860.pub2</a>.
+</div>
+<div id="ref-germain2023" class="csl-entry" role="listitem">
+Germain, Jennifer, Jane Webster, Ann Lincoln, ja Mark Whitfield. 2023. <span>”Emergency Department Injury and Violence Data Across Lancashire: January 2019 to December 2022”</span>. Liverpool. <a href="http://researchonline.ljmu.ac.uk/id/eprint/19575/">http://researchonline.ljmu.ac.uk/id/eprint/19575/</a>.
+</div>
+<div id="ref-gómez-gutiérrez2014" class="csl-entry" role="listitem">
+Gómez-Gutiérrez, M Mar, Mónica Bernaldo-de-Quirós, Ana T Piccini, ja Jose C Cerdeira. 2014. <span>”Posttraumatic Stress Symptomatology in Pre-Hospital Emergency Care Professionals Assaulted by Patients and/or Relatives: Importance of Severity and Experience of the Aggression”</span>. <em>Journal of Interpersonal Violence</em> 31 (2): 339–54. https://doi.org/<a href="https://doi.org/10.1177/0886260514555370">https://doi.org/10.1177/0886260514555370</a>.
+</div>
+<div id="ref-gormley2016" class="csl-entry" role="listitem">
+Gormley, Mirinda A., Remle P. Crowe, Melissa A. Bentley, ja Roger Levine. 2016. <span>”A National Description of Violence Toward Emergency Medical Services Personnel”</span>. <em>Prehospital Emergency Care</em> 20 (4): 439–47. <a href="https://doi.org/10.3109/10903127.2015.1128029">https://doi.org/10.3109/10903127.2015.1128029</a>.
+</div>
+<div id="ref-graham2021" class="csl-entry" role="listitem">
+Graham, Emily, Meganne Ferrel, Katie Wells, Daniel Egan, Casey MacVane, Michael Gisondi, Boyd Burns, Troy Madsen, ja Megan Fix. 2021. <span>”Gender-based Barriers in the Advancement of Women Leaders in Emergency Medicine: A Multi-institutional Qualitative Study”</span>. <em>Western Journal of Emergency Medicine</em> 22 (6): 1355–59. <a href="https://doi.org/10.5811/westjem.2021.7.52826">https://doi.org/10.5811/westjem.2021.7.52826</a>.
+</div>
+<div id="ref-greenslade2020" class="csl-entry" role="listitem">
+Greenslade, Jaimi H, Marianne Wallis, Amy N B Johnston, Eric Carlström, Daniel B Wilhelms, ja Julia Crilly. 2020. <span>”Key Occupational Stressors in the ED: An International Comparison”</span>. <em>Emergency Medicine Journal</em> 37 (2): 106–11. <a href="https://doi.org/10.1136/emermed-2018-208390">https://doi.org/10.1136/emermed-2018-208390</a>.
+</div>
+<div id="ref-grip2016" class="csl-entry" role="listitem">
+Grip, Lena, Lars-Gunnar Engström, Clary Krekula, ja Stefan Karlsson. 2016. <span>”The Woman as Problem and Solution<span></span>analysis of a Gender Equality Initiative Within the Swedish Rescue Services”</span>. <em>NORA - Nordic Journal of Feminist and Gender Research</em> 24 (2): 95–109. <a href="https://doi.org/10.1080/08038740.2016.1165733">https://doi.org/10.1080/08038740.2016.1165733</a>.
+</div>
+<div id="ref-gümüssoy2021" class="csl-entry" role="listitem">
+Gümüşsoy, Süreyya, Sevgül Dönmez, Ali Ekşi, ja Nursel Alp Dal. 2021. <span>”Relationship of Knowledge about and Attitudes Towards Violence with Recognition of Violence Against Women Among Health Staff in Pre-Hospital Emergency Medical Services”</span>. <em>International Emergency Nursing</em> 56 (toukokuuta): 100975. <a href="https://doi.org/10.1016/j.ienj.2021.100975">https://doi.org/10.1016/j.ienj.2021.100975</a>.
+</div>
+<div id="ref-hamzaoglu2019" class="csl-entry" role="listitem">
+Hamzaoglu, Nurcan, ja Burcu Türk. 2019. <span>”Prevalence of Physical and Verbal Violence Against Health Care Workers in Turkey”</span>. <em>International Journal of Health Services</em> 49 (4): 844–61. <a href="https://doi.org/10.1177/0020731419859828">https://doi.org/10.1177/0020731419859828</a>.
+</div>
+<div id="ref-harrison2019" class="csl-entry" role="listitem">
+Harrison, Hooi-Ling, ja Gavin Daker-White. 2019. <span>”Beliefs and Challenges Held by Medical Staff about Providing Emergency Care to Migrants: An International Systematic Review and Translation of Findings to the UK Context”</span>. <em>BMJ Open</em> 9 (7): e028748. <a href="https://doi.org/10.1136/bmjopen-2018-028748">https://doi.org/10.1136/bmjopen-2018-028748</a>.
+</div>
+<div id="ref-hassankhani2018" class="csl-entry" role="listitem">
+Hassankhani, H., N. Parizad, J. Gacki-Smith, A. Rahmani, ja E. Mohammadi. 2018. <span>”The Consequences of Violence Against Nurses Working in the Emergency Department: A Qualitative Study”</span>. <em>International Emergency Nursing</em> 39 (heinäkuuta): 20–25. <a href="https://doi.org/10.1016/j.ienj.2017.07.007">https://doi.org/10.1016/j.ienj.2017.07.007</a>.
+</div>
+<div id="ref-hazell2021" class="csl-entry" role="listitem">
+Hazell, Cassie M., Yasin Koc, Sorcha O’Brien, Sarah Fielding-Smith, ja Mark Hayward. 2021. <span>”Enhancing Mental Health Awareness in Emergency Services (the ENHANcE I Project): Cross-Sectional Survey on Mental Health Stigma Among Emergency Services Staff”</span>. <em>BJPsych Open</em> 7 (3): e77. <a href="https://doi.org/10.1192/bjo.2021.37">https://doi.org/10.1192/bjo.2021.37</a>.
+</div>
+<div id="ref-healy2011" class="csl-entry" role="listitem">
+Healy, Sonya, ja Mark Tyrrell. 2011. <span>”Stress in emergency departments: experiences of nurses and doctors”</span>. <em>Emergency nurse: the journal of the RCN Accident and Emergency Nursing Association</em> 19 (4): 31–37. <a href="https://doi.org/10.7748/en2011.07.19.4.31.c8611">https://doi.org/10.7748/en2011.07.19.4.31.c8611</a>.
+</div>
+<div id="ref-hom2017" class="csl-entry" role="listitem">
+Hom, Melanie A., Ian H. Stanley, Sally Spencer-Thomas, ja Thomas E. Joiner. 2017. <span>”Women Firefighters and Workplace Harassment: Associated Suicidality and Mental Health Sequelae”</span>. <em>Journal of Nervous &amp; Mental Disease</em> 205 (12): 910–17. <a href="https://doi.org/10.1097/NMD.0000000000000759">https://doi.org/10.1097/NMD.0000000000000759</a>.
+</div>
+<div id="ref-hosseinikia2018" class="csl-entry" role="listitem">
+Hosseinikia, Seyed Hamid, Shekufeh Zarei, Majid Najafi Kalyani, ja Sepideh Tahamtan. 2018. <span>”A Cross-Sectional Multicenter Study of Workplace Violence Against Prehospital Emergency Medical Technicians”</span>. <em>Emergency Medicine International</em> 2018: 1–5. <a href="https://doi.org/10.1155/2018/7835676">https://doi.org/10.1155/2018/7835676</a>.
+</div>
+<div id="ref-jacobson2022" class="csl-entry" role="listitem">
+Jacobson, Ashley, James Colletti, ja Neha Raukar. 2022. <span>”Horizontal Violence Toward Emergency Medicine Residents: Gender as a Risk Factor”</span>. <em>Western Journal of Emergency Medicine</em> 23 (5): 633–36. <a href="https://doi.org/10.5811/westjem.2022.6.55485">https://doi.org/10.5811/westjem.2022.6.55485</a>.
+</div>
+<div id="ref-jakubowski2021" class="csl-entry" role="listitem">
+Jakubowski, Tomasz Daniel, ja Magdalena Maja Sitko-Dominik. 2021. <span>”The Impact of the Traditional Male Role Norms on the Posttraumatic Stress Disorder Among Polish Male Firefighters”</span>. Toimittanut Stephan Doering. <em>PLOS ONE</em> 16 (10): e0259025. <a href="https://doi.org/10.1371/journal.pone.0259025">https://doi.org/10.1371/journal.pone.0259025</a>.
+</div>
+<div id="ref-jamieson2016" class="csl-entry" role="listitem">
+Jamieson, Jennifer, Viet Tran, ja Sara Mackenzie. 2016. <span>”Gender Equality in Emergency Medicine: Ignorance Isn’t Bliss”</span>. <em>Emergency Medicine Australasia</em> 28 (3): 341–43. <a href="https://doi.org/10.1111/1742-6723.12595">https://doi.org/10.1111/1742-6723.12595</a>.
+</div>
+<div id="ref-jansson2016" class="csl-entry" role="listitem">
+Jansson, Ulrika. 2016. <span>”Agents for Change?: Gender Equality Efforts in the Swedish Rescue Services”</span>. Teoksessa, toimittanut Mathias Ericson ja Ulf Mellström. Abingdon, Oxon: Routledge.
+</div>
+<div id="ref-johnsen2020" class="csl-entry" role="listitem">
+Johnsen, Grethe E., Tone Morken, Valborg Baste, Knut Rypdal, Tom Palmstierna, ja Ingrid Hjulstad Johansen. 2020. <span>”Characteristics of Aggressive Incidents in Emergency Primary Health Care Described by the Staff Observation Aggression Scale <span></span> Revised Emergency (SOAS-RE)”</span>. <em>BMC Health Services Research</em> 20 (1): 33. <a href="https://doi.org/10.1186/s12913-019-4856-9">https://doi.org/10.1186/s12913-019-4856-9</a>.
+</div>
+<div id="ref-jung2020" class="csl-entry" role="listitem">
+Jung, Dawn. 2020. <span>”Gender<span>-</span>Based Harassment of Emergency Medicine Trainees: What Faculty Educators Need to Know”</span>. Toimittanut Nicole M. DeIorio. <em>AEM Education and Training</em> 4 (1): 77–80. <a href="https://doi.org/10.1002/aet2.10373">https://doi.org/10.1002/aet2.10373</a>.
+</div>
+<div id="ref-kaeser2018" class="csl-entry" role="listitem">
+Kaeser, Dominic, Rebekka Guerra, Osnat Keidar, Urs Lanz, Michael Moses, Christian Kobel, Aristomenis Exadaktylos, ja Meret Ricklin. 2018. <span>”Verbal and Non-Verbal Aggression in a Swiss University Emergency Room: A Descriptive Study”</span>. <em>International Journal of Environmental Research and Public Health</em> 15 (7): 1423. <a href="https://doi.org/10.3390/ijerph15071423">https://doi.org/10.3390/ijerph15071423</a>.
+</div>
+<div id="ref-kaltiso2021" class="csl-entry" role="listitem">
+Kaltiso, Sheri-Ann O., Roslyn M. Seitz, Michael J. Zdradzinski, Timothy P. Moran, Sheryl Heron, Jennifer Robertson, ja Michelle D. Lall. 2021. <span>”The Impact of Racism on Emergency Health Care Workers”</span>. <em>Academic Emergency Medicine</em> 28 (9): 974–81. <a href="https://doi.org/10.1111/acem.14347">https://doi.org/10.1111/acem.14347</a>.
+</div>
+<div id="ref-kang2022" class="csl-entry" role="listitem">
+Kang, Jae-Hwan, Joon Sakong, ja Jung Ho Kim. 2022. <span>”Impact of Violence on the Burnout Status of Paramedics in the Emergency Department: A Multicenter Survey Study”</span>. <em>Australasian Emergency Care</em> 25 (2): 147–53. <a href="https://doi.org/10.1016/j.auec.2021.07.002">https://doi.org/10.1016/j.auec.2021.07.002</a>.
+</div>
+<div id="ref-karaeminogullari2018" class="csl-entry" role="listitem">
+Karaeminogullari, Aysegul, Berrin Erdogan, ja Talya N. Bauer. 2018. <span>”Biting the Hand That Heals: Mistreatment by Patients and the Well-Being of Healthcare Workers”</span>. <em>Personnel Review</em> 47 (2): 572–91. <a href="https://doi.org/10.1108/PR-03-2016-0054">https://doi.org/10.1108/PR-03-2016-0054</a>.
+</div>
+<div id="ref-kline2019" class="csl-entry" role="listitem">
+Kline, Roger, ja Duncan Lewis. 2019. <span>”The Price of Fear: Estimating the Financial Cost of Bullying and Harassment to the NHS in England”</span>. <em>Public Money &amp; Management</em> 39 (3): 166–74. <a href="https://doi.org/10.1080/09540962.2018.1535044">https://doi.org/10.1080/09540962.2018.1535044</a>.
+</div>
+<div id="ref-klosiewicz2019" class="csl-entry" role="listitem">
+Kłosiewicz, Tomasz, Radosław Zalewski, Marek Dąbrowski, Karolina Kłosiewicz, Andrzej Rut, Maciej Sip, Agata Dąbrowska, ym. 2019. <span>”Emergency Healthcare Providers Perception of Workplace Dangers in the Polish Emergency Medical Service: A Multi-Centre Survey Study”</span>. <em>Disaster and Emergency Medicine Journal</em> 4 (4): 166–72. <a href="https://doi.org/10.5603/DEMJ.a2019.0030">https://doi.org/10.5603/DEMJ.a2019.0030</a>.
+</div>
+<div id="ref-knor2020" class="csl-entry" role="listitem">
+Knor, Jiri, Jaroslav Pekara, Jana Seblova, David Peran, Patrik Cmorej, ja Jitka Nemcova. 2020. <span>”Qualitative Research of Violent Incidents Toward Young Paramedics in the Czech Republic”</span>. <em>Western Journal of Emergency Medicine</em> 21 (2): 463–68. <a href="https://doi.org/10.5811/westjem.2019.10.43919">https://doi.org/10.5811/westjem.2019.10.43919</a>.
+</div>
+<div id="ref-koeppel2022" class="csl-entry" role="listitem">
+Koeppel, Maria, Brittany Hollerbach, Terry Von Thaden, Hannah Kelley, Christopher Kaipust, Nattinee Jitnarin, Walker Carlos Poston, Christopher Haddock, ja Sara Jahnke. 2022. <span>”<span>“</span>Trying to Eat an Elephant<span>”</span>: The Complexities of Bullying Training in the Fire Service”</span>. <em>American Journal of Qualitative Research</em> 6 (3): 155–67. <a href="https://doi.org/10.29333/ajqr/12533">https://doi.org/10.29333/ajqr/12533</a>.
+</div>
+<div id="ref-kowalczuk2017" class="csl-entry" role="listitem">
+Kowalczuk, Krystyna, ja Elżbieta Krajewska-Kułak. 2017. <span>”Patient Aggression Towards Different Professional Groups of Healthcare Workers”</span>. <em>Annals of Agricultural and Environmental Medicine</em> 24 (1): 113–16. <a href="https://doi.org/10.5604/12321966.1228395">https://doi.org/10.5604/12321966.1228395</a>.
+</div>
+<div id="ref-lamesoo2013" class="csl-entry" role="listitem">
+Lamesoo, Katri. 2013. <span>”<span>“</span>Some Things Are Just More Permissible for Men<span>”</span>: Estonian Nurses’ Interpretations of Sexual Harassment”</span>. <em>NORA - Nordic Journal of Feminist and Gender Research</em> 21 (2): 123–39. <a href="https://doi.org/10.1080/08038740.2013.795190">https://doi.org/10.1080/08038740.2013.795190</a>.
+</div>
+<div id="ref-leuchter2020" class="csl-entry" role="listitem">
+Leuchter, Felix, Thomas Hergarten, Ulrich Heister, Detlef Struck, Stefan Schaefer, Stefan Schröder, Christian Voigt, ja Rudolf Hering. 2020. <span>”Violence Against Emergency Service Workers”</span>. <em>Deutsches Ärzteblatt International</em> 2020 (117): 460–61. <a href="https://doi.org/10.3238/arztebl.2020.0460">https://doi.org/10.3238/arztebl.2020.0460</a>.
+</div>
+<div id="ref-lever2019" class="csl-entry" role="listitem">
+Lever, Isabel, Daniel Dyball, Neil Greenberg, ja Sharon A. M. Stevelink. 2019. <span>”Health Consequences of Bullying in the Healthcare Workplace: A Systematic Review”</span>. <em>Journal of Advanced Nursing</em> 75 (12): 3195–3209. <a href="https://doi.org/10.1111/jan.13986">https://doi.org/10.1111/jan.13986</a>.
+</div>
+<div id="ref-li2010" class="csl-entry" role="listitem">
+Li, Siu Fai, Kelly Grant, Tanuja Bhoj, Gretchen Lent, Jocelyn Freeman Garrick, Peter Greenwald, Marc Haber, ym. 2010. <span>”Resident Experience of Abuse and Harassment in Emergency Medicine: Ten Years Later”</span>. <em>The Journal of Emergency Medicine</em> 38 (2): 248–52. <a href="https://doi.org/10.1016/j.jemermed.2008.05.005">https://doi.org/10.1016/j.jemermed.2008.05.005</a>.
+</div>
+<div id="ref-lu2020a" class="csl-entry" role="listitem">
+Lu, Dave, Michelle Lall, Jennifer Mitzman, Sheryl Heron, Ava Pierce, Nicholas Hartman, Danielle McCarthy, Joshua Jauregui, ja Tania Strout. 2020. <span>”<span>#</span>MeToo in EM: A Multicenter Survey of Academic Emergency Medicine Faculty on Their Experiences with Gender Discrimination and Sexual Harassment”</span>. <em>Western Journal of Emergency Medicine</em> 21 (2): 252–60. <a href="https://doi.org/10.5811/westjem.2019.11.44592">https://doi.org/10.5811/westjem.2019.11.44592</a>.
+</div>
+<div id="ref-lu2020" class="csl-entry" role="listitem">
+Lu, Dave, Ava Pierce, Joshua Jauregui, Sheryl Heron, Michelle Lall, Jennifer Mitzman, Danielle McCarthy, Nicholas Hartman, ja Tania Strout. 2020. <span>”Academic Emergency Medicine Faculty Experiences with Racial and Sexual Orientation Discrimination”</span>. <em>Western Journal of Emergency Medicine</em> 21 (5). <a href="https://doi.org/10.5811/westjem.2020.6.47123">https://doi.org/10.5811/westjem.2020.6.47123</a>.
+</div>
+<div id="ref-maake2021" class="csl-entry" role="listitem">
+Maake, Tshepo Nelson, Bernadette Theresa Millar, Lloyd Denzil Christopher, ja Navindhra Naidoo. 2021. <span>”A Critical Ethnographic Study of Discriminatory Social Practice During Clinical Practice in Emergency Medical Care”</span>. <em>BMC Health Services Research</em> 21 (1): 787. <a href="https://doi.org/10.1186/s12913-021-06829-y">https://doi.org/10.1186/s12913-021-06829-y</a>.
+</div>
+<div id="ref-maguire2018a" class="csl-entry" role="listitem">
+Maguire, Brian J., Matthew Browne, Barbara J. O’Neill, Michael T. Dealy, Darryl Clare, ja Peter O’Meara. 2018. <span>”International Survey of Violence Against EMS Personnel: Physical Violence Report”</span>. <em>Prehospital and Disaster Medicine</em> 33 (5): 526–31. <a href="https://doi.org/10.1017/S1049023X18000870">https://doi.org/10.1017/S1049023X18000870</a>.
+</div>
+<div id="ref-maguire2018" class="csl-entry" role="listitem">
+Maguire, Brian J., Peter O’Meara, Barbara J. O’Neill, ja Richard Brightwell. 2018. <span>”Violence Against Emergency Medical Services Personnel: A Systematic Review of the Literature”</span>. <em>American Journal of Industrial Medicine</em> 61 (2): 167–80. <a href="https://doi.org/10.1002/ajim.22797">https://doi.org/10.1002/ajim.22797</a>.
+</div>
+<div id="ref-maguire2017" class="csl-entry" role="listitem">
+Maguire, Brian J., ja Barbara J. O’Neill. 2017. <span>”Emergency Medical Service Personnel<span>’</span>s Risk From Violence While Serving the Community”</span>. <em>American Journal of Public Health</em> 107 (11): 1770–75. <a href="https://doi.org/10.2105/AJPH.2017.303989">https://doi.org/10.2105/AJPH.2017.303989</a>.
+</div>
+<div id="ref-maguire2018b" class="csl-entry" role="listitem">
+Maguire, Brian J., Barbara J. O’Neill, Peter O’Meara, Matthew Browne, ja Michael T. Dealy. 2018. <span>”Preventing EMS Workplace Violence: A Mixed-Methods Analysis of Insights from Assaulted Medics”</span>. <em>Injury</em> 49 (7): 1258–65. <a href="https://doi.org/10.1016/j.injury.2018.05.007">https://doi.org/10.1016/j.injury.2018.05.007</a>.
+</div>
+<div id="ref-marco2019" class="csl-entry" role="listitem">
+Marco, Catherine A., Joel M. Geiderman, Raquel M. Schears, ja Arthur R. Derse. 2019. <span>”Emergency Medicine in the <span>#</span>MeToo Era”</span>. Toimittanut Tammie E. Quest. <em>Academic Emergency Medicine</em> 26 (11): 1245–54. <a href="https://doi.org/10.1111/acem.13814">https://doi.org/10.1111/acem.13814</a>.
+</div>
+<div id="ref-martínez-garcía2021" class="csl-entry" role="listitem">
+Martínez-García, Encarnación, Verónica Montiel-Mesa, Belén Esteban-Vilchez, Beatriz Bracero-Alemany, Adelina Martín-Salvador, María Gázquez-López, María Ángeles Pérez-Morente, ja María Adelaida Alvarez-Serrano. 2021. <span>”Sexist Myths Emergency Healthcare Professionals and Factors Associated with the Detection of Intimate Partner Violence in Women”</span>. <em>International Journal of Environmental Research and Public Health</em> 18 (11): 5568. <a href="https://doi.org/10.3390/ijerph18115568">https://doi.org/10.3390/ijerph18115568</a>.
+</div>
+<div id="ref-mendes2015" class="csl-entry" role="listitem">
+Mendes, Aysha. 2015. <span>”Protecting Ambulance Staff Against Violence and Aggression in the Workplace”</span>. <em>Journal of Paramedic Practice</em> 7 (8): 384–85. <a href="https://doi.org/10.12968/jpar.2015.7.8.384">https://doi.org/10.12968/jpar.2015.7.8.384</a>.
+</div>
+<div id="ref-miró2010" class="csl-entry" role="listitem">
+Miró, Òscar, Guillermo BurilloPutze, Patrick K. Plunkett, ja Anthony F. T. Brown. 2010. <span>”Female Representation on Emergency Medicine Editorial Teams:”</span> <em>European Journal of Emergency Medicine</em> 17 (2): 84–88. <a href="https://doi.org/10.1097/MEJ.0b013e32832e98f7">https://doi.org/10.1097/MEJ.0b013e32832e98f7</a>.
+</div>
+<div id="ref-morken2016" class="csl-entry" role="listitem">
+Morken, Tone, Kjersti Alsaker, ja Ingrid H. Johansen. 2016. <span>”Emergency Primary Care Personnel<span>’</span>s Perception of Professional-Patient Interaction in Aggressive Incidents – a Qualitative Study”</span>. <em>BMC Family Practice</em> 17 (1): 54. <a href="https://doi.org/10.1186/s12875-016-0454-7">https://doi.org/10.1186/s12875-016-0454-7</a>.
+</div>
+<div id="ref-morken2013" class="csl-entry" role="listitem">
+Morken, Tone, ja Ingrid H Johansen. 2013. <span>”Safety Measures to Prevent Workplace Violence in Emergency Primary Care Centres<span></span>a Cross-Sectional Study”</span>. <em>BMC Health Services Research</em> 13 (1): 384. <a href="https://doi.org/10.1186/1472-6963-13-384">https://doi.org/10.1186/1472-6963-13-384</a>.
+</div>
+<div id="ref-morken2015" class="csl-entry" role="listitem">
+Morken, Tone, Ingrid H Johansen, ja Kjersti Alsaker. 2015. <span>”Dealing with Workplace Violence in Emergency Primary Health Care: A Focus Group Study”</span>. <em>BMC Family Practice</em> 16 (1): 51. <a href="https://doi.org/10.1186/s12875-015-0276-z">https://doi.org/10.1186/s12875-015-0276-z</a>.
+</div>
+<div id="ref-morokuma2019" class="csl-entry" role="listitem">
+Morokuma, Nanami, ja Cindy H. Chiu. 2019. <span>”Trends and Characteristics of Security Incidents Involving Aid Workers in Health Care Settings: A 20-Year Review”</span>. <em>Prehospital and Disaster Medicine</em> 34 (03): 265–73. <a href="https://doi.org/10.1017/S1049023X19004333">https://doi.org/10.1017/S1049023X19004333</a>.
+</div>
+<div id="ref-murphy2015" class="csl-entry" role="listitem">
+Murphy, J. F. A. 2015. <span>”Assaults on Medical, Nursing and Paramedical Staff”</span>. <em>Irish Medical Journal</em> 108 (9): 260.
+</div>
+<div id="ref-murray2020" class="csl-entry" role="listitem">
+Murray, Regan M., Andrea L. Davis, Lauren J. Shepler, Lori Moore-Merrell, William J. Troup, Joseph A. Allen, ja Jennifer A. Taylor. 2020. <span>”A Systematic Review of Workplace Violence Against Emergency Medical Services Responders”</span>. <em>NEW SOLUTIONS: A Journal of Environmental and Occupational Health Policy</em> 29 (4): 487–503. <a href="https://doi.org/10.1177/1048291119893388">https://doi.org/10.1177/1048291119893388</a>.
+</div>
+<div id="ref-newbury-birch2017" class="csl-entry" role="listitem">
+Newbury-Birch, Dorothy, Neil Martin, Emma Giles, Christopher Moat, ja Colin Shevills. 2017. <span>”A survey of paramedics and alcohol related work: ascertaining fear of and level of assault in the North East Ambulance Service”</span>. <em>British Paramedic Journal</em> 1 (4): 13–20. <a href="https://doi.org/10.29045/14784726.2017.1.4.13">https://doi.org/10.29045/14784726.2017.1.4.13</a>.
+</div>
+<div id="ref-nikathil2017" class="csl-entry" role="listitem">
+Nikathil, Shradha, Alexander Olaussen, Robert A Gocentas, Evan Symons, ja Biswadev Mitra. 2017. <span>”Review Article: Workplace Violence in the Emergency Department: A Systematic Review and Meta Analysis”</span>. <em>Emergency Medicine Australasia</em> 29 (3): 265–75. <a href="https://doi.org/10.1111/1742-6723.12761">https://doi.org/10.1111/1742-6723.12761</a>.
+</div>
+<div id="ref-nikolic2020" class="csl-entry" role="listitem">
+Nikolić, Dragan, ja Aleksandar Višnjić. 2020. <span>”Mobbing and Violence at Work as Hidden Stressors and Work Ability Among Emergency Medical Doctors in Serbia”</span>. <em>Medicina</em> 56 (1): 31. <a href="https://doi.org/10.3390/medicina56010031">https://doi.org/10.3390/medicina56010031</a>.
+</div>
+<div id="ref-owusu-ansah2023" class="csl-entry" role="listitem">
+Owusu-Ansah, Sylvia, Rickquel Tripp, Stacy N. Weisberg, Mary P. Mercer, Kimberly Whitten-Chung, ja The NAEMSP Diversity, Equity, &amp; Inclusion Committee. 2023. <span>”Essential Principles to Create an Equitable, Inclusive, and Diverse EMS Workforce and Work Environment: A Position Statement and Resource Document”</span>. <em>Prehospital Emergency Care</em> 27 (5): 552–56. <a href="https://doi.org/10.1080/10903127.2023.2187103">https://doi.org/10.1080/10903127.2023.2187103</a>.
+</div>
+<div id="ref-oztermeli2023" class="csl-entry" role="listitem">
+Oztermeli, Ayse Dilara, Ahmet Oztermeli, Emre Şancı, ja Hüseyin Cahit Halhallı. 2023. <span>”Violence in the Emergency Department: What Can We Do?”</span> <em>Cureus</em>, heinäkuuta. <a href="https://doi.org/10.7759/cureus.41909">https://doi.org/10.7759/cureus.41909</a>.
+</div>
+<div id="ref-oztok2018" class="csl-entry" role="listitem">
+Oztok, Beliz, Ferhat Icme, Havva Sahin Kavakli, Gul Pamukcu Gunaydin, Alp Sener, ja Gulhan Kurtoglu Celik. 2018. <span>”Evaluation of Violence Against Emergency Physicians in Turkey”</span>. <em>Eurasian Journal of Emergency Medicine</em> 17 (4): 182–86. <a href="https://doi.org/10.5152/eajem.2018.20982">https://doi.org/10.5152/eajem.2018.20982</a>.
+</div>
+<div id="ref-péculo-carrasco2021" class="csl-entry" role="listitem">
+Péculo-Carrasco, Juan-Antonio, Mónica Rodríguez-Bouza, María-del-Mar Casal-Sánchez, José-Manuel de-la-Fuente-Rodríguez, Antonio Puerta-Córdoba, Hugo-José Rodríguez-Ruiz, César-Pedro Sánchez-Almagro, ja Inmaculada Failde. 2021. <span>”Development and Validation of a Safety Scale Perceived by the Witness of Prehospital Emergency Care”</span>. <em>Journal of Patient Safety</em> 17 (2): 101–7. <a href="https://doi.org/10.1097/PTS.0000000000000567">https://doi.org/10.1097/PTS.0000000000000567</a>.
+</div>
+<div id="ref-perina2018" class="csl-entry" role="listitem">
+Perina, Debra G., Catherine A. Marco, Rebecca Smith-Coggins, Terry Kowalenko, Mary M. Johnston, ja Anne Harvey. 2018. <span>”Well-Being Among Emergency Medicine Resident Physicians: Results from the ABEM Longitudinal Study of Emergency Medicine Residents”</span>. <em>The Journal of Emergency Medicine</em> 55 (1): 101–109.e2. <a href="https://doi.org/10.1016/j.jemermed.2018.04.003">https://doi.org/10.1016/j.jemermed.2018.04.003</a>.
+</div>
+<div id="ref-petzäll2011" class="csl-entry" role="listitem">
+Petzäll, K., J. Tällberg, T. Lundin, ja Björn-Ove Suserud. 2011. <span>”Threats and Violence in the Swedish Pre-Hospital Emergency Care”</span>. <em>International Emergency Nursing</em> 19 (1): 5–11. <a href="https://doi.org/10.1016/j.ienj.2010.01.004">https://doi.org/10.1016/j.ienj.2010.01.004</a>.
+</div>
+<div id="ref-pourshaikhian2016" class="csl-entry" role="listitem">
+Pourshaikhian, Majid, Hassan Abolghasem Gorji, Aidin Aryankhesal, Davood Khorasani-Zavareh, ja Ahmad Barati. 2016. <span>”A Systematic Literature Review: Workplace Violence Against Emergency Medical Services Personnel”</span>. <em>Archives of Trauma Research</em> Inpress (Inpress). <a href="https://doi.org/10.5812/atr.28734">https://doi.org/10.5812/atr.28734</a>.
+</div>
+<div id="ref-powell2023" class="csl-entry" role="listitem">
+Powell, Jonathan R, Rebecca E Cash, Jordan D Kurth, Christopher B Gage, Christopher B Mercer, ja Ashish R Panchal. 2023. <span>”National Examination of Occupational Hazards in Emergency Medical Services”</span>. <em>Occupational and Environmental Medicine</em> 80 (11): 644–49. <a href="https://doi.org/10.1136/oemed-2023-109053">https://doi.org/10.1136/oemed-2023-109053</a>.
+</div>
+<div id="ref-punches2023" class="csl-entry" role="listitem">
+Punches, Brittany E., Evans Osuji, Jason J. Bischof, Simiao Li-Sauerwine, Henry Young, Michael S. Lyons, ja Lauren T. Southerland. 2023. <span>”Patient Perceptions of Microaggressions and Discrimination Toward Patients During Emergency Department Care”</span>. <em>Academic Emergency Medicine</em> 30 (12): 1192–1200. <a href="https://doi.org/10.1111/acem.14767">https://doi.org/10.1111/acem.14767</a>.
+</div>
+<div id="ref-ramacciati2016" class="csl-entry" role="listitem">
+Ramacciati, Nicola, Andrea Cecagnoli, Beniamino Addey, Enrico Lumini, ja Laura Rasero. 2016. <span>”Interventions to Reduce the Risk of Violence Toward Emergency Department Staff: Current Approaches”</span>. <em>Open Access Emergency Medicine</em>, huhtikuuta, 17. <a href="https://doi.org/10.2147/OAEM.S69976">https://doi.org/10.2147/OAEM.S69976</a>.
+</div>
+<div id="ref-ramacciati2015" class="csl-entry" role="listitem">
+Ramacciati, Nicola, Andrea Ceccagnoli, ja Beniamino Addey. 2015. <span>”Violence Against Nurses in the Triage Area: An Italian Qualitative Study”</span>. <em>International Emergency Nursing</em> 23 (4): 274–80. <a href="https://doi.org/10.1016/j.ienj.2015.02.004">https://doi.org/10.1016/j.ienj.2015.02.004</a>.
+</div>
+<div id="ref-ramacciati2018" class="csl-entry" role="listitem">
+Ramacciati, Nicola, Andrea Ceccagnoli, Beniamino Addey, ja Laura Rasero. 2018. <span>”Violence towards Emergency Nurses. The Italian National Survey 2016: A qualitative study”</span>. <em>International Journal of Nursing Studies</em> 81 (toukokuuta): 21–29. <a href="https://doi.org/10.1016/j.ijnurstu.2018.01.017">https://doi.org/10.1016/j.ijnurstu.2018.01.017</a>.
+</div>
+<div id="ref-ramacciati2019" class="csl-entry" role="listitem">
+Ramacciati, Nicola, Alessio Gili, Andrea Mezzetti, Andrea Ceccagnoli, Beniamino Addey, ja Laura Rasero. 2019. <span>”Violence Towards Emergency Nurses: The 2016 Italian National Survey<span></span>A Cross<span>-</span>Sectional Study”</span>. <em>Journal of Nursing Management</em> 27 (4): 792–805. <a href="https://doi.org/10.1111/jonm.12733">https://doi.org/10.1111/jonm.12733</a>.
+</div>
+<div id="ref-ramacciati2020" class="csl-entry" role="listitem">
+Ramacciati, Nicola, ja Gian Domenico Giusti. 2020. <span>”Workplace Violence in Emergency Departments: The Health Professionals and Security Personnel Alliance”</span>. <em>Emergency Medicine Australasia</em> 32 (6): 1074–76. <a href="https://doi.org/10.1111/1742-6723.13608">https://doi.org/10.1111/1742-6723.13608</a>.
+</div>
+<div id="ref-ravioli2022" class="csl-entry" role="listitem">
+Ravioli, Svenja, Michael Haidinger, Aristomenis K. Exadaktylos, Emanuel Pluess, ja Gregor Lindner. 2022. <span>”Emergency medicine in Switzerland: an analysis of physician workforce, gender equality and academics”</span>. <em>Swiss Medical Weekly</em> 152 (3940): 40001. <a href="https://doi.org/10.57187/smw.2022.40001">https://doi.org/10.57187/smw.2022.40001</a>.
+</div>
+<div id="ref-vanreemst2019" class="csl-entry" role="listitem">
+Reemst, Lisa van, ja Tamar F. C. Fischer. 2019. <span>”Experiencing External Workplace Violence: Differences in Indicators Between Three Types of Emergency Responders”</span>. <em>Journal of Interpersonal Violence</em> 34 (9): 1864–89. <a href="https://doi.org/10.1177/0886260516657913">https://doi.org/10.1177/0886260516657913</a>.
+</div>
+<div id="ref-vanreemst2021" class="csl-entry" role="listitem">
+Reemst, Lisa van, ja Joran Jongerling. 2021. <span>”Measuring and Modeling Exposure to External Workplace Aggression in Three Types of Emergency Responders”</span>. <em>Journal of Interpersonal Violence</em> 36 (17-18): 7978–8003. <a href="https://doi.org/10.1177/0886260519847780">https://doi.org/10.1177/0886260519847780</a>.
+</div>
+<div id="ref-reißmann2023" class="csl-entry" role="listitem">
+Reißmann, Sonja, Tanja Wirth, Vanessa Beringer, David A. Groneberg, Albert Nienhaus, Volker Harth, ja Stefanie Mache. 2023. <span>”<span>“</span>I Think We Still Do Too Little<span>”</span>: Measures to Prevent Violence and Aggression in German Emergency Departments <span></span> a Qualitative Study”</span>. <em>BMC Health Services Research</em> 23 (1): 97. <a href="https://doi.org/10.1186/s12913-023-09044-z">https://doi.org/10.1186/s12913-023-09044-z</a>.
+</div>
+<div id="ref-savoy2021" class="csl-entry" role="listitem">
+Savoy, Simon, Pierre-Nicolas Carron, Nathalie Romain-Glassey, ja Nicolas Beysard. 2021. <span>”Self-Reported Violence Experienced by Swiss Prehospital Emergency Care Providers”</span>. Toimittanut Chak W. Kam. <em>Emergency Medicine International</em> 2021 (joulukuuta): 1–6. <a href="https://doi.org/10.1155/2021/9966950">https://doi.org/10.1155/2021/9966950</a>.
+</div>
+<div id="ref-schablon2022" class="csl-entry" role="listitem">
+Schablon, Anja, Jan Felix Kersten, Albert Nienhaus, Hans Werner Kottkamp, Wilfried Schnieder, Greta Ullrich, Karin Schäfer, Lisa Ritzenhöfer, Claudia Peters, ja Tanja Wirth. 2022. <span>”Risk of Burnout Among Emergency Department Staff as a Result of Violence and Aggression from Patients and Their Relatives”</span>. <em>International Journal of Environmental Research and Public Health</em> 19 (9): 4945. <a href="https://doi.org/10.3390/ijerph19094945">https://doi.org/10.3390/ijerph19094945</a>.
+</div>
+<div id="ref-schneider2018" class="csl-entry" role="listitem">
+Schneider, Anna, ja Matthias Weigl. 2018. <span>”Associations Between Psychosocial Work Factors and Provider Mental Well-Being in Emergency Departments: A Systematic Review”</span>. Toimittanut Peter Van Bogaert. <em>PLOS ONE</em> 13 (6): e0197375. <a href="https://doi.org/10.1371/journal.pone.0197375">https://doi.org/10.1371/journal.pone.0197375</a>.
+</div>
+<div id="ref-shkatula2019" class="csl-entry" role="listitem">
+Shkatula, Yu. V., Y. O. Badion, M. V. Novikov, ja Ya. V. Khyzhnia. 2019. <span>”Emergency Medicine: Problems of Violence and Safety at Work”</span>. <em>Eastern Ukrainian Medical Journal</em> 7 (4): 351–57. <a href="https://doi.org/10.21272/eumj.2019;7(4):351-357">https://doi.org/10.21272/eumj.2019;7(4):351-357</a>.
+</div>
+<div id="ref-snavely2021" class="csl-entry" role="listitem">
+Snavely, Cheyenne, Michelle Romeo, Amber Ciardiello, ja Michael Mojica. 2021. <span>”The Pandemic of Workplace Violence: The Gendered Experience of Emergency Medicine Trainees”</span>. <em>AEM Education and Training</em> 5 (3): e10630. <a href="https://doi.org/10.1002/aet2.10630">https://doi.org/10.1002/aet2.10630</a>.
+</div>
+<div id="ref-sommovigo2022" class="csl-entry" role="listitem">
+Sommovigo, Valentina, ja Ilaria Setti. 2022. <span>”Italian Version of the Victim Incivility Scale: First Psychometric Evaluations in a Sample of Emergency Workers”</span>. <em>TPM <span></span> Testing, Psychometrics, Methodology in Applied Psychology</em> 29 (3): 359–75. <a href="https://doi.org/10.4473/TPM29.3.6">https://doi.org/10.4473/TPM29.3.6</a>.
+</div>
+<div id="ref-somville2016" class="csl-entry" role="listitem">
+Somville, Francis J., Véronique De Gucht, ja Stan Maes. 2016. <span>”The Impact of Occupational Hazards and Traumatic Events Among Belgian Emergency Physicians”</span>. <em>Scandinavian Journal of Trauma, Resuscitation and Emergency Medicine</em> 24 (1): 59. <a href="https://doi.org/10.1186/s13049-016-0249-9">https://doi.org/10.1186/s13049-016-0249-9</a>.
+</div>
+<div id="ref-stendahl2023" class="csl-entry" role="listitem">
+Stendahl, Susanne, Linda Rollgard, Lina Behm, ja Andreas Rantala. 2023. <span>”<span>“</span>You Have to Live with Some Risk, It<span>’</span>s Part of the Profession<span>”</span>. Specialist Ambulance Nurses<span>’</span> Perceptions of Assignments Involving Ongoing Lethal Violence”</span>. <em>Scandinavian Journal of Trauma, Resuscitation and Emergency Medicine</em> 31 (1): 17. <a href="https://doi.org/10.1186/s13049-023-01082-0">https://doi.org/10.1186/s13049-023-01082-0</a>.
+</div>
+<div id="ref-taylor2015" class="csl-entry" role="listitem">
+Taylor, J. A., A. L. Davis, B. Barnes, A. V. Lacovara, ja R. Patel. 2015. <span>”Injury Risks of EMS Responders: Evidence from the National Fire Fighter Near-Miss Reporting System”</span>. <em>BMJ Open</em> 5 (6): e007562–62. <a href="https://doi.org/10.1136/bmjopen-2014-007562">https://doi.org/10.1136/bmjopen-2014-007562</a>.
+</div>
+<div id="ref-taylor2016" class="csl-entry" role="listitem">
+Taylor, Jennifer A., Brittany Barnes, Andrea L. Davis, Jasmine Wright, Shannon Widman, ja Michael LeVasseur. 2016. <span>”Expecting the Unexpected: A Mixed Methods Study of Violence to EMS Responders in an Urban Fire Department”</span>. <em>American Journal of Industrial Medicine</em> 59 (2): 150–63. <a href="https://doi.org/10.1002/ajim.22550">https://doi.org/10.1002/ajim.22550</a>.
+</div>
+<div id="ref-taylor2019" class="csl-entry" role="listitem">
+Taylor, Jennifer A., Regan M. Murray, Andrea L. Davis, Lauren J. Shepler, Cecelia K. Harrison, Neva A. Novinger, ja Joseph A. Allen. 2019. <span>”Creation of a Systems-Level Checklist to Address Stress and Violence in Fire-Based Emergency Medical Services Responders”</span>. <em>Occupational Health Science</em> 3 (3): 265–95. <a href="https://doi.org/10.1007/s41542-019-00047-z">https://doi.org/10.1007/s41542-019-00047-z</a>.
+</div>
+<div id="ref-touriel2021" class="csl-entry" role="listitem">
+Touriel, Ross, Robert Dunne, Robert Swor, ja Terry Kowalenko. 2021. <span>”A Pilot Study: Emergency Medical Services<span></span>Related Violence in the Out-of-Hospital Setting in Southeast Michigan”</span>. <em>The Journal of Emergency Medicine</em> 60 (4): 554–59. <a href="https://doi.org/10.1016/j.jemermed.2020.12.007">https://doi.org/10.1016/j.jemermed.2020.12.007</a>.
+</div>
+<div id="ref-turkcuer2015" class="csl-entry" role="listitem">
+Turkcuer, Ibrahim. 2015. <span>”Assessment of the Relationship between Violence and Burnout among Physicians Working in Emergency Departments, Turkey”</span>. <em>Turkish Journal of Trauma and Emergency Surgery</em>. <a href="https://doi.org/10.5505/tjtes.2015.91298">https://doi.org/10.5505/tjtes.2015.91298</a>.
+</div>
+<div id="ref-wankhade2016" class="csl-entry" role="listitem">
+Wankhade, Paresh. 2016. <span>”Staff Perceptions and Changing Role of Pre-Hospital Profession in the UK Ambulance Services: An Exploratory Study”</span>. <em>International Journal of Emergency Services</em> 5 (2): 126–44. <a href="https://doi.org/10.1108/IJES-02-2016-0004">https://doi.org/10.1108/IJES-02-2016-0004</a>.
+</div>
+<div id="ref-vandervelden2016" class="csl-entry" role="listitem">
+Velden, Peter G. van der, Mark W. G. Bosmans, ja Erik van der Meulen. 2016. <span>”Predictors of Workplace Violence Among Ambulance Personnel: A Longitudinal Study”</span>. <em>Nursing Open</em> 3 (2): 90–98. <a href="https://doi.org/10.1002/nop2.38">https://doi.org/10.1002/nop2.38</a>.
+</div>
+<div id="ref-venesoja2020" class="csl-entry" role="listitem">
+Venesoja, Anu, Maaret Castrén, Susanna Tella, ja Veronica Lindström. 2020. <span>”Patients<span>’</span> Perceptions of Safety in Emergency Medical Services: An Interview Study”</span>. <em>BMJ Open</em> 10 (10): e037488. <a href="https://doi.org/10.1136/bmjopen-2020-037488">https://doi.org/10.1136/bmjopen-2020-037488</a>.
+</div>
+<div id="ref-viking2022" class="csl-entry" role="listitem">
+Viking, Magnus, Karin Hugelius, ja Lisa Kurland. 2022. <span>”Experiences of Exposure to Workplace Violence Among Ambulance Personnel”</span>. <em>International Emergency Nursing</em> 65 (marraskuuta): 101220. <a href="https://doi.org/10.1016/j.ienj.2022.101220">https://doi.org/10.1016/j.ienj.2022.101220</a>.
+</div>
+<div id="ref-zeidan2022" class="csl-entry" role="listitem">
+Zeidan, Amy, Jasmyne Patel, Gabrielle Dys, Laura Dean, Alexa Curt, Michelle P. Lin, ja Margaret Samuels-Kalow. 2022. <span>”<span>“</span>Why Bother?<span>”</span>: Barriers to Reporting Gender and Sexual Harassment in Emergency Medicine”</span>. <em>Academic Emergency Medicine</em> 29 (9): 1067–77. <a href="https://doi.org/10.1111/acem.14544">https://doi.org/10.1111/acem.14544</a>.
+</div>
+<div id="ref-ziaei2018" class="csl-entry" role="listitem">
+Ziaei, Maryam, Ali Massoudifar, Ali Rajabpour-Sanati, Ali-Mohammad Pourbagher-Shahri, ja Ali Abdolrazaghnejad. 2018. <span>”Management of Violence and Aggression in Emergency Environment; a Narrative Review of 200 Related Articles”</span>. <em>Advanced Journal of Emergency Medicine</em>, nro In press (marraskuuta). <a href="https://doi.org/10.22114/ajem.v0i0.117">https://doi.org/10.22114/ajem.v0i0.117</a>.
+</div>
+</div>
 </section>
 
 
