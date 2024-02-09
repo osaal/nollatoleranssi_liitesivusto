@@ -54,7 +54,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -95,12 +114,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Hae"
   }
 }</script>
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="site_libs/viz-1.8.2/viz.js"></script>
+<link href="site_libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
+<script src="site_libs/grViz-binding-1.0.10/grViz.js"></script>
 
 
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-sidebar docked nav-fixed">
+<body class="nav-sidebar docked nav-fixed slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -253,13 +276,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#hakulausekkeet-ja-tulosten-lataaminen" id="toc-hakulausekkeet-ja-tulosten-lataaminen" class="nav-link active" data-scroll-target="#hakulausekkeet-ja-tulosten-lataaminen"><span class="header-section-number">8.1</span> Hakulausekkeet ja tulosten lataaminen</a></li>
   <li><a href="#prisma-kulkukaavio" id="toc-prisma-kulkukaavio" class="nav-link" data-scroll-target="#prisma-kulkukaavio"><span class="header-section-number">8.2</span> PRISMA-kulkukaavio</a></li>
-  <li><a href="#valitut-tutkimusjulkaisut" id="toc-valitut-tutkimusjulkaisut" class="nav-link" data-scroll-target="#valitut-tutkimusjulkaisut"><span class="header-section-number">8.3</span> Valitut tutkimusjulkaisut</a></li>
-  <li><a href="#kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt" id="toc-kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt" class="nav-link" data-scroll-target="#kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt"><span class="header-section-number">8.4</span> Kokotekstin pohjalta poistetut tutkimukset ja syyt</a></li>
+  <li><a href="#kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt" id="toc-kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt" class="nav-link" data-scroll-target="#kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt"><span class="header-section-number">8.3</span> Kokotekstin pohjalta poistetut tutkimukset ja syyt</a></li>
+  <li><a href="#valitut-tutkimusjulkaisut" id="toc-valitut-tutkimusjulkaisut" class="nav-link" data-scroll-target="#valitut-tutkimusjulkaisut"><span class="header-section-number">8.4</span> Valitut tutkimusjulkaisut</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -292,8 +315,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <table class="table">
 <caption>Taulukko&nbsp;8.1: Haku 5:n tietolähteet</caption>
 <colgroup>
-<col style="width: 52%">
-<col style="width: 47%">
+<col style="width: 56%">
+<col style="width: 43%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -363,19 +386,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Web of Science -hakukoneen käytössä syntyi inhimillinen virhe, jolloin haettiin kaikista palvelun tietokannoista. Tutkimuksen rajauksena oli alunperin vain Web of Science Core Collection- sekä MEDLINE-tietokannat. Virhe huomattiin vasta tulosten koonnin aikana.</p>
 <p>Virheellinen haku ei kuitenkaan vaikuta näkemyksemme mukaan juurikaan tulosten luotettavuuteen, kahdesta syystä. Ensimmäiseksi, virheellisesti lisätyt tulokset seulontuivat pois viimeistään kokotekstin tarkistuksessa, jolloin vaikutus rajaantui pääsääntöisesti kokonaistulosmäärään. Toiseksi, kahden tietokannan tulokset seulontuivat pois heti hakumenettelyssä, koska käytimme <code>country</code>-rajausta (jolloin KCI-Korean Journal Database sekä SciELO Citation Index ei pitäisi tuottaa mitään tuloksia).</p>
-<section id="hakulausekkeet-ja-tulosten-lataaminen" class="level2" data-number="8.1">
+<section id="hakulausekkeet-ja-tulosten-lataaminen" class="level2 page-columns page-full" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="hakulausekkeet-ja-tulosten-lataaminen"><span class="header-section-number">8.1</span> Hakulausekkeet ja tulosten lataaminen</h2>
 <p>Alla olevassa taulukossa esitetään hakujen suorituspäivämäärät, hakusanat ja hakukonekohtaiset rajaukset sekä osumat.</p>
-<div id="tbl-haku5-toteutetut-haut" class="anchored">
+<div id="tbl-haku5-toteutetut-haut" class="anchored page-columns page-full">
 <table class="table">
 <caption>Taulukko&nbsp;8.2: Haku 5:n toteutetut haut</caption>
 <colgroup>
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
+<col style="width: 9%">
+<col style="width: 30%">
+<col style="width: 8%">
+<col style="width: 14%">
+<col style="width: 6%">
+<col style="width: 28%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -514,15 +537,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>12.1.2024</td>
 <td>1.1.2010 - 30.9.2023</td>
 <td>30</td>
-<td>Tyyppi: Article</td>
+<td><p>Tyyppi: Article</p>
+<p>Source type: Scholarly Article</p>
+<p>Näytä tulokset kirjastoni tilauksen ulkopuolelta: Kyllä</p></td>
 </tr>
 <tr class="odd">
-<td>H5_6_sw</td>
+<td>H5_6_sw<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></td>
 <td>ProQuest (Ebook Central, Social Science Premium Collection)</td>
 <td>12.1.2024</td>
 <td>1.1.2010 - 30.9.2023</td>
 <td>27</td>
-<td>Tyyppi: Article</td>
+<td><p>Tyyppi: Article</p>
+<p>Source type: Scholarly Article</p>
+<p>Maa: Suomi</p>
+<p>Näytä tulokset kirjastoni tilauksen ulkopuolelta: Kyllä</p></td>
 </tr>
 <tr class="even">
 <td>H5_6_en</td>
@@ -530,7 +558,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>12.1.2024</td>
 <td>1.1.2010 - 30.9.2023</td>
 <td>40</td>
-<td>Tyyppi: Article</td>
+<td><p>Tyyppi: Article</p>
+<p>Source Type: Scholarly Article</p>
+<p>Vertaisarvioitu: Kyllä</p>
+<p>Kieli: Englanti</p>
+<p>Maa: Suomi</p>
+<p>Näytä tulokset kirjastoni tilauksen ulkopuolelta: Kyllä</p></td>
 </tr>
 <tr class="odd">
 <td>H5_7_fi</td>
@@ -582,7 +615,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-</div>
+<div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Toistaessamme tämän haun huomasimme, että ProQuest antaa timeout-virheen jos rajauksia ei syötä suoraan hakulausekkeeseen. Haun hakulauseke eroaa siksi muista lausekkeista, mutta rajaa samalla tavalla kuin muut ProQuestin haut.</p></li></div></div>
+<p>OpenAlexin hakujen (<code>H5_8</code>-luokka) kohdalla emme pystyneet täydellisesti toistamaan tuloksia myöhemmässä vaiheessa. Varsinkin suomen- ja ruotsinkielisten hakujen kohdalla toistohaut tuottivat hyvin erilaisia tuloksia, useimmiten paljon vähemmän tai ei ollenkaan tietueita. Kokeilimme toistaa haut sekä <code>search</code>-sanalla että <code>filter=title_and_abstract.search</code>-suodattimella, mutta asia ei korjaantunut. Epäilemme tässä vaiheessa, että ääkköset voivat muodostaa ongelman OpenAlexin hakuihin, mutta emme ole voineet varmistaa asiaa.</p>
 <p>Jokaisen haun hakulausekkeet ovat listattuna alla hakukoodeittain (ks. <a href="#tbl-haku5-toteutetut-haut">Taulukko&nbsp;<span>8.2</span></a>). Paina osa-hakua vastaavaa koodia nähdäksesi kunkin haun hakulausekkeen. Voit kopioida lausekkeen sellaisenaan leikepöydällesi painamalla kopiointikuvaketta avatun hakulausekkeen yläoikeassa nurkassa.</p>
 <div class="cell">
 <details>
@@ -683,17 +717,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details>
 <summary>Haku H5_6_sw</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>(<span class="st">"polis*"</span> OR <span class="st">"ordningsv?kt*"</span> OR <span class="st">"försvars*"</span> OR <span class="st">"soldat*"</span> OR <span class="st">"gränsbevak*"</span> OR <span class="st">"gränskontroll*"</span>) <span class="fu">AND</span> (diskriminer<span class="sc">*</span> OR trakasse<span class="sc">*</span> OR påtryck<span class="sc">*</span> OR våld<span class="sc">*</span> OR osaklig<span class="sc">*</span> OR opasslig<span class="sc">*</span> OR jämlik<span class="sc">*</span> OR jämställd<span class="sc">*</span>) AND <span class="fu">PEER</span>(yes) AND <span class="fu">PUBDATE</span>(<span class="dv">20100101-20230930</span>)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Emme tällä hetkellä pysty toistamaan tätä hakua. Selvitämme virhettä ja korjaamme kirjauksen.</span></span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>(<span class="st">"polis*"</span> OR <span class="st">"ordningsv?kt*"</span> OR <span class="st">"försvars*"</span> OR <span class="st">"soldat*"</span> OR <span class="st">"gränsbevak*"</span> OR <span class="st">"gränskontroll*"</span>) <span class="fu">AND</span> (diskriminer<span class="sc">*</span> OR trakasse<span class="sc">*</span> OR påtryck<span class="sc">*</span> OR våld<span class="sc">*</span> OR osaklig<span class="sc">*</span> OR opasslig<span class="sc">*</span> OR jämlik<span class="sc">*</span> OR jämställd<span class="sc">*</span>) AND <span class="fu">PEER</span>(yes) AND <span class="fu">PUBDATE</span>(<span class="dv">20100101-20230930</span>) AND <span class="fu">SCHOL</span>(yes) AND <span class="fu">DTYPE</span>(article) AND <span class="fu">LOCATION</span>(finland)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
 <details>
 <summary>Haku H5_6_en</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>(<span class="st">"police"</span> OR <span class="st">"guard*"</span> OR <span class="st">"defen* contractor*"</span> OR <span class="st">"steward"</span> OR <span class="st">"soldier"</span> OR <span class="st">"military personnel"</span>) <span class="fu">AND</span> (discriminat<span class="sc">*</span> OR harass<span class="sc">*</span> OR pressur<span class="sc">*</span> OR violen<span class="sc">*</span> OR improper behavio<span class="sc">*</span> OR equal<span class="sc">*</span> OR non<span class="sc">-</span>discriminat<span class="sc">*</span> OR equit<span class="sc">*</span>) AND <span class="fu">PEER</span>(yes) AND <span class="fu">PUBDATE</span>(<span class="dv">20100101-20230930</span>)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Emme tällä hetkellä pysty toistamaan tätä hakua. Selvitämme virhettä ja korjaamme kirjauksen.</span></span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>(<span class="st">"police"</span> OR <span class="st">"guard*"</span> OR <span class="st">"defen* contractor*"</span> OR <span class="st">"steward"</span> OR <span class="st">"soldier"</span> OR <span class="st">"military personnel"</span>) <span class="fu">AND</span> (discriminat<span class="sc">*</span> OR harass<span class="sc">*</span> OR pressur<span class="sc">*</span> OR violen<span class="sc">*</span> OR improper behavio<span class="sc">*</span> OR equal<span class="sc">*</span> OR non<span class="sc">-</span>discriminat<span class="sc">*</span> OR equit<span class="sc">*</span>) AND <span class="fu">PEER</span>(yes) AND <span class="fu">PUBDATE</span>(<span class="dv">20100101-20230930</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
@@ -719,23 +749,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <summary>Haku H5_8_fi</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>https<span class="sc">:</span><span class="er">//</span>api.openalex.org<span class="sc">/</span>works?search<span class="ot">=</span>(poliisi<span class="sc">%20OR%</span>20varti<span class="sc">%20OR%</span>20puolustusvoim<span class="sc">%20OR%</span>20sotila)<span class="sc">%20AND%</span><span class="dv">20</span>(syrji<span class="sc">%20OR%</span>20h<span class="sc">%C3%</span>A4irin<span class="sc">%20OR%</span>20h<span class="sc">%C3%</span>A4irit<span class="sc">%20OR%</span>20v<span class="sc">%C3%</span>A4kival<span class="sc">%20OR%</span>20painost<span class="sc">%20OR%</span>20pahoinpi<span class="sc">%20OR%</span>20ahdistel<span class="sc">%20OR%</span>20ep<span class="sc">%C3%</span>A4asialli<span class="sc">%20OR%</span>20yhdenvertai<span class="sc">%20OR%</span>20tasa<span class="sc">-</span>arvo<span class="sc">%20OR%</span>20tasapuoli<span class="sc">%20OR%</span>20tasavertai)<span class="sc">&amp;</span>filter<span class="ot">=</span>from_publication_date<span class="sc">:</span><span class="dv">2010-01-01</span>,to_publication_date<span class="sc">:</span><span class="dv">2023-09-30</span>,type_crossref<span class="sc">:</span>journal<span class="sc">-</span>article<span class="sc">|</span>monograph<span class="sc">|</span>report<span class="sc">&amp;</span>per_page<span class="ot">=</span><span class="dv">200</span><span class="sc">&amp;</span>select<span class="ot">=</span>title,publication_year,doi<span class="sc">&amp;</span>page<span class="ot">=</span><span class="dv">1</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Emme tällä hetkellä pysty toistamaan tätä hakua. Selvitämme virhettä ja korjaamme kirjauksen.</span></span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Toistamisessa tämä ei tuota ollenkaan tuloksia (tarkistettu 9.2.2024). Emme pysty toistamaan hakua aikaisemmin tuotetulla tavalla.</span></span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
 <details>
 <summary>Haku H5_8_sw</summary>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>https<span class="sc">:</span><span class="er">//</span>api.openalex.org<span class="sc">/</span>works?search<span class="ot">=</span>(polis<span class="sc">%20OR%</span>20ordningsv<span class="sc">%20OR%</span>20f<span class="sc">%C3%</span>B6rsvars<span class="sc">%20OR%</span>20soldat<span class="sc">%20OR%</span>20gr<span class="sc">%C3%</span>A4nsbevak<span class="sc">%20OR%</span>20gr<span class="sc">%C3%</span>A4nskontroll)<span class="sc">%20AND%</span><span class="dv">20</span>(diskriminer<span class="sc">%20OR%</span>20trakasse<span class="sc">%20ORp%</span>C3<span class="sc">%A5tryck%</span>20OR<span class="sc">%20v%</span>C3<span class="sc">%A5ld%</span>20OR<span class="sc">%20osaklig%</span>20OR<span class="sc">%20opasslig%</span>20ORj<span class="sc">%C3%</span>A4mlik<span class="sc">%20ORj%</span>C3<span class="sc">%A4mst%</span>C3<span class="sc">%A4lld)%</span>20AND<span class="sc">%20(finland%</span>20OR%20finsk)<span class="sc">&amp;</span>filter<span class="ot">=</span>from_publication_date<span class="sc">:</span><span class="dv">2010-01-01</span>,to_publication_date<span class="sc">:</span><span class="dv">2023-09-30</span>,type_crossref<span class="sc">:</span>journal<span class="sc">-</span>article<span class="sc">|</span>monograph<span class="sc">|</span>report<span class="sc">&amp;</span>per_page<span class="ot">=</span><span class="dv">200</span><span class="sc">&amp;</span>select<span class="ot">=</span>title,publication_year,doi<span class="sc">&amp;</span>page<span class="ot">=</span><span class="dv">1</span></span>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>https<span class="sc">:</span><span class="er">//</span>api.openalex.org<span class="sc">/</span>works?search<span class="ot">=</span>(polis<span class="sc">%20OR%</span>20ordningsv<span class="sc">%20OR%</span>20f<span class="sc">%C3%</span>B6rsvars<span class="sc">%20OR%</span>20soldat<span class="sc">%20OR%</span>20gr<span class="sc">%C3%</span>A4nsbevak<span class="sc">%20OR%</span>20gr<span class="sc">%C3%</span>A4nskontroll)<span class="sc">%20AND%</span><span class="dv">20</span>(diskriminer<span class="sc">%20OR%</span>20trakasse<span class="sc">%20OR%</span>20p<span class="sc">%C3%</span>A5tryck<span class="sc">%20OR%</span>20v<span class="sc">%C3%</span>A5ld<span class="sc">%20OR%</span>20osaklig<span class="sc">%20OR%</span>20opasslig<span class="sc">%20OR%</span>20j<span class="sc">%C3%</span>A4mlik<span class="sc">%20OR%</span>20j<span class="sc">%C3%</span>A4mst<span class="sc">%C3%</span>A4lld)<span class="sc">%20AND%</span><span class="dv">20</span>(finland<span class="sc">%20OR%</span>20finsk)<span class="sc">&amp;</span>filter<span class="ot">=</span>from_publication_date<span class="sc">:</span><span class="dv">2010-01-01</span>,to_publication_date<span class="sc">:</span><span class="dv">2023-09-30</span>,type_crossref<span class="sc">:</span>journal<span class="sc">-</span>article<span class="sc">|</span>monograph<span class="sc">|</span>report<span class="sc">&amp;</span>per_page<span class="ot">=</span><span class="dv">200</span><span class="sc">&amp;</span>select<span class="ot">=</span>title,publication_year,doi<span class="sc">&amp;</span>page<span class="ot">=</span><span class="dv">1</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Emme tällä hetkellä pysty toistamaan tätä hakua. Selvitämme virhettä ja korjaamme kirjauksen.</span></span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Toistamisessa tämä tuottaa kolme tulosta (tarkistettu 9.2.2024). Emme pysty toistamaan hakua aikaisemmin tuotetulla tavalla.</span></span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
 <details>
 <summary>Haku H5_8_en</summary>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>https<span class="sc">:</span><span class="er">//</span>api.openalex.org<span class="sc">/</span>works?filter<span class="ot">=</span>title_and_abstract.search<span class="sc">:</span>police<span class="sc">%20OR%</span>20guard<span class="sc">%20OR%</span>20defence<span class="sc">%20contractor%</span>20OR<span class="sc">%20steward%</span>20OR<span class="sc">%20soldier%</span>20OR<span class="sc">%20military%</span>20personne<span class="er">)</span><span class="sc">%20AND%</span><span class="dv">20</span>(discriminat<span class="sc">%20OR%</span>20harass<span class="sc">%20OR%</span>20pressure<span class="sc">%20OR%</span>20violen<span class="sc">%20OR%</span>20improper<span class="sc">%20behavior%</span>20OR<span class="sc">%20equal%</span>20OR<span class="sc">%20equit)%</span>20AND<span class="sc">%20(finland%</span>20OR%20finnish),from_publication_date<span class="sc">:</span><span class="dv">2010-01-01</span>,to_publication_date<span class="sc">:</span><span class="dv">2023-09-30</span>,type_crossref<span class="sc">:</span>journal<span class="sc">-</span>article<span class="sc">|</span>monograph<span class="sc">|</span>report<span class="sc">&amp;</span>per_page<span class="ot">=</span><span class="dv">200</span><span class="sc">&amp;</span>select<span class="ot">=</span>title,publication_year,doi<span class="sc">&amp;</span>page<span class="ot">=</span><span class="dv">1</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Emme tällä hetkellä pysty toistamaan tätä hakua. Selvitämme virhettä ja korjaamme kirjauksen.</span></span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>https<span class="sc">:</span><span class="er">//</span>api.openalex.org<span class="sc">/</span>works?filter<span class="ot">=</span>title_and_abstract.search<span class="sc">:</span>(<span class="sc">%22police%</span><span class="dv">22</span><span class="sc">%20OR%</span><span class="dv">20</span><span class="sc">%22guard%</span><span class="dv">22</span><span class="sc">%20OR%</span><span class="dv">20</span><span class="sc">%22defence%</span>20contractor<span class="sc">%22%</span>20OR<span class="sc">%20%</span>22steward<span class="sc">%22%</span>20OR<span class="sc">%20%</span>22soldier<span class="sc">%22%</span>20OR<span class="sc">%20%</span>22military<span class="sc">%20personnel%</span><span class="dv">22</span>)<span class="sc">%20AND%</span><span class="dv">20</span>(discriminat<span class="sc">%20OR%</span>20harass<span class="sc">%20OR%</span>20pressure<span class="sc">%20OR%</span>20violen<span class="sc">%20OR%</span><span class="dv">20</span><span class="sc">%22improper%</span>20behavior<span class="sc">%22%</span>20OR<span class="sc">%20equal%</span>20OR<span class="sc">%20equit)%</span>20AND<span class="sc">%20(finland%</span>20OR%20finnish),from_publication_date<span class="sc">:</span><span class="dv">2010-01-01</span>,to_publication_date<span class="sc">:</span><span class="dv">2023-09-30</span>,type_crossref<span class="sc">:</span>journal<span class="sc">-</span>article<span class="sc">|</span>monograph<span class="sc">|</span>report<span class="sc">&amp;</span>per_page<span class="ot">=</span><span class="dv">200</span><span class="sc">&amp;</span>select<span class="ot">=</span>title,publication_year,doi<span class="sc">&amp;</span>page<span class="ot">=</span><span class="dv">1</span></span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>OpenAlex:in kohdalla tulokset haettiin API-menettelyllä. Maksimitulosten määrä per sivu oli 200 dokumentaation mukaan.</p>
@@ -745,18 +773,347 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="prisma-kulkukaavio" class="level2" data-number="8.2">
 <h2 data-number="8.2" class="anchored" data-anchor-id="prisma-kulkukaavio"><span class="header-section-number">8.2</span> PRISMA-kulkukaavio</h2>
 <p>Hakutulosten seulonta tuotti seuraavan PRISMA-protokollan mukaisen kulkukaavion:</p>
-<p>[PRISMA-KAAVIO]</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Tietokannat ja rekisterit</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Muut lähteet</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<details>
+<summary>Koodi</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"PRISMAstatement"</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>labels <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Tunnistetut kohteet"</span>,</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Kaksoiskappaleet poistettu ennen seulontaa"</span>,</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Seulotut kohteet"</span>,</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Poisseulotut kohteet"</span>,</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Haettavat kohteet"</span>,</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Hakematta jääneet kohteet"</span>,</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Tarkistetut kohteet"</span>,</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Poistetut kohteet"</span>,</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Sisällytetyt kohteet"</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>counts <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1249</span>, <span class="dv">847</span>, <span class="dv">38</span>, <span class="dv">38</span>, <span class="dv">11</span>)</span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a><span class="fu">flow_exclusions</span>(</span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">incl_counts =</span> counts,</span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">total_label =</span> labels[<span class="dv">1</span>],</span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">incl_labels =</span> labels[<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>)],</span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">excl_labels =</span> labels[<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>)], </span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">percent_of_total =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">percent_of_prev =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_count =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">font_size =</span> <span class="dv">14</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="grViz html-widget html-fill-item" id="htmlwidget-9d13c71c2f6fc6cd1cb4" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-9d13c71c2f6fc6cd1cb4">{"x":{"diagram":"\n    digraph prisma {\n    node [shape=\"box\" , fontsize = 14];\n    graph [splines=ortho, nodesep=1 ]\n    \nTunnistetutkohteet [label=\"Tunnistetut kohteet\n1249 (100%)\"];\nSeulotutkohteet_A [label=\"Seulotut kohteet\n847 (67.8%)\"];\nHaettavatkohteet_B [label=\"Haettavat kohteet\n 38 (3.0%)\"];\nTarkistetutkohteet_C [label=\"Tarkistetut kohteet\n 38 (3.0%)\"];\nSisällytetytkohteet_D [label=\"Sisällytetyt kohteet\n 11 (0.9%)\"];\nKaksoiskappaleetpoistettuennenseulontaa_a [label=\"Kaksoiskappaleet poistettu ennen seulontaa\n402 (32.2%)\"];\nPoisseulotutkohteet_b [label=\"Poisseulotut kohteet\n809 (64.8%)\"];\nHakemattajääneetkohteet_c [label=\"Hakematta jääneet kohteet\n  0 (0.0%)\"];\nPoistetutkohteet_d [label=\"Poistetut kohteet\n 27 (2.2%)\"];\nTunnistetutkohteet -> {Seulotutkohteet_A; Kaksoiskappaleetpoistettuennenseulontaa_a};\nSeulotutkohteet_A -> {Haettavatkohteet_B; Poisseulotutkohteet_b};\nHaettavatkohteet_B -> {Tarkistetutkohteet_C; Hakemattajääneetkohteet_c};\nTarkistetutkohteet_C -> {Sisällytetytkohteet_D; Poistetutkohteet_d};\n{rank=same; Tunnistetutkohteet Kaksoiskappaleetpoistettuennenseulontaa_a}\n{rank=same; Seulotutkohteet_A Poisseulotutkohteet_b}\n{rank=same; Haettavatkohteet_B Hakemattajääneetkohteet_c}\n{rank=same; Tarkistetutkohteet_C Poistetutkohteet_d}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<details>
+<summary>Koodi</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"PRISMAstatement"</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>labels <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Tunnistetut kohteet"</span>,</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Kaksoiskappaleet poistettu ennen seulontaa"</span>,</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Haettavat kohteet"</span>,</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Hakematta jääneet kohteet"</span>,</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Tarkistetut kohteet"</span>,</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Poistetut kohteet"</span>,</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Sisällytetyt kohteet"</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>counts <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a><span class="fu">flow_exclusions</span>(</span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">incl_counts =</span> counts,</span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">total_label =</span> labels[<span class="dv">1</span>],</span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">incl_labels =</span> labels[<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>)],</span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">excl_labels =</span> labels[<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>)], </span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">percent_of_total =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">percent_of_prev =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_count =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">font_size =</span> <span class="dv">14</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="grViz html-widget html-fill-item" id="htmlwidget-d7e5cc306c5931cb0c0a" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-d7e5cc306c5931cb0c0a">{"x":{"diagram":"\n    digraph prisma {\n    node [shape=\"box\" , fontsize = 14];\n    graph [splines=ortho, nodesep=1 ]\n    \nTunnistetutkohteet [label=\"Tunnistetut kohteet\n0 (100%)\"];\nHaettavatkohteet_A [label=\"Haettavat kohteet\n0 (NA)\"];\nTarkistetutkohteet_B [label=\"Tarkistetut kohteet\n0 (NA)\"];\nSisällytetytkohteet_C [label=\"Sisällytetyt kohteet\n0 (NA)\"];\nKaksoiskappaleetpoistettuennenseulontaa_a [label=\"Kaksoiskappaleet poistettu ennen seulontaa\n0 (NA)\"];\nHakemattajääneetkohteet_b [label=\"Hakematta jääneet kohteet\n0 (NA)\"];\nPoistetutkohteet_c [label=\"Poistetut kohteet\n0 (NA)\"];\nTunnistetutkohteet -> {Haettavatkohteet_A; Kaksoiskappaleetpoistettuennenseulontaa_a};\nHaettavatkohteet_A -> {Tarkistetutkohteet_B; Hakemattajääneetkohteet_b};\nTarkistetutkohteet_B -> {Sisällytetytkohteet_C; Poistetutkohteet_c};\n{rank=same; Tunnistetutkohteet Kaksoiskappaleetpoistettuennenseulontaa_a}\n{rank=same; Haettavatkohteet_A Hakemattajääneetkohteet_b}\n{rank=same; Tarkistetutkohteet_B Poistetutkohteet_c}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section>
-<section id="valitut-tutkimusjulkaisut" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="valitut-tutkimusjulkaisut"><span class="header-section-number">8.3</span> Valitut tutkimusjulkaisut</h2>
-<p>[TÄHÄN LÄHDELUETTELO KAIKISTA MUKAAN VALITUISTA TUTKIMUSJULKAISUISTA]</p>
+<section id="kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt"><span class="header-section-number">8.3</span> Kokotekstin pohjalta poistetut tutkimukset ja syyt</h2>
+<p>Seulonnan jälkeen poistettuja tutkimusjulkaisuja oli yhteensä 27 kappaletta. <a href="#tbl-haku5-poistetut">Taulukko&nbsp;<span>8.3</span></a> on jokaisen julkaisun vittaus ja poistosyy(t). Syyt ovat listattuna ensisijaisen syyn mukaan. Päätös poisjättämisestä voitiin tehdä jos yksi inkluusiokriteeri ei täyttynyt, jolloin tutkimuksella voi olla muitakin syitä miksi sitä ei otettu mukaan katsauksen tuloksiin.</p>
+<div id="tbl-haku5-poistetut" class="anchored">
+<table class="table">
+<caption>Taulukko&nbsp;8.3: Haku 5:n poistetut kohteet syineen</caption>
+<colgroup>
+<col style="width: 34%">
+<col style="width: 62%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Kohde</th>
+<th>Syy(t) poistoon</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="citation" data-cites="aho2010">Aho ja Käyhkö (<a href="lahteet.html#ref-aho2010" role="doc-biblioref">2010</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="ervasti2022">Ervasti ym. (<a href="lahteet.html#ref-ervasti2022" role="doc-biblioref">2022</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="fagerlund2021">Fagerlund (<a href="lahteet.html#ref-fagerlund2021" role="doc-biblioref">2021</a>)</span></td>
+<td>Väärä tutkimusaihe</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="hannonen2015">Hannonen ja Käyhkö (<a href="lahteet.html#ref-hannonen2015" role="doc-biblioref">2015</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="himanen2021">Keskinen, Seikkula, ja Mkwesha (<a href="lahteet.html#ref-himanen2021" role="doc-biblioref">2021</a>)</span></td>
+<td>Väärä tutkimusaihe</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="huttunen2018">Huttunen, Joronen, ja Rantanen (<a href="lahteet.html#ref-huttunen2018" role="doc-biblioref">2018</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="härkänen2023">Härkänen ym. (<a href="lahteet.html#ref-härkänen2023" role="doc-biblioref">2023</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="marttila2012">Marttila, Heikura, ja Käyhkö (<a href="lahteet.html#ref-marttila2012" role="doc-biblioref">2012</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="niklander2019">Niklander, Notko, ja Husso (<a href="lahteet.html#ref-niklander2019" role="doc-biblioref">2019</a>)</span></td>
+<td>Ei-empiirinen tutkimus</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="noppari2018">Noppari ym. (<a href="lahteet.html#ref-noppari2018" role="doc-biblioref">2018</a>)</span></td>
+<td>Väärä kohderyhmä, väärä tutkimusaihe</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="puronvarsi2020">Puronvarsi, Ruotanen, ja Holma (<a href="lahteet.html#ref-puronvarsi2020" role="doc-biblioref">2020</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="saarikkomäki2013">Saarikkomäki ja Kivivuori (<a href="lahteet.html#ref-saarikkomäki2013" role="doc-biblioref">2013</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="saarikkomäki2016">Saarikkomäki ja Kivivuori (<a href="lahteet.html#ref-saarikkomäki2016" role="doc-biblioref">2016</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="salin2019">Salin ym. (<a href="lahteet.html#ref-salin2019" role="doc-biblioref">2019</a>)</span></td>
+<td>Ei-empiirinen tutkimus, väärä tutkimusaihe</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="salin2013">Salin ja Hoel (<a href="lahteet.html#ref-salin2013" role="doc-biblioref">2013</a>)</span></td>
+<td>Ei-empiirinen tutkimus, väärä tutkimusaihe</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="salminen-tuomaala2015">Salminen-Tuomaala, Leikkola, ja Paavilainen (<a href="lahteet.html#ref-salminen-tuomaala2015" role="doc-biblioref">2015</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="vanhanen2021">Vanhanen (<a href="lahteet.html#ref-vanhanen2021" role="doc-biblioref">2021</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="vartia2017">Vartia ym. (<a href="lahteet.html#ref-vartia2017" role="doc-biblioref">2017</a>)</span></td>
+<td>Ei-empiirinen tutkimus</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="vartia2016">Vartia ym. (<a href="lahteet.html#ref-vartia2016" role="doc-biblioref">2016</a>)</span></td>
+<td>Ei-empiirinen tutkimus</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="venesoja2019">Venesoja ym. (<a href="lahteet.html#ref-venesoja2019" role="doc-biblioref">2019</a>)</span></td>
+<td>Väärä tutkimusaihe</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="viitanen2013">Viitanen ja Mantere (<a href="lahteet.html#ref-viitanen2013" role="doc-biblioref">2013</a>)</span></td>
+<td>Ei-empiirinen tutkimus</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="vishwakarma2018">Vishwakarma, Mishra, ja Kumar (<a href="lahteet.html#ref-vishwakarma2018" role="doc-biblioref">2018</a>)</span></td>
+<td>Väärä tutkimusaihe</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="vuorensyrjä2014">Vuorensyrjä (<a href="lahteet.html#ref-vuorensyrjä2014" role="doc-biblioref">2014</a>)</span></td>
+<td>Väärä tutkimusaihe</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="vuorensyrjä2016">Vuorensyrjä ja Fagerlund (<a href="lahteet.html#ref-vuorensyrjä2016" role="doc-biblioref">2016</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="vuorensyrjä2018">Vuorensyrjä ja Fagerlund (<a href="lahteet.html#ref-vuorensyrjä2018" role="doc-biblioref">2018</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="vuorensyrjä2020">Vuorensyrjä ja Rauta (<a href="lahteet.html#ref-vuorensyrjä2020" role="doc-biblioref">2020</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="vuorensyrjä2023">Vuorensyrjä ym. (<a href="lahteet.html#ref-vuorensyrjä2023" role="doc-biblioref">2023</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+</tbody>
+</table>
+</div>
 </section>
-<section id="kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt"><span class="header-section-number">8.4</span> Kokotekstin pohjalta poistetut tutkimukset ja syyt</h2>
-<p>[TÄHÄN LÄHDELUETTELO KAIKISTA KOKOTEKSTISTÄ POISTETUISTA TUTKIMUKSISTA PÄÄSYYN MUKAAN.]</p>
+<section id="valitut-tutkimusjulkaisut" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="valitut-tutkimusjulkaisut"><span class="header-section-number">8.4</span> Valitut tutkimusjulkaisut</h2>
+<p>Haun pohjalta valittiin 11 tutkimusjulkaisua. Kaikki julkaisut valikoituivat mukaan hakuprosessin myötä. Julkaisut ovat:</p>
+<ul>
+<li><p><span class="citation" data-cites="fagerlund2022">Fagerlund ym. (<a href="lahteet.html#ref-fagerlund2022" role="doc-biblioref">2022</a>)</span> “Conceptualising Violence in Close Relationships: Discrepancies Between Police Conceptions and the Letter of the Law in Finland”</p></li>
+<li><p><span class="citation" data-cites="huotari2019">Huotari (<a href="lahteet.html#ref-huotari2019" role="doc-biblioref">2019</a>)</span> “Naisten ja miesten tasa-arvo poliisisssa 2018”</p></li>
+<li><p><span class="citation" data-cites="keskinen2011">Keskinen (<a href="lahteet.html#ref-keskinen2011" role="doc-biblioref">2011</a>)</span> “Troublesome Differences—Dealing with Gendered Violence, Ethnicity, and ‘Race’ in the Finnish Welfare State”</p></li>
+<li><p><span class="citation" data-cites="koivunen2018">Koivunen (<a href="lahteet.html#ref-koivunen2018" role="doc-biblioref">2018</a>)</span> “Sukupuolten tasa-arvo ja syrjintä poliisiorganisaatiossa”</p></li>
+<li><p><span class="citation" data-cites="leino2011">T. Leino, Eskelinen, ja Virtanen (<a href="lahteet.html#ref-leino2011" role="doc-biblioref">2011</a>)</span> “Työssä kohdattu väkivalta ja hyvinvointi poliisin ammatissa”</p></li>
+<li><p><span class="citation" data-cites="leino2011a">T. M. Leino ym. (<a href="lahteet.html#ref-leino2011a" role="doc-biblioref">2011</a>)</span> “Violence and psychological distress among police officers and security guards”</p></li>
+<li><p><span class="citation" data-cites="leino2011b">T. Leino, Eskelinen, ym. (<a href="lahteet.html#ref-leino2011b" role="doc-biblioref">2011</a>)</span> “Work-Related Violence, Debriefing and Increased Alcohol Consumption among Police Officers”</p></li>
+<li><p><span class="citation" data-cites="leino2011c">T. Leino, Selin, ym. (<a href="lahteet.html#ref-leino2011c" role="doc-biblioref">2011</a>)</span> “Work-related Violence against Security Guards—Who is Most at Risk?”</p></li>
+<li><p><span class="citation" data-cites="otonkorpi-lehtoranta2015">Otonkorpi-Lehtoranta ym. (<a href="lahteet.html#ref-otonkorpi-lehtoranta2015" role="doc-biblioref">2015</a>)</span> “Intersections of gender, age and occupational group in the Finnish defence forces”</p></li>
+<li><p><span class="citation" data-cites="paasonen2022">Paasonen ja Vainio (<a href="lahteet.html#ref-paasonen2022" role="doc-biblioref">2022</a>)</span> “Vankilaturvallisuus ja -väkivalta – vankilan henkilöstön kokema fyysinen ja henkinen väkivalta”</p></li>
+<li><p><span class="citation" data-cites="saari2020">Saari, Ellonen, ja Vuorensyrjä (<a href="lahteet.html#ref-saari2020" role="doc-biblioref">2020</a>)</span> “Employee well-being of Finnish criminal investigators – mixed methods approach”</p></li>
+</ul>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-aho2010" class="csl-entry" role="listitem">
+Aho, Pauliina, ja Esa Käyhkö. 2010. <span>”Poliisibarometri 2010. Kansalaisten näkemyksiä ja kokemuksia poliisitoiminnasta ja sisäisen turvallisuuden tilasta”</span>. Helsinki. <a href="http://urn.fi/URN:ISBN:978-952-491-615-8">http://urn.fi/URN:ISBN:978-952-491-615-8</a>.
+</div>
+<div id="ref-ervasti2022" class="csl-entry" role="listitem">
+Ervasti, Jenni, Piia Seppälä, Nina Olin, Susanna Kalavainen, Heli Heikkilä, Ville Aalto, ja Mika Kivimäki. 2022. <span>”Effectiveness of a workplace intervention to reduce workplace bullying and violence at work: study protocol for a two-wave quasi-experimental intervention study”</span>. <em>BMJ open</em> 12 (3): e053664. <a href="https://doi.org/10.1136/bmjopen-2021-053664">https://doi.org/10.1136/bmjopen-2021-053664</a>.
+</div>
+<div id="ref-fagerlund2021" class="csl-entry" role="listitem">
+Fagerlund, Monica. 2021. <span>”Gender and Police Response to Domestic Violence”</span>. <em>Police Practice and Research</em> 22 (1): 90–108. <a href="https://doi.org/10.1080/15614263.2020.1749622">https://doi.org/10.1080/15614263.2020.1749622</a>.
+</div>
+<div id="ref-fagerlund2022" class="csl-entry" role="listitem">
+Fagerlund, Monica, Jarmo Houtsonen, Marianne Notko, ja Marita Husso. 2022. <span>”Conceptualising Violence in Close Relationships: Discrepancies Between Police Conceptions and the Letter of the Law in Finland”</span>. <em>European Journal on Criminal Policy and Research</em> 28 (1): 37–56. <a href="https://doi.org/10.1007/s10610-020-09448-1">https://doi.org/10.1007/s10610-020-09448-1</a>.
+</div>
+<div id="ref-hannonen2015" class="csl-entry" role="listitem">
+Hannonen, Raimo, ja Esa Käyhkö. 2015. <span>”Poliisibarometri 2014. Kansalaisten käsitykset poliisin toiminnasta ja sisäisen turvallisuuden tilasta”</span>. Helsinki. <a href="http://urn.fi/URN:ISBN:978-952-324-016-2">http://urn.fi/URN:ISBN:978-952-324-016-2</a>.
+</div>
+<div id="ref-huotari2019" class="csl-entry" role="listitem">
+Huotari, Vesa. 2019. <span>”Naisten ja miesten tasa-arvo poliisisssa 2018”</span>. Tampere.
+</div>
+<div id="ref-huttunen2018" class="csl-entry" role="listitem">
+Huttunen, Riikka, Katja Joronen, ja Anja Rantanen. 2018. <span>”Rekisteritutkimus sairaanhoitajien työturvallisuutta vaarantavista väkivaltatilanteista päivystyspolikliniikalla”</span>. <em>Tutkiva Hoitotyö</em> 16 (1): 30–36.
+</div>
+<div id="ref-härkänen2023" class="csl-entry" role="listitem">
+Härkänen, Marja, Saija Koskiniemi, Tiina Syyrilä, Jouko Ranta, Minna Säilä, Mia Mäntymaa, Aini Pehkonen, ja Katri Vehviläinen-Julkunen. 2023. <span>”Abuse of Social Care Clients Committed by Nurses and Other Social Service Employees<span></span>Analysis of Employees’ Reports”</span>. <em>Journal of Advanced Nursing</em> 79 (10): 3800–3808. <a href="https://doi.org/10.1111/jan.15713">https://doi.org/10.1111/jan.15713</a>.
+</div>
+<div id="ref-keskinen2011" class="csl-entry" role="listitem">
+Keskinen, Suvi. 2011. <span>”Troublesome Differences<span></span>Dealing with Gendered Violence, Ethnicity, and <span>‘</span>Race<span>’</span> in the Finnish Welfare State”</span>. <em>Journal of Scandinavian Studies in Criminology and Crime Prevention</em> 12 (2): 153–72. <a href="https://doi.org/10.1080/14043858.2011.622075">https://doi.org/10.1080/14043858.2011.622075</a>.
+</div>
+<div id="ref-himanen2021" class="csl-entry" role="listitem">
+Keskinen, Suvi, Minna Seikkula, ja Faith Mkwesha. 2021. <span>”Turvallisuus ja institutionaalinen rasismi: esimerkkinä etninen ja rodullinen syrjintä poliisitoiminnassa”</span>. Teoksessa, 185–97. Helsinki: Gaudeamus.
+</div>
+<div id="ref-koivunen2018" class="csl-entry" role="listitem">
+Koivunen, Tuija. 2018. <span>”Sukupuolten tasa-arvo ja syrjintä poliisiorganisaatiossa”</span>. <em>Hallinnon tutkimus</em> 37 (2): 98–110.
+</div>
+<div id="ref-leino2011a" class="csl-entry" role="listitem">
+Leino, T. M., R. Selin, H. Summala, ja M. Virtanen. 2011. <span>”Violence and Psychological Distress Among Police Officers and Security Guards”</span>. <em>Occupational Medicine</em> 61 (6): 400–406. <a href="https://doi.org/10.1093/occmed/kqr080">https://doi.org/10.1093/occmed/kqr080</a>.
+</div>
+<div id="ref-leino2011b" class="csl-entry" role="listitem">
+Leino, Tuula, Kaisa Eskelinen, Heikki Summala, ja Marianna Virtanen. 2011. <span>”Work-<span>Related Violence</span>, <span>Debriefing</span> and <span>Increased Alcohol Consumption</span> Among <span>Police Officers</span>”</span>. <em>International Journal of Police Science &amp; Management</em> 13 (2): 149–57. <a href="https://doi.org/10.1350/ijps.2011.13.2.229">https://doi.org/10.1350/ijps.2011.13.2.229</a>.
+</div>
+<div id="ref-leino2011" class="csl-entry" role="listitem">
+Leino, Tuula, Kaisa Eskelinen, ja Marianna Virtanen. 2011. <span>”<span>Ty<span>ö</span>ss<span>ä</span> kohdattu v<span>ä</span>kivalta ja hyvinvointi poliisin ammatissa</span>”</span>. <em>Sosiaalil<span>ä</span><span>ä</span>ketieteellinen Aikakauslehti</em> 48 (4): 325–33.
+</div>
+<div id="ref-leino2011c" class="csl-entry" role="listitem">
+Leino, Tuula, Risto Selin, Heikki Summala, ja Marianna Virtanen. 2011. <span>”Work-Related <span>Violence</span> Against <span>Security Guards</span><span></span><span>Who</span> Is <span>Most</span> at <span>Risk</span>?”</span> <em>Industrial Health</em> 49 (2): 143–50. <a href="https://doi.org/10.2486/indhealth.MS1208">https://doi.org/10.2486/indhealth.MS1208</a>.
+</div>
+<div id="ref-marttila2012" class="csl-entry" role="listitem">
+Marttila, Juha, Pasi Heikura, ja Esa Käyhkö. 2012. <span>”Poliisibarometri 2012. Kansalaisten käsitykset poliisin toiminnasta ja sisäisen turvallisuuden tilasta”</span>. Helsinki. <a href="http://urn.fi/URN:ISBN:978-952-491-808-4">http://urn.fi/URN:ISBN:978-952-491-808-4</a>.
+</div>
+<div id="ref-niklander2019" class="csl-entry" role="listitem">
+Niklander, Elisa, Marianne Notko, ja Marita Husso. 2019. <em>Lähisuhdeväkivaltaan puuttuminen ja ammattilaisten koulutus sosiaali- ja terveydenhuollossa ja poliisissa. EPRAS-hankkeen arviointi</em>. Terveyden ja hyvinvoinnin laitoksen raportteja 13/2019. Helsinki: Terveyden ja hyvinvoinnin laitos. <a href="https://urn.fi/URN:ISBN:978-952-343-369-4">https://urn.fi/URN:ISBN:978-952-343-369-4</a>.
+</div>
+<div id="ref-noppari2018" class="csl-entry" role="listitem">
+Noppari, Eija, Marita Koivunen, Kaisu-Leena Mäkelä, ja Tiina Hakala. 2018. <span>”Sairaanhoitajien kokemuksia päihtyneen potilaan kohtaamisesta päivystyshoitotyössä: osaamisen näkökulma”</span>. <em>Hoitotiede</em> 30 (4): 334–46. <a href="https://journal.fi/hoitotiede/article/view/128433">https://journal.fi/hoitotiede/article/view/128433</a>.
+</div>
+<div id="ref-otonkorpi-lehtoranta2015" class="csl-entry" role="listitem">
+Otonkorpi-Lehtoranta, Katri, Minna Leinonen, Risto Nikkanen, ja Tuula Heiskanen. 2015. <span>”Intersections of Gender, Age and Occupational Group in the Finnish Defence Forces”</span>. <em>Equality, Diversity and Inclusion: An International Journal</em> 34 (7): 593–607. <a href="https://doi.org/10.1108/EDI-03-2015-0016">https://doi.org/10.1108/EDI-03-2015-0016</a>.
+</div>
+<div id="ref-paasonen2022" class="csl-entry" role="listitem">
+Paasonen, Jyri, ja Jesse Vainio. 2022. <span>”Vankilaturvallisuus ja -väkivalta <span></span> vankilan henkilöstön kokema fyysinen ja henkinen väkivalta”</span>. <em>Kriminologia</em> 2 (1): 39–59. <a href="https://doi.org/10.54332/krim.110816">https://doi.org/10.54332/krim.110816</a>.
+</div>
+<div id="ref-puronvarsi2020" class="csl-entry" role="listitem">
+Puronvarsi, Nelli, Viivi Ruotanen, ja Juha Holma. 2020. <span>”Female survivors<span>’</span> experiences of authorities<span>’</span> actions in cases of partner stalking”</span>. <em>Journal of Gender-Based Violence</em> 4 (2): 173–89. <a href="https://doi.org/10.1332/239868020X15815108958704">https://doi.org/10.1332/239868020X15815108958704</a>.
+</div>
+<div id="ref-saari2020" class="csl-entry" role="listitem">
+Saari, Tiina, Noora Ellonen, ja Matti Vuorensyrjä. 2020. <span>”Employee Well-Being of Finnish Criminal Investigators <span></span> Mixed Methods Approach”</span>. <em>International Journal of Organization Theory &amp; Behavior</em> 23 (1): 85–99. <a href="https://doi.org/10.1108/IJOTB-05-2019-0056">https://doi.org/10.1108/IJOTB-05-2019-0056</a>.
+</div>
+<div id="ref-saarikkomäki2013" class="csl-entry" role="listitem">
+Saarikkomäki, Elsa, ja Janne Kivivuori. 2013. <span>”Young People as Objects of Police Control in a Nordic Context: Who Are the Socially Visible Targets?”</span> <em>European Journal on Criminal Policy and Research</em> 19 (4): 351–68. <a href="https://doi.org/10.1007/s10610-013-9204-8">https://doi.org/10.1007/s10610-013-9204-8</a>.
+</div>
+<div id="ref-saarikkomäki2016" class="csl-entry" role="listitem">
+———. 2016. <span>”Encounters Between Security Guards and Young People: The Extent and Biases of Formal Social Control”</span>. <em>Policing and Society</em> 26 (7): 824–40. <a href="https://doi.org/10.1080/10439463.2014.989160">https://doi.org/10.1080/10439463.2014.989160</a>.
+</div>
+<div id="ref-salin2019" class="csl-entry" role="listitem">
+Salin, Denise, Renee Cowan, Oluwakemi Adewumi, Eleni Apospori, Jaime Bochantin, Premilla D’Cruz, Nikola Djurkovic, ym. 2019. <span>”Workplace Bullying Across the Globe: A Cross-Cultural Comparison”</span>. <em>Personnel Review</em> 48 (1): 204–19. <a href="https://doi.org/10.1108/PR-03-2017-0092">https://doi.org/10.1108/PR-03-2017-0092</a>.
+</div>
+<div id="ref-salin2013" class="csl-entry" role="listitem">
+Salin, Denise, ja Helge Hoel. 2013. <span>”Workplace Bullying as a Gendered Phenomenon”</span>. Toimittanut Raymond T. Lee. <em>Journal of Managerial Psychology</em> 28 (3): 235–51. <a href="https://doi.org/10.1108/02683941311321187">https://doi.org/10.1108/02683941311321187</a>.
+</div>
+<div id="ref-salminen-tuomaala2015" class="csl-entry" role="listitem">
+Salminen-Tuomaala, Mari, Päivi Leikkola, ja Eija Paavilainen. 2015. <span>”Emergency health care professionals<span>’</span> experiences of factors that influence care quality and safety”</span>. <em>Clinical Nursing Studies</em> 3 (3): p60. <a href="https://doi.org/10.5430/cns.v3n3p60">https://doi.org/10.5430/cns.v3n3p60</a>.
+</div>
+<div id="ref-vanhanen2021" class="csl-entry" role="listitem">
+Vanhanen, Sari. 2021. <span>”Poliisi ja romanit - yhdenvertaisuuden ja yhteistyön kysymyksiä”</span>. Tampere. <a href="https://urn.fi/URN:ISBN:978-951-815-389-7">https://urn.fi/URN:ISBN:978-951-815-389-7</a>.
+</div>
+<div id="ref-vartia2017" class="csl-entry" role="listitem">
+Vartia, Maarit, Marjut Joki, Susanna Kalavainen, ja Nina Olin. 2017. <em>Askeleet kohti sopuisaa työyhteisöä -työkirja</em>. Helsinki: Työterveyslaitos. <a href="https://urn.fi/URN:ISBN:978-952-261-708-8">https://urn.fi/URN:ISBN:978-952-261-708-8</a>.
+</div>
+<div id="ref-vartia2016" class="csl-entry" role="listitem">
+Vartia, Maarit, Nina Olin, Susanna Kalavainen, Marjut Joki, ja Krista Pahkin. 2016. <em>Katkaise kiusaamisen kierre. Epäasiallisen kohtelun nollatoleranssin vahvistaminen työpaikalla</em>. Helsinki: Työterveyslaitos. <a href="https://urn.fi/URN:ISBN:978-952-261-679-1">https://urn.fi/URN:ISBN:978-952-261-679-1</a>.
+</div>
+<div id="ref-venesoja2019" class="csl-entry" role="listitem">
+Venesoja, Anu, Tia Windahl, Satu Hänninen, ja Niina Nurkka. 2019. <span>”Ensihoitajien käsityksiä ensihoidon turvallisuuskulttuuriin vaikuttavista tekijöistä”</span>. <em>Tutkiva Hoitotyö</em> 17 (3): 3–9.
+</div>
+<div id="ref-viitanen2013" class="csl-entry" role="listitem">
+Viitanen, Marko, ja Tiina Mantere. 2013. <span>”Poliisiin kohdistuva sisäinen laillisuusvalvonta”</span>. Helsinki. <a href="http://urn.fi/URN:ISBN:978-952-491-859-6">http://urn.fi/URN:ISBN:978-952-491-859-6</a>.
+</div>
+<div id="ref-vishwakarma2018" class="csl-entry" role="listitem">
+Vishwakarma, Amit Kumar, Visheshta Mishra, ja Sandeep Kumar. 2018. <span>”Workplace Bullying: A Noxious Treatment for Employee Mental Health”</span>. <em>Indian Journal of Health and Wellbeing</em> 9 (5): 730–34.
+</div>
+<div id="ref-vuorensyrjä2014" class="csl-entry" role="listitem">
+Vuorensyrjä, Matti. 2014. <span>”Education, Experience and Earnings: The Career Coordinates of Female Vis-à-Vis Male Police Officers in Finland”</span>. <em>Police Practice and Research</em> 15 (5): 358–72. <a href="https://doi.org/10.1080/15614263.2012.754124">https://doi.org/10.1080/15614263.2012.754124</a>.
+</div>
+<div id="ref-vuorensyrjä2016" class="csl-entry" role="listitem">
+Vuorensyrjä, Matti, ja Monica Fagerlund. 2016. <span>”Poliisibarometri 2016. Kansalaisten käsitykset poliisin toiminnasta ja sisäisen turvallisuuden tilasta”</span>. Helsinki. <a href="http://urn.fi/URN:ISBN:978-952-324-107-7">http://urn.fi/URN:ISBN:978-952-324-107-7</a>.
+</div>
+<div id="ref-vuorensyrjä2018" class="csl-entry" role="listitem">
+———. 2018. <span>”Poliisibarometri 2018. Kansalaisten arviot poliisin toiminnasta ja Suomen sisäisen turvallisuuden tilasta”</span>. Tampere. <a href="https://urn.fi/URN:ISBN:978-951-815-344-6">https://urn.fi/URN:ISBN:978-951-815-344-6</a>.
+</div>
+<div id="ref-vuorensyrjä2020" class="csl-entry" role="listitem">
+Vuorensyrjä, Matti, ja Jenita Rauta. 2020. <span>”Poliisibarometri 2020. Kansalaisten arviot poliisin toiminnasta ja Suomen sisäisen turvallisuuden tilasta”</span>. Helsinki. <a href="http://urn.fi/URN:ISBN:978-952-324-641-6">http://urn.fi/URN:ISBN:978-952-324-641-6</a>.
+</div>
+<div id="ref-vuorensyrjä2023" class="csl-entry" role="listitem">
+Vuorensyrjä, Matti, Jenita Rauta, Emilia Hämäläinen, Henna Attila, Johanna Koivula, ja Paula Ollila. 2023. <span>”Poliisibarometri 2022. Kansalaisten arviot poliisin toiminnasta ja Suomen sisäisen turvallisuuden tilasta”</span>. Helsinki. <a href="http://urn.fi/URN:ISBN:978-952-324-952-3">http://urn.fi/URN:ISBN:978-952-324-952-3</a>.
+</div>
+</div>
 </section>
+
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

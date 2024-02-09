@@ -16,22 +16,37 @@ Haku 5 seurasi seuraavia inkluusiokriteerejä:
 
 Haku suoritettiin seuraavissa tietolähteissä:
 
++-----------------------------------------------+------------------------------------+
 | Tietokanta                                    | Hakukone (jos eri kuin tietokanta) |
-|--------------------------------------|----------------------------------|
++===============================================+====================================+
 | Poliisiammattikorkeakoulun julkaisut          | Theseus                            |
++-----------------------------------------------+------------------------------------+
 | Valto                                         |                                    |
++-----------------------------------------------+------------------------------------+
 | Julkari                                       |                                    |
++-----------------------------------------------+------------------------------------+
 | Scopus                                        |                                    |
++-----------------------------------------------+------------------------------------+
 | Web of Science Core Collection                | Web of Science                     |
++-----------------------------------------------+------------------------------------+
 | MEDLINE                                       | Web of Science                     |
++-----------------------------------------------+------------------------------------+
 | Grants Index                                  | Web of Science                     |
++-----------------------------------------------+------------------------------------+
 | Preprint Citation Index                       | Web of Science                     |
++-----------------------------------------------+------------------------------------+
 | ProQuest Disserations & Theses Citation Index | Web of Science                     |
++-----------------------------------------------+------------------------------------+
 | SciELO Citation Index                         | Web of Science                     |
++-----------------------------------------------+------------------------------------+
 | Ebook Central                                 | ProQuest                           |
++-----------------------------------------------+------------------------------------+
 | Social Science Premium Collection             | ProQuest                           |
++-----------------------------------------------+------------------------------------+
 | Bielefeld Academic Search Engine (BASE)       |                                    |
++-----------------------------------------------+------------------------------------+
 | OpenAlex                                      |                                    |
++-----------------------------------------------+------------------------------------+
 
 : Haku 5:n tietolähteet {#tbl-haku5-tietolahteet}
 
@@ -43,34 +58,83 @@ Virheellinen haku ei kuitenkaan vaikuta näkemyksemme mukaan juurikaan tulosten 
 
 Alla olevassa taulukossa esitetään hakujen suorituspäivämäärät, hakusanat ja hakukonekohtaiset rajaukset sekä osumat.
 
-| Koodi   | Hakukone (tietokannat suluissa)                             | Haku-ajankohta | Julkaisujen ajankohtarajaus | Tulos-määrä | Haun jälkeiset rajaukset                   |
-|------------|------------|------------|------------|------------|------------|
-| H5_1_fi | Theseus (Poliisiammattikorkeakoulun julkaisut)              | 12.1.2024      | 2010-2023                   | 40          | *Ei käytetty.*                             |
-| H5_1_sw | Theseus (Poliisiammattikorkeakoulun julkaisut)              | 12.1.2024      | 2010-2023                   | 6           | *Ei käytetty.*                             |
-| H5_1_en | Theseus (Poliisiammattikorkeakoulun julkaisut)              | 12.1.2024      | 2010-2023                   | 0           | *Ei käytetty.*                             |
-| H5_2_fi | Valto                                                       | 12.1.2024      | 2010-2023                   | 33          | *Ei käytetty.*                             |
-| H5_2_sw | Valto                                                       | 12.1.2024      | 2010-2023                   | 9           | *Ei käytetty.*                             |
-| H5_2_en | Valto                                                       | 12.1.2024      | 2010-2023                   | 0           | *Ei käytetty.*                             |
-| H5_3_fi | Julkari                                                     | 12.1.2024      | 2010-2023                   | 10          | *Ei käytetty.*                             |
-| H5_3_sw | Julkari                                                     | 12.1.2024      | 2010-2023                   | 0           | *Ei käytetty.*                             |
-| H5_3_en | Julkari                                                     | 12.1.2024      | 2010-2023                   | 2           | *Ei käytetty.*                             |
-| H5_4_fi | Scopus                                                      | 12.1.2024      | 2010-2023                   | 4           | Maa: Suomi                                 |
-| H5_4_sw | Scopus                                                      | 12.1.2024      | 2010-2023                   | 0           | Maa: Suomi                                 |
-| H5_4_en | Scopus                                                      | 12.1.2024      | 2010-2023                   | 169         | Maa: Suomi                                 |
-| H5_5_fi | Web of Science (ks. @tbl-haku5-tietolahteet)                | 12.1.2024      | 1.1.2010 - 30.9.2023        | 0           | Maa: Suomi                                 |
-| H5_5_sw | Web of Science (ks. @tbl-haku5-tietolahteet)                | 12.1.2024      | 1.1.2010 - 30.9.2023        | 2           | Maa: Suomi                                 |
-| H5_5_en | Web of Science (ks. @tbl-haku5-tietolahteet)                | 12.1.2024      | 1.1.2010 - 30.9.2023        | 152         | Maa: Suomi                                 |
-| H5_6_fi | ProQuest (Ebook Central, Social Science Premium Collection) | 12.1.2024      | 1.1.2010 - 30.9.2023        | 30          | Tyyppi: Article                            |
-| H5_6_sw | ProQuest (Ebook Central, Social Science Premium Collection) | 12.1.2024      | 1.1.2010 - 30.9.2023        | 27          | Tyyppi: Article                            |
-| H5_6_en | ProQuest (Ebook Central, Social Science Premium Collection) | 12.1.2024      | 1.1.2010 - 30.9.2023        | 40          | Tyyppi: Article                            |
-| H5_7_fi | BASE                                                        | 12.1.2024      | 2010-2023                   | 48          | Tyyppi: Book Part, Article                 |
-| H5_7_sw | BASE                                                        | 12.1.2024      | 2010-2023                   | 2           | Tyyppi: Book Part, Article                 |
-| H5_7_en | BASE                                                        | 12.1.2024      | 2010-2023                   | 525         | Tyyppi: Book Part, Article                 |
-| H5_8_fi | OpenAlex                                                    | 12.1.2024      | 1.1.2010 - 30.9.2023        | 29          | Tyyppi: Journal Article, Monograph, Report |
-| H5_8_sw | OpenAlex                                                    | 12.1.2024      | 1.1.2010 - 30.9.2023        | 37          | Tyyppi: Journal Article, Monograph, Report |
-| H5_8_en | OpenAlex                                                    | 12.1.2024      | 1.1.2010 - 30.9.2023        | 84          | Tyyppi: Journal Article, Monograph, Report |
++-------------------+-------------------------------------------------------------+----------------+-----------------------------+-------------+---------------------------------------------------------+
+| Koodi             | Hakukone (tietokannat suluissa)                             | Haku-ajankohta | Julkaisujen ajankohtarajaus | Tulos-määrä | Haun jälkeiset rajaukset                                |
++===================+=============================================================+================+=============================+=============+=========================================================+
+| H5_1_fi           | Theseus (Poliisiammattikorkeakoulun julkaisut)              | 12.1.2024      | 2010-2023                   | 40          | *Ei käytetty.*                                          |
++-------------------+-------------------------------------------------------------+----------------+-----------------------------+-------------+---------------------------------------------------------+
+| H5_1_sw           | Theseus (Poliisiammattikorkeakoulun julkaisut)              | 12.1.2024      | 2010-2023                   | 6           | *Ei käytetty.*                                          |
++-------------------+-------------------------------------------------------------+----------------+-----------------------------+-------------+---------------------------------------------------------+
+| H5_1_en           | Theseus (Poliisiammattikorkeakoulun julkaisut)              | 12.1.2024      | 2010-2023                   | 0           | *Ei käytetty.*                                          |
++-------------------+-------------------------------------------------------------+----------------+-----------------------------+-------------+---------------------------------------------------------+
+| H5_2_fi           | Valto                                                       | 12.1.2024      | 2010-2023                   | 33          | *Ei käytetty.*                                          |
++-------------------+-------------------------------------------------------------+----------------+-----------------------------+-------------+---------------------------------------------------------+
+| H5_2_sw           | Valto                                                       | 12.1.2024      | 2010-2023                   | 9           | *Ei käytetty.*                                          |
++-------------------+-------------------------------------------------------------+----------------+-----------------------------+-------------+---------------------------------------------------------+
+| H5_2_en           | Valto                                                       | 12.1.2024      | 2010-2023                   | 0           | *Ei käytetty.*                                          |
++-------------------+-------------------------------------------------------------+----------------+-----------------------------+-------------+---------------------------------------------------------+
+| H5_3_fi           | Julkari                                                     | 12.1.2024      | 2010-2023                   | 10          | *Ei käytetty.*                                          |
++-------------------+-------------------------------------------------------------+----------------+-----------------------------+-------------+---------------------------------------------------------+
+| H5_3_sw           | Julkari                                                     | 12.1.2024      | 2010-2023                   | 0           | *Ei käytetty.*                                          |
++-------------------+-------------------------------------------------------------+----------------+-----------------------------+-------------+---------------------------------------------------------+
+| H5_3_en           | Julkari                                                     | 12.1.2024      | 2010-2023                   | 2           | *Ei käytetty.*                                          |
++-------------------+-------------------------------------------------------------+----------------+-----------------------------+-------------+---------------------------------------------------------+
+| H5_4_fi           | Scopus                                                      | 12.1.2024      | 2010-2023                   | 4           | Maa: Suomi                                              |
++-------------------+-------------------------------------------------------------+----------------+-----------------------------+-------------+---------------------------------------------------------+
+| H5_4_sw           | Scopus                                                      | 12.1.2024      | 2010-2023                   | 0           | Maa: Suomi                                              |
++-------------------+-------------------------------------------------------------+----------------+-----------------------------+-------------+---------------------------------------------------------+
+| H5_4_en           | Scopus                                                      | 12.1.2024      | 2010-2023                   | 169         | Maa: Suomi                                              |
++-------------------+-------------------------------------------------------------+----------------+-----------------------------+-------------+---------------------------------------------------------+
+| H5_5_fi           | Web of Science (ks. @tbl-haku5-tietolahteet)                | 12.1.2024      | 1.1.2010 - 30.9.2023        | 0           | Maa: Suomi                                              |
++-------------------+-------------------------------------------------------------+----------------+-----------------------------+-------------+---------------------------------------------------------+
+| H5_5_sw           | Web of Science (ks. @tbl-haku5-tietolahteet)                | 12.1.2024      | 1.1.2010 - 30.9.2023        | 2           | Maa: Suomi                                              |
++-------------------+-------------------------------------------------------------+----------------+-----------------------------+-------------+---------------------------------------------------------+
+| H5_5_en           | Web of Science (ks. @tbl-haku5-tietolahteet)                | 12.1.2024      | 1.1.2010 - 30.9.2023        | 152         | Maa: Suomi                                              |
++-------------------+-------------------------------------------------------------+----------------+-----------------------------+-------------+---------------------------------------------------------+
+| H5_6_fi           | ProQuest (Ebook Central, Social Science Premium Collection) | 12.1.2024      | 1.1.2010 - 30.9.2023        | 30          | Tyyppi: Article                                         |
+|                   |                                                             |                |                             |             |                                                         |
+|                   |                                                             |                |                             |             | Source type: Scholarly Article                          |
+|                   |                                                             |                |                             |             |                                                         |
+|                   |                                                             |                |                             |             | Näytä tulokset kirjastoni tilauksen ulkopuolelta: Kyllä |
++-------------------+-------------------------------------------------------------+----------------+-----------------------------+-------------+---------------------------------------------------------+
+| H5_6_sw[^haku5-1] | ProQuest (Ebook Central, Social Science Premium Collection) | 12.1.2024      | 1.1.2010 - 30.9.2023        | 27          | Tyyppi: Article                                         |
+|                   |                                                             |                |                             |             |                                                         |
+|                   |                                                             |                |                             |             | Source type: Scholarly Article                          |
+|                   |                                                             |                |                             |             |                                                         |
+|                   |                                                             |                |                             |             | Maa: Suomi                                              |
+|                   |                                                             |                |                             |             |                                                         |
+|                   |                                                             |                |                             |             | Näytä tulokset kirjastoni tilauksen ulkopuolelta: Kyllä |
++-------------------+-------------------------------------------------------------+----------------+-----------------------------+-------------+---------------------------------------------------------+
+| H5_6_en           | ProQuest (Ebook Central, Social Science Premium Collection) | 12.1.2024      | 1.1.2010 - 30.9.2023        | 40          | Tyyppi: Article                                         |
+|                   |                                                             |                |                             |             |                                                         |
+|                   |                                                             |                |                             |             | Source Type: Scholarly Article                          |
+|                   |                                                             |                |                             |             |                                                         |
+|                   |                                                             |                |                             |             | Vertaisarvioitu: Kyllä                                  |
+|                   |                                                             |                |                             |             |                                                         |
+|                   |                                                             |                |                             |             | Kieli: Englanti                                         |
+|                   |                                                             |                |                             |             |                                                         |
+|                   |                                                             |                |                             |             | Maa: Suomi                                              |
+|                   |                                                             |                |                             |             |                                                         |
+|                   |                                                             |                |                             |             | Näytä tulokset kirjastoni tilauksen ulkopuolelta: Kyllä |
++-------------------+-------------------------------------------------------------+----------------+-----------------------------+-------------+---------------------------------------------------------+
+| H5_7_fi           | BASE                                                        | 12.1.2024      | 2010-2023                   | 48          | Tyyppi: Book Part, Article                              |
++-------------------+-------------------------------------------------------------+----------------+-----------------------------+-------------+---------------------------------------------------------+
+| H5_7_sw           | BASE                                                        | 12.1.2024      | 2010-2023                   | 2           | Tyyppi: Book Part, Article                              |
++-------------------+-------------------------------------------------------------+----------------+-----------------------------+-------------+---------------------------------------------------------+
+| H5_7_en           | BASE                                                        | 12.1.2024      | 2010-2023                   | 525         | Tyyppi: Book Part, Article                              |
++-------------------+-------------------------------------------------------------+----------------+-----------------------------+-------------+---------------------------------------------------------+
+| H5_8_fi           | OpenAlex                                                    | 12.1.2024      | 1.1.2010 - 30.9.2023        | 29          | Tyyppi: Journal Article, Monograph, Report              |
++-------------------+-------------------------------------------------------------+----------------+-----------------------------+-------------+---------------------------------------------------------+
+| H5_8_sw           | OpenAlex                                                    | 12.1.2024      | 1.1.2010 - 30.9.2023        | 37          | Tyyppi: Journal Article, Monograph, Report              |
++-------------------+-------------------------------------------------------------+----------------+-----------------------------+-------------+---------------------------------------------------------+
+| H5_8_en           | OpenAlex                                                    | 12.1.2024      | 1.1.2010 - 30.9.2023        | 84          | Tyyppi: Journal Article, Monograph, Report              |
++-------------------+-------------------------------------------------------------+----------------+-----------------------------+-------------+---------------------------------------------------------+
 
 : Haku 5:n toteutetut haut {#tbl-haku5-toteutetut-haut}
+
+[^haku5-1]: Toistaessamme tämän haun huomasimme, että ProQuest antaa timeout-virheen jos rajauksia ei syötä suoraan hakulausekkeeseen. Haun hakulauseke eroaa siksi muista lausekkeista, mutta rajaa samalla tavalla kuin muut ProQuestin haut.
+
+OpenAlexin hakujen (`H5_8`-luokka) kohdalla emme pystyneet täydellisesti toistamaan tuloksia myöhemmässä vaiheessa. Varsinkin suomen- ja ruotsinkielisten hakujen kohdalla toistohaut tuottivat hyvin erilaisia tuloksia, useimmiten paljon vähemmän tai ei ollenkaan tietueita. Kokeilimme toistaa haut sekä `search`-sanalla että `filter=title_and_abstract.search`-suodattimella, mutta asia ei korjaantunut. Epäilemme tässä vaiheessa, että ääkköset voivat muodostaa ongelman OpenAlexin hakuihin, mutta emme ole voineet varmistaa asiaa.
 
 Jokaisen haun hakulausekkeet ovat listattuna alla hakukoodeittain (ks. @tbl-haku5-toteutetut-haut). Paina osa-hakua vastaavaa koodia nähdäksesi kunkin haun hakulausekkeen. Voit kopioida lausekkeen sellaisenaan leikepöydällesi painamalla kopiointikuvaketta avatun hakulausekkeen yläoikeassa nurkassa.
 
@@ -156,16 +220,12 @@ TS=(("police" OR "guard*" OR "defen?e contractor*" OR "steward" OR "soldier" OR 
 
 ```{r}
 #| code-summary: "Haku H5_6_sw"
-("polis*" OR "ordningsv?kt*" OR "försvars*" OR "soldat*" OR "gränsbevak*" OR "gränskontroll*") AND (diskriminer* OR trakasse* OR påtryck* OR våld* OR osaklig* OR opasslig* OR jämlik* OR jämställd*) AND PEER(yes) AND PUBDATE(20100101-20230930)
-
-# Emme tällä hetkellä pysty toistamaan tätä hakua. Selvitämme virhettä ja korjaamme kirjauksen.
+("polis*" OR "ordningsv?kt*" OR "försvars*" OR "soldat*" OR "gränsbevak*" OR "gränskontroll*") AND (diskriminer* OR trakasse* OR påtryck* OR våld* OR osaklig* OR opasslig* OR jämlik* OR jämställd*) AND PEER(yes) AND PUBDATE(20100101-20230930) AND SCHOL(yes) AND DTYPE(article) AND LOCATION(finland)
 ```
 
 ```{r}
 #| code-summary: "Haku H5_6_en"
 ("police" OR "guard*" OR "defen* contractor*" OR "steward" OR "soldier" OR "military personnel") AND (discriminat* OR harass* OR pressur* OR violen* OR improper behavio* OR equal* OR non-discriminat* OR equit*) AND PEER(yes) AND PUBDATE(20100101-20230930)
-
-# Emme tällä hetkellä pysty toistamaan tätä hakua. Selvitämme virhettä ja korjaamme kirjauksen.
 ```
 
 ```{r}
@@ -187,21 +247,19 @@ TS=(("police" OR "guard*" OR "defen?e contractor*" OR "steward" OR "soldier" OR 
 #| code-summary: "Haku H5_8_fi"
 https://api.openalex.org/works?search=(poliisi%20OR%20varti%20OR%20puolustusvoim%20OR%20sotila)%20AND%20(syrji%20OR%20h%C3%A4irin%20OR%20h%C3%A4irit%20OR%20v%C3%A4kival%20OR%20painost%20OR%20pahoinpi%20OR%20ahdistel%20OR%20ep%C3%A4asialli%20OR%20yhdenvertai%20OR%20tasa-arvo%20OR%20tasapuoli%20OR%20tasavertai)&filter=from_publication_date:2010-01-01,to_publication_date:2023-09-30,type_crossref:journal-article|monograph|report&per_page=200&select=title,publication_year,doi&page=1
 
-# Emme tällä hetkellä pysty toistamaan tätä hakua. Selvitämme virhettä ja korjaamme kirjauksen.
+# Toistamisessa tämä ei tuota ollenkaan tuloksia (tarkistettu 9.2.2024). Emme pysty toistamaan hakua aikaisemmin tuotetulla tavalla.
 ```
 
 ```{r}
 #| code-summary: "Haku H5_8_sw"
-https://api.openalex.org/works?search=(polis%20OR%20ordningsv%20OR%20f%C3%B6rsvars%20OR%20soldat%20OR%20gr%C3%A4nsbevak%20OR%20gr%C3%A4nskontroll)%20AND%20(diskriminer%20OR%20trakasse%20ORp%C3%A5tryck%20OR%20v%C3%A5ld%20OR%20osaklig%20OR%20opasslig%20ORj%C3%A4mlik%20ORj%C3%A4mst%C3%A4lld)%20AND%20(finland%20OR%20finsk)&filter=from_publication_date:2010-01-01,to_publication_date:2023-09-30,type_crossref:journal-article|monograph|report&per_page=200&select=title,publication_year,doi&page=1
+https://api.openalex.org/works?search=(polis%20OR%20ordningsv%20OR%20f%C3%B6rsvars%20OR%20soldat%20OR%20gr%C3%A4nsbevak%20OR%20gr%C3%A4nskontroll)%20AND%20(diskriminer%20OR%20trakasse%20OR%20p%C3%A5tryck%20OR%20v%C3%A5ld%20OR%20osaklig%20OR%20opasslig%20OR%20j%C3%A4mlik%20OR%20j%C3%A4mst%C3%A4lld)%20AND%20(finland%20OR%20finsk)&filter=from_publication_date:2010-01-01,to_publication_date:2023-09-30,type_crossref:journal-article|monograph|report&per_page=200&select=title,publication_year,doi&page=1
 
-# Emme tällä hetkellä pysty toistamaan tätä hakua. Selvitämme virhettä ja korjaamme kirjauksen.
+# Toistamisessa tämä tuottaa kolme tulosta (tarkistettu 9.2.2024). Emme pysty toistamaan hakua aikaisemmin tuotetulla tavalla.
 ```
 
 ```{r}
 #| code-summary: "Haku H5_8_en"
-https://api.openalex.org/works?filter=title_and_abstract.search:police%20OR%20guard%20OR%20defence%20contractor%20OR%20steward%20OR%20soldier%20OR%20military%20personne)%20AND%20(discriminat%20OR%20harass%20OR%20pressure%20OR%20violen%20OR%20improper%20behavior%20OR%20equal%20OR%20equit)%20AND%20(finland%20OR%20finnish),from_publication_date:2010-01-01,to_publication_date:2023-09-30,type_crossref:journal-article|monograph|report&per_page=200&select=title,publication_year,doi&page=1
-
-# Emme tällä hetkellä pysty toistamaan tätä hakua. Selvitämme virhettä ja korjaamme kirjauksen.
+https://api.openalex.org/works?filter=title_and_abstract.search:(%22police%22%20OR%20%22guard%22%20OR%20%22defence%20contractor%22%20OR%20%22steward%22%20OR%20%22soldier%22%20OR%20%22military%20personnel%22)%20AND%20(discriminat%20OR%20harass%20OR%20pressure%20OR%20violen%20OR%20%22improper%20behavior%22%20OR%20equal%20OR%20equit)%20AND%20(finland%20OR%20finnish),from_publication_date:2010-01-01,to_publication_date:2023-09-30,type_crossref:journal-article|monograph|report&per_page=200&select=title,publication_year,doi&page=1
 ```
 
 OpenAlex:in kohdalla tulokset haettiin API-menettelyllä. Maksimitulosten määrä per sivu oli 200 dokumentaation mukaan.
@@ -214,12 +272,154 @@ Tulokset ladattiin ensisijaisesti `.csv`- tai `.xlsx`-muotoon jos mahdollista (S
 
 Hakutulosten seulonta tuotti seuraavan PRISMA-protokollan mukaisen kulkukaavion:
 
-\[PRISMA-KAAVIO\]
+::: panel-tabset
+## Tietokannat ja rekisterit
 
-## Valitut tutkimusjulkaisut
+```{r}
+#| eval: true
+library("PRISMAstatement")
 
-\[TÄHÄN LÄHDELUETTELO KAIKISTA MUKAAN VALITUISTA TUTKIMUSJULKAISUISTA\]
+labels <- c(
+  "Tunnistetut kohteet",
+  "Kaksoiskappaleet poistettu ennen seulontaa",
+  "Seulotut kohteet",
+  "Poisseulotut kohteet",
+  "Haettavat kohteet",
+  "Hakematta jääneet kohteet",
+  "Tarkistetut kohteet",
+  "Poistetut kohteet",
+  "Sisällytetyt kohteet"
+)
+
+counts <- c(1249, 847, 38, 38, 11)
+
+flow_exclusions(
+  incl_counts = counts,
+  total_label = labels[1],
+  incl_labels = labels[c(3, 5, 7, 9)],
+  excl_labels = labels[c(2, 4, 6, 8)], 
+  percent_of_total = TRUE,
+  percent_of_prev = FALSE,
+  show_count = TRUE,
+  font_size = 14)
+```
+
+## Muut lähteet
+
+```{r}
+#| eval: true
+library("PRISMAstatement")
+
+labels <- c(
+  "Tunnistetut kohteet",
+  "Kaksoiskappaleet poistettu ennen seulontaa",
+  "Haettavat kohteet",
+  "Hakematta jääneet kohteet",
+  "Tarkistetut kohteet",
+  "Poistetut kohteet",
+  "Sisällytetyt kohteet"
+)
+
+counts <- c(0, 0, 0, 0)
+
+flow_exclusions(
+  incl_counts = counts,
+  total_label = labels[1],
+  incl_labels = labels[c(3, 5, 7)],
+  excl_labels = labels[c(2, 4, 6)], 
+  percent_of_total = TRUE,
+  percent_of_prev = FALSE,
+  show_count = TRUE,
+  font_size = 14)
+```
+:::
 
 ## Kokotekstin pohjalta poistetut tutkimukset ja syyt
 
-\[TÄHÄN LÄHDELUETTELO KAIKISTA KOKOTEKSTISTÄ POISTETUISTA TUTKIMUKSISTA PÄÄSYYN MUKAAN.\]
+Seulonnan jälkeen poistettuja tutkimusjulkaisuja oli yhteensä 27 kappaletta. @tbl-haku5-poistetut on jokaisen julkaisun vittaus ja poistosyy(t). Syyt ovat listattuna ensisijaisen syyn mukaan. Päätös poisjättämisestä voitiin tehdä jos yksi inkluusiokriteeri ei täyttynyt, jolloin tutkimuksella voi olla muitakin syitä miksi sitä ei otettu mukaan katsauksen tuloksiin.
+
++------------------------+--------------------------------------------+
+| Kohde                  | Syy(t) poistoon                            |
++========================+============================================+
+| @aho2010               | Väärä kohderyhmä                           |
++------------------------+--------------------------------------------+
+| @ervasti2022           | Väärä kohderyhmä                           |
++------------------------+--------------------------------------------+
+| @fagerlund2021         | Väärä tutkimusaihe                         |
++------------------------+--------------------------------------------+
+| @hannonen2015          | Väärä kohderyhmä                           |
++------------------------+--------------------------------------------+
+| @himanen2021           | Väärä tutkimusaihe                         |
++------------------------+--------------------------------------------+
+| @huttunen2018          | Väärä kohderyhmä                           |
++------------------------+--------------------------------------------+
+| @härkänen2023          | Väärä kohderyhmä                           |
++------------------------+--------------------------------------------+
+| @marttila2012          | Väärä kohderyhmä                           |
++------------------------+--------------------------------------------+
+| @niklander2019         | Ei-empiirinen tutkimus                     |
++------------------------+--------------------------------------------+
+| @noppari2018           | Väärä kohderyhmä, väärä tutkimusaihe       |
++------------------------+--------------------------------------------+
+| @puronvarsi2020        | Väärä kohderyhmä                           |
++------------------------+--------------------------------------------+
+| @saarikkomäki2013      | Väärä kohderyhmä                           |
++------------------------+--------------------------------------------+
+| @saarikkomäki2016      | Väärä kohderyhmä                           |
++------------------------+--------------------------------------------+
+| @salin2019             | Ei-empiirinen tutkimus, väärä tutkimusaihe |
++------------------------+--------------------------------------------+
+| @salin2013             | Ei-empiirinen tutkimus, väärä tutkimusaihe |
++------------------------+--------------------------------------------+
+| @salminen-tuomaala2015 | Väärä kohderyhmä                           |
++------------------------+--------------------------------------------+
+| @vanhanen2021          | Väärä kohderyhmä                           |
++------------------------+--------------------------------------------+
+| @vartia2017            | Ei-empiirinen tutkimus                     |
++------------------------+--------------------------------------------+
+| @vartia2016            | Ei-empiirinen tutkimus                     |
++------------------------+--------------------------------------------+
+| @venesoja2019          | Väärä tutkimusaihe                         |
++------------------------+--------------------------------------------+
+| @viitanen2013          | Ei-empiirinen tutkimus                     |
++------------------------+--------------------------------------------+
+| @vishwakarma2018       | Väärä tutkimusaihe                         |
++------------------------+--------------------------------------------+
+| @vuorensyrjä2014       | Väärä tutkimusaihe                         |
++------------------------+--------------------------------------------+
+| @vuorensyrjä2016       | Väärä kohderyhmä                           |
++------------------------+--------------------------------------------+
+| @vuorensyrjä2018       | Väärä kohderyhmä                           |
++------------------------+--------------------------------------------+
+| @vuorensyrjä2020       | Väärä kohderyhmä                           |
++------------------------+--------------------------------------------+
+| @vuorensyrjä2023       | Väärä kohderyhmä                           |
++------------------------+--------------------------------------------+
+
+: Haku 5:n poistetut kohteet syineen {#tbl-haku5-poistetut}
+
+## Valitut tutkimusjulkaisut
+
+Haun pohjalta valittiin 11 tutkimusjulkaisua. Kaikki julkaisut valikoituivat mukaan hakuprosessin myötä. Julkaisut ovat:
+
+-   @fagerlund2022 "Conceptualising Violence in Close Relationships: Discrepancies Between Police Conceptions and the Letter of the Law in Finland"
+
+-   @huotari2019 "Naisten ja miesten tasa-arvo poliisisssa 2018"
+
+-   @keskinen2011 "Troublesome Differences---Dealing with Gendered Violence, Ethnicity, and 'Race' in the Finnish Welfare State"
+
+-   @koivunen2018 "Sukupuolten tasa-arvo ja syrjintä poliisiorganisaatiossa"
+
+-   @leino2011 "Työssä kohdattu väkivalta ja hyvinvointi poliisin ammatissa"
+
+-   @leino2011a "Violence and psychological distress among police officers and security guards"
+
+-   @leino2011b "Work-Related Violence, Debriefing and Increased Alcohol Consumption among Police Officers"
+
+-   @leino2011c "Work-related Violence against Security Guards---Who is Most at Risk?"
+
+-   @otonkorpi-lehtoranta2015 "Intersections of gender, age and occupational group in the Finnish defence forces"
+
+-   @paasonen2022 "Vankilaturvallisuus ja -väkivalta -- vankilan henkilöstön kokema fyysinen ja henkinen väkivalta"
+
+-   @saari2020 "Employee well-being of Finnish criminal investigators -- mixed methods approach"
