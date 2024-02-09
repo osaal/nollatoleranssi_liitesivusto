@@ -12,6 +12,7 @@ book:
       chapters:
         - kriteeristo.qmd
         - seulontamenetelma.qmd
+        - prismakaavio.qmd
     - part: "Katsauksen haut"
       chapters:
         - haku1.qmd
@@ -46,6 +47,7 @@ book:
       contents:
         - kriteeristo.qmd
         - seulontamenetelma.qmd
+        - prismakaavio.qmd
     
     - id: katsauksenhaut
       title: "Katsauksen haut"

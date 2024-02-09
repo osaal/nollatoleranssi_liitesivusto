@@ -1,0 +1,33 @@
+# PRISMA-kaavio {#sec-prisma-kaavio}
+
+Hakujen yhdistäminen ja lopullinen seulonta dokumentointiin yhdeksi PRISMA-kulkukaavioksi (@fig-prismakaavio). Kulkukaavio on tuotettu R-paketilla `PRISMA2020` [@PRISMA2020] käyttäen muokattua `csv`-tiedostoa. Tiedosto on lisätty tämän sivuston lähdekoodiin ja löytyy kansiosta `data`.
+
+```{r}
+#| eval: true
+#| warning: false
+#| label: fig-prismakaavio
+#| fig-cap: "Systemaattisen kirjallisuuskatsauksen PRISMA2020-protokollan mukainen kulkukaavio"
+
+library(magrittr)
+library(PRISMA2020)
+
+# Käytämme csv2-funktiota, koska Excel ei suostu exportoimaan csv-tiedostoa pilkkuerottimella puolipiste-erottimen sijaan, jostain syystä.
+tiedot <- read.csv2("data/20240209_PRISMAtiedot.csv") %>% PRISMA_data(.)
+
+PRISMA_flowdiagram(
+  tiedot,
+  previous = FALSE,
+  other = TRUE,
+  detail_databases = FALSE,
+  fontsize = 11
+)
+
+```
+
+Tunnistimme yhteensä 7900 tietuetta tietokannoista. Näistä 1617 tietuetta poistettiin kaksoiskappaleina, jolloin seulottavaksi jäi 6283 tietuetta. Otsikko- ja abstraktitason seulonnan pohjalta poistimme 6009 tietuetta, jolloin haettavaksi jäi 274 raporttia. Näistä 19 raporttia ei voitu hakea, jolloin tarkistettavaksi jäi 255 raporttia.
+
+Yleisin syy poissulkemiselle oli väärän kohderyhmän tutkiminen (51 raporttia). Toiseksi yleisin syy oli monien syiden yhdistelmä (44 raporttia), jonka jälkeen tuli väärä tutkimusaihe (31 raporttia). Aineistomuodon epäsopivuus sisäänottokriteerien kanssa oli hieman harvinaisempi (22 raporttia), ja väärän julkaisutyypin syy sitä harvinaisempi (6 raporttia). Vain yksi raportti oli julkaistu aikarajauksen ulkopuolella.
+
+Tunnistimme myös 7 tietuetta organisaatioiden verkkosivuilta. Näistä voitiin hakea kaikki seitsemän kappaletta. Kaksi raporttia jäivät pois väärän tutkimusaiheen takia, yksi väärän kohderyhmän takia, ja yksi sekä väärän tutkimusaiheen että väärän kohderyhmän takia.
+
+Lopullisessa kirjallisuuskatsauksessa sisällytettyjä tutkimusraportteja on yhteensä 80 kappaletta, 77 kappaletta tunnistettu tietokannoista ja 3 kappaletta organisaatioiden verkkosivuilta.
