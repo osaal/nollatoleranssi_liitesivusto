@@ -13,7 +13,8 @@ book:
         - kriteeristo.qmd
         - seulontamenetelma.qmd
         - prismakaavio.qmd
-    - part: "Katsauksen haut"
+        - yleiskuvailu.qmd
+    - part: "Katsauksen osahaut"
       chapters:
         - haku1.qmd
         - haku2.qmd
@@ -48,9 +49,10 @@ book:
         - kriteeristo.qmd
         - seulontamenetelma.qmd
         - prismakaavio.qmd
+        - yleiskuvailu.qmd
     
     - id: katsauksenhaut
-      title: "Katsauksen haut"
+      title: "Katsauksen osahaut"
       contents:
         - haku1.qmd
         - haku2.qmd
@@ -90,4 +92,6 @@ editor: visual
 execute:
   freeze: auto
   eval: false
+  message: false
+  warning: false
 

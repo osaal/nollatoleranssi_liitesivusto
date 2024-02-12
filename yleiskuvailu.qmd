@@ -1,0 +1,151 @@
+# Tulosten yleiskuvaus
+
+Tässä osiossa esitellään kirjallisuuskatsauksen tuottamat tulokset yleistasolla.
+
+```{r}
+#| label: valmistelu
+#| eval: true
+
+# Avataan tarpeelliset kirjastot hiljaisesti
+suppressPackageStartupMessages({
+  library(ggplot2)
+  library(dplyr)
+  library(magrittr)
+})
+
+# Ladataan data csv-tiedostosta
+data <- read.csv2("data/20240212_tulostenmetatiedot.csv")
+
+
+```
+
+## Julkaisuvuodet
+
+| Vuosi                 | Määrä (prosenttimäärä suluissa) |
+|-----------------------|---------------------------------|
+| 2010                  | 1 (1 %)                         |
+| 2011                  | 6 (8 %)                         |
+| 2012                  | 0 (0 %)                         |
+| 2013                  | 3 (4 %)                         |
+| 2014                  | 3 (4 %)                         |
+| 2015                  | 2 (3 %)                         |
+| 2016                  | 8 (10 %)                        |
+| 2017                  | 5 (6 %)                         |
+| 2018                  | 6 (8 %)                         |
+| 2019                  | 10 (13 %)                       |
+| 2020                  | 7 (9 %)                         |
+| 2021                  | 10 (13 %)                       |
+| 2022                  | 11 (14 %)                       |
+| 2023[^yleiskuvailu-1] | 7 (9 %)                         |
+
+: Kirjallisuuskatsauksen tulokset julkaisuvuosittain {#tbl-tulokset-vuosi}
+
+[^yleiskuvailu-1]: Kirjallisuuskatsauksen haku rajattiin ajalle 1.1.2010 - 30.9.2023. Vuoden 2023 tulokset ovat siten osittaisia, ja tutkimuksia on voitu julkaista päätösajan jälkeen.
+
+```{r}
+#| label: fig-tulokset-vuosi
+#| fig-cap: "Kirjallisuuskatsauksen tulokset julkaisuvuosittain"
+#| eval: true
+
+vuodet <- seq(from = 2010, to = 2023)
+
+kuva1 <- ggplot(data = data, mapping = aes(x = Vuosi)) + 
+  geom_bar(stat = "count") +
+  labs(y = "Määrä (n)") + 
+  scale_x_continuous(breaks = vuodet) + 
+  geom_text(aes(label = ..count..), stat = "count", vjust = 1.5, colour = "white")
+
+kuva1
+```
+
+Tutkimusten julkaisuvuodet painottuvat 2010-luvun loppupuolelle ja 2020-luvun alkuun. Julkaisuvuosien mediaani on `r median(data$Vuosi)`.
+
+## Menetelmät
+
+| Menetelmä           | Määrä (prosenttimäärät suluissa) |
+|---------------------|----------------------------------|
+| Haastattelu         | 8 (10 %)                         |
+| Kysely              | 57 (72 %)                        |
+| Monimenetelmällinen | 12 (15 %)                        |
+| Rekisteri           | 2 (3 %)                          |
+
+: Kirjallisuuskatsauksen tulokset menetelmittäin {#tbl-tulokset-menetelmat}
+
+```{r}
+#| label: fig-tulokset-menetelmat
+#| fig-cap: "Kirjallisuuskatsauksen tulokset menetelmittäin"
+#| eval: true
+
+menetelmat <- unique(data$Tiedonkeruun.muoto)
+
+kuva2 <- ggplot(data = data, mapping = aes(x = Tiedonkeruun.muoto)) + 
+  geom_bar(stat = "count") +
+  labs(y = "Määrä (n)", x = "Menetelmät") + 
+  scale_x_discrete(breaks = menetelmat) +
+  geom_text(aes(label = ..count..), stat = "count", vjust = -0.5, colour = "black")
+
+kuva2
+```
+
+Yleisin sovellettu menetelmä on kyselytutkimus. Laskimme mukaan sekä strukturoidut että strukturoimattomat kyselyasetelmat, jolloin tulosten analyysi voi kuitenkin olla sekä määrällinen että laadullinen. Monimenetelmälliset asetelmat ovat seuraavaksi suosituimpia, ja haastattelut samalla tasolla. Kaksi tutkimusta käytti rekisteridataa.
+
+## Julkaisumuodot
+
+```{r}
+#| label: fig-tulokset-julkaisumuodot
+#| fig-cap: "Kirjallisuuskatsauksen tulokset julkaisumuodottain"
+#| eval: true
+
+muodot <- unique(data$Muoto)
+
+kuva3 <- ggplot(data = data, mapping = aes(x = Muoto)) + 
+  geom_bar(stat = "count") +
+  labs(y = "Määrä (n)", x = "Julkaismuodot") + 
+  scale_x_discrete(breaks = muodot) +
+  geom_text(aes(label = ..count..), stat = "count", vjust = -0.5, colour = "black")
+
+kuva3
+```
+
+Yleisin julkaisumuoto on vertaisarvioitu tutkimusartikkeli. Noin puolet harvinaisempi oli opinnäyte. Organisaatioraportteja ei löytynyt suuresti, ja haku tuotti vain yhden sisällytetyn vertaisarvioidun kirjan luvun.
+
+## Tutkimusmaat
+
+| Maa                | Määrä (prosenttimäärä suluissa) |
+|--------------------|---------------------------------|
+| Alankomaat         | 3 (4 %)                         |
+| Englanti           | 4 (5 %)                         |
+| Espanja            | 1 (1 %)                         |
+| Italia             | 2 (3 %)                         |
+| Liettua            | 1 (1 %)                         |
+| Norja              | 1 (1 %)                         |
+| Puola              | 2 (3 %)                         |
+| Ruotsi             | 4 (5 %)                         |
+| Saksa              | 3 (4 %)                         |
+| Suomi              | 47 (59 %)                       |
+| Sveitsi            | 1 (1 %)                         |
+| Tsekki             | 1 (1 %)                         |
+| Turkki             | 6 (8 %)                         |
+| Ukraina            | 1 (1 %)                         |
+| Ei sovellettavissa | 2 (3 %)                         |
+
+: Kirjallisuuskatsauksen tulokset tutkimusmaittain {#tbl-tulokset-maat}
+
+```{r}
+#| label: fig-tulokset-maat
+#| fig-cap: "Kirjallisuuskatsauksen tulokset maittain ja julkaisumuodottain. Tuloksissa ei ole  suomalaisia tutkimuksia. N/A = Ei sovellettavissa."
+#| eval: true
+
+maat <- unique(data$Toteutusmaa)
+
+kuva4 <- data %>% dplyr::filter(Toteutusmaa != "Suomi") %>%
+  ggplot(mapping = aes(x = Toteutusmaa, fill = Muoto)) + 
+  geom_bar(stat = "count") +
+  labs(y = "Määrä (n)", x = "Toteutusmaat") + 
+  scale_x_discrete(breaks = maat, guide = guide_axis(angle = 45)) +
+  geom_text(aes(label = ..count..), stat = "count", vjust = -0.5, colour = "black", position = position_stack(vjust = 0.5))
+
+kuva4
+```
+
+Kuvasta on poistettu suomalaiset tutkimukset, koska tutkimuksia haettiin useammassa muodossa kuin eurooppalaisia tutkimuksia.
