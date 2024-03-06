@@ -25,6 +25,9 @@ book:
     - part: "Kyselyn valmistelu"
       chapters:
         - kyselynvalmistelu.qmd
+    - part: "Mittariston validointi"
+      chapters:
+        - epaasiallinenkohtelu.qmd
     - lahteet.qmd
   
   navbar:
@@ -65,6 +68,11 @@ book:
       title: "Kyselyn valmistelu"
       contents:
         - kyselynvalmistelu.qmd
+    
+    - id: mittaristonvalidointi
+      title: "Mittariston validointi"
+      contents:
+        - epaasiallinenkohtelu.qmd
 
 format:
   html:
