@@ -1,6 +1,6 @@
 # Epäasiallisen kohtelun mittaristo
 
-## Mallien määrittely
+## Yleismallin määrittely
 
 ```{r}
 #| eval: false
@@ -23,39 +23,6 @@ yleismalli <- '
     omakohtainen_a ~~ 0*omakohtainen_b
     havaittu_a ~~ 0*havaittu_b
 '
-
-## Ulottuvuuskohtaiset IRT-mallit
-# Sisäinen, itseen kohdistuva
-verb_sisä_itse <- 'verb1 = verb1.1-verb1.10'
-oma_sisä_itse <- 'oma1 = oma1.1-oma1.4'
-uhk_sisä_itse <- 'uhk1 = uhk1.1-uhk1.13'
-fyy_sisä_itse <- 'fyy1 = fyy1.1-fyy1.9'
-seks_sisä_itse <- 'seks1 = seks1.1-seks1.8'
-viha_sisä_itse <- 'viha1 = viha1.1-viha1.18'
-
-# Sisäinen, kollegaan kohdistuva
-verb_sisä_koll <- 'verb2 = verb2.1-verb2.10'
-oma_sisä_koll <- 'oma2 = oma2.1-oma2.4'
-uhk_sisä_koll <- 'uhk2 = uhk2.1-uhk2.13'
-fyy_sisä_koll <- 'fyy2 = fyy2.1-fyy2.9'
-seks_sisä_koll <- 'seks2 = seks2.1-seks2.8'
-viha_sisä_koll <- 'viha2 = viha2.1-viha2.18'
-
-# Ulkoinen, itseen kohdistuva
-verb_ulk_itse <- 'verb3 = verb3.1-verb3.10'
-oma_ulk_itse <- 'oma3 = oma3.1-oma3.4'
-uhk_ulk_itse <- 'uhk3 = uhk3.1-uhk3.13'
-fyy_ulk_itse <- 'fyy3 = fyy3.1-fyy3.9'
-seks_ulk_itse <- 'seks3 = seks3.1-seks3.8'
-viha_ulk_itse <- 'viha3 = viha3.1-viha3.18'
-
-# Ulkoinen, kollegaan kohdistuva
-verb_ulk_koll <- 'verb4 = verb4.1-verb4.10'
-oma_ulk_koll <- 'oma4 = oma4.1-oma4.4'
-uhk_ulk_koll <- 'uhk4 = uhk4.1-uhk4.13'
-fyy_ulk_koll <- 'fyy4 = fyy4.1-fyy4.9'
-seks_ulk_koll <- 'seks4 = seks4.1-seks4.8'
-viha_ulk_koll <- 'viha4 = viha4.1-viha4.18'
 ```
 
 Muuttuja `yleismalli` on Malli 1: Epäasiallisen kohtelun kuusi ulottuvuutta neljässä tekijä. ja tekokontekstiryhmässä. Jokainen ulottuvuus on mitattu erikseen kyselytutkimuksessa. Mallissa on seuraavat latentit muuttujat:
@@ -69,6 +36,61 @@ Muuttuja `yleismalli` on Malli 1: Epäasiallisen kohtelun kuusi ulottuvuutta nel
 -   `havaittu_b`: Kollegan havaittu epäasiallinen kohtelu organisaation ulkopuolella.
 
 Mallissa estimoidaan kahden faktoriparin kovarianssit: `omakohtainen_a ~~ havaittu_a` ja `omakohtainen_b ~~ havaittu_b`. Omakohtaisten kokemusten kahden faktorin kovarianssi lukitaan nollaan, samoin havaittujen kokemusten kahden faktorin kovarianssi: `omakohtainen_a ~~ 0*omakohtainen_b` ja `havaittu_a ~~ 0*havaittu_b`.
+
+Yleismallin vapausasteet laskettiin käyttäen Cortinan ja kollegoiden *Shiny*-applikaatiota osoitteessa <https://gmuiopsych.shinyapps.io/degreesoffreedom/> [haettu 7.3.2024; @cortina2017]. Mallin vapausasteet ovat $\text{df}_M = 248$. Applikaation asetuksina käytettiin seuraavia arvoja:
+
+-   Model type: CFA/SEM
+
+-   Number of Indicators: 24 (kaikki 24 havaittua muuttujaa)
+
+-   Number of Single Item Indicators: 0
+
+-   Number of Latent Exogenous Variables: 4 (kaikki 4 latenttia muuttujaa)
+
+-   Number of Latent Endogenous Variables: 0
+
+-   Number of Constrained Exogenous Relationships: 2 (molemmat nollaan sidotut latenttien muuttujien kovarianssit)
+
+-   Number of Paths between Exogenous and Endogenous Variables: 0
+
+-   Number of Causal Paths between Endogenous Variables: 0
+
+-   Number of Measurement Error Covariances: 0
+
+-   Number of Relations among Structural Disturbances: 0
+
+Tällöin informaation (kovarianssien ja varianssien) määräksi saatiin 300 ja estimoitavien parametrien määräksi 52, jolloin $\text{df}_M = 300-52 = 248$.
+
+## Tilastollisen voiman testi
+
+```{r}
+#| eval: false
+library(WebPower)
+
+otoskoot <- list()
+
+for (i in c(0.1, 0.3, 0.5)) {
+  tulos <- WebPower::wp.sem.chisq(
+    n = NULL,
+    df = 248,
+    effect = i,
+    power = 0.8,
+    alpha = 0.05
+  )
+  otoskoot <- c(otoskoot, tulos$n)
+}
+
+# Pyöristetään otoskoot ylöspäin
+otoskoot <- lapply(otoskoot, function(x) {ceiling(x)})
+```
+
+Khiin neliön testin luotettavalle käytölle 80 prosentin tilastollisella voimalla tarvitsemme seuraavat otoskoot riippuen efektikoosta:
+
+-   Efektikoko `0.1`: $n = 610$
+
+-   Efektikoko `0.3`: $n = 204$
+
+-   Efektikoko `0.5`: $n = 123$
 
 ## CFA-mallin asettaminen ja testaaminen
 
@@ -86,7 +108,7 @@ sovitettu_yleinen <- lavaan::cfa(
   data = mallidata,
   fit.measures = TRUE,
   standardized = TRUE,
-  estimator = "MLMVS", # Satterthwaite-robusti ML-estimaattori
+  estimator = "MLR",
   missing = "ML", # FIML-menetelmä puuttuville arvoille
   test = "robust",
   se = "robust"
@@ -115,72 +137,6 @@ invarianssi_yhteydenotto <- semTools::measurementInvariance(
   group = "yhteydenotto",
   strict = TRUE
 )
-
 ```
 
-Sovitettava malli estimoidaan Satterthwaite-tapaisella keskiarvo- ja varianssikorjatulla testillä (`estimator = "MLMVS"`). Puuttuvat arvot käsitellään "full information maximum likelihood"-menetelmällä (`missing = "ML"`).
-
-## IRT-mallien asettaminen ja testaaminen
-
-```{r}
-#| eval: false
-
-library(mirt)
-
-# Määritellään wrapper-funktio, jotta kirjoittaminen onnistuu helpommin.
-
-testaa.malli <- function(malli) {
-  mirt::mirt(
-    data = mallidata,
-    model = malli,
-    itemtype = "3PL",
-    verbose = FALSE)
-}
-
-# Mallit ovat numeroituna 1.1-1.6, 2.1-2.6, 3.1-3.6 ja 4.1-4.6 lyhentämisen takia. Ensimmäinen numero osoittaa ryhmäkohtaista mallia (sisäinen itseen kohdistuva, sisäinen kollegaan kohdistuva, ulkoinen itseen kohdistuva ja ulkoinen kollegaan kohdistuva), toinen numero osoittaa ulottuvuuden (verbaalinen, omaisuus, uhkailu, fyysinen, seksuaalinen ja vihamielisyys).
-
-m1.1 <- testaa.malli(verb_sisä_itse)
-m1.2 <- testaa.malli(oma_sisä_itse)
-m1.3 <- testaa.malli(uhk_sisä_itse)
-m1.4 <- testaa.malli(fyy_sisä_itse)
-m1.5 <- testaa.malli(seks_sisä_itse)
-m1.6 <- testaa.malli(viha_sisä_itse)
-
-m2.1 <- testaa.malli(verb_sisä_koll)
-m2.2 <- testaa.malli(oma_sisä_koll)
-m2.3 <- testaa.malli(uhk_sisä_koll)
-m2.4 <- testaa.malli(fyy_sisä_koll)
-m2.5 <- testaa.malli(seks_sisä_koll)
-m2.6 <- testaa.malli(viha_sisä_koll)
-
-m3.1 <- testaa.malli(verb_ulk_itse)
-m3.2 <- testaa.malli(oma_ulk_itse)
-m3.3 <- testaa.malli(uhk_ulk_itse)
-m3.4 <- testaa.malli(fyy_ulk_itse)
-m3.5 <- testaa.malli(seks_ulk_itse)
-m3.6 <- testaa.malli(viha_ulk_itse)
-
-m4.1 <- testaa.malli(verb_ulk_koll)
-m4.2 <- testaa.malli(oma_ulk_koll)
-m4.3 <- testaa.malli(uhk_ulk_koll)
-m4.4 <- testaa.malli(fyy_ulk_koll)
-m4.5 <- testaa.malli(seks_ulk_koll)
-m4.6 <- testaa.malli(viha_ulk_koll)
-
-# Laitetaan mallit listaan helpomman käsittelyn vuoksi
-
-kaikki_mallit <- c(m1.1, m1.2, m1.3, m1.4, m1.5, m1.6, m2.1, m2.2, m2.3, m2.4, m2.5, m2.6, m3.1, m3.2, m3.3, m3.4, m3.5, m3.6, m4.1, m4.2, m4.3, m4.4, m4.5, m4.6)
-
-# Haetaan mallien M2-indeksit yhteen dataframeen
-
-kolumnit <- c("Malli", "M2", "df", "p", "RMSEA", "RMSEA_5", "RMSEA_95", "SRMSR", "TLI", "CFI")
-indeksit <- data.frame(matrix(nrow = 0, ncol = length(kolumnit)))
-colnames(indeksit) = kolumnit
-
-for (x in kaikki_mallit) {
-  indeksit <- rbind(indeksit, M2(x))
-   # Haetaan mallin muuttujanimi tekstinä ja asetetaan mallin rivin ensimmäiseen sarakkeeseen
-  indeksit[-1,1] <- deparse(substitute(x))
-}
-
-```
+Sovitettava malli estimoidaan robustilla *Maximum Likelihood* -estimaattorilla (`estimator = "MLR"`). Puuttuvat arvot käsitellään "full information maximum likelihood"-menetelmällä (`missing = "ML"`).
