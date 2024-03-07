@@ -1,1 +1,43 @@
 # Kyselyn valmistelu {#sec-kyselynvalmistelu}
+
+## Ensimmäisen asiantuntijatyöpajan suunnittelutyöpaja 13.12.2023
+
+Kyselyn valmistelu alkoi ensimmäisen asiantuntijatyöpajan suunnittelun yhteydessä työpajatyöskentelyllä 13.12.2023. Työpajassa oli mukana kaikki hanketyöntekijät.
+
+Työpajassa suunniteltiin kartoituskyselyä kaikille Suomen pelastuslaitoksille. Kartoituskyselyn tarkoituksena oli kerätä taustatietoa tarvittavista epäasiallisen kohtelun tiedoista laitoksilta, joita olisimme voineet käyttää osana kyselyn kysymysten kehittämistä.
+
+## Kartoituskyselyn suunnittelu ja työstä luopuminen
+
+Hankkeen projektipäällikkö aloitti kartoituskyselyn rakentamisen. Rakentamiseen osallistui kaikki hanketyöntekijät, niin sisällön kuin kysymysten ja tekstien muotoilun tarkistamisessa.
+
+Projektipäällikkö oli yhteydessä kaikkiin hyvinvointialueisiin (21 kappaletta) sekä Helsingin kaupunkiin ja Maarianhaminan pelastuslaitokseen 19.1.2024 sähköpostitse, kysellen hyvinvointialueen lupakäytännöistä kartoituskyselyn toteuttamisen kannalta. Vastauksia saatiin 16 kappaletta. Näistä 10 aluetta vaativat tutkimuslupaa ja 6 aluetta eivät vaatineet.
+
+Tutkimuslupaprosessin haasteellisuuden ja aikataulupuutteiden takia hanketyöryhmä kokoontui keskustelemaan kartoituskyselyn toteutusmahdollisuuksista. Totesimme tuolloin, ettemme ehdi toteuttamaan kartoituskyselyä aikataulun puitteissa. Luovuimme kartoituskyselyn tekemisestä, ja päätimme sisällyttää yhden sisällöllisen kysymyksen myöhemmin asiantuntijatyöpajojen ilmoittautumisen yhteydessä.
+
+## Kyselylomakkeen suunnittelutyöpaja 16.1.2024
+
+Hanketiimi kokoontui 16.1.2024 suunnittelutyöpajaan, tehtävänä määritellä kyselylomakkeen yleismuoto sekä kohderyhmät ja yhteydenottomenetelmät.
+
+Kyselylomakkeen kohdalla totesimme, että taustatietoihin tulee kiinnittää erityistä huomiota. Toisaalta tutkimusasetelma vaatii sensitiivisyyttä ja varovaisuutta henkilötietojen keräämisessä, mutta toisaalta tunnistimme sukupuolen, ammattiryhmän, työnkuvan ja työuran pituuden tärkeinä taustamuuttujina aikaisemmassa tutkimuksessa.
+
+Painoitimme kysymysasettelujen yksiselitteistä käsitteistöä, jotta kyselyyn vastaaminen olisi yksinkertaista. Totesimme myös, että epäasiallisen kohtelun kokemusten kohdalla meidän tulisi rajata mittausaika.
+
+Pääaiheina kyselylle tunnistimme seuraavat kuusi kategoriaa: yleisyys, muodot, tekokonteksti, vaikutukset, tekijätaho sekä toimenpiteet.
+
+Yhteydenottomenetelmien kohdalla totesimme nopeasti, että tarvitsemme selkeämmän kohderyhmärajauksen ensin. Jätimme siksi yhteydenottomenetelmien keskustelun hankkeen myöhempään vaiheeseen.
+
+## Kyselylomakkeen ensimmäinen vedos
+
+Tutkimushankkeen varsinainen kyselylomakkeen työstäminen alkoi 20.2.2024. Projektipäällikkö vedosti ensimmäisen version lomakkeesta.
+
+Lomakkeen kysymykset rakennettiin aikaisemman tutkimuksen validoitujen kysymysasetelmien perusteella, kuitenkin peilaten tutkimuskysymyksiä. Kaikki kirjallisuuskatsauksessa löydetyt validoidut mittaristot arvioitiin sopivuuden näkökulmasta - jos mittaristo oli kehitetty tapauskohtaisen epäasiallisen kohtelun mittaamiseen (esim. *SOAS-RE*-mittaristo), mittaristo jätettiin pois kyselylomakkeesta.
+
+Validoitujen mittaristojen jälkeen kehitimme uusia kysymyksiä tutkimuskirjallisuuteen pohjautuen. Hyvin harva kysymys tarvittiin kehittää täysin tyhjästä, mutta toisaalta harva kysymys sopi sellaisenaan tutkimushankkeen moninaiseen kohderyhmäkontekstiin. Useimmat tutkimukset kirjallisuuskatsauksessa keskittyivät asiakkaan aiheuttamiin uhka- ja väkivaltatilanteisiin ensihoitajien näkökulmasta, jolloin suurimpana tehtävänä oli sovittaa kysymykset myös sisäisen epäasiallisen kohtelun näkökulmaan.
+
+Kehittämisen yhteydessä projektipäällikkö tutustui Jäntin ja Nordquistin [-@jäntti2022] kääntämään työpaikkaväkivallan mittaristoon. Tämä mittaristo otettiin epäasiallisen kohtelun määritelmäksi, mutta muutoksilla: lisäsimme vihamielisyyden määritelmän [@alspach2008] ja yhdistimme seksuaalisen häirinnän ja väkivallan yhdeksi mittariksi.
+
+Epäasiallisen kohtelun yleisyyden mittaaminen pohjautui tämän jälkeen tähän kehitettyyn, kuusiulotteiseen epäasiallisen kohtelun määritelmään. Kehitimme jokaiselle ulottuvuudelle binäärisen mittariston, ja laajensimme määritelmiä koskemaan erikseen organisaation sisällä tapahtuvaa ja ulkoa tulevaa epäasiallista kohtelua.
+
+## Lomakevedoksen läpikäynti 6.3.-7.3.2024
+
+Hanketiimi kävi projektipäällikön tekemän lomakevedoksen läpi kahdessa etäkokouksessa 6.3. ja 7.3.2024. Keskusteluiden pohjalta tunnistettiin kehitystarpeita liki jokaisessa kysymysasettelussa.
