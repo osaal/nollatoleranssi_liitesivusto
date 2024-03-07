@@ -39,6 +39,7 @@ book:
       - sidebar:kirjallisuuskatsaus
       - sidebar:katsauksenhaut
       - sidebar:kyselynvalmistelu
+      - sidebar:mittaristonvalidointi
       - text: "Lähteet"
         file: lahteet.qmd
   
