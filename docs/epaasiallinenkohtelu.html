@@ -259,9 +259,15 @@ div.csl-indent {
     <h2 id="toc-title">Sisällysluettelo</h2>
    
   <ul>
-  <li><a href="#yleismallin-määrittely" id="toc-yleismallin-määrittely" class="nav-link active" data-scroll-target="#yleismallin-määrittely"><span class="header-section-number">13.1</span> Yleismallin määrittely</a></li>
+  <li><a href="#yleismallin-määrittely" id="toc-yleismallin-määrittely" class="nav-link active" data-scroll-target="#yleismallin-määrittely"><span class="header-section-number">13.1</span> Yleismallin määrittely</a>
+  <ul class="collapse">
+  <li><a href="#vaihtoehtomalli-1-vapautetut-kovarianssit" id="toc-vaihtoehtomalli-1-vapautetut-kovarianssit" class="nav-link" data-scroll-target="#vaihtoehtomalli-1-vapautetut-kovarianssit"><span class="header-section-number">13.1.1</span> Vaihtoehtomalli 1: Vapautetut kovarianssit</a></li>
+  <li><a href="#vaihtoehtomalli-2-kahden-faktorin-malli-ilman-latenttia-kovarianssia" id="toc-vaihtoehtomalli-2-kahden-faktorin-malli-ilman-latenttia-kovarianssia" class="nav-link" data-scroll-target="#vaihtoehtomalli-2-kahden-faktorin-malli-ilman-latenttia-kovarianssia"><span class="header-section-number">13.1.2</span> Vaihtoehtomalli 2: Kahden faktorin malli ilman latenttia kovarianssia</a></li>
+  <li><a href="#vaihtoehtomalli-3-kahden-faktorin-malli-vapaalla-kovarianssilla" id="toc-vaihtoehtomalli-3-kahden-faktorin-malli-vapaalla-kovarianssilla" class="nav-link" data-scroll-target="#vaihtoehtomalli-3-kahden-faktorin-malli-vapaalla-kovarianssilla"><span class="header-section-number">13.1.3</span> Vaihtoehtomalli 3: Kahden faktorin malli vapaalla kovarianssilla</a></li>
+  </ul></li>
   <li><a href="#tilastollisen-voiman-testi" id="toc-tilastollisen-voiman-testi" class="nav-link" data-scroll-target="#tilastollisen-voiman-testi"><span class="header-section-number">13.2</span> Tilastollisen voiman testi</a></li>
-  <li><a href="#cfa-mallin-asettaminen-ja-testaaminen" id="toc-cfa-mallin-asettaminen-ja-testaaminen" class="nav-link" data-scroll-target="#cfa-mallin-asettaminen-ja-testaaminen"><span class="header-section-number">13.3</span> CFA-mallin asettaminen ja testaaminen</a></li>
+  <li><a href="#yleismallin-cfa-testaus" id="toc-yleismallin-cfa-testaus" class="nav-link" data-scroll-target="#yleismallin-cfa-testaus"><span class="header-section-number">13.3</span> Yleismallin CFA-testaus</a></li>
+  <li><a href="#cfa-mallin-invarianssitestaus" id="toc-cfa-mallin-invarianssitestaus" class="nav-link" data-scroll-target="#cfa-mallin-invarianssitestaus"><span class="header-section-number">13.4</span> CFA-mallin invarianssitestaus</a></li>
   </ul>
 </nav>
     </div>
@@ -290,15 +296,15 @@ div.csl-indent {
 <div class="cell">
 <details>
 <summary>Koodi</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Epäasiallisen kohtelun kuuden ulottuvuuden CFA-malli</span></span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Epäasiallisen kohtelun seitsemän ulottuvuuden CFA-malli</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>yleismalli <span class="ot">&lt;-</span> <span class="st">'</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="st">  # Malli 1</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="st">  # Latentit muuttujat</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="st">    omakohtainen_a =~ verb1 + oma1 + uhk1 + fyy1 + seks1 + viha1</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="st">    havaittu_a =~ verb2 + oma2 + uhk2 + fyy2 + seks2 + viha2</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="st">    omakohtainen_b =~ verb3 + oma3 + uhk3 + fyy3 + seks3 + viha3</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="st">    havaittu_b =~ verb4 + oma4 + uhk4 + fyy4 + seks4 + viha4</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="st">    omakohtainen_a =~ verb1 + oma1 + uhk1 + fyy1 + seks1 + viha1 + syrj1</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="st">    havaittu_a =~ verb2 + oma2 + uhk2 + fyy2 + seks2 + viha2 + syrj2</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="st">    omakohtainen_b =~ verb3 + oma3 + uhk3 + fyy3 + seks3 + viha3 + syrj3</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="st">    havaittu_b =~ verb4 + oma4 + uhk4 + fyy4 + seks4 + viha4 + syrj4</span></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="st">  # Estimoitavat kovarianssit</span></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="st">    omakohtainen_a ~~ havaittu_a</span></span>
@@ -307,54 +313,161 @@ div.csl-indent {
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="st">  # Kovarianssit, jotka lukitaan nollaan</span></span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="st">    omakohtainen_a ~~ 0*omakohtainen_b</span></span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="st">    havaittu_a ~~ 0*havaittu_b</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="st">    omakohtainen_a ~~ 0*havaittu_b</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="st">    omakohtainen_b ~~ 0*havaittu_a</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>Muuttuja <code>yleismalli</code> on Malli 1: Epäasiallisen kohtelun kuusi ulottuvuutta neljässä tekijä. ja tekokontekstiryhmässä. Jokainen ulottuvuus on mitattu erikseen kyselytutkimuksessa. Mallissa on seuraavat latentit muuttujat:</p>
+<p>Muuttuja <code>yleismalli</code> on Malli 1: Epäasiallisen kohtelun seitsemän ulottuvuutta neljässä tekijä- ja tekokontekstiryhmässä. Jokainen ulottuvuus on mitattu erikseen kyselytutkimuksessa. Mallissa on seuraavat latentit muuttujat:</p>
 <ul>
 <li><p><code>omakohtainen_a</code>: Itse kohdattu epäasiallinen kohtelu organisaation sisällä.</p></li>
 <li><p><code>omakohtainen_b</code>: Itse kohdattu epäasiallinen kohtelu organisaation ulkopuolella.</p></li>
 <li><p><code>havaittu_a</code>: Kollegan havaittu epäasiallinen kohtelu organisaation sisällä.</p></li>
 <li><p><code>havaittu_b</code>: Kollegan havaittu epäasiallinen kohtelu organisaation ulkopuolella.</p></li>
 </ul>
-<p>Mallissa estimoidaan kahden faktoriparin kovarianssit: <code>omakohtainen_a ~~ havaittu_a</code> ja <code>omakohtainen_b ~~ havaittu_b</code>. Omakohtaisten kokemusten kahden faktorin kovarianssi lukitaan nollaan, samoin havaittujen kokemusten kahden faktorin kovarianssi: <code>omakohtainen_a ~~ 0*omakohtainen_b</code> ja <code>havaittu_a ~~ 0*havaittu_b</code>.</p>
-<p>Yleismallin vapausasteet laskettiin käyttäen Cortinan ja kollegoiden <em>Shiny</em>-applikaatiota osoitteessa <a href="https://gmuiopsych.shinyapps.io/degreesoffreedom/" class="uri">https://gmuiopsych.shinyapps.io/degreesoffreedom/</a> [haettu 7.3.2024; <span class="citation" data-cites="cortina2017">Cortina ym. (<a href="lahteet.html#ref-cortina2017" role="doc-biblioref">2017</a>)</span>]. Mallin vapausasteet ovat <span class="math inline">\(\text{df}_M = 248\)</span>. Applikaation asetuksina käytettiin seuraavia arvoja:</p>
+<p>Mallissa estimoidaan kahden faktoriparin kovarianssit: <code>omakohtainen_a ~~ havaittu_a</code> ja <code>omakohtainen_b ~~ havaittu_b</code>. Neljä muuta mahdollista faktoriparien kovarianssia lukitaan nollaan: <code>omakohtainen_a ~~ 0*omakohtainen_b</code>, <code>havaittu_a ~~ 0*havaittu_b</code>, <code>omakohtainen_a ~~ 0*havaittu_b</code> ja <code>omakohtainen_b ~~ 0*havaittu_a</code>.</p>
+<p>Yleismallin vapausasteet laskettiin käyttäen Cortinan ja kollegoiden <em>Shiny</em>-applikaatiota osoitteessa <a href="https://gmuiopsych.shinyapps.io/degreesoffreedom/" class="uri">https://gmuiopsych.shinyapps.io/degreesoffreedom/</a> [haettu 13.3.2024; <span class="citation" data-cites="cortina2017">Cortina ym. (<a href="lahteet.html#ref-cortina2017" role="doc-biblioref">2017</a>)</span>]. Mallin vapausasteet ovat <span class="math inline">\(\text{df}_M = 348\)</span>. Applikaation asetuksina käytettiin seuraavia arvoja:</p>
 <ul>
 <li><p>Model type: CFA/SEM</p></li>
-<li><p>Number of Indicators: 24 (kaikki 24 havaittua muuttujaa)</p></li>
+<li><p>Number of Indicators: 28 (kaikki 28 havaittua muuttujaa)</p></li>
 <li><p>Number of Single Item Indicators: 0</p></li>
 <li><p>Number of Latent Exogenous Variables: 4 (kaikki 4 latenttia muuttujaa)</p></li>
 <li><p>Number of Latent Endogenous Variables: 0</p></li>
-<li><p>Number of Constrained Exogenous Relationships: 2 (molemmat nollaan sidotut latenttien muuttujien kovarianssit)</p></li>
+<li><p>Number of Constrained Exogenous Relationships: 4 (latenttien muuttujien kovarianssit sidotaan nollaan kaikille, paitsi kahdelle muuttujaparille)</p></li>
 <li><p>Number of Paths between Exogenous and Endogenous Variables: 0</p></li>
 <li><p>Number of Causal Paths between Endogenous Variables: 0</p></li>
 <li><p>Number of Measurement Error Covariances: 0</p></li>
 <li><p>Number of Relations among Structural Disturbances: 0</p></li>
 </ul>
-<p>Tällöin informaation (kovarianssien ja varianssien) määräksi saatiin 300 ja estimoitavien parametrien määräksi 52, jolloin <span class="math inline">\(\text{df}_M = 300-52 = 248\)</span>.</p>
+<p>Tällöin informaation (kovarianssien ja varianssien) määräksi saatiin 406 ja estimoitavien parametrien määräksi 58, jolloin <span class="math inline">\(\text{df}_M = 406-58 = 348\)</span>.</p>
+<section id="vaihtoehtomalli-1-vapautetut-kovarianssit" class="level3" data-number="13.1.1">
+<h3 data-number="13.1.1" class="anchored" data-anchor-id="vaihtoehtomalli-1-vapautetut-kovarianssit"><span class="header-section-number">13.1.1</span> Vaihtoehtomalli 1: Vapautetut kovarianssit</h3>
+<div class="cell">
+<details>
+<summary>Koodi</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Epäasiallisen kohtelun vaihtoehtomalli, jossa latentit kovarianssit vapautettu</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>vaihtoehtomalli<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="st">'</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="st">  # Vaihtoehtomalli 1</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="st">  # Latentit muuttujat</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="st">    omakohtainen_a =~ verb1 + oma1 + uhk1 + fyy1 + seks1 + viha1 + syrj1</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="st">    havaittu_a =~ verb2 + oma2 + uhk2 + fyy2 + seks2 + viha2 + syrj2</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="st">    omakohtainen_b =~ verb3 + oma3 + uhk3 + fyy3 + seks3 + viha3 + syrj3</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="st">    havaittu_b =~ verb4 + oma4 + uhk4 + fyy4 + seks4 + viha4 + syrj4</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="st">  # Estimoitavat kovarianssit</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="st">    omakohtainen_a ~~ havaittu_a</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="st">    omakohtainen_b ~~ havaittu_b</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="st">    omakohtainen_a ~~ omakohtainen_b</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="st">    havaittu_a ~~ havaittu_b</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="st">    omakohtainen_a ~~ havaittu_b</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="st">    omakohtainen_b ~~ havaittu_a</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Mallin vapausasteet ovat laskurin mukaan <span class="math inline">\(\text{df}_M = 344\)</span>:</p>
+<ul>
+<li><p>Model type: CFA/SEM</p></li>
+<li><p>Number of Indicators: 28</p></li>
+<li><p>Number of Single Item Indicators: 0</p></li>
+<li><p>Number of Latent Exogenous Variables: 4</p></li>
+<li><p>Number of Latent Endogenous Variables: 0</p></li>
+<li><p>Number of Constrained Exogenous Relationships: 0</p></li>
+<li><p>Number of Paths between Exogenous and Endogenous Variables: 0</p></li>
+<li><p>Number of Causal Paths between Endogenous Variables: 0</p></li>
+<li><p>Number of Measurement Error Covariances: 0</p></li>
+<li><p>Number of Relations among Structural Disturbances: 0</p></li>
+</ul>
+</section>
+<section id="vaihtoehtomalli-2-kahden-faktorin-malli-ilman-latenttia-kovarianssia" class="level3" data-number="13.1.2">
+<h3 data-number="13.1.2" class="anchored" data-anchor-id="vaihtoehtomalli-2-kahden-faktorin-malli-ilman-latenttia-kovarianssia"><span class="header-section-number">13.1.2</span> Vaihtoehtomalli 2: Kahden faktorin malli ilman latenttia kovarianssia</h3>
+<div class="cell">
+<details>
+<summary>Koodi</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Epäasiallisen kohtelun vaihtoehtomalli, jossa kaksi faktoria ilman yhteistä kovarianssia</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>vaihtoehtomalli<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="st">'</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="st">  # Vaihtoehtomalli 2</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="st">  </span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="st">  # Latentit muuttujat</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="st">    omakohtainen =~ verb1 + verb3 + oma1 + oma3 + uhk1 + uhk3 + fyy1 + fyy3 + seks1 + seks3 + viha1 + viha3 + syrj1 + syrj3</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="st">    havaittu =~ verb2 + verb4 + oma2 + oma4 + uhk2 + uhk4 + fyy2 + fyy4 + seks2 + seks4 + viha2 + viha4 + syrj2 + syrj4</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="st">  </span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="st">  # Kovarianssit, jotka lukitaan nollaan</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="st">  omakohtainen ~~ 0*havaittu</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Mallin vapausasteet ovat laskurin mukaan <span class="math inline">\(\text{df}_M = 350\)</span>:</p>
+<ul>
+<li><p>Model type: CFA/SEM</p></li>
+<li><p>Number of Indicators: 28</p></li>
+<li><p>Number of Single Item Indicators: 0</p></li>
+<li><p>Number of Latent Exogenous Variables: 2</p></li>
+<li><p>Number of Latent Endogenous Variables: 0</p></li>
+<li><p>Number of Constrained Exogenous Relationships: 1</p></li>
+<li><p>Number of Paths between Exogenous and Endogenous Variables: 0</p></li>
+<li><p>Number of Causal Paths between Endogenous Variables: 0</p></li>
+<li><p>Number of Measurement Error Covariances: 0</p></li>
+<li><p>Number of Relations among Structural Disturbances: 0</p></li>
+</ul>
+</section>
+<section id="vaihtoehtomalli-3-kahden-faktorin-malli-vapaalla-kovarianssilla" class="level3" data-number="13.1.3">
+<h3 data-number="13.1.3" class="anchored" data-anchor-id="vaihtoehtomalli-3-kahden-faktorin-malli-vapaalla-kovarianssilla"><span class="header-section-number">13.1.3</span> Vaihtoehtomalli 3: Kahden faktorin malli vapaalla kovarianssilla</h3>
+<div class="cell">
+<details>
+<summary>Koodi</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Epäasiallisen kohtelun vaihtoehtomalli, jossa kaksi korreloivaa faktoria</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>vaihtoehtomalli<span class="fl">.3</span> <span class="ot">&lt;-</span> <span class="st">'</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="st">  # Vaihtoehtomalli 3</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="st">  </span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="st">  # Latentit muuttujat</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="st">    omakohtainen =~ verb1 + verb3 + oma1 + oma3 + uhk1 + uhk3 + fyy1 + fyy3 + seks1 + seks3 + viha1 + viha3 + syrj1 + syrj3</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="st">    havaittu =~ verb2 + verb4 + oma2 + oma4 + uhk2 + uhk4 + fyy2 + fyy4 + seks2 + seks4 + viha2 + viha4 + syrj2 + syrj4</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="st">  </span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="st">  # Estimoitavat kovarianssit</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="st">    omakohtainen ~~ havaittu</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Mallin vapausasteet ovat laskurin mukaan <span class="math inline">\(\text{df}_M = 349\)</span>:</p>
+<ul>
+<li><p>Model type: CFA/SEM</p></li>
+<li><p>Number of Indicators: 28</p></li>
+<li><p>Number of Single Item Indicators: 0</p></li>
+<li><p>Number of Latent Exogenous Variables: 2</p></li>
+<li><p>Number of Latent Endogenous Variables: 0</p></li>
+<li><p>Number of Constrained Exogenous Relationships: 0</p></li>
+<li><p>Number of Paths between Exogenous and Endogenous Variables: 0</p></li>
+<li><p>Number of Causal Paths between Endogenous Variables: 0</p></li>
+<li><p>Number of Measurement Error Covariances: 0</p></li>
+<li><p>Number of Relations among Structural Disturbances: 0</p></li>
+</ul>
+</section>
 </section>
 <section id="tilastollisen-voiman-testi" class="level2" data-number="13.2">
 <h2 data-number="13.2" class="anchored" data-anchor-id="tilastollisen-voiman-testi"><span class="header-section-number">13.2</span> Tilastollisen voiman testi</h2>
 <div class="cell">
 <details>
 <summary>Koodi</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(WebPower)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>otoskoot <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.3</span>, <span class="fl">0.5</span>)) {</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  tulos <span class="ot">&lt;-</span> WebPower<span class="sc">::</span><span class="fu">wp.sem.chisq</span>(</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="cn">NULL</span>,</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">df =</span> <span class="dv">248</span>,</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">effect =</span> i,</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">power =</span> <span class="fl">0.8</span>,</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.05</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  otoskoot <span class="ot">&lt;-</span> <span class="fu">c</span>(otoskoot, tulos<span class="sc">$</span>n)</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Pyöristetään otoskoot ylöspäin</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>otoskoot <span class="ot">&lt;-</span> <span class="fu">lapply</span>(otoskoot, <span class="cf">function</span>(x) {<span class="fu">ceiling</span>(x)})</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(WebPower)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>otoskoot <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.3</span>, <span class="fl">0.5</span>)) {</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  tulos <span class="ot">&lt;-</span> WebPower<span class="sc">::</span><span class="fu">wp.sem.chisq</span>(</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="cn">NULL</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">df =</span> <span class="dv">248</span>,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">effect =</span> i,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">power =</span> <span class="fl">0.8</span>,</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.05</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  otoskoot <span class="ot">&lt;-</span> <span class="fu">c</span>(otoskoot, tulos<span class="sc">$</span>n)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Pyöristetään otoskoot ylöspäin</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>otoskoot <span class="ot">&lt;-</span> <span class="fu">lapply</span>(otoskoot, <span class="cf">function</span>(x) {<span class="fu">ceiling</span>(x)})</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>Khiin neliön testin luotettavalle käytölle 80 prosentin tilastollisella voimalla tarvitsemme seuraavat otoskoot riippuen efektikoosta:</p>
@@ -364,51 +477,85 @@ div.csl-indent {
 <li><p>Efektikoko <code>0.5</code>: <span class="math inline">\(n = 123\)</span></p></li>
 </ul>
 </section>
-<section id="cfa-mallin-asettaminen-ja-testaaminen" class="level2" data-number="13.3">
-<h2 data-number="13.3" class="anchored" data-anchor-id="cfa-mallin-asettaminen-ja-testaaminen"><span class="header-section-number">13.3</span> CFA-mallin asettaminen ja testaaminen</h2>
+<section id="yleismallin-cfa-testaus" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="yleismallin-cfa-testaus"><span class="header-section-number">13.3</span> Yleismallin CFA-testaus</h2>
 <div class="cell">
 <details>
 <summary>Koodi</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semTools)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Muista lisätä itse data!</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>mallidata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>sovitettu_yleinen <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">cfa</span>(</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  yleismalli,</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> mallidata,</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">fit.measures =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">standardized =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">estimator =</span> <span class="st">"MLR"</span>,</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">missing =</span> <span class="st">"ML"</span>, <span class="co"># FIML-menetelmä puuttuville arvoille</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">test =</span> <span class="st">"robust"</span>,</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">se =</span> <span class="st">"robust"</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Mallin invarianssitestaus suoritetaan lavaan-paketilla automaattisesti. Käytetään Satorra-Bentley-korjattu khiin neliötä.</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Kohderyhmä</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>invarianssi_kohderyhmä <span class="ot">&lt;-</span> semTools<span class="sc">::</span><span class="fu">measurementInvariance</span>(</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> sovitettu_yleinen,</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> mallidata,</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> <span class="st">"kohderyhmä"</span>,</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">strict =</span> <span class="cn">TRUE</span></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Kieliversio</span></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>invarianssi_kieli <span class="ot">&lt;-</span> semTools<span class="sc">::</span><span class="fu">measurementInvariance</span>(</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> sovitettu_yleinen,</span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> mallidata,</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> <span class="st">"kieli"</span>,</span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">strict =</span> <span class="cn">TRUE</span></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Yhteydenottomenetelmät</span></span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>invarianssi_yhteydenotto <span class="ot">&lt;-</span> semTools<span class="sc">::</span><span class="fu">measurementInvariance</span>(</span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> sovitettu_yleinen,</span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> mallidata,</span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> <span class="st">"yhteydenotto"</span>,</span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>  <span class="at">strict =</span> <span class="cn">TRUE</span></span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Muista lisätä itse data</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>mallidata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>sovitettu_yleinen <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">cfa</span>(</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  yleismalli,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> mallidata,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">fit.measures =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">standardized =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">estimator =</span> <span class="st">"MLR"</span>,</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">missing =</span> <span class="st">"ML"</span>, <span class="co"># FIML-menetelmä puuttuville arvoille</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">test =</span> <span class="st">"robust"</span>,</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">se =</span> <span class="st">"robust"</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sovitettu_yleinen)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>lavaan<span class="sc">::</span><span class="fu">modificationIndices</span>(sovitettu_yleinen)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="cfa-mallin-invarianssitestaus" class="level2" data-number="13.4">
+<h2 data-number="13.4" class="anchored" data-anchor-id="cfa-mallin-invarianssitestaus"><span class="header-section-number">13.4</span> CFA-mallin invarianssitestaus</h2>
+<div class="cell">
+<details>
+<summary>Koodi</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semTools)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Muista lisätä itse data sekä valittu malli</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>mallidata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>valittu.malli <span class="ot">&lt;-</span> <span class="st">""</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>sovitettu <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">cfa</span>(</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  valittu.malli,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> mallidata,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">fit.measures =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">standardized =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">estimator =</span> <span class="st">"MLR"</span>,</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">missing =</span> <span class="st">"ML"</span>, <span class="co"># FIML-menetelmä puuttuville arvoille</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">test =</span> <span class="st">"robust"</span>,</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">se =</span> <span class="st">"robust"</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Mallin invarianssitestaus suoritetaan lavaan-paketilla automaattisesti. Käytetään Satorra-Bentley-korjattu khiin neliötä.</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Kohderyhmä</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>invarianssi_kohderyhmä <span class="ot">&lt;-</span> semTools<span class="sc">::</span><span class="fu">measurementInvariance</span>(</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> sovitettu,</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> mallidata,</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> <span class="st">"kohderyhmä"</span>,</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">strict =</span> <span class="cn">TRUE</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Ammattiryhmä</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>invarianssi_ammattiryhmä <span class="ot">&lt;-</span> semTools<span class="sc">::</span><span class="fu">measurementInvariance</span>(</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> sovitettu,</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> mallidata,</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> <span class="st">"ammattiryhmä"</span>,</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">strict =</span> <span class="cn">TRUE</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Kieliversio</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>invarianssi_kieli <span class="ot">&lt;-</span> semTools<span class="sc">::</span><span class="fu">measurementInvariance</span>(</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> sovitettu,</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> mallidata,</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> <span class="st">"kieli"</span>,</span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>  <span class="at">strict =</span> <span class="cn">TRUE</span></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Yhteydenottomenetelmät</span></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>invarianssi_yhteydenotto <span class="ot">&lt;-</span> semTools<span class="sc">::</span><span class="fu">measurementInvariance</span>(</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> sovitettu,</span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> mallidata,</span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> <span class="st">"yhteydenotto"</span>,</span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>  <span class="at">strict =</span> <span class="cn">TRUE</span></span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>Sovitettava malli estimoidaan robustilla <em>Maximum Likelihood</em> -estimaattorilla (<code>estimator = "MLR"</code>). Puuttuvat arvot käsitellään “full information maximum likelihood”-menetelmällä (<code>missing = "ML"</code>).</p>
