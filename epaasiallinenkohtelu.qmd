@@ -204,7 +204,7 @@ otoskoot <- list()
 for (i in c(0.1, 0.3, 0.5)) {
   tulos <- WebPower::wp.sem.chisq(
     n = NULL,
-    df = 248,
+    df = 348,
     effect = i,
     power = 0.8,
     alpha = 0.05
@@ -218,11 +218,11 @@ otoskoot <- lapply(otoskoot, function(x) {ceiling(x)})
 
 Khiin neliön testin luotettavalle käytölle 80 prosentin tilastollisella voimalla tarvitsemme seuraavat otoskoot riippuen efektikoosta:
 
--   Efektikoko `0.1`: $n = 610$
+-   Efektikoko `0.1`: $n = 712$
 
--   Efektikoko `0.3`: $n = 204$
+-   Efektikoko `0.3`: $n = 238$
 
--   Efektikoko `0.5`: $n = 123$
+-   Efektikoko `0.5`: $n = 144$
 
 ## Yleismallin CFA-testaus
 

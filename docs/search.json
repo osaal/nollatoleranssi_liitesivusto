@@ -312,7 +312,7 @@
     "href": "epaasiallinenkohtelu.html#tilastollisen-voiman-testi",
     "title": "13  Epäasiallisen kohtelun mittaristo",
     "section": "13.2 Tilastollisen voiman testi",
-    "text": "13.2 Tilastollisen voiman testi\n\n\nKoodi\nlibrary(WebPower)\n\notoskoot &lt;- list()\n\nfor (i in c(0.1, 0.3, 0.5)) {\n  tulos &lt;- WebPower::wp.sem.chisq(\n    n = NULL,\n    df = 248,\n    effect = i,\n    power = 0.8,\n    alpha = 0.05\n  )\n  otoskoot &lt;- c(otoskoot, tulos$n)\n}\n\n# Pyöristetään otoskoot ylöspäin\notoskoot &lt;- lapply(otoskoot, function(x) {ceiling(x)})\n\n\nKhiin neliön testin luotettavalle käytölle 80 prosentin tilastollisella voimalla tarvitsemme seuraavat otoskoot riippuen efektikoosta:\n\nEfektikoko 0.1: \\(n = 610\\)\nEfektikoko 0.3: \\(n = 204\\)\nEfektikoko 0.5: \\(n = 123\\)"
+    "text": "13.2 Tilastollisen voiman testi\n\n\nKoodi\nlibrary(WebPower)\n\notoskoot &lt;- list()\n\nfor (i in c(0.1, 0.3, 0.5)) {\n  tulos &lt;- WebPower::wp.sem.chisq(\n    n = NULL,\n    df = 348,\n    effect = i,\n    power = 0.8,\n    alpha = 0.05\n  )\n  otoskoot &lt;- c(otoskoot, tulos$n)\n}\n\n# Pyöristetään otoskoot ylöspäin\notoskoot &lt;- lapply(otoskoot, function(x) {ceiling(x)})\n\n\nKhiin neliön testin luotettavalle käytölle 80 prosentin tilastollisella voimalla tarvitsemme seuraavat otoskoot riippuen efektikoosta:\n\nEfektikoko 0.1: \\(n = 712\\)\nEfektikoko 0.3: \\(n = 238\\)\nEfektikoko 0.5: \\(n = 144\\)"
   },
   {
     "objectID": "epaasiallinenkohtelu.html#yleismallin-cfa-testaus",
