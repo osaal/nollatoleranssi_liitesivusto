@@ -6,7 +6,7 @@ Kyselyn valmistelu alkoi ensimmäisen asiantuntijatyöpajan suunnittelun yhteyde
 
 Työpajassa suunniteltiin kartoituskyselyä kaikille Suomen pelastuslaitoksille. Kartoituskyselyn tarkoituksena oli kerätä taustatietoa tarvittavista epäasiallisen kohtelun tiedoista laitoksilta, joita olisimme voineet käyttää osana kyselyn kysymysten kehittämistä.
 
-## Kartoituskyselyn suunnittelu ja työstä luopuminen
+## Kartoituskyselyn suunnittelu ja siitä luopuminen
 
 Hankkeen projektipäällikkö aloitti kartoituskyselyn rakentamisen. Rakentamiseen osallistui kaikki hanketyöntekijät, niin sisällön kuin kysymysten ja tekstien muotoilun tarkistamisessa.
 
@@ -41,3 +41,15 @@ Epäasiallisen kohtelun yleisyyden mittaaminen pohjautui tämän jälkeen tähä
 ## Lomakevedoksen läpikäynti 6.3.-7.3.2024
 
 Hanketiimi kävi projektipäällikön tekemän lomakevedoksen läpi kahdessa etäkokouksessa 6.3. ja 7.3.2024. Keskusteluiden pohjalta tunnistettiin kehitystarpeita liki jokaisessa kysymysasettelussa.
+
+Lomakkeen läpikäynnin jälkeen projektipäällikkö teki tarpeellisiksi todetut muutokset kyselylomakkeeseen. Muutostenteon yhteydessä huomattiin, että syrjinnän mittaaminen oli jäänyt pois. Lisäsimme työpaikkaväkivallan mittaristoon syrjinnän määritelmän nojautuen yhdenvertaisuuslakiin, ja kehitimme kirjallisuuskatsausten tulosten pohjalta tarkat mittarit syrjinnälle. Huomasimme, että vain kaksi tutkimusta kirjallisuuskatsauksen tuloksista mittasi syrjinnän kokemuksia tarkemmalla kuin yleisellä tasolla, molemmat laadullisin menetelmin (avokysymys kyselyssä sekä teemahaastattelu). Lisäsimme myös Yhdenvertaisuusvaltuutetun verkkosivuilta löydettyjä esimerkkejä kyselyyn, jolloin saatiin yhteensä 15 mittaria organisaation sisäiselle syrjinnälle ja 8 mittaria organisaation ulkopuoliselle syrjinnälle.
+
+## Asiantuntijatyöpaja 25.3.2024
+
+Asiantuntijatyöpajaa varten suunnittelimme ensin kartoituskyselyn toteuttamista, josta kuitenkin luovuttiin aikapaineiden takia (ks. yllä). Päätimme sen sijaan lähettää alustavan kutsusähköpostin kaikille pelastuslaitoksille, jossa pyysimme laitoksia nimeämään henkilön hankkeen asiantuntijatyöskentelyyn. Kutsu lähetettiin yhteistyössä Hyvinvointialueyhtiö Hyvil Oy:n kanssa pelastusjohtajien sähköpostiosoitteisiin sekä pelastuslaitosten virkasähköposteihin perjantaina 2.2.2024. Vastauksia pyydettiin 14.2.2024 mennessä.
+
+Ilmoittautumisia saatiin seitsemän kappaletta. Nämä yhdistettiin asiantuntijatyöpajakutsuja varten hankkeen ohjausryhmän sähköpostilistaan, jolloin henkilökohtaisia kutsuja oli lähetettävänä yhteensä 17 kappaletta.
+
+Lähetimme kutsut asiantuntijatyöpajaan 23.2.2024. Kutsut lähetettiin projektipäällikön toimesta henkilökohtaisiin sähköposteihin 17 edellä tunnistetuille henkilöille, ja kirjaamoihin tai virkaposteihin 15 henkilön ilmoittamatta jättäneille pelastuslaitoksille. Vastauksia pyydettiin perjantaihin 15.3.2024 mennessä. Muistutusviesti lähetettiin kaikille ei-ilmoittautuneille henkilöille 11.3.2024.
+
+Kutsujen yhteydessä pyydettiin myös osallistujia kuvailemaan organisaationsa toimenpideprosessi epäasiallisen kohtelun yhteydessä. Tuloksia oli tarkoitus sisällyttää kyselylomakkeen toimenpide- ja raportointiosuuksien osaksi.

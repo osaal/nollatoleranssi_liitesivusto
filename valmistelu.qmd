@@ -1,0 +1,202 @@
+# Valmistelu
+
+```{r}
+#| label: 00_paketit
+#| eval: false
+#| echo: false
+
+# Avataan tarvittavat paketit. Jos niitä ei ole asennettuna, ladataan ne verkosta.Y
+
+paketit <- c("tidyverse")
+
+lapply(paketit, require, character.only = TRUE)
+
+```
+
+## Datatiedoston importointi
+
+```{r}
+#| label: 01_importointi
+#| eval: false
+
+data <- read.csv2("data/TESTI_Epäasiallinen kohtelu pelastusalalla ja ensihoidossa_Suomi.csv") %>% as_tibble()
+
+```
+
+## Järjestelmä-puuttuvien arvojen uudelleenkoodaus
+
+Tässä vaiheessa datatiedosto on täysin raaka. Ensimmäisenä pitää uudelleenkoodata muuttujat seuraavilla tavoilla:
+
+1.  Jos vastaajalle ei tarjottu vastausmahdollisuutta tiettyyn kysymykseen (ketjutusten takia), hänelle merkitään arvo `-1` (SYSMIS, eli järjestelmä-puuttuva).
+2.  Jos vastaajalle tarjottiin vastausmahdollisuus, mutta hän ei vastannut, jätetään arvo `NA` (USRMIS, eli käyttäjä-puuttuva).
+
+### Esiintyvyysmittarit (k3-k4 + k5-k11, k12-k13 + k14-k20)
+
+1.  **Kaikki esiintyvyysmittarit** (7 + 7 settiä): Jos vastaaja ei ole kokenut kohtelun muotoa omakohtaisesti *eikä* havainnut sitä, hänen vastauksensa kohtelua vastaavilla lisätietomittareilla tulisi olla `-1`.
+
+```{r}
+#| label: 02_sysmis_esiintyvyydet
+#| eval: false
+
+# Mutate-across -verbiyhdistelmällä voidaan muuttaa X määrä muuttujia
+# samaan aikaan, kopioiden kaikki muut muuttujat tulokseen
+
+### Organisaation sisäiset kokemukset
+# Verbaalinen väkivalta
+data <- data %>%
+  mutate(
+    across(
+      k5_1_1:k5_9_2,
+      ~ case_when(k3_1 == 1 & k4_1 == 1 ~ -1, .default = .x)
+    )
+  )
+
+# Omaisuuden vahingoittaminen ja varastaminen
+data <- data %>%
+  mutate(
+    across(
+      k6_1_1:k6_10_2,
+      ~ case_when(k3_2 == 1 & k4_2 == 1 ~ -1, .default = .x)
+    )
+  )
+
+# Uhkailu
+data <- data %>%
+  mutate(
+    across(
+      k7_1_1:k7_14_2,
+      ~ case_when(k3_3 == 1 & k4_3 == 1 ~ -1, .default = .x)
+    )
+  )
+
+# Fyysinen väkivalta
+data <- data %>%
+  mutate(
+    across(
+      k8_1_1:k8_11_2,
+      ~ case_when(k3_4 == 1 & k4_4 == 1 ~ -1, .default = .x)
+    )
+  )
+
+# Seksuaalinen häirintä tai väkivalta
+data <- data %>%
+  mutate(
+    across(
+      k9_1_1:k9_10_2,
+      ~ case_when(k3_5 == 1 & k4_5 == 1 ~ -1, .default = .x)
+    )
+  )
+
+# Vihamielisyys tai epäasiallinen kohtelu
+data <- data %>%
+  mutate(
+    across(
+      k10_1_1:k10_11_2,
+      ~ case_when(k3_6 == 1 & k4_6 == 1 ~ -1, .default = .x)
+    )
+  )
+
+# Syrjintä
+data <- data %>%
+  mutate(
+    across(
+      k11_1_1:k11_16_2,
+      ~ case_when(k3_7 == 1 & k4_7 == 1 ~ -1, .default = .x)
+    )
+  )
+
+### Organisaation ulkopuoliset kokemukset
+# Verbaalinen väkivalta
+data <- data %>%
+  mutate(
+    across(
+      k14_1_1:k14_9_2,
+      ~ case_when(k12_1 == 1 & k13_1 == 1 ~ -1, .default = .x)
+    )
+  )
+
+# Omaisuuden vahingoittaminen ja varastaminen
+data <- data %>%
+  mutate(
+    across(
+      k15_1_1:k15_10_2,
+      ~ case_when(k12_2 == 1 & k13_2 == 1 ~ -1, .default = .x)
+    )
+  )
+
+# Uhkailu
+data <- data %>%
+  mutate(
+    across(
+      k16_1_1:k16_14_2,
+      ~ case_when(k12_3 == 1 & k13_3 == 1 ~ -1, .default = .x)
+    )
+  )
+
+# Fyysinen väkivalta
+data <- data %>%
+  mutate(
+    across(
+      k17_1_1:k17_11_2,
+      ~ case_when(k12_4 == 1 & k13_4 == 1 ~ -1, .default = .x)
+    )
+  )
+
+# Seksuaalinen häirintä tai väkivalta
+data <- data %>%
+  mutate(
+    across(
+      k18_1_1:k18_10_2,
+      ~ case_when(k12_5 == 1 & k13_5 == 1 ~ -1, .default = .x)
+    )
+  )
+
+# Vihamielisyys tai epäasiallinen kohtelu
+data <- data %>%
+  mutate(
+    across(
+      k19_1_1:k19_11_2,
+      ~ case_when(k12_6 == 1 & k13_6 == 1 ~ -1, .default = .x)
+    )
+  )
+
+# Syrjintä
+data <- data %>%
+  mutate(
+    across(
+      k20_1_1:k20_7_2,
+      ~ case_when(k12_7 == 1 & k13_7 == 1 ~ -1, .default = .x)
+    )
+  )
+```
+
+### Vaikutusmittarit (k21-k23)
+
+2.  **Kaikki vaikutusmittarit**: Jos vastaaja on ilmoittanut, ettei hän ole omakohtaisesti kokenut yhtään epäasiallista kohtelua organisaation sisällä tai ulkopuolella (eli jokaisella kokemuksen ylämittarilla \[7+7 mittaria\] vastausarvo on `1` \[En ollenkaan\]), hänelle ei näytetä näitä kysymyksiä ja asetetaan siksi arvo `-1`.
+
+```{r}
+#| label: 03_sysmis_vaikutukset
+#| eval: false
+
+# Koodin selitykselle, ks. koodiblokki 02_sysmis_esiintyvyydet
+
+# Vakavuus, pitkäkestoisuus, jatkuu tällä hetkellä, sekä reaktiot
+data <- data %>%
+  mutate(
+    across(
+      k21_1:k23_11,
+      ~ case_when(
+        k3_1 == 1 & k3_2 == 1 & k3_3 == 1 & k3_4 == 1 & k3_5 == 1 & k3_6 == 1 & k3_7 == 1 & k12_1 == 1 & k12_2 == 1 & k12_3 == 1 & k12_4 == 1 & k12_5 == 1 & k12_6 == 1 & k12_7 == 1 ~ -1,
+        .default = .x)
+    )
+  )
+```
+
+### Ilmoitusjärjestelmien koulutus (k25)
+
+3.  **Ilmoitusjärjestelmien koulutus**: Niistä järjestelmistä, joista vastaaja sanoi että organisaatiossa on olemassa, mutta hän jätti vastaamatta niiden koulutuksen olemassaolosta, koodataan `NA` (käyttäjä-puuttuva). Muille koodataan `-1` (järjestelmä-puuttuva), sillä muut eivät nähneet sen järjestelmän riviä.
+
+```{r}
+#| label: 04_sysmis_jarjestelmakoulutus
+#| eval: false
+```

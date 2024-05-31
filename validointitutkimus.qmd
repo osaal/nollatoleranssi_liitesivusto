@@ -1,0 +1,79 @@
+# Validointitutkimus
+
+## Voima-analyysi
+
+### EFA-malli
+
+```{r}
+efa.malli.1 <- '
+  efa("efa")*f1 =~ a1+a2+a3+a4+a5+a6+a7+b1+b2+b3+b4+b5+b6+b7+c1+c2+c3+c4+c5+c6+c7+d1+d2+d3+d4+d5+d6+d7
+'
+efa.malli.2 <- '
+  efa("efa")*f1 +
+  efa("efa")*f2 =~ a1+a2+a3+a4+a5+a6+a7+b1+b2+b3+b4+b5+b6+b7+c1+c2+c3+c4+c5+c6+c7+d1+d2+d3+d4+d5+d6+d7
+'
+efa.malli.3 <- '
+  efa("efa")*f1 +
+  efa("efa")*f2 +
+  efa("efa")*f3 =~ a1+a2+a3+a4+a5+a6+a7+b1+b2+b3+b4+b5+b6+b7+c1+c2+c3+c4+c5+c6+c7+d1+d2+d3+d4+d5+d6+d7
+'
+efa.malli.4 <- '
+  efa("efa")*f1 +
+  efa("efa")*f2 +
+  efa("efa")*f3 +
+  efa("efa")*f4 =~ a1+a2+a3+a4+a5+a6+a7+b1+b2+b3+b4+b5+b6+b7+c1+c2+c3+c4+c5+c6+c7+d1+d2+d3+d4+d5+d6+d7
+'
+semPower::semPower.getDf(efa.malli.1)
+semPower::semPower.getDf(efa.malli.2)
+semPower::semPower.getDf(efa.malli.3)
+semPower::semPower.getDf(efa.malli.4)
+```
+
+Neljän vaihtoehtoisen EFA-mallin vapausasteet ovat:
+
+-   Yksi faktori: $\text{df}=350$
+
+-   Kaksi faktoria: $\text{df}=323$
+
+-   Kolme faktoria: $\text{df}=297$
+
+-   Neljä faktoria: $\text{df}=272$
+
+Tällöin saadaan seuraava RMSEA-voimaestimaatit.
+
+**RMSEA**:
+
+```{r}
+dfs <- c(350, 323, 297, 272)
+alfa <- 0.05
+voima <- 0.8
+
+semPower::semPower.aPriori( # RMSEA < .05, df = 350
+  effect = .05,
+  effect.measure = "RMSEA",
+  alpha = alfa,
+  power = voima,
+  df = dfs[[1]]
+)$requiredN
+semPower::semPower.aPriori( # RMSEA < .05, df = 323
+  effect = .05,
+  effect.measure = "RMSEA",
+  alpha = alfa,
+  power = voima,
+  df = dfs[[2]]
+)$requiredN
+semPower::semPower.aPriori( # RMSEA < .05, df = 297
+  effect = .05,
+  effect.measure = "RMSEA",
+  alpha = alfa,
+  power = voima,
+  df = dfs[[3]]
+)$requiredN
+semPower::semPower.aPriori( # RMSEA < .05, df = 272
+  effect = .05,
+  effect.measure = "RMSEA",
+  alpha = alfa,
+  power = voima,
+  df = dfs[[4]]
+)$requiredN
+```

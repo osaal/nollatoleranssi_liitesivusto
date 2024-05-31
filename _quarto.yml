@@ -25,9 +25,14 @@ book:
     - part: "Kyselyn valmistelu"
       chapters:
         - kyselynvalmistelu.qmd
+    - part: "Datavalmistelu"
+      chapters:
+        - eksportointi.qmd
+        - nimeaminen.qmd
+        - valmistelu.qmd
     - part: "Mittariston validointi"
       chapters:
-        - epaasiallinenkohtelu.qmd
+        - efabias.qmd
     - lahteet.qmd
   
   navbar:
@@ -39,7 +44,8 @@ book:
       - sidebar:kirjallisuuskatsaus
       - sidebar:katsauksenhaut
       - sidebar:kyselynvalmistelu
-      - sidebar:mittaristonvalidointi
+      - sidebar:datavalmistelu
+      - sidebar:validointi
       - text: "Lähteet"
         file: lahteet.qmd
   
@@ -70,11 +76,17 @@ book:
       contents:
         - kyselynvalmistelu.qmd
     
-    - id: mittaristonvalidointi
+    - id: datavalmistelu
+      title: "Datavalmistelu"
+      contents:
+        - eksportointi.qmd
+        - nimeaminen.qmd
+        - valmistelu.qmd
+    
+    - id: validointi
       title: "Mittariston validointi"
       contents:
-        - epaasiallinenkohtelu.qmd
-
+        - efabias.qmd
 format:
   html:
     theme:

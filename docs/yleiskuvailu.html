@@ -185,17 +185,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
     </ul>
   </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-mittariston-validointi" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
- <span class="menu-text">Mittariston validointi</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-mittariston-validointi">    
-        <li>
-    <a class="dropdown-item" href="./epaasiallinenkohtelu.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Epäasiallisen kohtelun mittaristo</span></span></a>
-  </li>  
-    </ul>
-  </li>
+  <li class="dropdown-header">
+ <span class="menu-text">sidebar:mittaristonvalidointi</span></li>
   <li class="nav-item">
     <a class="nav-link" href="./lahteet.html" rel="" target="">
  <span class="menu-text">Lähteet</span></a>
@@ -258,9 +249,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#julkaisuvuodet" id="toc-julkaisuvuodet" class="nav-link active" data-scroll-target="#julkaisuvuodet"><span class="header-section-number">5.1</span> Julkaisuvuodet</a></li>
-  <li><a href="#menetelmät" id="toc-menetelmät" class="nav-link" data-scroll-target="#menetelmät"><span class="header-section-number">5.2</span> Menetelmät</a></li>
-  <li><a href="#julkaisumuodot" id="toc-julkaisumuodot" class="nav-link" data-scroll-target="#julkaisumuodot"><span class="header-section-number">5.3</span> Julkaisumuodot</a></li>
-  <li><a href="#tutkimusmaat" id="toc-tutkimusmaat" class="nav-link" data-scroll-target="#tutkimusmaat"><span class="header-section-number">5.4</span> Tutkimusmaat</a></li>
+  <li><a href="#tiedonkeruun-muoto" id="toc-tiedonkeruun-muoto" class="nav-link" data-scroll-target="#tiedonkeruun-muoto"><span class="header-section-number">5.2</span> Tiedonkeruun muoto</a></li>
+  <li><a href="#tutkimusasetelmat" id="toc-tutkimusasetelmat" class="nav-link" data-scroll-target="#tutkimusasetelmat"><span class="header-section-number">5.3</span> Tutkimusasetelmat</a></li>
+  <li><a href="#julkaisumuodot" id="toc-julkaisumuodot" class="nav-link" data-scroll-target="#julkaisumuodot"><span class="header-section-number">5.4</span> Julkaisumuodot</a></li>
+  <li><a href="#tutkimusmaat" id="toc-tutkimusmaat" class="nav-link" data-scroll-target="#tutkimusmaat"><span class="header-section-number">5.5</span> Tutkimusmaat</a></li>
+  <li><a href="#tutkimusharhan-riskiarvio" id="toc-tutkimusharhan-riskiarvio" class="nav-link" data-scroll-target="#tutkimusharhan-riskiarvio"><span class="header-section-number">6</span> Tutkimusharhan riskiarvio</a>
+  <ul class="collapse">
+  <li><a href="#määrälliset-kyselytutkimukset-q-ssp-arvio" id="toc-määrälliset-kyselytutkimukset-q-ssp-arvio" class="nav-link" data-scroll-target="#määrälliset-kyselytutkimukset-q-ssp-arvio"><span class="header-section-number">6.1</span> Määrälliset kyselytutkimukset: Q-SSP-arvio</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -293,14 +289,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(ggplot2)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(dplyr)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(magrittr)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Ladataan data csv-tiedostosta</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"data/20240212_tulostenmetatiedot.csv"</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(tidyr)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Ladataan data csv-tiedostosta</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"data/20240528_tulostenmetatiedot.csv"</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>harhadata <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"data/20240510_harhanarvio.csv"</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <section id="julkaisuvuodet" class="level2 page-columns page-full" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="julkaisuvuodet"><span class="header-section-number">5.1</span> Julkaisuvuodet</h2>
+<p><strong>Alla olevan taulukon prosentit tulee tarkistaa uudelleen, tällä hetkellä ne ynnäävät 98 prosenttiin. Absoluuttiset määrät ovat kuitenkin oikein.</strong></p>
 <div id="tbl-tulokset-vuosi" class="anchored page-columns page-full">
 <table class="table">
 <caption>Taulukko&nbsp;5.1: Kirjallisuuskatsauksen tulokset julkaisuvuosittain</caption>
@@ -317,11 +316,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>2011</td>
-<td>6 (8 %)</td>
+<td>6 (9 %)</td>
 </tr>
 <tr class="odd">
 <td>2012</td>
-<td>0 (0 %)</td>
+<td>0</td>
 </tr>
 <tr class="even">
 <td>2013</td>
@@ -333,39 +332,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>2015</td>
-<td>2 (3 %)</td>
+<td>1 (1 %)</td>
 </tr>
 <tr class="odd">
 <td>2016</td>
-<td>8 (10 %)</td>
+<td>6 (9 %)</td>
 </tr>
 <tr class="even">
 <td>2017</td>
-<td>5 (6 %)</td>
+<td>5 (7 %)</td>
 </tr>
 <tr class="odd">
 <td>2018</td>
-<td>6 (8 %)</td>
+<td>5 (7 %)</td>
 </tr>
 <tr class="even">
 <td>2019</td>
-<td>10 (13 %)</td>
+<td>9 (13 %)</td>
 </tr>
 <tr class="odd">
 <td>2020</td>
-<td>7 (9 %)</td>
+<td>5 (7 %)</td>
 </tr>
 <tr class="even">
 <td>2021</td>
-<td>10 (13 %)</td>
+<td>9 (13 %)</td>
 </tr>
 <tr class="odd">
 <td>2022</td>
-<td>11 (14 %)</td>
+<td>10 (14 %)</td>
 </tr>
 <tr class="even">
 <td>2023<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></td>
-<td>7 (9 %)</td>
+<td>6 (9 %)</td>
 </tr>
 </tbody>
 </table>
@@ -394,14 +393,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Tutkimusten julkaisuvuodet painottuvat 2010-luvun loppupuolelle ja 2020-luvun alkuun. Julkaisuvuosien mediaani on 2019.</p>
 </section>
-<section id="menetelmät" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="menetelmät"><span class="header-section-number">5.2</span> Menetelmät</h2>
+<section id="tiedonkeruun-muoto" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="tiedonkeruun-muoto"><span class="header-section-number">5.2</span> Tiedonkeruun muoto</h2>
+<p><strong>Alla oleva taulukko perustuu vanhaan tietoon! Kuvio on oikeassa, mutta pitää siistiä muodoittain paremmin.</strong></p>
 <div id="tbl-tulokset-menetelmat" class="anchored">
 <table class="table">
 <caption>Taulukko&nbsp;5.2: Kirjallisuuskatsauksen tulokset menetelmittäin</caption>
 <thead>
 <tr class="header">
-<th>Menetelmä</th>
+<th>Muoto</th>
 <th>Määrä (prosenttimäärät suluissa)</th>
 </tr>
 </thead>
@@ -449,37 +449,87 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Yleisin sovellettu menetelmä on kyselytutkimus. Laskimme mukaan sekä strukturoidut että strukturoimattomat kyselyasetelmat, jolloin tulosten analyysi voi kuitenkin olla sekä määrällinen että laadullinen. Monimenetelmälliset asetelmat ovat seuraavaksi suosituimpia, ja haastattelut samalla tasolla. Kaksi tutkimusta käytti rekisteridataa.</p>
 </section>
-<section id="julkaisumuodot" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="julkaisumuodot"><span class="header-section-number">5.3</span> Julkaisumuodot</h2>
+<section id="tutkimusasetelmat" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="tutkimusasetelmat"><span class="header-section-number">5.3</span> Tutkimusasetelmat</h2>
+<div id="tbl-tulokset-asetelmat" class="anchored">
+<table class="table">
+<caption>Taulukko&nbsp;5.3: Kirjallisuuskatsauksen tulokset tutkimusasetelmittain. Prosentit eivät summaa sataan pyöristyksen takia.</caption>
+<thead>
+<tr class="header">
+<th>Asetelma</th>
+<th>Määrä (prosenttimäärät suluissa)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Määrällinen</td>
+<td>48 (70 %)</td>
+</tr>
+<tr class="even">
+<td>Monimenetelmällinen</td>
+<td>6 (9 %)</td>
+</tr>
+<tr class="odd">
+<td>Laadullinen</td>
+<td>15 (22 %)</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="cell">
 <details>
 <summary>Koodi</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>muodot <span class="ot">&lt;-</span> <span class="fu">unique</span>(data<span class="sc">$</span>Muoto)</span>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>asetelmat <span class="ot">&lt;-</span> <span class="fu">unique</span>(data<span class="sc">$</span>Tutkimusasetelma)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>kuva3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> data, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Muoto)) <span class="sc">+</span> </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>kuva3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> data, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Tutkimusasetelma)) <span class="sc">+</span> </span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"count"</span>) <span class="sc">+</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Määrä (n)"</span>, <span class="at">x =</span> <span class="st">"Julkaismuodot"</span>) <span class="sc">+</span> </span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">breaks =</span> muodot) <span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Määrä (n)"</span>, <span class="at">x =</span> <span class="st">"Tutkimusasetelmat"</span>) <span class="sc">+</span> </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">breaks =</span> asetelmat) <span class="sc">+</span></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> ..count..), <span class="at">stat =</span> <span class="st">"count"</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">colour =</span> <span class="st">"black"</span>)</span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>kuva3</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-tulokset-julkaisumuodot" class="quarto-figure quarto-figure-center anchored">
+<div id="fig-tulokset-asetelmat" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="yleiskuvailu_files/figure-html/fig-tulokset-julkaisumuodot-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Kuva&nbsp;5.3: Kirjallisuuskatsauksen tulokset julkaisumuodottain</figcaption>
+<p><img src="yleiskuvailu_files/figure-html/fig-tulokset-asetelmat-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Kuva&nbsp;5.3: Kirjallisuuskatsauksen tulokset tutkimusasetelmittain</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Yleisin julkaisumuoto on vertaisarvioitu tutkimusartikkeli. Noin puolet harvinaisempi oli opinnäyte. Organisaatioraportteja ei löytynyt suuresti, ja haku tuotti vain yhden sisällytetyn vertaisarvioidun kirjan luvun.</p>
 </section>
-<section id="tutkimusmaat" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="tutkimusmaat"><span class="header-section-number">5.4</span> Tutkimusmaat</h2>
+<section id="julkaisumuodot" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="julkaisumuodot"><span class="header-section-number">5.4</span> Julkaisumuodot</h2>
+<div class="cell">
+<details>
+<summary>Koodi</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>muodot <span class="ot">&lt;-</span> <span class="fu">unique</span>(data<span class="sc">$</span>Muoto)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>kuva4 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> data, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Muoto)) <span class="sc">+</span> </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"count"</span>) <span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Määrä (n)"</span>, <span class="at">x =</span> <span class="st">"Julkaismuodot"</span>) <span class="sc">+</span> </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">breaks =</span> muodot) <span class="sc">+</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> ..count..), <span class="at">stat =</span> <span class="st">"count"</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">colour =</span> <span class="st">"black"</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>kuva4</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-tulokset-julkaisumuodot" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="yleiskuvailu_files/figure-html/fig-tulokset-julkaisumuodot-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Kuva&nbsp;5.4: Kirjallisuuskatsauksen tulokset julkaisumuodottain</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Yleisin julkaisumuoto on vertaisarvioitu tutkimusartikkeli, ja sitä seuraavaksi opinnäyte. Organisaatioraportteja ei löytynyt suuresti, ja haku tuotti vain yhden sisällytetyn vertaisarvioidun kirjan luvun.</p>
+</section>
+<section id="tutkimusmaat" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="tutkimusmaat"><span class="header-section-number">5.5</span> Tutkimusmaat</h2>
 <div id="tbl-tulokset-maat" class="anchored">
 <table class="table">
-<caption>Taulukko&nbsp;5.3: Kirjallisuuskatsauksen tulokset tutkimusmaittain</caption>
+<caption>Taulukko&nbsp;5.4: Kirjallisuuskatsauksen tulokset tutkimusmaittain</caption>
 <thead>
 <tr class="header">
 <th>Maa</th>
@@ -493,7 +543,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>Englanti</td>
-<td>4 (5 %)</td>
+<td>2 (3 %)</td>
 </tr>
 <tr class="odd">
 <td>Espanja</td>
@@ -517,7 +567,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>Ruotsi</td>
-<td>4 (5 %)</td>
+<td>4 (6 %)</td>
 </tr>
 <tr class="odd">
 <td>Saksa</td>
@@ -525,7 +575,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>Suomi</td>
-<td>47 (59 %)</td>
+<td>39 (57 %)</td>
 </tr>
 <tr class="odd">
 <td>Sveitsi</td>
@@ -537,7 +587,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td>Turkki</td>
-<td>6 (8 %)</td>
+<td>6 (9 %)</td>
 </tr>
 <tr class="even">
 <td>Ukraina</td>
@@ -553,29 +603,52 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details>
 <summary>Koodi</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>maat <span class="ot">&lt;-</span> <span class="fu">unique</span>(data<span class="sc">$</span>Toteutusmaa)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>kuva4 <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(Toteutusmaa <span class="sc">!=</span> <span class="st">"Suomi"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Toteutusmaa, <span class="at">fill =</span> Muoto)) <span class="sc">+</span> </span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"count"</span>) <span class="sc">+</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Määrä (n)"</span>, <span class="at">x =</span> <span class="st">"Toteutusmaat"</span>) <span class="sc">+</span> </span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">breaks =</span> maat, <span class="at">guide =</span> <span class="fu">guide_axis</span>(<span class="at">angle =</span> <span class="dv">45</span>)) <span class="sc">+</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> ..count..), <span class="at">stat =</span> <span class="st">"count"</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>))</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>kuva4</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>maat <span class="ot">&lt;-</span> <span class="fu">unique</span>(data<span class="sc">$</span>Toteutusmaa)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>kuva5 <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(Toteutusmaa <span class="sc">!=</span> <span class="st">"Suomi"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Toteutusmaa, <span class="at">fill =</span> Muoto)) <span class="sc">+</span> </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"count"</span>) <span class="sc">+</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Määrä (n)"</span>, <span class="at">x =</span> <span class="st">"Toteutusmaat"</span>) <span class="sc">+</span> </span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">breaks =</span> maat, <span class="at">guide =</span> <span class="fu">guide_axis</span>(<span class="at">angle =</span> <span class="dv">45</span>)) <span class="sc">+</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> ..count..), <span class="at">stat =</span> <span class="st">"count"</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>kuva5</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div id="fig-tulokset-maat" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="yleiskuvailu_files/figure-html/fig-tulokset-maat-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Kuva&nbsp;5.4: Kirjallisuuskatsauksen tulokset maittain ja julkaisumuodottain. Tuloksissa ei ole suomalaisia tutkimuksia. N/A = Ei sovellettavissa.</figcaption>
+<figcaption class="figure-caption">Kuva&nbsp;5.5: Kirjallisuuskatsauksen tulokset maittain ja julkaisumuodottain. Tuloksissa ei ole suomalaisia tutkimuksia. N/A = Ei sovellettavissa.</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>Kuvasta on poistettu suomalaiset tutkimukset, koska tutkimuksia haettiin useammassa muodossa kuin eurooppalaisia tutkimuksia.</p>
+</section>
+<section id="tutkimusharhan-riskiarvio" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Tutkimusharhan riskiarvio</h1>
+<section id="määrälliset-kyselytutkimukset-q-ssp-arvio" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="määrälliset-kyselytutkimukset-q-ssp-arvio"><span class="header-section-number">6.1</span> Määrälliset kyselytutkimukset: Q-SSP-arvio</h2>
+<div class="cell">
+<details>
+<summary>Koodi</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>harhadata_pivot <span class="ot">&lt;-</span> harhadata <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(Johdanto_1<span class="sc">:</span>Etiikka_3, <span class="at">names_to =</span> <span class="st">"Osaalue"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(harhadata_pivot, <span class="fu">aes</span>(<span class="at">y =</span> Osaalue, <span class="at">fill =</span> value)) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">orientation =</span> <span class="st">"y"</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="yleiskuvailu_files/figure-html/qssp-harhadata-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Q-SSP-harha-arvion tulokset osa-alueittain (n = 58)</figcaption>
+</figure>
+</div>
+</div>
+</div>
 
 
+</section>
 </section>
 
 
