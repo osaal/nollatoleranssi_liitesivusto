@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Nollatoleranssi-hankkeen liitesivusto - 3&nbsp; Seulontamenetelmä</title>
+<title>Nollatoleranssi-hankkeen liitesivusto - 17&nbsp; Esiintyvyyden EFA-mallin bias-testit</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +64,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./prismakaavio.html" rel="next">
-<link href="./kriteeristo.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -66,7 +98,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-sidebar docked nav-fixed slimcontent">
+<body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -201,7 +233,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Vaihda sivupalkki" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./seulontamenetelma.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Seulontamenetelmä</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./efabias.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Esiintyvyyden EFA-mallin bias-testit</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Vaihda sivupalkki" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -215,26 +247,8 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./kriteeristo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Kriteeristö</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./seulontamenetelma.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Seulontamenetelmä</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./prismakaavio.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">PRISMA-kaavio</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./yleiskuvailu.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Tulosten yleiskuvaus</span></span></a>
+  <a href="./efabias.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Esiintyvyyden EFA-mallin bias-testit</span></span></a>
   </div>
 </li>
     </ul>
@@ -246,11 +260,11 @@ ul.task-list li input[type="checkbox"] {
         
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-seulontamenetelma" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Seulontamenetelmä</span></span></h1>
+<h1 class="title"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Esiintyvyyden EFA-mallin bias-testit</span></h1>
 </div>
 
 
@@ -265,32 +279,86 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Hakutulokset seulottiin käyttäen seuraavaa menettelyä:</p>
-<ol type="1">
-<li>Kaksoiskappaleet tunnistettiin Microsoft Excelin <em>Solujen korostussäännöt</em> -työkalulla. Jokaisen kaksoiskappaleeksi tunnistetun tuloksen kohdalla varmistettiin kaksoiskappaluus, ja säilytettiin yksi tuloksista. Muut merkittiin kaksoiskappaleiksi ja suodatettiin pois taulukosta <em>Suodata</em> -työkalulla.</li>
-<li>Otsikkojen pohjalta toteutettiin ensimmäinen seulonta. Jos otsikko selkeästi vastasi inkluusiokriteerejä, merkittiin tulokselle arvo 1. Jos otsikko mahdollisesti täytti inkluusiokriteerejä, mutta asiasta ei voinut saada varmuutta, merkittiin tulokselle arvo 2. Jos otsikko selkeästi ei vastannut inkluusiokriteerejä (esim. rikkoi yhden tai useamman kriteerin), jätettiin tyhjä solu. Tyhjät solut suodatettiin sitten pois taulukosta.</li>
-<li>Jokaiselle tulokselle, jolla oli merkitty arvo 2 (epävarma) ensimmäisessä seulonnassa, tarkistettiin tiivistelmä tuloksen verkko-osoitteesta. Jos tiivistelmä selkeästi vastasi inkluusiokriteerejä, merkittiin tulokselle arvo 1. Jos tiivistelmä mahdollisesti täytti inkluusiokriteerejä, mutta asiasta ei voinut saada varmuutta, merkittiin tulokselle arvo 2. Jos tiivistelmä selkeästi ei vastannut inkluusiokriteerejä (esim. rikkoi yhden tai useamman kriteerin), jätettiin tyhjä solu. Tyhjät solut suodatettiin sitten pois taulukosta.</li>
-<li>Seuraavaksi haettiin kaikki tulokset, jotka saivat arvon 1 ensimmäisessä seulonnassa tai arvot 1 tai 2 toisessa seulonnassa. Jos tuloksen sai haettua, merkittiin arvo 1, ja jos tulosta ei saatu haettua, merkittiin arvo x. Yksi tulos oli kirjaluku, jolloin haettiin kirja ja merkittiin arvo * kommentin kanssa.</li>
-<li>Seuraavaksi tarkistettiin kaikki ne tutkimukset, joille oli merkitty arvo 2 toisessa seulonnassa (epävarma tiivistelmän pohjalta). Tutkija kävi läpi artikkelin menetelmäosiot ja tarkisti, täyttyykö inkluusiokriteerit. Jos kaikki kriteerit täyttyivät, merkittiin arvo 1 (sisällytä kirjallisuuskatsaukseen). Jos osa kriteereistä täyttyivät, merkittiin arvo T (mahdollisesti käytettävissä raportin taustoitukseen, mutta ei kirjallisuuskatsauksessa). Jos kriteerit eivät täyttyneet, tai yksi tai useampi selkeästi rikkoontui, jätettiin tyhjä arvo. Tyhjät solut suodatettiin sitten pois taulukosta.</li>
-<li>Viimeiseksi tarkistettiin vielä kaikki tulokset, jotka saivat arvon 1 ensimmäisessä tai toisessa seulonnassa. Tutkija kävi läpi artikkelin menetelmäosiot ja tarkisti, täyttyykö inkluusiokriteerit. Jos kaikki kriteerit täyttyivät, merkittiin arvo 1 (sisällytä kirjallisuuskatsaukseen). Jos osa kriteereistä täyttyivät, merkittiin arvo T (mahdollisesti käytettävissä raportin taustoitukseen, mutta ei kirjallisuuskatsauksessa). Jos kriteerit eivät täyttyneet, tai yksi tai useampi selkeästi rikkoontui, jätettiin tyhjä arvo. Tyhjät solut suodatettiin sitten pois taulukosta.</li>
-<li>Valintaprosessin jälkeen jokaisesta tutkimuksesta haettiin seuraavat tiedot:
-<ol type="1">
-<li>Tekijöiden nimet</li>
-<li>Julkaisuvuosi</li>
-<li>Tutkimusjulkaisun otsikko</li>
-<li>Julkaisumuoto (vertaisarvioitu tutkimusartikkeli, organisaatioraportti, kirjateos, kirjan luku, muu)</li>
-<li>Verkko-osoite (ensisijaisesti DOI-numero)</li>
-<li>Tiedonkeruun muoto (kysely, haastattelu, rekisteri, havainnointi, audiovisuaalinen aineisto, muu [kirjattu avotietona], useampia muotoja [kirjattu avotietoina])</li>
-<li>Kohdepopulaatio (maantieteellinen ja ammatillinen luokittelu)</li>
-<li>Tutkimuksen tiedonkeruun ajankohta (kuukausitasolla, jos tiedossa)</li>
-<li>Otoskoko (yksi tai useampi otos)</li>
-<li>Otantamenetelmä (ei tietoa, satunnaistettu otanta, ositettu otanta, ryväsotanta, paneelitutkimus, harkinnanvarainen otanta<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, kiintiöotanta, lumipallo-otanta, muu)</li>
-<li>Vastaajien yhteydenottotapa (postitse, sähköpostitse, puhelimitse, sosiaalisen verkoston kautta [esim. kollegat], organisaatiojohdon kautta, muun organisaation kautta [esim. liitto], kasvokkain, muu<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>)</li>
-<li>Vastaajien vastausmuistutusten määrä (jos tiedossa)</li>
-</ol></li>
-</ol>
-<div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Jos tutkimus pyrki koko populaation tutkimiseen, kirjattiin “harkinnanvarainen otanta”.</p></li><li id="fn2"><p><sup>2</sup>&nbsp;Jos käytettiin useampia yhteydenottomuotoja, merkittiin “muu”.</p></li></div><p>Hakujen erillisen tuottamisen ja seulonnan jälkeen kaikki tulokset yhdistettiin yhdeksi taulukoksi. Tällöin poistettiin myös duplikaatteja, jotka saatiin tuloksina useammassa osahaussa. Tarkistimme myös, että duplikaattien kohdalla sisällyttämispäätökset vastasivat toisiaan.</p>
-
+<p><em>Alla oleva koodi on vanhaa testausta, jätän tähän jotta voidaan käyttää tarvittaessa.</em></p>
+<div class="cell">
+<details>
+<summary>Koodi</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(HH)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(EFAtools)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Valitaan muuttujat mukaan EFA-analyysiin</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>EFA_MUUTTUJAT <span class="ot">&lt;-</span> <span class="fu">c</span>() <span class="co"># Lisää EFA-muuttujat</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># --- MAHALANOBIKSEN ETÄISYYS --------------------------------------------------</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Mahalanobiksen etäisyyden laskenta</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>efa_data <span class="ot">&lt;-</span> efa_data <span class="sc">|&gt;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">c</span>(EFA_MUUTTUJAT, ID))</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>ka <span class="ot">&lt;-</span> efa_data <span class="sc">|&gt;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(EFA_MUUTTUJAT) <span class="sc">|&gt;</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colMeans</span>()</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>kovarianssi <span class="ot">&lt;-</span> efa_data <span class="sc">|&gt;</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(EFA_MUUTTUJAT) <span class="sc">|&gt;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cov</span>()</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>vapast <span class="ot">&lt;-</span> efa_data <span class="sc">|&gt;</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(EFA_MUUTTUJAT) <span class="sc">|&gt;</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ncol</span>() <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>efa_data<span class="sc">$</span>mahalanobis <span class="ot">&lt;-</span> efa_data <span class="sc">|&gt;</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(EFA_MUUTTUJAT) <span class="sc">|&gt;</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mahalanobis</span>(</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> _,</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">center =</span> ka,</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">cov =</span> kovarianssi</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>efa_data<span class="sc">$</span>pvalue <span class="ot">&lt;-</span> efa_data <span class="sc">|&gt;</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(mahalanobis) <span class="sc">|&gt;</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unlist</span>() <span class="sc">|&gt;</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.double</span>() <span class="sc">|&gt;</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pchisq</span>(<span class="at">df =</span> vapast)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Laske poistettavien määrä</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>poisto_n <span class="ot">&lt;-</span> efa_data <span class="sc">|&gt;</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(pvalue <span class="sc">&lt;</span> <span class="fl">0.001</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">n</span>())</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">"Poistettavien määrä: "</span>, poisto_n))</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Poista vastaajat, joiden Mahalanobiksen etäisyyden p-arvo on alle 0.001</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>efa_data <span class="ot">&lt;-</span> efa_data <span class="sc">|&gt;</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(pvalue <span class="sc">&lt;</span> <span class="fl">0.001</span>)</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="co"># --- BARTLETT JA KMO ----------------------------------------------------------</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="co"># EFAtoolsin versio</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>bartlett_testi <span class="ot">&lt;-</span> efa_data <span class="sc">|&gt;</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(EFA_MUUTTUJAT) <span class="sc">|&gt;</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">BARTLETT</span>()</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>kmotesti <span class="ot">&lt;-</span> efa_data <span class="sc">|&gt;</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(EFA_MUUTTUJAT) <span class="sc">|&gt;</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">KMO</span>()</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="co"># --- VIF ----------------------------------------------------------------------</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>vifarvot <span class="ot">&lt;-</span> efa_data <span class="sc">|&gt;</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(EFA_MUUTTUJAT) <span class="sc">|&gt;</span></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>  HH<span class="sc">::</span><span class="fu">vif</span>()</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> vifarvot) {</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (i <span class="sc">&gt;=</span> <span class="dv">10</span>) {</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste</span>(</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Muuttuja "</span>, <span class="st">"i"</span>, <span class="st">"VIF-arvo on yli 10 (VIF = "</span>, vifarvot[i], <span class="st">")"</span></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>    ))</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Dimensionaalisuus --------------------------------------------------------</span></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="do">### HUOM: EFAToolsin faktoriestimointityökaluissa taitaa olla jotain vikana,</span></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a><span class="do">### sillä edes GitHubin esimerkkianalyysi esimerkkidatalla ei toimi...</span></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a><span class="do">### Asensinko vanhentuneen zip-version?</span></span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 
 
 
@@ -528,18 +596,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="./kriteeristo.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Kriteeristö</span></span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="./prismakaavio.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">PRISMA-kaavio</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 
 

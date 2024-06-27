@@ -12,11 +12,12 @@ suppressPackageStartupMessages({
   library(dplyr)
   library(magrittr)
   library(tidyr)
+  library(ggstatsplot)
 })
 
 # Ladataan data csv-tiedostosta
 data <- read.csv2("data/20240528_tulostenmetatiedot.csv")
-harhadata <- read.csv2("data/20240510_harhanarvio.csv")
+harhadata <- read.csv2("data/laadunarviointi_määrällisetkyselyt.csv")
 
 
 ```
@@ -188,11 +189,30 @@ Kuvasta on poistettu suomalaiset tutkimukset, koska tutkimuksia haettiin useamma
 
 ```{r}
 #| label: qssp-harhadata
-#| fig-cap: "Q-SSP-harha-arvion tulokset osa-alueittain (n = 58)"
+#| fig-cap: "Q-SSP-harha-arvion tulokset osa-alueittain (n = 52)"
 #| eval: true
 
 harhadata_pivot <- harhadata %>%
   tidyr::pivot_longer(Johdanto_1:Etiikka_3, names_to = "Osaalue")
 ggplot(harhadata_pivot, aes(y = Osaalue, fill = value)) +
   geom_bar(orientation = "y")
+```
+
+```{r}
+#| label: qssp-vertailut
+#| fig-cap: "Q-SSP-arvion tulokset eri muodottain"
+#| fig-subcap: 
+#| - "Julkaisumuodoittain"
+#| eval: true
+
+ggbetweenstats(
+  harhadata,
+  x = Julkaisumuoto,
+  y = Score,
+  type = "parametric",
+  pairwise.display = "all",
+  bf.message = FALSE,
+  ylab = "Luotettavuus (%)"
+)
+
 ```

@@ -168,6 +168,21 @@ ul.task-list li input[type="checkbox"] {
     <a class="dropdown-item" href="./valmistelu.html" rel="" target="">
  <span class="dropdown-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Valmistelu</span></span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./anonymisointi.html" rel="" target="">
+ <span class="dropdown-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Anonymisointi</span></span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-mittariston-validointi" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Mittariston validointi</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-mittariston-validointi">    
+        <li>
+    <a class="dropdown-item" href="./efabias.html" rel="" target="">
+ <span class="dropdown-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Esiintyvyyden EFA-mallin bias-testit</span></span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item">
@@ -215,6 +230,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Valmistelu</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./anonymisointi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Anonymisointi</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -255,6 +276,7 @@ ul.task-list li input[type="checkbox"] {
 <li>Webropolin “Raportointi”-välilehdessä tehdään kaksi raporttimallia “Suodata”-työkalulla. Raportit suodatetaan erikseen suomenkielisen ja ruotsinkielisen lomakkeen vastaajille. Raporttiin vietävä tekstitieto pidetään suomenkielisenä, jotta yhdistäminen olisi helpompaa.
 <ol type="1">
 <li>Vie &amp; Jaa &gt; CSV: Näytä vastaukset numeroina, Vie useita raportteja -&gt; Valitse molemmat kieliversiot &gt; Vie</li>
+<li><strong>HUOM:</strong> Näillä asetuksilla vastausarvot monivalintamittaristoissa määräytyy mittarin numeron mukaan (esim. ensimmäinen reaktiokysymys saa arvon 1 jos valittu, toinen saa arvon 2, jne.). <strong>Tämä ei voi vaihtaa, joten numerot pitää koodata uudelleen.</strong></li>
 </ol></li>
 <li>Kaksi suodatettua raporttia viedään CSV-muotoon ja ladataan tietokoneelle.</li>
 <li>Varmistetaan, että molempien raporttien vastaajamäärät vastaavat Webropolin antamaa vastaajamäärää kysymykselle K1 (Suostumus). Koska jokaisella vastaajalla tulisi olla sama arvo (1) tällä muuttujalla, voidaan tarkistaa, että kaikki vastaajat ovat tulleet mukaan.</li>

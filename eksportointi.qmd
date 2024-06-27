@@ -12,7 +12,7 @@ Datakeräyksen jälkeen seurataan seuraavaa menettelyä jokaiselle linkkiversiol
 
 1.  Webropolin "Raportointi"-välilehdessä tehdään kaksi raporttimallia "Suodata"-työkalulla. Raportit suodatetaan erikseen suomenkielisen ja ruotsinkielisen lomakkeen vastaajille. Raporttiin vietävä tekstitieto pidetään suomenkielisenä, jotta yhdistäminen olisi helpompaa.
     1.  Vie & Jaa \> CSV: Näytä vastaukset numeroina, Vie useita raportteja -\> Valitse molemmat kieliversiot \> Vie
-    2.  **HUOM:** Näillä asetuksilla vastausarvot monivalintamittaristoissa määräytyy mittarin numeron mukaan (esim. ensimmäinen reaktiokysymys saa arvon 1 jos valittu, toinen saa arvon 2, jne.). **Tämä pitää vaihtaa jos vain mahdollista!**
+    2.  **HUOM:** Näillä asetuksilla vastausarvot monivalintamittaristoissa määräytyy mittarin numeron mukaan (esim. ensimmäinen reaktiokysymys saa arvon 1 jos valittu, toinen saa arvon 2, jne.). **Tämä ei voi vaihtaa, joten numerot pitää koodata uudelleen.**
 2.  Kaksi suodatettua raporttia viedään CSV-muotoon ja ladataan tietokoneelle.
 3.  Varmistetaan, että molempien raporttien vastaajamäärät vastaavat Webropolin antamaa vastaajamäärää kysymykselle K1 (Suostumus). Koska jokaisella vastaajalla tulisi olla sama arvo (1) tällä muuttujalla, voidaan tarkistaa, että kaikki vastaajat ovat tulleet mukaan.
 4.  Tarkistetaan myös K43 (Syyt muutosaikeille) CSV-tiedostoista, ettei vienti ole katkaissut vastauksia lyhyiksi. Tämä voi tapahtua joissain järjestelmissä.

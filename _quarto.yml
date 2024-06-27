@@ -30,6 +30,7 @@ book:
         - eksportointi.qmd
         - nimeaminen.qmd
         - valmistelu.qmd
+        - anonymisointi.qmd
     - part: "Mittariston validointi"
       chapters:
         - efabias.qmd
@@ -82,6 +83,7 @@ book:
         - eksportointi.qmd
         - nimeaminen.qmd
         - valmistelu.qmd
+        - anonymisointi.qmd
     
     - id: validointi
       title: "Mittariston validointi"

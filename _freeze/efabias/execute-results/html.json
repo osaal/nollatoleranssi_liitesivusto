@@ -1,0 +1,14 @@
+{
+  "hash": "9ab06f165ed12a31d43d4e9feed5727e",
+  "result": {
+    "markdown": "# Esiintyvyyden EFA-mallin bias-testit\n\n*Alla oleva koodi on vanhaa testausta, jätän tähän jotta voidaan käyttää tarvittaessa.*\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(tidyverse)\nlibrary(HH)\nlibrary(EFAtools)\n# Valitaan muuttujat mukaan EFA-analyysiin\nEFA_MUUTTUJAT <- c() # Lisää EFA-muuttujat\n\n# --- MAHALANOBIKSEN ETÄISYYS --------------------------------------------------\n# Mahalanobiksen etäisyyden laskenta\nefa_data <- efa_data |>\n  select(c(EFA_MUUTTUJAT, ID))\nka <- efa_data |>\n  select(EFA_MUUTTUJAT) |>\n  colMeans()\nkovarianssi <- efa_data |>\n  select(EFA_MUUTTUJAT) |>\n  cov()\nvapast <- efa_data |>\n  select(EFA_MUUTTUJAT) |>\n  ncol() - 1\n\nefa_data$mahalanobis <- efa_data |>\n  select(EFA_MUUTTUJAT) |>\n  mahalanobis(\n    x = _,\n    center = ka,\n    cov = kovarianssi\n  )\n\nefa_data$pvalue <- efa_data |>\n  select(mahalanobis) |>\n  unlist() |>\n  as.double() |>\n  pchisq(df = vapast)\n\n# Laske poistettavien määrä\npoisto_n <- efa_data |>\n  filter(pvalue < 0.001) |>\n  summarize(n())\nprint(paste0(\"Poistettavien määrä: \", poisto_n))\n\n# Poista vastaajat, joiden Mahalanobiksen etäisyyden p-arvo on alle 0.001\nefa_data <- efa_data |>\n  filter(pvalue < 0.001)\n\n# --- BARTLETT JA KMO ----------------------------------------------------------\n# EFAtoolsin versio\nbartlett_testi <- efa_data |>\n  select(EFA_MUUTTUJAT) |>\n  BARTLETT()\n\nkmotesti <- efa_data |>\n  select(EFA_MUUTTUJAT) |>\n  KMO()\n\n\n# --- VIF ----------------------------------------------------------------------\n\nvifarvot <- efa_data |>\n  select(EFA_MUUTTUJAT) |>\n  HH::vif()\n\nfor (i in vifarvot) {\n  if (i >= 10) {\n    print(paste(\n      \"Muuttuja \", \"i\", \"VIF-arvo on yli 10 (VIF = \", vifarvot[i], \")\"\n    ))\n  }\n}\n\n# --- Dimensionaalisuus --------------------------------------------------------\n\n### HUOM: EFAToolsin faktoriestimointityökaluissa taitaa olla jotain vikana,\n### sillä edes GitHubin esimerkkianalyysi esimerkkidatalla ei toimi...\n### Asensinko vanhentuneen zip-version?\n```\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

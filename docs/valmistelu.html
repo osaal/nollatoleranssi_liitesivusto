@@ -64,6 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./anonymisointi.html" rel="next">
 <link href="./nimeaminen.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -202,6 +203,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="./valmistelu.html" rel="" target="">
  <span class="dropdown-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Valmistelu</span></span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./anonymisointi.html" rel="" target="">
+ <span class="dropdown-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Anonymisointi</span></span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-mittariston-validointi" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Mittariston validointi</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-mittariston-validointi">    
+        <li>
+    <a class="dropdown-item" href="./efabias.html" rel="" target="">
+ <span class="dropdown-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Esiintyvyyden EFA-mallin bias-testit</span></span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item">
@@ -249,6 +265,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Valmistelu</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./anonymisointi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Anonymisointi</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -260,6 +282,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#datatiedoston-importointi" id="toc-datatiedoston-importointi" class="nav-link active" data-scroll-target="#datatiedoston-importointi"><span class="header-section-number">15.1</span> Datatiedoston importointi</a></li>
+  <li><a href="#järjestelmä-puuttuvien-arvojen-uudelleenkoodaus" id="toc-järjestelmä-puuttuvien-arvojen-uudelleenkoodaus" class="nav-link" data-scroll-target="#järjestelmä-puuttuvien-arvojen-uudelleenkoodaus"><span class="header-section-number">15.2</span> Järjestelmä-puuttuvien arvojen uudelleenkoodaus</a>
+  <ul class="collapse">
+  <li><a href="#esiintyvyysmittarit-k3-k4-k5-k11-k12-k13-k14-k20" id="toc-esiintyvyysmittarit-k3-k4-k5-k11-k12-k13-k14-k20" class="nav-link" data-scroll-target="#esiintyvyysmittarit-k3-k4-k5-k11-k12-k13-k14-k20"><span class="header-section-number">15.2.1</span> Esiintyvyysmittarit (k3-k4 + k5-k11, k12-k13 + k14-k20)</a></li>
+  <li><a href="#vaikutusmittarit-k21-k23" id="toc-vaikutusmittarit-k21-k23" class="nav-link" data-scroll-target="#vaikutusmittarit-k21-k23"><span class="header-section-number">15.2.2</span> Vaikutusmittarit (k21-k23)</a></li>
+  <li><a href="#ilmoitusjärjestelmien-koulutus-k25" id="toc-ilmoitusjärjestelmien-koulutus-k25" class="nav-link" data-scroll-target="#ilmoitusjärjestelmien-koulutus-k25"><span class="header-section-number">15.2.3</span> Ilmoitusjärjestelmien koulutus (k25)</a></li>
+  <li><a href="#taustakysymykset" id="toc-taustakysymykset" class="nav-link" data-scroll-target="#taustakysymykset"><span class="header-section-number">15.2.4</span> Taustakysymykset</a></li>
+  </ul></li>
+  <li><a href="#uudelleenkoodaukset" id="toc-uudelleenkoodaukset" class="nav-link" data-scroll-target="#uudelleenkoodaukset"><span class="header-section-number">15.3</span> Uudelleenkoodaukset</a>
+  <ul class="collapse">
+  <li><a href="#sec-organisaatioaseman-ryhmäkoodaus" id="toc-sec-organisaatioaseman-ryhmäkoodaus" class="nav-link" data-scroll-target="#sec-organisaatioaseman-ryhmäkoodaus"><span class="header-section-number">15.3.1</span> Organisaatioaseman ryhmäkoodaus</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -288,17 +321,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details>
 <summary>Koodi</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"data/TESTI_Epäasiallinen kohtelu pelastusalalla ja ensihoidossa_Suomi.csv"</span>) <span class="sc">|&gt;</span> <span class="fu">as_tibble</span>()</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"data/TESTI_Epäasiallinen kohtelu pelastusalalla ja ensihoidossa_Suomi.csv"</span>) <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>()</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
+</section>
+<section id="järjestelmä-puuttuvien-arvojen-uudelleenkoodaus" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="järjestelmä-puuttuvien-arvojen-uudelleenkoodaus"><span class="header-section-number">15.2</span> Järjestelmä-puuttuvien arvojen uudelleenkoodaus</h2>
 <p>Tässä vaiheessa datatiedosto on täysin raaka. Ensimmäisenä pitää uudelleenkoodata muuttujat seuraavilla tavoilla:</p>
 <ol type="1">
-<li>Jos vastaajalle ei tarjottu vastausmahdollisuutta tiettyyn kysymykseen (ketjutusten takia), hänelle merkitään arvo -1 (USRMIS).</li>
-<li>Jos vastaajalle tarjottiin vastausmahdollisuus, mutta hän ei vastannut, jätetään arvo NA (SYSMIS).</li>
+<li>Jos vastaajalle ei tarjottu vastausmahdollisuutta tiettyyn kysymykseen (ketjutusten takia), hänelle merkitään arvo <code>-1</code> (SYSMIS, eli järjestelmä-puuttuva).</li>
+<li>Jos vastaajalle tarjottiin vastausmahdollisuus, mutta hän ei vastannut, jätetään arvo <code>NA</code> (USRMIS, eli käyttäjä-puuttuva).</li>
 </ol>
-<p>Tämä koskee seuraavia muuttuja-asetelmia:</p>
+<section id="esiintyvyysmittarit-k3-k4-k5-k11-k12-k13-k14-k20" class="level3" data-number="15.2.1">
+<h3 data-number="15.2.1" class="anchored" data-anchor-id="esiintyvyysmittarit-k3-k4-k5-k11-k12-k13-k14-k20"><span class="header-section-number">15.2.1</span> Esiintyvyysmittarit (k3-k4 + k5-k11, k12-k13 + k14-k20)</h3>
+<p><strong>TODO: Koodataan tarkennusmittarit uudelleen, jotta 1 = valittu, -1 = ei esitetty ja NA = ei valittu. Sama pätee kaikkiin monivalintamatriiseihin kyselyssä.</strong></p>
 <ol type="1">
-<li>Kaikki esiintyvyysmittarit (7 + 7 settiä): Jos vastaaja ei ole kokenut kohtelun muotoa omakohtaisesti <em>eikä</em> havainnut sitä, hänen vastauksensa kohtelua vastaavilla lisätietomittareilla tulisi olla <code>-1</code> eikä <code>NA</code>.</li>
+<li><strong>Kaikki esiintyvyysmittarit</strong> (7 + 7 settiä): Jos vastaaja ei ole kokenut kohtelun muotoa omakohtaisesti <em>eikä</em> havainnut sitä, hänen vastauksensa kohtelua vastaavilla lisätietomittareilla tulisi olla <code>-1</code>.</li>
 </ol>
 <div class="cell">
 <details>
@@ -375,8 +413,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
 <span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
-<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>      k5_1_1<span class="sc">:</span>k5_9_2,</span>
-<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_when</span>(k3_1 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> k4_1 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">.default =</span> .x)</span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>      k14_1_1<span class="sc">:</span>k14_9_2,</span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_when</span>(k12_1 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> k13_1 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">.default =</span> .x)</span>
 <span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a></span>
@@ -384,8 +422,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
 <span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
-<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>      k6_1_1<span class="sc">:</span>k6_10_2,</span>
-<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_when</span>(k3_2 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> k4_2 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">.default =</span> .x)</span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>      k15_1_1<span class="sc">:</span>k15_10_2,</span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_when</span>(k12_2 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> k13_2 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">.default =</span> .x)</span>
 <span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a></span>
@@ -393,8 +431,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
 <span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
-<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>      k7_1_1<span class="sc">:</span>k7_14_2,</span>
-<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_when</span>(k3_3 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> k4_3 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">.default =</span> .x)</span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>      k16_1_1<span class="sc">:</span>k16_14_2,</span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_when</span>(k12_3 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> k13_3 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">.default =</span> .x)</span>
 <span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a></span>
@@ -402,8 +440,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
 <span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
-<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a>      k8_1_1<span class="sc">:</span>k8_11_2,</span>
-<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_when</span>(k3_4 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> k4_4 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">.default =</span> .x)</span>
+<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a>      k17_1_1<span class="sc">:</span>k17_11_2,</span>
+<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_when</span>(k12_4 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> k13_4 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">.default =</span> .x)</span>
 <span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a></span>
@@ -411,8 +449,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
 <span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
-<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a>      k9_1_1<span class="sc">:</span>k9_10_2,</span>
-<span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_when</span>(k3_5 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> k4_5 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">.default =</span> .x)</span>
+<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a>      k18_1_1<span class="sc">:</span>k18_10_2,</span>
+<span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_when</span>(k12_5 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> k13_5 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">.default =</span> .x)</span>
 <span id="cb2-111"><a href="#cb2-111" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb2-112"><a href="#cb2-112" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb2-113"><a href="#cb2-113" aria-hidden="true" tabindex="-1"></a></span>
@@ -420,8 +458,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-115"><a href="#cb2-115" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
 <span id="cb2-116"><a href="#cb2-116" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb2-117"><a href="#cb2-117" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
-<span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a>      k10_1_1<span class="sc">:</span>k10_11_2,</span>
-<span id="cb2-119"><a href="#cb2-119" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_when</span>(k3_6 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> k4_6 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">.default =</span> .x)</span>
+<span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a>      k19_1_1<span class="sc">:</span>k19_11_2,</span>
+<span id="cb2-119"><a href="#cb2-119" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_when</span>(k12_6 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> k13_6 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">.default =</span> .x)</span>
 <span id="cb2-120"><a href="#cb2-120" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb2-122"><a href="#cb2-122" aria-hidden="true" tabindex="-1"></a></span>
@@ -429,14 +467,293 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
 <span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
-<span id="cb2-127"><a href="#cb2-127" aria-hidden="true" tabindex="-1"></a>      k11_1_1<span class="sc">:</span>k11_16_2,</span>
-<span id="cb2-128"><a href="#cb2-128" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_when</span>(k3_7 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> k4_7 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">.default =</span> .x)</span>
+<span id="cb2-127"><a href="#cb2-127" aria-hidden="true" tabindex="-1"></a>      k20_1_1<span class="sc">:</span>k20_7_2,</span>
+<span id="cb2-128"><a href="#cb2-128" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_when</span>(k12_7 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> k13_7 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">.default =</span> .x)</span>
 <span id="cb2-129"><a href="#cb2-129" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb2-130"><a href="#cb2-130" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
+</section>
+<section id="vaikutusmittarit-k21-k23" class="level3" data-number="15.2.2">
+<h3 data-number="15.2.2" class="anchored" data-anchor-id="vaikutusmittarit-k21-k23"><span class="header-section-number">15.2.2</span> Vaikutusmittarit (k21-k23)</h3>
+<ol start="2" type="1">
+<li><strong>Kaikki vaikutusmittarit</strong>: Jos vastaaja on ilmoittanut, ettei hän ole omakohtaisesti kokenut yhtään epäasiallista kohtelua organisaation sisällä tai ulkopuolella (eli jokaisella kokemuksen ylämittarilla [7+7 mittaria] vastausarvo on <code>1</code> [En ollenkaan]), hänelle ei näytetä näitä kysymyksiä ja asetetaan siksi arvo <code>-1</code>.</li>
+</ol>
+<div class="cell">
+<details>
+<summary>Koodi</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Koodin selitykselle, ks. koodiblokki 02_sysmis_esiintyvyydet</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Vakavuus, pitkäkestoisuus, jatkuu tällä hetkellä, sekä reaktiot</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>      k21_1<span class="sc">:</span>k23_11,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_when</span>(</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        k3_1 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> k3_2 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> k3_3 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> k3_4 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> k3_5 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> k3_6 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> k3_7 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> k12_1 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> k12_2 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> k12_3 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> k12_4 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> k12_5 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> k12_6 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> k12_7 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span>,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">.default =</span> .x)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="ilmoitusjärjestelmien-koulutus-k25" class="level3" data-number="15.2.3">
+<h3 data-number="15.2.3" class="anchored" data-anchor-id="ilmoitusjärjestelmien-koulutus-k25"><span class="header-section-number">15.2.3</span> Ilmoitusjärjestelmien koulutus (k25)</h3>
+<ol start="3" type="1">
+<li><strong>Ilmoitusjärjestelmien koulutus</strong>: Niistä järjestelmistä, joista vastaaja sanoi että organisaatiossa on olemassa, mutta hän jätti vastaamatta niiden koulutuksen olemassaolosta, koodataan <code>NA</code> (käyttäjä-puuttuva). Muille koodataan <code>-1</code> (järjestelmä-puuttuva), sillä muut eivät nähneet sen järjestelmän riviä.</li>
+</ol>
+<div class="cell">
+<details>
+<summary>Koodi</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Jokainen koulutusrivi erikseen</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>      k25_1,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_when</span>(k24_1 <span class="sc">==</span> <span class="dv">2</span> <span class="sc">|</span> k24_1 <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">.default =</span> .x)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>      k25_2,</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_when</span>(k24_2 <span class="sc">==</span> <span class="dv">2</span> <span class="sc">|</span> k24_2 <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">.default =</span> .x)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>      k25_3,</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_when</span>(k24_3 <span class="sc">==</span> <span class="dv">2</span> <span class="sc">|</span> k24_3 <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">.default =</span> .x)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="taustakysymykset" class="level3" data-number="15.2.4">
+<h3 data-number="15.2.4" class="anchored" data-anchor-id="taustakysymykset"><span class="header-section-number">15.2.4</span> Taustakysymykset</h3>
+<ol start="4" type="1">
+<li><strong>Taustakysymykset:</strong> Kysymykset verrataan vastaajan organisaatiokuuluvuuteen. Niihin kysymyksiin, joihin vastaaja ei voinut vastata, merkitään arvo <code>-1</code>. Koska kaikki taustakysymykset olivat pakollisia, <code>NA</code>-arvoja ei pitäisi esiintyä ollenkaan kysymyksillä <code>k31-k41</code>.
+<ul>
+<li>Pelastuslaitokset ja ensihoito näkevät kysymykset <code>k32, k39, k40</code> (eli ei näe kysymyksiä <code>k33, k34, k35, k36, k37, k38</code>)</li>
+<li>Sopimuspalokunnat ja palokuntayhdistykset näkevät kysymykset <code>k33, k34, k35, k36</code> (eli ei näe kysymyksiä <code>k32, k37, k38, k39, k40</code>)</li>
+<li>Valtakunnalliset järjestöt näkevät kysymykset <code>k37, k38</code> (eli ei näe kysymyksiä <code>k32, k33, k34, k35, k36, k39, k40</code>)</li>
+<li>Koulutusorganisaatiot näkevät kysymykset <code>k37, k38</code> (eli ei näe kysymyksiä <code>k32, k33, k34, k35, k36, k39, k40</code>)</li>
+<li>Kaikki näkevät kysymykset <code>k31, k41, k42, k43</code></li>
+<li>Jos vastaaja on suorittavaa henkilöstöä (<code>k39 == 4</code>), hän näkee kysymyksen <code>k40</code></li>
+<li>Jos vastaaja tekee varallaoloa (<code>k34 == 1</code>), hän näkee kysymyksen <code>k35</code></li>
+</ul></li>
+</ol>
+<div class="cell">
+<details>
+<summary>Koodi</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pelastuslaitokset ja ensihoito</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(k33, k34, k35, k36_1<span class="sc">:</span>k36_7, k37, k38),</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_when</span>(k2 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">.default =</span> .x)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Sopimuspalokunnat ja palokuntayhdistykset</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(k32, k37, k38, k39, k40),</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_when</span>(k2 <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">.default =</span> .x)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Valtakunnalliset järjestöt</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(k32<span class="sc">:</span>k36_7, k39, k40),</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_when</span>(k2 <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">.default =</span> .x)</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Koulutusorganisaatiot</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(k32<span class="sc">:</span>k36_7, k39, k40),</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_when</span>(k2 <span class="sc">==</span> <span class="dv">4</span> <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">.default =</span> .x)</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Vastaaja ei ole suorittavaa henkilöstöä</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>      k40,</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_when</span>(k39 <span class="sc">==</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">|</span> k39 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">|</span> k39 <span class="sc">==</span> <span class="dv">2</span> <span class="sc">|</span> k39 <span class="sc">==</span> <span class="dv">3</span> <span class="sc">|</span> k39 <span class="sc">==</span> <span class="dv">5</span> <span class="sc">|</span> k39 <span class="sc">==</span> <span class="dv">6</span> <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">.default =</span> .x)</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Vastaaja ei tee varallaoloa</span></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>      k35,</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_when</span>(k34 <span class="sc">==</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">|</span> k34 <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">.default =</span> .x)</span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+</section>
+<section id="uudelleenkoodaukset" class="level2" data-number="15.3">
+<h2 data-number="15.3" class="anchored" data-anchor-id="uudelleenkoodaukset"><span class="header-section-number">15.3</span> Uudelleenkoodaukset</h2>
+<p>Loogisen tulkittavuuden vuoksi teemme seuraavat uudelleenkoodaukset:</p>
+<ol type="1">
+<li>k25_[1-3] (Raportointijärjestelmien koulutuksen olemassaolo):
+<ol type="1">
+<li>(1) -&gt; (3)</li>
+<li>(2) = (2)</li>
+<li>(3) -&gt; (1)</li>
+<li>(4) -&gt; (0)</li>
+</ol></li>
+<li>k26_[1-18] (Asenteet ilmoitusjärjestelmiä kohtaan):
+<ol type="1">
+<li>(1) -&gt; (7)</li>
+<li>(2) -&gt; (6)</li>
+<li>(3) -&gt; (5)</li>
+<li>(4) = (4)</li>
+<li>(5) -&gt; (3)</li>
+<li>(6) -&gt; (2)</li>
+<li>(7) -&gt; (1)</li>
+</ol></li>
+<li>k30_[1-13] (Toimenpiteiden koettu hyödyllisyys):
+<ol type="1">
+<li>(1) -&gt; (7)</li>
+<li>(2) -&gt; (6)</li>
+<li>(3) -&gt; (5)</li>
+<li>(4) = (4)</li>
+<li>(5) -&gt; (3)</li>
+<li>(6) -&gt; (2)</li>
+<li>(7) -&gt; (1)</li>
+</ol></li>
+<li>k34 (Tekee varallaoloa):
+<ol type="1">
+<li>(1) = (1)</li>
+<li>(2) -&gt; (0)</li>
+</ol></li>
+</ol>
+<div class="cell">
+<details>
+<summary>Koodi</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Raportointijärjestelmien koulutuksen olemassaolo</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>      k25_1<span class="sc">:</span>k25_3,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_match</span>(</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        .x,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>        <span class="dv">3</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>        <span class="dv">4</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>        <span class="sc">-</span><span class="dv">1</span> <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span>,</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>        <span class="cn">NA</span> <span class="sc">~</span> <span class="cn">NA</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Asenteet ilmoitusjärjestelmiä kohtaan</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>      k26_1<span class="sc">:</span>k26_18,</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_match</span>(</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>        .x,</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span> <span class="sc">~</span> <span class="dv">7</span>,</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="sc">~</span> <span class="dv">6</span>,</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>        <span class="dv">3</span> <span class="sc">~</span> <span class="dv">5</span>,</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>        <span class="dv">4</span> <span class="sc">~</span> <span class="dv">4</span>,</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>        <span class="dv">5</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>        <span class="dv">6</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>        <span class="dv">7</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>        <span class="sc">-</span><span class="dv">1</span> <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span>,</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>        <span class="cn">NA</span> <span class="sc">~</span> <span class="cn">NA</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Tekee varallaoloa</span></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>      k34,</span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_match</span>(</span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>        .x,</span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>        <span class="sc">-</span><span class="dv">1</span> <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span>,</span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>        <span class="cn">NA</span> <span class="sc">~</span> <span class="cn">NA</span></span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="sec-organisaatioaseman-ryhmäkoodaus" class="level3" data-number="15.3.1">
+<h3 data-number="15.3.1" class="anchored" data-anchor-id="sec-organisaatioaseman-ryhmäkoodaus"><span class="header-section-number">15.3.1</span> Organisaatioaseman ryhmäkoodaus</h3>
+<p>Ennen anonymisointia kolmen organisaatioaseman muuttujat (<code>k36_[1-7], k38, k39</code>) tulee yhdistää yhdeksi muuttujaksi anonymisointisuunnitelman mukaisesti.</p>
+<p>Lopullisessa muuttujassa on kuusi luokkaa: (1) Johto- tai esihenkilötaso, (2) Suorittava henkilöstö, (3) Asiantuntijat, (4) Hallinnollinen tai tukipalveluhenkilöstö, (5) Opetushenkilöstö, (6) Opiskelijat.</p>
+<p><strong>TODO: Alla oleva koodi ei tällä hetkellä toimi. Koska <code>filter</code> poimii vastaavat rivit tuhoavasti, datasta poistuu ei-vastaavat rivit.</strong></p>
+<div class="cell">
+<details>
+<summary>Koodi</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Näissä ei tarvitse käsitellä arvoa "-1", sillä meillä on täydellinen data käytettävissä jokaiselle organisaatio-ositetulle muuttujalle.</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Pelastuslaitokset ja ensihoito (k2 == 1)</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(k2 <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">Organisaatioasema =</span> <span class="fu">case_when</span>(</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>      k39 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">|</span> k39 <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>      k39 <span class="sc">==</span> <span class="dv">3</span> <span class="sc">|</span> k39 <span class="sc">==</span> <span class="dv">4</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>      k39 <span class="sc">==</span> <span class="dv">5</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>      k39 <span class="sc">==</span> <span class="dv">6</span> <span class="sc">~</span> <span class="dv">4</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Valtakunnalliset järjestöt (k2 == 3) sekä koulutusorganisaatiot (k2 == 4)</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(k2 <span class="sc">==</span> <span class="dv">3</span> <span class="sc">|</span> k2 <span class="sc">==</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">Organisaatioasema =</span> <span class="fu">case_when</span>(</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>      k38 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>      k38 <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>      k38 <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="dv">4</span>,</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>      k38 <span class="sc">==</span> <span class="dv">4</span> <span class="sc">~</span> <span class="dv">5</span>,</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>      k38 <span class="sc">==</span> <span class="dv">5</span> <span class="sc">~</span> <span class="dv">6</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Seuraavalla pitää yhdistää monivalintakysymykset prioriteettijärjestyksen mukaan.</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="co"># case_when valitsee ensimmäisen vastaavan arvon järjestyksessä, eli voimme käyttää tätä hyödyksemme prioriteetin soveltamisessa.</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Sopimuspalokunnat ja palokuntayhdistykset (k2 == 2)</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(k2 <span class="sc">==</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">Organisaatioasema =</span> <span class="fu">case_when</span>(</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>      k36_3 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">|</span> k36_6 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">1</span>, <span class="co"># Yhdistystoiminnan johto- tai hallintotehtävät, tai muut vastuutehtävät</span></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>      k36_1 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">|</span> k36_2 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">|</span> k36_4 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">|</span> k36_5 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">2</span>, <span class="co"># Sammutus-, pelastus- tai ensivastetoiminta, operatiiviset johtotehtävät, tai muut vastuutehtävät</span></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>      k36_7 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">4</span> <span class="co"># Tukitoiminnot</span></span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -680,6 +997,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./anonymisointi.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Anonymisointi</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

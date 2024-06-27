@@ -185,8 +185,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
     </ul>
   </li>
-  <li class="dropdown-header">
- <span class="menu-text">sidebar:mittaristonvalidointi</span></li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datavalmistelu" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Datavalmistelu</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-datavalmistelu">    
+        <li>
+    <a class="dropdown-item" href="./eksportointi.html" rel="" target="">
+ <span class="dropdown-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Eksportointi</span></span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./nimeaminen.html" rel="" target="">
+ <span class="dropdown-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Nimeäminen</span></span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./valmistelu.html" rel="" target="">
+ <span class="dropdown-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Valmistelu</span></span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./anonymisointi.html" rel="" target="">
+ <span class="dropdown-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Anonymisointi</span></span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-mittariston-validointi" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Mittariston validointi</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-mittariston-validointi">    
+        <li>
+    <a class="dropdown-item" href="./efabias.html" rel="" target="">
+ <span class="dropdown-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Esiintyvyyden EFA-mallin bias-testit</span></span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="./lahteet.html" rel="" target="">
  <span class="menu-text">Lähteet</span></a>
@@ -290,11 +322,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(dplyr)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(magrittr)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(tidyr)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Ladataan data csv-tiedostosta</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"data/20240528_tulostenmetatiedot.csv"</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>harhadata <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"data/20240510_harhanarvio.csv"</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(ggstatsplot)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Ladataan data csv-tiedostosta</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"data/20240528_tulostenmetatiedot.csv"</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>harhadata <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"data/laadunarviointi_määrällisetkyselyt.csv"</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <section id="julkaisuvuodet" class="level2 page-columns page-full" data-number="5.1">
@@ -641,10 +674,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="yleiskuvailu_files/figure-html/qssp-harhadata-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Q-SSP-harha-arvion tulokset osa-alueittain (n = 58)</figcaption>
+<figcaption class="figure-caption">Q-SSP-harha-arvion tulokset osa-alueittain (n = 52)</figcaption>
 </figure>
 </div>
 </div>
+</div>
+<div class="cell">
+<details>
+<summary>Koodi</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggbetweenstats</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  harhadata,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> Julkaisumuoto,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> Score,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"parametric"</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">pairwise.display =</span> <span class="st">"all"</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">bf.message =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">"Luotettavuus (%)"</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="yleiskuvailu_files/figure-html/qssp-vertailut-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Julkaisumuodoittain</figcaption>
+</figure>
+</div>
+</div>
+<p>Q-SSP-arvion tulokset eri muodottain</p>
 </div>
 
 
