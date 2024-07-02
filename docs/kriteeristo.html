@@ -120,7 +120,7 @@ div.csl-indent {
   </li>  
         <li>
     <a class="dropdown-item" href="./prismakaavio.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">PRISMA-kaavio</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Hakuprosessi ja PRISMA-kaavio</span></span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./yleiskuvailu.html" rel="" target="">
@@ -246,7 +246,7 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./prismakaavio.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">PRISMA-kaavio</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Hakuprosessi ja PRISMA-kaavio</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -511,7 +511,7 @@ div.csl-indent {
 <li><p>Kirjallisuuskatsauksia</p></li>
 <li><p>Meta-analyyseja</p></li>
 </ul>
-<p>Empiiriseksi tutkimukseksi miellettiin sekä laadulliset että määrälliset asetelmat. Myös toimintatutkimukselliset asetelmat määriteltiin empiiriseksi, jos niihin sisältyi jonkin tapainen empiirinen tiedonkeruu.</p>
+<p>Empiiriseksi tutkimukseksi miellettiin sekä laadulliset että määrälliset asetelmat. Myös toimintatutkimukselliset asetelmat määriteltiin empiiriseksi, jos niihin sisältyi jonkin tapainen empiirinen tiedonkeruu. Laadunarvioinnin osalta arvioimme vain empiirisen osuuden jokaisesta tutkimuksesta.</p>
 </section>
 <section id="sec-kohderyhmä" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="sec-kohderyhmä"><span class="header-section-number">2.3</span> Kohderyhmä</h2>
@@ -526,15 +526,33 @@ div.csl-indent {
 <p>Pelastustoimella tarkoitetaan kaikkia pelastusalalla toimivia henkilöitä. Tämä koskettaa mm. operatiivista henkilökuntaa (esim. pelastajia ja hätäkeskusoperaattoreita), hallintohenkilökuntaa (esihenkilöitä, viestintää, talouspuolta), sopimuspalokunnissa toimivia henkilöitä, yhdistystoimijoita, pelastusalan opettajia ja opiskelijoita.</p>
 <p>Kriteeri rajasi ulos ensihoidon operatiivinen henkilökunta käytännön syistä. Ensihoidon suomalaisen kontekstin haut toteutettiin erikseen, koska hakutyö katsottiin suunnitteluvaiheessa voivan olevan jopa laajempi kuin pelastusalan toimijoiden tiedonhaut.</p>
 <p>Kriteeri rajasi myös ulos kaikki muut turvallisuustoimijat. Muita turvallisuustoimijoita tarkasteltiin erillisellä haulla. Heidän haunsa on kirjallisuuskatsauksen näkökulmasta vain vertaileva, koska katsaus ei kokonaisuudessaan käsitellyt yhtä laajasti muita turvallisuustoimijoita.</p>
+<p>Rajaus toteutettiin käyttämällä hakulausekesanoja:</p>
+<ul>
+<li><p>Suomeksi: <code>pelast* OR palo* OR sammut* OR hätäkesku*</code></p></li>
+<li><p>Ruotsiksi: <code>räddning* OR brand* OR släckning* OR nödcentral*</code></p></li>
+<li><p>Englanniksi: <code>"fire rescue*" OR "fire*fighter*" OR "rescue service*" OR "emergency respon*" OR "emergency personnel" AND NOT "medic"</code></p></li>
+</ul>
 </section>
 <section id="ensihoito" class="level3" data-number="2.3.2">
 <h3 data-number="2.3.2" class="anchored" data-anchor-id="ensihoito"><span class="header-section-number">2.3.2</span> Ensihoito</h3>
 <p>Ensihoidolla tarkoitetaan ensihoidon operatiivista henkilökuntaa (mm. ambulanssikuljettajia ja ensihoitajia). Nämä ovat rajattuna omaksi kohderyhmäksi koska oletimme katsauksen suunnitteluvaiheessa, että kohderyhmää on tutkittu verrannollisesti enemmän kuin pelastustoimen kohderyhmää.</p>
-<p>Kansainvälisen kontekstissa kohderyhmärajaus muodostui haasteelliseksi. Useissa maissa ensihoidon ja akuuttihoidon rajanveto ei ole hyvin selkeä, eikä englannin kielellä ensihoitajia tai ambulanssikuljettajia aina eroteta muusta akuuttihoidon henkilökunnasta (esim. “emergency medic” voi tarkoittaa sairaanhoitajaa sairaalan päivystyksessä). Ensisijaisesti rajasimme kohderyhmästä pois selkeästi lääkäreitä ja sairaalassa tapahtuvien akuuttilääketieteellisten toimenpiteiden toteuttajia. Rajaus on kuitenkin voinut heikentää kirjallisuuskatsauksen saantia ja tarkkuutta.</p>
+<p>Kansainvälisen kontekstissa kohderyhmärajaus muodostui haasteelliseksi. Useissa maissa ensihoidon ja akuuttihoidon rajanveto ei ole hyvin selkeä, eikä englannin kielellä ensihoitajia tai ambulanssikuljettajia aina eroteta muusta akuuttihoidon henkilökunnasta (esim. “emergency medic” voi tarkoittaa sairaanhoitajaa sairaalan päivystyksessä). Ensisijaisesti seuloimme tuloksista pois selkeästi lääkäreitä ja sairaalassa tapahtuvien akuuttilääketieteellisten toimenpiteiden toteuttajia koskevat tutkimukset. Rajaus on kuitenkin voinut heikentää kirjallisuuskatsauksen saantia ja tarkkuutta.</p>
+<p>Rajaus toteutettiin käyttämällä hakulausekesanoja:</p>
+<ul>
+<li><p>Suomeksi: <code>ensihoit* OR sairaankuljet* OR ambulanssi*</code></p></li>
+<li><p>Ruotsiksi: <code>"första hjälp*" OR nödhjälp* OR ambulans* OR sjuktransport* OR förstavårdar*</code></p></li>
+<li><p>Englanniksi: <code>"medic" OR "emergency medic*" OR ambulance</code></p></li>
+</ul>
 </section>
 <section id="muut-turvallisuustoimijat" class="level3" data-number="2.3.3">
 <h3 data-number="2.3.3" class="anchored" data-anchor-id="muut-turvallisuustoimijat"><span class="header-section-number">2.3.3</span> Muut turvallisuustoimijat</h3>
 <p>Muut turvallisuustoimijat määriteltiin kirjallisuuskatsauksessa seuraaviksi: poliisi, rajavartiosto, puolustusvoimat ja yksityiset järjestyksenvalvojat. Koska muiden turvallisuustoimijoiden tiedonhaku tehtiin vertailevassa mielessä, emme keskittyneet yhtä paljon kohderyhmän saannin ja tarkkuuden kannalta tarkkaan rajaukseen kuin pelastustoimeen ja ensihoitoon kohdistuvissa hauissa.</p>
+<p>Rajaus toteutettiin käyttämällä hakulausekesanoja:</p>
+<ul>
+<li><p>Suomeksi: <code>poliisi* OR varti* OR puolustusvoim* OR sotila*</code></p></li>
+<li><p>Ruotsiksi: <code>polis* OR ordningsv?kt* OR försvars* OR soldat* OR gränsbevak* OR gränskontroll*</code></p></li>
+<li><p>Englanniksi: <code>police OR guard* OR defen?e contractor* OR steward OR soldier OR military personnel</code></p></li>
+</ul>
 </section>
 </section>
 <section id="sec-maantiede" class="level2" data-number="2.4">
@@ -547,7 +565,8 @@ div.csl-indent {
 <p>Rajaus kohdistui tutkimuskontekstiin, eli missä maantieteellisessä ympäristössä empiirinen selvitys oli tehty.</p>
 <section id="suomalaiset-tutkimukset" class="level3" data-number="2.4.1">
 <h3 data-number="2.4.1" class="anchored" data-anchor-id="suomalaiset-tutkimukset"><span class="header-section-number">2.4.1</span> Suomalaiset tutkimukset</h3>
-<p>Rajaus kohdistui Suomeen ja Ahvenanmaahan. Rajaukset toteutettiin kahdella tavalla:</p>
+<p>Rajaus kohdistui Suomeen ja Ahvenanmaahan.</p>
+<p>Rajaukset toteutettiin kahdella tavalla:</p>
 <ul>
 <li><p>Suomeen ja Ahvenanmaahan kohdistuvat haut toteutettiin mm. suomeksi ja ruotsiksi (ks. <a href="#sec-tutkimuskieli"><span>Alaluku&nbsp;2.5</span></a>). Tällöin voitiin olettaa, että suomeksi toteutettu tutkimus oli myös toteutettu Suomessa. Ruotsinkielisen tutkimuksen kohdalla tarkistimme erikseen seulonnan yhteydessä, että tutkimus kohdistui Suomeen eikä Ruotsiin tai muihin maihin.</p></li>
 <li><p>Englanninkielisten hakujen kohdalla hakulausekkeeseen tai hakukonerajauksiin lisättiin maantieteellinen rajaus, riippuen hakukoneen tai tietokannan ominaisuuksista.</p></li>
@@ -613,7 +632,7 @@ div.csl-indent {
 <li>Viro</li>
 <li>Wales</li>
 </ul>
-<p>Rajaukset toteutettiin joko hakulausekkeessa tai hakukonerajauksissa, riippuen tietokannan tai hakukoneen ominaisuuksista. Seulonnan yhteydessä tarkistettiin myös tutkimusten toteutusmaat ennen mukaanoton päätöstä.</p>
+<p>Rajaukset toteutettiin joko hakulausekkeessa tai hakukonerajauksissa, riippuen tietokannan tai hakukoneen ominaisuuksista. Seulonnan yhteydessä tarkistettiin myös tutkimusten toteutusmaat ennen sisäänottopäätöstä.</p>
 </section>
 </section>
 <section id="sec-tutkimuskieli" class="level2" data-number="2.5">
@@ -640,6 +659,7 @@ div.csl-indent {
 <li><p>Tutkimus oli julkaistu julkaisijalla, jonka tiedetään harjoittavan vertaisarviointia (koski lähinnä kirjateoksia)</p></li>
 </ul>
 <p>Opinnäytetyöt ja konferenssijulkaisut eivät laskettu vertaisarvioiduiksi tässä kirjallisuuskatsauksessa. Opinnäytetöiden osalta seurasimme toista menettelyä (ks. alla). Konferenssijulkaisujen mukaanotto olisi voinut tuottaa suuria määriä kaksoiskappaleita. Tämän lisäksi konferenssiesitelmistä voidaan yleensä odottaa vertaisarvioitua tutkimusjulkaisua, jolloin kyseinen tutkimus läpäisisi seulan joka tapauksessa. On kuitenkin mahdollisuus, että rajaus tuotti pienen määrän virheellisiä negatiiveja, jos jokin esitelmä olisi ollut julkaisut vastikään, eikä tutkimus vielä olisi ehtinyt julkaistavaksi aikakauslehdessä tai kirjassa.</p>
+<p>Rajaus toteutettiin hakukoneesta riippuen hakuvalinnoilla tai seulonnassa.</p>
 </section>
 <section id="viranomaisraportit" class="level3" data-number="2.6.2">
 <h3 data-number="2.6.2" class="anchored" data-anchor-id="viranomaisraportit"><span class="header-section-number">2.6.2</span> Viranomaisraportit</h3>
@@ -649,16 +669,18 @@ div.csl-indent {
 <li><p>Sisäministeriö ja Puolustusministeriö</p></li>
 <li><p>Työterveyslaitos, Terveyden ja hyvinvoinnin laitos</p></li>
 </ul>
+<p>Rajaus toteutettiin hakemalla raportteja niitä julkaisevista palveluista. Joissain hakukoneissa rajausta toteutettiin myös tulosmuotojen hakuvalinnoissa. Jokaisen haun tietokantakohtaiset rajaukset ovat esitelty osahaun omalla sivulla tällä liitesivustolla.</p>
 </section>
 <section id="yhdistysten-tutkimusraportit" class="level3" data-number="2.6.3">
 <h3 data-number="2.6.3" class="anchored" data-anchor-id="yhdistysten-tutkimusraportit"><span class="header-section-number">2.6.3</span> Yhdistysten tutkimusraportit</h3>
-<p>Yhdistysten tutkimusraporteilla tarkoitetaan Suomen pelastusalan järjestöjen itse julkaisemia tutkimusraportteja ja katsauksia. Julkaisevia järjestöjä on yksi: Suomen Pelastusalan Keskusjärjestö, SPEK. Haimme SPEK:in tuottamia tutkimusjulkaisuja suoraan heidän verkkosivuiltaan, <a href="https://www.spek.fi/vaikuttaminen/tutkimukset/">Tutkimukset - SPEK</a> (haettu 30.1.2024).</p>
+<p>Yhdistysten tutkimusraporteilla tarkoitetaan Suomen pelastusalan järjestöjen itse julkaisemia tutkimusraportteja ja katsauksia. Julkaisevia järjestöjä on yksi: Suomen Pelastusalan Keskusjärjestö, SPEK. Haimme SPEK:n tuottamia tutkimusjulkaisuja suoraan heidän verkkosivuiltaan, <a href="https://www.spek.fi/vaikuttaminen/tutkimukset/">Tutkimukset - SPEK</a> (haettu 30.1.2024).</p>
 </section>
 <section id="opinnäytetyöt" class="level3" data-number="2.6.4">
 <h3 data-number="2.6.4" class="anchored" data-anchor-id="opinnäytetyöt"><span class="header-section-number">2.6.4</span> Opinnäytetyöt</h3>
 <p>Opinnäytteillä tarkoitetaan Suomen korkeakouluissa tuotettuja opintojen opinnäytetöitä, jotka liittyvät kolmannen syklin tai tutkimuksellisen opetuksen tutkintoihin. Näitä ovat kandidaatti-, maisteri-, lisensiaatti-, tohtori-, AMK- ja ylempään AMK-tutkintoihin liittyvät opinnäytteet.</p>
 <p>Ulkopuolelle rajattiin mahdolliset seminaarityöt, jotka eivät liity suoraan korkeakoulujen tutkintoihin (esim. toisen asteen tutkintojen työt).</p>
 <p>Myös toisen koulutussyklin opinnäytetyöt (esimerkiksi lähihoitajien töitä) rajattiin pois. Rajaus tehtiin ensisijaisesti käytännön syistä, koska meidän tietääksemme näitä töitä ei yleensä julkaista avoimesti eikä Suomessa ole tietokantoja niiden hakemiselle.</p>
+<p>Rajaus toteutettiin hakemalla opinnäytetöitä korkeakoulujen julkaisupalveluista. Seulonnassa poistettiin mahdollisia tuloksia, jotka eivät olleet opinnäytteitä (esim. rinnakkaistallennettuja tutkimusartikkeleita).</p>
 </section>
 </section>
 <section id="sec-tietolahteet" class="level2 page-columns page-full" data-number="2.7">
@@ -667,10 +689,10 @@ div.csl-indent {
 <ul>
 <li>Yhdistysten ja yhteisöjen julkaisukanavat
 <ul>
-<li>Suomen Pelastusalan Keskusjärjestö SPEK:in julkaisut</li>
+<li>Suomen Pelastusalan Keskusjärjestö SPEK:n julkaisut</li>
 <li>Pelastusopiston julkaisut</li>
 <li>Valto - Valtioneuvoston yhteinen julkaisuarkisto</li>
-<li>Julkari - STM:n hallinnonalan avoin julkaisuarkisto</li>
+<li>Julkari - Sosiaali- ja terveysministeriön hallinnonalan avoin julkaisuarkisto</li>
 </ul></li>
 <li>Korkeakoulujen opinnäytteiden julkaisukanavat
 <ul>
@@ -687,11 +709,9 @@ div.csl-indent {
 <li>OpenAlex</li>
 </ul></li>
 </ul>
-<p>Näistä lähteistä haluamme huomauttaa, että Valto, Julkari, kaikkien yliopistojen julkaisukanavat sekä Theseus käyttävät samaa hakukonejärjestelmää (DSpace). Täten haut voitiin suorittaa hyvin samankalataisina, mikä nopeuttaa hakujen tekemistä huomattavasti.</p>
-<p>Kaikki DSpace-pohjaiset järjestelmät eivät kuitenkaan tue samoja palveluja. Esimerkiksi Aalto-yliopiston Aaltodoc ja Itä-Suomen yliopiston UEF eRepo eivät ole aktivoineet REST API-pohjaista hakumenettelyä, jolloin tuloksia ei voida lukea ja tallentaa koneellisesti.</p>
 <section id="yhdistysten-ja-yhteisöjen-julkaisukanavat" class="level3" data-number="2.7.1">
 <h3 data-number="2.7.1" class="anchored" data-anchor-id="yhdistysten-ja-yhteisöjen-julkaisukanavat"><span class="header-section-number">2.7.1</span> Yhdistysten ja yhteisöjen julkaisukanavat</h3>
-<p>Tarkistimme <strong>Suomen Pelastusalan Keskusjärjestön julkaisut</strong> <a href="https://www.spek.fi/vaikuttaminen/tutkimukset/">heidän omilta sivuiltaan</a> (haettu 30.1.2024). Koska näitä ei voitu hakea hakukoneesta, tulokset sisällytettiin muina tuloksina (vrt. PRISMA-protokollan kulkukaavio, ks. [LÄHDE]).</p>
+<p>Tarkistimme <strong>Suomen Pelastusalan Keskusjärjestön julkaisut</strong> <a href="https://www.spek.fi/vaikuttaminen/tutkimukset/">heidän omilta sivuiltaan</a> (haettu 30.1.2024). Koska näitä ei voitu hakea hakukoneesta, tulokset sisällytettiin muina tuloksina.</p>
 <p>Samoin <strong>Pelastusopiston julkaisut</strong> tarkistettiin käsin <a href="https://www.pelastusopisto.fi/kirjasto-ja-tietopalvelut/julkaisut-ja-aineistot/">heidän omilta sivuiltaan</a> (haettu 30.1.2024) ja sisällytettiin muina tuloksina.</p>
 <p>Ministeriöiden ja valtionhallinnon julkaisut haettiin kootusti <strong>Valto</strong>-<a href="https://julkaisut.valtioneuvosto.fi/">hakupalvelusta</a> (haettu 30.1.2024).</p>
 <p>Muiden valtiollisten tutkimusorganisaatioiden julkaisut haettiin <strong>Julkari</strong>-<a href="https://www.julkari.fi/">hakupalvelusta</a> (haettu 30.1.2024).</p>

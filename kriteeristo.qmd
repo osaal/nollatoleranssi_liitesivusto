@@ -100,7 +100,7 @@ Emme täten tarkistaneet esimerkiksi:
 
 -   Meta-analyyseja
 
-Empiiriseksi tutkimukseksi miellettiin sekä laadulliset että määrälliset asetelmat. Myös toimintatutkimukselliset asetelmat määriteltiin empiiriseksi, jos niihin sisältyi jonkin tapainen empiirinen tiedonkeruu.
+Empiiriseksi tutkimukseksi miellettiin sekä laadulliset että määrälliset asetelmat. Myös toimintatutkimukselliset asetelmat määriteltiin empiiriseksi, jos niihin sisältyi jonkin tapainen empiirinen tiedonkeruu. Laadunarvioinnin osalta arvioimme vain empiirisen osuuden jokaisesta tutkimuksesta.
 
 ## Kohderyhmä {#sec-kohderyhmä}
 
@@ -120,15 +120,39 @@ Kriteeri rajasi ulos ensihoidon operatiivinen henkilökunta käytännön syistä
 
 Kriteeri rajasi myös ulos kaikki muut turvallisuustoimijat. Muita turvallisuustoimijoita tarkasteltiin erillisellä haulla. Heidän haunsa on kirjallisuuskatsauksen näkökulmasta vain vertaileva, koska katsaus ei kokonaisuudessaan käsitellyt yhtä laajasti muita turvallisuustoimijoita.
 
+Rajaus toteutettiin käyttämällä hakulausekesanoja:
+
+-   Suomeksi: `pelast* OR palo* OR sammut* OR hätäkesku*`
+
+-   Ruotsiksi: `räddning* OR brand* OR släckning* OR nödcentral*`
+
+-   Englanniksi: `"fire rescue*" OR "fire*fighter*" OR "rescue service*" OR "emergency respon*" OR "emergency personnel" AND NOT "medic"`
+
 ### Ensihoito
 
 Ensihoidolla tarkoitetaan ensihoidon operatiivista henkilökuntaa (mm. ambulanssikuljettajia ja ensihoitajia). Nämä ovat rajattuna omaksi kohderyhmäksi koska oletimme katsauksen suunnitteluvaiheessa, että kohderyhmää on tutkittu verrannollisesti enemmän kuin pelastustoimen kohderyhmää.
 
-Kansainvälisen kontekstissa kohderyhmärajaus muodostui haasteelliseksi. Useissa maissa ensihoidon ja akuuttihoidon rajanveto ei ole hyvin selkeä, eikä englannin kielellä ensihoitajia tai ambulanssikuljettajia aina eroteta muusta akuuttihoidon henkilökunnasta (esim. "emergency medic" voi tarkoittaa sairaanhoitajaa sairaalan päivystyksessä). Ensisijaisesti rajasimme kohderyhmästä pois selkeästi lääkäreitä ja sairaalassa tapahtuvien akuuttilääketieteellisten toimenpiteiden toteuttajia. Rajaus on kuitenkin voinut heikentää kirjallisuuskatsauksen saantia ja tarkkuutta.
+Kansainvälisen kontekstissa kohderyhmärajaus muodostui haasteelliseksi. Useissa maissa ensihoidon ja akuuttihoidon rajanveto ei ole hyvin selkeä, eikä englannin kielellä ensihoitajia tai ambulanssikuljettajia aina eroteta muusta akuuttihoidon henkilökunnasta (esim. "emergency medic" voi tarkoittaa sairaanhoitajaa sairaalan päivystyksessä). Ensisijaisesti seuloimme tuloksista pois selkeästi lääkäreitä ja sairaalassa tapahtuvien akuuttilääketieteellisten toimenpiteiden toteuttajia koskevat tutkimukset. Rajaus on kuitenkin voinut heikentää kirjallisuuskatsauksen saantia ja tarkkuutta.
+
+Rajaus toteutettiin käyttämällä hakulausekesanoja:
+
+-   Suomeksi: `ensihoit* OR sairaankuljet* OR ambulanssi*`
+
+-   Ruotsiksi: `"första hjälp*" OR nödhjälp* OR ambulans* OR sjuktransport* OR förstavårdar*`
+
+-   Englanniksi: `"medic" OR "emergency medic*" OR ambulance`
 
 ### Muut turvallisuustoimijat
 
 Muut turvallisuustoimijat määriteltiin kirjallisuuskatsauksessa seuraaviksi: poliisi, rajavartiosto, puolustusvoimat ja yksityiset järjestyksenvalvojat. Koska muiden turvallisuustoimijoiden tiedonhaku tehtiin vertailevassa mielessä, emme keskittyneet yhtä paljon kohderyhmän saannin ja tarkkuuden kannalta tarkkaan rajaukseen kuin pelastustoimeen ja ensihoitoon kohdistuvissa hauissa.
+
+Rajaus toteutettiin käyttämällä hakulausekesanoja:
+
+-   Suomeksi: `poliisi* OR varti* OR puolustusvoim* OR sotila*`
+
+-   Ruotsiksi: `polis* OR ordningsv?kt* OR försvars* OR soldat* OR gränsbevak* OR gränskontroll*`
+
+-   Englanniksi: `police OR guard* OR defen?e contractor* OR steward OR soldier OR military personnel`
 
 ## Maantiede {#sec-maantiede}
 
@@ -142,7 +166,9 @@ Rajaus kohdistui tutkimuskontekstiin, eli missä maantieteellisessä ympäristö
 
 ### Suomalaiset tutkimukset
 
-Rajaus kohdistui Suomeen ja Ahvenanmaahan. Rajaukset toteutettiin kahdella tavalla:
+Rajaus kohdistui Suomeen ja Ahvenanmaahan.
+
+Rajaukset toteutettiin kahdella tavalla:
 
 -   Suomeen ja Ahvenanmaahan kohdistuvat haut toteutettiin mm. suomeksi ja ruotsiksi (ks. @sec-tutkimuskieli). Tällöin voitiin olettaa, että suomeksi toteutettu tutkimus oli myös toteutettu Suomessa. Ruotsinkielisen tutkimuksen kohdalla tarkistimme erikseen seulonnan yhteydessä, että tutkimus kohdistui Suomeen eikä Ruotsiin tai muihin maihin.
 
@@ -208,7 +234,7 @@ Rajaus kohdistui Euroopan maihin, pois lukien Suomi ja Ahvenanmaa. Nämä maat o
 -   Viro
 -   Wales
 
-Rajaukset toteutettiin joko hakulausekkeessa tai hakukonerajauksissa, riippuen tietokannan tai hakukoneen ominaisuuksista. Seulonnan yhteydessä tarkistettiin myös tutkimusten toteutusmaat ennen mukaanoton päätöstä.
+Rajaukset toteutettiin joko hakulausekkeessa tai hakukonerajauksissa, riippuen tietokannan tai hakukoneen ominaisuuksista. Seulonnan yhteydessä tarkistettiin myös tutkimusten toteutusmaat ennen sisäänottopäätöstä.
 
 ## Tutkimuskieli {#sec-tutkimuskieli}
 
@@ -242,6 +268,8 @@ Tutkimus laskettiin vertaisarvioiduksi tutkimusraportiksi, jos jokin tai kaikki 
 
 Opinnäytetyöt ja konferenssijulkaisut eivät laskettu vertaisarvioiduiksi tässä kirjallisuuskatsauksessa. Opinnäytetöiden osalta seurasimme toista menettelyä (ks. alla). Konferenssijulkaisujen mukaanotto olisi voinut tuottaa suuria määriä kaksoiskappaleita. Tämän lisäksi konferenssiesitelmistä voidaan yleensä odottaa vertaisarvioitua tutkimusjulkaisua, jolloin kyseinen tutkimus läpäisisi seulan joka tapauksessa. On kuitenkin mahdollisuus, että rajaus tuotti pienen määrän virheellisiä negatiiveja, jos jokin esitelmä olisi ollut julkaisut vastikään, eikä tutkimus vielä olisi ehtinyt julkaistavaksi aikakauslehdessä tai kirjassa.
 
+Rajaus toteutettiin hakukoneesta riippuen hakuvalinnoilla tai seulonnassa.
+
 ### Viranomaisraportit
 
 Viranomaisraportilla tarkoitetaan Suomen viranomaisten julkaisemia tutkimusraportteja ja katsauksia. "Viranomainen" on tässä kontekstissa määritelty valtionhallintoon, ministeriöihin ja niiden hallinnonalalla toimiviin virastoihin. Täten tarkistimme seuraavat viranomaiset:
@@ -252,9 +280,11 @@ Viranomaisraportilla tarkoitetaan Suomen viranomaisten julkaisemia tutkimusrapor
 
 -   Työterveyslaitos, Terveyden ja hyvinvoinnin laitos
 
+Rajaus toteutettiin hakemalla raportteja niitä julkaisevista palveluista. Joissain hakukoneissa rajausta toteutettiin myös tulosmuotojen hakuvalinnoissa. Jokaisen haun tietokantakohtaiset rajaukset ovat esitelty osahaun omalla sivulla tällä liitesivustolla.
+
 ### Yhdistysten tutkimusraportit
 
-Yhdistysten tutkimusraporteilla tarkoitetaan Suomen pelastusalan järjestöjen itse julkaisemia tutkimusraportteja ja katsauksia. Julkaisevia järjestöjä on yksi: Suomen Pelastusalan Keskusjärjestö, SPEK. Haimme SPEK:in tuottamia tutkimusjulkaisuja suoraan heidän verkkosivuiltaan, [Tutkimukset - SPEK](https://www.spek.fi/vaikuttaminen/tutkimukset/) (haettu 30.1.2024).
+Yhdistysten tutkimusraporteilla tarkoitetaan Suomen pelastusalan järjestöjen itse julkaisemia tutkimusraportteja ja katsauksia. Julkaisevia järjestöjä on yksi: Suomen Pelastusalan Keskusjärjestö, SPEK. Haimme SPEK:n tuottamia tutkimusjulkaisuja suoraan heidän verkkosivuiltaan, [Tutkimukset - SPEK](https://www.spek.fi/vaikuttaminen/tutkimukset/) (haettu 30.1.2024).
 
 ### Opinnäytetyöt
 
@@ -264,15 +294,17 @@ Ulkopuolelle rajattiin mahdolliset seminaarityöt, jotka eivät liity suoraan ko
 
 Myös toisen koulutussyklin opinnäytetyöt (esimerkiksi lähihoitajien töitä) rajattiin pois. Rajaus tehtiin ensisijaisesti käytännön syistä, koska meidän tietääksemme näitä töitä ei yleensä julkaista avoimesti eikä Suomessa ole tietokantoja niiden hakemiselle.
 
+Rajaus toteutettiin hakemalla opinnäytetöitä korkeakoulujen julkaisupalveluista. Seulonnassa poistettiin mahdollisia tuloksia, jotka eivät olleet opinnäytteitä (esim. rinnakkaistallennettuja tutkimusartikkeleita).
+
 ## Tietolähteet {#sec-tietolahteet}
 
 Käytimme kirjallisuuskatsauksessa seuraavia tietolähteitä:
 
 -   Yhdistysten ja yhteisöjen julkaisukanavat
-    -   Suomen Pelastusalan Keskusjärjestö SPEK:in julkaisut
+    -   Suomen Pelastusalan Keskusjärjestö SPEK:n julkaisut
     -   Pelastusopiston julkaisut
     -   Valto - Valtioneuvoston yhteinen julkaisuarkisto
-    -   Julkari - STM:n hallinnonalan avoin julkaisuarkisto
+    -   Julkari - Sosiaali- ja terveysministeriön hallinnonalan avoin julkaisuarkisto
 -   Korkeakoulujen opinnäytteiden julkaisukanavat
     -   Theseus-palvelu (ammattikorkeakoulujen tietokannat, Poliisiammattikorkeakoulun julkaisut)
     -   Yliopistojen julkaisukanavat (ks. alla)
@@ -284,13 +316,9 @@ Käytimme kirjallisuuskatsauksessa seuraavia tietolähteitä:
     -   Bielefeld Academic Search Engine BASE
     -   OpenAlex
 
-Näistä lähteistä haluamme huomauttaa, että Valto, Julkari, kaikkien yliopistojen julkaisukanavat sekä Theseus käyttävät samaa hakukonejärjestelmää (DSpace). Täten haut voitiin suorittaa hyvin samankalataisina, mikä nopeuttaa hakujen tekemistä huomattavasti.
-
-Kaikki DSpace-pohjaiset järjestelmät eivät kuitenkaan tue samoja palveluja. Esimerkiksi Aalto-yliopiston Aaltodoc ja Itä-Suomen yliopiston UEF eRepo eivät ole aktivoineet REST API-pohjaista hakumenettelyä, jolloin tuloksia ei voida lukea ja tallentaa koneellisesti.
-
 ### Yhdistysten ja yhteisöjen julkaisukanavat
 
-Tarkistimme **Suomen Pelastusalan Keskusjärjestön julkaisut** [heidän omilta sivuiltaan](https://www.spek.fi/vaikuttaminen/tutkimukset/) (haettu 30.1.2024). Koska näitä ei voitu hakea hakukoneesta, tulokset sisällytettiin muina tuloksina (vrt. PRISMA-protokollan kulkukaavio, ks. \[LÄHDE\]).
+Tarkistimme **Suomen Pelastusalan Keskusjärjestön julkaisut** [heidän omilta sivuiltaan](https://www.spek.fi/vaikuttaminen/tutkimukset/) (haettu 30.1.2024). Koska näitä ei voitu hakea hakukoneesta, tulokset sisällytettiin muina tuloksina.
 
 Samoin **Pelastusopiston julkaisut** tarkistettiin käsin [heidän omilta sivuiltaan](https://www.pelastusopisto.fi/kirjasto-ja-tietopalvelut/julkaisut-ja-aineistot/) (haettu 30.1.2024) ja sisällytettiin muina tuloksina.
 
@@ -306,22 +334,37 @@ Huomasimme kirjallisuuskatsauksen aikana, ettei **Pelastusopiston ammattikorkeak
 
 **Suomen yliopistot** käyttävät pääsääntöisesti omia opinnäytejulkaisukanavia. Nämä ovat listattuna taulukossa [-@tbl-yliopistojen-julkaisukanavat] alla verkko-osoitteineen:
 
++---------------------------------+-------------------------+------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
 | Yliopisto                       | Kanavan nimi            | Osoite                                                                       | Huomioita                                                                                                                               |
-|---------------------------------|-------------------------|------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
++=================================+=========================+==============================================================================+=========================================================================================================================================+
 | Aalto-yliopisto                 | Aaltodoc                | <https://aaltodoc.aalto.fi/?locale-attribute=fi>                             |                                                                                                                                         |
++---------------------------------+-------------------------+------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
 | Helsingin yliopisto             | E-thesis                | <https://ethesis.helsinki.fi/>                                               | Saatavuus vaihtelee tiedekunnan mukaan, mutta yleisesti ottaen 2010-luvun puolen välin jälkeen julkastut tutkielmat ovat käytettävissä. |
++---------------------------------+-------------------------+------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
 | Itä-Suomen yliopisto            | UEF eRepo               | <https://erepo.uef.fi/>                                                      |                                                                                                                                         |
++---------------------------------+-------------------------+------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
 | Jyväskylän yliopisto            | JYX                     | <https://jyx.jyu.fi/>                                                        |                                                                                                                                         |
++---------------------------------+-------------------------+------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
 | Lapin yliopisto                 | Lauda                   | <https://lauda.ulapland.fi/>                                                 | Maisteritutkielmat vuodesta 2014 eteenpäin.                                                                                             |
++---------------------------------+-------------------------+------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
 | LUT-yliopisto                   | LUTPub                  | <https://lutpub.lut.fi/>                                                     |                                                                                                                                         |
++---------------------------------+-------------------------+------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
 | Oulun yliopisto                 | Jultika[^kriteeristo-1] | <http://jultika.oulu.fi/>                                                    | Kandidaattitutkielmat vuodesta 2016 eteenpäin, maisteritutkielmat vuodesta 2013 eteenpäin.                                              |
++---------------------------------+-------------------------+------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
 | Svenska handelshögskolan Hanken | DHanken                 | <https://helda.helsinki.fi/communities/61c8694f-3453-4bd3-a197-32fee3108f66> |                                                                                                                                         |
++---------------------------------+-------------------------+------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
 | Taideyliopisto                  | Taju                    | <https://taju.uniarts.fi/>                                                   |                                                                                                                                         |
++---------------------------------+-------------------------+------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
 | Tampereen yliopisto             | Trepo                   | <https://trepo.tuni.fi/>                                                     |                                                                                                                                         |
++---------------------------------+-------------------------+------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
 | Turun yliopisto                 | UTUPub                  | <https://www.utupub.fi/>                                                     |                                                                                                                                         |
++---------------------------------+-------------------------+------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
 | Vaasan yliopisto                | Osuva                   | <https://osuva.uwasa.fi/>                                                    |                                                                                                                                         |
++---------------------------------+-------------------------+------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
 | Åbo Akademi                     | Doria                   | <https://www.doria.fi/handle/10024/3981>                                     |                                                                                                                                         |
++---------------------------------+-------------------------+------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
 | Maanpuolustuskorkeakoulu        | Doria                   | <https://www.doria.fi/handle/10024/72633>                                    |                                                                                                                                         |
++---------------------------------+-------------------------+------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
 
 : Yliopistojen julkaisukanavat {#tbl-yliopistojen-julkaisukanavat}
 

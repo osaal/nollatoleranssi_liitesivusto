@@ -40,10 +40,10 @@ Haku suoritettiin seuraavissa tietolähteissä:
 
 ## Hakulausekkeet ja tulosten lataaminen
 
-Alla olevassa taulukossa esitetään hakujen suorituspäivämäärät, hakusanat ja hakukonekohtaiset rajaukset sekä osumat.
+Alla olevassa taulukossa esiintyy hakujen suorituspäivämäärät, hakusanat ja hakukonekohtaiset rajaukset sekä osumat.
 
 | Koodi    | Hakukone (tietokannat suluissa)  | Haku-ajankohta | Julkaisujen ajankohtarajaus | Tulos-määrä | Haun jälkeiset rajaukset                                                    |
-|------------|------------|------------|------------|------------|---------------|
+|------------|------------|------------|------------|------------|------------|
 | H4_1_fi  | Theseus                          | 3.1.2024       | *Ei käytetty.*              | 23          | *Ei käytetty.*                                                              |
 | H4_1_sw  | Theseus                          | 10.1.2024      | 2010-2024                   | 17          | *Ei käytetty.*                                                              |
 | H4_1_en  | Theseus                          | 12.1.2024      | 2010-2024                   | 142         | *Ei käytetty.*                                                              |
@@ -343,9 +343,9 @@ Suuren määrän takia seuraavat haut toteutettiin API-toiminnolla:
 
 -   UTUPub, englanti (Haku `H4_12_en`)
 
-API-haulla tuotetut tulokset tallennettiin `.json`-tiedostoina. Maksimitulosten määrä per sivu oli 100, joten haut toteutettiin yhtä monta kertaa kuin tulosmäärä vaati, nostaen `start`-numeroa jokaisen kerran. Esimerkki: `start=0`, `start=100`, `start=200`, jne. `.json`-tiedostot muunnettiin taulukkomuotoon Microsoft Excel -ohjelmassa *Power Query* -toiminnolla.
+API-haulla tuotetut tulokset tallennettiin `.json`-tiedostoina. Maksimitulosten määrä per sivu oli 100, joten haut toteutettiin yhtä monta kertaa kuin tulosmäärä vaati, nostaen `start`-numeroa jokaisen kerran sadalla. `.json`-tiedostot yhdistettiin ja muunnettiin hauittain taulukkomuotoon Microsoft Excel -ohjelmassa *Power Query* -toiminnolla.
 
-On huomioitava, että API-toiminnolla hakeminen tuottaa lievästi eroavia tuloksia verrattuna käyttöliittymän kautta hakemiseen. Pääsääntöisesti API-haku tuottaa enemmän tuloksia. Epäilemme tämän olevan ongelma API-hakusyntaksissa.
+On huomioitava, että API-toiminnolla hakeminen tuottaa lievästi eroavia tuloksia verrattuna käyttöliittymän kautta hakemiseen. Pääsääntöisesti API-haku näytti tuottavan enemmän tuloksia. Epäilemme tämän olevan ongelma API-hakusyntaksissa.
 
 Kaikki muut haut lisättiin Excel-taulukkoon käsin kyseisen haun suorittajan toimesta.
 
@@ -372,7 +372,7 @@ labels <- c(
   "Sisällytetyt kohteet"
 )
 
-counts <- c(515, 503, 38, 36, 23)
+counts <- c(515, 503, 37, 37, 21)
 
 flow_exclusions(
   incl_counts = counts,
@@ -384,63 +384,36 @@ flow_exclusions(
   show_count = TRUE,
   font_size = 14)
 ```
-
-## Muut lähteet
-
-```{r}
-#| eval: true
-library("PRISMAstatement")
-
-labels <- c(
-  "Tunnistetut kohteet",
-  "Kaksoiskappaleet poistettu ennen seulontaa",
-  "Haettavat kohteet",
-  "Hakematta jääneet kohteet",
-  "Tarkistetut kohteet",
-  "Poistetut kohteet",
-  "Sisällytetyt kohteet"
-)
-
-counts <- c(0, 0, 0, 0)
-
-flow_exclusions(
-  incl_counts = counts,
-  total_label = labels[1],
-  incl_labels = labels[c(3, 5, 7)],
-  excl_labels = labels[c(2, 4, 6)], 
-  percent_of_total = TRUE,
-  percent_of_prev = FALSE,
-  show_count = TRUE,
-  font_size = 14)
-```
 :::
 
 ## Kokotekstin pohjalta poistetut tutkimukset ja syyt
 
-Seulonnan jälkeen poistettuja tutkimusjulkaisuja oli yhteensä 14 kappaletta. @tbl-haku4-poistetut on jokaisen julkaisun vittaus ja poistosyy(t). Syyt ovat listattuna ensisijaisen syyn mukaan. Päätös poisjättämisestä voitiin tehdä jos yksi inkluusiokriteeri ei täyttynyt, jolloin tutkimuksella voi olla muitakin syitä miksi sitä ei otettu mukaan katsauksen tuloksiin.
+Seulonnan jälkeen poistettuja tutkimusjulkaisuja oli yhteensä 16 kappaletta. @tbl-haku4-poistetut on jokaisen julkaisun vittaus ja poistosyy(t). Syyt ovat listattuna ensisijaisen syyn mukaan. Päätös poisjättämisestä voitiin tehdä jos yksi inkluusiokriteeri ei täyttynyt, jolloin tutkimuksella voi olla muitakin syitä miksi sitä ei otettu mukaan katsauksen tuloksiin.
 
-| Kohde           | Syy(t) poistoon                            |
-|-----------------|--------------------------------------------|
-| @antikainen2020 | Väärä tutkimusaihe, ei-empiirinen tutkimus |
-| @azimirad2015   | Väärä tutkimusaihe                         |
-| @ericsson2022   | Väärä julkaisumuoto                        |
-| @haglund2023    | Väärä tutkimusaihe                         |
-| @heikkilä2015   | Väärä julkaisumuoto                        |
-| @kopponen2020   | Ei-empiirinen aineisto                     |
-| @lehto2020      | Väärä kohderyhmä                           |
-| @lohoff2017     | Väärä tutkimusaihe                         |
-| @luoto2009      | Väärä ajanjakso                            |
-| @mahat2019      | Väärä kohderyhmä, ei-empiirinen tutkimus   |
-| @mattila2021    | Väärä julkaisumuoto                        |
-| @miettinen2015  | Ei-empiirinen tutkimus                     |
-| @rasi2014       | Väärä tutkimusaihe                         |
-| @venesoja2023   | Väärä julkaisumuoto                        |
+| Kohde           | Syy(t) poistoon                               |
+|-----------------|-----------------------------------------------|
+| @antikainen2020 | Väärä tutkimusaihe, ei-empiirinen tutkimus    |
+| @azimirad2015   | Väärä tutkimusaihe                            |
+| @ericsson2022   | Väärä julkaisumuoto                           |
+| @haglund2023    | Väärä tutkimusaihe                            |
+| @heikkilä2015   | Väärä julkaisumuoto                           |
+| @kopponen2020   | Ei-empiirinen aineisto                        |
+| @lehto2020      | Väärä kohderyhmä                              |
+| @lohoff2017     | Väärä tutkimusaihe                            |
+| @luoto2009      | Väärä ajanjakso                               |
+| @mahat2019      | Väärä kohderyhmä, ei-empiirinen tutkimus      |
+| @mattila2021    | Väärä julkaisumuoto                           |
+| @miettinen2015  | Ei-empiirinen tutkimus                        |
+| @rasi2014       | Väärä tutkimusaihe                            |
+| @stormblad2023  | Väärä tutkimusaihe                            |
+| @suhonen2023    | Väärä ajanjakso (julkaistu 30.9.2023 jälkeen) |
+| @venesoja2023a  | Väärä julkaisumuoto                           |
 
 : Haku 4:n poistetut kohteet syineen {#tbl-haku4-poistetut}
 
 ## Valitut tutkimusjulkaisut
 
-Haun pohjalta valittiin 23 tutkimusjulkaisua. Kaikki julkaisut valikoituivat mukaan hakuprosessin myötä. Julkaisut ovat:
+Haun pohjalta valittiin 21 tutkimusjulkaisua. Julkaisut ovat:
 
 -   @annala2013 "Ensihoitohenkilöstöön kohdistuva väkivalta työtehtävissä: Kyselytutkimus PSSHP:n Ensihoitokeskuksen työntekijöille"
 
@@ -481,9 +454,5 @@ Haun pohjalta valittiin 23 tutkimusjulkaisua. Kaikki julkaisut valikoituivat muk
 -   @rajamäki2019 "Ensihoitajiin kohdistuvat uhka- ja väkivaltatilanteet Keski-Uudenmaan pelastuslaitoksella"
 
 -   @sjöström2020 "Varför väljer förstavårdare att sluta arbeta i ambulansen? En kvalitativ enkätstudie riktad till Arcada alumner"
-
--   @stormblad2023 "Behovet av debriefing hos förstavårdare. En kvalitativ studie om förstavårdarens upplevelser och behov av debriefing"
-
--   @suhonen2023 "Ensihoitajien kokema potilaan taholta tuleva seksuaalinen häirintä"
 
 -   @sutinen2010 "Väkivaltaisen potilaan kohtaaminen sairaalan ulkopuolisessa ensihoidossa. Kyselytutkimus Helsingin pelastuslaitoksen ensihoito- ja sairaankuljetushenkilöstölle"

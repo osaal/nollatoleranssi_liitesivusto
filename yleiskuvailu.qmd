@@ -1,4 +1,4 @@
-# Tulosten yleiskuvaus
+# Tulosten yleiskuvaus {#sec-tulosten-yleiskuvaus}
 
 Tässä osiossa esitellään kirjallisuuskatsauksen tuottamat tulokset yleistasolla.
 
@@ -22,28 +22,26 @@ harhadata <- read.csv2("data/laadunarviointi_määrällisetkyselyt.csv")
 
 ```
 
-## Julkaisuvuodet
-
-**Alla olevan taulukon prosentit tulee tarkistaa uudelleen, tällä hetkellä ne ynnäävät 98 prosenttiin. Absoluuttiset määrät ovat kuitenkin oikein.**
+## Julkaisuvuodet {#sec-julkaisuvuodet-tulokset}
 
 | Vuosi                 | Määrä (prosenttimäärä suluissa) |
 |-----------------------|---------------------------------|
-| 2010                  | 1 (1 %)                         |
-| 2011                  | 6 (9 %)                         |
+| 2010                  | 1 (1,4 %)                       |
+| 2011                  | 6 (8,7 %)                       |
 | 2012                  | 0                               |
-| 2013                  | 3 (4 %)                         |
-| 2014                  | 3 (4 %)                         |
-| 2015                  | 1 (1 %)                         |
-| 2016                  | 6 (9 %)                         |
-| 2017                  | 5 (7 %)                         |
-| 2018                  | 5 (7 %)                         |
-| 2019                  | 9 (13 %)                        |
-| 2020                  | 5 (7 %)                         |
-| 2021                  | 9 (13 %)                        |
-| 2022                  | 10 (14 %)                       |
-| 2023[^yleiskuvailu-1] | 6 (9 %)                         |
+| 2013                  | 3 (4,3 %)                       |
+| 2014                  | 3 (4,3 %)                       |
+| 2015                  | 1 (1,4 %)                       |
+| 2016                  | 6 (8,7 %)                       |
+| 2017                  | 5 (7,2 %)                       |
+| 2018                  | 5 (7,2 %)                       |
+| 2019                  | 9 (13,0 %)                      |
+| 2020                  | 5 (7,2 %)                       |
+| 2021                  | 9 (13,0 %)                      |
+| 2022                  | 10 (14,5 %)                     |
+| 2023[^yleiskuvailu-1] | 6 (8,7 %)                       |
 
-: Kirjallisuuskatsauksen tulokset julkaisuvuosittain {#tbl-tulokset-vuosi}
+: Kirjallisuuskatsauksen tulokset julkaisuvuosittain. Prosenttiluvut eivät ynnää sataan prosenttiin pyöristysvirheen takia. {#tbl-tulokset-vuosi}
 
 [^yleiskuvailu-1]: Kirjallisuuskatsauksen haku rajattiin ajalle 1.1.2010 - 30.9.2023. Vuoden 2023 tulokset ovat siten osittaisia, ja tutkimuksia on voitu julkaista päätösajan jälkeen.
 
@@ -55,7 +53,7 @@ harhadata <- read.csv2("data/laadunarviointi_määrällisetkyselyt.csv")
 vuodet <- seq(from = 2010, to = 2023)
 
 kuva1 <- ggplot(data = data, mapping = aes(x = Vuosi)) + 
-  geom_bar(stat = "count") +
+  geom_bar(stat = "count", fill = "#c20e1a") +
   labs(y = "Määrä (n)") + 
   scale_x_continuous(breaks = vuodet) + 
   geom_text(aes(label = ..count..), stat = "count", vjust = 1.5, colour = "white")
@@ -65,46 +63,15 @@ kuva1
 
 Tutkimusten julkaisuvuodet painottuvat 2010-luvun loppupuolelle ja 2020-luvun alkuun. Julkaisuvuosien mediaani on `r median(data$Vuosi, na.rm = TRUE)`.
 
-## Tiedonkeruun muoto
-
-**Alla oleva taulukko perustuu vanhaan tietoon! Kuvio on oikeassa, mutta pitää siistiä muodoittain paremmin.**
-
-| Muoto               | Määrä (prosenttimäärät suluissa) |
-|---------------------|----------------------------------|
-| Haastattelu         | 8 (10 %)                         |
-| Kysely              | 57 (72 %)                        |
-| Monimenetelmällinen | 12 (15 %)                        |
-| Rekisteri           | 2 (3 %)                          |
-
-: Kirjallisuuskatsauksen tulokset menetelmittäin {#tbl-tulokset-menetelmat}
-
-```{r}
-#| label: fig-tulokset-menetelmat
-#| fig-cap: "Kirjallisuuskatsauksen tulokset menetelmittäin"
-#| eval: true
-
-menetelmat <- unique(data$Tiedonkeruun.muoto)
-
-kuva2 <- ggplot(data = data, mapping = aes(x = Tiedonkeruun.muoto)) + 
-  geom_bar(stat = "count") +
-  labs(y = "Määrä (n)", x = "Menetelmät") + 
-  scale_x_discrete(breaks = menetelmat) +
-  geom_text(aes(label = ..count..), stat = "count", vjust = -0.5, colour = "black")
-
-kuva2
-```
-
-Yleisin sovellettu menetelmä on kyselytutkimus. Laskimme mukaan sekä strukturoidut että strukturoimattomat kyselyasetelmat, jolloin tulosten analyysi voi kuitenkin olla sekä määrällinen että laadullinen. Monimenetelmälliset asetelmat ovat seuraavaksi suosituimpia, ja haastattelut samalla tasolla. Kaksi tutkimusta käytti rekisteridataa.
-
-## Tutkimusasetelmat
+## Tutkimusasetelmat {#sec-tutkimusasetelmat-tulokset}
 
 | Asetelma            | Määrä (prosenttimäärät suluissa) |
 |---------------------|----------------------------------|
-| Määrällinen         | 48 (70 %)                        |
-| Monimenetelmällinen | 6 (9 %)                          |
-| Laadullinen         | 15 (22 %)                        |
+| Määrällinen         | 48 (69,6 %)                      |
+| Monimenetelmällinen | 6 (8,7 %)                        |
+| Laadullinen         | 15 (21,7 %)                      |
 
-: Kirjallisuuskatsauksen tulokset tutkimusasetelmittain. Prosentit eivät summaa sataan pyöristyksen takia. {#tbl-tulokset-asetelmat}
+: Kirjallisuuskatsauksen tulokset tutkimusasetelmittain. Prosenttiluvut eivät ynnää sataan prosenttiin pyöristysvirheen takia. {#tbl-tulokset-asetelmat}
 
 ```{r}
 #| label: fig-tulokset-asetelmat
@@ -114,15 +81,17 @@ Yleisin sovellettu menetelmä on kyselytutkimus. Laskimme mukaan sekä strukturo
 asetelmat <- unique(data$Tutkimusasetelma)
 
 kuva3 <- ggplot(data = data, mapping = aes(x = Tutkimusasetelma)) + 
-  geom_bar(stat = "count") +
+  geom_bar(stat = "count", fill = "#c20e1a") +
   labs(y = "Määrä (n)", x = "Tutkimusasetelmat") + 
   scale_x_discrete(breaks = asetelmat) +
-  geom_text(aes(label = ..count..), stat = "count", vjust = -0.5, colour = "black")
+  geom_text(aes(label = ..count..), stat = "count", vjust = 1.5, colour = "white")
 
 kuva3
 ```
 
-## Julkaisumuodot
+Yleisin tutkimusasetelma on määrällinen, ylivoimaisesti toteutettu kyselyllä mutta joitain rekisteritutkimuksia myös. Laadullisissa tutkimuksissa hyödynnettiin kyselylomakkeita, yksilö- ja ryhmähaastatteluja sekä havainnointia ja etnografiaa. Monimenetelmälliset asetelmat yhdistivät useasti määrällisen, strukturoidun kyselyn ja haastattelututkimuksen, joko kehittäen kyselytyökalua laadullisin menetelmin tai rakentaen toimintasuunnitelmaa kyselytulosten pohjalta.
+
+## Julkaisumuodot {#sec-julkaisumuodot-tulokset}
 
 ```{r}
 #| label: fig-tulokset-julkaisumuodot
@@ -132,10 +101,10 @@ kuva3
 muodot <- unique(data$Muoto)
 
 kuva4 <- ggplot(data = data, mapping = aes(x = Muoto)) + 
-  geom_bar(stat = "count") +
-  labs(y = "Määrä (n)", x = "Julkaismuodot") + 
+  geom_bar(stat = "count", fill = "#c20e1a") +
+  labs(y = "Määrä (n)", x = "Julkaisumuodot") + 
   scale_x_discrete(breaks = muodot) +
-  geom_text(aes(label = ..count..), stat = "count", vjust = -0.5, colour = "black")
+  geom_text(aes(label = ..count..), stat = "count", vjust = 1.5, colour = "white")
 
 kuva4
 ```
@@ -166,7 +135,7 @@ Yleisin julkaisumuoto on vertaisarvioitu tutkimusartikkeli, ja sitä seuraavaksi
 
 ```{r}
 #| label: fig-tulokset-maat
-#| fig-cap: "Kirjallisuuskatsauksen tulokset maittain ja julkaisumuodottain. Tuloksissa ei ole  suomalaisia tutkimuksia. N/A = Ei sovellettavissa."
+#| fig-cap: 'Kirjallisuuskatsauksen tulokset maittain ja julkaisumuodottain. Tuloksissa ei ole  suomalaisia tutkimuksia. N/A = Ei sovellettavissa.'
 #| eval: true
 
 maat <- unique(data$Toteutusmaa)
@@ -183,20 +152,67 @@ kuva5
 
 Kuvasta on poistettu suomalaiset tutkimukset, koska tutkimuksia haettiin useammassa muodossa kuin eurooppalaisia tutkimuksia.
 
+Suomalaiset tutkimukset edustivat yli puolia kaikista tuloksista. Tämä voi osittain kuitenkin selittyä laajemmalla hakumenettelyllä suomalaisten tutkimusten osalta.
+
+Yleisimmät tutkimusmaat Suomen ulkopuolella olivat Turkki, Ruotsi, Alankomaat ja Saksa. Muissa maissa oli julkaistu vain yksi tai kaksi tutkimusartikkelia.
+
 # Tutkimusharhan riskiarvio
 
 ## Määrälliset kyselytutkimukset: Q-SSP-arvio
 
+Määrällisten kyselytutkimusten osalta arvioimme tutkimusharhan riskin käyttäen *Quality of Survey Studies in Psychology* (Q-SSP) -työkalua [@protogerou2020]. Työkalulla on 20 instrumenttia neljässä eri kategoriassa: Johdanto ja tutkimuksen tarve (4 instrumenttia), osallistujien selosteet (3 instrumenttia), data (10 instrumenttia) ja etiikka (3 instrumenttia). Jokainen instrumentti on muotoiltu kysymykseksi (esim. "Was the problem or phenomenon under investigation defined, described, and justified?"), jolle tutkija koodaa vastauksen "Kyllä", "Ei", "Epäselvä" tai "N/A" (ei päde kyseiselle tutkimukselle). Vastausvaihtoehdot riippuvat kysymyksistä, jolloin kaikilla instrumenteilla ei ole mahdollista vastata "Epäselvä" tai "N/A".
+
+Pisteytys voidaan suorittaa joko koko työkalulle tai erikseen kategorioille. Koko työkalun pisteytys $S$ lasketaan muuntamalla "Kyllä"-vastaukset $K$ arvoksi `1`, summaamalla kaikki arvot `1` yhteen, jakamalla summan pätevien instrumenttien määrällä $T$ ja kertomalla tulos sadalla:
+
+$$ S = \frac{\sum{K}}{T}*100 $$
+
+Pätevien instrumenttien määrällä tarkoitetaan kaikkia instrumentteja, joille ei annettu arvoa "N/A". Tämä määrä voi vaihdella 17 ja 20 instrumenttien välillä.
+
+Me määrittelimme kuitenkin kaikille tutkimuksille arvon "N/A" instrumentilla "Were participants debriefed at the end of data collection?", sillä emme tunnistaneet debriefing-menettelyn tarvetta katsauksemme tutkimuksissa.
+
+Katsauksen käsittelemissä tutkimuksissa pätevien instrumenttien määrä oli 19 instrumenttia 48 tutkimuksille. Neljälle tutkimukselle pätevien instrumenttien määrä oli 18 instrumenttia [@maguire2018a; @pekurinen2017; @savoy2021; @schablon2022].
+
+Hyväksyttävän tutkimuslaadun raja-arvo riippuu pätevien instrumenttien määrästä [@protogerou2020]:
+
+-   Jos $T = 19$: rajana 73 %
+
+-   Jos $T = 18$: rajana 72 %
+
 ```{r}
-#| label: qssp-harhadata
-#| fig-cap: "Q-SSP-harha-arvion tulokset osa-alueittain (n = 52)"
+#| label: qssp-harhadata-tutkimukset
+#| fig-cap: "Q-SSP-harha-arvion tulokset aakkosjärjestyksessä tutkimuksittain (n = 52)"
+#| eval: true
+
+harhadata %>%
+  ggplot(mapping = aes(x = Viite)) +
+  geom_col(aes(y = Score), fill = "#c20e1a") +
+  geom_hline(yintercept = 73) +
+  geom_hline(yintercept = 50, linetype = "dashed") +
+  labs(y = "S-arvo", x = "Julkaisu") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))
+```
+
+Tutkimuksista vain kaksi yltävät laadukkaan tutkimuksen tasolle työkalun mukaan (@fig-qssp-harhadata-tutkimukset). Jos tutkimusharhan riskin raja-arvon laskee viiteenkymmeneen prosenttiin, 24 tutkimusta täyttävät kriteerin. Voidaan kuitenkin todeta, että tutkimusnäyttö on tämän vertailun mukaan heikkoa.
+
+```{r}
+#| label: qssp-harhadata-instrumentit
+#| fig-cap: "Q-SSP-harha-arvion tulokset instrumenteittain (n = 52)"
 #| eval: true
 
 harhadata_pivot <- harhadata %>%
   tidyr::pivot_longer(Johdanto_1:Etiikka_3, names_to = "Osaalue")
 ggplot(harhadata_pivot, aes(y = Osaalue, fill = value)) +
-  geom_bar(orientation = "y")
+  geom_bar(orientation = "y") +
+  geom_text(aes(label = ..count..), stat = "count", colour = "black", position = position_stack(vjust = 0.5))
 ```
+
+@fig-qssp-harhadata-instrumentit näyttää tutkimusten tulokset instrumenteittain. Tutkimusten luotettavimmat tiedot löytyvät johdanto-osuuksista, joissa jopa 48 tutkimusta (92 %) kuvailevat ja motivoivat tutkimusongelman tekstissä.
+
+Data-osuus on arvion osa-alueista heikoin, joskin vaihtelua esiintyy paljon. Vain kuusi tutkimusta määrittelivät selkeästi puuttuvat vastaukset jokaiselle muuttujalle, ja näistä vain kolme kuvailivat puuttuvien vastausten käsittelymenetelmät selkeästi. Toisaalta 43 tutkimusta (83 %) kuvailivat otannan demografisia piirteitä selkeästi.
+
+Etiikan suhteen tutkimuksissa on myös parannettavaa. Noin puolet tutkimuksista ilmaisivat mahdolliset rahoituslähteet tai muut intressikonfliktit; on kuitenkin huomattava, että opinnäytteissä ei ole näiden intressien ilmaisemisen perinnettä, mikä voi vaikuttaa tuloksiin. 18 tutkimusta (38 %) ilmaisivat selkeästi saaneensa tietoisen suostumuksen vastaajilta, mutta yleisemmin emme pystyneet arvioimaan suostumuksen saantia.
+
+Tarkistimme myös, onko julkaisumuotojen välillä eroja tutkimusten kokonaisriskiarviossa (@fig-qssp-vertailut).
 
 ```{r}
 #| label: qssp-vertailut
@@ -216,3 +232,7 @@ ggbetweenstats(
 )
 
 ```
+
+Julkaisumuotojen välillä ei näytä olevan merkitseviä eroja $F(2, 5.36) = 1.03, p = .42, \text{parittaiset }p < .05$. Organisaatioraporttien pienen määrän vuoksi emme voi kuitenkaan olla varmoja eroista.
+
+Luotettavuusarviot näyttäisivät olevan vaihtelempia tutkimusartikkeleiden kohdalla kuin opinnäytteiden. Syyksi voidaan epäillä opinnäytteiden tarkempia muotovaatimuksia, jolloin opinnäytteet ovat samankaltaisempia (ja siten sisältävät samoja asioita) toistensa kanssa kuin tutkimusartikkelit.

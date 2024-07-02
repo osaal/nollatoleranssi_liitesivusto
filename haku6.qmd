@@ -38,7 +38,7 @@ Haku suoritettiin seuraavissa tietolähteissä:
 
 ## Hakulausekkeet ja tulosten lataaminen {#sec-haku6-hakulausekkeet}
 
-Alla olevassa taulukossa esitetään hakujen suorituspäivämäärät, hakusanat ja hakukonekohtaiset rajaukset sekä osumat.
+Alla olevassa taulukossa esiintyy hakujen suorituspäivämäärät, hakusanat ja hakukonekohtaiset rajaukset sekä osumat.
 
 +---------+-------------------------------------------------------------+----------------+-----------------------------+-------------+----------------------------------------------------------------+
 | Koodi   | Hakukone (tietokannat suluissa)                             | Haku-ajankohta | Julkaisujen ajankohtarajaus | Tulos-määrä | Haun jälkeiset rajaukset                                       |
@@ -120,11 +120,11 @@ TITLE-ABS-KEY ( ( "fire rescue*" OR "fire*fighter*" OR "rescue service*" OR "eme
 https://api.openalex.org/works?search=("fire rescue" OR firefighter OR "rescue service" OR "emergency respon" OR "emergency personnel" OR "emergency medic" OR "ambulance") AND (discriminat OR harass OR violen OR "improper behavior" OR equali OR "non-discriminat" OR equit)&filter=from_publication_date:2010-01-01,to_publication_date:2023-09-30,type_crossref:journal-article|monograph|report&per_page=200&select=title,publication_year,doi&page=1
 ```
 
-OpenAlex:in kohdalla tulokset haettiin API-menettelyllä. Maksimitulosten määrä per sivu oli 200 dokumentaation mukaan, joten haku toteutettiin kuusi kertaa nostaen `&page=X` -numeroa jokaisen kerran, `1-6`.
+OpenAlex:in kohdalla tulokset haettiin API-menettelyllä. Maksimitulosten määrä per sivu oli 200 dokumentaation mukaan, joten haku toteutettiin kuusi kertaa nostaen `&page=X` -numeroa jokaisen kerran yhdellä.
 
 Tulokset ladattiin ensisijaisesti `.csv`- tai `.xlsx`-muotoon jos mahdollista (Scopus, Web of Science ja ProQuest). BASE:n kohdalla lataaminen suoritettiin 100 tulosta kerralla `.json`-muotoon. OpenAlex:in tulokset haettiin 200 tulosta kerralla `.json`-muotoon.
 
-`.xml`- ja `.json`-muotoiset hakutulokset käännettiin taulukkomuotoon Microsoft Excel -ohjelmassa *Power Query* -toiminnolla.
+`.xml`- ja `.json`-muotoiset hakutulokset yhdistettiin ja käännettiin hauittain taulukkomuotoon Microsoft Excel -ohjelmassa *Power Query* -toiminnolla.
 
 ## PRISMA-kulkukaavio
 
@@ -149,7 +149,7 @@ labels <- c(
   "Sisällytetyt kohteet"
 )
 
-counts <- c(4492, 3420, 137, 119, 33)
+counts <- c(4492, 3420, 137, 119, 32)
 
 flow_exclusions(
   incl_counts = counts,
@@ -161,136 +161,199 @@ flow_exclusions(
   show_count = TRUE,
   font_size = 14)
 ```
-
-## Muut lähteet
-
-```{r}
-#| eval: true
-library("PRISMAstatement")
-
-labels <- c(
-  "Tunnistetut kohteet",
-  "Kaksoiskappaleet poistettu ennen seulontaa",
-  "Haettavat kohteet",
-  "Hakematta jääneet kohteet",
-  "Tarkistetut kohteet",
-  "Poistetut kohteet",
-  "Sisällytetyt kohteet"
-)
-
-counts <- c(0, 0, 0, 0)
-
-flow_exclusions(
-  incl_counts = counts,
-  total_label = labels[1],
-  incl_labels = labels[c(3, 5, 7)],
-  excl_labels = labels[c(2, 4, 6)], 
-  percent_of_total = TRUE,
-  percent_of_prev = FALSE,
-  show_count = TRUE,
-  font_size = 14)
-```
 :::
 
 ## Kokotekstin pohjalta poistetut tutkimukset ja syyt
 
-Seulonnan jälkeen poistettuja tutkimusjulkaisuja oli yhteensä 87 kappaletta. @tbl-haku6-poistetut on jokaisen julkaisun vittaus ja poistosyy(t). Syyt ovat listattuna ensisijaisen syyn mukaan. Päätös poisjättämisestä voitiin tehdä jos yksi inkluusiokriteeri ei täyttynyt, jolloin tutkimuksella voi olla muitakin syitä miksi sitä ei otettu mukaan katsauksen tuloksiin.
+Seulonnan jälkeen poistettuja tutkimusjulkaisuja oli yhteensä 89 kappaletta. @tbl-haku6-poistetut sisältää jokaisen julkaisun poistosyyn. Syyt ovat listattuna ensisijaisen syyn mukaan. Teimme päätöksen poisjättämisestä, jos vähintään yksi inkluusiokriteeri ei täyttynyt.
 
++-------------------------+-----------------------------------------------------------------------+
 | Kohde                   | Syy(t) poistoon                                                       |
-|-------------------------|-----------------------------------------------------------------------|
++=========================+=======================================================================+
 | @abbott2023             | Ei-empiirinen tutkimus                                                |
++-------------------------+-----------------------------------------------------------------------+
 | @allen2020              | Väärä maantieteellinen sijainti                                       |
++-------------------------+-----------------------------------------------------------------------+
 | @ariza-montes2015       | Väärä kohderyhmä                                                      |
++-------------------------+-----------------------------------------------------------------------+
 | @basting2023            | Väärä maantieteellinen sijainti                                       |
++-------------------------+-----------------------------------------------------------------------+
 | @bentley2016            | Väärä maantieteellinen sijainti                                       |
++-------------------------+-----------------------------------------------------------------------+
 | @bigham2014             | Väärä maantieteellinen sijainti                                       |
++-------------------------+-----------------------------------------------------------------------+
 | @boyle2017              | Väärä maantieteellinen sijainti                                       |
++-------------------------+-----------------------------------------------------------------------+
 | @byron2018              | Ei-empiirinen tutkimus                                                |
++-------------------------+-----------------------------------------------------------------------+
 | @cetin2019              | Väärä kohderyhmä                                                      |
++-------------------------+-----------------------------------------------------------------------+
 | @chazel2023             | Väärä kohderyhmä                                                      |
++-------------------------+-----------------------------------------------------------------------+
 | @clevelandmanchanda2020 | Väärä kohderyhmä                                                      |
++-------------------------+-----------------------------------------------------------------------+
 | @copeland2017           | Väärä kohderyhmä, väärä maantieteellinen sijainti                     |
++-------------------------+-----------------------------------------------------------------------+
 | @dinhof2023             | Väärä tutkimusaihe                                                    |
++-------------------------+-----------------------------------------------------------------------+
 | @donald2023             | Väärä kohderyhmä                                                      |
++-------------------------+-----------------------------------------------------------------------+
 | @drew2018               | Ei-empiirinen tutkimus                                                |
++-------------------------+-----------------------------------------------------------------------+
 | @dye2020                | Väärä kohderyhmä                                                      |
++-------------------------+-----------------------------------------------------------------------+
 | @ericson2014            | Väärä tutkimusaihe                                                    |
++-------------------------+-----------------------------------------------------------------------+
 | @foghammar2016          | Väärä kohderyhmä                                                      |
++-------------------------+-----------------------------------------------------------------------+
 | @furin2015              | Väärä maantieteellinen sijainti                                       |
++-------------------------+-----------------------------------------------------------------------+
 | @geoffrion2020          | Väärä kohderyhmä, ei-empiirinen tutkimus                              |
++-------------------------+-----------------------------------------------------------------------+
 | @germain2023            | Väärä tutkimusaihe                                                    |
++-------------------------+-----------------------------------------------------------------------+
 | @gómez-gutiérrez2014    | Väärä kohderyhmä                                                      |
++-------------------------+-----------------------------------------------------------------------+
 | @gormley2016            | Väärä maantieteellinen sijainti                                       |
++-------------------------+-----------------------------------------------------------------------+
 | @graham2021             | Väärä kohderyhmä, väärä maantieteellinen sijainti                     |
++-------------------------+-----------------------------------------------------------------------+
 | @greenslade2020         | Väärä kohderyhmä                                                      |
++-------------------------+-----------------------------------------------------------------------+
 | @grip2016               | Ei-empiirinen tutkimus                                                |
++-------------------------+-----------------------------------------------------------------------+
 | @harrison2019           | Ei-empiirinen tutkimus                                                |
++-------------------------+-----------------------------------------------------------------------+
 | @hassankhani2018        | Väärä maantieteellinen sijainti                                       |
++-------------------------+-----------------------------------------------------------------------+
+| @hazell2021             | Väärä tutkimusaihe                                                    |
++-------------------------+-----------------------------------------------------------------------+
 | @healy2011              | Väärä kohderyhmä                                                      |
++-------------------------+-----------------------------------------------------------------------+
 | @hom2017                | Väärä maantieteellinen sijainti                                       |
++-------------------------+-----------------------------------------------------------------------+
 | @hosseinikia2018        | Väärä maantieteellinen sijainti                                       |
++-------------------------+-----------------------------------------------------------------------+
 | @jacobson2022           | Väärä kohderyhmä                                                      |
++-------------------------+-----------------------------------------------------------------------+
 | @jakubowski2021         | Väärä tutkimusaihe                                                    |
++-------------------------+-----------------------------------------------------------------------+
 | @jamieson2016           | Väärä tutkimusaihe, väärä kohderyhmä, väärä maantieteellinen sijainti |
++-------------------------+-----------------------------------------------------------------------+
 | @jung2020               | Väärä kohderyhmä, ei-empiirinen tutkimus                              |
++-------------------------+-----------------------------------------------------------------------+
 | @kaeser2018             | Väärä kohderyhmä                                                      |
++-------------------------+-----------------------------------------------------------------------+
 | @kaltiso2021            | Väärä kohderyhmä, väärä maantieteellinen sijainti                     |
++-------------------------+-----------------------------------------------------------------------+
 | @kang2022               | Väärä maantieteellinen sijainti                                       |
++-------------------------+-----------------------------------------------------------------------+
 | @karaeminogullari2018   | Väärä kohderyhmä                                                      |
++-------------------------+-----------------------------------------------------------------------+
 | @kline2019              | Väärä kohderyhmä                                                      |
++-------------------------+-----------------------------------------------------------------------+
 | @koeppel2022            | Väärä maantieteellinen sijainti                                       |
++-------------------------+-----------------------------------------------------------------------+
 | @lamesoo2013            | Väärä kohderyhmä                                                      |
++-------------------------+-----------------------------------------------------------------------+
 | @lever2019              | Ei-empiirinen tutkimus                                                |
++-------------------------+-----------------------------------------------------------------------+
 | @li2010                 | Väärä kohderyhmä                                                      |
++-------------------------+-----------------------------------------------------------------------+
 | @lu2020                 | Väärä kohderyhmä                                                      |
++-------------------------+-----------------------------------------------------------------------+
 | @lu2020a                | Väärä kohderyhmä, väärä maantieteellinen sijainti                     |
++-------------------------+-----------------------------------------------------------------------+
 | @maake2021              | Väärä kohderyhmä, väärä maantieteellinen sijainti                     |
++-------------------------+-----------------------------------------------------------------------+
 | @maguire2018            | Ei-empiirinen tutkimus                                                |
++-------------------------+-----------------------------------------------------------------------+
 | @maguire2017            | Väärä maantieteellinen sijainti                                       |
++-------------------------+-----------------------------------------------------------------------+
 | @marco2019              | Ei-empiirinen tutkimus, väärä maantieteellinen sijainti               |
++-------------------------+-----------------------------------------------------------------------+
 | @martínez-garcía2021    | Väärä kohderyhmä                                                      |
++-------------------------+-----------------------------------------------------------------------+
 | @mendes2015             | Ei-empiirinen tutkimus                                                |
++-------------------------+-----------------------------------------------------------------------+
 | @miró2010               | Väärä tutkimusaihe                                                    |
++-------------------------+-----------------------------------------------------------------------+
 | @morken2016             | Väärä kohderyhmä                                                      |
++-------------------------+-----------------------------------------------------------------------+
 | @morken2013             | Väärä kohderyhmä                                                      |
++-------------------------+-----------------------------------------------------------------------+
 | @morken2015             | Väärä kohderyhmä                                                      |
++-------------------------+-----------------------------------------------------------------------+
 | @morokuma2019           | Väärä maantieteellinen sijainti                                       |
++-------------------------+-----------------------------------------------------------------------+
 | @murphy2015             | Ei-empiirinen tutkimus                                                |
++-------------------------+-----------------------------------------------------------------------+
 | @murray2020             | Ei-empiirinen tutkimus                                                |
++-------------------------+-----------------------------------------------------------------------+
 | @nikathil2017           | Väärä kohderyhmä, ei-empiirinen tutkimus                              |
++-------------------------+-----------------------------------------------------------------------+
 | @nikolic2020            | Väärä kohderyhmä                                                      |
++-------------------------+-----------------------------------------------------------------------+
 | @owusu-ansah2023        | Ei-empiirinen tutkimus                                                |
++-------------------------+-----------------------------------------------------------------------+
 | @oztermeli2023          | Väärä kohderyhmä                                                      |
++-------------------------+-----------------------------------------------------------------------+
 | @oztok2018              | Väärä kohderyhmä                                                      |
++-------------------------+-----------------------------------------------------------------------+
 | @péculo-carrasco2021    | Väärä kohderyhmä                                                      |
++-------------------------+-----------------------------------------------------------------------+
 | @perina2018             | Väärä kohderyhmä, väärä maantieteellinen sijainti                     |
++-------------------------+-----------------------------------------------------------------------+
 | @pourshaikhian2016      | Ei-empiirinen tutkimus                                                |
++-------------------------+-----------------------------------------------------------------------+
 | @powell2023             | Väärä maantieteellinen sijainti                                       |
++-------------------------+-----------------------------------------------------------------------+
 | @punches2023            | Väärä kohderyhmä, väärä maantieteellinen sijainti                     |
++-------------------------+-----------------------------------------------------------------------+
 | @ramacciati2016         | Ei-empiirinen tutkimus                                                |
++-------------------------+-----------------------------------------------------------------------+
 | @ramacciati2015         | Väärä kohderyhmä                                                      |
++-------------------------+-----------------------------------------------------------------------+
 | @ramacciati2018         | Väärä kohderyhmä                                                      |
++-------------------------+-----------------------------------------------------------------------+
 | @ramacciati2019         | Väärä kohderyhmä                                                      |
++-------------------------+-----------------------------------------------------------------------+
 | @ramacciati2020         | Väärä kohderyhmä, ei-empiirinen tutkimus                              |
++-------------------------+-----------------------------------------------------------------------+
 | @ravioli2022            | Väärä kohderyhmä                                                      |
++-------------------------+-----------------------------------------------------------------------+
 | @reißmann2023           | Väärä kohderyhmä                                                      |
++-------------------------+-----------------------------------------------------------------------+
 | @schneider2018          | Väärä kohderyhmä, ei-empiirinen tutkimus                              |
++-------------------------+-----------------------------------------------------------------------+
 | @snavely2021            | Väärä kohderyhmä, väärä maantieteellinen sijainti                     |
++-------------------------+-----------------------------------------------------------------------+
 | @somville2016           | Väärä kohderyhmä                                                      |
++-------------------------+-----------------------------------------------------------------------+
 | @taylor2015             | Väärä maantieteellinen sijainti                                       |
++-------------------------+-----------------------------------------------------------------------+
 | @taylor2016             | Väärä maantieteellinen sijainti                                       |
++-------------------------+-----------------------------------------------------------------------+
 | @taylor2019             | Väärä maantieteellinen sijainti                                       |
++-------------------------+-----------------------------------------------------------------------+
 | @touriel2021            | Väärä maantieteellinen sijainti                                       |
++-------------------------+-----------------------------------------------------------------------+
 | @turkcuer2015           | Väärä kohderyhmä                                                      |
++-------------------------+-----------------------------------------------------------------------+
 | @venesoja2020           | Väärä tutkimusaihe                                                    |
++-------------------------+-----------------------------------------------------------------------+
+| @wankhade2016           | Väärä tutkimusaihe                                                    |
++-------------------------+-----------------------------------------------------------------------+
 | @zeidan2022             | Väärä kohderyhmä, väärä maantieteellinen sijainti                     |
++-------------------------+-----------------------------------------------------------------------+
 | @ziaei2018              | Väärä kohderyhmä, ei-empiirinen tutkimus                              |
++-------------------------+-----------------------------------------------------------------------+
 
 : Haku 6:n poistetut kohteet syineen {#tbl-haku6-poistetut}
 
 ## Valitut tutkimusjulkaisut
 
-Haun pohjalta valittiin 23 tutkimusjulkaisua. Kaikki julkaisut valikoituivat mukaan hakuprosessin myötä. Julkaisut ovat:
+Haun pohjalta valittiin 30 tutkimusjulkaisua. Julkaisut ovat:
 
 -   @bambi2014 "Lateral Hostilities Among Nurses Employed in Intensive Care Units, Emergency Departments, Operating Rooms, and Emergency Medical Services: A National Survey in Italy"
 
@@ -310,13 +373,9 @@ Haun pohjalta valittiin 23 tutkimusjulkaisua. Kaikki julkaisut valikoituivat muk
 
 -   @deniz2016 "Effect of exposure to violence on the development of burnoutsyndrome in ambulance staff"
 
--   @friborg2017 "Workplace sexual harassment and depressive symptoms: a cross-sectional multilevel analysis comparing harassment from clients or customers to harassment from other employees amongst 7603 Danish employees from 1041 organizations"
-
 -   @gümüssoy2021 "Relationship of knowledge about and attitudes towards violence with recognition of violence against women among health staff in pre-hospital emergency medical services"
 
 -   @hamzaoglu2019 "Prevalence of Physical and Verbal Violence Against Health Care Workers in Turkey"
-
--   @hazell2021 "Enhancing mental health awareness in emergency services (the ENHANcE I project): cross-sectional survey on mental health stigma among emergency services staff"
 
 -   @jansson2016 "Agents for Change?: Gender Equality Efforts in the Swedish Rescue Services"
 
@@ -355,5 +414,3 @@ Haun pohjalta valittiin 23 tutkimusjulkaisua. Kaikki julkaisut valikoituivat muk
 -   @vanreemst2021 "Measuring and Modeling Exposure to External Workplace Aggression in Three Types of Emergency Responders"
 
 -   @viking2022 "Experiences of exposure to workplace violence among ambulance personnel"
-
--   @wankhade2016 "Staff perceptions and changing role of pre-hospital profession in the UK ambulance services: An exploratory study"

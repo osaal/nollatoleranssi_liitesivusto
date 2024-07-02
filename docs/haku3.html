@@ -159,7 +159,7 @@ div.csl-indent {
   </li>  
         <li>
     <a class="dropdown-item" href="./prismakaavio.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">PRISMA-kaavio</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Hakuprosessi ja PRISMA-kaavio</span></span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./yleiskuvailu.html" rel="" target="">
@@ -414,7 +414,7 @@ div.csl-indent {
 </ul>
 <section id="hakulausekkeet-ja-tulosten-lataaminen" class="level2 page-columns page-full" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="hakulausekkeet-ja-tulosten-lataaminen"><span class="header-section-number">8.1</span> Hakulausekkeet ja tulosten lataaminen</h2>
-<p>Alla olevassa taulukossa esitetään hakujen suorituspäivämäärät, hakusanat ja hakukonekohtaiset rajaukset sekä osumat.</p>
+<p>Alla olevassa taulukossa esiintyy hakujen suorituspäivämäärät, hakusanat ja hakukonekohtaiset rajaukset sekä osumat.</p>
 <div id="tbl-haku3-toteutetut-haut" class="anchored page-columns page-full">
 <table class="table">
 <caption>Taulukko&nbsp;8.2: Haku 3:n toteutetut haut. Ei sisällä muista lähteistä ladatut tulokset.</caption>
@@ -792,9 +792,9 @@ div.csl-indent {
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>dc.title<span class="sc">:</span>(<span class="st">"medic"</span> OR <span class="st">"emergency medic*"</span> OR ambulance) AND dc.title<span class="sc">:</span>(discriminat<span class="sc">*</span> OR harass<span class="sc">*</span> OR pressur<span class="sc">*</span> OR violen<span class="sc">*</span> OR <span class="st">"improper behavior"</span> OR equal<span class="sc">*</span> OR equit<span class="sc">*</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>OpenAlex:in kohdalla tulokset haettiin API-menettelyllä. Maksimitulosten määrä per sivu oli 200 dokumentaation mukaan, joten haku toteutettiin kuusi kertaa nostaen <code>&amp;page=X</code> -numeroa jokaisen kerran, <code>1-6</code>.</p>
+<p>OpenAlex:in kohdalla tulokset haettiin API-menettelyllä. Maksimitulosten määrä per sivu oli 200 dokumentaation mukaan, joten haku toteutettiin kuusi kertaa nostaen <code>&amp;page=X</code> -numeroa jokaisen kerran yhdellä.</p>
 <p>Tulokset ladattiin ensisijaisesti <code>.csv</code>- tai <code>.xlsx</code>-muotoon jos mahdollista (Scopus, Web of Science ja ProQuest). BASE:n kohdalla lataaminen suoritettiin 100 tulosta kerralla <code>.json</code>-muotoon. OpenAlex:in tulokset haettiin 200 tulosta kerralla <code>.json</code>-muotoon.</p>
-<p><code>.xml</code>- ja <code>.json</code>-muotoiset hakutulokset käännettiin taulukkomuotoon Microsoft Excel -ohjelmassa <em>Power Query</em> -toiminnolla.</p>
+<p><code>.xml</code>- ja <code>.json</code>-muotoiset hakutulokset yhdistettiin ja käännettiin hauttain taulukkomuotoon Microsoft Excel -ohjelmassa <em>Power Query</em> -toiminnolla.</p>
 <p>Näiden lisäksi haimme käsin seuraavista organisaatiosivuista:</p>
 <table class="table">
 <thead>
@@ -863,7 +863,7 @@ div.csl-indent {
 <span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Sisällytetyt kohteet"</span></span>
 <span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>counts <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1008</span>, <span class="dv">910</span>, <span class="dv">35</span>, <span class="dv">35</span>, <span class="dv">6</span>)</span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>counts <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1008</span>, <span class="dv">910</span>, <span class="dv">35</span>, <span class="dv">35</span>, <span class="dv">4</span>)</span>
 <span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a><span class="fu">flow_exclusions</span>(</span>
 <span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">incl_counts =</span> counts,</span>
@@ -876,8 +876,8 @@ div.csl-indent {
 <span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">font_size =</span> <span class="dv">14</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-b75a8365e64ba75aea50" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-b75a8365e64ba75aea50">{"x":{"diagram":"\n    digraph prisma {\n    node [shape=\"box\" , fontsize = 14];\n    graph [splines=ortho, nodesep=1 ]\n    \nTunnistetutkohteet [label=\"Tunnistetut kohteet\n1008 (100%)\"];\nSeulotutkohteet_A [label=\"Seulotut kohteet\n910 (90.3%)\"];\nHaettavatkohteet_B [label=\"Haettavat kohteet\n 35 (3.5%)\"];\nTarkistetutkohteet_C [label=\"Tarkistetut kohteet\n 35 (3.5%)\"];\nSisällytetytkohteet_D [label=\"Sisällytetyt kohteet\n  6 (0.6%)\"];\nKaksoiskappaleetpoistettuennenseulontaa_a [label=\"Kaksoiskappaleet poistettu ennen seulontaa\n 98 (9.7%)\"];\nPoisseulotutkohteet_b [label=\"Poisseulotut kohteet\n875 (86.8%)\"];\nHakemattajääneetkohteet_c [label=\"Hakematta jääneet kohteet\n  0 (0.0%)\"];\nPoistetutkohteet_d [label=\"Poistetut kohteet\n 29 (2.9%)\"];\nTunnistetutkohteet -> {Seulotutkohteet_A; Kaksoiskappaleetpoistettuennenseulontaa_a};\nSeulotutkohteet_A -> {Haettavatkohteet_B; Poisseulotutkohteet_b};\nHaettavatkohteet_B -> {Tarkistetutkohteet_C; Hakemattajääneetkohteet_c};\nTarkistetutkohteet_C -> {Sisällytetytkohteet_D; Poistetutkohteet_d};\n{rank=same; Tunnistetutkohteet Kaksoiskappaleetpoistettuennenseulontaa_a}\n{rank=same; Seulotutkohteet_A Poisseulotutkohteet_b}\n{rank=same; Haettavatkohteet_B Hakemattajääneetkohteet_c}\n{rank=same; Tarkistetutkohteet_C Poistetutkohteet_d}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-a901491a4db4e805530f" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-a901491a4db4e805530f">{"x":{"diagram":"\n    digraph prisma {\n    node [shape=\"box\" , fontsize = 14];\n    graph [splines=ortho, nodesep=1 ]\n    \nTunnistetutkohteet [label=\"Tunnistetut kohteet\n1008 (100%)\"];\nSeulotutkohteet_A [label=\"Seulotut kohteet\n910 (90.3%)\"];\nHaettavatkohteet_B [label=\"Haettavat kohteet\n 35 (3.5%)\"];\nTarkistetutkohteet_C [label=\"Tarkistetut kohteet\n 35 (3.5%)\"];\nSisällytetytkohteet_D [label=\"Sisällytetyt kohteet\n  4 (0.4%)\"];\nKaksoiskappaleetpoistettuennenseulontaa_a [label=\"Kaksoiskappaleet poistettu ennen seulontaa\n 98 (9.7%)\"];\nPoisseulotutkohteet_b [label=\"Poisseulotut kohteet\n875 (86.8%)\"];\nHakemattajääneetkohteet_c [label=\"Hakematta jääneet kohteet\n  0 (0.0%)\"];\nPoistetutkohteet_d [label=\"Poistetut kohteet\n 31 (3.1%)\"];\nTunnistetutkohteet -> {Seulotutkohteet_A; Kaksoiskappaleetpoistettuennenseulontaa_a};\nSeulotutkohteet_A -> {Haettavatkohteet_B; Poisseulotutkohteet_b};\nHaettavatkohteet_B -> {Tarkistetutkohteet_C; Hakemattajääneetkohteet_c};\nTarkistetutkohteet_C -> {Sisällytetytkohteet_D; Poistetutkohteet_d};\n{rank=same; Tunnistetutkohteet Kaksoiskappaleetpoistettuennenseulontaa_a}\n{rank=same; Seulotutkohteet_A Poisseulotutkohteet_b}\n{rank=same; Haettavatkohteet_B Hakemattajääneetkohteet_c}\n{rank=same; Tarkistetutkohteet_C Poistetutkohteet_d}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
@@ -897,7 +897,7 @@ div.csl-indent {
 <span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Sisällytetyt kohteet"</span></span>
 <span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>counts <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">2</span>)</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>counts <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">0</span>)</span>
 <span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a><span class="fu">flow_exclusions</span>(</span>
 <span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">incl_counts =</span> counts,</span>
@@ -910,8 +910,8 @@ div.csl-indent {
 <span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">font_size =</span> <span class="dv">14</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-25a590ebe6b6fe4b69c8" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-25a590ebe6b6fe4b69c8">{"x":{"diagram":"\n    digraph prisma {\n    node [shape=\"box\" , fontsize = 14];\n    graph [splines=ortho, nodesep=1 ]\n    \nTunnistetutkohteet [label=\"Tunnistetut kohteet\n3 (100%)\"];\nHaettavatkohteet_A [label=\"Haettavat kohteet\n3 (100%)\"];\nTarkistetutkohteet_B [label=\"Tarkistetut kohteet\n3 (100%)\"];\nSisällytetytkohteet_C [label=\"Sisällytetyt kohteet\n2 (67%)\"];\nKaksoiskappaleetpoistettuennenseulontaa_a [label=\"Kaksoiskappaleet poistettu ennen seulontaa\n0 (0%)\"];\nHakemattajääneetkohteet_b [label=\"Hakematta jääneet kohteet\n0 (0%)\"];\nPoistetutkohteet_c [label=\"Poistetut kohteet\n1 (33%)\"];\nTunnistetutkohteet -> {Haettavatkohteet_A; Kaksoiskappaleetpoistettuennenseulontaa_a};\nHaettavatkohteet_A -> {Tarkistetutkohteet_B; Hakemattajääneetkohteet_b};\nTarkistetutkohteet_B -> {Sisällytetytkohteet_C; Poistetutkohteet_c};\n{rank=same; Tunnistetutkohteet Kaksoiskappaleetpoistettuennenseulontaa_a}\n{rank=same; Haettavatkohteet_A Hakemattajääneetkohteet_b}\n{rank=same; Tarkistetutkohteet_B Poistetutkohteet_c}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-baf299d50f091ffa7d27" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-baf299d50f091ffa7d27">{"x":{"diagram":"\n    digraph prisma {\n    node [shape=\"box\" , fontsize = 14];\n    graph [splines=ortho, nodesep=1 ]\n    \nTunnistetutkohteet [label=\"Tunnistetut kohteet\n3 (100%)\"];\nHaettavatkohteet_A [label=\"Haettavat kohteet\n3 (100%)\"];\nTarkistetutkohteet_B [label=\"Tarkistetut kohteet\n3 (100%)\"];\nSisällytetytkohteet_C [label=\"Sisällytetyt kohteet\n0 (0%)\"];\nKaksoiskappaleetpoistettuennenseulontaa_a [label=\"Kaksoiskappaleet poistettu ennen seulontaa\n0 (0%)\"];\nHakemattajääneetkohteet_b [label=\"Hakematta jääneet kohteet\n0 (0%)\"];\nPoistetutkohteet_c [label=\"Poistetut kohteet\n3 (100%)\"];\nTunnistetutkohteet -> {Haettavatkohteet_A; Kaksoiskappaleetpoistettuennenseulontaa_a};\nHaettavatkohteet_A -> {Tarkistetutkohteet_B; Hakemattajääneetkohteet_b};\nTarkistetutkohteet_B -> {Sisällytetytkohteet_C; Poistetutkohteet_c};\n{rank=same; Tunnistetutkohteet Kaksoiskappaleetpoistettuennenseulontaa_a}\n{rank=same; Haettavatkohteet_A Hakemattajääneetkohteet_b}\n{rank=same; Tarkistetutkohteet_B Poistetutkohteet_c}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
@@ -920,13 +920,13 @@ div.csl-indent {
 </section>
 <section id="kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt" class="level2" data-number="8.3">
 <h2 data-number="8.3" class="anchored" data-anchor-id="kokotekstin-pohjalta-poistetut-tutkimukset-ja-syyt"><span class="header-section-number">8.3</span> Kokotekstin pohjalta poistetut tutkimukset ja syyt</h2>
-<p>Seulonnan jälkeen poistettuja tutkimusjulkaisuja oli yhteensä 30 kappaletta. <a href="#tbl-haku3-poistetut">Taulukko&nbsp;<span>8.3</span></a> on jokaisen julkaisun vittaus ja poistosyy(t). Syyt ovat listattuna ensisijaisen syyn mukaan. Päätös poisjättämisestä voitiin tehdä jos yksi inkluusiokriteeri ei täyttynyt, jolloin tutkimuksell voi olla muitakin syitä miksi sitä ei otettu mukaan katsauksen tuloksiin.</p>
+<p>Seulonnan jälkeen poistettuja tutkimusjulkaisuja oli yhteensä 34 kappaletta. <a href="#tbl-haku3-poistetut">Taulukko&nbsp;<span>8.3</span></a> sisältää jokaisen julkaisun poistosyyn. Syyt ovat listattuna ensisijaisen syyn mukaan. Teimme päätöksen poisjättämisestä, jos vähintään yksi inkluusiokriteeri ei täyttynyt.</p>
 <div id="tbl-haku3-poistetut" class="anchored">
 <table class="table">
 <caption>Taulukko&nbsp;8.3: Haku 3:n poistetut kohteet syineen</caption>
 <colgroup>
-<col style="width: 23%">
-<col style="width: 76%">
+<col style="width: 24%">
+<col style="width: 75%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -972,16 +972,24 @@ div.csl-indent {
 <td>Väärä tutkimusaihe, ei-empiirinen tutkimus</td>
 </tr>
 <tr class="even">
-<td><span class="citation" data-cites="ilczak2023">Ilczak ym. (<a href="lahteet.html#ref-ilczak2023" role="doc-biblioref">2023</a>)</span></td>
+<td><span class="citation" data-cites="honkavuo2019">Honkavuo, Lammintakanen, ja Norri-Sederholm (<a href="lahteet.html#ref-honkavuo2019" role="doc-biblioref">2019</a>)</span></td>
 <td>Väärä tutkimusaihe</td>
 </tr>
 <tr class="odd">
+<td><span class="citation" data-cites="ilczak2023">Ilczak ym. (<a href="lahteet.html#ref-ilczak2023" role="doc-biblioref">2023</a>)</span></td>
+<td>Väärä tutkimusaihe</td>
+</tr>
+<tr class="even">
 <td><span class="citation" data-cites="innstrand2010">Innstrand, Langballe, ja Falkum (<a href="lahteet.html#ref-innstrand2010" role="doc-biblioref">2010</a>)</span></td>
 <td>Väärä tutkimusaihe, väärä kohderyhmä, väärä maantieteellinen sijainti</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><span class="citation" data-cites="innstrand2011">Innstrand ym. (<a href="lahteet.html#ref-innstrand2011" role="doc-biblioref">2011</a>)</span></td>
 <td>Väärä kohderyhmä, väärä maantieteellinen sijainti</td>
+</tr>
+<tr class="even">
+<td><span class="citation" data-cites="joensuu2018">Joensuu ym. (<a href="lahteet.html#ref-joensuu2018" role="doc-biblioref">2018</a>)</span></td>
+<td>Väärä tutkimusaihe</td>
 </tr>
 <tr class="odd">
 <td><span class="citation" data-cites="kamau2022">Kamau ym. (<a href="lahteet.html#ref-kamau2022" role="doc-biblioref">2022</a>)</span></td>
@@ -1004,51 +1012,59 @@ div.csl-indent {
 <td>Väärä maantieteellinen sijainti</td>
 </tr>
 <tr class="even">
+<td><span class="citation" data-cites="mäki-rahkola2014">Mäki-Rahkola ja Myrttinen (<a href="lahteet.html#ref-mäki-rahkola2014" role="doc-biblioref">2014</a>)</span></td>
+<td>Väärä kohderyhmä</td>
+</tr>
+<tr class="odd">
 <td><span class="citation" data-cites="norri-sederholm2014">Norri-Sederholm ym. (<a href="lahteet.html#ref-norri-sederholm2014" role="doc-biblioref">2014</a>)</span></td>
 <td>Väärä tutkimusaihe</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><span class="citation" data-cites="oldenburg2014">Oldenburg ym. (<a href="lahteet.html#ref-oldenburg2014" role="doc-biblioref">2014</a>)</span></td>
 <td>Väärä tutkimusaihe, väärä maantieteellinen sijainti</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><span class="citation" data-cites="paavilainen2017">Paavilainen ym. (<a href="lahteet.html#ref-paavilainen2017" role="doc-biblioref">2017</a>)</span></td>
 <td>Väärä tutkimusaihe</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><span class="citation" data-cites="peluchette2013">Peluchette, Karl, ja Fertig (<a href="lahteet.html#ref-peluchette2013" role="doc-biblioref">2013</a>)</span></td>
 <td>Väärä tutkimusaihe, väärä kohderyhmä, väärä maantieteellinen sijainti</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><span class="citation" data-cites="purvanova2010">Purvanova ja Muros (<a href="lahteet.html#ref-purvanova2010" role="doc-biblioref">2010</a>)</span></td>
 <td>Väärä kohderyhmä, ei-empiirinen tutkimus</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><span class="citation" data-cites="ramakrishnan2014">Ramakrishnan, Sambuco, ja Jagsi (<a href="lahteet.html#ref-ramakrishnan2014" role="doc-biblioref">2014</a>)</span></td>
 <td>Väärä kohderyhmä, ei-empiirinen tutkimus</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><span class="citation" data-cites="saal2021">Saal, Harinen, ja Puustinen (<a href="lahteet.html#ref-saal2021" role="doc-biblioref">2021</a>)</span></td>
 <td>Väärä tutkimusaihe, väärä kohderyhmä</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><span class="citation" data-cites="schwarzenberg2019">Schwarzenberg (<a href="lahteet.html#ref-schwarzenberg2019" role="doc-biblioref">2019</a>)</span></td>
 <td>Väärä tutkimusaihe</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><span class="citation" data-cites="sjölin2015">Sjölin ym. (<a href="lahteet.html#ref-sjölin2015" role="doc-biblioref">2015</a>)</span></td>
 <td>Väärä tutkimusaihe, väärä maantieteellinen sijainti</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><span class="citation" data-cites="torlénwennlund2022">Torlén Wennlund ym. (<a href="lahteet.html#ref-torlénwennlund2022" role="doc-biblioref">2022</a>)</span></td>
 <td>Väärä tutkimusaihe, väärä maantieteellinen sijainti</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><span class="citation" data-cites="uusitalo2018">Uusitalo (<a href="lahteet.html#ref-uusitalo2018" role="doc-biblioref">2018</a>)</span></td>
 <td>Väärä tutkimusaihe, ei-empiirinen tutkimus</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><span class="citation" data-cites="venesoja2020">Venesoja ym. (<a href="lahteet.html#ref-venesoja2020" role="doc-biblioref">2020</a>)</span></td>
+<td>Väärä tutkimusaihe</td>
+</tr>
+<tr class="odd">
+<td><span class="citation" data-cites="venesoja2023">Venesoja ym. (<a href="lahteet.html#ref-venesoja2023" role="doc-biblioref">2023</a>)</span></td>
 <td>Väärä tutkimusaihe</td>
 </tr>
 <tr class="even">
@@ -1061,15 +1077,12 @@ div.csl-indent {
 </section>
 <section id="valitut-tutkimusjulkaisut" class="level2" data-number="8.4">
 <h2 data-number="8.4" class="anchored" data-anchor-id="valitut-tutkimusjulkaisut"><span class="header-section-number">8.4</span> Valitut tutkimusjulkaisut</h2>
-<p>Haun pohjalta valittiin kahdeksan tutkimusjulkaisu. Kuusi niistä valikoituivat mukaan hakuprosessin myötä, ja kaksi lisättiin muista lähteistä. Julkaisut ovat:</p>
+<p>Haun pohjalta valittiin neljä tutkimusjulkaisua. Julkaisut ovat:</p>
 <ul>
 <li><p><span class="citation" data-cites="ericsson2022">Ericsson ym. (<a href="lahteet.html#ref-ericsson2022" role="doc-biblioref">2022</a>)</span> “Paramedics’ perceptions of job demands and resources in Finnish emergency medical services: a qualitative study”</p></li>
-<li><p><span class="citation" data-cites="honkavuo2019">Honkavuo, Lammintakanen, ja Norri-Sederholm (<a href="lahteet.html#ref-honkavuo2019" role="doc-biblioref">2019</a>)</span> “Työturvallisuus pelastustoimen ja ensihoitopalvelun uusissa työmuodoissa”</p></li>
-<li><p><span class="citation" data-cites="joensuu2018">Joensuu ym. (<a href="lahteet.html#ref-joensuu2018" role="doc-biblioref">2018</a>)</span> “Pelastustoimen ja ensihoitopalvelun moniammatillinen yksikkö tehokkaasti ihmisen turvana”</p></li>
 <li><p><span class="citation" data-cites="jäntti2022">Jäntti ja Nordquist (<a href="lahteet.html#ref-jäntti2022" role="doc-biblioref">2022</a>)</span> “Ensihoitajien kohtaama työpaikkaväkivalta”</p></li>
 <li><p><span class="citation" data-cites="nordquist2023">Nordquist (<a href="lahteet.html#ref-nordquist2023" role="doc-biblioref">2023</a>)</span> “Kriittiset tilanteet, väkivalta ja niihin liittyvä stressi ensihoitajien työssä”</p></li>
 <li><p><span class="citation" data-cites="pekurinen2017">Pekurinen ym. (<a href="lahteet.html#ref-pekurinen2017" role="doc-biblioref">2017</a>)</span> “Patient Aggression and the Wellbeing of Nurses: A Cross-Sectional Survey Study in Psychiatric and Non-Psychiatric Settings”</p></li>
-<li><p><span class="citation" data-cites="venesoja2023">Venesoja ym. (<a href="lahteet.html#ref-venesoja2023" role="doc-biblioref">2023</a>)</span> “Prehospital nursing students’ experiences of patient safety culture in emergency medical services—A qualitative study”</p></li>
 </ul>
 
 
@@ -1136,6 +1149,9 @@ Leppäkoski, Tuija, Päivi Åstedt-Kurki, ja Eija Paavilainen. 2010. <span>”Id
 </div>
 <div id="ref-lundin2018" class="csl-entry" role="listitem">
 Lundin, Christina, Emina Hadziabdic, ja Katarina Hjelm. 2018. <span>”Language Interpretation Conditions and Boundaries in Multilingual and Multicultural Emergency Healthcare”</span>. <em>BMC International Health and Human Rights</em> 18 (1): 23. <a href="https://doi.org/10.1186/s12914-018-0157-3">https://doi.org/10.1186/s12914-018-0157-3</a>.
+</div>
+<div id="ref-mäki-rahkola2014" class="csl-entry" role="listitem">
+Mäki-Rahkola, Anne, ja Henri Myrttinen. 2014. <span>”Reliable Professionals, Sensitive Dads and Tough Fighters: A Critical Look at Performances and Discourses of Finnish Peacekeeper Masculinities”</span>. <em>International Feminist Journal of Politics</em> 16 (3): 470–89. <a href="https://doi.org/10.1080/14616742.2012.755834">https://doi.org/10.1080/14616742.2012.755834</a>.
 </div>
 <div id="ref-nordquist2023" class="csl-entry" role="listitem">
 Nordquist, Hilla. 2023. <span>”Kriittiset tilanteet, väkivalta ja niihin liittyvä stressi ensihoitajien työssä”</span>. <em>Kriminologia</em> 3 (2): 1–20. <a href="https://doi.org/10.54332/krim.125185">https://doi.org/10.54332/krim.125185</a>.

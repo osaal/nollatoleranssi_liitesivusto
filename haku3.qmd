@@ -50,7 +50,7 @@ Näiden lisäksi sisällytettiin tuloksia seuraavista organisaatiolähteistä:
 
 ## Hakulausekkeet ja tulosten lataaminen
 
-Alla olevassa taulukossa esitetään hakujen suorituspäivämäärät, hakusanat ja hakukonekohtaiset rajaukset sekä osumat.
+Alla olevassa taulukossa esiintyy hakujen suorituspäivämäärät, hakusanat ja hakukonekohtaiset rajaukset sekä osumat.
 
 +---------+-------------------------------------------------------------+---------------------+-----------------------------+-------------+-------------------------------------------------------------------------------------+
 | Koodi   | Hakukone (tietokannat suluissa)                             | Haku-ajankohta      | Julkaisujen ajankohtarajaus | Tulos-määrä | Haun jälkeiset rajaukset                                                            |
@@ -260,11 +260,11 @@ dc.title:("första hjälp*" OR nödhjälp* OR ambulans* OR sjuktransport* OR fö
 dc.title:("medic" OR "emergency medic*" OR ambulance) AND dc.title:(discriminat* OR harass* OR pressur* OR violen* OR "improper behavior" OR equal* OR equit*)
 ```
 
-OpenAlex:in kohdalla tulokset haettiin API-menettelyllä. Maksimitulosten määrä per sivu oli 200 dokumentaation mukaan, joten haku toteutettiin kuusi kertaa nostaen `&page=X` -numeroa jokaisen kerran, `1-6`.
+OpenAlex:in kohdalla tulokset haettiin API-menettelyllä. Maksimitulosten määrä per sivu oli 200 dokumentaation mukaan, joten haku toteutettiin kuusi kertaa nostaen `&page=X` -numeroa jokaisen kerran yhdellä.
 
 Tulokset ladattiin ensisijaisesti `.csv`- tai `.xlsx`-muotoon jos mahdollista (Scopus, Web of Science ja ProQuest). BASE:n kohdalla lataaminen suoritettiin 100 tulosta kerralla `.json`-muotoon. OpenAlex:in tulokset haettiin 200 tulosta kerralla `.json`-muotoon.
 
-`.xml`- ja `.json`-muotoiset hakutulokset käännettiin taulukkomuotoon Microsoft Excel -ohjelmassa *Power Query* -toiminnolla.
+`.xml`- ja `.json`-muotoiset hakutulokset yhdistettiin ja käännettiin hauttain taulukkomuotoon Microsoft Excel -ohjelmassa *Power Query* -toiminnolla.
 
 Näiden lisäksi haimme käsin seuraavista organisaatiosivuista:
 
@@ -305,7 +305,7 @@ labels <- c(
   "Sisällytetyt kohteet"
 )
 
-counts <- c(1008, 910, 35, 35, 6)
+counts <- c(1008, 910, 35, 35, 4)
 
 flow_exclusions(
   incl_counts = counts,
@@ -334,7 +334,7 @@ labels <- c(
   "Sisällytetyt kohteet"
 )
 
-counts <- c(3, 3, 3, 2)
+counts <- c(3, 3, 3, 0)
 
 flow_exclusions(
   incl_counts = counts,
@@ -350,57 +350,90 @@ flow_exclusions(
 
 ## Kokotekstin pohjalta poistetut tutkimukset ja syyt
 
-Seulonnan jälkeen poistettuja tutkimusjulkaisuja oli yhteensä 30 kappaletta. @tbl-haku3-poistetut on jokaisen julkaisun vittaus ja poistosyy(t). Syyt ovat listattuna ensisijaisen syyn mukaan. Päätös poisjättämisestä voitiin tehdä jos yksi inkluusiokriteeri ei täyttynyt, jolloin tutkimuksell voi olla muitakin syitä miksi sitä ei otettu mukaan katsauksen tuloksiin.
+Seulonnan jälkeen poistettuja tutkimusjulkaisuja oli yhteensä 34 kappaletta. @tbl-haku3-poistetut sisältää jokaisen julkaisun poistosyyn. Syyt ovat listattuna ensisijaisen syyn mukaan. Teimme päätöksen poisjättämisestä, jos vähintään yksi inkluusiokriteeri ei täyttynyt.
 
++----------------------+-----------------------------------------------------------------------+
 | Kohde                | Syy(t) poistoon                                                       |
-|----------------------|-----------------------------------------------------------------------|
++======================+=======================================================================+
 | @auvinen2012         | Väärä tutkimusaihe                                                    |
++----------------------+-----------------------------------------------------------------------+
 | @basu2016            | Väärä maantieteellinen sijainti                                       |
++----------------------+-----------------------------------------------------------------------+
 | @beczkowska2020      | Väärä tutkimusaihe, väärä maantieteellinen sijainti                   |
++----------------------+-----------------------------------------------------------------------+
 | @dedele2019          | Väärä tutkimusaihe, väärä kohderyhmä                                  |
++----------------------+-----------------------------------------------------------------------+
 | @denisov2021         | Ei-empiirinen tutkimus, väärä maantieteellinen sijainti               |
++----------------------+-----------------------------------------------------------------------+
 | @drabecki2023        | Väärä tutkimusaihe                                                    |
++----------------------+-----------------------------------------------------------------------+
 | @fawzyeldesouky2022  | Väärä maantieteellinen sijainti                                       |
++----------------------+-----------------------------------------------------------------------+
 | @heinonen2022        | Väärä tutkimusaihe                                                    |
++----------------------+-----------------------------------------------------------------------+
 | @himanen2023         | Väärä tutkimusaihe, ei-empiirinen tutkimus                            |
++----------------------+-----------------------------------------------------------------------+
+| @honkavuo2019        | Väärä tutkimusaihe                                                    |
++----------------------+-----------------------------------------------------------------------+
 | @ilczak2023          | Väärä tutkimusaihe                                                    |
++----------------------+-----------------------------------------------------------------------+
 | @innstrand2010       | Väärä tutkimusaihe, väärä kohderyhmä, väärä maantieteellinen sijainti |
++----------------------+-----------------------------------------------------------------------+
 | @innstrand2011       | Väärä kohderyhmä, väärä maantieteellinen sijainti                     |
++----------------------+-----------------------------------------------------------------------+
+| @joensuu2018         | Väärä tutkimusaihe                                                    |
++----------------------+-----------------------------------------------------------------------+
 | @kamau2022           | Ei-empiirinen tutkimus                                                |
++----------------------+-----------------------------------------------------------------------+
 | @koski2019           | Väärä tutkimusaihe                                                    |
++----------------------+-----------------------------------------------------------------------+
 | @leikkola2016        | Väärä tutkimusaihe                                                    |
++----------------------+-----------------------------------------------------------------------+
 | @leppäkoski2010      | Väärä tutkimusaihe                                                    |
++----------------------+-----------------------------------------------------------------------+
 | @lundin2018          | Väärä maantieteellinen sijainti                                       |
++----------------------+-----------------------------------------------------------------------+
+| @mäki-rahkola2014    | Väärä kohderyhmä                                                      |
++----------------------+-----------------------------------------------------------------------+
 | @norri-sederholm2014 | Väärä tutkimusaihe                                                    |
++----------------------+-----------------------------------------------------------------------+
 | @oldenburg2014       | Väärä tutkimusaihe, väärä maantieteellinen sijainti                   |
++----------------------+-----------------------------------------------------------------------+
 | @paavilainen2017     | Väärä tutkimusaihe                                                    |
++----------------------+-----------------------------------------------------------------------+
 | @peluchette2013      | Väärä tutkimusaihe, väärä kohderyhmä, väärä maantieteellinen sijainti |
++----------------------+-----------------------------------------------------------------------+
 | @purvanova2010       | Väärä kohderyhmä, ei-empiirinen tutkimus                              |
++----------------------+-----------------------------------------------------------------------+
 | @ramakrishnan2014    | Väärä kohderyhmä, ei-empiirinen tutkimus                              |
++----------------------+-----------------------------------------------------------------------+
 | @saal2021            | Väärä tutkimusaihe, väärä kohderyhmä                                  |
++----------------------+-----------------------------------------------------------------------+
 | @schwarzenberg2019   | Väärä tutkimusaihe                                                    |
++----------------------+-----------------------------------------------------------------------+
 | @sjölin2015          | Väärä tutkimusaihe, väärä maantieteellinen sijainti                   |
++----------------------+-----------------------------------------------------------------------+
 | @torlénwennlund2022  | Väärä tutkimusaihe, väärä maantieteellinen sijainti                   |
++----------------------+-----------------------------------------------------------------------+
 | @uusitalo2018        | Väärä tutkimusaihe, ei-empiirinen tutkimus                            |
++----------------------+-----------------------------------------------------------------------+
 | @venesoja2020        | Väärä tutkimusaihe                                                    |
++----------------------+-----------------------------------------------------------------------+
+| @venesoja2023        | Väärä tutkimusaihe                                                    |
++----------------------+-----------------------------------------------------------------------+
 | @virtanen2012        | Väärä kohderyhmä                                                      |
++----------------------+-----------------------------------------------------------------------+
 
 : Haku 3:n poistetut kohteet syineen {#tbl-haku3-poistetut}
 
 ## Valitut tutkimusjulkaisut
 
-Haun pohjalta valittiin kahdeksan tutkimusjulkaisu. Kuusi niistä valikoituivat mukaan hakuprosessin myötä, ja kaksi lisättiin muista lähteistä. Julkaisut ovat:
+Haun pohjalta valittiin neljä tutkimusjulkaisua. Julkaisut ovat:
 
 -   @ericsson2022 "Paramedics' perceptions of job demands and resources in Finnish emergency medical services: a qualitative study"
-
--   @honkavuo2019 "Työturvallisuus pelastustoimen ja ensihoitopalvelun uusissa työmuodoissa"
-
--   @joensuu2018 "Pelastustoimen ja ensihoitopalvelun moniammatillinen yksikkö tehokkaasti ihmisen turvana"
 
 -   @jäntti2022 "Ensihoitajien kohtaama työpaikkaväkivalta"
 
 -   @nordquist2023 "Kriittiset tilanteet, väkivalta ja niihin liittyvä stressi ensihoitajien työssä"
 
 -   @pekurinen2017 "Patient Aggression and the Wellbeing of Nurses: A Cross-Sectional Survey Study in Psychiatric and Non-Psychiatric Settings"
-
--   @venesoja2023 "Prehospital nursing students' experiences of patient safety culture in emergency medical services---A qualitative study"

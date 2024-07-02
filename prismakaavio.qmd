@@ -1,4 +1,12 @@
-# PRISMA-kaavio {#sec-prisma-kaavio}
+# Hakuprosessi ja PRISMA-kaavio {#sec-prisma-kaavio}
+
+## Hakuprosessi
+
+Suoritimme haut ositettuna kuuteen osahakuun (ks. @sec-kriteeristo). Jokaisen haun kohdalla suoritimme PRISMA-ohjeistuksen mukaisen seulonnan. Nämä ositetut haut ja seulontaprosessit ovat kuvailtuna "Katsauksen osahaut"-osiossa tällä liitesivustolla.
+
+Ositettujen hakujen jälkeen yhdistimme kaikki hakutulokset yhdeksi tulostaulukoksi. Tällöin suoritimme myös toisen duplikaattitarkistuksen. Tunnistimme seitsemän tietuetta, jotka esiintyivät useammassa osahaussa, ja poistimme duplikaatit. Huomasimme myös, että olimme hakeneet yhden organisaatioraportin käsin tehtävien hakujen kohdalla kahteen kertaan. Poistimme duplikaatin, mutta tätä ei olla merkitty PRISMA-kaavioon (kaavion muiden hakujen duplikaattikentän puuttuvuuden takia).
+
+## PRISMA-kaavio
 
 Hakujen yhdistäminen ja lopullinen seulonta dokumentointiin yhdeksi PRISMA-kulkukaavioksi (@fig-prismakaavio). Kulkukaavio on tuotettu R-paketilla `PRISMA2020` [@PRISMA2020] käyttäen muokattua `csv`-tiedostoa. Tiedosto on lisätty tämän sivuston lähdekoodiin ja löytyy kansiosta `data`.
 
@@ -12,7 +20,7 @@ library(magrittr)
 library(PRISMA2020)
 
 # Käytämme csv2-funktiota, koska Excel ei suostu exportoimaan csv-tiedostoa pilkkuerottimella puolipiste-erottimen sijaan, jostain syystä.
-tiedot <- read.csv2("data/20240209_PRISMAtiedot.csv") %>% PRISMA_data(.)
+tiedot <- read.csv2("data/20240702_PRISMAtiedot.csv") %>% PRISMA_data(.)
 
 PRISMA_flowdiagram(
   tiedot,
@@ -24,10 +32,10 @@ PRISMA_flowdiagram(
 
 ```
 
-Tunnistimme yhteensä 7900 tietuetta tietokannoista. Näistä 1617 tietuetta poistettiin kaksoiskappaleina, jolloin seulottavaksi jäi 6283 tietuetta. Otsikko- ja abstraktitason seulonnan pohjalta poistimme 6009 tietuetta, jolloin haettavaksi jäi 274 raporttia. Näistä 19 raporttia ei voitu hakea, jolloin tarkistettavaksi jäi 255 raporttia.
+Tunnistimme yhteensä 7900 tietuetta tietokannoista. Näistä 1617 tietuetta (20 %) poistettiin kaksoiskappaleina, jolloin seulottavaksi jäi 6283 tietuetta. Otsikko- ja abstraktitason seulonnan pohjalta poistimme 6009 tietuetta (96 % seulottavista tietueista), jolloin haettavaksi jäi 274 raporttia. Näistä 19 raporttia ei voitu hakea (7 % haettavista raporteista), jolloin tarkistettavaksi jäi 255 raporttia.
 
-Yleisin syy poissulkemiselle oli väärän kohderyhmän tutkiminen (51 raporttia). Toiseksi yleisin syy oli monien syiden yhdistelmä (44 raporttia), jonka jälkeen tuli väärä tutkimusaihe (31 raporttia). Aineistomuodon epäsopivuus sisäänottokriteerien kanssa oli hieman harvinaisempi (22 raporttia), ja väärän julkaisutyypin syy sitä harvinaisempi (6 raporttia). Vain yksi raportti oli julkaistu aikarajauksen ulkopuolella.
+Yleisin syy poissulkemiselle oli väärän kohderyhmän tutkiminen (51 raporttia). Toiseksi yleisin syy oli monien syiden yhdistelmä (44 raporttia), jonka jälkeen tuli väärä tutkimusaihe (39 raporttia). Aineistomuodon epäsopivuus sisäänottokriteerien kanssa oli hieman harvinaisempi (22 raporttia), kuten myös väärän maantieteellisen sijainnin (23 raporttia), ja väärän julkaisutyypin syy sitä harvinaisempi (6 raporttia). Vain kaksi raporttia oli julkaistu aikarajauksen ulkopuolella; yksi ennen määriteltyä ajanjaksoa ja yksi ajanjakson jälkeen.
 
-Tunnistimme myös 7 tietuetta organisaatioiden verkkosivuilta. Näistä voitiin hakea kaikki seitsemän kappaletta. Kaksi raporttia jäivät pois väärän tutkimusaiheen takia, yksi väärän kohderyhmän takia, ja yksi sekä väärän tutkimusaiheen että väärän kohderyhmän takia.
+Tunnistimme myös 7 tietuetta organisaatioiden verkkosivuilta. Näistä voitiin hakea kaikki seitsemän kappaletta. Neljä raporttia jäivät pois väärän tutkimusaiheen takia, yksi väärän kohderyhmän takia, ja yksi sekä väärän tutkimusaiheen että väärän kohderyhmän takia.
 
-Lopullisessa kirjallisuuskatsauksessa sisällytettyjä tutkimusraportteja on yhteensä 80 kappaletta, 77 kappaletta tunnistettu tietokannoista ja 3 kappaletta organisaatioiden verkkosivuilta.
+Lopullisessa kirjallisuuskatsauksessa sisällytettyjä tutkimusraportteja on yhteensä 69 kappaletta, 68 kappaletta tunnistettu tietokannoista ja yksi raportti organisaatioiden verkkosivuilta.

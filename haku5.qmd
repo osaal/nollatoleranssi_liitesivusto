@@ -50,13 +50,13 @@ Haku suoritettiin seuraavissa tietolähteissä:
 
 : Haku 5:n tietolähteet {#tbl-haku5-tietolahteet}
 
-Web of Science -hakukoneen käytössä syntyi inhimillinen virhe, jolloin haettiin kaikista palvelun tietokannoista. Tutkimuksen rajauksena oli alunperin vain Web of Science Core Collection- sekä MEDLINE-tietokannat. Virhe huomattiin vasta tulosten koonnin aikana.
+Web of Science -hakukoneen käytössä syntyi inhimillinen virhe, jolloin haettiin kaikista palvelun tietokannoista. Virhe huomattiin vasta tulosten koonnin aikana.
 
-Virheellinen haku ei kuitenkaan vaikuta näkemyksemme mukaan juurikaan tulosten luotettavuuteen, kahdesta syystä. Ensimmäiseksi, virheellisesti lisätyt tulokset seulontuivat pois viimeistään kokotekstin tarkistuksessa, jolloin vaikutus rajaantui pääsääntöisesti kokonaistulosmäärään. Toiseksi, kahden tietokannan tulokset seulontuivat pois heti hakumenettelyssä, koska käytimme `country`-rajausta (jolloin KCI-Korean Journal Database sekä SciELO Citation Index ei pitäisi tuottaa mitään tuloksia).
+Virheellinen haku ei kuitenkaan vaikuta näkemyksemme mukaan juurikaan tulosten luotettavuuteen, kahdesta syystä. Ensimmäiseksi, virheellisesti lisätyt tulokset seulontuivat pois viimeistään kokotekstin tarkistuksessa, jolloin vaikutus rajaantui pääsääntöisesti kokonaistulosmäärään. Toiseksi, kahden tietokannan tulokset seulontuivat pois heti hakumenettelyssä, koska käytimme `country`-rajausta (jolloin KCI-Korean Journal Database sekä eteläamerikkalainen SciELO Citation Index eivät pitäisi tuottaa tuloksia).
 
 ## Hakulausekkeet ja tulosten lataaminen
 
-Alla olevassa taulukossa esitetään hakujen suorituspäivämäärät, hakusanat ja hakukonekohtaiset rajaukset sekä osumat.
+Alla olevassa taulukossa esiintyy hakujen suorituspäivämäärät, hakusanat ja hakukonekohtaiset rajaukset sekä osumat.
 
 +-------------------+-------------------------------------------------------------+----------------+-----------------------------+-------------+---------------------------------------------------------+
 | Koodi             | Hakukone (tietokannat suluissa)                             | Haku-ajankohta | Julkaisujen ajankohtarajaus | Tulos-määrä | Haun jälkeiset rajaukset                                |
@@ -134,7 +134,7 @@ Alla olevassa taulukossa esitetään hakujen suorituspäivämäärät, hakusanat
 
 [^haku5-1]: Toistaessamme tämän haun huomasimme, että ProQuest antaa timeout-virheen jos rajauksia ei syötä suoraan hakulausekkeeseen. Haun hakulauseke eroaa siksi muista lausekkeista, mutta rajaa samalla tavalla kuin muut ProQuestin haut.
 
-OpenAlexin hakujen (`H5_8`-luokka) kohdalla emme pystyneet täydellisesti toistamaan tuloksia myöhemmässä vaiheessa. Varsinkin suomen- ja ruotsinkielisten hakujen kohdalla toistohaut tuottivat hyvin erilaisia tuloksia, useimmiten paljon vähemmän tai ei ollenkaan tietueita. Kokeilimme toistaa haut sekä `search`-sanalla että `filter=title_and_abstract.search`-suodattimella, mutta asia ei korjaantunut. Epäilemme tässä vaiheessa, että ääkköset voivat muodostaa ongelman OpenAlexin hakuihin, mutta emme ole voineet varmistaa asiaa.
+OpenAlexin hakujen (`H5_8`-luokka) kohdalla emme pystyneet täydellisesti toistamaan tuloksia myöhemmässä vaiheessa. Varsinkin suomen- ja ruotsinkielisten hakujen kohdalla toistohaut tuottivat hyvin erilaisia tuloksia, useimmiten paljon vähemmän tai ei ollenkaan tietueita. Kokeilimme toistaa haut sekä `search`-sanalla että `filter=title_and_abstract.search`-suodattimella, mutta ongelma ei korjaantunut. Epäilemme tässä vaiheessa, että ääkköset voivat muodostaa ongelman OpenAlexin hakuihin, mutta emme ole voineet varmistaa asiaa.
 
 Jokaisen haun hakulausekkeet ovat listattuna alla hakukoodeittain (ks. @tbl-haku5-toteutetut-haut). Paina osa-hakua vastaavaa koodia nähdäksesi kunkin haun hakulausekkeen. Voit kopioida lausekkeen sellaisenaan leikepöydällesi painamalla kopiointikuvaketta avatun hakulausekkeen yläoikeassa nurkassa.
 
@@ -266,7 +266,7 @@ OpenAlex:in kohdalla tulokset haettiin API-menettelyllä. Maksimitulosten määr
 
 Tulokset ladattiin ensisijaisesti `.csv`- tai `.xlsx`-muotoon jos mahdollista (Scopus, Web of Science ja ProQuest). BASE:n kohdalla lataaminen suoritettiin 100 tulosta kerralla `.json`-muotoon. OpenAlex:in tulokset haettiin 200 tulosta kerralla `.json`-muotoon.
 
-`.xml`- ja `.json`-muotoiset hakutulokset käännettiin taulukkomuotoon Microsoft Excel -ohjelmassa *Power Query* -toiminnolla.
+`.xml`- ja `.json`-muotoiset hakutulokset yhdistettiin ja käännettiin hauittain taulukkomuotoon Microsoft Excel -ohjelmassa *Power Query* -toiminnolla.
 
 ## PRISMA-kulkukaavio
 
@@ -291,7 +291,7 @@ labels <- c(
   "Sisällytetyt kohteet"
 )
 
-counts <- c(1249, 847, 38, 38, 11)
+counts <- c(1249, 847, 38, 38, 8)
 
 flow_exclusions(
   incl_counts = counts,
@@ -303,106 +303,81 @@ flow_exclusions(
   show_count = TRUE,
   font_size = 14)
 ```
-
-## Muut lähteet
-
-```{r}
-#| eval: true
-library("PRISMAstatement")
-
-labels <- c(
-  "Tunnistetut kohteet",
-  "Kaksoiskappaleet poistettu ennen seulontaa",
-  "Haettavat kohteet",
-  "Hakematta jääneet kohteet",
-  "Tarkistetut kohteet",
-  "Poistetut kohteet",
-  "Sisällytetyt kohteet"
-)
-
-counts <- c(0, 0, 0, 0)
-
-flow_exclusions(
-  incl_counts = counts,
-  total_label = labels[1],
-  incl_labels = labels[c(3, 5, 7)],
-  excl_labels = labels[c(2, 4, 6)], 
-  percent_of_total = TRUE,
-  percent_of_prev = FALSE,
-  show_count = TRUE,
-  font_size = 14)
-```
 :::
 
 ## Kokotekstin pohjalta poistetut tutkimukset ja syyt
 
-Seulonnan jälkeen poistettuja tutkimusjulkaisuja oli yhteensä 27 kappaletta. @tbl-haku5-poistetut on jokaisen julkaisun vittaus ja poistosyy(t). Syyt ovat listattuna ensisijaisen syyn mukaan. Päätös poisjättämisestä voitiin tehdä jos yksi inkluusiokriteeri ei täyttynyt, jolloin tutkimuksella voi olla muitakin syitä miksi sitä ei otettu mukaan katsauksen tuloksiin.
+Seulonnan jälkeen poistettuja tutkimusjulkaisuja oli yhteensä 30 kappaletta. @tbl-haku5-poistetut sisältää jokaisen julkaisun poistosyyn. Syyt ovat listattuna ensisijaisen syyn mukaan. Teimme päätöksen poisjättämisestä, jos vähintään yksi inkluusiokriteeri ei täyttynyt.
 
-+------------------------+--------------------------------------------+
-| Kohde                  | Syy(t) poistoon                            |
-+========================+============================================+
-| @aho2010               | Väärä kohderyhmä                           |
-+------------------------+--------------------------------------------+
-| @ervasti2022           | Väärä kohderyhmä                           |
-+------------------------+--------------------------------------------+
-| @fagerlund2021         | Väärä tutkimusaihe                         |
-+------------------------+--------------------------------------------+
-| @hannonen2015          | Väärä kohderyhmä                           |
-+------------------------+--------------------------------------------+
-| @himanen2021           | Väärä tutkimusaihe                         |
-+------------------------+--------------------------------------------+
-| @huttunen2018          | Väärä kohderyhmä                           |
-+------------------------+--------------------------------------------+
-| @härkänen2023          | Väärä kohderyhmä                           |
-+------------------------+--------------------------------------------+
-| @marttila2012          | Väärä kohderyhmä                           |
-+------------------------+--------------------------------------------+
-| @niklander2019         | Ei-empiirinen tutkimus                     |
-+------------------------+--------------------------------------------+
-| @noppari2018           | Väärä kohderyhmä, väärä tutkimusaihe       |
-+------------------------+--------------------------------------------+
-| @puronvarsi2020        | Väärä kohderyhmä                           |
-+------------------------+--------------------------------------------+
-| @saarikkomäki2013      | Väärä kohderyhmä                           |
-+------------------------+--------------------------------------------+
-| @saarikkomäki2016      | Väärä kohderyhmä                           |
-+------------------------+--------------------------------------------+
-| @salin2019             | Ei-empiirinen tutkimus, väärä tutkimusaihe |
-+------------------------+--------------------------------------------+
-| @salin2013             | Ei-empiirinen tutkimus, väärä tutkimusaihe |
-+------------------------+--------------------------------------------+
-| @salminen-tuomaala2015 | Väärä kohderyhmä                           |
-+------------------------+--------------------------------------------+
-| @vanhanen2021          | Väärä kohderyhmä                           |
-+------------------------+--------------------------------------------+
-| @vartia2017            | Ei-empiirinen tutkimus                     |
-+------------------------+--------------------------------------------+
-| @vartia2016            | Ei-empiirinen tutkimus                     |
-+------------------------+--------------------------------------------+
-| @venesoja2019          | Väärä tutkimusaihe                         |
-+------------------------+--------------------------------------------+
-| @viitanen2013          | Ei-empiirinen tutkimus                     |
-+------------------------+--------------------------------------------+
-| @vishwakarma2018       | Väärä tutkimusaihe                         |
-+------------------------+--------------------------------------------+
-| @vuorensyrjä2014       | Väärä tutkimusaihe                         |
-+------------------------+--------------------------------------------+
-| @vuorensyrjä2016       | Väärä kohderyhmä                           |
-+------------------------+--------------------------------------------+
-| @vuorensyrjä2018       | Väärä kohderyhmä                           |
-+------------------------+--------------------------------------------+
-| @vuorensyrjä2020       | Väärä kohderyhmä                           |
-+------------------------+--------------------------------------------+
-| @vuorensyrjä2023       | Väärä kohderyhmä                           |
-+------------------------+--------------------------------------------+
++---------------------------+--------------------------------------------+
+| Kohde                     | Syy(t) poistoon                            |
++===========================+============================================+
+| @aho2010                  | Väärä kohderyhmä                           |
++---------------------------+--------------------------------------------+
+| @ervasti2022              | Väärä kohderyhmä                           |
++---------------------------+--------------------------------------------+
+| @fagerlund2021            | Väärä tutkimusaihe                         |
++---------------------------+--------------------------------------------+
+| @fagerlund2022            | Väärä tutkimusaihe                         |
++---------------------------+--------------------------------------------+
+| @hannonen2015             | Väärä kohderyhmä                           |
++---------------------------+--------------------------------------------+
+| @himanen2021              | Väärä tutkimusaihe                         |
++---------------------------+--------------------------------------------+
+| @huttunen2018             | Väärä kohderyhmä                           |
++---------------------------+--------------------------------------------+
+| @härkänen2023             | Väärä kohderyhmä                           |
++---------------------------+--------------------------------------------+
+| @marttila2012             | Väärä kohderyhmä                           |
++---------------------------+--------------------------------------------+
+| @niklander2019            | Ei-empiirinen tutkimus                     |
++---------------------------+--------------------------------------------+
+| @noppari2018              | Väärä kohderyhmä, väärä tutkimusaihe       |
++---------------------------+--------------------------------------------+
+| @otonkorpi-lehtoranta2015 | Väärä tutkimusaihe                         |
++---------------------------+--------------------------------------------+
+| @puronvarsi2020           | Väärä kohderyhmä                           |
++---------------------------+--------------------------------------------+
+| @saari2020                | Väärä tutkimusaihe                         |
++---------------------------+--------------------------------------------+
+| @saarikkomäki2013         | Väärä kohderyhmä                           |
++---------------------------+--------------------------------------------+
+| @saarikkomäki2016         | Väärä kohderyhmä                           |
++---------------------------+--------------------------------------------+
+| @salin2019                | Ei-empiirinen tutkimus, väärä tutkimusaihe |
++---------------------------+--------------------------------------------+
+| @salin2013                | Ei-empiirinen tutkimus, väärä tutkimusaihe |
++---------------------------+--------------------------------------------+
+| @salminen-tuomaala2015    | Väärä kohderyhmä                           |
++---------------------------+--------------------------------------------+
+| @vanhanen2021             | Väärä kohderyhmä                           |
++---------------------------+--------------------------------------------+
+| @vartia2017               | Ei-empiirinen tutkimus                     |
++---------------------------+--------------------------------------------+
+| @vartia2016               | Ei-empiirinen tutkimus                     |
++---------------------------+--------------------------------------------+
+| @venesoja2019             | Väärä tutkimusaihe                         |
++---------------------------+--------------------------------------------+
+| @viitanen2013             | Ei-empiirinen tutkimus                     |
++---------------------------+--------------------------------------------+
+| @vishwakarma2018          | Väärä tutkimusaihe                         |
++---------------------------+--------------------------------------------+
+| @vuorensyrjä2014          | Väärä tutkimusaihe                         |
++---------------------------+--------------------------------------------+
+| @vuorensyrjä2016          | Väärä kohderyhmä                           |
++---------------------------+--------------------------------------------+
+| @vuorensyrjä2018          | Väärä kohderyhmä                           |
++---------------------------+--------------------------------------------+
+| @vuorensyrjä2020          | Väärä kohderyhmä                           |
++---------------------------+--------------------------------------------+
+| @vuorensyrjä2023          | Väärä kohderyhmä                           |
++---------------------------+--------------------------------------------+
 
 : Haku 5:n poistetut kohteet syineen {#tbl-haku5-poistetut}
 
 ## Valitut tutkimusjulkaisut
 
-Haun pohjalta valittiin 11 tutkimusjulkaisua. Kaikki julkaisut valikoituivat mukaan hakuprosessin myötä. Julkaisut ovat:
-
--   @fagerlund2022 "Conceptualising Violence in Close Relationships: Discrepancies Between Police Conceptions and the Letter of the Law in Finland"
+Haun pohjalta valittiin 8 tutkimusjulkaisua. Julkaisut ovat:
 
 -   @huotari2019 "Naisten ja miesten tasa-arvo poliisisssa 2018"
 
@@ -418,8 +393,4 @@ Haun pohjalta valittiin 11 tutkimusjulkaisua. Kaikki julkaisut valikoituivat muk
 
 -   @leino2011c "Work-related Violence against Security Guards---Who is Most at Risk?"
 
--   @otonkorpi-lehtoranta2015 "Intersections of gender, age and occupational group in the Finnish defence forces"
-
 -   @paasonen2022 "Vankilaturvallisuus ja -väkivalta -- vankilan henkilöstön kokema fyysinen ja henkinen väkivalta"
-
--   @saari2020 "Employee well-being of Finnish criminal investigators -- mixed methods approach"

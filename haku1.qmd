@@ -266,11 +266,11 @@ dc.title:(räddning* OR brand* OR släckning* OR nödcentral*) AND dc.title:(dis
 dc.title:((fire rescue* OR fire*fighter* OR rescue service* OR emergency respon* OR emergency personnel) NOT ("medic")) AND dc.title:(discriminat* OR harass* OR pressur* OR violen* OR improper behavio*r OR equal* OR equit*)
 ```
 
-OpenAlex:in kohdalla tulokset haettiin API-menettelyllä. Maksimitulosten määrä per sivu oli 200 dokumentaation mukaan, joten haku toteutettiin kuusi kertaa nostaen `&page=X` -numeroa jokaisen kerran, `1-6`.
+OpenAlex:in kohdalla tulokset haettiin API-menettelyllä. Maksimitulosten määrä per sivu oli 200 dokumentaation mukaan, joten haku toteutettiin kuusi kertaa nostaen `&page=X` -numeroa jokaisen kerran yhdellä.
 
 Tulokset ladattiin ensisijaisesti `.csv`- tai `.xlsx`-muotoon jos mahdollista (Scopus, Web of Science ja ProQuest). BASE:n kohdalla lataaminen suoritettiin 100 tulosta kerralla `.json`-muotoon. OpenAlex:in tulokset haettiin 200 tulosta kerralla `.json`-muotoon.
 
-`.xml`- ja `.json`-muotoiset hakutulokset käännettiin taulukkomuotoon Microsoft Excel -ohjelmassa *Power Query* -toiminnolla.
+`.xml`- ja `.json`-muotoiset hakutulokset yhdistettiin ja käännettiin hakukohtaisesti taulukkomuotoon Microsoft Excel -ohjelmassa *Power Query* -toiminnolla.
 
 Näiden lisäksi haimme käsin seuraavista organisaatiosivuista:
 
@@ -350,7 +350,7 @@ flow_exclusions(
 
 ## Kokotekstin pohjalta poistetut tutkimukset ja syyt
 
-Seulonnan jälkeen poistettuja tutkimusjulkaisuja oli yhteensä 26 kappaletta. @tbl-haku1-poistetut on jokaisen julkasun viittaus ja poistosyy(t). Syyt ovat listattuna ensisijaisen syyn mukaan. Päätös poisjättämisestä voitiin tehdä jos yksi inkluusiokriteeri ei täyttynyt, jolloin tutkimuksella voi olla muitakin syitä miksi sitä ei otettu mukaan katsauksen tuloksiin.
+Seulonnan jälkeen poistettuja tutkimusjulkaisuja oli yhteensä 26 kappaletta. @tbl-haku1-poistetut sisältää jokaisen julkaisun poistosyyn. Syyt ovat listattuna ensisijaisen syyn mukaan. Teimme päätöksen poisjättämisestä, jos vähintään yksi inkluusiokriteeri ei täyttynyt.
 
 | Kohde             | Syy(t) poistoon                                                           |
 |-------------------|---------------------------------------------------------------------------|

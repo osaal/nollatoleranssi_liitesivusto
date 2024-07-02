@@ -17,7 +17,7 @@ Haku 2 seurasi seuraavia inkluusiokriteerejä:
 Haku suoritettiin seuraavissa tietolähteissä:
 
 | Tietokanta                     | Korkeakoulu                                    |
-|-----------------------------|-------------------------------------------|
+|--------------------------------|------------------------------------------------|
 | Theseus                        | Kaikki ammattikorkeakoulut                     |
 | Aaltodoc                       | Aalto-yliopisto                                |
 | E-thesis                       | Helsingin yliopisto                            |
@@ -40,10 +40,10 @@ Haku suoritettiin seuraavissa tietolähteissä:
 
 ## Hakulausekkeet ja tulosten lataaminen
 
-Alla olevassa taulukossa esitetään hakujen suorituspäivämäärät, hakusanat ja hakukonekohtaiset rajaukset sekä osumat.
+Alla oleva taulukko sisältää hakujen suorituspäivämäärät, hakusanat ja hakukonekohtaiset rajaukset sekä osumat.
 
 | Koodi    | Hakukone (tietokannat suluissa)  | Haku-ajankohta | Julkaisujen ajankohtarajaus | Tulos-määrä | Haun jälkeiset rajaukset                                        |
-|------------|------------|------------|------------|------------|------------|
+|----------|----------------------------------|----------------|-----------------------------|-------------|-----------------------------------------------------------------|
 | H2_1_fi  | Theseus                          | 3.1.2024       | *Ei käytetty.*              | 3           | *Ei käytetty.*                                                  |
 | H2_1_sw  | Theseus                          | 9.1.2024       | 2010-2024                   | 30          | *Ei käytetty.*                                                  |
 | H2_1_en  | Theseus                          | 10.1.2024      | 2010-2024                   | 4           | *Ei käytetty.*                                                  |
@@ -331,7 +331,7 @@ dc.title:(("fire rescue*" OR "fire?fighter*" OR "rescue service*" OR "emergency 
 (pelast* OR palo* OR sammut* OR hätäkesku*) AND (syrji* OR häirin* OR häirit* OR painost* OR pahoinpi* OR ahdistel* OR epäasialli* OR yhdenvertai* OR tasa-arvo* OR tasapuoli* OR tasavertai*)
 ```
 
-Inhimillisestä virheestä johtuen useista hauista jäi julkaisuajan suodatin sekä tietokantojen rajaus vain opinnäytetöihin pois käytöstä. Rajausten poissaolo kuitenkin vaikuttaa korkeintaan väärien positiivien nousussa, eikä tulosten määrä näytä ongelmalliselta tästä näkökulmasta.
+Inhimillisestä virheestä johtuen useista hauista jäi julkaisuajan suodatin sekä tietokantojen rajaus vain opinnäytetöihin pois käytöstä. Rajausten poissaolo kuitenkin vaikuttaa korkeintaan väärien positiivien nousussa, eikä tulosten määrä näytä ongelmalliselta tutkimuksemme tulosten kannalta.
 
 Tulokset lisättiin Excel-taulukkoon käsin kyseisen haun suorittajan toimesta.
 
@@ -370,43 +370,14 @@ flow_exclusions(
   show_count = TRUE,
   font_size = 14)
 ```
-
-## Muut lähteet
-
-```{r}
-#| eval: true
-library("PRISMAstatement")
-
-labels <- c(
-  "Tunnistetut kohteet",
-  "Kaksoiskappaleet poistettu ennen seulontaa",
-  "Haettavat kohteet",
-  "Hakematta jääneet kohteet",
-  "Tarkistetut kohteet",
-  "Poistetut kohteet",
-  "Sisällytetyt kohteet"
-)
-
-counts <- c(0, 0, 0, 0)
-
-flow_exclusions(
-  incl_counts = counts,
-  total_label = labels[1],
-  incl_labels = labels[c(3, 5, 7)],
-  excl_labels = labels[c(2, 4, 6)], 
-  percent_of_total = TRUE,
-  percent_of_prev = FALSE,
-  show_count = TRUE,
-  font_size = 14)
-```
 :::
 
 ## Kokotekstin pohjalta poistetut tutkimukset ja syyt
 
-Seulonnan jälkeen poistettuja tutkimusjulkaisuja oli yhteensä 4 kappaletta. @tbl-haku2-poistetut on jokaisen julkasun viittaus ja poistosyy(t). Syyt ovat listattuna ensisijaisen syyn mukaan. Päätös poisjättämisestä voitiin tehdä jos yksi inkluusiokriteeri ei täyttynyt, jolloin tutkimuksella voi olla muitakin syitä miksi sitä ei otettu mukaan katsauksen tuloksiin.
+Seulonnan jälkeen poistettuja tutkimusjulkaisuja oli yhteensä 4 kappaletta. @tbl-haku2-poistetut sisältää jokaisen julkaisun poistosyyn. Syyt ovat listattuna ensisijaisen syyn mukaan. Teimme päätöksen poisjättämisestä, jos vähintään yksi inkluusiokriteeri ei täyttynyt.
 
 | Kohde          | Syy(t) poistoon                                               |
-|-----------------|-------------------------------------------------------|
+|----------------|---------------------------------------------------------------|
 | @harju2020     | Väärä tutkimusaihe                                            |
 | @lindström2020 | Ei-empiirinen tutkimus, väärä tutkimusaihe                    |
 | @markkola2021  | Ei-empiirinen tutkimus, väärä kohderyhmä, väärä julkaisumuoto |
@@ -416,7 +387,7 @@ Seulonnan jälkeen poistettuja tutkimusjulkaisuja oli yhteensä 4 kappaletta. @t
 
 ## Valitut tutkimusjulkaisut
 
-Haun pohjalta valittiin kuusi tutkimusjulkaisua. Kaikki kuusi valikoituivat mukaan hakuprosessin myötä. Julkaisut ovat:
+Haun pohjalta valitsimme kuusi tutkimusjulkaisua. Julkaisut ovat:
 
 -   @huttunen2019 "Pelastushenkilöstön kokema seksuaalinen ahdistelu työtehtävillä ja työpaikoilla. Tutkimus toteutettuna Rescuebase -applikaatiolla"
 
