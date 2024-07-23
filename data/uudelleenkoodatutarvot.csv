@@ -1,0 +1,49 @@
+ID;Linkkiversio;Kieliversio;k1;k2;;;;;;
+(uniikki nro);1 = Johdon kautta;1 = Suomi;1 = Kyllä;1 = Pelastuslaitos tai ensihoito (hyvinvointi- tai itsehallintoalueella);;;;;;
+;2 = Toimistojen kautta;2 = Ruotsi;2 = Ei;2 = Sopimuspalokunta tai palokuntayhdistys;;;;;;
+;3 = Mediat;;;3 = Pelastusalan valtakunnallinen järjestö (SPEK, SPPL, SSPL);;;;;;
+;;;;4 = Koulutusorganisaatio;;;;;;
+;;;;;;;;;;
+k3;k4;k[5-11]_X_1;k[5-11]_X_2;;;;;;;
+1 = En kertaakaan;1 = En kertaakaan;1 = Minä koin;1 = Kollegani koki;;;;;;;
+2 = Harvemmin kuin kerran kuukaudessa;2 = Harvemmin kuin kerran kuukaudessa;NA = (ei valittu);NA = (ei valittu);;;;;;;
+3 = Kerran kuukaudessa;3 = Kerran kuukaudessa;-1 = (ei esitetty);-1 = (ei esitetty);;;;;;;
+4 = Useita kertoja kuukaudessa;4 = Useita kertoja kuukaudessa;;;;;;;;;
+5 = Kerran viikossa;5 = Kerran viikossa;;;;;;;;;
+6 = Useita kertoja viikossa;6 = Useita kertoja viikossa;;;;;;;;;
+7 = Kerran päivässä;7 = Kerran päivässä;;;;;;;;;
+8 = Useita kertoja päivässä;8 = Useita kertoja päivässä;;;;;;;;;
+NA = (ei vastattu);NA = (ei vastattu);;;;;;;;;
+;;;;;;;;;;
+k12;k13;k[14-20]_X_1;k[14-20]_X_2;;;;;;;
+1 = En kertaakaan;1 = En kertaakaan;1 = Minä koin;1 = Kollegani koki;;;;;;;
+2 = Harvemmin kuin kerran kuukaudessa;2 = Harvemmin kuin kerran kuukaudessa;NA = (ei valittu);NA = (ei valittu);;;;;;;
+3 = Kerran kuukaudessa;3 = Kerran kuukaudessa;-1 = (ei esitetty);-1 = (ei esitetty);;;;;;;
+4 = Useita kertoja kuukaudessa;4 = Useita kertoja kuukaudessa;;;;;;;;;
+5 = Kerran viikossa;5 = Kerran viikossa;;;;;;;;;
+6 = Useita kertoja viikossa;6 = Useita kertoja viikossa;;;;;;;;;
+7 = Kerran päivässä;7 = Kerran päivässä;;;;;;;;;
+8 = Useita kertoja päivässä;8 = Useita kertoja päivässä;;;;;;;;;
+NA = (ei vastattu);NA = (ei vastattu);;;;;;;;;
+;;;;;;;;;;
+k21;k22;k22_X_1;k23;k24;k25;k26;k27;k28;k29;k30
+1 = Ei vaikutusta;1 = Päivän ajan;1 = Jatkuu tällä hetkellä;1 = (valittu);1 = Kyllä;0 = En osaa sanoa;1 = Erittäin eri mieltä;1 = Ei koskaan;1 = Tiedän, että ei ole käytössä;(0-10);1 = Erittäin hyödytön
+2 = Lievät;2 = Viikon ajan;NA = (ei valittu);NA = (ei valittu);2 = Ei;1 = Ei ole koulutusta;2 = Eri mieltä;2 = Harvoin;2 = Luulen, että ei ole käytössä;;2 = Hyödytön
+3 = Kohtalaiset;3 = Kuukauden ajan;-1 = (ei esitetty);-1 = (ei esitetty);3 = En osaa sanoa;2 = On koulutusta, mutta en ole käynyt sitä;3 = Jokseenkin eri mieltä;3 = Joskus;3 = En osaa sanoa;;3 = Jokseenkin hyödytön
+4 = Vakavat;4 = Useamman kuukauden ajan;;;NA = (ei vastattu);3 = On koulutusta, ja olen käynyt sen;4 = Ei samaa eikä eri mieltä;4 = Usein;4 = Luulen, että on käytössä;;4 = Ei hyödyllinen eikä hyödytön
+NA = (ei valittu);NA = (ei valittu);;;;NA = (ei vastattu);5 = Jokseenkin samaa mieltä;5 = Aina;5 = Tiedän, että on käytössä;;5 = Jokseenkin hyödyllinen
+-1 = (ei esitetty);-1 = (ei esitetty);;;;-1 = (ei esitetty);6 = Samaa mieltä;NA = (ei vastattu);NA = (ei vastattu);;6 = Hyödyllinen
+;;;;;;7 = Erittäin samaa mieltä;;;;7 = Erittäin hyödyllinen
+;;;;;;NA = (ei vastattu);;;;NA = (ei vastattu)
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+k31;k32;k33;k34;k37;Organisaatioasema;k40;k41;k42;k43;
+1 = Nainen;1 = 24h työvuorot;1 = Alle 2 tuntia viikossa;0 = En;1 = Virasto- tai toimistotyöaika;1 = Johto- tai esihenkilötaso;1 = Pelastaja;(0-100);1 = (valittu);(tekstikenttä);
+2 = Mies;2 = 12h työvuorot;2 = 2-5 tuntia viikossa;1 = Kyllä;2 = Opiskelija;2 = Suorittava henkilöstö;2 = Ensihoitaja;NA = (ei vastattu);NA = (ei vastattu);;
+3 = Muu;3 = Virasto- tai toimistotyöaika;3 = 6-10 tuntia viikossa;-1 = (ei esitetty);3 = Kokonaistyöaika;3 = Asiantuntijat;3 = Muu ammattiryhmä;;;;
+4 = En halua vastata;4 = Työ- tai virkavapaalla;4 = 11-20 tuntia viikossa;;4 = Työ- tai virkavapaalla, muuten poissa organisaatiosta;4 = Hallinnollinen tai tukipalveluhenkilöstö;-1 = (ei esitetty);;;;
+;-1 = (ei esitetty);5 = Yli 21 tuntia viikossa;;-1 = (ei esitetty);5 = Opetushenkilöstö;;;;;
+;;-1 = (ei esitetty);;;6 = Opiskelijat;;;;;
+;;;;;;;;;;
