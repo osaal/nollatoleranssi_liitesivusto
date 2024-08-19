@@ -14,6 +14,7 @@ book:
         - seulontamenetelma.qmd
         - prismakaavio.qmd
         - yleiskuvailu.qmd
+        - metaanalyysi.qmd
     - part: "Katsauksen osahaut"
       chapters:
         - haku1.qmd
@@ -25,6 +26,7 @@ book:
     - part: "Kyselyn valmistelu"
       chapters:
         - kyselynvalmistelu.qmd
+        - tiedonkeruu.qmd
     - part: "Datavalmistelu"
       chapters:
         - eksportointi.qmd
@@ -61,6 +63,7 @@ book:
         - seulontamenetelma.qmd
         - prismakaavio.qmd
         - yleiskuvailu.qmd
+        - metaanalyysi.qmd
     
     - id: katsauksenhaut
       title: "Katsauksen osahaut"
@@ -76,6 +79,7 @@ book:
       title: "Kyselyn valmistelu"
       contents:
         - kyselynvalmistelu.qmd
+        - tiedonkeruu.qmd
     
     - id: datavalmistelu
       title: "Datavalmistelu"

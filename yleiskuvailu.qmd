@@ -187,9 +187,10 @@ harhadata %>%
   ggplot(mapping = aes(x = Viite)) +
   geom_col(aes(y = Score), fill = "#c20e1a") +
   geom_hline(yintercept = 73) +
-  geom_hline(yintercept = 50, linetype = "dashed") +
-  labs(y = "S-arvo", x = "Julkaisu") +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))
+  geom_hline(yintercept = 72, linetype = "dashed") +
+  labs(y = "Luotettavuustaso (%)", x = "Julkaisu") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5)) + 
+  ylim(0, 100)
 ```
 
 Tutkimuksista vain kaksi yltävät laadukkaan tutkimuksen tasolle työkalun mukaan (@fig-qssp-harhadata-tutkimukset). Jos tutkimusharhan riskin raja-arvon laskee viiteenkymmeneen prosenttiin, 24 tutkimusta täyttävät kriteerin. Voidaan kuitenkin todeta, että tutkimusnäyttö on tämän vertailun mukaan heikkoa.

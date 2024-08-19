@@ -122,7 +122,50 @@ plot_freq <- function(x) {
 
 : Anonymisoinnin tarkastus- ja muutosmenetelmät muuttujaryhmittäin {#tbl-anonymisointimenettelyt}
 
-## Organisaation sisäinen epäasiallinen kohtelu
+## Taustamuuttujien määräsääntötarkistus
+
+```{r}
+#| label: taustamuuttujat-maarasaanto
+#| eval: false
+
+# Organisaatioryhmä
+data %>%
+  select(k2) %>%
+  table(useNA = "always")
+
+# Sukupuoli
+data %>%
+  select(k31) %>%
+  table(useNA = "always")
+
+# Ammattiryhmä
+data %>%
+  select(k40) %>%
+  table(useNA = "always")
+```
+
+Jokaisessa yllä olevassa solussa pitää olla vähintään `n = 30` vastaajaa. Jos tämä ei täyty, tehdään seuraavat muutokset:
+
+-   `k2` Organisaatioryhmä: Järjestöt yhdistetään koulutusorganisaatioihin: `k2 == 3 | k2 == 4 ~ 3`
+-   `k31` Sukupuoli: Muu ja/tai En halua vastata -vastaajat poistetaan: `data %>% filter(k31 != 3) %>% filter(k31 != 4)` (jos molemmat täyttyvät; jätä pois toinen filter-verbi tarpeen mukaan)
+-   `k40` Ammattiryhmä: **MITÄ TEHDÄÄN, JÄTETÄÄNKÖ MUU POIS? EI PITÄISI TULLA VASTAAN...**
+
+## Organisaatioaseman 5-anonymiteetin tarkastus
+
+```{r}
+ftable(xtabs(~ Organisaatioasema + k2 + k31, data = data))
+```
+
+Jokaisessa solussa yllä pitäisi olla joko `n = 0` vastaajaa tai vähintään `n = 5` vastaajaa. Näissä tapauksissa ei tarvita tehdä mitään.
+
+Jos vastaajamäärä jossain solussa on `0 > n > 5`, tehdään tarpeelliset muutokset vain järjestöjen ja koulutusorganisaatioiden osalta:
+
+1.  Yhdistetään kaksi pienintä seuraavista ryhmistä: johto, asiantuntijat, hallintohenkilöstö
+2.  Yhdistetään kaikki kolme seuraavista ryhmistä: johto, asiantuntijat, hallintohenkilöstö
+
+**Tähän samanlainen funktio kuin valmistelussa tehty organisaatioaseman ryhmäkoodaus: Tehdään uusi muuttuja "Organisaatioasema_2" (tmv.), data -\> filter -\> mutate -\> rows_update**
+
+## VANHAA Organisaation sisäinen epäasiallinen kohtelu
 
 ```{r}
 #| label: 01_anon_ek_itse_sisa
