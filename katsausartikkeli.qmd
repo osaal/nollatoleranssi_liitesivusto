@@ -1,0 +1,606 @@
+# Katsausartikkeli {#sec-katsausartikkeli}
+
+---
+eval: true
+freeze: true
+format:
+  html:
+    code-tools: true
+---
+
+Tämä osio sisältää hankkeen kirjallisuuskatsaukseen liittyvän tutkimusartikkelin dokumentoinnin ja toistotiedot. Artikkelin sisältö eroaa lievästi hankkeen kirjallisuuskatsauksesta aiheen vuoksi.
+
+Otsikko: **Pelastajien ja ensihoitajien kokema epäasiallinen ja väkivaltainen kohtelu - systemaattiseen kirjallisuuskatsaukseen pohjautuva käsiteanalyysi ja esiintyvyyden meta-analyysi**
+
+Julkaisutila: **Julkaisematon**
+
+Kaikki koodiruudut ovat nähtävissä avaamalla koodin pudotusvalikon. Koodit voi myös asettaa näkyville valitsemalla "Show all code" yläoikealla olevassa pudotusvalikossa. Painamalla samasta pudotusvalikosta "Source code" näkyy koko dokumentin Markdown-lähde.
+
+```{r}
+#| label: art-000-paketit
+
+# Avataan tarpeelliset kirjastot hiljaisesti
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(ggstatsplot)
+  library(PRISMA2020)
+  library(metafor)
+  library(knitr) # Vain verkkosivun taulukon taittoon, voi jättää muuten pois
+})
+```
+
+## Datasaatavuus
+
+Kaikki tässä osiossa käytetty data on saatavilla verkkosivun GitHub-lähteessä. Alla on myös eritelty linkit jokaiselle datatiedostolle:
+
+-   [PRISMA-kulkukaavion tiedot](https://github.com/osaal/nollatoleranssi_liitesivusto/blob/master/data/20240702_PRISMAtiedot.csv)
+
+-   [Tulosten yleiskuvatiedot](https://github.com/osaal/nollatoleranssi_liitesivusto/blob/master/data/20240528_tulostenmetatiedot.csv)
+
+-   [Määrällisten kyselyjen laadunarviointitiedot](https://github.com/osaal/nollatoleranssi_liitesivusto/blob/master/data/laadunarviointi_m%C3%A4%C3%A4r%C3%A4llisetkyselyt.csv)
+
+-   [Tutkimusten käsitemääritelmätiedot](https://github.com/osaal/nollatoleranssi_liitesivusto/blob/master/data/artikkeli_määritelmät.csv)
+
+-   [Vakiintuneiden mittareiden tiedot](https://github.com/osaal/nollatoleranssi_liitesivusto/blob/master/data/artikkeli_mittarit_vakiintuneet.csv)
+
+-   [Itsekehitettyjen mittareiden tiedot](https://github.com/osaal/nollatoleranssi_liitesivusto/blob/master/data/artikkeli_mittarit_itsekehitetyt.csv)
+
+-   [Meta-analyysin tiedot](https://github.com/osaal/nollatoleranssi_liitesivusto/blob/master/data/metaanalyysidata.csv)
+
+Kaikki data on UTF-8-mallisessa `.csv`-tiedostossa käyttäen puolipistettä erottimena.
+
+```{r}
+#| label: art-001-datanavaus
+
+### PRISMA-kulkukaavion tiedot
+
+# Käytämme csv2-funktiota, koska Excel ei suostu exportoimaan csv-tiedostoa pilkkuerottimella puolipiste-erottimen sijaan, jostain syystä.
+prisma <- read.csv2("data/artikkeli_PRISMAtiedot.csv") %>% PRISMA_data(.)
+
+### Yleiskuvatiedot
+data <- read.csv2("data/20240528_tulostenmetatiedot.csv") %>%
+  tibble() %>%
+  dplyr::filter(Haku %in% c(1:4, 6))
+
+### Määrällisten kyselyjen laadunarviointitiedot
+harhadata <- read.csv2("data/laadunarviointi_määrällisetkyselyt.csv") %>%
+  tibble() %>%
+  dplyr::filter(!Viite %in% c(
+    "Huotari 2019",
+    "Keskinen 2011",
+    "Koivunen ym. 2018",
+    "Leino ym. 2011a",
+    "Leino ym. 2011b",
+    "Leino ym. 2011c",
+    "Leino ym. 2011d",
+    "Paasonen & Vainio 2022"
+  ))
+
+### Käsitemääritelmätiedot
+
+# Luetaan data ja korvataan tyhjät solut nollalla (käsittää vain numeraalit)
+maaritelmadata <- read.csv2("data/artikkeli_määritelmät.csv") %>%
+  tibble() %>%
+  replace(is.na(.), 0) %>%
+  dplyr::filter(!Artikkeli %in% c(
+  "Huotari 2019",
+  "Keskinen 2011",
+  "Koivunen ym. 2018",
+  "Leino ym. 2011a",
+  "Leino ym. 2011b",
+  "Leino ym. 2011c",
+  "Leino ym. 2011d",
+  "Paasonen & Vainio 2022"
+  ))
+
+### Vakiintuneiden mittareiden tiedot
+
+# Tämä tiedosto on varmennettu etukäteen, ettei sisällä viidennen haun tietoja.
+mittarit_vakiintuneet <- read.csv2("data/artikkeli_mittarit_vakiintuneet.csv") %>%
+  tibble()
+
+### Itsekehitettyjen mittareiden tiedot
+
+# Poistetaan viidennen haun tiedot, jos niitä esiintyy.
+mittarit_itsekehitetyt <- read.csv2("data/artikkeli_mittarit_itsekehitetyt.csv") %>%
+  tibble() %>%
+  dplyr::filter(!Viittaus %in% c(
+    "Huotari 2019",
+    "Keskinen 2011",
+    "Koivunen ym. 2018",
+    "Leino ym. 2011a",
+    "Leino ym. 2011b",
+    "Leino ym. 2011c",
+    "Leino ym. 2011d",
+    "Paasonen & Vainio 2022"
+  ))
+
+### Meta-analyysin tiedot
+
+metadata <- read.csv2("data/metaanalyysidata.csv") %>%
+  dplyr::filter(!stringr::str_detect(väkivaltamuoto, ","))
+metadata <- metadata %>%
+  tibble::rowid_to_column("ID")
+
+```
+
+## PRISMA-kulkukaavio
+
+Koska käsikirjoitukseen ei sisälly viidettä hakua (muut turvallisuustoimijat), PRISMA-kaavio eroaa kirjallisuuskatsauksen yleisestä kaaviosta.
+
+Artikkelin kaavio on tehty käsin *diagrams.net*-työkalun avulla (artikkelin **Kuvio 1**). Kaavioon liitetyt tiedot löytyvät alla olevassa kaaviossa.
+
+```{r}
+#| label: fig-art-prismakaavio
+#| fig-cap: "Systemaattisen krijallisuuskatsauksen PRISMA2020-protokollan mukainen kulkukaavio. Kaavio sisältää tiedot hauista 1-4 ja 6."
+
+PRISMA_flowdiagram(
+  prisma,
+  previous = FALSE,
+  other = TRUE,
+  detail_databases = FALSE,
+  fontsize = 11
+)
+```
+
+## Yleiskuva tutkimuskirjallisuudesta
+
+Yleiskuvan lukujen ja kuvioiden laatiminen seuraa kirjallisuuskatsauksen koko yleiskuvaa, mutta haku 5:n tulokset jätetään ulkopuolelle.
+
+### Julkaisuvuodet
+
+```{r}
+#| label: fig-art-julkaisuvuodet
+#| fig-cap: "Kirjallisuuskatsauksen tulokset julkaisuvuosittain. Sisältää haut 1-4 ja 6"
+
+ggplot(data = data, mapping = aes(x = Vuosi)) + 
+  geom_bar(stat = "count", fill = "#c20e1a") +
+  labs(y = "Määrä (n)") + 
+  scale_x_continuous(breaks = seq(from = 2010, to = 2023)) + 
+  geom_text(aes(label = ..count..), stat = "count", vjust = 1.5, colour = "white")
+```
+
+### Tutkimusasetelmat
+
+```{r}
+#| label: fig-art-asetelmat
+#| fig-cap: "Kirjallisuuskatsauksen tulokset tutkimusasetelmittain Sisältää haut 1-4 ja 6"
+
+ggplot(data = data, mapping = aes(x = Tutkimusasetelma)) + 
+  geom_bar(stat = "count", fill = "#c20e1a") +
+  labs(y = "Määrä (n)", x = "Tutkimusasetelmat") + 
+  scale_x_discrete(breaks = unique(data$Tutkimusasetelma)) +
+  geom_text(aes(label = ..count..), stat = "count", vjust = 1.5, colour = "white")
+```
+
+### Julkaisumuodot
+
+```{r}
+#| label: fig-art-muodot
+#| fig-cap: "Kirjallisuuskatsauksen tulokset julkaisumuodottain. Sisältää haut 1-4 ja 6"
+
+ggplot(data = data, mapping = aes(x = Muoto)) + 
+  geom_bar(stat = "count", fill = "#c20e1a") +
+  labs(y = "Määrä (n)", x = "Julkaisumuodot") + 
+  scale_x_discrete(breaks = unique(data$Muoto)) +
+  geom_text(aes(label = ..count..), stat = "count", vjust = 1.5, colour = "white")
+```
+
+### Tutkimusmaat
+
+```{r}
+#| label: fig-art-maat
+#| fig-cap: "Kirjallisuuskatsauksen tulokset maittain ja julkaisumuodottain.   Tuloksissa ei ole suomalaisia tutkimuksia. N/A = Ei sovellettavissa. Sisältää haut 1-4 ja 6"
+
+data %>% dplyr::filter(Toteutusmaa != "Suomi") %>%
+  ggplot(mapping = aes(x = Toteutusmaa, fill = Muoto)) + 
+  geom_bar(stat = "count") +
+  labs(y = "Määrä (n)", x = "Toteutusmaat") + 
+  scale_x_discrete(breaks = unique(data$Toteutusmaa), guide = guide_axis(angle = 45)) +
+  geom_text(aes(label = ..count..), stat = "count", vjust = -0.5, colour = "black", position = position_stack(vjust = 0.5))
+```
+
+## Tutkimuksen laadunarviointi
+
+Laadunarviointi seuraa samaa menetelmää kuin yleisen kirjallisuuskatsauksen tutkimusharhan riskiarviointi (ks. @sec-tulosten-yleiskuvaus).
+
+```{r}
+#| label: fig-art-qssp
+#| fig-cap: "Q-SSP-laadunarvioinnin tulokset aakkosjärjestyksessä tutkimuksittain (n = 45). Sisältää haut 1-4 ja 6"
+
+harhadata %>%
+  ggplot(mapping = aes(x = Viite)) +
+  geom_col(aes(y = Score), fill = "#c20e1a") +
+  geom_hline(yintercept = 73) +
+  geom_hline(yintercept = 72, linetype = "dashed") +
+  labs(y = "Luotettavuustaso (%)", x = "Julkaisu") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5)) + 
+  ylim(0, 100)
+```
+
+```{r}
+#| label: fig-art-qssp-alueet
+#| fig-cap: "Q-SSP-laadunarvioinnin tulokset instrumenttain (n = 45). Sisältää haut 1-4 ja 6"
+
+harhadata_pivot <- harhadata %>%
+  tidyr::pivot_longer(Johdanto_1:Etiikka_3, names_to = "Osaalue")
+ggplot(harhadata_pivot, aes(y = Osaalue, fill = value)) +
+  geom_bar(orientation = "y") +
+  geom_text(aes(label = ..count..), stat = "count", colour = "black", position = position_stack(vjust = 0.5))
+```
+
+```{r}
+#| label: fig-art-qssp-muodot
+#| fig-cap: "Q-SSP-laadunarvioinnin tulokset eri julkaisumuodoittain. Sisältää haut 1-4 ja 6"
+
+ggbetweenstats(
+  harhadata,
+  x = Julkaisumuoto,
+  y = Score,
+  type = "parametric",
+  pairwise.display = "all",
+  bf.message = FALSE,
+  ylab = "Luotettavuus (%)"
+)
+```
+
+## Epäasiallisen ja väkivaltaisen kohtelun määritelmät
+
+```{r}
+#| label: valmistelu_määritelmät
+
+maaritelmadata <- maaritelmadata %>%
+  mutate(
+    across(c(Antaa.määritelmän., Lakiviite, Tutkimusviite, Sanakirjaviite, Organisaatioviite), as.factor)
+  )
+```
+
+Huomautamme, että datatiedostossa olevat `X.`-tunnisteet vastaavat koko kirjallisuuskatsauksen numerointia, ei tämän artikkelin numerointia, ja eroavat siten käsikirjoituksen liitetaulukossa annetuista tunnistenumeroista. Tutkimukset voi sen sijaan yhdistää liitetaulukon tietoihin `Artikkeli`-sarakkeen tietojen avulla.
+
+### Tutkimusaiheet
+
+```{r}
+#| label: fig-art-maaritelmat-1
+#| fig-cap: "Tutkimusten keskittymiset"
+
+ggplot(data = maaritelmadata, mapping = aes(x = Tutkimuskategoria)) + 
+  geom_bar(stat = "count", fill = "#c20e1a") +
+  labs(y = "Määrä (n)", x = "Tutkimuskategoria") + 
+  scale_x_discrete(breaks = unique(maaritelmadata$Tutkimuskategoria)) +
+  geom_text(aes(label = ..count..), stat = "count", vjust = 1.5, colour = "white")
+```
+
+Tutkimuksista `r maaritelmadata %>% filter(Antaa.määritelmän. == 1) %>% nrow()` kappaletta antavat määritelmän analysoimalle käsitteelleen.
+
+Määritelmien lähteinä on käytetty seuraavanlaisia lähteitä (arvojen tuottama koodi nähtävissä verkkosivun lähdekoodissa):
+
+-   Lakiviite: `r maaritelmadata %>% filter(Lakiviite == 1) %>% nrow()` tutkimusta
+
+-   Tutkimusviite: `r maaritelmadata %>% filter(Tutkimusviite == 1) %>% nrow()` tutkimusta
+
+-   Sanakirjaviite: `r maaritelmadata %>% filter(Sanakirjaviite == 1) %>% nrow()` tutkimusta
+
+-   Organisaatioviite: `r maaritelmadata %>% filter(Organisaatioviite == 1) %>% nrow()` tutkimusta
+
+### Väkivaltatutkimusten käsitemäärittely
+
+```{r}
+#| label: fig-art-maaritelmat-2
+#| fig-cap: "Väkivaltatutkimukset (n = 49) käsitemäärittelyn mukaan. 0 = Ei anna määritelmää, 1 = Antaa määritelmän, 9 = Ei anna selkeää määritelmää mutta käsittelee aihetta."
+
+maaritelmadata %>%
+  dplyr::filter(Tutkimuskategoria == "Väkivalta") %>%
+  ggplot(mapping = aes(x = Antaa.määritelmän.)) +
+    geom_bar(stat = "count", fill = "#c20e1a") +
+    labs(y = "Määrä (n)", x = "Antaa määritelmän") + 
+    scale_x_discrete(breaks = unique(maaritelmadata$"Antaa.määritelmän.")) +
+    geom_text(aes(label = ..count..), stat = "count", vjust = 1.5, colour = "white")
+```
+
+Väkivaltatutkimusten aihealueet:
+
+-   Fyysinen väkivalta: `r maaritelmadata %>% filter(Fyysinen == 1) %>% nrow()` tutkimusta
+
+-   Henkinen väkivalta: `r maaritelmadata %>% filter(Henkinen == 1) %>% nrow()` tutkimusta
+
+-   Seksuaalinen väkivalta: `r maaritelmadata %>% filter(Seksuaalinen == 1) %>% nrow()` tutkimusta
+
+-   Välineellinen väkivalta: `r maaritelmadata %>% filter(Välineellinen == 1) %>% nrow()` tutkimusta
+
+-   Taloudellinen väkivalta: `r maaritelmadata %>% filter(Taloudellinen == 1) %>% nrow()` tutkimusta
+
+-   Lähisuhdeväkivalta: `r maaritelmadata %>% filter(Lähisuhde == 1) %>% nrow()` tutkimusta
+
+-   Etnisiin tai kulttuurillisiin vähemmistöihin kohdistuva väkivalta: `r maaritelmadata %>% filter(Etninen == 1) %>% nrow()` tutkimusta
+
+-   Kunniaan liittyvä väkivalta: `r maaritelmadata %>% filter(Kunnia == 1) %>% nrow()` tutkimusta
+
+## Epäasiallisen ja väkivaltaisen kohtelun tutkimusmenetelmät
+
+### Vakiintuneet mittarit
+
+Mittareita tunnistettiin yhteensä `r nrow(mittarit_vakiintuneet)` kappaletta.
+
+```{r}
+#| label: fig-vakiintuneet-aihealue
+#| fig-cap: "Vakiintuneet mittarit (n = 42) aihealueen mukaan"
+
+ggplot(data = mittarit_vakiintuneet, mapping = aes(x = Aihealue)) + 
+  geom_bar(stat = "count", fill = "#c20e1a") +
+  labs(y = "Määrä (n)", x = "Aihealue") + 
+  scale_x_discrete(breaks = unique(mittarit_vakiintuneet$Aihealue)) +
+  geom_text(aes(label = ..count..), stat = "count", vjust = 1.5, colour = "white")
+```
+
+```{r}
+#| label: tbl-vakiintuneet-kohtelumittarit
+#| tbl-cap: "Epäasiallisen kohtelun mittarit alkuperäisine ja käyttävine lähteineen"
+#| column: page
+
+mittarit_vakiintuneet %>%
+  knitr::kable(., col.names = c("Aihealue", "Mittarin nimi", "Alkuperäinen lähde", "Viittaava lähde"))
+```
+
+### Itsekehitetyt mittarit
+
+::: panel-tabset
+#### Aihealueet
+
+```{r}
+#| label: fig-itsekehitetyt-aihealue
+#| fig-cap: "Itsekehitetyt mittarit (n = 404) aihealueen mukaan"
+
+ggplot(data = mittarit_itsekehitetyt, mapping = aes(x = Aihealue)) + 
+  geom_bar(stat = "count", fill = "#c20e1a") +
+  labs(y = "Määrä (n)", x = "Aihealue") + 
+  scale_x_discrete(breaks = unique(mittarit_itsekehitetyt$Aihealue)) +
+  geom_text(aes(label = ..count..), stat = "count", vjust = 1.5, colour = "white")
+```
+
+#### Alatyypit
+
+```{r}
+#| label: fig-itsekehitetyt-alatyyppi
+#| fig-cap: "Itsekehitetyt mittarit (n = 404) aihealueen mukaan"
+
+ggplot(data = mittarit_itsekehitetyt, mapping = aes(x = Alatyyppi)) + 
+  geom_bar(stat = "count", fill = "#c20e1a") +
+  labs(y = "Määrä (n)", x = "Alatyyppi") + 
+  scale_x_discrete(breaks = unique(mittarit_itsekehitetyt$Alatyyppi)) +
+  geom_text(aes(label = ..count..), stat = "count", vjust = 1.5, colour = "white")
+```
+
+#### Näkökulmat
+
+```{r}
+#| label: fig-itsekehitetyt-näkökulma
+#| fig-cap: "Itsekehitetyt mittarit (n = 404) aihealueen mukaan"
+
+ggplot(data = mittarit_itsekehitetyt, mapping = aes(x = Näkökulma)) + 
+  geom_bar(stat = "count", fill = "#c20e1a") +
+  labs(y = "Määrä (n)", x = "Näkökulma") + 
+  scale_x_discrete(breaks = unique(mittarit_itsekehitetyt$Näkökulma)) +
+  geom_text(aes(label = ..count..), stat = "count", vjust = 1.5, colour = "white")
+```
+:::
+
+## Epäasiallisen ja väkivaltaisen kohtelun esiintyvyys
+
+### Sisällyttämiskriteerit
+
+Sisällytimme meta-analyysiin kirjallisuuskatsauksesta 33 tutkimusta, jotka täyttivät seuraavat kriteerit:
+
+1.  Estimoi epäasiallisen tai väkivaltaisen kohtelun esiintyvyyden määrällisesti
+2.  Estimaatit ovat joko absoluuttisia määriä (n) tai relatiivisia lukuja (prosenttiarvoja)
+3.  Estimaatit raportoidaan tekstissä, kuvissa, taulukoissa tai liitetiedostoissa
+4.  Tutkimus ei ole rekisteritutkimus tai rekisterin kaltainen tutkimus
+
+Seulosimme kaikki kriteerit täyttävät tutkimukset läpi ja keräsimme Excel-taulukkoon tutkimusten jokaisen estimaatin arvon sekä estimaatin otoskoko. Jos tutkimus raportoi sisäistä katoa, käytimme estimaattikohtaista otoskokoa; jos katoa ei raportoitu, käytimme tutkimuksen (tai sen relevanttien kohderyhmien) otoskokoa.
+
+Luokittelimme kaikki estimaatit väkivaltaluokituksen mukaisesti [@bildjuschkin2019]. Jätimme pois kaikki estimaatit, jotka käsittelivät "Muu"-luokkia.
+
+Kuudelle estimaatille emme voineet antaa yksiselitteistä luokkaa. Jätimme nämä estimaatit analyysin ulkopuolelle:
+
+-   "Verbaalinen ja fyysinen väkivalta" [@bernaldo-de-quirós2015]
+-   "Seksuaalinen tai taloudellinen väkivalta" [@gümüssoy2021]
+-   "Fyysinen väkivalta tai sen uhka" [@heikkinen2023]
+-   "Aseella uhkaaminen tai päälle käyminen" [@immonen2019]
+-   "Teräaseen tai muun välineen käyttö tai sillä uhkailu" [@kiviniemi2021]
+-   "Verbaalinen kaltoinkohtelu (törkeä kieli, loukkaavat sanonnat sisältäen seksuaaliset, nolottavat lauseet; törkeät kommentit)" [@shkatula2019]
+
+Käytetty data on saatavilla tämän sivuston GitHub-lähdekoodista; datatiedoston saa [tästä linkistä](https://github.com/osaal/nollatoleranssi_liitesivusto/blob/master/data/metaanalyysidata.csv) suoraan. Huomautamme, että datatiedostossa olevat `nro`-tunnisteet vastaavat koko kirjallisuuskatsauksen numerointia, ei tämän artikkelin numerointia, ja eroavat siten käsikirjoituksen liitetaulukossa annetuista tunnistenumeroista. Tutkimukset voi sen sijaan yhdistää liitetaulukon tietoihin `artikkeli`-sarakkeen tietojen avulla.
+
+### Datavalmistelu
+
+```{r}
+#| label: 00_valmistelu
+
+# Tehdään valmis tulostaulukko myöhemmäksi
+tulokset <- tibble(
+  muoto = character(),
+  arvo = numeric(),
+  ci_ala = numeric(),
+  ci_ylä = numeric()
+)
+```
+
+Muunsimme ensin kaikki prosenttiluvut logit-luvuiksi ja laskimme niiden keskivirheet. Tämä muunnos tehdään, jotta voimme suorittaa monitasoisen meta-analyysin myöhemmin.
+
+```{r}
+#| label: 01_logitmuunnos
+
+metadata <- metadata %>%
+  add_column(
+    pros_log = numeric(nrow(metadata)),
+    pros_sqrtse = numeric(nrow(metadata))
+  )
+metadata <- metadata %>%
+  dplyr::select(ID, otoskoko, pros) %>%
+  dplyr::filter(pros != 0) %>%
+  dplyr::mutate(
+    pros_log = log(pros/(1-pros)),
+    pros_sqrtse = (1/(otoskoko*pros))+(1/(otoskoko*(1-pros)))
+  ) %>%
+  dplyr::rows_update(
+    x = metadata,
+    y = .,
+    by = "ID",
+    copy = TRUE
+  )
+```
+
+### Mallien estimointi
+
+Asetimme sitten jokaiselle väkivaltamuodolle oman kolmitasoisen meta-analyyttisen mallin `metafor`-paketin avulla.
+
+```{r}
+#| label: malli_fyysinen
+malli_fyysinen <- metafor::rma.mv(
+  yi = pros_log,
+  V = pros_sqrtse,
+  slab = artikkeli,
+  data = dplyr::filter(metadata, väkivaltamuoto == "Fyysinen"),
+  random = ~ 1 | artikkeli/ID,
+  test = "t",
+  method = "REML"
+)
+
+tulokset <- tulokset %>%
+  add_case(
+    muoto = "Fyysinen",
+    arvo = as.double(exp(malli_fyysinen$b) / (1 + exp(malli_fyysinen$b))),
+    ci_ala = as.double(exp(malli_fyysinen$ci.lb) / (1 + exp(malli_fyysinen$ci.lb))),
+    ci_ylä = as.double(exp(malli_fyysinen$ci.ub) / (1 + exp(malli_fyysinen$ci.ub)))
+  )
+```
+
+```{r}
+#| label: malli_henkinen
+malli_henkinen <- metafor::rma.mv(
+  yi = pros_log,
+  V = pros_sqrtse,
+  slab = artikkeli,
+  data = dplyr::filter(metadata, väkivaltamuoto == "Henkinen"),
+  random = ~ 1 | artikkeli/ID,
+  test = "t",
+  method = "REML"
+)
+
+tulokset <- tulokset %>%
+  add_case(
+    muoto = "Henkinen",
+    arvo = as.double(exp(malli_henkinen$b) / (1 + exp(malli_henkinen$b))),
+    ci_ala = as.double(exp(malli_henkinen$ci.lb) / (1 + exp(malli_henkinen$ci.lb))),
+    ci_ylä = as.double(exp(malli_henkinen$ci.ub) / (1 + exp(malli_henkinen$ci.ub)))
+  )
+```
+
+```{r}
+#| label: malli_seksuaalinen
+malli_seksuaalinen <- metafor::rma.mv(
+  yi = pros_log,
+  V = pros_sqrtse,
+  slab = artikkeli,
+  data = dplyr::filter(metadata, väkivaltamuoto == "Seksuaalinen"),
+  random = ~ 1 | artikkeli/ID,
+  test = "t",
+  method = "REML"
+)
+
+tulokset <- tulokset %>%
+  add_case(
+    muoto = "Seksuaalinen",
+    arvo = as.double(exp(malli_seksuaalinen$b) / (1 + exp(malli_seksuaalinen$b))),
+    ci_ala = as.double(exp(malli_seksuaalinen$ci.lb) / (1 + exp(malli_seksuaalinen$ci.lb))),
+    ci_ylä = as.double(exp(malli_seksuaalinen$ci.ub) / (1 + exp(malli_seksuaalinen$ci.ub)))
+  )
+```
+
+```{r}
+#| label: malli_välineellinen
+malli_välineellinen <- metafor::rma.mv(
+  yi = pros_log,
+  V = pros_sqrtse,
+  slab = artikkeli,
+  data = dplyr::filter(metadata, väkivaltamuoto == "Välineellinen"),
+  random = ~ 1 | artikkeli/ID,
+  test = "t",
+  method = "REML"
+)
+
+tulokset <- tulokset %>%
+  add_case(
+    muoto = "Välineellinen",
+    arvo = as.double(exp(malli_välineellinen$b) / (1 + exp(malli_välineellinen$b))),
+    ci_ala = as.double(exp(malli_välineellinen$ci.lb) / (1 + exp(malli_välineellinen$ci.lb))),
+    ci_ylä = as.double(exp(malli_välineellinen$ci.ub) / (1 + exp(malli_välineellinen$ci.ub)))
+  )
+```
+
+```{r}
+#| label: malli_kemiallinen
+malli_kemiallinen <- metafor::rma.mv(
+  yi = pros_log,
+  V = pros_sqrtse,
+  slab = artikkeli,
+  data = dplyr::filter(metadata, väkivaltamuoto == "Kemiallinen"),
+  random = ~ 1 | artikkeli/ID,
+  test = "t",
+  method = "REML"
+)
+
+tulokset <- tulokset %>%
+  add_case(
+    muoto = "Kemiallinen",
+    arvo = as.double(exp(malli_kemiallinen$b) / (1 + exp(malli_kemiallinen$b))),
+    ci_ala = as.double(exp(malli_kemiallinen$ci.lb) / (1 + exp(malli_kemiallinen$ci.lb))),
+    ci_ylä = as.double(exp(malli_kemiallinen$ci.ub) / (1 + exp(malli_kemiallinen$ci.ub)))
+  )
+```
+
+```{r}
+#| label: malli_syrjintä
+malli_syrjintä <- metafor::rma.mv(
+  yi = pros_log,
+  V = pros_sqrtse,
+  slab = artikkeli,
+  data = dplyr::filter(metadata, väkivaltamuoto == "Syrjintä"),
+  random = ~ 1 | artikkeli/ID,
+  test = "t",
+  method = "REML"
+)
+
+tulokset <- tulokset %>%
+  add_case(
+    muoto = "Syrjintä",
+    arvo = as.double(exp(malli_syrjintä$b) / (1 + exp(malli_syrjintä$b))),
+    ci_ala = as.double(exp(malli_syrjintä$ci.lb) / (1 + exp(malli_syrjintä$ci.lb))),
+    ci_ylä = as.double(exp(malli_syrjintä$ci.ub) / (1 + exp(malli_syrjintä$ci.ub)))
+  )
+```
+
+### Tulokset
+
+Tulokset ovat esitettynä alla olevassa taulukossa (@tbl-tulokset) ja kuviossa (@fig-tulokset). Kuvio vastaa käsikirjoituksen **Kuvio 4:ää**. Taulukon lukuja käytetään juoksevassa tekstissä.
+
+```{r}
+#| label: tbl-tulokset
+#| tbl-cap: "Meta-analyysin arvioimat esiintymismuodot ja niiden luottamusvälit (95 %) desimaaleina"
+
+knitr::kable(tulokset)
+```
+
+```{r}
+#| label: fig-tulokset
+#| fig-cap: "Meta-analyysin arvioimat esiintyvyydet ja niiden luottamusvälit (95 %) desimaaleissa"
+
+ggplot(tulokset) +
+  aes(x = muoto, y = arvo, fill = muoto) +
+  geom_col() +
+  geom_errorbar(aes(ymin = ci_ala, ymax = ci_ylä)) + 
+  labs(
+    x = "Väkivaltamuoto",
+    y = "Esiintyvyys",
+    fill = "Väkivaltamuoto"
+  )
+```

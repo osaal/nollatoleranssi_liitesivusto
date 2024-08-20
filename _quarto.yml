@@ -14,7 +14,7 @@ book:
         - seulontamenetelma.qmd
         - prismakaavio.qmd
         - yleiskuvailu.qmd
-        - metaanalyysi.qmd
+        - katsausartikkeli.qmd
     - part: "Katsauksen osahaut"
       chapters:
         - haku1.qmd
@@ -63,7 +63,7 @@ book:
         - seulontamenetelma.qmd
         - prismakaavio.qmd
         - yleiskuvailu.qmd
-        - metaanalyysi.qmd
+        - katsausartikkeli.qmd
     
     - id: katsauksenhaut
       title: "Katsauksen osahaut"

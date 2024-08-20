@@ -1,0 +1,33 @@
+﻿data;node;box;description;boxtext;tooltips;url;n
+NA;node4;prevstud;"Harmaa otsikkolaatikko; Aikaisemmat tutkimukset";Aikaisemmat tutkimukset;"Harmaa otsikkolaatikko; Aikaisemmat tutkimukset";prevstud.html;0
+previous_studies;node5;box1;Sisällytetyt tutkimukset katsauksen aikaisemmassa versiossa;Sisällytetyt tutkimukset katsauksen aikaisemmassa versiossa;Sisällytetyt tutkimukset katsauksen aikaisemmassa versiossa;previous_studies.html;0
+previous_reports;NA;box1;Katsauksen aikaisemman version sisällytettyjen tutkimusten raportit;Katsauksen aikaisemman version sisällytettyjen tutkimusten raportit;NA;previous_reports.html;0
+NA;node6;newstud;"Keltainen otsikkolaatikko; Uusien tutkimusten tunnistaminen tietokantojen ja rekistereiden avulla";Uusien tutkimusten tunnistaminen tietokantojen ja rekistereiden avulla;"Keltainen otsikkolaatikko; Uusien tutkimusten tunnistaminen tietokantojen ja rekistereiden avulla";newstud.html;0
+database_results;node7;box2;Tietueet tunnistettu: tietokannoista;Tietokannat;Tietueet tunnistettu: tietokannoista ja rekistereistä;database_results.html;6651
+database_specific_results;NA;box2;Tietueet tunnistettu: yksilöidyistä tietokannoista;Yksilöidyt tietokannat;NA;database_results.html;"Database 1, xxx; Database 2, xxx; Database 3, xxx"
+register_results;NA;box2;Tietueet tunnistettu: rekistereistä;Rekisterit;NA;NA;0
+register_specific_results;NA;box2;Tietueet tunnistettu: yksilöidyistä rekistereistä;Yksilöidyt rekisterit;NA;database_results.html;"Register 1, xxx; Register 2, xxx; Register 3, xxx"
+NA;node16;othstud;"Harmaa otsikkolaatikko; Uusien tutkimusten tunnistaminen muilla menetemillä";Uusien tutkimusten tunnistaminen muilla menetemillä;"Harmaa otsikkolaatikko; Uusien tutkimusten tunnistaminen muilla menetemillä";othstud.html;0
+website_results;node17;box11;Tietueet tunnistettu: verkkosivuilta;Verkkosivut;Tietueet tunnistettu: verkkosivuilta, organisaatioilta ja viitehakemisella;website_results.html;0
+organisation_results;;box11;Tietueet tunnistettu: organisaatioilta;Organisaatiot;NA;NA;7
+citations_results;NA;box11;Tietueet tunnistettu: viitehakemisella;Viitehakeminen;NA;NA;0
+duplicates;node8;box3;Kaksoiskappaleet;Kaksoiskappaleet;Kaksoiskappaleet;duplicates.html;1215
+excluded_automatic;NA;box3;Automaatiotyökaluilla sopimattomiksi merkityt tietueet;Automaatiotyökaluilla sopimattomiksi merkityt tietueet;NA;NA;0
+excluded_other;NA;box3;Muista syistä poistetut tietueet;Muista syistä poistetut tietueet;NA;NA;0
+records_screened;node9;box4;Seulotut tietueet (tietokannat ja rekisterit);Seulotut tietueet;Seulotut tietueet (tietokannat ja rekisterit);records_screened.html;5436
+records_excluded;node10;box5;Poissuljetut tietueet (tietokannat ja rekisterit);Poissuljetut tietueet;Poissuljetut tietueet (tietokannat ja rekisterit);records_excluded.html;5200
+dbr_sought_reports;node11;box6;Haettavat raportit (tietokannat ja rekisterit);Haettavat raportit;Haettavat raportit (tietokannat ja rekisterit);dbr_sought_reports.html;236
+dbr_notretrieved_reports;node12;box7;Hakematta jääneet raportit (tietokannat ja rekisterit);Hakematta jääneet raportit;Hakematta jääneet raportit (tietokannat ja rekisterit);dbr_notretrieved_reports.html;19
+other_sought_reports;node18;box12;Haettavat raportit (muut);Haettavat raportit;Haettavat raportit (muut);other_sought_reports.html;7
+other_notretrieved_reports;node19;box13;Hakematta jääneet raportit (muut);Hakematta jääneet raportit;Hakematta jääneet raportit (muut);other_notretrieved_reports.html;0
+dbr_assessed;node13;box8;Kelpoisuudeltaan tarkistetut raportit (tietokannat ja rekisterit);Kelpoisuudeltaan tarkistetut raportit;Kelpoisuudeltaan tarkistetut raportit (tietokannat ja rekisterit);dbr_assessed.html;217
+dbr_excluded;node14;box9;"Kelpoisuudeltaan tarkistetut raportit (tietokannat ja rekisterit): [syyt ja määrät eriteltynä puolipisteellä, esim. Syy1, xxx; Syy2, xxx; Syy3, xxx]";Poissuljetut raportit;Poissuljetut raportit (tietokannat ja rekisterit);dbrexcludedrecords.html;"Aihe, 31; Aineistomuoto, 18; Kohderyhmä, 36; Maantiede, 23; Julkaisutyyppi, 6; Ajankohta, 2; Monisyinen, 41"
+other_assessed;node20;box14;Kelpoisuudeltaan tarkistetut raportit (muu);Kelpoisuudeltaan tarkistetut raportit;Kelpoisuudeltaan tarkistetut raportit (muu);other_assessed.html;7
+other_excluded;node21;box15;"Kelpoisuudeltaan tarkistetut raportit (muu): [syyt ja määrät eriteltynä puolipisteellä, esim. Syy1, xxx; Syy2, xxx; Syy3, xxx]";Poissuljetut raportit;Poissuljetut raportit (muu);other_excluded.html;"Aihe, 4; Kohderyhmä, 1; Monisyinen, 1"
+new_studies;node15;box10;Katsaukseen sisällytetyt uudet tutkimukset;Katsaukseen sisällytetyt uudet tutkimukset;Katsaukseen sisällytetyt uudet tutkimukset;new_studies.html;61
+new_reports;NA;box10;Raportit katsaukseen sisällytetyistä uusista tutkimuksista;Raportit katsaukseen sisällytetyistä uusista tutkimuksista;NA;NA;0
+total_studies;node22;box16;Katsaukseen sisällytetyt tutkimukset yhteensä;Katsaukseen sisällytetyt tutkimukset yhteensä;Katsaukseen sisällytetyt tutkimukset yhteensä;total_studies.html;61
+total_reports;NA;box16;Raportit katsaukseen sisällytetyistä tutkimuksista yhteensä;Raportit katsaukseen sisällytetyistä tutkimuksista yhteensä;NA;NA;0
+identification;node1;identification;Sininen tunnistamisen laatikko;Tunnistaminen;Sininen tunnistamisen laatikko;identification.html;0
+screening;node2;screening;Sininen seulonnan laatikko;Seulonta;Sininen seulonnan laatikko;screening.html;0
+included;node3;included;Sininen sisällytettyjen laatikko;Sisällytetty;Sininen sisällytettyjen laatikko;included.html;0

@@ -1,0 +1,406 @@
+﻿Aihealue;Alatyyppi;Näkökulma;Kysymys;Mittaus;Viittaus
+Väkivalta;Esiintyminen;Fakta;Kuinka usein kohtaat väkivaltaisesti käyttäytyviä potilaita työssäsi?;Viikottain -- Kuukausittain -- Vuosittain -- Harvemmin -- En koskaan;Annala & Moilanen 2013
+Väkivalta;Esiintyminen;Fakta;Oletko kokenut ensihoitourallasi itseesi kohdistuvaa henkistä väkivaltaa?;Kyllä -- Ei;Annala & Moilanen 2013
+Väkivalta;Muodot;Fakta;Jos olet kokenut henkistä väkivaltaa, kuinka usein olet kokenut seuraavia henkisen väkivallan muotoja? [Viikottain -- Kuukausittain -- Vuosittain -- Harvemmin -- Ei koskaan];Haukkuminen / solvaaminen / nimittely -- Väkivallalla tai tappamisella uhkaaminen -- Epäsuora uhkailu (kohdistuu lähiomaisiin) -- Eleillä uhkaaminen -- Kotieläimellä uhkaaminen -- Esineellä /astalallo uhkaaminen (väline näkyvillä tai kädessä) -- Teräaseella uhkaaminen (väline näkyvillä tai kädessä) -- Ampuma-aseella uhkaaminen (väline näkyvillä tai kädessä);Annala & Moilanen 2013
+Väkivalta;Esiintyminen;Fakta;Oletko kokenut ensihoitourallasi itseesi kohdistuvaa fyysistä väkivaltaa?;Kyllä -- Ei;Annala & Moilanen 2013
+Väkivalta;Muodot;Fakta;Jos olet kokenut fyysistä väkivaltaa, kuinka usein olet kokenut seuraavia fyysisen väkivallan muotoja? [Viikottain -- Kuukausittain -- Vuosittain -- Harvemmin -- Ei koskaan];Kiinnitarttuminen / liikkumisen estäminen -- Lyönnit -- Potkut -- Päälle sylkeminen -- Töniminen -- Pureminen -- Raapiminen -- Esineellä heittäminen -- Kotieläimen hyökkäys -- Esineellä vahingoittaminen -- Teräaseella vahingoittaminen -- Ampuma-aseella vahingoittaminen;Annala & Moilanen 2013
+Väkivalta;Muodot;Fakta;Kuinka usein sinuun on työaikana kohdistunut fyysistä väkivaltaa seuraavissa paikoissa? [Lähes aina -- Usein -- Joskus -- Harvoin -- Ei koskaan];Potilaan koti -- Ambulanssin hoitotila -- Hoitolaitos -- Kapakka / Pubi -- Yleinen / julkinen tila (myös ulkona);Annala & Moilanen 2013
+Väkivalta;Muodot;Fakta;Kuinka usein sinuun on työaikana kohdistunut fyysistä väkivaltaa seuraavina vuorokauden aikoina? [Lähes aina -- Usein -- Joskus -- Harvoin -- Ei koskaan];Virka-aika -- Arki-ilta -- Arki-yö -- Viikonloppupäivä -- Viikonloppuilta -- Viikonloppuyö;Annala & Moilanen 2013
+Väkivalta;Muodot;Fakta;Oletko kokenut henkistä tai fyysistä väkivaltaa seuraavilta tahoilta? [Monivalinta, henkistä ja fyysistä väkivaltaa erikseen, ruksi ruutuun];Potilas -- Omainen -- Sivullinen -- En ole kokenut väkivaltaa;Annala & Moilanen 2013
+Väkivalta;Muodot;Fakta;Oletko joutunut fyysiseen väkivaltatilanteeseen niin, ettet ole kyennyt ennakoimaan tilannetta?;Kyllä -- Ei;Annala & Moilanen 2013
+Väkivalta;Muodot;Fakta;Kokemiesi väkivaltatilanteiden perusteella: Kuinka usein huomasit seuraavien seikkojen olleen läsnä ennen henkistä väkivaltatilannetta? [Lähes aina -- Usein -- Joskus -- Harvoin -- Ei koskaan];"Potilas oli alkoholin / huumausaineiden vaikutuksen alaisena -- Potilaan psyykkinen sairaus -- Psyykkisesti sairaan potilaan päihtymystila -- Toiminta vastoin potilaan tahtoa -- Apua hälytetty potilaan tietämättä / tahtomatta -- Poliisin hälyttämisellä ""uhkaaminen"" -- Ambulanssin pitkä vasteaika -- Potilaan tyytymättömyys saamaansa hoitoon -- Omaisen suorittama provosointi -- Sivullisten suorittama provosointi";Annala & Moilanen 2013
+Väkivalta;Muodot;Fakta;Kokemiesi väkivaltatilanteiden perusteella: Kuinka usein huomasit seuraavien seikkojen olleen läsnä ennen fyysistä väkivaltatilannetta? [Lähes aina -- Usein -- Joskus -- Harvoin -- Ei koskaan];"Potilas oli alkoholin / huumausaineiden vaikutuksen alaisena -- Potilaan psyykkinen sairaus -- Psyykkisesti sairaan potilaan päihtymystila -- Toiminta vastoin potilaan tahtoa -- Apua hälytetty potilaan tietämättä / tahtomatta -- Poliisin hälyttämisellä ""uhkaaminen"" -- Ambulanssin pitkä vasteaika -- Potilaan tyytymättömyys saamaansa hoitoon -- Omaisen suorittama provosointi -- Sivullisten suorittama provosointi";Annala & Moilanen 2013
+Väkivalta;Muodot;Fakta;Kokemiesi väkivaltatilanteiden perusteella: Toimitko joskus seuraavilla tavoilla ennen väkivaltatilannetta? [Monivalinta, henkistä ja fyysistä väkivaltaa erikseen, ruksi ruutuun];Ääneni nousi -- Käytin epäasiallista kieltä -- Käyttäydyin hermostuneesti -- Menetin malttini -- Jouduin tekemään potilaan tahdon vastaisesti (esim. X-5 tai M1) -- Ei mitään yllä olevista;Annala & Moilanen 2013
+Väkivalta;Toimenpiteet;Näyte;Oman kokemuksesi mukaan: kuinka riittävästi ensihoidon työpaikoillasi on mielestäsi varauduttu väkivaltatilanteisiin seuraavilla toimilla? [Erinomaisesti -- Hyvin -- Kohtalaisesti -- Välttävästi -- Riittämättömästi];Koulutukset -- Turvavarusteet -- Ohjeistukset -- Harjoitukset poliisien kanssa;Annala & Moilanen 2013
+Väkivalta;Toimenpiteet;Näyte;Kuinka riittäväksi koet edellä mainitut toimet?;Riittävät -- Hyvät -- Kohtalaiset -- Välttävät -- Riittämättömät;Annala & Moilanen 2013
+Väkivalta;Esiintyminen;Fakta;[Major occupational stressor: When the employee's health and safety is in danger];[5-pt Likert, always -- never];Blaževičienė ym. 2016
+Väkivalta;Esiintyminen;Fakta;[Major occupational stressor: When employees have to communicate with violent patients];[5-pt Likert, always -- never];Blaževičienė ym. 2016
+Väkivalta;Esiintyminen;Fakta;[Major occupational stressor: When employees have to confront abusive patients];[5-pt Likert, always -- never];Blaževičienė ym. 2016
+Väkivalta;Esiintyminen;Fakta;I have been pushed;[Experience and frequency, epäselvä];Braun ym. 2021
+Väkivalta;Esiintyminen;Fakta;I have been hit;[Experience and frequency, epäselvä];Braun ym. 2021
+Väkivalta;Esiintyminen;Fakta;I have been kicked;[Experience and frequency, epäselvä];Braun ym. 2021
+Väkivalta;Esiintyminen;Fakta;I have been threatened with a weapon;[Experience and frequency, epäselvä];Braun ym. 2021
+Väkivalta;Esiintyminen;Fakta;I have been attacked with a weapon;[Experience and frequency, epäselvä];Braun ym. 2021
+Väkivalta;Esiintyminen;Fakta;I have been pelted with stones;[Experience and frequency, epäselvä];Braun ym. 2021
+Väkivalta;Esiintyminen;Fakta;I have been pelted with fireworks;[Experience and frequency, epäselvä];Braun ym. 2021
+Väkivalta;Esiintyminen;Fakta;I have been locked up;[Experience and frequency, epäselvä];Braun ym. 2021
+Väkivalta;Esiintyminen;Fakta;Something has been stolen from me during a mission;[Experience and frequency, epäselvä];Braun ym. 2021
+Väkivalta;Esiintyminen;Fakta;My equipment has been intentionally damaged;[Experience and frequency, epäselvä];Braun ym. 2021
+Väkivalta;Esiintyminen;Fakta;The emergency vehicle has been intentionally damaged;[Experience and frequency, epäselvä];Braun ym. 2021
+Häirintä;Kulttuuri;Näyte;Provocative, low cut outfits are a cause of women being molested;[3-pt Likert: Agree -- Neither agree nor disagree -- Disagree];Çalıkoglu ym. 2018
+Häirintä;Kulttuuri;Näyte;It is the duty of a wife to have sex with her husband;[3-pt Likert: Agree -- Neither agree nor disagree -- Disagree];Çalıkoglu ym. 2018
+Häirintä;Kulttuuri;Näyte;A woman out of home late in the night should expect molestation;[3-pt Likert: Agree -- Neither agree nor disagree -- Disagree];Çalıkoglu ym. 2018
+Häirintä;Kulttuuri;Näyte;Sexual harassment is in part a woman's own fault;[3-pt Likert: Agree -- Neither agree nor disagree -- Disagree];Çalıkoglu ym. 2018
+Syrjintä;Kulttuuri;Näyte;A woman should always be under the control of her man;[3-pt Likert: Agree -- Neither agree nor disagree -- Disagree];Çalıkoglu ym. 2018
+Syrjintä;Kulttuuri;Näyte;The woman should be at home early, before her husband;[3-pt Likert: Agree -- Neither agree nor disagree -- Disagree];Çalıkoglu ym. 2018
+Syrjintä;Kulttuuri;Näyte;The husband should be more educated than his wife;[3-pt Likert: Agree -- Neither agree nor disagree -- Disagree];Çalıkoglu ym. 2018
+Syrjintä;Kulttuuri;Näyte;Child care is primarily a woman's duty;[3-pt Likert: Agree -- Neither agree nor disagree -- Disagree];Çalıkoglu ym. 2018
+Syrjintä;Kulttuuri;Näyte;Men should not do housework;[3-pt Likert: Agree -- Neither agree nor disagree -- Disagree];Çalıkoglu ym. 2018
+Syrjintä;Kulttuuri;Näyte;Men have the duty to provide for their household;[3-pt Likert: Agree -- Neither agree nor disagree -- Disagree];Çalıkoglu ym. 2018
+Syrjintä;Kulttuuri;Näyte;If a man does not approve, his woman should not work;[3-pt Likert: Agree -- Neither agree nor disagree -- Disagree];Çalıkoglu ym. 2018
+Syrjintä;Kulttuuri;Näyte;A woman should earn less than her husband;[3-pt Likert: Agree -- Neither agree nor disagree -- Disagree];Çalıkoglu ym. 2018
+Syrjintä;Kulttuuri;Näyte;Not all occupations are good for women;[3-pt Likert: Agree -- Neither agree nor disagree -- Disagree];Çalıkoglu ym. 2018
+Syrjintä;Kulttuuri;Näyte;Before going out, a whife should first ask for permission from her husband;[3-pt Likert: Agree -- Neither agree nor disagree -- Disagree];Çalıkoglu ym. 2018
+Syrjintä;Kulttuuri;Näyte;I believe in gender equity;[3-pt Likert: Agree -- Neither agree nor disagree -- Disagree];Çalıkoglu ym. 2018
+Syrjintä;Kulttuuri;Näyte;A woman should be free to spend her money as she wishes;[3-pt Likert: Agree -- Neither agree nor disagree -- Disagree];Çalıkoglu ym. 2018
+Väkivalta;Kulttuuri;Näyte;Violence against women is a public health problem;[3-pt Likert: Agree -- Neither agree nor disagree -- Disagree];Çalıkoglu ym. 2018
+Väkivalta;Kulttuuri;Näyte;Violence against women is disturbing to me;[3-pt Likert: Agree -- Neither agree nor disagree -- Disagree];Çalıkoglu ym. 2018
+Väkivalta;Kulttuuri;Näyte;I am disturbed by the news of women homicide in the media;[3-pt Likert: Agree -- Neither agree nor disagree -- Disagree];Çalıkoglu ym. 2018
+Väkivalta;Kulttuuri;Näyte;Anger during a quarrel may be a reason why some women are beaten up;[3-pt Likert: Agree -- Neither agree nor disagree -- Disagree];Çalıkoglu ym. 2018
+Väkivalta;Kulttuuri;Näyte;A man may be forgiven if he was violent while drunk;[3-pt Likert: Agree -- Neither agree nor disagree -- Disagree];Çalıkoglu ym. 2018
+Väkivalta;Kulttuuri;Näyte;Women experiencing violence should NOT disclose the fact to others;[3-pt Likert: Agree -- Neither agree nor disagree -- Disagree];Çalıkoglu ym. 2018
+Väkivalta;Kulttuuri;Näyte;There is no harm in slapping a woman in some circumstances;[3-pt Likert: Agree -- Neither agree nor disagree -- Disagree];Çalıkoglu ym. 2018
+Väkivalta;Kulttuuri;Näyte;The proverb 'One who does not beat his daughter will later beat his own chest' is correct;[3-pt Likert: Agree -- Neither agree nor disagree -- Disagree];Çalıkoglu ym. 2018
+Väkivalta;Kulttuuri;Näyte;Violence can be a solution sometimes;[3-pt Likert: Agree -- Neither agree nor disagree -- Disagree];Çalıkoglu ym. 2018
+Väkivalta;Kulttuuri;Näyte;The proverb 'A husband may love you and yet still beat you' is correct;[3-pt Likert: Agree -- Neither agree nor disagree -- Disagree];Çalıkoglu ym. 2018
+Väkivalta;Kulttuuri;Näyte;There may be valid reasons for a man to beat up a woman;[3-pt Likert: Agree -- Neither agree nor disagree -- Disagree];Çalıkoglu ym. 2018
+Väkivalta;Esiintyminen;Fakta;[Exposure to verbal violence];[No -- Yes];Çelebi & Gökkaya 2023
+Väkivalta;Esiintyminen;Fakta;[Exposure to physical violence];[No -- Yes];Çelebi & Gökkaya 2023
+Väkivalta;Esiintyminen;Fakta;[Exposure to sexual violence];[No -- Yes];Çelebi & Gökkaya 2023
+Väkivalta;Esiintyminen;Fakta;[Verbal/psychological violence exposure during career in ambulance services];[No -- 1-2 times -- 3-5 times -- 6-10 times -- Over 10 times];Coskun Cenk 2019
+Väkivalta;Muodot;Fakta;[Verbal/psychological violence type. Monivalinta];[Swearing -- Threatening -- Insult -- Yelling -- Verbal sexual violence];Coskun Cenk 2019
+Väkivalta;Muodot;Fakta;[Verbal violence attacker. Monivalinta];[Patient -- The relatives of the patient -- Colleague -- Overman];Coskun Cenk 2019
+Väkivalta;Muodot;Fakta;[Reporting verbal violence];[No -- Yes, some of -- Yes, to all];Coskun Cenk 2019
+Väkivalta;Esiintyminen;Fakta;[Physical violence/assault exposure during career in ambulance services];[No -- Witness -- 1-2 times -- 3-5 times];Coskun Cenk 2019
+Väkivalta;Muodot;Fakta;[Physical assault type. Monivalinta];[Punching/Slap -- Hair pull/pinch -- Pushing -- Kicking -- Cut/injure -- Sexual harassment -- Throwing objects -- Hostage taking];Coskun Cenk 2019
+Väkivalta;Muodot;Fakta;[Physical assault attacker. Monivalinta];[Patient -- The relatives of the patient];Coskun Cenk 2019
+Väkivalta;Vaikutukset;Fakta;[Physical effects. Monivalinta];[No damage -- Minor injury/Graze -- Bruise/Crush injury -- Severe Injury];Coskun Cenk 2019
+Väkivalta;Muodot;Fakta;[Place of assault. Monivalinta];[Ambulance -- Accident scene/Home -- Hospital/other];Coskun Cenk 2019
+Väkivalta;Muodot;Fakta;[Reporting to physical assault];[No -- Yes];Coskun Cenk 2019
+Epäasiallinen kohtelu;Muodot;Näyte;What do you understand by the term 'incivility'?;[Haastattelu];Credland ym. 2021
+Epäasiallinen kohtelu;Esiintyminen;Fakta;How often do you encounter incivility during your normal working day?;[Haastattelu];Credland ym. 2021
+Epäasiallinen kohtelu;Muodot;Näyte;Which group do you feel are the least civil (colleagues, patients, family members, the general public)?;[Haastattelu];Credland ym. 2021
+Epäasiallinen kohtelu;Muodot;Fakta;Tell me about an incident where you have encountered incivility in the prehospital environment;[Haastattelu];Credland ym. 2021
+Epäasiallinen kohtelu;Vaikutukset;Näyte;How does incivility make you feel?;[Haastattelu];Credland ym. 2021
+Epäasiallinen kohtelu;Vaikutukset;Näyte;Do you feel that incivility affects your well-being at work?;[Haastattelu];Credland ym. 2021
+Epäasiallinen kohtelu;Vaikutukset;Fakta;Do you think experiencing incivility affects yor decision-making?;[Haastattelu];Credland ym. 2021
+Epäasiallinen kohtelu;Vaikutukset;Fakta;For how long does an incident of incivility affect you for?;[Haastattelu];Credland ym. 2021
+Epäasiallinen kohtelu;Toimenpiteet;Näyte;What do you think could be done to reduce the amount of incivility you encounter?;[Haastattelu];Credland ym. 2021
+Epäasiallinen kohtelu;Toimenpiteet;Näyte;What would help you cope better with incivility at work?;[Haastattelu];Credland ym. 2021
+Väkivalta;Kulttuuri;Näyte;[Fear of violence];[Yes -- No];Deniz ym. 2016
+Häirintä;Esiintyminen;Fakta;[Verbal harassment];[Yes -- No];Deniz ym. 2016
+Epäasiallinen kohtelu;Esiintyminen;Fakta;[Verbal threat];[Yes -- No];Deniz ym. 2016
+Väkivalta;Esiintyminen;Fakta;[Physical threat];[Yes -- No];Deniz ym. 2016
+Väkivalta;Esiintyminen;Fakta;[Physical attack];[Yes -- No];Deniz ym. 2016
+Häirintä;Esiintyminen;Fakta;[Sexual harassment];[Yes -- No];Deniz ym. 2016
+Häirintä;Toimenpiteet;Fakta;[Taken legal support after the harassment];[Yes -- No];Deniz ym. 2016
+Väkivalta;Esiintyminen;Fakta;[Exposure to violence in professional life];[Yes -- No];Gümüşsoy ym., 2021
+Väkivalta;Muodot;Fakta;[Perpetrator of violence in professional life. Monivalinta];[Patient -- Relatives -- Colleague -- Chief];Gümüşsoy ym., 2021
+Väkivalta;Muodot;Fakta;[Type of violence encountered in professional life. Monivalinta];[Physical -- Emotional -- Sexual/economic];Gümüşsoy ym., 2021
+Väkivalta;Toimenpiteet;Fakta;Työorganisaatiossani on olemassa ohjeistukset työntekijöiden tukemisesta väkivaltatilanteiden jälkeen;Kyllä -- Ei -- En osaa sanoa;Halmesmäki ym. 2022
+Väkivalta;Toimenpiteet;Näyte;Tiedän miten tukiprosessit käynnistyvät ;Kyllä -- Ei;Halmesmäki ym. 2022
+Väkivalta;Toimenpiteet;Näyte;Ohjeet ovat selkeät ;Kyllä -- Ei -- En osaa sanoa;Halmesmäki ym. 2022
+Väkivalta;Toimenpiteet;Fakta;Ohjeet löytyvät kirjallisina;Kyllä -- Ei -- En osaa sanoa;Halmesmäki ym. 2022
+Väkivalta;Toimenpiteet;Näyte;Tiedän mistä tarvittaessa löydän ohjeet;Kyllä -- Ei;Halmesmäki ym. 2022
+Väkivalta;Toimenpiteet;Näyte;Ohjeet ovat mielestäni tarkoituksenmukaiset;[5-pt Likert, eri mieltä -- samaa mieltä];Halmesmäki ym. 2022
+Väkivalta;Toimenpiteet;Näyte;Tiedän mistä saan apua fyysisiin vammoihin väkivaltatilanteen jälkeen heti akuutissa vaiheessa;Kyllä -- Ei;Halmesmäki ym. 2022
+Väkivalta;Toimenpiteet;Näyte;Tiedän mistä saa jatkohoitoa;Kyllä -- Ei;Halmesmäki ym. 2022
+Väkivalta;Toimenpiteet;Fakta;Työorganisaatiossani on ohjeistettu, mistä apua haetaan;Kyllä -- Ei -- En osaa sanoa;Halmesmäki ym. 2022
+Väkivalta;Toimenpiteet;Näyte;Ohjeistus on selkeä;Kyllä -- Ei -- En osaa sanoa;Halmesmäki ym. 2022
+Väkivalta;Toimenpiteet;Näyte;Ohjeistus on kirjallinen;Kyllä -- Ei -- En osaa sanoa;Halmesmäki ym. 2022
+Väkivalta;Toimenpiteet;Fakta;Mitkä seuraavista tukimuodoista ovat käytössä työpaikallasi? [Monivalinta];Ensiapu/päivystys -- Työterveyshuollon lääkäri -- Työterveyshuollon terveydenhoitaja -- Työfysioterapeutti -- Kolmikantaneuvottelut/työterveysneuvottelut -- Muu mikä/mitkä? -- En osaa sanoa;Halmesmäki ym. 2022
+Väkivalta;Toimenpiteet;Näyte;Minulla on mahdollisuus saada riittävää tukea fyysisiin vammoihin väkivaltatilanteen jälkeen;[5-pt Likert, eri mieltä -- samaa mieltä];Halmesmäki ym. 2022
+Väkivalta;Toimenpiteet;Näyte;Toivoisin saavani työorganisaatioltani muitakin terveydellisen tuen palveluita, mitä?;[Avokenttä];Halmesmäki ym. 2022
+Väkivalta;Toimenpiteet;Näyte;Tiedän mistä saan työorganisaatioltani psykososiaalista tukea, jos kohtaan työssäni väkivaltaa;Kyllä -- Ei;Halmesmäki ym. 2022
+Väkivalta;Toimenpiteet;Näyte;Tiedän mistä saan tukea heti tilanteen akuutissa vaiheessa;Kyllä -- Ei;Halmesmäki ym. 2022
+Väkivalta;Toimenpiteet;Näyte;Tiedän mistä saan tukea akuutin vaiheen jälkeen;Kyllä -- Ei;Halmesmäki ym. 2022
+Väkivalta;Toimenpiteet;Fakta;Psykososiaalisen tuen muodoista on olemassa ohjeistus työorganisaatiossani;Kyllä -- Ei -- En osaa sanoa;Halmesmäki ym. 2022
+Väkivalta;Toimenpiteet;Näyte;Ohjeet ovat selkeät ;Kyllä -- Ei -- En osaa sanoa;Halmesmäki ym. 2022
+Väkivalta;Toimenpiteet;Fakta;Ohjeet ovat kirjallisina;Kyllä -- Ei -- En osaa sanoa;Halmesmäki ym. 2022
+Väkivalta;Toimenpiteet;Näyte;Tiedän mistä löydän ohjeet tarvittaessa;Kyllä -- Ei;Halmesmäki ym. 2022
+Väkivalta;Toimenpiteet;Fakta;Työorganisaatiossa käytössä olevat psykososiaaliset tukimuodot [Monivalinta];Defusing -- Debriefing -- Työnohjaus -- Työterveyspsykologi -- Varhaisen tuen malli -- Post-trauma työpajoja -- Muu, mikä? -- En osaa sanoa;Halmesmäki ym. 2022
+Väkivalta;Toimenpiteet;Näyte;Psykososiaalisen tuen ohjeistukset väkivaltatilanteen jälkeen ovat tarkoituksenmukaiset;[5-pt Likert, eri mieltä -- samaa mieltä];Halmesmäki ym. 2022
+Väkivalta;Toimenpiteet;Näyte;Toivoisin saavani työorganisaatioltani muitakin psykososiaalisen tuen palveluita, mitä?;[Avokenttä];Halmesmäki ym. 2022
+Väkivalta;Toimenpiteet;Näyte;Tiedän mistä saan työorganisaatioltani rikosoikeudellista tukea, jos kohtaan työssäni väkivaltaa;Kyllä -- Ei;Halmesmäki ym. 2022
+Väkivalta;Toimenpiteet;Näyte;Tiedän mistä saan ohjeistusta ja tukea heti akuutissa vaiheessa ;Kyllä -- Ei;Halmesmäki ym. 2022
+Väkivalta;Toimenpiteet;Näyte;Tiedän mistä saan tukea koko prosessin ajan ;Kyllä -- Ei;Halmesmäki ym. 2022
+Väkivalta;Toimenpiteet;Fakta;Työorganisaatiollani on ohjeistus rikosoikeudellisen tuen prosessista ;Kyllä -- Ei -- En osaa sanoa;Halmesmäki ym. 2022
+Väkivalta;Toimenpiteet;Näyte;Ohjeet ovat selkeät ;Kyllä -- Ei -- En osaa sanoa;Halmesmäki ym. 2022
+Väkivalta;Toimenpiteet;Näyte;Ohjeet löytyvät kirjallisena ;Kyllä -- Ei -- En osaa sanoa;Halmesmäki ym. 2022
+Väkivalta;Toimenpiteet;Näyte;Tiedän mistä löydän ohjeet tarvittaessa ;Kyllä -- Ei;Halmesmäki ym. 2022
+Väkivalta;Toimenpiteet;Fakta;Työorganisaatiossa käytössä olevat rikosoikeudelliset tukitoimet [monivalinta];Turvallisuuspäällikkö -- Lakiapu -- Työsuojeluvaltuutettu -- Muu, mitä? -- En osaa sanoa;Halmesmäki ym. 2022
+Väkivalta;Toimenpiteet;Näyte;Rikosoikeudelliset tukitoimet ovat tarkoituksenmukaiset ;[5-pt Likert, eri mieltä -- samaa mieltä];Halmesmäki ym. 2022
+Väkivalta;Toimenpiteet;Näyte;Toivoisin saavani työorganisaatiolta muitakin rikosoikeudellisia tukitoimia, mitä?;[Avokenttä];Halmesmäki ym. 2022
+Väkivalta;Esiintyminen;Fakta;[Ensihoitajien kokemuksia uhka- ja väkivaltatilanteisiin varautumisessa ja niissä toimimisessa. Henkinen, fyysinen ja molempien yhdistelmä erikseen.];[Mahdollisesti avokenttä];Heikkinen 2023
+Väkivalta;Esiintyminen;Fakta;[Osallisuus uhka- tai väkivaltatilanteessa];[Yhden kerran -- Kahdesta neljään kertaan -- Yli 5 kertaa] [Mahdollisesti avokenttä];Heikkinen 2023
+Väkivalta;Muodot;Fakta;[Uhka- ja väkivaltatilanteiden syntyyn vaikuttavat tekijät];[Päihde- ja mielenterveysongelmat -- Muistisairaus -- Ensihoitajien oma käytös sekä muut mahdollset paikalla olevat henkilöt (omaiset, hoitajat)];Heikkinen 2023
+Väkivalta;Toimenpiteet;Fakta;[Mitä suojavälineitä uhka- ja väkivaltatilanteita varten työnantaja tarjoaa?];[Työvaatteet -- Turvakengät -- Kypärä -- Kevyet suojaliivit -- Viiltosuojahanskat -- Virven hätäkutsupainikkeen -- Taskulamppu -- Yhteisen turvasanan (tilanteista poistumista varten)] [Mahdollisesti avokenttä];Heikkinen 2023
+Väkivalta;Toimenpiteet;Näyte;[Onko työpaikan toimintaohjeet uhka- ja väkivaltatilanteita varten…];[Tiedossa -- Ei tiedossa -- Sekavia -- Muuttuvat usein, ettei niiä voi muistaa tai ei ehdi työvuorossa lukemaan];Heikkinen 2023
+Väkivalta;Toimenpiteet;Fakta;[Onko ilmoitusjärjestelmää?];[On käytössä -- Seurantajärjestelmää ei ole käytössä ollenkaan];Heikkinen 2023
+Väkivalta;Toimenpiteet;Näyte;[Vastaako järjestelmä tarkoitustaan];[Kyllä -- Ei -- En osaa sanoa (epävarma, jos mukana)];Heikkinen 2023
+Väkivalta;Toimenpiteet;Fakta;[Oletko tehnyt ilmoituksen uhka- ja väkivaltatilanteesta?];[Kyllä -- Ei];Heikkinen 2023
+Väkivalta;Toimenpiteet;Näyte;[Ilmoituksen tehneelle: kokemuksia];[Avokenttä];Heikkinen 2023
+Väkivalta;Toimenpiteet;Näyte;[Tunnetko varotietojen merkityksen];[Kyllä -- Ei -- En osaa sanoa (epävarma, jos mukana)];Heikkinen 2023
+Väkivalta;Toimenpiteet;Näyte;[Toimiiko viranomaisyhteystyö ensihoito ja X];[Ensihoito ja poliisi -- Ensihoito ja hätäkeskus] [Mahdollisesti avokenttä];Heikkinen 2023
+Häirintä;Esiintyminen;Fakta;Olen kokenut seksuaalista häirintää ensihoitotyössä;Kyllä -- Ei -- En osaa sanoa;Heikkinen ym. 2021
+Häirintä;Esiintyminen;Fakta;Olen ollut paikalla, kun seksuaalista häirintää on tapahtunut ensihoitotyössä;Kyllä -- Ei -- En osaa sanoa;Heikkinen ym. 2021
+Häirintä;Esiintyminen;Fakta;Olen kuullut tai tiedän, että ensihoitotyössä on tapahtunut seksuaalista häirintää;Kyllä -- Ei -- En osaa sanoa;Heikkinen ym. 2021
+Häirintä;Muodot;Näyte;Mielestäni seksuaalista häirintää on [5-pt Likert, täysin eri mieltä -- täysin samaa mieltä];Tuijottelua -- Taputtelua -- Tarpeetonta koskettelua -- Vislailua -- Asiattomien juttujen kertomista -- Ehdottelua -- Flirttailua -- Seuraamista -- Silmän iskemistä -- Ulkonäön kommentointia;Heikkinen ym. 2021
+Häirintä;Muodot;Fakta;Jos olet kokenut seksuaalista häirintää, häirintä oli [Monivalinta];Tuijottelua -- Taputtelua -- Tarpeetonta koskettelua -- Vislailua -- Asiattomien juttujen kertomista -- Ehdottelua -- Flirttailua -- Seuraamista -- Silmän iskemistä -- Ulkonäön kommentointia -- Muuta, mitä?;Heikkinen ym. 2021
+Häirintä;Muodot;Fakta;Seksuaaliseen häirintään syyllistynyt henkilö oli [Monivalinta];Työtoveri -- Asiakas -- Omainen -- Sivullinen -- Muu taho, mikä?;Heikkinen ym. 2021
+Häirintä;Muodot;Fakta;Seksuaaliseen häirintään syyllistynyt henkilö työpaikalla oli hierarkkisesti [Monivalinta];Yläpuolellani -- Alapuolellani -- Vertaiseni;Heikkinen ym. 2021
+Häirintä;Muodot;Fakta;Seksuaalinen häirintä tapahtui [Monivalinta];Kasvotusten -- Sosiaalisessa mediassa -- Pikaviestimen välityksellä -- Puhelimessa -- Muuten, miten?;Heikkinen ym. 2021
+Häirintä;Muodot;Fakta;Seksuaalinen häirintä tapahtui [Monivalinta];Asemapaikalla -- Julkisella paikalla -- Hoitolaitoksessa -- Ambulanssissa -- Potilaan luona -- Muualla, missä?;Heikkinen ym. 2021
+Häirintä;Muodot;Fakta;Seksuaaliseen häirintään syyllistynyt henkilö oli kanssani [Monivalinta];Samaa sukupuolta -- Eri sukupuolta;Heikkinen ym. 2021
+Häirintä;Muodot;Fakta;Seksuaalinen häirintä tapahtui [Monivalinta];Aamulla -- Päivällä -- Yöllä;Heikkinen ym. 2021
+Häirintä;Toimenpiteet;Fakta;Raportoin seksuaalisesta häirinnästä eteenpäin;Kyllä, kenelle? -- En;Heikkinen ym. 2021
+Häirintä;Toimenpiteet;Näyte;Jos vastasit edelliseen en, miksi et raportoinut seksuaalisesta häirinnästä eteenpäin? [Monivalinta];En uskaltanut raportoida -- En tiennyt miten raportoida -- En tiennyt kenelle raportoida -- En halunnut pahaa kenellekään -- En halunnut tuoda asiaa esille -- Ajattelin tapahtuman olevan yksittäinen -- Koin asian kuuluvan työyhteisön toimintakulttuuriin -- Koin asian kuuluvan ensihoitotyön arkeen -- Muu syy, mikä?;Heikkinen ym. 2021
+Häirintä;Toimenpiteet;Näyte;Tiedän, kenelle minun tulee raportoida työpaikallani tapahtuvasta seksuaalisesta häirinnästä;Kyllä -- En;Heikkinen ym. 2021
+Häirintä;Kulttuuri;Näyte;Työssäni vallitseva huumori on mielestäni liian seksististä;Kyllä -- Ei -- En osaa sanoa;Heikkinen ym. 2021
+Häirintä;Kulttuuri;Näyte;Koen työssäni seksististen vitsien kertomisen kiusallisena;Kyllä -- En -- Toisinaan -- En osaa sanoa;Heikkinen ym. 2021
+Häirintä;Kulttuuri;Näyte;Kuuluuko mielestäsi ensihoitopalvelussa työskentelevien henkilöiden kestää kovaa kielenkäyttöä ja rankkaa huumoria;Kyllä -- Ei -- En osaa sanoa;Heikkinen ym. 2021
+Häirintä;Esiintyminen;Näyte;Seksuaaliselle häirinnälle altistumisen uhka työssä pelottaa minua;Kyllä -- Ei -- En osaa sanoa;Heikkinen ym. 2021
+Häirintä;Esiintyminen;Näyte;Seksuaaliselle häirinnälle altistuminen tai sen uhka vaikeuttaa työntekoani;Kyllä -- Ei -- En osaa sanoa;Heikkinen ym. 2021
+Häirintä;Esiintyminen;Näyte;Mikä mielestäsi voisi altistaa sinua seksuaaliselle häirinnälle työssäsi?;[Avokenttä];Heikkinen ym. 2021
+Häirintä;Toimenpiteet;Näyte;Miten kehittäisit tai mitä muuttaisit työssäsi, jotta seksuaalisen häirinnän mahdollisuus olisi mahdollisimman pieni?;[Avokenttä];Heikkinen ym. 2021
+Häirintä;Toimenpiteet;Näyte;Miten toivoisit työnantajasi reagoivan työssä kohtaamasi seksuaaliseen häirintään ja voisiko työnantajasi tehdä jotain ehkäistäkseen työssä kohdattua seksuaalista häirintää?;[Avokenttä];Heikkinen ym. 2021
+Epäasiallinen kohtelu;Toimenpiteet;Fakta;Oletko osallistunut V-S Pelastuslaitoksella turvallisuuskoulutuksiin?;Ei -- Kyllä -- Jos olet, kuinka usein / kuinka monta kertaa;Helin 2013
+Epäasiallinen kohtelu;Toimenpiteet;Näyte;Järjestetäänkö V-S Pelastuslaitoksella riittävästi turvallisuuskoulutusta?;Ei -- Kyllä -- En osaa sanoa;Helin 2013
+Epäasiallinen kohtelu;Toimenpiteet;Näyte;Koetko V-S Pelastuslaitoksen turvallisuuskoulutuksilla olevan hyötyä kenttätyössä?;Ei ollenkaan hyötyä -- Hyvin vähän hyötyä -- Jonkin verran hyötyä -- Paljon hyötyä;Helin 2013
+Epäasiallinen kohtelu;Toimenpiteet;Näyte;Millaisia asioita toivoisit V-S Pelastuslaitoksen turvallisuuskoulutuksissa käsiteltävän?;[Avokenttä];Helin 2013
+Väkivalta;Muodot;Fakta;Vaikuttiko mielestäsi uhka- tai väkivaltatilanteen syntyyn uhkaajan taholta;Alkoholin vaikutuksen alaisena oleminen -- Huumausaineen vaikutuksen alaisena olemien -- Lääkeaineen vaikutuksen alaisena oleminen -- Mielenterveysongelmat -- Muu, mikä;Helin 2013
+Väkivalta;Muodot;Fakta;Onko uhkaaja tiettävästi aiheuttanut uhkatilanteita aikaisemmin?;Ei -- Kyllä -- En osaa sanoa;Helin 2013
+Väkivalta;Muodot;Fakta;Oliko yllä olevan lisäksi muita tekijöitä, jotka mielestäsi vaikuttivat uhka- tai väkivaltatilanteen syntyyn?;[Avokenttä];Helin 2013
+Väkivalta;Toimenpiteet;Näyte;Miten uhka- ja väkivaltatilanteita voisi mielestäsi ennaltaehkäistä?;[Avokenttä];Helin 2013
+Väkivalta;Muodot;Fakta;Minkälaista väkivaltaa tai sen uhkaa olet kokenut?;Tavaroiden heitteleminen -- Paikkojen / tavaroiden rikkominen -- Äänen korottaminen -- Huutaminen -- Sanallinen uhkaaminen -- Aseella tms. uhkaaminen -- Töniminen / huitominen -- Lyöminen / potkiminen -- Kiinnikäyminen -- Liikkumisen estäminen -- Sylkeminen -- Muu tilanne;Helin 2013
+Väkivalta;Muodot;Fakta;"Jos rastitit kohdan ""Muu tilanne"", voisitko tarkentaa";[Avokenttä];Helin 2013
+Väkivalta;Muodot;Fakta;Oliko uhkaaja;Asiakas -- Omainen -- Muu, mikä;Helin 2013
+Väkivalta;Toimenpiteet;Fakta;Käytiinkö jonkinlaista purkukeskustelua / jälkipuintia tapahtuneeseen liittyen?;Ei -- Kyllä;Helin 2013
+Väkivalta;Toimenpiteet;Fakta;"Jos vastasit ""Kyllä"", voisitko tarkentaa";[Avokenttä];Helin 2013
+Väkivalta;Toimenpiteet;Fakta;Teitkö tapahtuneesta ilmoituksen?;Ei -- Kyllä;Helin 2013
+Väkivalta;Toimenpiteet;Fakta;"Jos vastasit ""Ei"", voisitko perustella";[Avokenttä];Helin 2013
+Väkivalta;Toimenpiteet;Fakta;"Jos vastasit ""Kyllä"", rastita seuraavista [Monivalinta]";Uhka- ja väkivaltailmoitus -- Työtapaturmailmoitus -- Muu ilmoitus tai yhteydenotto (L4, työterveyshuolto tms.);Helin 2013
+Väkivalta;Muodot;Fakta;Tapahtumasta aiheutuneet seuraukset [Avokenttiä];Ruumilliset -- Henkiset -- Aineelliset;Helin 2013
+Väkivalta;Esiintyminen;Fakta;Kohtaatko työssäsi fyysistä väkivaltaa?;Kyllä -- En;Hertteli 2015
+Väkivalta;Esiintyminen;Fakta;Kuinka usein kohtaat työssäsi fyysistä väkivaltaa?;Päivittäin -- Viikottain -- Kuukausittain -- Vuosittain -- Harvemmin;Hertteli 2015
+Väkivalta;Muodot;Fakta;Minkälaista väkivalta on?;Lyömistä -- Repimistä -- Potkimista -- Sanallista uhkailua -- Fyysisellä välineellä kuten veitsellä tai neulalla uhkaamista;Hertteli 2015
+Väkivalta;Toimenpiteet;Fakta;Kuinka usein työnantaja järjestää koulutusta väkivaltaan liittyen?;Kerran kuukaudessa -- Kerran parissa kuukaudessa -- Puolenvuoden välein -- Kerran vuodessa -- Harvemmin -- Koulutusta ei järjestetä ollenkaan;Hertteli 2015
+Väkivalta;Toimenpiteet;Näyte;Onko koulutusta tarjolla;Sopivasti -- Liian vähän -- Liian paljon;Hertteli 2015
+Väkivalta;Toimenpiteet;Fakta;Järjestetäänkö koulussa opiskeluaikana koulutusta väkivaltaisen henkilön kohtaamiseen?;Kyllä -- Ei;Hertteli 2015
+Väkivalta;Toimenpiteet;Näyte;Tarjoaako koulu koulutusta;Tarpeeksi -- Liian vähän -- Liian paljon;Hertteli 2015
+Väkivalta;Muodot;Fakta;Minkälaisissa tilanteissa väkivaltaa esiintyy?;Mielenterveyspotilaan siirrossa/hoidossa -- Humalaisen hoidossa/siirrossa -- Narkomaanin hoidossa/siirrossa -- Omaisen kanssa -- Ulkopuolisen kanssa -- Shokissa olevan omaisen kanssa -- Jossain muussa missä?;Hertteli 2015
+Väkivalta;Muodot;Fakta;Oletko saanut fyysisestä väkivallasta vammoja?;Kyllä -- En;Hertteli 2015
+Väkivalta;Vaikutukset;Fakta;Onko vammat johtaneet sairaslomaan?;Kyllä -- Ei;Hertteli 2015
+Väkivalta;Vaikutukset;Fakta;Sairasloman pituus;Pari päivää -- Yli viikko -- Kuukausi -- Yli kuukauden -- Useamman kuukauden -- Vuoden -- Yli vuoden;Hertteli 2015
+Väkivalta;Muodot;Fakta;Minkälaiset tilanteet johtavat väkivallan kehittymiseen?;Oma kokemattomuus lukea potilasta -- Työkaverin kokemattomuus lukea potilasta -- Potilaan äkkiarvaamaton käyttäytyminen -- Omaisten käyttäytyminen -- Sivullisten käyttäytyminen;Hertteli 2015
+Väkivalta;Esiintyminen;Näyte;Pelkäätkö väkivaltaa työssäsi?;Kyllä -- En;Hertteli 2015
+Väkivalta;Esiintyminen;Näyte;Vaikuttaako pelko työskentelyysi?;Kyllä -- Ei;Hertteli 2015
+Väkivalta;Toimenpiteet;Näyte;Mitä keinoja toivoisit itse työturvallisuuden parantamiseksi?;[Avokenttä];Hertteli 2015
+Väkivalta;Toimenpiteet;Näyte;Millaisia koulutuksia toivoisit saavasi?;[Avokenttä];Hertteli 2015
+Häirintä;Esiintyminen;Fakta;Oletko kokenut työssäsi seksuaalista häirintää?;Henkistä -- Fyysistä -- Molempia;Huttunen & Rinkinen 2019
+Häirintä;Muodot;Fakta;Oliko ahdistelija?;Potilas / Asiakas -- Ulkopuolinen tehtävään liittymätön henkilö -- Työkaveri;Huttunen & Rinkinen 2019
+Häirintä;Muodot;Fakta;Miten reagoit tilanteeseen?;En reagoinut tilanteeseen lainkaa -- Reagoin tilanteeseen ja pyysin lopettamaan -- Jouduin käyttämään voimaa päästääkseni tilanteesta irti;Huttunen & Rinkinen 2019
+Häirintä;Muodot;Fakta;Miten tilanne eteni?;Sopimaton käytös jatkui -- Sopimaton käytös loppui;Huttunen & Rinkinen 2019
+Häirintä;Muodot;Fakta;Oliko tilanteessa muita kuulijoita/näkijöitä?;Potilaan/asiakkaan omaiset/kaverit -- Työkaveri/-kaverit -- Ulkopuolinen -- Työkaveri & ulkopuolinen -- Työkaveri & potilaan/asiakkaan omaiset/kaverit;Huttunen & Rinkinen 2019
+Häirintä;Muodot;Fakta;Miten paikalla ollut reagoi tilanteeseen?;Puuttui tilanteeseen -- Ei puuttunut tilanteeseen -- Osallistui häirintään;Huttunen & Rinkinen 2019
+Häirintä;Muodot;Fakta;Vaikuttiko ahdistelija olevan päihteiden vaikutuksenalaisena?;Kyllä -- Ei;Huttunen & Rinkinen 2019
+Häirintä;Toimenpiteet;Fakta;Onko työpaikallasi erillinen ohje ahdistelutilanteen käsittelyyn?;Kyllä -- Ei -- En tiedä;Huttunen & Rinkinen 2019
+Häirintä;Toimenpiteet;Fakta;Onko työpaikallasi ohjeet uhka- ja väkivaltatilanteen käsittelyyn?;Kyllä -- Kyllä (sisältää myös ahdistelutilanteen käsittelyn) -- Ei -- En tiedä;Huttunen & Rinkinen 2019
+Väkivalta;Esiintyminen;Fakta;Oletko kokenut ensihoitajan työssäsi itseesi tai työpariisi kohdistuvia uhka- ja/tai väkivaltatilanteita? [Määritelmä seuraa, lähteenä Pääkaupungin turvakoti oy];Kyllä -- Ei;Immonen & Liuski 2019
+Väkivalta;Esiintyminen;Fakta;Jos olet, kuinka usein?;Lähes joka vuorossa -- Viikottain -- Kuukausittain -- Harvemmin kuin kuukausittain;Immonen & Liuski 2019
+Väkivalta;Muodot;Fakta;Millaista väkivaltaa tai uhkailua olet kokenut työssäsi?;Lyöminen/potkiminen/töniminen -- Aseella (teräase, ampuma-ase, lyömäase tms.) uhkaaminen -- Muu;Immonen & Liuski 2019
+Väkivalta;Toimenpiteet;Näyte;Koetko osaavasi toimia uhka- ja väkivaltatilanteissa?;Kyllä -- En -- En osaa sanoa;Immonen & Liuski 2019
+Väkivalta;Toimenpiteet;Näyte;Koetko tarvitsevasi lisää koulutusta uhka- ja väkivaltatilanteiden ehkäisyyn ja niissä toimimiseen?;Kyllä -- En -- En osaa sanoa;Immonen & Liuski 2019
+Väkivalta;Toimenpiteet;Näyte;Jos vastasit kohtaan 10 kyllä, kerro millaista lisä- ja täydennyskoulutusta toivoisit yksiköllesi järjestettävän?;[Avokenttä];Immonen & Liuski 2019
+Väkivalta;Muodot;Fakta;Kuvailisitko, millaisia uhka- ja/tai väkivaltatilanteita olet kokenut työssäsi?;[Avokenttä];Inha ym. 2018
+Väkivalta;Muodot;Näyte;Millaisia tuntemuksia mahdolliset tilanteet herättivät sinussa?;[Avokenttä];Inha ym. 2018
+Väkivalta;Toimenpiteet;Näyte;Millaisia kokemuksia sinulla on toimintaohjeen toimivuudesta uhka- ja väkivaltatilanteissa?;[Avokenttä];Inha ym. 2018
+Väkivalta;Toimenpiteet;Näyte;Millisia kehittämisen kohteita ohjeessa havaitset?;[Avokenttä];Inha ym. 2018
+Epäasiallinen kohtelu;Esiintyminen;Fakta;Epäasiallisen käytöksen ilmeneminen;Epäasiallista käytöstä ei ilmene -- En osaa sanoa -- Olen kokenut epäasiallista käytöstä;Kettunen 2022
+Epäasiallinen kohtelu;Muodot;Fakta;Kenen toimesta/taholta? [Useampi valinta sallittu];Työkaverin taholta -- Ylemmän johdon taholta -- Lähiesimiehen taholta;Kettunen 2022
+Epäasiallinen kohtelu;Muodot;Fakta;Mistä epäasiallinen käytös on voinut johtua? [Useampi valinta sallittu];Ikä -- Sukupuoli -- En tiedä, mistä epäasiallinen käytös heitä kohtaan johtui;Kettunen 2022
+Epäasiallinen kohtelu;Toimenpiteet;Näyte;Kuinka itse ratkaisisit tilanteen, jossa epäasiallista käytöstä on esiintynyt?;[Avokenttä];Kettunen 2022
+Syrjintä;Esiintyminen;Fakta;Syrjinnän ilmeneminen;Syrjintää ei tapahdu -- Syrjintää tapahtuu -- En osaa sanoa;Kettunen 2022
+Syrjintä;Esiintyminen;Fakta;Koetko syrjintää?;Olen kokenut syrjintää -- En ole kokenut syrjintää -- En osaa sanoa;Kettunen 2022
+Syrjintä;Muodot;Fakta;Kenen toimesta/taholta? [Useampi valinta sallittu];Ylemmän johdon taholta -- Lähiesimieheltä -- Työkaverin taholta -- Oman alaisen taholta;Kettunen 2022
+Syrjintä;Esiintyminen;Fakta;Havaitsetko syrjintää työyhteisössä? [Useampi valinta sallittu];En ole havainnut -- En osaa arvioida -- Työkaverilta -- Lähiesimieheltä -- Ylemmältä johdolta;Kettunen 2022
+Syrjintä;Muodot;Fakta;Onko kokemus liittynyt? Voit valita useamman vaihtoehdon;Sukupuoleen -- Ikään -- Etniseen tai kansalaisuuteen -- Vammaan/terveydentilaan -- Seksuaaliseen suuntautumiseen -- En tiedä -- Muu, mikä? [Avokenttä lisänä];Kettunen 2022
+Yhdenvertaisuus;Kulttuuri;Fakta;Miten yhdenvertaisuuteen suhtaudutaan pelastuslaitoksella? Voit valita useamman vaihtoehdon;Yhdenvertaisuuteen ei juuri panosteta -- Jotain toimenpiteitä on tehty -- Toimin itse yhdenvertaisuusperiaatteita noudattaen -- Olemme sitoutuneet yhdenvertaisuusperiaatteisiin lähiyhteistyössä -- Yhdenvertaisuusperiaatteisiin on sitouduttu koko organisaatiossa;Kettunen 2022
+Väkivalta;Esiintyminen;Fakta;[Vastaajan itseensä tai työpariin kohdistuvat väkivalta- tai sen uhkatilanteet ensihoitajan työssä viimeisen 12 kuukauden aikana];[Kyllä -- Ei];Kiviniemi ym. 2021
+Väkivalta;Esiintyminen;Fakta;[Esiintymisen yleisyys. Tulkittu kuvasta.];[Jokaisen työvuoron aikana -- Kerran tai useamman kerran viikossa -- Useammin kuin yhden kerran kuukaudessa -- Yhden kerran kuukaudessa -- Harvemmin kuin kerran kuukaudessa -- Ei ollenkaan -- Muu, kuinka usein?];Kiviniemi ym. 2021
+Väkivalta;Esiintyminen;Näyte;[Vastaajien kokemus väkivallan- tai sen uhan lisääntymisestä työvuosien aikana];[Kyllä -- Ei -- En osaa sanoa];Kiviniemi ym. 2021
+Väkivalta;Muodot;Fakta;[Millaista koettu väkivalta ja sen uhka on? Kuvasta päätellen monivalinta.];[Liikkumisen/ulospääsyn estämistä -- Tönimistä -- Raapimista -- Puremista -- Sylkemistä -- Lyömistä/potkimista -- Tavaroiden heittelemistä -- Kuristamista -- Hiuksista tukistaminen -- Teräaseen tai muun välineen käyttö tai sillä uhkailu -- Haukkumista tai nimittelyä -- Epäasiallista arvostelua -- Tappouhkauksia -- Fyysisellä väkivallalla uhkailu -- Jotain muuta, mitä? -- En ole kokenut väkivaltaa tai sen uhkaa];Kiviniemi ym. 2021
+Väkivalta;Muodot;Fakta;[Millaisissa tilanteissa väkivaltaa tai sen uhkaa ilmenee? Kuvasta päätellen monivalinta.];[Kohteessa/tapahtumapaikalla -- Ambulanssissa -- Muualla, missä? -- En ole kokenut väkivaltaa tai sen uhkaa];Kiviniemi ym. 2021
+Väkivalta;Muodot;Fakta;[Väkivallan tai sen uhan aiheuttajat. Kuvasta päätellen monivalinta.];[Potilaan -- Omaisen -- Ulkopuolisen henkilön -- Joku muu, mikä? -- En ole kokenut väkivaltaa tai sen uhkaa];Kiviniemi ym. 2021
+Väkivalta;Muodot;Fakta;[Potilryhmät, joita hoitaessaan ensihoitajat olivat kohdanneet väkivaltaa tai sen uhkaa. Kuvasta päätellen monivalinta.];[Muistisairaat -- Sairaskohtaus, mikä? -- Päihtyneet -- Mielenterveysongelmat -- Muu, mikä? -- En ole kokenut väkivaltaa tai sen uhkaa];Kiviniemi ym. 2021
+Väkivalta;Vaikutukset;Näyte;[Väkivalta- tai sen uhkatilanteiden vaikutus työssäjaksamiseen ensihoitajien mukaan. Kysymyksenasettelu ei tulkittavissa suoraan.];[Kyllä -- Ei -- En ole kokenut väkivalta tai uhkatilanteita];Kiviniemi ym. 2021
+Väkivalta;Toimenpiteet;Fakta;Millaista koulutusta olet saanut väkivalta ja uhkatilanteita varten?;[Avokenttä];Kiviniemi ym. 2021
+Väkivalta;Toimenpiteet;Näyte;[Arvio omista valmiuksistaan väkivalta- ja uhkatilanteiden kohtaamiseen];[Erittäin hyvät -- Hyvät -- Kohtalaiset -- Huonot -- Erittäin huonot];Kiviniemi ym. 2021
+Epäasiallinen kohtelu;Esiintyminen;Näyte;[Degree of occupational hazards];[5-pt skaala, lowest -- highest level of danger];Klosiewicz ym. 2019
+Väkivalta;Esiintyminen;Fakta;How often do you encounter aggressive patients?;I have not met an aggressive patient -- A few times a year -- A few times a month -- A few times a week -- Every day, sometimes multiple times;Klosiewicz ym. 2019
+Väkivalta;Esiintyminen;Näyte;[Degree of threat to physical health];[6-pt skaala, no hazard -- highest hazard];Klosiewicz ym. 2019
+Väkivalta;Esiintyminen;Näyte;[Degree of threat to mental health];[6-pt skaala, no hazard -- highest hazard];Klosiewicz ym. 2019
+Väkivalta;Esiintyminen;Fakta;Millaista väkivaltaa olette kokeneet ensihoitotyössä?;Fyysistä -- Henkistä -- En ole kokenut väkivaltaa ensihoitotyössä -- Jotain muuta, minkälaista?;Kononen ym. 2014
+Väkivalta;Muodot;Fakta;Jos vastasitte edeltävään kysymykseen myöntävästi, kertoisitteko kokemastanne tarkemmin?;[Avokenttä];Kononen ym. 2014
+Väkivalta;Esiintyminen;Fakta;Kuinka usein kohtaatte väkivaltatilanteita ensihoitotyössä?;Jokaisessa työvuorossa -- Kerran viikossa -- Kerran kuukaudessa -- Harvemmin kuin kerran kuukaudessa -- En ole kokenut väkivaltaa ikinä;Kononen ym. 2014
+Väkivalta;Vaikutukset;Fakta;Oletteko joutuneet hakemaan sairaslomaa (tai olemaan poissa töistä ns. omalla ilmoituksella) väkivaltatilanteiden takia?;Kyllä, olen joutunut hakemaan sairaslomaa tai ollut poissa omalla ilmoituksella -- Ei, en ole joutunut hakemaan sairaslomaa tai ollut poissa töistä -- En ole kokenut väkivaltaa lainkaan;Kononen ym. 2014
+Väkivalta;Toimenpiteet;Fakta;Oletteko tehneet väkivaltatilanteista ilmoitusta eteenpäin muille tahoille?;En ole -- Kyllä, esimiehelle -- Kyllä, tein asiasta rikosilmoituksen -- Kyllä, asiasta on tehty HaiPro-ilmoitus tai muu vaaratapahtumailmoitus -- Kyllä, joku muu, mikä?;Kononen ym. 2014
+Väkivalta;Toimenpiteet;Molemmat;Mitä mieltä olette väkivaltatilanteisiin tai uhkaaviin tilanteisiin liittyvän koulutuksen määrästä?;Sitä on liikaa -- Sitä on juuri tarpeeksi -- Koulutusta on liian vähän -- Aiheesta ei ole ollut koulutusta ollenkaan;Kononen ym. 2014
+Väkivalta;Toimenpiteet;Fakta;Jos olette saaneet koulutusta aiheeseen liittyen, niin minkälaista se on ollut?;[Avokenttä];Kononen ym. 2014
+Väkivalta;Toimenpiteet;Näyte;Jos koulutusta ei ole ollut, niin minkälaista toivoisitte sen olevan?;[Avokenttä];Kononen ym. 2014
+Väkivalta;Toimenpiteet;Näyte;Koetko raportoinnin uhka- ja väkivalta tilanteista hyödylliseksi?;Kyllä -- En;Leppänen & Ritala 2022
+Väkivalta;Toimenpiteet;Fakta;Raportoitko uhka- ja väkivaltatilanteista?;Aina -- Lähes aina -- Harvoin -- En koskaan -- En osaa sanoa;Leppänen & Ritala 2022
+Väkivalta;Toimenpiteet;Fakta;Oletko raportoinut jokaisesta uhka- ja väkivaltatilanteesta?;Kyllä -- En;Leppänen & Ritala 2022
+Väkivalta;Toimenpiteet;Näyte;Koetko, että valtakunnallisesta uhka- ja väkivalta raportoinnista ja rekisteristä olisi hyötyä?;Kyllä -- En;Leppänen & Ritala 2022
+Väkivalta;Esiintyminen;Fakta;[Miten usein ensihoitajat kohtaavat väkivaltatilanteita työssään];[Ei tietoa];Leppänen 2016
+Väkivalta;Muodot;Näyte;[Minkälaiset teot ensihoitajat kokevat väkivaltaiseksi ja raportoimisen arvoiseksi];[Ei tietoa];Leppänen 2016
+Väkivalta;Toimenpiteet;Näyte;[Miten ensihoitajat toivoisivat kehitettävän omaa osaamistaan väkivaltatilanteiden kohtaamisessa];[Ei tietoa];Leppänen 2016
+Väkivalta;Esiintyminen;Fakta;Oletko kokenut uhka- tai väkivaltatilanteita työssäsi ensihoidossa?;Kyllä -- En;Leppänen 2017
+Väkivalta;Esiintyminen;Fakta;Kuinka usein olet kohdannut uhkatilanteita työssäsi?;Jokaisessa työvuorossa -- Viikottain -- Kuukausittain -- Vuosittain -- Harvemmin -- En koskaan;Leppänen 2017
+Väkivalta;Esiintyminen;Fakta;Arvioi kuinka usein olet kohdannut väkivaltatilanteita työssäsi viimeisen 6kk aikana? Vastaa lukumäärällä;[Avokenttä, luku];Leppänen 2017
+Väkivalta;Muodot;Fakta;Oletko kokenut fyysistä väkivallan uhkaa asiakkaan taholta?;Kyllä -- En;Leppänen 2017
+Väkivalta;Muodot;Fakta;Oletko kokenut uhkaavaa käytöstä tai väkivaltaista kohtelua omaisen tai muun paikalla olijan puolesta?;Kyllä -- En;Leppänen 2017
+Väkivalta;Muodot;Fakta;Arvioi kuinka usein on tarvinnut pyytää virkaapua poliisilta uhkaavassa tilanteessa?;Jokaisessa työvuorossa -- Viikottain -- Kuukausittain -- Vuosittain -- Harvemmin -- En koskaan;Leppänen 2017
+Väkivalta;Muodot;Näyte;Jos olet tarvinnut virka-apua uhkaavassa tilanteessa Poliisilta, onko virka-apu saapunut mielestäsi kohtuullisessa ajassa tilanteen vakavuuteen nähden?;Riittävän nopeasti -- Ei riittävän nopeasti -- Eivät ole tulleet paikalle -- En ole tarvinnut pyytää virka-apua;Leppänen 2017
+Väkivalta;Muodot;Fakta;Mitä seuraavista asiakkaan taholta tulevaa käyttäytymistä olet kokenut työssäsi kaikista useimmin? Rastita max. 3 vaihtoehtoa;Uhkailu -- Nimittely -- Haukkuminen -- Solvaaminen -- Töniminen -- Lyöminen -- Potkiminen -- Kuristaminen;Leppänen 2017
+Väkivalta;Muodot;Fakta;Arvioi, oletko seuraavista asiakasryhmistä kokenut uhkaavasti käyttäytyvää kohdallasi, voit valita useita;Mielenterveysongelmista kärsivät -- Huumaavien aineiden vaikutuksen alaiset -- Alkoholin vaikutuksen alaiset -- Lääkkeiden vaikutuksen alaiset -- Ei mitään näistä;Leppänen 2017
+Väkivalta;Muodot;Fakta;Jos vastasit ei mitään näistä, minkälaisilta asiakasryhmiltä olet kokenut uhka- tai väkivaltatilanteita?;[Avokenttä, oletettavasti];Leppänen 2017
+Väkivalta;Toimenpiteet;Fakta;Kuinka olet toiminut kohdatessasi uhkaavasti käyttäytyvän asiakkaan? Voit valita useamman kohdan;Keskustellut asiakkaan kanssa -- Poistunut paikalta -- Virka-apua hälyttänyt -- Fyysistä voimaa käyttänyt -- Muulla tavalla;Leppänen 2017
+Väkivalta;Toimenpiteet;Fakta;Jos vastasit muulla tavalla, miten olet toiminut?;[Avokenttä, oletettavasti];Leppänen 2017
+Väkivalta;Esiintyminen;Fakta;Oletko huomannut työurasi aikana uhka- ja väkivaltatilanteiden määrän kasvaneen?;Kyllä -- En;Leppänen 2017
+Väkivalta;Esiintyminen;Fakta;[Number of incidents: Verbal violence];[Kyllä -- Ei, oletettavasti];Leucther ym. 2020
+Väkivalta;Esiintyminen;Fakta;[Number of incidents: Non-verbal violence (eg, aggressive behavior, threat of beating];[Kyllä -- Ei, oletettavasti];Leucther ym. 2020
+Väkivalta;Esiintyminen;Fakta;[Number of incidents: Physical violence, of which (multiple responses allowed), kyllä -- ei, oletettavasti];[Pushing, shoving -- Hitting and punching -- Kicking -- Biting, spitting -- Other (pinching, spraying blood)];Leucther ym. 2020
+Väkivalta;Esiintyminen;Fakta;[Number of incidents: intentionally obstructing the deployment];[Kyllä -- Ei, oletettavasti];Leucther ym. 2020
+Väkivalta;Muodot;Fakta;[Persons committing violent acts, kyllä -- ei, oletettavasti];[Patients -- Relatives -- Passers-by, other road users -- Not available];Leucther ym. 2020
+Väkivalta;Muodot;Fakta;[Factors surrounding violence (multiple responses allowed), kyllä -- ei, oletettavasti];[Intoxication (alcohol and other drugs) -- Intent -- Mental disorder -- Fear -- Other -- Not available];Leucther ym. 2020
+Väkivalta;Muodot;Fakta;[Kind of deployment where violence occurred, kyllä -- ei, oletettavasti];[Regular deployment -- Road crash -- Large-scale event -- Mass brawl -- Not available];Leucther ym. 2020
+Väkivalta;Toimenpiteet;Fakta;[Police involvement at deployments where violence was encountered, kyllä -- ei, oletettavasti];[Police not involved -- Police already on site -- Police asked for help -- Not available];Leucther ym. 2020
+Syrjintä;Muodot;Näyte;Mitkä ovat käsityksesi mukaan pelastusalalla sisäisesti yleisimpiä syrjinnän aiheita (valitse kolme seikkaa mielestäsi yleisyysjärjestyksessä);Ikä -- Sukupuoli -- Alkuperä tai kansalaisuus -- Kieli -- Uskonto tai vakaumus -- Mielipide -- Poliittinen tai ammattiyhdistystoiminta -- Terveydentila tai vammaisuus -- Seksuaalinen suuntautuminen -- Perhesuhteet tai muu henkilöön liittyvä syy -- Pelastusalalla ei esiinny syrjintää;Luoma 2020
+Syrjintä;Esiintyminen;Fakta;Olen itse tullut syrjityksi alan sisällä viimeisen kahden vuoden aikana jostakin seuraavista syistä/ominaisuuksista [5-pt Likert, ei lainkaan --  erittäin paljon];Ikä -- Sukupuoli -- Alkuperä tai kansalaisuus -- Kieli -- Uskonto tai vakaumus -- Mielipide -- Poliittinen tai ammattiyhdistystoiminta -- Terveydentila tai vammaisuus -- Seksuaalinen suuntautuminen -- Perhesuhteet tai muu henkilöön liittyvä syy;Luoma 2020
+Syrjintä;Esiintyminen;Fakta;Olen havainnut alan sisällä syrjivää käytöstä jostakin seuraavista syistä/ominaisuuksista viimeisen kahden vuoden aikana [5-pt Likert, ei lainkaan --  erittäin paljon];Ikä -- Sukupuoli -- Alkuperä tai kansalaisuus -- Kieli -- Uskonto tai vakaumus -- Mielipide -- Poliittinen tai ammattiyhdistystoiminta -- Terveydentila tai vammaisuus -- Seksuaalinen suuntautuminen -- Perhesuhteet tai muu henkilöön liittyvä syy;Luoma 2020
+Syrjintä;Esiintyminen;Fakta;Olen itse käyttäytynyt syrjivästi alan sisällä joihinkin seuraaviin asioihin liittyen viimeisen kahden vuoden aikana [5-pt Likert, ei lainkaan --  erittäin paljon];Ikä -- Sukupuoli -- Alkuperä tai kansalaisuus -- Kieli -- Uskonto tai vakaumus -- Mielipide -- Poliittinen tai ammattiyhdistystoiminta -- Terveydentila tai vammaisuus -- Seksuaalinen suuntautuminen -- Perhesuhteet tai muu henkilöön liittyvä syy;Luoma 2020
+Syrjintä;Muodot;Fakta;Syrjintään on kokemukseni mukaan liittynyt [5-pt Likert, ei lainkaan --  erittäin paljon];Epäkunnioittava käytös -- Mustamaalaaminen tai faktojen vääristely -- Arvojen vastainen johtaminen/työskentely -- Syrjivän käytöksen peittely tai syrjijän suojelu -- Kiusaaminen -- Häirintä -- Vaikeneminen tai puuttumattomuus -- Rasistinen kommentointi -- Ulkopuolelle sulkeminen päätökseteosta tai ryhmästä -- Vähättely, työsuoritusten aliarviointi tai osaamisen kyseenalaistaminen -- Epätasapuolinen tehtävien jako -- Epätasapuolinen palkkaus -- Muu, mikä [Avokenttä];Luoma 2020
+Syrjintä;Esiintyminen;Fakta;Millaisia muita kokemuksia sinulla on yhdenvertaisuuden toteutumisesta tai syrjinnästä pelastuslaitoksellasi sisäisesti?;[Avokenttä];Luoma 2020
+Yhdenvertaisuus;Toimenpiteet;Molemmat;Omassa työyhteisössänä [Kyllä -- Ei -- En osaa sanoa];Olen puuttunut havaitsemaani tai kokemaani syrjintään -- Olen ilmoittanut kokemastani tai havaitsemastani syrjivästä kohtelusta eteenpäin -- Syrjintään puututaan pelastuslaitoksellani asianmukaisesti -- Olen saanut työnantajaltani ohjausta yhdenvertaisuutta edistävään toimintaan syrjintätilanteessa -- On jalkautettu yhdenvertaisuussuunnitelma -- Yhdenvertaisuussuunnitelma on minulle käsitteenä tuttu;Luoma 2020
+Yhdenvertaisuus;Esiintyminen;Näyte;Yhdenvertaisuuteen liittyvät väittämät [5-pt Likert, ei pidä lainkaan paikkaansa -- pitää täysin paikkaansa];Koen, että joudun henkilökohtaisen ominaisuuteni vuoksi todistamaan osaamistani enemmän kuin muut -- Olen ollut tilanteessa, jossa en ole ryhmäpaineen takia puuttunut syrjivään käytökseen -- Olen ollut tilanteessa, jossa jonkin vähemmistöryhmän syrjintä (esimerkiksi vähemmistövitsit) on ollut osa ryhmään kuulumista -- Koen, että organisaatiossani on samat säännöt kaikille -- Koen, että pelastuslaitoksellani henkilövalinnat tehdään yhdenvertaisesti -- Koen, että voin vaikuttaa työtäni koskevaan päätöksentekoon yhdenvertaisesti -- Koen, että esimieheni toiminta on tasapuolista -- Koen, että pelastuslaitoksen johdon toiminta on yhdenvertaisuutta edistävää;Luoma 2020
+Yhdenvertaisuus;Kulttuuri;Fakta;Arvot [5-pt Likert, täysin eri mieltä -- täysin samaa mieltä];Eettisesti oikeudenmukainen, yhdenvertainen työympäristö on minulle tärkeimpiä arvoja työelämässä -- Pelastuslaitokseni henkilöstön toiminta alan sisällä vastaa pelastusalan arvoja -- Pelastuslaitokseni johdon toiminta alan sisällä vastaa pelastusalan arvoja -- Yhdenvertaisuus toteutuu pelastusalalla yleisesti hyvin;Luoma 2020
+Yhdenvertaisuus;Toimenpiteet;Näyte;Mitä keinoja käyttäisit yhdenvertaisuuden edistämiseksi pelastusalalla?;[Avokenttä];Luoma 2020
+Väkivalta;Toimenpiteet;Näyte;Oman osaamisen arviointi;Osaa hyvin -- Osaaminen tilanneriippuvaista -- Ei juuri osaamista;Miettinen ym. 2022
+Väkivalta;Toimenpiteet;Näyte;Uhkatilanteessa toimiminen;Ei osaa vastata -- Toiminta luotettavaa -- Toiminta hetken mielijohteesta -- Toiminta tilannesidonnaista;Miettinen ym. 2022
+Väkivalta;Toimenpiteet;Fakta;Saatu perehdytystä harjoittelussa;Perehdytys vähäistä -- Jonkinlainen perehdytys -- Perehdytys hyvää;Miettinen ym. 2022
+Väkivalta;Toimenpiteet;Näyte;Miten saatu perehdytys vaikuttaa omaan osaamiseen?;Tukee omaa osaamista -- Enemmän valmiuksia toimia -- Osittain negatiivinen vaikutus -- Ei vaikutusta;Miettinen ym. 2022
+Väkivalta;Toimenpiteet;Näyte;Miten perehdyttämistä voitasiin parantaa?;Ei parannusehdotuksia -- Valtakunnalliset ohjeistukset -- Keskustelua asiasta -- Simulaatioharjoituksia enemmän;Miettinen ym. 2022
+Häirintä;Esiintyminen;Fakta;[Sexual assault or harassment];[Yes -- No];Newbury-Birch ym. 2017
+Väkivalta;Esiintyminen;Näyte;[Threat of injury];[Never -- Once -- 2-3 times -- 4-5 times -- 6+ times];Newbury-Birch ym. 2017
+Väkivalta;Esiintyminen;Fakta;[Actual injury];[Never -- Once -- 2-3 times -- 4-5 times -- 6+ times];Newbury-Birch ym. 2017
+Väkivalta;Muodot;Näyte;[Feel at risk of assault in night time economy];[Very high risk -- High risk -- Some risk -- No risk];Newbury-Birch ym. 2017
+Väkivalta;Muodot;Näyte;[Feel at risk of assault in daytime];[Very high risk -- High risk -- Some risk -- No risk];Newbury-Birch ym. 2017
+Väkivalta;Muodot;Näyte;[Stated location where respondent felt most at risk from intoxicated patients, monivalinta max. 3];[Private residence -- Town/city centre street -- Inside the ambulance -- Inside licensed premises -- Outside licensed premises -- Rural street locations -- EDs];Newbury-Birch ym. 2017
+Epäasiallinen kohtelu;Esiintyminen;Fakta;[Subjected most recent year to threats by patient, relative or other person];[Yes -- No];Petzäll ym. 2011
+Epäasiallinen kohtelu;Muodot;Fakta;[Kind of threat, Kyllä -- ei, oletettavasti];[Threat of contacting media -- Threat of informing superior or authoriti -- Threat of physical violence against ambulance personnel -- Death threat against ambulance personnel];Petzäll ym. 2011
+Epäasiallinen kohtelu;Muodot;Näyte;[Experience of threat];[Very unpleasant -- Unpleasant -- Somewhat unpleasant -- Not at all unpleasant];Petzäll ym. 2011
+Epäasiallinen kohtelu;Toimenpiteet;Näyte;[Consequence of violence and threats on ambulance personnel, Joko kyllä -- ei tai avokenttä];[Increased caution, alertness and suspicion -- Not affected -- Feelings of frustration, unpleasantness and fear -- Other];Petzäll ym. 2011
+Väkivalta;Esiintyminen;Fakta;[Subjected most recent year to physical violence by patient, relative or other person];[Yes -- No];Petzäll ym. 2011
+Väkivalta;Muodot;Fakta;[Kinds of acts of violence, Kyllä -- ei, oletettavasti];[Have been pushed -- Have been beaten -- Have been kicked -- Have been scratched/gashed -- Have been bitten -- Have been spat at -- Other acts of violence];Petzäll ym. 2011
+Väkivalta;Muodot;Fakta;[Perpetrator of acts of violence, Kyllä -- ei, oletettavasti];[Patient -- Relative -- Other];Petzäll ym. 2011
+Väkivalta;Toimenpiteet;Fakta;[Seeking medical attention after being subjected to physical violence];[Kyllä -- Ei, oletettavasti];Petzäll ym. 2011
+Väkivalta;Toimenpiteet;Fakta;[Reason for requesting medical attention, Kyllä -- Ei, oletettavasti];[Treatment of physical injuries -- Treatment of mental problems -- In order to obtain a doctor's certificate -- In order to obtain a certificate for legal purposes];Petzäll ym. 2011
+Väkivalta;Esiintyminen;Fakta;Arvioi, miten usein sinuun on kohdistunut uhka- ja väkivaltatilanteita Keski-Uudenmaan pelastuslaitoksen ensihoitotehtävissä ajalla 1.1.2017-28.2.2018;Viikottain tai useammin -- Kuukausittain -- 2-10 kertaa vuodessa -- Kerran vuodessa tai harvemmin -- Ei kertaakaan;Rajamäki 2019
+Väkivalta;Muodot;Fakta;Arvioi miten usein sinuun kohdistuneissa uhka- ja väkivaltatilanteissa Keski-Uudenmaan pelastuslaitoksen ensihoitotehtävissä ajalla 1.1.2017-28.2.2018 tekijä on ollut joku seuraavista [Viikottain tai useammin -- Kuukausittain -- 2-10 kertaa vuodessa -- Kerran vuodessa tai harvemmin -- Ei kertaakaan];Potilas, mies, ei päihteiden vaikutuksessa -- Potilas, nainen, ei päihteiden vaikutuksessa -- Potilas, mies, päihteiden vaikutuksessa -- Potilas, nainen, päihteiden vaikutuksessa -- Mielenterveyspotilas, mies -- Mielenterveyspotilas, nainen -- Kehitysvammainen potilas mies -- Kehitysvammainen potilas nainen -- Potilas, vanhus, mies -- Potilas, vanhus, nainen -- Potilas, alaikäinen, mies -- Potilas, alaikäinen, nainen -- Omainen, mies -- Omainen, nainen -- Muu paikallaolija, mies -- Muu paikallaolija, nainen;Rajamäki 2019
+Väkivalta;Muodot;Fakta;Onko sinuun kohdistunut Keski-Uudenmaan pelastuslaitoksen ensihoitotehtävissä ajalla 1.1.2017-28.2.2018 uhka- tai väkivaltatilanteita seuraavissa paikoissa? Valitse kaikki, joissa olet kokenut väkivaltaa tai sen uhkaa;Kohteessa, yksityisasunto -- Kohteessa, ulkona -- Kohteessa, baari/yökerho -- Kohteessa, muu julkinen kiinteistö -- Kohteessa, vastaanottokeskus -- Kohteessa, hoitolaitos -- Ambulanssissa -- Muualla;Rajamäki 2019
+Väkivalta;Muodot;Fakta;Muualla, missä? [Kohteen muu-vastauksen elaborointi];[Avokenttä];Rajamäki 2019
+Väkivalta;Muodot;Fakta;Millä hälytyskoodeilla tulleilla tehtävillä sinuun on kohdistunut useimmin uhka- ja väkivaltatilanteita Keski-Uudenmaan pelastuslaitoksen ensihoitotehtävissä ajalla 1.1.2017-28.2.2018? Kerro kolme yleisintä. (Vastausmuoto esim. D785, B752..);[Avokenttä];Rajamäki 2019
+Väkivalta;Muodot;Fakta;Henkinen väkivalta ja väkivallan uhka [Kysymys aseteltu patteriston yläpuolella. Viikottain tai useammin -- Kuukausittain -- 2-10 kertaa vuodessa -- Kerran vuodessa tai harvemmin -- Ei kertaakaan];Solvaaminen/nimittely -- Sanallinen uhkailu -- Uhkaavat eleet -- Hoitovälineiden tai ambulanssin rikkominen -- Uhkaaminen teräaseella (tekoväline näkyvillä) -- Uhkaaminen ampuma-aseella (tekoväline näkyvillä) -- Uhkaaminen muulla esineellä -- Muu;Rajamäki 2019
+Väkivalta;Muodot;Fakta;Muu, mikä? [Henkisen väkivallan muu-vastauksen elaborointi];[Avokenttä];Rajamäki 2019
+Väkivalta;Muodot;Fakta;Fyysinen väkivalta (myös torjuttu tai väistetty hyökkäys lasketaan);Lyöminen -- Potkiminen -- Kiinni tarttuminen/liikkumisen estäminen -- Vaatteista tai hiuksista repiminen -- Raapiminen -- Pureminen -- Maahan/lattialle kaataminen -- Kuristaminen -- Terä-aseella vahingoittaminen -- Ampuma-aseella vahingoittaminen -- Muu;Rajamäki 2019
+Väkivalta;Muodot;Fakta;Muu, mikä? [Fyysisen väkivallan muu-vastauksen elaborointi];[Avokenttä];Rajamäki 2019
+Väkivalta;Vaikutukset;Fakta;Onko sinulle aiheutunut uhka- tai väkivaltatilanteista Keski-Uudenmaan pelastuslaitoksen ensihoitotehtävissä ajalla 1.1.2017-28.2.2018 jotain seuraavista haitoista? Voit valita useamman vaihtoehdon.;Kipua -- Mustelmat/ ruhjeet/ naarmut -- Venähdys/ nyrjähdys -- Haava (ommeltava/liimatava) -- Luun murtuma -- Nivelen sijoiltaan meno -- Psyykkisiä haittoja (esim. unettomuus, masennus, ahdistuneisuus) -- Henkilökohtaisen omaisuuden (esim. silmälasit) rikkoutuminen -- Muu haitta;Rajamäki 2019
+Väkivalta;Vaikutukset;Fakta;Muu, mikä? [Haittojen muu-vastauksen elaborointi];[Avokenttä];Rajamäki 2019
+Väkivalta;Vaikutukset;Fakta;Oletko tarvinnut sairaslomaa ajalla 1.1.2017-28.2.2018 Keski-Uudenmaan pelastuslaitoksen ensihoitotehtävissä sinuun kohdistuneen uhka- tai väkivaltatilanteen seurauksena?;En -- Kyllä;Rajamäki 2019
+Väkivalta;Toimenpiteet;Fakta;"Miten usein olet tehnyt Keski-Uudenmaan pelastuslaitoksella ensihoitotehtävissä sinuun kohdistuneesta uhka- tai väkivaltatilanteesta ""Selvitys väkivalta- tai sen uhkatilanteesta""-ilmoituksen ajalla 1.1.2017-28.2.2018?";Viikottain tai useammin -- Kuukausittain -- 2-10 kertaa vuodessa -- En kertaakaan;Rajamäki 2019
+Väkivalta;Toimenpiteet;Näyte;"Jos et ole tehnyt jokaisesta sinuun kohdistuneesta uhka- tai väkivaltatilanteesta ""Selvitys väkivalta- tai sen uhkatilanteesta""-ilmoitusta, mistä syystä/syistä? Valitse 1-3 tärkeintä.";Minuun ei ole kohdistunut yhtään uhka- tai väkivaltatilannetta -- En ole ollut tietoinen ilmoituksesta -- Minulle on epäselvää milloin ilmoitus pitäisi täyttää -- Ajanpuute -- Unohdus -- Ilmoituksen täyttäminen on työlästä tai vaikeaa -- Pelkään ilmoituksen johtavan oman ammattitaitoni kyseenalaistamiseen (esim. vuorovaikutustaidot, aggressiivisen potilaan kohtaaminen) -- Oletin, että joku muu (esim. työpari tai kenttäjohtaja) hoitaa ilmoituksen -- Koen ilmoituksen turhaksi -- Lomake, jolla ilmoitus tehdään, on huono;Rajamäki 2019
+Väkivalta;Toimenpiteet;Näyte;Muu syy, mikä? [Ilmoittamatta jättämisen muu-vastauksen elaborointi];[Avokenttä];Rajamäki 2019
+Väkivalta;Toimenpiteet;Näyte;Mikäli vastasit, että lomake on huono, kertoisitko millä tavalla huono?;[Avokenttä];Rajamäki 2019
+Väkivalta;Toimenpiteet;Fakta;Oletko milloinkaan tehnyt sinuun Keski-Uudenmaan pelastuslaitoksen ensihoitotehtävissä kohdistuneesta uhka- tai väkivaltatilanteesta rikosilmoitusta poliisille?;En -- Kyllä;Rajamäki 2019
+Väkivalta;Toimenpiteet;Fakta;Mikäli olet joskus tehnyt rikosilmoituksen, kuvailisitko tilanteen;[Avokenttä];Rajamäki 2019
+Väkivalta;Toimenpiteet;Näyte;Miten sinun mielestäsi uhka- ja väkivaltatilanteista ilmoittamista työnantajille voisi kehittää? Kerro omin sanoin.;[Avokenttä];Rajamäki 2019
+Väkivalta;Muodot;Fakta;Miten olet toiminut uhka- ja väkivaltatilanteissa Keski-Uudenmaan pelastuslaitoksen ensihoitotehtävissä ajalla 1.1.2017-28.2.2018? Valitse yksi tai useampi vaihtoehto.;Sanallinen rauhottelu/ puhuttaminen/ käskyttäminen -- Pakeneminen/ paikalta poistuminen -- Poliisin hälyttäminen (hätäkutsulla tai muuten) -- Fyysinen puolustautuminen -- Muuten;Rajamäki 2019
+Väkivalta;Muodot;Fakta;Muuten, miten? [Tilannetoimimisen muuten-vastauksen elaborointi];[Avokenttä];Rajamäki 2019
+Väkivalta;Muodot;Fakta;Onko sinulle sattunut Keski-Uudenmaan pelastuslaitoksen ensihoitotehtävissä ajalla 1.1.2017-28.2.2018 tilannetta, että olet käyttänyt virve-radion hätäpainiketta, mutta se ei toiminut?;Kyllä -- Ei;Rajamäki 2019
+Väkivalta;Toimenpiteet;Näyte;Minulla on hyvät valmiudet toimia uhka- ja väkivaltatilanteissa ensihoidossa;[5-pt Likert, täysin samaa mieltä -- täysin eri mieltä];Rajamäki 2019
+Väkivalta;Toimenpiteet;Näyte;Olen saanut riittävästi koulutusta uhka- ja väkivaltatilanteista;[5-pt Likert, täysin samaa mieltä -- täysin eri mieltä];Rajamäki 2019
+Väkivalta;Toimenpiteet;Näyte;Minkälaista koulutusta haluaisit uhka- ja väkivaltatilanteista?;[Avokenttä];Rajamäki 2019
+Väkivalta;Toimenpiteet;Näyte;Keski-Uudenmaan pelastuslaitoksella on hyvät toimintaohjeet ensihoidon uhka- ja väkivaltatilanteissa toimimisesta;[5-pt Likert, täysin samaa mieltä -- täysin eri mieltä];Rajamäki 2019
+Väkivalta;Toimenpiteet;Näyte;Miten ohjeistusta ensihoidon uhka- ja väkivaltatilanteissa toimimisesta voisi kehittää?;[Avokenttä];Rajamäki 2019
+Väkivalta;Toimenpiteet;Näyte;Keski-Uudenmaan pelastuslaitoksella on riittävät ja asianmukaiset suojavarusteet ensihoitohenkilökunnalle uka- ja väkivaltatilanteiden varalle;[5-pt Likert, täysin samaa mieltä -- täysin eri mieltä];Rajamäki 2019
+Väkivalta;Toimenpiteet;Näyte;Miten suojavarusteita voisi kehittää?;[Avokenttä];Rajamäki 2019
+Epäasiallinen kohtelu;Esiintyminen;Fakta;Oletko kokenut/kohdannut sukupuoleen perustuvaa eriarvoista kohtelua, esimerkiksi vähättelyä, tytöttelyä tai vastaavaa? Minkälaista? Mitä kuvittelet olevan sen taustalla?;[Teemahaastattelu];Saari 2013
+Epäasiallinen kohtelu;Kulttuuri;Fakta;Oletko havainnut työyhteisössä asenteellisuutta naisia kohtaan? Minkälaista?;[Teemahaastattelu];Saari 2013
+Häirintä;Esiintyminen;Fakta;Oletko kokenut työyhteisössä seksuaalista härintää/häiritsevää vihjailua?;[Teemahaastattelu];Saari 2013
+Syrjintä;Esiintyminen;Fakta;Oletko kokenut sukupuoleen perustuvaa syrjintää esimerkiksi vastuualuejaoissa/työasioissa muuten?;[Teemahaastattelu];Saari 2013
+Yhdenvertaisuus;Toimenpiteet;Fakta;Oletko tietoinen Espoon kaupungin tasa-arvosuunnitelmasta? Oletko myös perehtynyt siihen?;[Teemahaastattelu];Saari 2013
+Yhdenvertaisuus;Esiintyminen;Näyte;Koetko työelämän ja perhe-elämän yhdistämisen mahdolliseksi pelastusviranomaisena?;[Teemahaastattelu];Saari 2013
+Yhdenvertaisuus;Vaikutukset;Näyte;Millä tavalla Länsi-Uudenmaan pelastuslaitoksen käytännöt ovat mielestäsi muuttuneet viimeisen vuosien/vuosikymmenen aikana? Onko tapahtunut muutos ollut parannus? Onko alkuun pantu muutos mielestäsi oikeasti toteutunut?;[Teemahaastattelu];Saari 2013
+Häirintä;Muodot;Fakta;If you have endured verbal aggression at work, what sort was it? [Monivalinta];Insults -- Offensive or condescending language -- Shouts or cries with the intention of creating fear or offense -- Not relevant -- Other;Savoy ym. 2021
+Häirintä;Muodot;Fakta;If you have endured intimidation at work, what sort was it? [Monivalinta];Followed by the aggressor -- Menacing or frightening behaviour -- Intimidation at home or out of work context -- Not relevant;Savoy ym. 2021
+Häirintä;Muodot;Fakta;If you have endured sexual harassment at work, what sort was it? [Monivalinta];Sexual pleasantries or humiliating sexual remarks -- Sexual or other offensive gestures -- Demands for sexual touching, & inappropriate handling of genitals, breats or buttocks -- Insisting demands for meetings or telephone numbers -- Caresses, inappropriate physical contact out of the genital zone, buttocks or breasts -- Not relevant -- Other;Savoy ym. 2021
+Väkivalta;Esiintyminen;Fakta;Have you been the victim of violence at work? [Kyllä -- Ei];During your career -- During the year 2016;Savoy ym. 2021
+Väkivalta;Muodot;Fakta;What was the nature of violence endured? [Monivalinta];Verbal aggression -- Intimidation -- Physical aggression -- Sexual harassment -- Sexual aggression -- I was never a victim of violence;Savoy ym. 2021
+Väkivalta;Esiintyminen;Fakta;Did you witness violence towards a colleague at work?;Yes -- No;Savoy ym. 2021
+Väkivalta;Esiintyminen;Fakta;Did your colleagues report being victims of violence at work?;Yes -- No;Savoy ym. 2021
+Väkivalta;Esiintyminen;Fakta;During your career, how often have you endured violence at work? [Never -- 1-3 times/year -- 1-3 times/year -- 1 time/week -- 2-3 times/week -- Every day];Verbal aggression -- Intimidation -- Physical aggression -- Sexual harassment -- Sexual aggression;Savoy ym. 2021
+Väkivalta;Esiintyminen;Fakta;During 2016, how often have you endured violence at work? [Never -- 1-3 times/year -- 1-3 times/year -- 1 time/week -- 2-3 times/week -- Every day];Verbal aggression -- Intimidation -- Physical aggression -- Sexual harassment -- Sexual aggression;Savoy ym. 2021
+Väkivalta;Muodot;Fakta;If you have endured physical aggression at work, what sort was it? [Monivalinta];Pushing -- Slapping/smacking -- Spitting -- Throwing objects with intention of hurting -- Punching -- Kicking -- Knifing -- Not relevant -- Other;Savoy ym. 2021
+Väkivalta;Muodot;Fakta;If you have endured sexual aggression at work, what sort was it? [Monivalinta];Actual or attempted non-consentual sexual contact -- Caresses, inappropriate physical contact on genital zone, buttocks or breasts -- Not relevant -- Other;Savoy ym. 2021
+Väkivalta;Muodot;Fakta;At what time where you a victim of work violence? [Monivalinta];Morning (06:01 am - 12:00 am) -- Afternoon (12:01 pm - 06:00 pm) -- Evening (06:01 pm - 12:00 pm) -- Night (00:01 am - 06:00 am) -- Not relevant;Savoy ym. 2021
+Väkivalta;Muodot;Fakta;Where were you a victim of work violence? [Monivalinta];At rescue site - public place -- At rescue site - home of patient or friend -- In the ambulance -- At hospital -- Out of work context -- Not relevant -- Other [avokenttä];Savoy ym. 2021
+Väkivalta;Muodot;Fakta;Who were the culprits of violence? [Monivalinta];The patient -- Someone around of the patient -- A fellow medical care worker -- Not relevant -- Other [avokenttä];Savoy ym. 2021
+Väkivalta;Esiintyminen;Näyte;Do you think violence is part and parcel of pre-hospital rescue work? ;Yes -- No;Savoy ym. 2021
+Väkivalta;Esiintyminen;Näyte;Concerning the risk of violence: did it make you afraid? [Never -- Rarely (<25% of cases) -- Occasionally (<50% of cases) -- Often (<75% of cases) -- Always (>75% of cases)];To go to work? -- On site of intervention;Savoy ym. 2021
+Väkivalta;Vaikutukset;Fakta;If you have endured workplace violence, what were the physical consequences? [Not relevant -- No consequence -- Minor -- Moderate -- Severe, termit avattu tekstissä];Physical aggression -- Sexual harassment -- Sexual aggression;Savoy ym. 2021
+Väkivalta;Vaikutukset;Fakta;If you have endured workplace violence, what were the psychological consequences? [Not relevant -- No consequence -- Minor -- Moderate -- Severe, termit avattu tekstissä];Verbal aggression -- Intimidation -- Physical aggression -- Sexual harassment -- Sexual aggression;Savoy ym. 2021
+Väkivalta;Vaikutukset;Fakta;If you have endured workplace violence, what were the professional consequences? [Not relevant -- No consequence -- Minor -- Moderate -- Severe, termit avattu tekstissä];Verbal aggression -- Intimidation -- Physical aggression -- Sexual harassment -- Sexual aggression;Savoy ym. 2021
+Väkivalta;Toimenpiteet;Fakta;During the year, have you changed your practice concerning workplace violence?;Yes -- No;Savoy ym. 2021
+Väkivalta;Toimenpiteet;Fakta;Can you say how? (Calling the police, refusing to visit certain areas…);[Avokenttä];Savoy ym. 2021
+Väkivalta;Toimenpiteet;Näyte;Regarding serious violence, did you feel yourself to be adequately protected and upheld by the forces of order?;Yes -- No;Savoy ym. 2021
+Väkivalta;Toimenpiteet;Fakta;During the year, have you changed your workplace equipment?;Yes -- No;Savoy ym. 2021
+Väkivalta;Toimenpiteet;Fakta;Please detail what you have added to your equipment;[Avokenttä];Savoy ym. 2021
+Väkivalta;Toimenpiteet;Fakta;What measures do you take when a patient is violent?;[Avokenttä];Savoy ym. 2021
+Väkivalta;Toimenpiteet;Fakta;Are you trained to deal with violence?;Yes -- No;Savoy ym. 2021
+Väkivalta;Toimenpiteet;Näyte;Do you deem this [training to deal with violence] adequate?;Yes -- No;Savoy ym. 2021
+Väkivalta;Toimenpiteet;Näyte;Are you interested in such training? [to deal with violence];Yes -- No;Savoy ym. 2021
+Väkivalta;Toimenpiteet;Fakta;Did you report episodes of violence? [Never -- Rarely (<25% of cases) -- Occasionally (<50% of cases) -- Often (<75% of cases) -- Always (>75% of cases)];To your colleagues -- To your superior -- To your administration -- To the police;Savoy ym. 2021
+Väkivalta;Toimenpiteet;Fakta;If you have not reported all episodes of violence, what are the reasons? [Monivalinta];Procedure too complicated -- No point as nothing will change -- Fear of repercussions from superiors for reporting such -- The patient was not in his normal state so not really responsible -- I report all episodes of violence -- Other;Savoy ym. 2021
+Epäasiallinen kohtelu;Muodot;Fakta;[The nature of offenses, määrä, oletettavasti];[Verbal abuse (obscene language, offensive expressions, including sexual, humiliating phrases, obscene comments) -- Threat of violence (warings of intents to harm, harass, physical intimidation, threats with weapon) -- Symbolic violence (throwing furniture, utensils, blows into the wall) -- Forcible holding, hostage taking -- Physical attack (blows, pushes, bites) -- Confrontation beyond direct contact with the patient (tracking, phone calls, letters) -- Damage to property, vehicles];Shkatula ym. 2019
+Epäasiallinen kohtelu;Toimenpiteet;Näyte;[Reasons why health workers did not report the incidents, kyllä -- ei, oletettavasti];[They consider conflict situations as an integral part of work -- Lack of free time -- Fear of disapproval by the administration -- They feel guilty of a conflict -- They do not believe in the possibility of prosecuting persons who have commited violent acts -- Lack of knowledge of the reporting form and legal protection];Shkatula ym. 2019
+Epäasiallinen kohtelu;Toimenpiteet;Näyte;[Suggestions of emergency medical workers as for ways for normalizing the situation, kyllä -- ei, oletettavasti];[Improving the law support and judicial assistance -- Complete staffing of teams -- Providing with personal protective equipment -- Providing with video recording devices -- Providing with firearms -- Rising of moral standards of the population -- Work in co-operation with the police];Shkatula ym. 2019
+Epäasiallinen kohtelu;Toimenpiteet;Fakta;Onko palokunnassanne toimintaohjeet epäasiallisen käytökseen/häirintään/seksuaaliseen häirintään? ;Kyllä -- Ei -- Ei, mutta toivoisin olevan;Sisäministeriö 2021
+Epäasiallinen kohtelu;Toimenpiteet;Fakta;Onko palokunnassanne käytössä turvallisuusselvitykset, onko niitä tehty kenen toimesta? ;On tehty pelastuslaitoksen toimesta – Ei ole tehty – On tehty palokunnan toimesta;Sisäministeriö 2021
+Epäasiallinen kohtelu;Toimenpiteet;Fakta;Onko palokunnassanne käytössä ohje alaikäisten koskemattomuuden turvaamisesta? ;Kyllä – Ei – Ei ole nuoriso-osastoa;Sisäministeriö 2021
+Epäasiallinen kohtelu;Toimenpiteet;Fakta;Tarkastetaanko teillä nuorten kanssa toimivien rikostaustat? ;Kyllä – Ei – Ei jos tuttu/vaihtaa palokunnasta toiseen – Kyllä, Ei jos tuttu/vaihtaa palokunnasta toiseen [KIRJOITUSVIRHE?] – Ei ole nuoriso-osastoa;Sisäministeriö 2021
+Yhdenvertaisuus;Toimenpiteet;Fakta;Onko palokunnassasi tasa-arvosuunnitelma?;Kyllä -- Ei -- On suunnitteilla/tekeillä;Sisäministeriö 2021
+Yhdenvertaisuus;Toimenpiteet;Fakta;Onko palokunnassasi yhdenvertaisuussuunnitelma?;Kyllä -- Ei -- On suunnitteilla/tekeillä;Sisäministeriö 2021
+Yhdenvertaisuus;Toimenpiteet;Näyte;Koetko että em. suunnitelmille on tarvetta sopimuspalokunnassa?;Kyllä -- Ei;Sisäministeriö 2021
+Yhdenvertaisuus;Esiintyminen;Fakta;Onko palokunnassasi ollut tasa-arvo tai/ja yhdenvertaisuusongelmia?;Kyllä -- Ei;Sisäministeriö 2021
+Väkivalta;Esiintyminen;Fakta;Oletko kohdannut työssäsi fyysistä väkivaltaa?;Kyllä -- En;Sutinen 2010
+Väkivalta;Muodot;Fakta;Oletko kohdannut työssäsi seuraavi fyysisen väkivallan ilmenemismuotoja? [Monivalinta];Lyöminen -- Potkiminen -- Raapiminen -- Sylkeminen -- Kuristaminen -- Kiinnikäyminen -- Kiinnipitäminen -- Jokin muu, mikä;Sutinen 2010
+Väkivalta;Muodot;Fakta;Esineellä vahingoittamista [Monivalinta];Teräaseella lyöminen -- Teräaseella viiltäminen -- Teräaseella heittäminen -- Tylpällä esineellä lyöminen -- Tylpällä esineellä heittäminen -- Jokin muu, mikä;Sutinen 2010
+Väkivalta;Muodot;Fakta;Tappamisen yrittämistä [Monivalinta];Ampuminen -- Puukottaminen -- Räjäyttäminen -- Polttaminen -- Myrkyttäminen -- Ajoneuvolla yliajo -- Jokin muu, mikä;Sutinen 2010
+Väkivalta;Muodot;Fakta;Miten fyysiseen väkivaltaan johtanut toiminta ilmeni potilaan käyttäytymisessä ja eleissä?;[Avokenttä, oletettavasti];Sutinen 2010
+Väkivalta;Esiintyminen;Fakta;Oletko kohdannut työssäsi henkistä väkivaltaa?;Kyllä -- En;Sutinen 2010
+Väkivalta;Muodot;Fakta;Oletko kohdannut työssäsi seuraavia henkisen väkivallan ilmenemismuotoja? [Monivalinta];Huutaminen -- Kiroilu -- Solvaaminen -- Aggressiivinen asennoituminen ensihoitohenkilöstöä kohtaan -- Halveksiva asennoituminen ensihoitohenkilöstöä kohtaan -- Vähättelevä asennoituminen ensihoitohenkilöstöä kohtaan -- Fyysisellä väkivallalla uhkailu -- Tappamisella uhkailu -- Jokin muu, mikä;Sutinen 2010
+Väkivalta;Muodot;Fakta;Sanatonta viestintää [Monivalinta];Tavaroiden heittely -- Tavaroiden rikkominen -- Tuijottaminen -- Käsen nyrkkiin puristelu -- Nyrkin heiluttaminen -- Irvistely -- Levoton liikehdintä -- Aggressiivinen elehdintä -- Aggressiivinen liikehdintä -- Uhkaava elehdintä -- Uhkaava liikehdintä -- Teräaseella uhkaaminen -- Tuliaseella uhkaaminen -- Lyömäaseella tai esineellä uhkaaminen -- Jokin muu, mikä;Sutinen 2010
+Väkivalta;Muodot;Fakta;Miten henkiseen väkivaltaan johtanut toiminta ilmeni potilaan käyttäytymisessä ja eleissä?;[Avokenttä, oletettavasti];Sutinen 2010
+Väkivalta;Muodot;Näyte;Provosoitko mielestäsi omalla käyttäytymiselläsi potilasta?;Kyllä -- En;Sutinen 2010
+Väkivalta;Muodot;Näyte;Miten mielestäsi provosoit potilasta?;[Avokenttä, oletettavasti];Sutinen 2010
+Väkivalta;Muodot;Fakta;Miten toimit henkisessä ja/tai fyysisessä väkivaltatilanteessa? [Monivalinta];Poliisin kutsuminen kohteeseen -- Painamalla Virvepuhelimen hätäkutsua -- Perääntyminen kohteesta -- Potilaan rauhoittaminen puheella -- Potilaan kaataminen -- Potilaan lepositeisiin sitominen -- Potilaan paikallaan pitäminen -- Jokin muu, mikä;Sutinen 2010
+Väkivalta;Vaikutukset;Fakta;Mitä seurauksia potilaan fyysisestä ja/tai henkisestä väkivallasta Sinulle ilmeni? [Monivalinta];Ruhjeita -- Haavoja -- Nirhaumia -- Mustelmia -- Pehmytkudosvaurioita -- Vakava ruumiin vamma -- Vaatteiden rikkoutumista -- Välineiden rikkoutumista -- Henkistä kärsimystä -- Pelkotiloja -- Ahdistusta -- Jokin muu, mikä;Sutinen 2010
+Väkivalta;Esiintyminen;Fakta;Kuinka monta fyysistä väkivaltatilannetta olet kohdannut työurasi aikana työskennellessäsi Helsingin pelastuslaitoksen ensihoito-organisaatiossa? ;[Avokenttä, luku];Sutinen 2010
+Väkivalta;Toimenpiteet;Fakta;"Kuinka monesta fyysisestä väkivalta-ja/tai vaaratilanteesta olet tehnyt Työtapaturma 
+tai läheltäpiti-tilanneilmoituksen? ";[Avokenttä, luku];Sutinen 2010
+Väkivalta;Toimenpiteet;Fakta;Kuinka monesta fyysisestä väkivalta-ja/tai vaaratilanteesta olet tehnyt rikosilmoituksen? ;[Avokenttä, luku];Sutinen 2010
+Väkivalta;Esiintyminen;Fakta;Kuinka monta henkistä väkivaltatilannetta olet kohdannut työurasi aikana työskennellessäsi Helsingin pelastuslaitoksen ensihoito-organisaatiossa? ;[Avokenttä, luku];Sutinen 2010
+Väkivalta;Toimenpiteet;Fakta;Kuinka monesta henkisestä väkivalta-ja/tai vaaratilanteesta olet tehnyt Työtapaturmatai läheltäpititilanneilmoituksen? ;[Avokenttä, luku];Sutinen 2010
+Väkivalta;Toimenpiteet;Fakta;Kuinka monesta henkisestä väkivalta-ja/tai vaaratilanteesta olet tehnyt rikosilmoituksen? ;[Avokenttä, luku];Sutinen 2010
+Häirintä;Esiintyminen;Fakta;[How often have you been confronted with other types of harassment in the previous 12 months?];[Avokenttä];van Reemst & Fischer 2019
+Syrjintä;Esiintyminen;Fakta;[How often have you been confronted with discrimination in the previous 12 months?];[Useampi mittari. Kyllä -- Ei];van Reemst & Fischer 2019
+Väkivalta;Esiintyminen;Fakta;[How often have you been confronted with physical violence in the previous 12 months?];[Avokenttä];van Reemst & Fischer 2019
+Väkivalta;Esiintyminen;Fakta;[How often have you been confronted with verbal violence in the previous 12 months?];[Avokenttä];van Reemst & Fischer 2019
+Epäasiallinen kohtelu;Muodot;Näyte;[Rate the severity of the following types of external work place aggression, 5-pt Likert not severe at all -- extremely severe, tyypit haettu Dupré ym. mittaristosta];[Said to spite -- Was rude -- Transmitted damaging information -- False accusation -- Yelled -- Swore -- Insluted -- Name-calling -- Glared or dirty looks -- Rude gestures -- Threatened to hit -- Threatened to throw -- Threatened to kill -- Threatened with a weapon -- Tried to hit -- Bumped -- Pushed -- Spit -- Threw -- Grabbed -- Hit -- Kicked -- Choked];van Reemst & Jongerling 2019
+Väkivalta;Muodot;Fakta;Can you tell us about the time you were exposed to workplace violence? What is your experienced trigger of the indident? Did you percieve any kind of premonition that the event could occur? At the time, how did you handle the situation?;[Haastattelu];Viking ym. 2022
+Väkivalta;Vaikutukset;Fakta;What where the consequences of the incident? For you? For the patient? For relatives? For the actual caring situation? Did the incident have any other consequences for the ambulance services in general, both short term and long term?;[Haastattelu];Viking ym. 2022
+Väkivalta;Vaikutukset;Näyte;How did you experience being exposed to XXX (answer to question 1)? How do you think this incident affected yourself, both short term and long term? How do you feel about this incident today?;[Haastattelu];Viking ym. 2022
+Väkivalta;Toimenpiteet;Näyte;What is your thoughts on preventive work against workplace violence? Do you think this incident could have been prevented? How do you think, in general, that situations with workplace violence can be prevented?;[Haastattelu];Viking ym. 2022
+Epäasiallinen kohtelu;Kulttuuri;Näyte;Onko turvallisuuteen vaikuttavat tekijät otettu huomioon työpaikallasi?;[5-pt Likert, erittäin huonosti -- erittäin hyvin];Virta 2020
+Yhdenvertaisuus;Esiintyminen;Näyte;Kaikkia kohdellaan laitoksen johdon osalta tasapuolisesti?;[5-pt Likert, erittäin huonosti -- erittäin hyvin];Virta 2020
