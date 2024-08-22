@@ -2320,7 +2320,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb29-646"><a href="#cb29-646" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-649"><a href="#cb29-649" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb29-650"><a href="#cb29-650" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-tulokset</span></span>
-<span id="cb29-651"><a href="#cb29-651" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Meta-analyysin arvioimat esiintyvyydet ja niiden luottamusvälit (95 %) desimaaleissa"</span></span>
+<span id="cb29-651"><a href="#cb29-651" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Meta-analyysin arvioimat esiintyvyydet ja niiden luottamusvälit (95 %)"</span></span>
 <span id="cb29-652"><a href="#cb29-652" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-653"><a href="#cb29-653" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tulokset) <span class="sc">+</span></span>
 <span id="cb29-654"><a href="#cb29-654" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> muoto, <span class="at">y =</span> arvo, <span class="at">fill =</span> muoto) <span class="sc">+</span></span>
@@ -2330,8 +2330,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb29-658"><a href="#cb29-658" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Väkivaltamuoto"</span>,</span>
 <span id="cb29-659"><a href="#cb29-659" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Esiintyvyys"</span>,</span>
 <span id="cb29-660"><a href="#cb29-660" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Väkivaltamuoto"</span></span>
-<span id="cb29-661"><a href="#cb29-661" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb29-662"><a href="#cb29-662" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb29-661"><a href="#cb29-661" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb29-662"><a href="#cb29-662" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(</span>
+<span id="cb29-663"><a href="#cb29-663" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste</span>(<span class="fu">format</span>(arvo<span class="sc">*</span><span class="dv">100</span>, <span class="at">digits =</span> <span class="dv">3</span>), <span class="st">"%"</span>)),</span>
+<span id="cb29-664"><a href="#cb29-664" aria-hidden="true" tabindex="-1"></a>    <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>,</span>
+<span id="cb29-665"><a href="#cb29-665" aria-hidden="true" tabindex="-1"></a>    <span class="at">show.legend =</span> <span class="cn">FALSE</span></span>
+<span id="cb29-666"><a href="#cb29-666" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb29-667"><a href="#cb29-667" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

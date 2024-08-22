@@ -592,7 +592,7 @@ knitr::kable(tulokset)
 
 ```{r}
 #| label: fig-tulokset
-#| fig-cap: "Meta-analyysin arvioimat esiintyvyydet ja niiden luottamusvälit (95 %) desimaaleissa"
+#| fig-cap: "Meta-analyysin arvioimat esiintyvyydet ja niiden luottamusvälit (95 %)"
 
 ggplot(tulokset) +
   aes(x = muoto, y = arvo, fill = muoto) +
@@ -602,5 +602,10 @@ ggplot(tulokset) +
     x = "Väkivaltamuoto",
     y = "Esiintyvyys",
     fill = "Väkivaltamuoto"
+  ) +
+  geom_label(
+    aes(label = paste(format(arvo*100, digits = 3), "%")),
+    vjust = -0.5,
+    show.legend = FALSE
   )
 ```
