@@ -2,7 +2,7 @@
 
 ---
 eval: true
-freeze: true
+freeze: false
 format:
   html:
     code-tools: true
