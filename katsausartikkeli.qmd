@@ -76,6 +76,10 @@ harhadata <- read.csv2("data/laadunarviointi_määrällisetkyselyt.csv") %>%
     "Paasonen & Vainio 2022"
   ))
 
+### Laadullisten tutkimusten laadunarviointitiedot
+laatu_laadulliset <- read.csv2("data/laadunarviointi_laadullisettutkimukset.csv") %>%
+  tibble()
+
 ### Käsitemääritelmätiedot
 
 # Luetaan data ja korvataan tyhjät solut nollalla (käsittää vain numeraalit)
@@ -204,6 +208,8 @@ data %>% dplyr::filter(Toteutusmaa != "Suomi") %>%
 
 Laadunarviointi seuraa samaa menetelmää kuin yleisen kirjallisuuskatsauksen tutkimusharhan riskiarviointi (ks. @sec-tulosten-yleiskuvaus).
 
+### Määrälliset kyselytutkimukset
+
 ```{r}
 #| label: fig-art-qssp
 #| fig-cap: "Q-SSP-laadunarvioinnin tulokset aakkosjärjestyksessä tutkimuksittain (n = 45). Sisältää haut 1-4 ja 6"
@@ -242,6 +248,31 @@ ggbetweenstats(
   bf.message = FALSE,
   ylab = "Luotettavuus (%)"
 )
+```
+
+### Laadulliset tutkimukset
+
+```{r}
+#| label: fig-art-srqr
+#| fig-cap: "SRQR-laadunarvioinnin tulokset aakkosjärjestyksessä tutkimuksittain (n = 17). Sisältää haut 1-4 ja 6"
+
+laatu_laadulliset %>%
+  ggplot(mapping = aes(x = Viite)) +
+  geom_col(aes(y = Score), fill = "#c20e1a") +
+  labs(y = "Luotettavuustaso (%)", x = "Julkaisu") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5)) + 
+  ylim(0, 100)
+```
+
+```{r}
+#| label: fig-art-srqr-alueet
+#| fig-cap: "SRQR-laadunarvioinnin tulokset instrumenttain (n = 17). Sisältää haut 1-4 ja 6"
+
+laatu_laadulliset_pivot <- laatu_laadulliset %>%
+  tidyr::pivot_longer(Otsikko:Muu_2, names_to = "Osaalue")
+ggplot(laatu_laadulliset_pivot, aes(y = Osaalue, fill = value)) +
+  geom_bar(orientation = "y") +
+  geom_text(aes(label = ..count..), stat = "count", colour = "black", position = position_stack(vjust = 0.5))
 ```
 
 ## Epäasiallisen ja väkivaltaisen kohtelun määritelmät
@@ -596,7 +627,7 @@ knitr::kable(tulokset)
 
 ggplot(tulokset) +
   aes(x = muoto, y = arvo, fill = muoto) +
-  geom_col() +
+  geom_col(alpha = 0, show.legend = FALSE) +
   geom_errorbar(aes(ymin = ci_ala, ymax = ci_ylä)) + 
   labs(
     x = "Väkivaltamuoto",
@@ -605,7 +636,9 @@ ggplot(tulokset) +
   ) +
   geom_label(
     aes(label = paste(format(arvo*100, digits = 3), "%")),
-    vjust = -0.5,
     show.legend = FALSE
+  ) + 
+  scale_y_continuous(
+    labels = scales::percent_format(accuracy = 1)
   )
 ```
