@@ -41,6 +41,7 @@ Välitettäviin viesteihin valmistetiin kolme erillistä kyselylinkkiä. Jokaine
 |                                                 | 7.  SPAL:n uutiskirje                                                    | 7.  Spek.fi (tiedote)                              |
 |                                                 | 8.  SSPL:n jäsenkirje                                                    |                                                    |
 |                                                 | 9.  SPEK:n Speksi-uutiskirje                                             |                                                    |
+|                                                 | 10. Pelastusopiston uutiskirjeet                                         |                                                    |
 +-------------------------------------------------+--------------------------------------------------------------------------+----------------------------------------------------+
 
 : Kyselyn vastauslinkit ja niitä vastaavat välittämiskanavat
@@ -87,6 +88,8 @@ Lähetimme hankkeen toimesta viestin SPEK:n, SPPL:n ja SSPL:n toimistosähköpos
 
 Teimme yhteistyötä SPEK:n, SSPL:n ja Suomen Pelastusalan Ammattilaiset SPAL:n kanssa kyselyn välittämisessä uutis- ja jäsenkirjeiden kautta. Lähetimme näiden järjestöjen viestintäedustajille A5-kokoisen digitaalisen käsiesitteen, joka pyydettiin liittämään järjestöjen hallinnoimiin uutis- ja jäsenkirjeisiin.
 
+Lähetimme myös kutsut Pelastusopiston omien uutiskirjeiden kautta. Uutiskirjeet koskevat seuraavia toimintoja: ensihoito, pelastustoimi, onnettomuuksien ehkäisy, pelastustoiminta.
+
 ### Mainokset
 
 Ostimme mainostilaa Pelastustieto- ja Palokuntalainen-lehdistä. Mainokset olivat neljännessivun kokoisia ja sisälsivät lyhyen osallistumiskutsun, kyselyn linkin sekä QR-koodin.
@@ -101,50 +104,52 @@ Lähetimme myös hankkeen toimesta tiedotteen edelleen Hyvil Oy:n, SPEK:n ja SSP
 
 ## Viestien julkaisuajankohdat
 
-**\[Tämä osuus tulee tarkistaa uudelleen keräyksen myötä, jotta saadaan tarkat päivämäärät dokumentoitua.\]**
+Alla oleva taulukko sisältää jokaisen viestin vahvistettu julkaisu- ja muistutuspäivä. Jos viesti on lähetetty eteenpäin välitystahon toimesta (esim. pelastusjohtajien sähköposti Hyvil Oy:n yhteyshenkilön kautta), päivämäärät viittaavat päiviin, jolloin viesti on lähtenyt lopullisille vastaanottajille (pelastusjohtajat). Mainosten, uutiskirjeiden ja tiedotteiden kohdalla päivämäärä viittaa ensimmäiseen julkaisu- tai esilläolopäivään.
 
-Viestit julkaistiin porrastetusti tutkimusajanjakson aikana, välttääksemme liiallista viestitulvaa.
++------------------------------------------------------+-----------------------+-----------------------+
+| Viesti                                               | Julkaisupäivä         | Muistutuspäivä        |
++======================================================+=======================+=======================+
+| Pelastusjohtajien sähköposti                         | 15.8.                 | 3.9.                  |
++------------------------------------------------------+-----------------------+-----------------------+
+| Ensihoitopäälliköiden sähköposti                     | 15.8.                 | 3.9.                  |
++------------------------------------------------------+-----------------------+-----------------------+
+| Pelastusliittojen edustajat                          | (tarkista)            | (tarkista)            |
++------------------------------------------------------+-----------------------+-----------------------+
+| Sopimuspalokuntien HAKA-viesti                       | (tarkista)            | (tarkista)            |
++------------------------------------------------------+-----------------------+-----------------------+
+| Valtakunnallisten järjestöjen johtajien sähköposti   | 15.8.                 | 3.9.                  |
++------------------------------------------------------+-----------------------+-----------------------+
+| Koulutusorganisaatioiden johtajien sähköposti        | 15.8.                 | 3.9.                  |
++------------------------------------------------------+-----------------------+-----------------------+
+| Ensihoidon yhteyshenkilöt                            | 15.8.                 | 3.9.                  |
++------------------------------------------------------+-----------------------+-----------------------+
+| Pelastuslaitosten yhteyshenkilöt                     | 15.8.                 | 3.9.                  |
++------------------------------------------------------+-----------------------+-----------------------+
+| Valtakunnallisten järjestöjen toimistot ja viestintä | 15.8.                 | 3.9.                  |
++------------------------------------------------------+-----------------------+-----------------------+
+| Koulutusorganisaatioiden toimistot ja viestintä      | 15.8.                 | 3.9.                  |
++------------------------------------------------------+-----------------------+-----------------------+
+| Pelastustiedon mainos                                | 15.8. (verkko)        |                       |
+|                                                      |                       |                       |
+|                                                      | 21.8. (paino)         |                       |
++------------------------------------------------------+-----------------------+-----------------------+
+| Palokuntalaisen mainos                               | (tarkista)            |                       |
++------------------------------------------------------+-----------------------+-----------------------+
+| Pelastusalan ammattilaisen verkkomainos              | 15.8.                 |                       |
++------------------------------------------------------+-----------------------+-----------------------+
+| Palokuntaan.fi -tiedote                              | 15.8.                 |                       |
++------------------------------------------------------+-----------------------+-----------------------+
+| SPAL:n uutiskirje                                    | (tarkista)            |                       |
++------------------------------------------------------+-----------------------+-----------------------+
+| Pelastuslaitokset.fi -tiedote                        | (tarkista)            |                       |
++------------------------------------------------------+-----------------------+-----------------------+
+| SSPL-tiedote                                         | (tarkista)            |                       |
++------------------------------------------------------+-----------------------+-----------------------+
+| Speksi-tiedote                                       | (tarkista)            |                       |
++------------------------------------------------------+-----------------------+-----------------------+
+| Spek.fi -tiedote                                     | 23.8.                 |                       |
++------------------------------------------------------+-----------------------+-----------------------+
+| Pelastusopiston uutiskirjeet                         | 4.9.                  |                       |
++------------------------------------------------------+-----------------------+-----------------------+
 
-Seuraavat viestit julkaistiin tai lähetettiin heti tiedonkeruun alkaessa **15.8.2024**:
-
--   Kaikki johdon kautta lähetettävät viestit
-
--   Pelastuslaitosten ja ensihoidon yhteyshenkilöiden kautta lähetetyt viestit
-
--   Sopimuspalokuntalaisten HAKA-järjestelmän kautta lähetetty kutsukirje
-
--   Kaikki tiedotteet
-
--   Kaikki mainokset
-
--   SPAL:n uutiskirje
-
--   Pelastusalan ammattilainen -lehden verkkomainos
-
-Tiedotteet tulivat julki medioissa seuraavina päivämäärinä:
-
--   **\[Listataan päivämäärät tähän kun keräys on alkanut\]**
-
--   Pelastustieto:
-
--   Palokuntalainen:
-
--   Pelastusalan ammattilainen:
-
--   Palokuntaan.fi:
-
--   Pelastuslaitokset.fi:
-
--   Spal.fi:
-
--   SSPL:n tiedote:
-
-Pelastustieto- ja Palokuntalainen-lehtien mainokset julkaistiin lehtien painokappaleissa **syyskuun kahdella ensimmäisellä viikolla**.
-
-Muut uutiskirjeet lähetettiin seuraavina päivämäärinä:
-
--   SSPL:n jäsenkirje: Syyskuun alku **\[tarkka päivämäärä?\]**
-
--   Speksi-uutiskirje: Tiedonkeruun alussa ja tiedonkeruun lopussa **\[tarkat päivämäärät?\]**
-
--   Palokuntaan.fi-uutiskirje: Tiedonkeruun alussa **\[tarkka päivämäärä?\]**
+: Kutsu- ja muistutusviestien julkaisupäivämäärät {#tbl-julkaisupvm}
