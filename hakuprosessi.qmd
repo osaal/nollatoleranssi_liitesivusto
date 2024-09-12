@@ -1,20 +1,23 @@
-# Hakuprosessi ja PRISMA-kaavio {#sec-prisma-kaavio}
+# Hakuprosessi ja PRISMA-kaavio {#sec-hakuprosessi}
 
-## Hakuprosessi
+---
+eval: true
+---
+
+## Hakuprosessi {#sec-hakuprosessi-hakuprosessi}
 
 Suoritimme haut ositettuna kuuteen osahakuun (ks. @sec-kriteeristo). Jokaisen haun kohdalla suoritimme PRISMA-ohjeistuksen mukaisen seulonnan. Nämä ositetut haut ja seulontaprosessit ovat kuvailtuna "Katsauksen osahaut"-osiossa tällä liitesivustolla.
 
 Ositettujen hakujen jälkeen yhdistimme kaikki hakutulokset yhdeksi tulostaulukoksi. Tällöin suoritimme myös toisen duplikaattitarkistuksen. Tunnistimme seitsemän tietuetta, jotka esiintyivät useammassa osahaussa, ja poistimme duplikaatit. Huomasimme myös, että olimme hakeneet yhden organisaatioraportin käsin tehtävien hakujen kohdalla kahteen kertaan. Poistimme duplikaatin, mutta tätä ei olla merkitty PRISMA-kaavioon (kaavion muiden hakujen duplikaattikentän puuttuvuuden takia).
 
-## PRISMA-kaavio
+## PRISMA-kaavio {#sec-hakuprosessi-prismakaavio}
 
-Hakujen yhdistäminen ja lopullinen seulonta dokumentointiin yhdeksi PRISMA-kulkukaavioksi (@fig-prismakaavio). Kulkukaavio on tuotettu R-paketilla `PRISMA2020` [@PRISMA2020] käyttäen muokattua `csv`-tiedostoa. Tiedosto on lisätty tämän sivuston lähdekoodiin ja löytyy kansiosta `data`.
+Hakujen yhdistäminen ja lopullinen seulonta dokumentointiin yhdeksi PRISMA-kulkukaavioksi (@fig-hakuprosessi-prismakaavio). Kulkukaavio on tuotettu R-paketilla `PRISMA2020` [@PRISMA2020] käyttäen muokattua `csv`-tiedostoa. Tiedosto on lisätty tämän sivuston lähdekoodiin ja löytyy kansiosta `data`.
 
 ```{r}
-#| eval: true
-#| warning: false
-#| label: fig-prismakaavio
+#| label: fig-hakuprosessi-prismakaavio
 #| fig-cap: "Systemaattisen kirjallisuuskatsauksen PRISMA2020-protokollan mukainen kulkukaavio"
+#| warning: false
 
 library(magrittr)
 library(PRISMA2020)

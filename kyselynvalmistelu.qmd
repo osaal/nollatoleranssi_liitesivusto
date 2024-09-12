@@ -1,6 +1,6 @@
 # Kyselyn valmistelu {#sec-kyselynvalmistelu}
 
-## Ensimmäisen asiantuntijatyöpajan suunnittelutapaaminen 13.12.2023
+## Ensimmäisen asiantuntijatyöpajan suunnittelutapaaminen 13.12.2023 {#sec-kyselynvalmistelu-tyopajasuunnittelu}
 
 Kyselyn valmistelu alkoi ensimmäisen asiantuntijatyöpajan suunnittelun yhteydessä tapaamisella 13.12.2023. Tapaamisessa olivat mukana kaikki hanketyöntekijät.
 
@@ -10,7 +10,7 @@ Projektipäällikkö oli yhteydessä kaikkiin hyvinvointialueisiin (21 kappalett
 
 Tutkimuslupaprosessin haasteellisuuden ja aikataulupuutteiden takia hanketyöryhmä kokoontui keskustelemaan kartoituskyselyn toteutusmahdollisuuksista. Totesimme tuolloin, ettemme ehdi toteuttamaan kartoituskyselyä aikataulun puitteissa. Luovuimme kartoituskyselyn tekemisestä, ja päätimme sisällyttää yhden sisällöllisen kysymyksen myöhemmin asiantuntijatyöpajojen ilmoittautumisen yhteydessä.
 
-## Kyselylomakkeen suunnittelutyöpaja 16.1.2024
+## Kyselylomakkeen suunnittelutyöpaja 16.1.2024 {#sec-kyselynvalmistelu-suunnittelutyopaja}
 
 Hanketiimi kokoontui 16.1.2024 suunnittelutyöpajaan, tehtävänä määritellä kyselylomakkeen yleismuoto sekä kohderyhmät ja yhteydenottomenetelmät.
 
@@ -22,7 +22,7 @@ Pääaiheina kyselylle tunnistimme seuraavat kuusi kategoriaa: yleisyys, muodot,
 
 Yhteydenottomenetelmien kohdalla totesimme nopeasti, että tarvitsemme selkeämmän kohderyhmärajauksen ensin. Jätimme siksi yhteydenottomenetelmien keskustelun hankkeen myöhempään vaiheeseen.
 
-## Kyselylomakkeen ensimmäinen vedos
+## Kyselylomakkeen ensimmäinen vedos {#sec-kyselynvalmistelu-ensimmainenvedos}
 
 Tutkimushankkeen varsinainen kyselylomakkeen työstäminen alkoi 20.2.2024. Projektipäällikkö vedosti ensimmäisen version lomakkeesta.
 
@@ -34,7 +34,7 @@ Kehittämisen yhteydessä projektipäällikkö tutustui Jäntin ja Nordquistin [
 
 Epäasiallisen kohtelun yleisyyden mittaaminen pohjautui tämän jälkeen tähän kehitettyyn, kuusiulotteiseen epäasiallisen kohtelun määritelmään. Kehitimme jokaiselle ulottuvuudelle binäärisen mittariston, ja laajensimme määritelmiä koskemaan erikseen organisaation sisällä tapahtuvaa ja ulkoa tulevaa epäasiallista kohtelua.
 
-## Lomakevedoksen läpikäynti 6.3.-7.3.2024
+## Lomakevedoksen läpikäynti 6.3.-7.3.2024 {#sec-kyselynvalmistelu-vedoksenlapikaynti}
 
 Hanketiimi kävi projektipäällikön tekemän lomakevedoksen läpi kahdessa etäkokouksessa 6.3. ja 7.3.2024. Keskusteluiden pohjalta tunnistettiin kehitystarpeita liki jokaisessa kysymysasettelussa.
 
@@ -79,7 +79,7 @@ Päätimme tehdä seuraavat muutokset kyselylomakkeeseen:
 
 Lomakkeen läpikäynnin jälkeen projektipäällikkö teki tarpeellisiksi todetut muutokset kyselylomakkeeseen. Muutostenteon yhteydessä huomattiin, että syrjinnän mittaaminen oli jäänyt pois. Lisäsimme työpaikkaväkivallan mittaristoon syrjinnän määritelmän nojautuen yhdenvertaisuuslakiin, ja kehitimme kirjallisuuskatsausten tulosten pohjalta tarkat mittarit syrjinnälle. Huomasimme, että vain kaksi tutkimusta kirjallisuuskatsauksen tuloksista mittasi syrjinnän kokemuksia tarkemmalla kuin yleisellä tasolla, molemmat laadullisin menetelmin (avokysymys kyselyssä sekä teemahaastattelu). Lisäsimme myös Yhdenvertaisuusvaltuutetun verkkosivuilta löydettyjä esimerkkejä kyselyyn, jolloin saatiin yhteensä 15 mittaria organisaation sisäiselle syrjinnälle ja 8 mittaria organisaation ulkopuoliselle syrjinnälle.
 
-## Asiantuntijatyöpaja 25.3.2024
+## Asiantuntijatyöpaja 25.3.2024 {#sec-kyselynvalmistelu-asiantuntijatyopaja}
 
 Asiantuntijatyöpajaa varten suunnittelimme ensin kartoituskyselyn toteuttamista, josta kuitenkin luovuttiin aikapaineiden takia (ks. yllä). Päätimme sen sijaan lähettää alustavan kutsusähköpostin kaikille pelastuslaitoksille, jossa pyysimme laitoksia nimeämään henkilön hankkeen asiantuntijatyöskentelyyn. Kutsu lähetettiin yhteistyössä Hyvinvointialueyhtiö Hyvil Oy:n kanssa pelastusjohtajien sähköpostiosoitteisiin sekä pelastuslaitosten virkasähköposteihin perjantaina 2.2.2024. Vastauksia pyydettiin 14.2.2024 mennessä.
 
@@ -134,7 +134,7 @@ Työpajassa nousi esille seuraavia huomioita ja muutosehdotuksia kyselylomakkees
 
 Kävimme muutosehdotukset läpi hanketoimijoiden kanssa ja suoritimme useimmat niistä työpajaa seuraavina päivinä 25.3.-27.3.2024.
 
-## Esirekisteröidyn tutkimusartikkelin vertaisarviointiprosessi maalis-toukokuu 2024
+## Esirekisteröidyn tutkimusartikkelin vertaisarviointiprosessi maalis-toukokuu 2024 {#sec-kyselynvalmistelu-esirekisteroityartikkeli}
 
 Samanaikaisesti asiantuntijatyöpajan kanssa kirjoitimme esirekisteröidyn tutkimusartikkelin vertaisarvioitavaksi [Rekisteröityjen tutkimusraporttien kansallisessa vertaisarviointikeskuksessa](https://openscience.jyu.fi/fi/avoin-julkaiseminen/rekisteroidyt-tutkimusraportit) (RR-keskus). Artikkelin vertaisarviointiprosessi seurasi seuraavia päivämääriä:
 
@@ -154,7 +154,7 @@ Vertaisarviointiprosessissa teimme seuraavat muutokset kyselylomakkeeseen:
 
 Kirjoitushetkellä odotamme kolmannen vedoksen vastausta. Jos vedos hyväksytään, arviointiprosessin ensimmäinen vaihe päättyy ja siirrymme keräämään kyselytiedon ja valmistelemaan toisen vaiheen valmista käsikirjoitusta.
 
-## Eettinen arviointiprosessi
+## Eettinen arviointiprosessi {#sec-kyselynvalmistelu-eettinenarviointi}
 
 Samanaikaisesti työpajan ja esirekisteröidyn artikkelin kanssa toteutimme eettisen ennakkoarvioinnin kyselytutkimukselle. Arviointi suoritettiin Itä-Suomen yliopiston ihmistieteiden tutkimuseettisessä toimikunnassa. Arviointiprosessi seurasi seuraavia päivämääriä:
 
@@ -178,12 +178,12 @@ Eettisessä arvioinnissa teimme ehdotettuja muutoksia kyselytyökaluun seuraavas
 
 4.  Suostumuskysymykset yhdistettiin yhdeksi kysymykseksi kyselyn alkuun
 
-## Tutkimuslupahakemukset
+## Tutkimuslupahakemukset {#sec-kyselynvalmistelu-tutkimuslupahakemukset}
 
 Haimme tutkimuslupia jokaiselta hyvinvointi- ja itsehallintoalueelta Suomesta. Lupahakemukset kohdennettiin joko alueelliseen pelastustoimeen tai sekä pelastustoimeen että ensihoidon palvelualueeseen, riippuen hyvinvointialueen palvelujärjestelyistä.
 
 Lupahakemusten yhteydessä teimme pieniä muokkauksia kyselylomakkeeseen. Yleisesti muokkaukset koskivat määritelmiä ja kirjoitusmuotoja, kuten ensihoidon selkeämpi mukaanottaminen kyselyn kaikissa kysymyksissä. Muutokset eivät koskeneet mittareiden määrää, sijoittelua tai lisäämistä/poistamista.
 
-## Erinäiset muut muutokset
+## Erinäiset muut muutokset {#sec-kyselynvalmistelu-muut}
 
 -   Tapaamisessa 1.7.2024 Suomen Pelastusalan Keskusjärjestön edustajien kanssa sovittiin, että tutkimuksen kohderyhmiin lisätään pelastusliittojen henkilöstö. Nämä lisättiin kyselyyn osaksi pelastusalan valtakunnallisia järjestöjä, ja kyselyssä olevat tarkennetekstit korjattiin vastaamaan lisäystä. Muutos ei vaatinut muiden kysymysten muutosta.

@@ -1,4 +1,4 @@
-# Haku 6 {#sec-haku-6}
+# Haku 6 {#sec-haku6}
 
 Haku 6 seurasi seuraavia inkluusiokriteerejä:
 
@@ -36,7 +36,7 @@ Haku suoritettiin seuraavissa tietolähteissä:
 
 : Haku 6:n tietolähteet {#tbl-haku6-tietolahteet}
 
-## Hakulausekkeet ja tulosten lataaminen {#sec-haku6-hakulausekkeet}
+## Hakulausekkeet ja tulosten lataaminen {#sec-haku6-lausekkeet}
 
 Alla olevassa taulukossa esiintyy hakujen suorituspäivämäärät, hakusanat ja hakukonekohtaiset rajaukset sekä osumat.
 
@@ -78,7 +78,7 @@ Alla olevassa taulukossa esiintyy hakujen suorituspäivämäärät, hakusanat ja
 | H6_6    | OpenAlex                                                    | 20.12.2023     | 1.1.2010 - 30.9.2023        | 1049        | Tyyppi: Journal Article, Monograph, Report                     |
 +---------+-------------------------------------------------------------+----------------+-----------------------------+-------------+----------------------------------------------------------------+
 
-: Haku 6:n toteutetut haut {#tbl-haku6-toteutetut-haut}
+: Haku 6:n toteutetut haut {#tbl-haku6-toteutetuthaut}
 
 [^haku6-1]: Yhdistyneet kuningaskunnat, Undefined, Hollanti, Italia, Espanja, Ruotsi, Saksa, Sveitsi, Belgia, Norja, Tanska, Suomi, Portugal, Irlanti, Kreikka, Itävalta, Puola, Tsekki, Unkari, Romania, Luxembourg, Latvia, Georgia, Slovenia, Serbia, Venäjä, Liettua, Islanti, Grönlanti, Viro, Kypros, Kroatia ja Armenia. "Suomi" oli virheellisesti lisätty ja mahdolliset tulokset siten poistettu myöhemmässä vaiheessa hakua.
 
@@ -88,7 +88,7 @@ Alla olevassa taulukossa esiintyy hakujen suorituspäivämäärät, hakusanat ja
 
 [^haku6-4]: BASE:n oma rajaus.
 
-Jokaisen haun hakulausekkeet ovat listattuna alla hakukoodeittain (ks. @tbl-haku6-toteutetut-haut). Paina osa-hakua vastaavaa koodia nähdäksesi kunkin haun hakulausekkeen. Voit kopioida lausekkeen sellaisenaan leikepöydällesi painamalla kopiointikuvaketta avatun hakulausekkeen yläoikeassa nurkassa.
+Jokaisen haun hakulausekkeet ovat listattuna alla hakukoodeittain (ks. @tbl-haku6-toteutetuthaut). Paina osa-hakua vastaavaa koodia nähdäksesi kunkin haun hakulausekkeen. Voit kopioida lausekkeen sellaisenaan leikepöydällesi painamalla kopiointikuvaketta avatun hakulausekkeen yläoikeassa nurkassa.
 
 ```{r}
 #| code-summary: "Haku H6_1"
@@ -126,7 +126,7 @@ Tulokset ladattiin ensisijaisesti `.csv`- tai `.xlsx`-muotoon jos mahdollista (S
 
 `.xml`- ja `.json`-muotoiset hakutulokset yhdistettiin ja käännettiin hauittain taulukkomuotoon Microsoft Excel -ohjelmassa *Power Query* -toiminnolla.
 
-## PRISMA-kulkukaavio
+## PRISMA-kulkukaavio {#sec-haku6-prisma}
 
 Hakutulosten seulonta tuotti seuraavan PRISMA-protokollan mukaisen kulkukaavion:
 
@@ -134,6 +134,8 @@ Hakutulosten seulonta tuotti seuraavan PRISMA-protokollan mukaisen kulkukaavion:
 ## Tietokannat ja rekisterit
 
 ```{r}
+#| label: fig-haku6-prisma-tietokannat
+#| fig-cap: "PRISMA-kulkukaavio, tietokannat ja rekisterit, haku 6"
 #| eval: true
 library("PRISMAstatement")
 
@@ -163,7 +165,7 @@ flow_exclusions(
 ```
 :::
 
-## Kokotekstin pohjalta poistetut tutkimukset ja syyt
+## Kokotekstin pohjalta poistetut tutkimukset ja syyt {#sec-haku6-poistetut}
 
 Seulonnan jälkeen poistettuja tutkimusjulkaisuja oli yhteensä 89 kappaletta. @tbl-haku6-poistetut sisältää jokaisen julkaisun poistosyyn. Syyt ovat listattuna ensisijaisen syyn mukaan. Teimme päätöksen poisjättämisestä, jos vähintään yksi inkluusiokriteeri ei täyttynyt.
 
@@ -351,7 +353,7 @@ Seulonnan jälkeen poistettuja tutkimusjulkaisuja oli yhteensä 89 kappaletta. @
 
 : Haku 6:n poistetut kohteet syineen {#tbl-haku6-poistetut}
 
-## Valitut tutkimusjulkaisut
+## Valitut tutkimusjulkaisut {#sec-haku6-valitut}
 
 Haun pohjalta valittiin 30 tutkimusjulkaisua. Julkaisut ovat:
 

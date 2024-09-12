@@ -1,4 +1,4 @@
-# Haku 4 {#sec-haku-4}
+# Haku 4 {#sec-haku4}
 
 Haku 4 seurasi seuraavia inkluusiokriteerejä:
 
@@ -38,7 +38,7 @@ Haku suoritettiin seuraavissa tietolähteissä:
 
 [^haku4-1]: Jultika-arkiston käyttö päättyi 28.11.2023 ja korvattiin OuluREPO-arkistolla. Koska vaihto tapahtui julkaisuaikakriteerimme jälkeen, Jultikan tiedot pitäisi sisältää samat kuin OuluREPO:n tiedot. Vaihdon ei siten pitäisi vaikuttaa kirjallisuuskatsauksen tuloksiin. Lisätietoja: <https://www.oulu.fi/fi/uutiset/oulurepo-julkaisuarkisto-korvaa-jultikan> (haettu 24.1.2024).
 
-## Hakulausekkeet ja tulosten lataaminen
+## Hakulausekkeet ja tulosten lataaminen {#sec-haku4-lausekkeet}
 
 Alla olevassa taulukossa esiintyy hakujen suorituspäivämäärät, hakusanat ja hakukonekohtaiset rajaukset sekä osumat.
 
@@ -91,9 +91,9 @@ Alla olevassa taulukossa esiintyy hakujen suorituspäivämäärät, hakusanat ja
 | H4_15_en | Doria (Maanpuolustuskorkeakoulu) | 12.1.2024      | 2010-2024                   | 1           | Scope: Maanpuolustuskorkeakoulu                                             |
 | H4_16    | Pelastusopiston verkkokirjasto   | 5.1.2024       | *Ei käytetty.*              | 4           | Aineistolaji: Opinnäyte                                                     |
 
-: Haku 4:n toteutetut haut {#tbl-haku4-toteutetut-haut}
+: Haku 4:n toteutetut haut {#tbl-haku4-toteutetuthaut}
 
-Jokaisen haun hakulausekkeet ovat listattuna alla hakukoodeittain (ks. @tbl-haku2-toteutetut-haut). Paina osa-hakua vastaavaa koodia nähdäksesi kunkin haun hakulausekkeen. Voit kopioida lausekkeen sellaisenaan leikepöydällesi painamalla kopiointikuvaketta avatun hakulausekkeen yläoikeassa nurkassa.
+Jokaisen haun hakulausekkeet ovat listattuna alla hakukoodeittain (ks. @tbl-haku4-toteutetuthaut). Paina osa-hakua vastaavaa koodia nähdäksesi kunkin haun hakulausekkeen. Voit kopioida lausekkeen sellaisenaan leikepöydällesi painamalla kopiointikuvaketta avatun hakulausekkeen yläoikeassa nurkassa.
 
 ```{r}
 #| code-summary: "Haku H4_1_fi"
@@ -349,7 +349,7 @@ On huomioitava, että API-toiminnolla hakeminen tuottaa lievästi eroavia tuloks
 
 Kaikki muut haut lisättiin Excel-taulukkoon käsin kyseisen haun suorittajan toimesta.
 
-## PRISMA-kulkukaavio
+## PRISMA-kulkukaavio {#sec-haku4-prisma}
 
 Hakutulosten seulonta tuotti seuraavan PRISMA-protokollan mukaisen kulkukaavion:
 
@@ -357,6 +357,8 @@ Hakutulosten seulonta tuotti seuraavan PRISMA-protokollan mukaisen kulkukaavion:
 ## Tietokannat ja rekisterit
 
 ```{r}
+#| label: fig-haku4-prisma-tietokannat
+#| fig-cap: "PRISMA-kulkukaavio, tietokannat ja rekisterit, haku 4"
 #| eval: true
 library("PRISMAstatement")
 
@@ -386,7 +388,7 @@ flow_exclusions(
 ```
 :::
 
-## Kokotekstin pohjalta poistetut tutkimukset ja syyt
+## Kokotekstin pohjalta poistetut tutkimukset ja syyt {#sec-haku4-poistetut}
 
 Seulonnan jälkeen poistettuja tutkimusjulkaisuja oli yhteensä 16 kappaletta. @tbl-haku4-poistetut on jokaisen julkaisun vittaus ja poistosyy(t). Syyt ovat listattuna ensisijaisen syyn mukaan. Päätös poisjättämisestä voitiin tehdä jos yksi inkluusiokriteeri ei täyttynyt, jolloin tutkimuksella voi olla muitakin syitä miksi sitä ei otettu mukaan katsauksen tuloksiin.
 
@@ -411,7 +413,7 @@ Seulonnan jälkeen poistettuja tutkimusjulkaisuja oli yhteensä 16 kappaletta. @
 
 : Haku 4:n poistetut kohteet syineen {#tbl-haku4-poistetut}
 
-## Valitut tutkimusjulkaisut
+## Valitut tutkimusjulkaisut {#sec-haku4-valitut}
 
 Haun pohjalta valittiin 21 tutkimusjulkaisua. Julkaisut ovat:
 

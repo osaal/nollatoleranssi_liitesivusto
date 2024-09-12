@@ -1,4 +1,4 @@
-# Anonymisointi
+# Anonymisointi {#sec-anonymisointi}
 
 ---
 eval: false
@@ -7,7 +7,7 @@ eval: false
 Tutkimus anonymisoidaan [anonymisointisuunnitelman](https://osf.io/r3hs2) mukaisesti.
 
 ```{r}
-#| label: 00_anon_funktiot
+#| label: anon-00-funktiot
 
 # HUOM: Funktio ei nimeä kuvia! Funktio tulostaa NA jos niitä on.
 plot_freq <- function(x) {
@@ -53,7 +53,8 @@ k_anonymity <- function(data, limit, ...) {
   )
 
   # Crosstabulate and retrieve all unique combinations that fall below the limit
-  low_count_cells <- as.data.frame(table(selected_data)) |>
+  low_count_cells <- table(selected_data, useNA = "always") |>
+    as.data.frame() |>
     dplyr::filter(Freq < limit)
 
   # Exit early if no cells fall below the threshold
@@ -68,7 +69,7 @@ k_anonymity <- function(data, limit, ...) {
 ```
 
 ```{r}
-#| label: 01_anon_valmistelu
+#| label: anon-01-valmistelu
 
 library(tidyverse)
 
@@ -76,7 +77,7 @@ data <- read.csv2("output/puhdistettudata.csv")
 
 ```
 
-## Järjestys
+## Järjestys {#sec-anonymisointi-jarjestys}
 
 1.  Tarkistetaan taustamuuttujien kategoriat harvinaisten vastausten osalta yksitellen, ja yhdistetään kategorioita tarpeen mukaan.
 2.  Tarkistetaan harvinaisten ilmiöiden muuttujien kategoriat harvinaisten vastausten osalta yksitellen, ja yhdistetään tai poistetaan kategorioita/muuttujia tarpeen mukaan.
@@ -103,7 +104,7 @@ data <- read.csv2("output/puhdistettudata.csv")
     7.  Muuttuja `k37`: Yhdistetään samanaiheiseen kategoriaan tarpeen vaatiessa.
 4.  Organisaatioasema (`Organisaatioasema`, kuusi kategoriaa)
     1.  Kaikilla vastaajilla tulee olla yksi arvo.
-    2.  Rakennetaan eri organisaatioasemamuuttujista, ks. @sec-organisaatioaseman-ryhmäkoodaus.
+    2.  Rakennetaan eri organisaatioasemamuuttujista, ks. @sec-valmistelu-uudelleenkoodaukset-organisaatioasema
     3.  Määräsääntö: `n > 10`
     4.  Yhdistetään luokat `1` ja `4` tarpeen vaatiessa.
     5.  Muut luokat yhdistetään aiheittain tarpeen vaatiessa.
@@ -151,16 +152,14 @@ Kaikilla taustamuuttujilla seurataan seuraavaa prioriteettijärjestystä muutoks
 
 Jokainen kohdassa 2 listattu muuttuja ristiintaulukoidaan yksitellen jokaista taustamuuttujaa kohtaan. Koska taustamuuttujia on yhdeksän kappaletta ja harvinaisia ilmiöitä 62, vertailuja tehdään yhteensä 558 kappaletta.
 
-Tätä varten projektipäällikkö on kirjoittanut funktion `k_anonymity()`, joka löytyy osana R-pakettia `ranon` ([GitHubissa](https://github.com/osaal/ranon) `osaal/ranon`)[^anonymisointi-1]. Funktio ottaa yhden tai useamman kategorisen muuttujan, ja palauttaa kaikki kategoriayhdistelmät, joiden solumäärät ristiintaulukoinnissa alittavat ennalta määritetyn raja-arvon (tässä tutkimuksessa viisi). Jos funktiolle annetaan vain yksi muuttuja, tarkistus tehdään muuttujan kategorioille, jolloin kyseessä on yksinkertainen määräsäännön anonymisointitarkistus.
+Tätä varten projektipäällikkö on kirjoittanut funktion `k_anonymity()`, joka löytyy osana R-pakettia `ranon` ([GitHubissa](https://github.com/osaal/ranon) `osaal/ranon`). Funktio ottaa yhden tai useamman kategorisen muuttujan, ja palauttaa kaikki kategoriayhdistelmät, joiden solumäärät ristiintaulukoinnissa alittavat ennalta määritetyn raja-arvon (tässä tutkimuksessa viisi). Jos funktiolle annetaan vain yksi muuttuja, tarkistus tehdään muuttujan kategorioille, jolloin kyseessä on yksinkertainen määräsäännön anonymisointitarkistus.
 
-[^anonymisointi-1]: Kirjoitushetkellä (12.9.2024) `master`-haaralla on virhe funktiossa. Virhe on korjattu commitissa `#7cdd062`, joka löytyy haaralta `v0.2`. Kunnes uusi versio on mergattu `master`-haaraan, paketin kannattaa asentaa käyttäen `renv::install(osaal/ranon@v0.2)`.
+**HUOM:** Kirjoitushetkellä (12.9.2024) paketin funktio ei toimi kuten pitäisi. Olemme korjanneet funktion ja testanneet kaikki alla olevat koodaukset simuloidulla datalla ennen anonymisoinnin suorittamista. Korjattu funktio löytyy tämän luvun alusta, ensimmäisestä koodiblokista.
 
-**HUOM:** Kirjoitushetkellä paketin funktio ei toimi kuten pitäisi. Olemme korjanneet funktion ja testanneet kaikki alla olevat koodaukset simuloidulla datalla ennen anonymisoinnin suorittamista. Korjattu funktio löytyy tämän luvun alusta, ensimmäisestä koodiblokista.
-
-## Kohta 1: Taustamuuttujien anonymisointi
+## Kohta 1: Taustamuuttujien anonymisointi {#sec-anonymisointi-kohta1}
 
 ```{r}
-#| label: anon-01-taustamuuttujat
+#| label: anon-02-taustamuuttujat
 
 # Muuttujaa voi käyttää myöhemmin looppaamiseen
 taustamuuttujat <- rlang::exprs(
@@ -188,16 +187,16 @@ Tulokset kuvaillaan tässä.
 Muutokset kuvaillaan tässä.
 
 ```{r}
-#| label: anon-01-muutokset
+#| label: anon-03-muutokset
 
 
 
 ```
 
-## Kohta 2: Harvinaisten ilmiöiden anonymisointi
+## Kohta 2: Harvinaisten ilmiöiden anonymisointi {#sec-anonymisointi-kohta2}
 
 ```{r}
-#| label: anon-02-harvinaisetilmiot
+#| label: anon-04-harvinaisetilmiot
 
 # Muuttujaa voi käyttää nyt ja myöhemmin looppaamiseen
 muuttujat <- rlang::exprs(
@@ -239,16 +238,16 @@ Tulokset kuvaillaan tässä.
 Muutokset kuvaillaan tässä.
 
 ```{r}
-#| label: anon-02-muutokset
+#| label: anon-05-muutokset
 
 
 
 ```
 
-## Kohta 3: Taustamuuttujien k-anonymisointi toisiaan vastaan
+## Kohta 3: Taustamuuttujien k-anonymisointi toisiaan vastaan {#sec-anonymisointi-kohta3}
 
 ```{r}
-#| label: anon-03-taustamuuttujat-k_anon
+#| label: anon-06-taustamuuttujat-k_anon
 
 # Testattu toimivaksi tekaistulla datalla. HUOM: Vaatii nykyiset funktiossa olevat korjaukset (ks. code block 00_anon_funktiot)
 
@@ -268,16 +267,16 @@ Tulokset kuvaillaan tässä.
 Muutokset kuvaillaan tässä.
 
 ```{r}
-#| label: anon-03-muutokset
+#| label: anon-07-muutokset
 
 
 
 ```
 
-## Kohta 4: Harvinaisten ilmiöiden k-anonymisointi taustamuuttujia vastaan
+## Kohta 4: Harvinaisten ilmiöiden k-anonymisointi taustamuuttujia vastaan {#sec-anonymisointi-kohta4}
 
 ```{r}
-#| label: anon-04-harvinaiset_k-anon
+#| label: anon-08-harvinaiset_k-anon
 
 # Testattu toimivaksi tekaistulla datalla. HUOM: Vaatii nykyiset funktiossa olevat korjaukset (ks. code block 00_anon_funktiot)
 
@@ -300,22 +299,19 @@ Tulokset kuvaillaan tässä.
 Muutokset kuvaillaan tässä.
 
 ```{r}
-#| label: anon-04-muutokset
+#| label: anon-09-muutokset
 
 
 
 ```
 
-## Datan tallennus
+## Datan tallennus {#sec-anonymisointi-datantallennus}
 
 Anonymisoinnin jälkeen tallensimme lopullisen datatiedoston `csv`-muotoon. Tallennusta ei ole saatavilla verkkosivun lähdekoodista tietosuojan takia.
 
 ```{r}
-#| label: anon-tallennus
+#| label: anon-10-tallennus
 
-write.csv2(
-  data,
-  file = "output/anonymisoitudata.csv"
-)
+write.csv2(data, file = "output/anonymisoitudata.csv")
 
 ```

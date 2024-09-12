@@ -3,9 +3,6 @@
 ---
 eval: true
 freeze: false
-format:
-  html:
-    code-tools: true
 ---
 
 Tämä osio sisältää hankkeen kirjallisuuskatsaukseen liittyvän tutkimusartikkelin dokumentoinnin ja toistotiedot. Artikkelin sisältö eroaa lievästi hankkeen kirjallisuuskatsauksesta aiheen vuoksi.
@@ -17,7 +14,7 @@ Julkaisutila: **Julkaisematon**
 Kaikki koodiruudut ovat nähtävissä avaamalla koodin pudotusvalikon. Koodit voi myös asettaa näkyville valitsemalla "Show all code" yläoikealla olevassa pudotusvalikossa. Painamalla samasta pudotusvalikosta "Source code" näkyy koko dokumentin Markdown-lähde.
 
 ```{r}
-#| label: art-000-paketit
+#| label: art-00-paketit
 
 # Avataan tarpeelliset kirjastot hiljaisesti
 suppressPackageStartupMessages({
@@ -29,7 +26,7 @@ suppressPackageStartupMessages({
 })
 ```
 
-## Datasaatavuus
+## Datasaatavuus {#sec-katsausartikkeli-datasaatavuus}
 
 Kaikki tässä osiossa käytetty data on saatavilla verkkosivun GitHub-lähteessä. Alla on myös eritelty linkit jokaiselle datatiedostolle:
 
@@ -50,7 +47,7 @@ Kaikki tässä osiossa käytetty data on saatavilla verkkosivun GitHub-lähteess
 Kaikki data on UTF-8-mallisessa `.csv`-tiedostossa käyttäen puolipistettä erottimena.
 
 ```{r}
-#| label: art-001-datanavaus
+#| label: art-01-datanavaus
 
 ### PRISMA-kulkukaavion tiedot
 
@@ -128,7 +125,7 @@ metadata <- metadata %>%
 
 ```
 
-## PRISMA-kulkukaavio
+## PRISMA-kulkukaavio {#sec-katsausartikkeli-prismakaavio}
 
 Koska käsikirjoitukseen ei sisälly viidettä hakua (muut turvallisuustoimijat), PRISMA-kaavio eroaa kirjallisuuskatsauksen yleisestä kaaviosta.
 
@@ -147,14 +144,14 @@ PRISMA_flowdiagram(
 )
 ```
 
-## Yleiskuva tutkimuskirjallisuudesta
+## Yleiskuva tutkimuskirjallisuudesta {#sec-katsausartikkeli-yleiskuva}
 
 Yleiskuvan lukujen ja kuvioiden laatiminen seuraa kirjallisuuskatsauksen koko yleiskuvaa, mutta haku 5:n tulokset jätetään ulkopuolelle.
 
-### Julkaisuvuodet
+### Julkaisuvuodet {#sec-katsausartikkeli-yleiskuva-julkaisuvuodet}
 
 ```{r}
-#| label: fig-art-julkaisuvuodet
+#| label: fig-art-yleiskuva-julkaisuvuodet
 #| fig-cap: "Kirjallisuuskatsauksen tulokset julkaisuvuosittain. Sisältää haut 1-4 ja 6"
 
 ggplot(data = data, mapping = aes(x = Vuosi)) + 
@@ -164,10 +161,10 @@ ggplot(data = data, mapping = aes(x = Vuosi)) +
   geom_text(aes(label = ..count..), stat = "count", vjust = 1.5, colour = "white")
 ```
 
-### Tutkimusasetelmat
+### Tutkimusasetelmat {#sec-katsausartikkeli-yleiskuva-tutkimusasetelmat}
 
 ```{r}
-#| label: fig-art-asetelmat
+#| label: fig-art-yleiskuva-asetelmat
 #| fig-cap: "Kirjallisuuskatsauksen tulokset tutkimusasetelmittain Sisältää haut 1-4 ja 6"
 
 ggplot(data = data, mapping = aes(x = Tutkimusasetelma)) + 
@@ -177,10 +174,10 @@ ggplot(data = data, mapping = aes(x = Tutkimusasetelma)) +
   geom_text(aes(label = ..count..), stat = "count", vjust = 1.5, colour = "white")
 ```
 
-### Julkaisumuodot
+### Julkaisumuodot {#sec-katsausartikkeli-yleiskuva-julkaisumuodot}
 
 ```{r}
-#| label: fig-art-muodot
+#| label: fig-art-yleiskuva-muodot
 #| fig-cap: "Kirjallisuuskatsauksen tulokset julkaisumuodottain. Sisältää haut 1-4 ja 6"
 
 ggplot(data = data, mapping = aes(x = Muoto)) + 
@@ -190,10 +187,10 @@ ggplot(data = data, mapping = aes(x = Muoto)) +
   geom_text(aes(label = ..count..), stat = "count", vjust = 1.5, colour = "white")
 ```
 
-### Tutkimusmaat
+### Tutkimusmaat {#sec-katsausartikkeli-yleiskuva-tutkimusmaat}
 
 ```{r}
-#| label: fig-art-maat
+#| label: fig-art-yleiskuva-maat
 #| fig-cap: "Kirjallisuuskatsauksen tulokset maittain ja julkaisumuodottain.   Tuloksissa ei ole suomalaisia tutkimuksia. N/A = Ei sovellettavissa. Sisältää haut 1-4 ja 6"
 
 data %>% dplyr::filter(Toteutusmaa != "Suomi") %>%
@@ -204,14 +201,14 @@ data %>% dplyr::filter(Toteutusmaa != "Suomi") %>%
   geom_text(aes(label = ..count..), stat = "count", vjust = -0.5, colour = "black", position = position_stack(vjust = 0.5))
 ```
 
-## Tutkimuksen laadunarviointi
+## Tutkimuksen laadunarviointi {#sec-katsausartikkeli-laadunarviointi}
 
-Laadunarviointi seuraa samaa menetelmää kuin yleisen kirjallisuuskatsauksen tutkimusharhan riskiarviointi (ks. @sec-tulosten-yleiskuvaus).
+Laadunarviointi seuraa samaa menetelmää kuin yleisen kirjallisuuskatsauksen tutkimusharhan riskiarviointi (ks. @sec-yleiskuvailu).
 
-### Määrälliset kyselytutkimukset
+### Määrälliset kyselytutkimukset {#sec-katsausartikkeli-laadunarviointi-maaralliset}
 
 ```{r}
-#| label: fig-art-qssp
+#| label: fig-art-laadunarviointi-maaralliset-qssp
 #| fig-cap: "Q-SSP-laadunarvioinnin tulokset aakkosjärjestyksessä tutkimuksittain (n = 45). Sisältää haut 1-4 ja 6"
 
 harhadata %>%
@@ -225,7 +222,7 @@ harhadata %>%
 ```
 
 ```{r}
-#| label: fig-art-qssp-alueet
+#| label: fig-art-laadunarviointi-maaralliset-alueet
 #| fig-cap: "Q-SSP-laadunarvioinnin tulokset instrumenttain (n = 45). Sisältää haut 1-4 ja 6"
 
 harhadata_pivot <- harhadata %>%
@@ -236,7 +233,7 @@ ggplot(harhadata_pivot, aes(y = Osaalue, fill = value)) +
 ```
 
 ```{r}
-#| label: fig-art-qssp-muodot
+#| label: fig-art-laadunarviointi-maaralliset-muodot
 #| fig-cap: "Q-SSP-laadunarvioinnin tulokset eri julkaisumuodoittain. Sisältää haut 1-4 ja 6"
 
 ggbetweenstats(
@@ -250,10 +247,10 @@ ggbetweenstats(
 )
 ```
 
-### Laadulliset tutkimukset
+### Laadulliset tutkimukset {#sec-katsausartikkeli-laadunarviointi-laadulliset}
 
 ```{r}
-#| label: fig-art-srqr
+#| label: fig-art-laadunarviointi-laadulliset-srqr
 #| fig-cap: "SRQR-laadunarvioinnin tulokset aakkosjärjestyksessä tutkimuksittain (n = 17). Sisältää haut 1-4 ja 6"
 
 laatu_laadulliset %>%
@@ -265,7 +262,7 @@ laatu_laadulliset %>%
 ```
 
 ```{r}
-#| label: fig-art-srqr-alueet
+#| label: fig-art-laadunarviointi-laadulliset-alueet
 #| fig-cap: "SRQR-laadunarvioinnin tulokset instrumenttain (n = 17). Sisältää haut 1-4 ja 6"
 
 laatu_laadulliset_pivot <- laatu_laadulliset %>%
@@ -275,10 +272,10 @@ ggplot(laatu_laadulliset_pivot, aes(y = Osaalue, fill = value)) +
   geom_text(aes(label = ..count..), stat = "count", colour = "black", position = position_stack(vjust = 0.5))
 ```
 
-## Epäasiallisen ja väkivaltaisen kohtelun määritelmät
+## Epäasiallisen ja väkivaltaisen kohtelun määritelmät {#sec-katsausartikkeli-maaritelmat}
 
 ```{r}
-#| label: valmistelu_määritelmät
+#| label: art-02-maaritelmat-valmistelu
 
 maaritelmadata <- maaritelmadata %>%
   mutate(
@@ -288,10 +285,10 @@ maaritelmadata <- maaritelmadata %>%
 
 Huomautamme, että datatiedostossa olevat `X.`-tunnisteet vastaavat koko kirjallisuuskatsauksen numerointia, ei tämän artikkelin numerointia, ja eroavat siten käsikirjoituksen liitetaulukossa annetuista tunnistenumeroista. Tutkimukset voi sen sijaan yhdistää liitetaulukon tietoihin `Artikkeli`-sarakkeen tietojen avulla.
 
-### Tutkimusaiheet
+### Tutkimusaiheet {#sec-katsausartikkeli-maaritelmat-tutkimusaiheet}
 
 ```{r}
-#| label: fig-art-maaritelmat-1
+#| label: fig-art-maaritelmat-aiheet
 #| fig-cap: "Tutkimusten keskittymiset"
 
 ggplot(data = maaritelmadata, mapping = aes(x = Tutkimuskategoria)) + 
@@ -313,10 +310,10 @@ Määritelmien lähteinä on käytetty seuraavanlaisia lähteitä (arvojen tuott
 
 -   Organisaatioviite: `r maaritelmadata %>% filter(Organisaatioviite == 1) %>% nrow()` tutkimusta
 
-### Väkivaltatutkimusten käsitemäärittely
+### Väkivaltatutkimusten käsitemäärittely {#sec-katsausartikkeli-maaritelmat-kasitteet}
 
 ```{r}
-#| label: fig-art-maaritelmat-2
+#| label: fig-art-maaritelmat-kasitteet
 #| fig-cap: "Väkivaltatutkimukset (n = 49) käsitemäärittelyn mukaan. 0 = Ei anna määritelmää, 1 = Antaa määritelmän, 9 = Ei anna selkeää määritelmää mutta käsittelee aihetta."
 
 maaritelmadata %>%
@@ -346,14 +343,14 @@ Väkivaltatutkimusten aihealueet:
 
 -   Kunniaan liittyvä väkivalta: `r maaritelmadata %>% filter(Kunnia == 1) %>% nrow()` tutkimusta
 
-## Epäasiallisen ja väkivaltaisen kohtelun tutkimusmenetelmät
+## Epäasiallisen ja väkivaltaisen kohtelun tutkimusmenetelmät {#sec-katsausartikkeli-menetelmat}
 
-### Vakiintuneet mittarit
+### Vakiintuneet mittarit {#sec-katsausartikkeli-menetelmat-vakiintuneet}
 
 Mittareita tunnistettiin yhteensä `r nrow(mittarit_vakiintuneet)` kappaletta.
 
 ```{r}
-#| label: fig-vakiintuneet-aihealue
+#| label: fig-art-menetelmat-vakiintuneet-aiheet
 #| fig-cap: "Vakiintuneet mittarit (n = 42) aihealueen mukaan"
 
 ggplot(data = mittarit_vakiintuneet, mapping = aes(x = Aihealue)) + 
@@ -364,7 +361,7 @@ ggplot(data = mittarit_vakiintuneet, mapping = aes(x = Aihealue)) +
 ```
 
 ```{r}
-#| label: tbl-vakiintuneet-kohtelumittarit
+#| label: tbl-art-menetelmat-vakiintuneet-kohtelumittarit
 #| tbl-cap: "Epäasiallisen kohtelun mittarit alkuperäisine ja käyttävine lähteineen"
 #| column: page
 
@@ -372,13 +369,13 @@ mittarit_vakiintuneet %>%
   knitr::kable(., col.names = c("Aihealue", "Mittarin nimi", "Alkuperäinen lähde", "Viittaava lähde"))
 ```
 
-### Itsekehitetyt mittarit
+### Itsekehitetyt mittarit {#sec-katsausartikkeli-menetelmat-itsekehitetyt}
 
 ::: panel-tabset
 #### Aihealueet
 
 ```{r}
-#| label: fig-itsekehitetyt-aihealue
+#| label: fig-art-menetelmat-itsekehitetyt-aihealue
 #| fig-cap: "Itsekehitetyt mittarit (n = 404) aihealueen mukaan"
 
 ggplot(data = mittarit_itsekehitetyt, mapping = aes(x = Aihealue)) + 
@@ -391,7 +388,7 @@ ggplot(data = mittarit_itsekehitetyt, mapping = aes(x = Aihealue)) +
 #### Alatyypit
 
 ```{r}
-#| label: fig-itsekehitetyt-alatyyppi
+#| label: fig-art-menetelmat-itsekehitetyt-alatyyppi
 #| fig-cap: "Itsekehitetyt mittarit (n = 404) aihealueen mukaan"
 
 ggplot(data = mittarit_itsekehitetyt, mapping = aes(x = Alatyyppi)) + 
@@ -404,7 +401,7 @@ ggplot(data = mittarit_itsekehitetyt, mapping = aes(x = Alatyyppi)) +
 #### Näkökulmat
 
 ```{r}
-#| label: fig-itsekehitetyt-näkökulma
+#| label: fig-art-menetelmat-itsekehitetyt-nakokulma
 #| fig-cap: "Itsekehitetyt mittarit (n = 404) aihealueen mukaan"
 
 ggplot(data = mittarit_itsekehitetyt, mapping = aes(x = Näkökulma)) + 
@@ -415,9 +412,9 @@ ggplot(data = mittarit_itsekehitetyt, mapping = aes(x = Näkökulma)) +
 ```
 :::
 
-## Epäasiallisen ja väkivaltaisen kohtelun esiintyvyys
+## Epäasiallisen ja väkivaltaisen kohtelun esiintyvyys {#sec-katsausartikkeli-esiintyvyys}
 
-### Sisällyttämiskriteerit
+### Sisällyttämiskriteerit {#sec-katsausartikkeli-esiintyvyys-kriteerit}
 
 Sisällytimme meta-analyysiin kirjallisuuskatsauksesta 33 tutkimusta, jotka täyttivät seuraavat kriteerit:
 
@@ -441,10 +438,10 @@ Kuudelle estimaatille emme voineet antaa yksiselitteistä luokkaa. Jätimme näm
 
 Käytetty data on saatavilla tämän sivuston GitHub-lähdekoodista; datatiedoston saa [tästä linkistä](https://github.com/osaal/nollatoleranssi_liitesivusto/blob/master/data/metaanalyysidata.csv) suoraan. Huomautamme, että datatiedostossa olevat `nro`-tunnisteet vastaavat koko kirjallisuuskatsauksen numerointia, ei tämän artikkelin numerointia, ja eroavat siten käsikirjoituksen liitetaulukossa annetuista tunnistenumeroista. Tutkimukset voi sen sijaan yhdistää liitetaulukon tietoihin `artikkeli`-sarakkeen tietojen avulla.
 
-### Datavalmistelu
+### Datavalmistelu {#sec-katsausartikkeli-esiintyvyys-valmistelu}
 
 ```{r}
-#| label: 00_valmistelu
+#| label: art-03-esiintyvyys-valmistelu
 
 # Tehdään valmis tulostaulukko myöhemmäksi
 tulokset <- tibble(
@@ -458,7 +455,7 @@ tulokset <- tibble(
 Muunsimme ensin kaikki prosenttiluvut logit-luvuiksi ja laskimme niiden keskivirheet. Tämä muunnos tehdään, jotta voimme suorittaa monitasoisen meta-analyysin myöhemmin.
 
 ```{r}
-#| label: 01_logitmuunnos
+#| label: art-04-esiintyvyys-logitmuunnos
 
 metadata <- metadata %>%
   add_column(
@@ -480,12 +477,12 @@ metadata <- metadata %>%
   )
 ```
 
-### Mallien estimointi
+### Mallien estimointi {#sec-katsausartikkeli-esiintyvyys-estimointi}
 
 Asetimme sitten jokaiselle väkivaltamuodolle oman kolmitasoisen meta-analyyttisen mallin `metafor`-paketin avulla.
 
 ```{r}
-#| label: malli_fyysinen
+#| label: art-05-malli_fyysinen
 malli_fyysinen <- metafor::rma.mv(
   yi = pros_log,
   V = pros_sqrtse,
@@ -506,7 +503,7 @@ tulokset <- tulokset %>%
 ```
 
 ```{r}
-#| label: malli_henkinen
+#| label: art-06-malli_henkinen
 malli_henkinen <- metafor::rma.mv(
   yi = pros_log,
   V = pros_sqrtse,
@@ -527,7 +524,7 @@ tulokset <- tulokset %>%
 ```
 
 ```{r}
-#| label: malli_seksuaalinen
+#| label: art-07-malli_seksuaalinen
 malli_seksuaalinen <- metafor::rma.mv(
   yi = pros_log,
   V = pros_sqrtse,
@@ -548,7 +545,7 @@ tulokset <- tulokset %>%
 ```
 
 ```{r}
-#| label: malli_välineellinen
+#| label: art-08-malli_valineellinen
 malli_välineellinen <- metafor::rma.mv(
   yi = pros_log,
   V = pros_sqrtse,
@@ -569,7 +566,7 @@ tulokset <- tulokset %>%
 ```
 
 ```{r}
-#| label: malli_kemiallinen
+#| label: art-09-malli_kemiallinen
 malli_kemiallinen <- metafor::rma.mv(
   yi = pros_log,
   V = pros_sqrtse,
@@ -590,7 +587,7 @@ tulokset <- tulokset %>%
 ```
 
 ```{r}
-#| label: malli_syrjintä
+#| label: art-10-malli_syrjinta
 malli_syrjintä <- metafor::rma.mv(
   yi = pros_log,
   V = pros_sqrtse,
@@ -610,19 +607,19 @@ tulokset <- tulokset %>%
   )
 ```
 
-### Tulokset
+### Tulokset {#sec-katsausartikkeli-esiintyvyys-tulokset}
 
-Tulokset ovat esitettynä alla olevassa taulukossa (@tbl-tulokset) ja kuviossa (@fig-tulokset). Kuvio vastaa käsikirjoituksen **Kuvio 4:ää**. Taulukon lukuja käytetään juoksevassa tekstissä.
+Tulokset ovat esitettynä alla olevassa taulukossa (@tbl-art-esiintyvyys-tulokset) ja kuviossa (@fig-art-esiintyvyys-tulokset). Kuvio vastaa käsikirjoituksen **Kuvio 4:ää**. Taulukon lukuja käytetään juoksevassa tekstissä.
 
 ```{r}
-#| label: tbl-tulokset
+#| label: tbl-art-esiintyvyys-tulokset
 #| tbl-cap: "Meta-analyysin arvioimat esiintymismuodot ja niiden luottamusvälit (95 %) desimaaleina"
 
 knitr::kable(tulokset)
 ```
 
 ```{r}
-#| label: fig-tulokset
+#| label: fig-art-esiintyvyys-tulokset
 #| fig-cap: "Meta-analyysin arvioimat esiintyvyydet ja niiden luottamusvälit (95 %)"
 
 ggplot(tulokset) +

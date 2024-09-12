@@ -1,4 +1,4 @@
-# Haku 5 {#sec-haku-5}
+# Haku 5 {#sec-haku5}
 
 Haku 5 seurasi seuraavia inkluusiokriteerejä:
 
@@ -54,7 +54,7 @@ Web of Science -hakukoneen käytössä syntyi inhimillinen virhe, jolloin haetti
 
 Virheellinen haku ei kuitenkaan vaikuta näkemyksemme mukaan juurikaan tulosten luotettavuuteen, kahdesta syystä. Ensimmäiseksi, virheellisesti lisätyt tulokset seulontuivat pois viimeistään kokotekstin tarkistuksessa, jolloin vaikutus rajaantui pääsääntöisesti kokonaistulosmäärään. Toiseksi, kahden tietokannan tulokset seulontuivat pois heti hakumenettelyssä, koska käytimme `country`-rajausta (jolloin KCI-Korean Journal Database sekä eteläamerikkalainen SciELO Citation Index eivät pitäisi tuottaa tuloksia).
 
-## Hakulausekkeet ja tulosten lataaminen
+## Hakulausekkeet ja tulosten lataaminen {#sec-haku5-lausekkeet}
 
 Alla olevassa taulukossa esiintyy hakujen suorituspäivämäärät, hakusanat ja hakukonekohtaiset rajaukset sekä osumat.
 
@@ -130,13 +130,13 @@ Alla olevassa taulukossa esiintyy hakujen suorituspäivämäärät, hakusanat ja
 | H5_8_en           | OpenAlex                                                    | 12.1.2024      | 1.1.2010 - 30.9.2023        | 84          | Tyyppi: Journal Article, Monograph, Report              |
 +-------------------+-------------------------------------------------------------+----------------+-----------------------------+-------------+---------------------------------------------------------+
 
-: Haku 5:n toteutetut haut {#tbl-haku5-toteutetut-haut}
+: Haku 5:n toteutetut haut {#tbl-haku5-toteutetuthaut}
 
 [^haku5-1]: Toistaessamme tämän haun huomasimme, että ProQuest antaa timeout-virheen jos rajauksia ei syötä suoraan hakulausekkeeseen. Haun hakulauseke eroaa siksi muista lausekkeista, mutta rajaa samalla tavalla kuin muut ProQuestin haut.
 
 OpenAlexin hakujen (`H5_8`-luokka) kohdalla emme pystyneet täydellisesti toistamaan tuloksia myöhemmässä vaiheessa. Varsinkin suomen- ja ruotsinkielisten hakujen kohdalla toistohaut tuottivat hyvin erilaisia tuloksia, useimmiten paljon vähemmän tai ei ollenkaan tietueita. Kokeilimme toistaa haut sekä `search`-sanalla että `filter=title_and_abstract.search`-suodattimella, mutta ongelma ei korjaantunut. Epäilemme tässä vaiheessa, että ääkköset voivat muodostaa ongelman OpenAlexin hakuihin, mutta emme ole voineet varmistaa asiaa.
 
-Jokaisen haun hakulausekkeet ovat listattuna alla hakukoodeittain (ks. @tbl-haku5-toteutetut-haut). Paina osa-hakua vastaavaa koodia nähdäksesi kunkin haun hakulausekkeen. Voit kopioida lausekkeen sellaisenaan leikepöydällesi painamalla kopiointikuvaketta avatun hakulausekkeen yläoikeassa nurkassa.
+Jokaisen haun hakulausekkeet ovat listattuna alla hakukoodeittain (ks. @tbl-haku5-toteutetuthaut). Paina osa-hakua vastaavaa koodia nähdäksesi kunkin haun hakulausekkeen. Voit kopioida lausekkeen sellaisenaan leikepöydällesi painamalla kopiointikuvaketta avatun hakulausekkeen yläoikeassa nurkassa.
 
 ```{r}
 #| code-summary: "Haku H5_1_fi"
@@ -268,7 +268,7 @@ Tulokset ladattiin ensisijaisesti `.csv`- tai `.xlsx`-muotoon jos mahdollista (S
 
 `.xml`- ja `.json`-muotoiset hakutulokset yhdistettiin ja käännettiin hauittain taulukkomuotoon Microsoft Excel -ohjelmassa *Power Query* -toiminnolla.
 
-## PRISMA-kulkukaavio
+## PRISMA-kulkukaavio {#sec-haku5-prisma}
 
 Hakutulosten seulonta tuotti seuraavan PRISMA-protokollan mukaisen kulkukaavion:
 
@@ -276,6 +276,8 @@ Hakutulosten seulonta tuotti seuraavan PRISMA-protokollan mukaisen kulkukaavion:
 ## Tietokannat ja rekisterit
 
 ```{r}
+#| label: fig-haku5-prisma-tietokannat
+#| fig-cap: "PRISMA-kulkukaavio, tietokannat ja rekisterit, haku 5"
 #| eval: true
 library("PRISMAstatement")
 
@@ -305,7 +307,7 @@ flow_exclusions(
 ```
 :::
 
-## Kokotekstin pohjalta poistetut tutkimukset ja syyt
+## Kokotekstin pohjalta poistetut tutkimukset ja syyt {#sec-haku5-poistetut}
 
 Seulonnan jälkeen poistettuja tutkimusjulkaisuja oli yhteensä 30 kappaletta. @tbl-haku5-poistetut sisältää jokaisen julkaisun poistosyyn. Syyt ovat listattuna ensisijaisen syyn mukaan. Teimme päätöksen poisjättämisestä, jos vähintään yksi inkluusiokriteeri ei täyttynyt.
 
@@ -375,7 +377,7 @@ Seulonnan jälkeen poistettuja tutkimusjulkaisuja oli yhteensä 30 kappaletta. @
 
 : Haku 5:n poistetut kohteet syineen {#tbl-haku5-poistetut}
 
-## Valitut tutkimusjulkaisut
+## Valitut tutkimusjulkaisut {#sec-haku5-valitut}
 
 Haun pohjalta valittiin 8 tutkimusjulkaisua. Julkaisut ovat:
 

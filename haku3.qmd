@@ -1,4 +1,4 @@
-# Haku 3 {#sec-haku-3}
+# Haku 3 {#sec-haku3}
 
 Haku 3 seurasi seuraavia inkluusiokriteerejä:
 
@@ -16,27 +16,17 @@ Haku 3 seurasi seuraavia inkluusiokriteerejä:
 
 Haku suoritettiin seuraavissa tietolähteissä:
 
-+-----------------------------------------+------------------------------------+
 | Tietokanta                              | Hakukone (jos eri kuin tietokanta) |
-+=========================================+====================================+
+|-----------------------------------------|------------------------------------|
 | Scopus                                  |                                    |
-+-----------------------------------------+------------------------------------+
 | Web of Science Core Collection          | Web of Science                     |
-+-----------------------------------------+------------------------------------+
 | MEDLINE                                 | Web of Science                     |
-+-----------------------------------------+------------------------------------+
 | Ebook Central                           | ProQuest                           |
-+-----------------------------------------+------------------------------------+
 | Social Science Premium Collection       | ProQuest                           |
-+-----------------------------------------+------------------------------------+
 | Bielefeld Academic Search Engine (BASE) |                                    |
-+-----------------------------------------+------------------------------------+
 | OpenAlex                                |                                    |
-+-----------------------------------------+------------------------------------+
 | Valto                                   |                                    |
-+-----------------------------------------+------------------------------------+
 | Julkari                                 |                                    |
-+-----------------------------------------+------------------------------------+
 
 : Haku 3:n tietolähteet {#tbl-haku3-tietolahteet}
 
@@ -48,7 +38,7 @@ Näiden lisäksi sisällytettiin tuloksia seuraavista organisaatiolähteistä:
 
 -   SPEK:in julkaisut
 
-## Hakulausekkeet ja tulosten lataaminen
+## Hakulausekkeet ja tulosten lataaminen {#sec-haku3-lausekkeet}
 
 Alla olevassa taulukossa esiintyy hakujen suorituspäivämäärät, hakusanat ja hakukonekohtaiset rajaukset sekä osumat.
 
@@ -134,11 +124,11 @@ Alla olevassa taulukossa esiintyy hakujen suorituspäivämäärät, hakusanat ja
 | H3_8_en | Julkari                                                     | 8.1.2024            | *Ei käytetty.*              | 3           | *Ei käytetty.*                                                                      |
 +---------+-------------------------------------------------------------+---------------------+-----------------------------+-------------+-------------------------------------------------------------------------------------+
 
-: Haku 3:n toteutetut haut. Ei sisällä muista lähteistä ladatut tulokset. {#tbl-haku3-toteutetut-haut}
+: Haku 3:n toteutetut haut. Ei sisällä muista lähteistä ladatut tulokset. {#tbl-haku3-toteutetuthaut}
 
 [^haku3-1]: Hakujen seulontavaiheessa huomasimme, että alkuperäisestä hausta 8.1.2024 oli jäänyt pois 27 tietuetta. Suoritimme haun siksi uudelleen 19.1.2024 ja latasimme kaikki tietueet. Tarkistimme, että vanhat tiedot vastasivat uusia tietoja.
 
-Jokaisen haun hakulausekkeet ovat listattuna alla hakukoodeittain (ks. @tbl-haku3-toteutetut-haut). Paina osa-hakua vastaavaa koodia nähdäksesi kunkin haun hakulausekkeen. Voit kopioida lausekkeen sellaisenaan leikepöydällesi painamalla kopiointikuvaketta avatun hakulausekkeen yläoikeassa nurkassa.
+Jokaisen haun hakulausekkeet ovat listattuna alla hakukoodeittain (ks. @tbl-haku3-toteutetuthaut). Paina osa-hakua vastaavaa koodia nähdäksesi kunkin haun hakulausekkeen. Voit kopioida lausekkeen sellaisenaan leikepöydällesi painamalla kopiointikuvaketta avatun hakulausekkeen yläoikeassa nurkassa.
 
 ```{r}
 #| code-summary: "Haku H3_1_fi"
@@ -268,21 +258,17 @@ Tulokset ladattiin ensisijaisesti `.csv`- tai `.xlsx`-muotoon jos mahdollista (S
 
 Näiden lisäksi haimme käsin seuraavista organisaatiosivuista:
 
-+---------------------------------------------------+---------------+--------------------------------------------------------------------------------------------------------------------+------------+
 | Kohde                                             | Hakuajankohta | Osoite                                                                                                             | Tulosmäärä |
-+===================================================+===============+====================================================================================================================+============+
+|---------------------------------------------------|---------------|--------------------------------------------------------------------------------------------------------------------|------------|
 | Pelastusopiston julkaisusarja A: Oppimateriaalit  | 9.1.2024      | <https://www.pelastusopisto.fi/kirjasto-ja-tietopalvelut/julkaisut-ja-aineistot/a-julkaisusarja-oppimateriaalit/>  | 0          |
-+---------------------------------------------------+---------------+--------------------------------------------------------------------------------------------------------------------+------------+
 | Pelastusopiston julkaisusarja B: Tutkimusraportit | 9.1.2024      | <https://www.pelastusopisto.fi/kirjasto-ja-tietopalvelut/julkaisut-ja-aineistot/B-julkaisusarja-tutkimusraportit/> | 3          |
-+---------------------------------------------------+---------------+--------------------------------------------------------------------------------------------------------------------+------------+
 | Pelastusopiston julkaisusarja D: Muut julkaisut   | 9.1.2024      | <https://www.pelastusopisto.fi/kirjasto-ja-tietopalvelut/julkaisut-ja-aineistot/D-julkaisusarja-muut-julkaisut/>   | 0          |
-+---------------------------------------------------+---------------+--------------------------------------------------------------------------------------------------------------------+------------+
 | Pelastusopiston muut koulutusmateriaalit          | 9.1.2024      | <https://www.pelastusopisto.fi/kirjasto-ja-tietopalvelut/julkaisut-ja-aineistot/muut-koulutusmateriaalit/>         | 0          |
-+---------------------------------------------------+---------------+--------------------------------------------------------------------------------------------------------------------+------------+
 | SPEK:in julkaisut                                 | 9.1.2024      | <https://www.spek.fi/vaikuttaminen/tutkimukset/julkaisut/>                                                         | 0          |
-+---------------------------------------------------+---------------+--------------------------------------------------------------------------------------------------------------------+------------+
 
-## PRISMA-kulkukaavio
+: Haku 3:n suoritetut organisaatiosivuhaut {#tbl-haku3-organisaatiosivut}
+
+## PRISMA-kulkukaavio {#sec-haku3-prisma}
 
 Hakutulosten seulonta tuotti seuraavan PRISMA-protokollan mukaisen kulkukaavion:
 
@@ -290,6 +276,8 @@ Hakutulosten seulonta tuotti seuraavan PRISMA-protokollan mukaisen kulkukaavion:
 ## Tietokannat ja rekisterit
 
 ```{r}
+#| label: fig-haku3-prisma-tietokannat
+#| fig-cap: "PRISMA-kulkukaavio, tietokannat ja rekisterit, haku 3"
 #| eval: true
 library("PRISMAstatement")
 
@@ -321,6 +309,8 @@ flow_exclusions(
 ## Muut lähteet
 
 ```{r}
+#| label: fig-haku-prisma-muut
+#| fig-cap: "PRISMA-kulkukaavio, muut lähteet, haku 3"
 #| eval: true
 library("PRISMAstatement")
 
@@ -348,85 +338,50 @@ flow_exclusions(
 ```
 :::
 
-## Kokotekstin pohjalta poistetut tutkimukset ja syyt
+## Kokotekstin pohjalta poistetut tutkimukset ja syyt {#sec-haku3-poistetut}
 
 Seulonnan jälkeen poistettuja tutkimusjulkaisuja oli yhteensä 34 kappaletta. @tbl-haku3-poistetut sisältää jokaisen julkaisun poistosyyn. Syyt ovat listattuna ensisijaisen syyn mukaan. Teimme päätöksen poisjättämisestä, jos vähintään yksi inkluusiokriteeri ei täyttynyt.
 
-+----------------------+-----------------------------------------------------------------------+
 | Kohde                | Syy(t) poistoon                                                       |
-+======================+=======================================================================+
+|----------------------|-----------------------------------------------------------------------|
 | @auvinen2012         | Väärä tutkimusaihe                                                    |
-+----------------------+-----------------------------------------------------------------------+
 | @basu2016            | Väärä maantieteellinen sijainti                                       |
-+----------------------+-----------------------------------------------------------------------+
 | @beczkowska2020      | Väärä tutkimusaihe, väärä maantieteellinen sijainti                   |
-+----------------------+-----------------------------------------------------------------------+
 | @dedele2019          | Väärä tutkimusaihe, väärä kohderyhmä                                  |
-+----------------------+-----------------------------------------------------------------------+
 | @denisov2021         | Ei-empiirinen tutkimus, väärä maantieteellinen sijainti               |
-+----------------------+-----------------------------------------------------------------------+
 | @drabecki2023        | Väärä tutkimusaihe                                                    |
-+----------------------+-----------------------------------------------------------------------+
 | @fawzyeldesouky2022  | Väärä maantieteellinen sijainti                                       |
-+----------------------+-----------------------------------------------------------------------+
 | @heinonen2022        | Väärä tutkimusaihe                                                    |
-+----------------------+-----------------------------------------------------------------------+
 | @himanen2023         | Väärä tutkimusaihe, ei-empiirinen tutkimus                            |
-+----------------------+-----------------------------------------------------------------------+
 | @honkavuo2019        | Väärä tutkimusaihe                                                    |
-+----------------------+-----------------------------------------------------------------------+
 | @ilczak2023          | Väärä tutkimusaihe                                                    |
-+----------------------+-----------------------------------------------------------------------+
 | @innstrand2010       | Väärä tutkimusaihe, väärä kohderyhmä, väärä maantieteellinen sijainti |
-+----------------------+-----------------------------------------------------------------------+
 | @innstrand2011       | Väärä kohderyhmä, väärä maantieteellinen sijainti                     |
-+----------------------+-----------------------------------------------------------------------+
 | @joensuu2018         | Väärä tutkimusaihe                                                    |
-+----------------------+-----------------------------------------------------------------------+
 | @kamau2022           | Ei-empiirinen tutkimus                                                |
-+----------------------+-----------------------------------------------------------------------+
 | @koski2019           | Väärä tutkimusaihe                                                    |
-+----------------------+-----------------------------------------------------------------------+
 | @leikkola2016        | Väärä tutkimusaihe                                                    |
-+----------------------+-----------------------------------------------------------------------+
 | @leppäkoski2010      | Väärä tutkimusaihe                                                    |
-+----------------------+-----------------------------------------------------------------------+
 | @lundin2018          | Väärä maantieteellinen sijainti                                       |
-+----------------------+-----------------------------------------------------------------------+
 | @mäki-rahkola2014    | Väärä kohderyhmä                                                      |
-+----------------------+-----------------------------------------------------------------------+
 | @norri-sederholm2014 | Väärä tutkimusaihe                                                    |
-+----------------------+-----------------------------------------------------------------------+
 | @oldenburg2014       | Väärä tutkimusaihe, väärä maantieteellinen sijainti                   |
-+----------------------+-----------------------------------------------------------------------+
 | @paavilainen2017     | Väärä tutkimusaihe                                                    |
-+----------------------+-----------------------------------------------------------------------+
 | @peluchette2013      | Väärä tutkimusaihe, väärä kohderyhmä, väärä maantieteellinen sijainti |
-+----------------------+-----------------------------------------------------------------------+
 | @purvanova2010       | Väärä kohderyhmä, ei-empiirinen tutkimus                              |
-+----------------------+-----------------------------------------------------------------------+
 | @ramakrishnan2014    | Väärä kohderyhmä, ei-empiirinen tutkimus                              |
-+----------------------+-----------------------------------------------------------------------+
 | @saal2021            | Väärä tutkimusaihe, väärä kohderyhmä                                  |
-+----------------------+-----------------------------------------------------------------------+
 | @schwarzenberg2019   | Väärä tutkimusaihe                                                    |
-+----------------------+-----------------------------------------------------------------------+
 | @sjölin2015          | Väärä tutkimusaihe, väärä maantieteellinen sijainti                   |
-+----------------------+-----------------------------------------------------------------------+
 | @torlénwennlund2022  | Väärä tutkimusaihe, väärä maantieteellinen sijainti                   |
-+----------------------+-----------------------------------------------------------------------+
 | @uusitalo2018        | Väärä tutkimusaihe, ei-empiirinen tutkimus                            |
-+----------------------+-----------------------------------------------------------------------+
 | @venesoja2020        | Väärä tutkimusaihe                                                    |
-+----------------------+-----------------------------------------------------------------------+
 | @venesoja2023        | Väärä tutkimusaihe                                                    |
-+----------------------+-----------------------------------------------------------------------+
 | @virtanen2012        | Väärä kohderyhmä                                                      |
-+----------------------+-----------------------------------------------------------------------+
 
 : Haku 3:n poistetut kohteet syineen {#tbl-haku3-poistetut}
 
-## Valitut tutkimusjulkaisut
+## Valitut tutkimusjulkaisut {#sec-haku3-valitut}
 
 Haun pohjalta valittiin neljä tutkimusjulkaisua. Julkaisut ovat:
 

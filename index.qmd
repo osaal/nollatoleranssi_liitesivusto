@@ -1,6 +1,4 @@
----
-title: "Nollatoleranssi-hankkeen liitesivusto"
----
+# Nollatoleranssi-hankkeen liitesivusto {.unnumbered}
 
 *In English below.*
 
@@ -22,7 +20,23 @@ Navigate the page from the navigation bar at the top of the site.
 
 In case of questions, please contact the researcher responsible for the technical supplement, researcher Oliver Saal.
 
-------------------------------------------------------------------------
+## Sivuston käyttö {.unnumbered}
+
+Sivusto on kirjoitettu käyttöen Quarto-järjestelmää, ja sen lähdekoodi ynnä useimmat käytetyt datatiedostot ovat saatavilla sivuston [GitHub-sivulla](https://github.com/osaal/nollatoleranssi_liitesivusto). Suosittelemme sivuston selaamista isolla näytöllä, esimerkiksi tietokoneella tai korkean resoluution tabletlaitteella, sillä kaikki sivuston elementit eivät koonsa takia piirry oikein pienillä näytöillä (esim. puhelimella).
+
+Sivusto on jaettu temaattisiin osioihin, jotka sisältävät lukuja. Osioita voi selata sivuston yläpalkista (pienellä näytöllä, esim. puhelimella, painamalla yläpalkissa olevaa hampurilaisvalikon painiketta ylävasemmalla). Osioiden lukuja voi selata joko yläpalkista tai (isolla näytöllä) sivun vasemmasta palkista. Lukujen alalukuja voi isolla näytöllä selata luvun sisällysluettelosta sivun oikealla puolella.
+
+Jokainen sivu on riippumaton toisista, eli sivujen välillä ei tapahdu tietojen (esim. R-muuttujien) siirtoja. Sivujen kuviot ja analyysit voidaan siten suorittaa yksitellen suorittamatta koko sivustoa kerralla.
+
+Jokaiselta sivulta löytyy koodityökalut sivun yläoikeasta kulmasta painikkeesta nimeltä `Koodi`. Painikkeesta avautuu luettelo, josta voi näyttää tai piilottaa kaikki koodiblokit kerralla sekä nähdä sivun Quarto Markdown -raakatiedot.
+
+## Datasaatavuus {.unnumbered}
+
+Sivuston käyttämä data on vaihtelevasti saatavissa. Kirjallisuuskatsaukseen liittyvä data, varsinkin katsausartikkelin osalta, on saatavissa lähdekoodista kansiosta `data`. Myös eräitä kyselyn metatietoja on saatavilla samasta kansiosta.
+
+Kyselydatan lopulliset, anonymisoidut tiedot arkistoidaan Tietoarkistoon tutkijoiden käyttöön, ja tulevat olemaan sieltä haettavissa. Tietojen välimuodot (Webropol-palvelusta anonymisoinnin loppuun asti) eivät ole saatavilla tietosuojan takia.
+
+Koska jokainen sivu on riippumaton toisista, data siirretään sivusta toiseen tallentamalla `csv`-muotoon kansioon `output`. **Tätä kansiota ei löydy lähdekoodista, vaan se on lisättävä manuaalisesti jos lähdekoodin haluaa rakentaa omalla laitteellaan.** Lisäohjeita tulee löytymään GitHub-palvelusta.
 
 ## Yhteystiedot {.unnumbered}
 

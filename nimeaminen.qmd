@@ -1,19 +1,19 @@
-# Nimeäminen
+# Nimeäminen {#sec-nimeaminen}
 
-Seuraavaksi muuttujat nimetään hankkeessa vakiintuneiden lyhenteiden mukaisesti. Tässä listataan nimeämiset lomakkeen (ja täten datatiedoston) järjestyksessä.
+Seuraavaksi muuttujat nimettiin hankkeessa vakiintuneiden lyhenteiden mukaisesti. Tässä listataan nimeämiset lomakkeen (ja täten datatiedoston) järjestyksessä.
 
-Alkuperäiset nimeämiset löytyvät CSV-tiedostosta tämän verkkosivun lähdekoodissa, kansiossa `data > muuttujiennimet.csv`.
+Alkuperäiset nimeämiset löytyvät `csv`-tiedostosta tämän verkkosivun lähdekoodissa, kansiossa `data > muuttujiennimet.csv`.
 
-Alkuperäiset data-arvot löytyvät niinikään CSV-tiedostosta sijainnissa `data > alkuperaisetarvot.csv`.
+Alkuperäiset data-arvot löytyvät niinikään `csv`-tiedostosta sijainnissa `data > alkuperaisetarvot.csv`.
 
-## Metatiedot
+## Metatiedot {#sec-nimeaminen-metatiedot}
 
-1.  **Linkkiversio** jätetään sellaiseksi.
-2.  **Kieliversio** jätetään sellaiseksi.
+1.  **Linkkiversio** jätettiin sellaiseksi.
+2.  **Kieliversio** jätettiin sellaiseksi.
 3.  **k1**: Olen tietoinen minusta kerättävistä tiedoista sekä niiden käsittelystä, ja annan suostumukseni tietojen keruuseen:
 4.  **k2**: Mihin organisaatioon/toimialaan kuulut?
 
-## Organisaation sisäiset kokemukset
+## Organisaation sisäiset kokemukset {#sec-nimeaminen-sisaisetkokemukset}
 
 5.  **k3\_\[1-7\]**: Kuinka usein olet itse kohdannut seuraavia epäasiallisen kohtelun muotoja organisaatiosi sisällä viimeisen 12 kuukauden aikana? (7 alakysymystä)
 6.  **k4\_\[1-7\]**: Kuinka usein olet havainnut kollegan kohdanneen seuraavia epäasiallisen kohtelun muotoja organisaatiosi sisällä viimeisen 12 kuukauden aikana? (7 alakysymystä)
@@ -39,7 +39,7 @@ Alkuperäiset data-arvot löytyvät niinikään CSV-tiedostosta sijainnissa `dat
     1.  Ensimmäinen luku: 16 alakysymystä
     2.  Toinen luku: (1) Minä koin, (2) Kollegani koki
 
-## Organisaation ulkopuoliset kokemukset
+## Organisaation ulkopuoliset kokemukset {#sec-nimeaminen-ulkopuolisetkokemukset}
 
 14. **k12\_\[1-7\]**: Kuinka usein olet itse kohdannut seuraavia epäasiallisen kohtelun muotoja organisaatiosi ulkopuoliselta henkilöltä viimeisen 12 kuukauden aikana? (7 alakysymystä)
 15. **k13\_\[1-7\]**: Kuinka usein olet havainnut kollegan kohdanneen seuraavia epäasiallisen kohtelun muotoja organisaatiosi ulkopuoliselta henkilöltä viimeisen 12 kuukauden aikana? (7 alakysymystä)
@@ -65,7 +65,7 @@ Alkuperäiset data-arvot löytyvät niinikään CSV-tiedostosta sijainnissa `dat
     1.  Ensimmäinen luku: 7 alakysymystä
     2.  Toinen luku: (1) Minä koin, (2) Kollegani koki
 
-## Kohtelun vaikutukset
+## Kohtelun vaikutukset {#sec-nimeaminen-vaikutukset}
 
 23. **k21\_\[1-3\]**: Miten vakavia sinuun kohdistuneen epäasiallisen käytöksen vaikutukset olivat?
     1.  Fyysiset vaikutukset
@@ -78,7 +78,7 @@ Alkuperäiset data-arvot löytyvät niinikään CSV-tiedostosta sijainnissa `dat
 25. **k22\_\[1-3\]\_1**: ... Jatkuu tällä hetkellä
 26. **k23\_\[1-11\]**: Miten reagoit epäasiallisen kohtelun kokemukseesi? (11 alakysymystä)
 
-## Ilmoitusjärjestelmät ja työolot
+## Ilmoitusjärjestelmät ja työolot {#sec-nimeaminen-ilmoitusjarjestelmat}
 
 27. **k24\_\[1-3\]**: Onko organisaatiollasi käytössä ilmoitusjärjestelmä, jossa voit ilmoittaa epäasiallisen kohtelun tilanteista?
     1.  Organisaation sisällä tapahtuneille tilanteille
@@ -95,13 +95,13 @@ Alkuperäiset data-arvot löytyvät niinikään CSV-tiedostosta sijainnissa `dat
     3.  Minun on vaikea pysyä tarkkaavaisena työssäni
     4.  En pysty hallitsemaan tunteitani työssäni
 
-## Toimenpiteet
+## Toimenpiteet {#sec-nimeaminen-toimenpiteet}
 
 31. **k28\_\[1-12\]**: Onko organisaatiossasi käytössä seuraavia epäasialliseen kohteluun liittyviä toimenpiteitä tai ohjeita? (12 alakysymystä)
 32. **k29\_\[1-12\]**: Miten edellä olevat toimet mielestäsi vaikuttavat epäasiallisen kohtelun esiintyvyyteen? (12 alakysymystä)
 33. **k30\_\[1-13\]**: Miten hyödyllisinä koet seuraavat ehdotetut toimenpiteet epäasiallisen kohtelun estämiseksi tai vähentämiseksi? (13 alakysymystä)
 
-## Taustakysymykset
+## Taustakysymykset {#sec-nimeaminen-taustakysymykset}
 
 34. **k31**: Mikä sukupuolesi on?
 35. **k32**: Millaisella työrytmityksellä olet töissä pelastuslaitoksella tai ensihoidossa?

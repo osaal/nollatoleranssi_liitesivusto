@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Nollatoleranssi-hankkeen liitesivusto - 15&nbsp; Eksportointi</title>
+<title>Nollatoleranssi-hankkeen liitesivusto - 14&nbsp; Eksportointi</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -31,6 +65,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./nimeaminen.html" rel="next">
+<link href="./tiedonkeruu.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -93,23 +128,23 @@ ul.task-list li input[type="checkbox"] {
     <ul class="dropdown-menu" aria-labelledby="nav-menu-kirjallisuuskatsaus">    
         <li>
     <a class="dropdown-item" href="./kriteeristo.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Kriteeristö</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Kriteeristö</span></span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./seulontamenetelma.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Seulontamenetelmä</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Seulontamenetelmä</span></span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./prismakaavio.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Hakuprosessi ja PRISMA-kaavio</span></span></a>
+    <a class="dropdown-item" href="./hakuprosessi.html" rel="" target="">
+ <span class="dropdown-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Hakuprosessi ja PRISMA-kaavio</span></span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./yleiskuvailu.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Tulosten yleiskuvaus</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tulosten yleiskuvaus</span></span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./katsausartikkeli.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Katsausartikkeli</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Katsausartikkeli</span></span></a>
   </li>  
     </ul>
   </li>
@@ -120,68 +155,63 @@ ul.task-list li input[type="checkbox"] {
     <ul class="dropdown-menu" aria-labelledby="nav-menu-katsauksen-osahaut">    
         <li>
     <a class="dropdown-item" href="./haku1.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Haku 1</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Haku 1</span></span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./haku2.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Haku 2</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Haku 2</span></span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./haku3.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Haku 3</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Haku 3</span></span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./haku4.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Haku 4</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Haku 4</span></span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./haku5.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Haku 5</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Haku 5</span></span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./haku6.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Haku 6</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Haku 6</span></span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-kyselyn-valmistelu" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
- <span class="menu-text">Kyselyn valmistelu</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-kyselyprosessi" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Kyselyprosessi</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-kyselyn-valmistelu">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-kyselyprosessi">    
         <li>
     <a class="dropdown-item" href="./kyselynvalmistelu.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Kyselyn valmistelu</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Kyselyn valmistelu</span></span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./tiedonkeruu.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Tiedonkeruu</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Tiedonkeruu</span></span></a>
   </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datavalmistelu" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
- <span class="menu-text">Datavalmistelu</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-datavalmistelu">    
         <li>
     <a class="dropdown-item" href="./eksportointi.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Eksportointi</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Eksportointi</span></span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./nimeaminen.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Nimeäminen</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Nimeäminen</span></span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./valmistelu.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Valmistelu</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Valmistelu</span></span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./anonymisointi.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Anonymisointi</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Anonymisointi</span></span></a>
   </li>  
     </ul>
   </li>
+  <li class="dropdown-header">
+ <span class="menu-text">sidebar:datavalmistelu</span></li>
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-mittariston-validointi" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">Mittariston validointi</span>
@@ -189,7 +219,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="dropdown-menu" aria-labelledby="nav-menu-mittariston-validointi">    
         <li>
     <a class="dropdown-item" href="./efabias.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Esiintyvyyden EFA-mallin bias-testit</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Esiintyvyyden EFA-mallin bias-testit</span></span></a>
   </li>  
     </ul>
   </li>
@@ -208,7 +238,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Vaihda sivupalkki" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./eksportointi.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Eksportointi</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./eksportointi.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Eksportointi</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Vaihda sivupalkki" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -222,26 +252,38 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./kyselynvalmistelu.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Kyselyn valmistelu</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tiedonkeruu.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Tiedonkeruu</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./eksportointi.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Eksportointi</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Eksportointi</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./nimeaminen.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Nimeäminen</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Nimeäminen</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./valmistelu.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Valmistelu</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Valmistelu</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./anonymisointi.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Anonymisointi</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Anonymisointi</span></span></a>
   </div>
 </li>
     </ul>
@@ -257,7 +299,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Eksportointi</span></h1>
+<div class="quarto-title-block"><div><h1 class="title"><span id="sec-eksportointi" class="quarto-section-identifier"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Eksportointi</span></span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Koodi</button></div></div>
 </div>
 
 
@@ -272,43 +314,45 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Kyselyt toteutetaan kolmella eri linkillä:</p>
+<p>Kyselyt toteutettiin kolmella eri linkillä:</p>
 <ol type="1">
 <li>Johdon kautta lähetettävä linkki</li>
 <li>Toimistojen, kirjaamoiden ja viestintävastaavien kautta lähetettävä linkki</li>
 <li>Pelastusalan medioissa jaettava linkki</li>
 </ol>
-<p>Jokainen linkki johtaa vastaajan linkkikohtaiseen kopioon lomakkeesta.</p>
-<p>Datakeräyksen jälkeen seurataan seuraavaa menettelyä jokaiselle linkkiversiolle erikseen:</p>
+<p>Jokainen linkki johti vastaajan linkkikohtaiseen kopioon lomakkeesta.</p>
+<p>Datakeräyksen jälkeen seurattiin seuraavaa menettelyä jokaiselle linkkiversiolle erikseen:</p>
 <ol type="1">
-<li>Webropolin “Raportointi”-välilehdessä tehdään kaksi raporttimallia “Suodata”-työkalulla. Raportit suodatetaan erikseen suomenkielisen ja ruotsinkielisen lomakkeen vastaajille. Raporttiin vietävä tekstitieto pidetään suomenkielisenä, jotta yhdistäminen olisi helpompaa.
+<li>Webropolin “Raportointi”-välilehdessä tehtiin kaksi raporttimallia “Suodata”-työkalulla. Raportit suodatettiin erikseen suomenkielisen ja ruotsinkielisen lomakkeen vastaajille. Raporttiin vietävä tekstitieto pidettiin suomenkielisenä, jotta yhdistäminen olisi helpompaa.
 <ol type="1">
 <li>Vie &amp; Jaa &gt; CSV: Näytä vastaukset numeroina, Vie useita raportteja -&gt; Valitse molemmat kieliversiot &gt; Vie</li>
-<li><strong>HUOM:</strong> Näillä asetuksilla vastausarvot monivalintamittaristoissa määräytyy mittarin numeron mukaan (esim. ensimmäinen reaktiokysymys saa arvon 1 jos valittu, toinen saa arvon 2, jne.). <strong>Tämä ei voi vaihtaa, joten numerot pitää koodata uudelleen.</strong></li>
+<li><strong>HUOM:</strong> Näillä asetuksilla vastausarvot monivalintamittaristoissa määräytyi mittarin järjestyksen mukaan (esim. ensimmäinen reaktiokysymys saa arvon <code>1</code> jos valittu, toinen saa arvon <code>2</code>, jne.). Tätä ei voi muuttaa Webropol-palvelussa. Vastausarvot muutettiin yhtenäisiksi (arvo <code>1</code>) uudelleenkoodauksessa, ks. <a href="valmistelu.html"><span>Luku&nbsp;16</span></a></li>
 </ol></li>
-<li>Kaksi suodatettua raporttia viedään CSV-muotoon ja ladataan tietokoneelle.</li>
-<li>Varmistetaan, että molempien raporttien vastaajamäärät vastaavat Webropolin antamaa vastaajamäärää kysymykselle K1 (Suostumus). Koska jokaisella vastaajalla tulisi olla sama arvo (1) tällä muuttujalla, voidaan tarkistaa, että kaikki vastaajat ovat tulleet mukaan.</li>
-<li>Tarkistetaan myös K43 (Syyt muutosaikeille) CSV-tiedostoista, ettei vienti ole katkaissut vastauksia lyhyiksi. Tämä voi tapahtua joissain järjestelmissä.
+<li>Kaksi suodatettua raporttia vietiin <code>csv</code>-muotoon.</li>
+<li>Varmistettiin, että molempien raporttien vastaajamäärät vastasivat Webropolin antamaa vastaajamäärää.</li>
+<li>Tarkistettiin myös <code>k43</code> (Syyt muutosaikeille) <code>csv</code>-tiedostoista, ettei vienti ollut katkaissut vastauksia.
 <ol type="1">
-<li>Jos katkaisu tapahtuu, viedään K43 manuaalisesti PDF-muotoon Webropolin Raportointi-välilehdestä. Tämän jälkeen jokainen vastaus tunnistetaan käsin (vertailemalla CSV- ja PDF-tiedostojen tekstiä) ja kopioidaan PDF-tiedostosta oikea vastaus vastaajan soluun CSV-tiedostossa.</li>
+<li><strong>TARKISTA:</strong> Jos katkaisu tapahtuu, viedään <code>k43</code> manuaalisesti <code>pdf</code>-muotoon Webropolin Raportointi-välilehdestä. Tämän jälkeen jokainen vastaus tunnistetaan käsin (vertailemalla <code>csv</code>- ja <code>pdf</code>-tiedostojen tekstiä) ja kopioidaan <code>pdf</code>-tiedostosta oikea vastaus vastaajan soluun <code>csv</code>-tiedostossa.</li>
 </ol></li>
-<li>Molemmissa tiedostoissa tehdään uusi sarake ensimmäisen muuttujan edelle nimeltä “Kieliversio”. Suomenkieliseen datavarantoon lisätään jokaiselle vastaajalle arvo 1. Ruotsinkieliseen varantoon lisätään arvo 2.</li>
-<li>Tiedostot yhdistetään yhdeksi tiedostoksi.</li>
-<li>Yhdistettyyn tiedostoon lisätään uusi sarake Kieliversio-muuttujan edelle, nimeltä “Linkkiversio”. Arvot lisätään seuraavasti:
+<li>Molemmissa tiedostoissa tehtiin uusi sarake ensimmäisen muuttujan edelle nimeltä <code>Kieliversio</code>. Suomenkieliseen datavarantoon lisättiin jokaiselle vastaajalle arvo <code>1</code>, ja ruotsinkieliseen varantoon lisättiin arvo <code>2</code>.</li>
+<li>Tiedostot yhdistettiin yhdeksi tiedostoksi.</li>
+<li>Yhdistettyyn tiedostoon lisättiin uusi sarake <code>Kieliversio</code>-muuttujan edelle, nimeltä <code>Linkkiversio</code>. Arvot lisättiin seuraavasti:
 <ol type="1">
-<li>Johdon kautta = 1</li>
-<li>Toimistojen kautta = 2</li>
-<li>Mediat = 3</li>
+<li>Johdon kautta = <code>1</code></li>
+<li>Toimistojen kautta = <code>2</code></li>
+<li>Mediat = <code>3</code></li>
 </ol></li>
 </ol>
-<p>Webropol-palvelusta viedään yhteensä kuusi raporttia CSV-muotoon. Kun kaikki raportit ovat vietyjä ja yllä olevat askeleet ovat suoritettuja, datavarannot yhdistetään yhdeksi CSV-tiedostoksi.</p>
+<p>Webropol-palvelusta vietiin yhteensä kuusi raporttia <code>csv</code>-muotoon. Kun kaikki raportit oli vietyjä ja yllä olevat askeleet suoritettuja, datavarannot yhdistettiin yhdeksi <code>csv</code>-tiedostoksi.</p>
 <p>Täten jokaisella vastaajalla on kaksi uutta muuttujaa:</p>
 <ul>
-<li><p>Kieliversio: 1 (Suomi) tai 2 (Ruotsi), ei puuttuvia arvoja</p></li>
-<li><p>Linkkiversio: 1 (Johdon kautta), 2 (Toimistojen kautta) tai 3 (Mediat), ei puuttuvia arvoja</p></li>
+<li><p><code>Kieliversio</code>: <code>1</code> (Suomi) tai <code>2</code> (Ruotsi), ei puuttuvia arvoja</p></li>
+<li><p><code>Linkkiversio</code>: <code>1</code> (Johdon kautta), <code>2</code> (Toimistojen kautta) tai <code>3</code> (Mediat), ei puuttuvia arvoja</p></li>
 </ul>
-<p>Tässä vaiheessa varmistetaan vielä kerran, että yhteenlaskettu vastaajamäärä vastaa Webropol-palvelun Raportointi-välilehden yhteenlaskettua vastaajamäärää yllä mainitulla tavalla. Huomioi, että jokainen linkkiversio ja raportti (yhteensä 6 kappaletta) pitää tarkistaa erikseen.</p>
+<p>Tässä vaiheessa varmistettiin vielä kerran, että yhteenlaskettu vastaajamäärä vastasi Webropol-palvelun vastaajamäärää.</p>
 
+
+<!-- -->
 
 
 </main> <!-- /main -->
@@ -391,6 +435,57 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
   function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
@@ -547,13 +642,52 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./tiedonkeruu.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Tiedonkeruu</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./nimeaminen.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Nimeäminen</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Nimeäminen</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
-</nav>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Lähdekoodi</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Eksportointi {#sec-eksportointi}</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Kyselyt toteutettiin kolmella eri linkillä:</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Johdon kautta lähetettävä linkki</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Toimistojen, kirjaamoiden ja viestintävastaavien kautta lähetettävä linkki</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Pelastusalan medioissa jaettava linkki</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>Jokainen linkki johti vastaajan linkkikohtaiseen kopioon lomakkeesta.</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>Datakeräyksen jälkeen seurattiin seuraavaa menettelyä jokaiselle linkkiversiolle erikseen:</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Webropolin "Raportointi"-välilehdessä tehtiin kaksi raporttimallia "Suodata"-työkalulla. Raportit suodatettiin erikseen suomenkielisen ja ruotsinkielisen lomakkeen vastaajille. Raporttiin vietävä tekstitieto pidettiin suomenkielisenä, jotta yhdistäminen olisi helpompaa.</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Vie &amp; Jaa <span class="sc">\&gt;</span> CSV: Näytä vastaukset numeroina, Vie useita raportteja -<span class="sc">\&gt;</span> Valitse molemmat kieliversiot <span class="sc">\&gt;</span> Vie</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>**HUOM:** Näillä asetuksilla vastausarvot monivalintamittaristoissa määräytyi mittarin järjestyksen mukaan (esim. ensimmäinen reaktiokysymys saa arvon <span class="in">`1`</span> jos valittu, toinen saa arvon <span class="in">`2`</span>, jne.). Tätä ei voi muuttaa Webropol-palvelussa. Vastausarvot muutettiin yhtenäisiksi (arvo <span class="in">`1`</span>) uudelleenkoodauksessa, ks. @sec-valmistelu</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Kaksi suodatettua raporttia vietiin <span class="in">`csv`</span>-muotoon.</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Varmistettiin, että molempien raporttien vastaajamäärät vastasivat Webropolin antamaa vastaajamäärää.</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Tarkistettiin myös <span class="in">`k43`</span> (Syyt muutosaikeille) <span class="in">`csv`</span>-tiedostoista, ettei vienti ollut katkaissut vastauksia.</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>**TARKISTA:** Jos katkaisu tapahtuu, viedään <span class="in">`k43`</span> manuaalisesti <span class="in">`pdf`</span>-muotoon Webropolin Raportointi-välilehdestä. Tämän jälkeen jokainen vastaus tunnistetaan käsin (vertailemalla <span class="in">`csv`</span>- ja <span class="in">`pdf`</span>-tiedostojen tekstiä) ja kopioidaan <span class="in">`pdf`</span>-tiedostosta oikea vastaus vastaajan soluun <span class="in">`csv`</span>-tiedostossa.</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>Molemmissa tiedostoissa tehtiin uusi sarake ensimmäisen muuttujan edelle nimeltä <span class="in">`Kieliversio`</span>. Suomenkieliseen datavarantoon lisättiin jokaiselle vastaajalle arvo <span class="in">`1`</span>, ja ruotsinkieliseen varantoon lisättiin arvo <span class="in">`2`</span>.</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="ss">6.  </span>Tiedostot yhdistettiin yhdeksi tiedostoksi.</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="ss">7.  </span>Yhdistettyyn tiedostoon lisättiin uusi sarake <span class="in">`Kieliversio`</span>-muuttujan edelle, nimeltä <span class="in">`Linkkiversio`</span>. Arvot lisättiin seuraavasti:</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Johdon kautta = <span class="in">`1`</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>Toimistojen kautta = <span class="in">`2`</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="ss">    3.  </span>Mediat = <span class="in">`3`</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>Webropol-palvelusta vietiin yhteensä kuusi raporttia <span class="in">`csv`</span>-muotoon. Kun kaikki raportit oli vietyjä ja yllä olevat askeleet suoritettuja, datavarannot yhdistettiin yhdeksi <span class="in">`csv`</span>-tiedostoksi.</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>Täten jokaisella vastaajalla on kaksi uutta muuttujaa:</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`Kieliversio`</span>: <span class="in">`1`</span> (Suomi) tai <span class="in">`2`</span> (Ruotsi), ei puuttuvia arvoja</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`Linkkiversio`</span>: <span class="in">`1`</span> (Johdon kautta), <span class="in">`2`</span> (Toimistojen kautta) tai <span class="in">`3`</span> (Mediat), ei puuttuvia arvoja</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>Tässä vaiheessa varmistettiin vielä kerran, että yhteenlaskettu vastaajamäärä vastasi Webropol-palvelun vastaajamäärää.</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 
 

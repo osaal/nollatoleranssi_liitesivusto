@@ -1,6 +1,6 @@
 # Tiedonkeruu {#sec-tiedonkeruu}
 
-## Yhteydenottomenetelmät
+## Yhteydenottomenetelmät {#sec-tiedonkeruu-yhteydenottomenetelmat}
 
 **Tiedonkeruu suoritettiin ajanjaksolla 15.8.-15.9.2024.**
 
@@ -44,27 +44,27 @@ Välitettäviin viesteihin valmistetiin kolme erillistä kyselylinkkiä. Jokaine
 |                                                 | 10. Pelastusopiston uutiskirjeet                                         |                                                    |
 +-------------------------------------------------+--------------------------------------------------------------------------+----------------------------------------------------+
 
-: Kyselyn vastauslinkit ja niitä vastaavat välittämiskanavat
+: Kyselyn vastauslinkit ja niitä vastaavat välityskanavat {#tbl-tiedonkeruu-valityskanavat}
 
-## Välityskanavien toteutus
+## Välityskanavien toteutus {#sec-tiedonkeruu-valityskanavat}
 
-### Pelastusjohtajat ja ensihoitopäälliköt
+### Pelastusjohtajat ja ensihoitopäälliköt {#sec-tiedonkeruu-valityskanavat-pelastusjohtajatensihoitopaallikot}
 
 Teimme yhteistyötä Hyvinvointialueyhtiö Hyvil oy:n kanssa kyselyn välitysprosessissa. Hyvilin edustajat lähettivät johdon viestit pelastusjohtajille ja ensihoitopäälliköille. Välitimme Hyvilin edustajille listauksen kaikista osallistuvista hyvinvointialueista, eriteltynä pelastuslaitoksiin tai pelastuslaitoksiin ja ensihoitoon (alueen palvelujärjestyksen mukaisesti). Johdon viestissä oli pyyntö välittää liitteenä olevan osallistumiskirjeen edelleen johtohenkilön edustamalle henkilöstölle.
 
-### Pelastusliittojen johto
+### Pelastusliittojen johto {#sec-tiedonkeruu-valityskanavat-pelastusliittojenjohto}
 
 Pelastusliittojen johdolle välitys- ja osallistumispyynnöt lähetettiin yhteistyössä Suomen Pelastusalan Keskusjärjestön viestinnän kanssa. SPEK:n edustajat lähettivät pelastusliittojen johdolle hankkeessa valmistetun pyynnön, jossa johtoa pyydetään välittämään liitteenä oleva kutsukirje edelleen pelastusliiton henkilöstölle sekä liiton edustamille sopimuspalokunnille.
 
-### Järjestöjen johto
+### Järjestöjen johto {#sec-tiedonkeruu-valityskanavat-jarjestojenjohto}
 
 Lähetimme hankkeen toimesta viestin SPEK:n, SPPL:n ja SSPL:n johdolle. Viestissä johtoa pyydettiin välittämään edelleen liitteenä olevan kutsukirjeen heidän edustamalle henkilöstölleen.
 
-### Pelastusopiston johto ja Helsingin pelastuskoulun rehtori
+### Pelastusopiston johto ja Helsingin pelastuskoulun rehtori {#sec-tiedonkeruu-valityskanavat-koulutusorganisaatioidenjohto}
 
 Lähetimme hankkeen toimesta myös viestin Pelastusopiston johdolle sekä Helsingin pelastuskoulun rehtorille. Pelastusopiston johtoon laskettiin rehtori, tutkimusjohtaja, koulutusjohtaja sekä hallintojohtaja. Viesteissä vastaanottajia pyydettiin välittämään edelleen liitteenä olevan kutsukirjeen henkilöstölleen.
 
-### Pelastuslaitosten ja ensihoidon yhteyshenkilöt
+### Pelastuslaitosten ja ensihoidon yhteyshenkilöt {#sec-tiedonkeruu-valityskanavat-pelaehyhteyshenkilot}
 
 Osana tutkimuslupien hakemista hankkeelle osoitettiin hyvinvointialueilta yhteyshenkilöitä. Useimmat alueet osoittivat yhden henkilön, jotkut osoittivat kahdet tai kolmet henkilöt. Neljä hyvinvointialuetta eivät osoittaneet yhtään yhteyshenkilöä, jolloin heille ei lähetetty tätä kutsuviestiä.
 
@@ -72,7 +72,7 @@ Lähetimme hankkeen toimesta yhteyshenkilöille viestin, jossa heitä pyydettiin
 
 Viestissä välitettiin myös A5-kokoinen digitaalinen käsiesite, jonka yhteyshenkilöt saivat vapaasti tulostaa tai asettaa esille organisaatiossaan sopivalla tavalla, esimerkiksi kahvihuoneessa tai intraverkossa.
 
-### Sopimuspalokuntalaisten HAKA-järjestelmä
+### Sopimuspalokuntalaisten HAKA-järjestelmä {#sec-tiedonkeruu-valityskanavat-haka}
 
 Palokuntien hallinnointikantajärjestelmä (HAKA) on digitaalinen alusta, jolla sopimuspalokunnat ja palokuntayhdistykset voivat muun muassa kirjata jäsentietoja ja ylläpitää koulutustietoa omasta palokunnastaan. Järjestelmä on SPEK:n ylläpitämä ja mahdollistaa myös viestien lähettämisen palokuntien HAKA-käyttäjille. Järjestelmä on vapaaehtoinen palokunnille ja toimii selaimessa sekä mobiilisovelluksella. Lisätietoja järjestelmästä löytyy osoitteesta: [HAKA - Palokuntaan](https://www.palokuntaan.fi/haka)
 
@@ -80,29 +80,29 @@ Järjestelmässä on jokaisessa osallistuvassa palokunnassa yksi pääkäyttäj�
 
 Yhteistyössä SPEK:n viestinnän kanssa lähetimme osallistumispyynnöt HAKA-järjestelmässä suoraan kaikille järjestelmää käyttäville.
 
-### Järjestöjen toimistosähköpostit, Pelastusopiston viestintä ja Helsingin pelastuskoulun kanslia
+### Järjestöjen toimistosähköpostit, Pelastusopiston viestintä ja Helsingin pelastuskoulun kanslia {#sec-tiedonkeruu-valityskanavat-toimistotjaviestinta}
 
 Lähetimme hankkeen toimesta viestin SPEK:n, SPPL:n ja SSPL:n toimistosähköposteihin, Pelastusopiston viestintäsähköpostiin sekä Helsingin pelastuskoulun kansliasähköpostiin. Viesteissä vastaanottajia pyydettiin välittämään edelleen osallistumiskutsun organisaationsa henkilöstölle.
 
-### Uutis- ja jäsenkirjeet
+### Uutis- ja jäsenkirjeet {#sec-tiedonkeruu-valityskanavat-uutiskirjeet}
 
 Teimme yhteistyötä SPEK:n, SSPL:n ja Suomen Pelastusalan Ammattilaiset SPAL:n kanssa kyselyn välittämisessä uutis- ja jäsenkirjeiden kautta. Lähetimme näiden järjestöjen viestintäedustajille A5-kokoisen digitaalisen käsiesitteen, joka pyydettiin liittämään järjestöjen hallinnoimiin uutis- ja jäsenkirjeisiin.
 
 Lähetimme myös kutsut Pelastusopiston omien uutiskirjeiden kautta. Uutiskirjeet koskevat seuraavia toimintoja: ensihoito, pelastustoimi, onnettomuuksien ehkäisy, pelastustoiminta.
 
-### Mainokset
+### Mainokset {#sec-tiedonkeruu-valityskanavat-mainokset}
 
 Ostimme mainostilaa Pelastustieto- ja Palokuntalainen-lehdistä. Mainokset olivat neljännessivun kokoisia ja sisälsivät lyhyen osallistumiskutsun, kyselyn linkin sekä QR-koodin.
 
 Lisäksi saimme ilmaiseksi käyttöön bannerimainoksen Pelastusalan ammattilainen -verkkolehdessä. Banneri oli painomainoksia pienempi ja sisälsi lyhyen osallistumiskutsun. Painamalla banneria käyttäjä ohjautui suoraan kyselyyn. Verkkomainos oli esillä ajanjaksolla 15.8.-15.9.2024.
 
-### Tiedotteet
+### Tiedotteet {#sec-tiedonkeruu-valityskanavat-tiedotteet}
 
 Lähetimme Pelastusopiston viestinnän kautta tiedotteet Pelastustieto-, Palokuntalainen- ja Pelastusalan ammattilainen -lehtiin. Tiedotteessa esiteltiin hankkeen etenemistä, kyselyn kehittämisprosessia ja avoimen tieteen toimintoja hankkeessa. Tiedote sisälsi osallistumiskutsun ja linkin kyselyyn.
 
 Lähetimme myös hankkeen toimesta tiedotteen edelleen Hyvil Oy:n, SPEK:n ja SSPL:n yhteistyökumppaneille. Heitä pyydettiin julkaisemaan tiedotteet joko sellaisinaan, tai muokattuna sopivaan muotoon, hallinnoimissaan verkkopalveluissa ja tiedotealustoissa.
 
-## Viestien julkaisuajankohdat
+## Viestien julkaisuajankohdat {#sec-tiedonkeruu-julkaisuajankohdat}
 
 Alla oleva taulukko sisältää jokaisen viestin vahvistettu julkaisu- ja muistutuspäivä. Jos viesti on lähetetty eteenpäin välitystahon toimesta (esim. pelastusjohtajien sähköposti Hyvil Oy:n yhteyshenkilön kautta), päivämäärät viittaavat päiviin, jolloin viesti on lähtenyt lopullisille vastaanottajille (pelastusjohtajat). Mainosten, uutiskirjeiden ja tiedotteiden kohdalla päivämäärä viittaa ensimmäiseen julkaisu- tai esilläolopäivään.
 
@@ -129,27 +129,27 @@ Alla oleva taulukko sisältää jokaisen viestin vahvistettu julkaisu- ja muistu
 +------------------------------------------------------+----------------+----------------+
 | Koulutusorganisaatioiden toimistot ja viestintä      | 15.8.          | 3.9.           |
 +------------------------------------------------------+----------------+----------------+
-| Pelastustiedon mainos                                | 15.8. (verkko) |                |
+| Pelastustiedon mainos                                | 15.8. (verkko) | \-             |
 |                                                      |                |                |
 |                                                      | 21.8. (paino)  |                |
 +------------------------------------------------------+----------------+----------------+
-| Palokuntalaisen mainos                               | (tarkista)     |                |
+| Palokuntalaisen mainos                               | (tarkista)     | \-             |
 +------------------------------------------------------+----------------+----------------+
-| Pelastusalan ammattilaisen verkkomainos              | 15.8.          |                |
+| Pelastusalan ammattilaisen verkkomainos              | 15.8.          | \-             |
 +------------------------------------------------------+----------------+----------------+
-| Palokuntaan.fi -tiedote                              | 15.8.          |                |
+| Palokuntaan.fi -tiedote                              | 15.8.          | \-             |
 +------------------------------------------------------+----------------+----------------+
-| SPAL:n uutiskirje                                    | (tarkista)     |                |
+| SPAL:n uutiskirje                                    | (tarkista)     | \-             |
 +------------------------------------------------------+----------------+----------------+
-| Pelastuslaitokset.fi -tiedote                        | (tarkista)     |                |
+| Pelastuslaitokset.fi -tiedote                        | (tarkista)     | \-             |
 +------------------------------------------------------+----------------+----------------+
-| SSPL-tiedote                                         | (tarkista)     |                |
+| SSPL-tiedote                                         | (tarkista)     | \-             |
 +------------------------------------------------------+----------------+----------------+
-| Speksi-tiedote                                       | (tarkista)     |                |
+| Speksi-tiedote                                       | (tarkista)     | \-             |
 +------------------------------------------------------+----------------+----------------+
-| Spek.fi -tiedote                                     | 23.8.          |                |
+| Spek.fi -tiedote                                     | 23.8.          | \-             |
 +------------------------------------------------------+----------------+----------------+
-| Pelastusopiston uutiskirjeet                         | 4.9.           |                |
+| Pelastusopiston uutiskirjeet                         | 4.9.           | \-             |
 +------------------------------------------------------+----------------+----------------+
 
-: Kutsu- ja muistutusviestien julkaisupäivämäärät {#tbl-julkaisupvm}
+: Kutsu- ja muistutusviestien julkaisupäivämäärät {#tbl-tiedonkeruu-julkaisupvm}

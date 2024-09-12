@@ -12,7 +12,7 @@ book:
       chapters:
         - kriteeristo.qmd
         - seulontamenetelma.qmd
-        - prismakaavio.qmd
+        - hakuprosessi.qmd
         - yleiskuvailu.qmd
         - katsausartikkeli.qmd
     - part: "Katsauksen osahaut"
@@ -23,12 +23,10 @@ book:
         - haku4.qmd
         - haku5.qmd
         - haku6.qmd
-    - part: "Kyselyn valmistelu"
+    - part: "Kyselyprosessi"
       chapters:
         - kyselynvalmistelu.qmd
         - tiedonkeruu.qmd
-    - part: "Datavalmistelu"
-      chapters:
         - eksportointi.qmd
         - nimeaminen.qmd
         - valmistelu.qmd
@@ -46,7 +44,7 @@ book:
         file: index.qmd
       - sidebar:kirjallisuuskatsaus
       - sidebar:katsauksenhaut
-      - sidebar:kyselynvalmistelu
+      - sidebar:kyselyprosessi
       - sidebar:datavalmistelu
       - sidebar:validointi
       - text: "Lähteet"
@@ -61,7 +59,7 @@ book:
       contents:
         - kriteeristo.qmd
         - seulontamenetelma.qmd
-        - prismakaavio.qmd
+        - hakuprosessi.qmd
         - yleiskuvailu.qmd
         - katsausartikkeli.qmd
     
@@ -75,15 +73,11 @@ book:
         - haku5.qmd
         - haku6.qmd
     
-    - id: kyselynvalmistelu
-      title: "Kyselyn valmistelu"
+    - id: kyselyprosessi
+      title: "Kyselyprosessi"
       contents:
         - kyselynvalmistelu.qmd
         - tiedonkeruu.qmd
-    
-    - id: datavalmistelu
-      title: "Datavalmistelu"
-      contents:
         - eksportointi.qmd
         - nimeaminen.qmd
         - valmistelu.qmd
@@ -105,10 +99,10 @@ format:
       chapters: true
     reference-location: margin
     references: references.bib
-    
     code-fold: true
     code-overflow: wrap
     code-summary: "Näytä"
+    code-tools: true
 
 bibliography: references.bib
   

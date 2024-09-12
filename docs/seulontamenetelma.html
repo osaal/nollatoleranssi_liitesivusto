@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Nollatoleranssi-hankkeen liitesivusto - 3&nbsp; Seulontamenetelmä</title>
+<title>Nollatoleranssi-hankkeen liitesivusto - 2&nbsp; Seulontamenetelmä</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,7 +64,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./prismakaavio.html" rel="next">
+<link href="./hakuprosessi.html" rel="next">
 <link href="./kriteeristo.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -94,23 +128,23 @@ ul.task-list li input[type="checkbox"] {
     <ul class="dropdown-menu" aria-labelledby="nav-menu-kirjallisuuskatsaus">    
         <li>
     <a class="dropdown-item" href="./kriteeristo.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Kriteeristö</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Kriteeristö</span></span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./seulontamenetelma.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Seulontamenetelmä</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Seulontamenetelmä</span></span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./prismakaavio.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Hakuprosessi ja PRISMA-kaavio</span></span></a>
+    <a class="dropdown-item" href="./hakuprosessi.html" rel="" target="">
+ <span class="dropdown-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Hakuprosessi ja PRISMA-kaavio</span></span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./yleiskuvailu.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Tulosten yleiskuvaus</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tulosten yleiskuvaus</span></span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./katsausartikkeli.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Katsausartikkeli</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Katsausartikkeli</span></span></a>
   </li>  
     </ul>
   </li>
@@ -121,68 +155,63 @@ ul.task-list li input[type="checkbox"] {
     <ul class="dropdown-menu" aria-labelledby="nav-menu-katsauksen-osahaut">    
         <li>
     <a class="dropdown-item" href="./haku1.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Haku 1</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Haku 1</span></span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./haku2.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Haku 2</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Haku 2</span></span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./haku3.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Haku 3</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Haku 3</span></span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./haku4.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Haku 4</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Haku 4</span></span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./haku5.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Haku 5</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Haku 5</span></span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./haku6.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Haku 6</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Haku 6</span></span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-kyselyn-valmistelu" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
- <span class="menu-text">Kyselyn valmistelu</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-kyselyprosessi" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Kyselyprosessi</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-kyselyn-valmistelu">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-kyselyprosessi">    
         <li>
     <a class="dropdown-item" href="./kyselynvalmistelu.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Kyselyn valmistelu</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Kyselyn valmistelu</span></span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./tiedonkeruu.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Tiedonkeruu</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Tiedonkeruu</span></span></a>
   </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datavalmistelu" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
- <span class="menu-text">Datavalmistelu</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-datavalmistelu">    
         <li>
     <a class="dropdown-item" href="./eksportointi.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Eksportointi</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Eksportointi</span></span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./nimeaminen.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Nimeäminen</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Nimeäminen</span></span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./valmistelu.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Valmistelu</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Valmistelu</span></span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./anonymisointi.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Anonymisointi</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Anonymisointi</span></span></a>
   </li>  
     </ul>
   </li>
+  <li class="dropdown-header">
+ <span class="menu-text">sidebar:datavalmistelu</span></li>
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-mittariston-validointi" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">Mittariston validointi</span>
@@ -190,7 +219,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="dropdown-menu" aria-labelledby="nav-menu-mittariston-validointi">    
         <li>
     <a class="dropdown-item" href="./efabias.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Esiintyvyyden EFA-mallin bias-testit</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Esiintyvyyden EFA-mallin bias-testit</span></span></a>
   </li>  
     </ul>
   </li>
@@ -209,7 +238,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Vaihda sivupalkki" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./seulontamenetelma.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Seulontamenetelmä</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./seulontamenetelma.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Seulontamenetelmä</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Vaihda sivupalkki" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -224,31 +253,31 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./kriteeristo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Kriteeristö</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Kriteeristö</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./seulontamenetelma.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Seulontamenetelmä</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Seulontamenetelmä</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./prismakaavio.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Hakuprosessi ja PRISMA-kaavio</span></span></a>
+  <a href="./hakuprosessi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Hakuprosessi ja PRISMA-kaavio</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./yleiskuvailu.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Tulosten yleiskuvaus</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tulosten yleiskuvaus</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./katsausartikkeli.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Katsausartikkeli</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Katsausartikkeli</span></span></a>
   </div>
 </li>
     </ul>
@@ -264,7 +293,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-seulontamenetelma" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Seulontamenetelmä</span></span></h1>
+<div class="quarto-title-block"><div><h1 class="title"><span id="sec-seulontamenetelma" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Seulontamenetelmä</span></span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Koodi</button></div></div>
 </div>
 
 
@@ -305,6 +334,8 @@ ul.task-list li input[type="checkbox"] {
 </ol>
 <div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Jos tutkimus pyrki koko populaation tutkimiseen, kirjattiin “harkinnanvarainen otanta”.</p></li><li id="fn2"><p><sup>2</sup>&nbsp;Jos käytettiin useampia yhteydenottomuotoja, merkittiin “muu”.</p></li></div><p>Hakujen erillisen tuottamisen ja seulonnan jälkeen yhdistimme kaikki tulokset yhdeksi taulukoksi. Tällöin poistimme myös duplikaatteja, jotka saatiin tuloksina useammassa osahaussa. Tarkistimme myös, että duplikaattien kohdalla sisällyttämispäätökset vastasivat toisiaan.</p>
 
+
+<!-- -->
 
 
 
@@ -388,6 +419,57 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
   function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
@@ -545,15 +627,45 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./kriteeristo.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Kriteeristö</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Kriteeristö</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./prismakaavio.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Hakuprosessi ja PRISMA-kaavio</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./hakuprosessi.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Hakuprosessi ja PRISMA-kaavio</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
-</nav>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Lähdekoodi</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Seulontamenetelmä {#sec-seulontamenetelma}</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Seuloimme hakutulokset seuraavin menetelmin:</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Tunnistimme kaksoiskappaleet Microsoft Excelin *Solujen korostussäännöt* -työkalulla. Jokaisen kaksoiskappaleeksi tunnistetun tuloksen kohdalla varmistimme kaksoiskappaluuden, ja säilytimme yhden tuloksista. Muut tulokset merkittiin kaksoiskappaleiksi ja suodatettiin pois taulukosta *Suodata* -työkalulla.</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Otsikkojen pohjalta toteutimme ensimmäisen seulonnan. Jos otsikko selkeästi vastasi inkluusiokriteerejä, merkitsimme tulokselle arvon 1. Jos otsikko mahdollisesti täytti inkluusiokriteerejä, mutta asiasta ei voinut saada varmuutta, merkitsimme tulokselle arvon 2. Jos otsikko selkeästi ei vastannut inkluusiokriteerejä (esim. rikkoi yhden tai useamman kriteerin), jätimme solun tyhjäksi. Tyhjät solut suodatettiin sitten pois taulukosta.</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Jokaiselle tulokselle, jolla oli merkitty arvo 2 (epävarma) ensimmäisessä seulonnassa, tarkistimme tiivistelmän tuloksen verkko-osoitteesta. Jos tiivistelmä selkeästi vastasi inkluusiokriteerejä, merkitsimme tulokselle arvon 1. Jos tiivistelmä mahdollisesti täytti inkluusiokriteerit, mutta asiasta ei voinut saada varmuutta, merkitsimme tulokselle arvon 2. Jos tiivistelmä selkeästi ei vastannut inkluusiokriteerejä (esim. rikkoi yhden tai useamman kriteerin), jätimme solun tyhjäksi. Tyhjät solut suodatettiin sitten pois taulukosta.</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Seuraavaksi haimme kaikki tulokset, jotka saivat arvon 1 ensimmäisessä seulonnassa tai arvot 1 tai 2 toisessa seulonnassa. Jos tuloksen sai haettua, merkitsimme arvon 1, ja jos tulosta ei saatu haettua, merkitsimme arvo x. Yksi tulos oli kirjaluku, jolloin haimme kirjan ja merkitsimme arvon <span class="sc">\*</span> selventävän kommentin kera.</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>Seuraavaksi tarkistimme kaikki ne tutkimukset, joille oli merkitty arvo 2 toisessa seulonnassa (epävarma tiivistelmän pohjalta). Yksi tutkija kävi läpi artikkelin menetelmäosiot ja tarkisti, täyttyivätkö inkluusiokriteerit. Jos kaikki kriteerit täyttyivät, merkitsimme arvon 1. Jos osa kriteereistä täyttyivät, merkitsimme arvon T; näitä tutkimuksia ei käytetty kirjallisuuskatsauksessa, mutta säilytettiin mahdollista taustamateriaalia varten. Jos kriteerit eivät täyttyneet, tai yksi tai useampi selkeästi rikkoontui, jätimme arvon tyhjäksi. Tyhjät solut suodatettiin sitten pois taulukosta.</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ss">6.  </span>Viimeiseksi tarkistimme vielä kaikki tulokset, jotka saivat arvon 1 ensimmäisessä tai toisessa seulonnassa. Yksi tutkija kävi läpi artikkelin menetelmäosiot ja tarkisti, täyttyivätkö inkluusiokriteerit. Jos kaikki kriteerit täyttyivät, merkitsimme arvon 1. Jos osa kriteereistä täyttyivät, merkittiin arvo T, eli käyttökelpoinen taustamateriaaliksi mutta ei kirjallisuuskatsauksen tuloksissa. Jos kriteerit eivät täyttyneet, tai yksi tai useampi selkeästi rikkoontui, jätimme solun tyhjäksi. Tyhjät solut suodatettiin sitten pois taulukosta.</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ss">7.  </span>Valintaprosessin jälkeen haimme jokaiselle tutkimukselle seuraavat tiedot:</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Kirjoittajien nimet</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>Julkaisuvuosi</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ss">    3.  </span>Tutkimusjulkaisun otsikko</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="ss">    4.  </span>Julkaisumuoto (vertaisarvioitu tutkimusartikkeli, organisaatioraportti, kirjateos, kirjan luku, muu)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="ss">    5.  </span>Verkko-osoite (ensisijaisesti DOI-numero)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="ss">    6.  </span>Tiedonkeruun muoto (kysely, haastattelu, rekisteri, havainnointi, audiovisuaalinen aineisto, muu <span class="sc">\[</span>kirjattu avotietona<span class="sc">\]</span>, useampia muotoja <span class="sc">\[</span>kirjattu avotietoina<span class="sc">\]</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="ss">    7.  </span>Kohdepopulaatio (maantieteellinen ja ammatillinen luokittelu)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="ss">    8.  </span>Tutkimuksen tiedonkeruun ajankohta (kuukausitasolla, jos tiedossa)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="ss">    9.  </span>Otoskoko (yksi tai useampi otos)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="ss">    10. </span>Otantamenetelmä (ei tietoa, satunnaistettu otanta, ositettu otanta, ryväsotanta, paneelitutkimus, harkinnanvarainen otanta<span class="ot">[^seulontamenetelma-1]</span>, kiintiöotanta, lumipallo-otanta, muu)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="ss">    11. </span>Vastaajien yhteydenottotapa (postitse, sähköpostitse, puhelimitse, sosiaalisen verkoston kautta <span class="sc">\[</span>esim. kollegat<span class="sc">\]</span>, organisaatiojohdon kautta, muun organisaation kautta <span class="sc">\[</span>esim. liitto<span class="sc">\]</span>, kasvokkain, muu<span class="ot">[^seulontamenetelma-2]</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="ss">    12. </span>Vastaajien vastausmuistutusten määrä (jos tiedossa)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="ot">[^seulontamenetelma-1]: </span>Jos tutkimus pyrki koko populaation tutkimiseen, kirjattiin "harkinnanvarainen otanta".</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="ot">[^seulontamenetelma-2]: </span>Jos käytettiin useampia yhteydenottomuotoja, merkittiin "muu".</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>Hakujen erillisen tuottamisen ja seulonnan jälkeen yhdistimme kaikki tulokset yhdeksi taulukoksi. Tällöin poistimme myös duplikaatteja, jotka saatiin tuloksina useammassa osahaussa. Tarkistimme myös, että duplikaattien kohdalla sisällyttämispäätökset vastasivat toisiaan.</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 
 
