@@ -45,7 +45,6 @@ book:
       - sidebar:kirjallisuuskatsaus
       - sidebar:katsauksenhaut
       - sidebar:kyselyprosessi
-      - sidebar:datavalmistelu
       - sidebar:validointi
       - text: "Lähteet"
         file: lahteet.qmd
