@@ -1,10 +1,13 @@
 # Anonymisointi
 
+---
+eval: false
+---
+
 Tutkimus anonymisoidaan [anonymisointisuunnitelman](https://osf.io/r3hs2) mukaisesti.
 
 ```{r}
 #| label: 00_anon_funktiot
-#| eval: false
 
 # HUOM: Funktio ei nimeä kuvia! Funktio tulostaa NA jos niitä on.
 plot_freq <- function(x) {
@@ -13,201 +16,306 @@ plot_freq <- function(x) {
     barplot()
 }
 
+# Projektipäällikön kirjoittama funktio k-anonymiteetin tarkistamiseksi.
+# Funktio haettu manuaalisesti GitHubista (osaal/ranon#a114b6a).
+# Funktio vaatii paketit checkmate, cli, dplyr ja rlang.
+# HUOM: Muutettu paketin versiosta toimivaksi.
+k_anonymity <- function(data, limit, ...) {
+  # Argument checks
+  if (!(checkmate::check_data_frame(data) || checkmate::check_tibble(data))) {
+    cli::cli_abort(c(
+      "{.var data} must be a data frame or tibble",
+      "x" = "You supplied the type {.cls class(data)}"
+    ))
+  }
+  if (!(checkmate::check_int(limit))) {
+    cli::cli_abort(c(
+      "{.var limit} must be a single integer",
+      "x" = "You supplied the type {.cls class(limit)}"
+    ))
+  }
+
+  # Select data according to variables
+  cols <- dplyr::quos(...)
+
+  # Capture error from incorrect cols and return more helpful error message
+  selected_data <- rlang::try_fetch(
+    data |> dplyr::select(!!!cols),
+    error = function(cnd) {
+      cli::cli_abort(c(
+        "All supplied columns must exist in {.var data}",
+        "X" = "You supplied the column names {sapply(cols, rlang::f_text)}",
+        "i" = "{.var data} contains the columns {names(data)}",
+        "i" = "Tip: Negated columns must also exist in the data"
+      ),
+      parent = cnd)
+    }
+  )
+
+  # Crosstabulate and retrieve all unique combinations that fall below the limit
+  low_count_cells <- as.data.frame(table(selected_data)) |>
+    dplyr::filter(Freq < limit)
+
+  # Exit early if no cells fall below the threshold
+  if (length(low_count_cells) == 0) {
+    message("All variable combinations are at or above the supplied threshold")
+    return(NULL)
+  }
+
+  return(low_count_cells)
+}
+
+```
+
+```{r}
+#| label: 01_anon_valmistelu
+
+library(tidyverse)
+
+data <- read.csv2("output/puhdistettudata.csv")
+
 ```
 
 ## Järjestys
 
-1.  Tarkistetaan taustamuuttujien anonymiteetti (yleensä määräsääntö, ks. alla)
-    1.  Tässä voidaan joutua poistamaan vastaajia sukupuolen anonymisoinnin takia
-2.  Tarkistetaan erikseen organisaatioasemamuuttujan anonymiteetti 5-anonymiteetillä
-    1.  Tässä voidaan joutua rakentamaan kaksi organisaatioasemamuuttujaa (ks. alla)
-3.  K-anonymiteetin toteuttaminen taustamuuttujia vastaan
-4.  Määräsäännön toteuttaminen muille, kuin taustamuuttujille
+1.  Tarkistetaan taustamuuttujien kategoriat harvinaisten vastausten osalta yksitellen, ja yhdistetään kategorioita tarpeen mukaan.
+2.  Tarkistetaan harvinaisten ilmiöiden muuttujien kategoriat harvinaisten vastausten osalta yksitellen, ja yhdistetään tai poistetaan kategorioita/muuttujia tarpeen mukaan.
+3.  Taustamuuttujat 5-anonymisoidaan kahden ja kolmen muuttujan yhdistelmissä, ja yhdistetään kategorioita tarpeen mukaan.
+4.  Harvinaiset ilmiöt 5-anonymisoidaan taustamuuttujia vastaan kahden muuttujan yhdistelmissä, ja yhdistetään tai poistetaan kategorioita/muuttujia tarpeen mukaan.
 
-**k-anonymiteetin** **taustamuuttujat**:
+**Kohta 1: Käsiteltävät taustamuuttujat:**
 
-1.  Organisaatioryhmä (`k2`, neljä kategoriaa) --\> (1) Pelastuslaitos tai ensihoito, (2) Sopimuspalokunta tai palokuntayhdistys, (3) Pelastusalan valtakunnallinen järjestö, (4) Koulutusorganisaatio
+1.  Organisaatiokuuluvuus (`k2`, neljä kategoriaa)
+    1.  Kaikilla vastaajilla tulee olla yksi arvo.
+    2.  Määräsääntö: `n > 5`
+    3.  Yhdistetään luokat `1` ja `2` sekä `3` ja `4` tarpeen vaatiessa.
+2.  Sukupuoli (`k31`, neljä kategoriaa)
     1.  Kaikilla vastaajilla tulee olla yksi arvo.
     2.  Määräsääntö: `n > 30`
-2.  Sukupuoli (`k31`, neljä kategoriaa) --\> (1) Nainen, (2) Mies, (3) Muu, (4) En halua vastata
-    1.  Kaikilla vastaajilla tulee olla yksi arvo.
-    2.  Määräsääntö: `n > 30`
-3.  Organisaatioasema (`Organisaatioasema`, kuusi kategoriaa) --\> (1) Johto- tai esihenkilötaso, (2) Suorittava henkilöstö, (3) Asiantuntijat, (4) Hallinnollinen tai tukipalveluhenkilöstö, (5) Opetushenkilöstö, (6) Opiskelija
+    3.  Yhdistetään luokat `1`, `3` ja `4` pienimpään toiseen luokkaan, joka täyttää määräsäännön.
+3.  Työrytmi (`k32-k35`, `k37`)
+    1.  Kaikilla vastaajilla tulee olla yksi arvo, organisaatiokuuluvuudensa mukaisesti.
+    2.  Määräsääntö: `n > 10`
+    3.  Muuttuja `k32`: Yhdistetään samanaiheiseen kategoriaan tarpeen vaatiessa.
+    4.  Muuttuja `k33`: Yhdistetään viereiseen kategoriaan tarpeen vaatiessa.
+    5.  Muuttuja `k34`: Ei muutoksia.
+    6.  Muuttuja `k35`: Yhdistetään viereiseen kategoriaan tarpeen vaatiessa.
+    7.  Muuttuja `k37`: Yhdistetään samanaiheiseen kategoriaan tarpeen vaatiessa.
+4.  Organisaatioasema (`Organisaatioasema`, kuusi kategoriaa)
     1.  Kaikilla vastaajilla tulee olla yksi arvo.
     2.  Rakennetaan eri organisaatioasemamuuttujista, ks. @sec-organisaatioaseman-ryhmäkoodaus.
-    3.  5-anonymiteetti muita taustamuuttujia vastaan.
-4.  Ammattiryhmä (`k40`, kolme kategoriaa) --\> (1) Pelastaja, (2) Ensihoitaja, (3) Muu ammattiryhmä
-    1.  Vain organisaatioryhmä `k2 == 1` (Pelastuslaitos tai ensihoito) joilla on organisaatioasema `Organisaatioasema == 2` (Suorittava henkilöstö) saavat arvon tälle muuttujille.
-    2.  Muut vastaajat saavat arvon `NA`.
-    3.  Määräsääntö: `n > 30`
+    3.  Määräsääntö: `n > 10`
+    4.  Yhdistetään luokat `1` ja `4` tarpeen vaatiessa.
+    5.  Muut luokat yhdistetään aiheittain tarpeen vaatiessa.
+5.  Työuran pituus (`k41`) --\> Viiden fraktiilin luokitus
+    1.  Kaikilla vastaajilla tulee olla yksi arvo.
+    2.  Luokitellaan viiteen fraktiiliin, mikä riittää yksimuuttuja-anonymisoinnille.
 
-**k-anonymiteetin tarkistettavat muuttujat:**
+**Kohta 2: Harvinaisten ilmiöiden muuttujat:**
 
-1.  Epäasiallisen ja väkivaltaisen kohtelun yleisyysmittarit (`k3_1:k4_7`,`k12_1:k12_7`)
-2.  Kohtelun selventävät mittarit (`k5_1_1:k11_16_2`, `k14_1_:k20_7_2`)
-3.  Kohdatun kohtelun vaikutusten vakavuus (`k21_1:k21_3`)
-4.  Kohtatun kohtelun vaikutusten pitkäkestoisuus (`k22_1:k22_3`)
-5.  Vaikutukset jatkuvat vielä (`k22_1_1:k22_3_1`)
-6.  Reaktiot epäasialliseen tai väkivaltaiseen kohteluun (`k23_1:k23_11`)
-7.  Asenteet ilmoitusjärjestelmää kohtaan (`k26_1:k26_18`)
-8.  Työuupumusmittaristo (`k27_1:k27_4`)
-9.  Toimenpiteiden hyödyllisyys (`k30_1:k30_13`)
+1.  Epäasiallisen ja väkivaltaisen kohtelun yleisyys (`k3_1:k4_7`, `k12_1:k13_7`)
+    1.  Yhteensä 28 muuttujaa
+    2.  Kaikilla vastaajilla tulee olla yksi arvo, mikä voi myös olla arvo `NA`
+    3.  Sovelletaan 5-anonymiteettia (ks. kohta 4)
+2.  Kohtelun selventävät mittarit (`k5_3_1:k5_3_2`, `k7_10_1:k7_10_2`, `k8_11_1:k8_11_2`, `k9_5_1:k9_5_2`, `k9_10_1:k9_10_2`, `k10_2_1:k10_2_2`, `k10_10_1:k10_10_2`, `k10_11_1:k10_11_2`, `k11_6_1:k11_6_2`, `k14_3_1:k14_3_2`, `k16_10_1:k16_10_2`, `k17_11_1:k17_11_2`, `k18_5_1:k18_5_2`, `k18_10_1:k18_10_2`, `k19_2_1:k19_2_2`, `k19_10_1:k19_10_2`, `k19_11_1:k19_11_2`)
+    1.  Yhteensä 34 muuttujaa
+    2.  Kaikilla vastaajilla tulee olla yksi arvo, mikä voi myös olla arvo `NA` tai `-1`
+    3.  Määräsääntö: `n > 5`
+    4.  Muuttuja poistetaan jos määräsääntö ei täyty jokaisen kategorian osalta (`NA`, `-1`, `1`)
+3.  Vaikutukset jatkuvat yhä (`k22_1_1:k22_3_1`)
+    1.  Yhteensä 3 muuttujaa
+    2.  Kaikilla vastaajilla tulee olla yksi arvo, mikä voi myös olla arvo `NA` tai `-1`
+    3.  Sovelletaan 5-anonymiteettia (ks. kohta 4)
+4.  Reaktiot kohteluun (`k23_1:k23_11`)
+    1.  Yhteensä 11 muuttujaa
+    2.  Kaikilla vastaajilla tulee olla yksi arvo, mikä voi myös olla arvo `NA` tai `-1`
+    3.  Sovelletaan 5-anonymiteettia (ks. kohta 4)
 
-**Määräsääntöä soveltavat muuttujat:**
+**Kohta 3: Taustamuuttujien 5-anonymisointi ristiintaulukoimalla**
 
-1.  Ilmoitusjärjestelmän olemassaolo (`k24_1:k24_3`)
-2.  Koulutuksen olemassaolo ilmoitusjärjestelmälle (`k25_1:k25_3`)
-3.  Työorganisaation toimenpiteet ja ohjeet (`k28_1:k28_12`)
-4.  Toimenpiteiden ja ohjeiden koettu vaikuttavuus (`k29_1:k29_12`)
-5.  Työ- tai osallistumistoiminnan rytmitys (`k32:k35`, `k37`)
-6.  Osallistumisen pituus henkilöhistoriassa (`k41`)
-7.  Työkuvan muutosten suunnitelmat (`k42_1_1:k42_3_3`)
-8.  Syyt työkuvan muutosten suunnitelmille (`Muutossyyt`)
+1.  Organisaatiokuuluvuus x Organisaatioasema (`k2 * Organisaatioasema`)
+2.  Organisaatiokuuluvuus \* Organisaatioasema \* Sukupuoli (`k2 * Organisaatioasema * k31`)
+3.  Organisaatiokuuluvuus x Organisaatioasema x Työrytmi (`k2 * Organisaatioasema * k32, k33, k34, k35, k37`)
+4.  Organisaatiokuuluvuus x Organisaatioasema x Työuran pituus (`k2 * Organisaatioasema * k41`)
 
-+------------------------------------------------+----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Muuttujaryhmä                                  | Anonymiteetin tarkastusmenetelmä | Muutosmenetelmä, jos vaatimus ei täyty                                                                                                                                                     |
-+================================================+==================================+============================================================================================================================================================================================+
-| Suostumus                                      | ei mitään                        | ei mitään                                                                                                                                                                                  |
-+------------------------------------------------+----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Organisaatioryhmä                              | n \>= 30                         | Vastausvaihtoehtojen yhdistäminen                                                                                                                                                          |
-+------------------------------------------------+----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Yleisyysmittarit                               | 5-anonymiteetti                  | Vastausvaihtoehtojen yhdistäminen (jokainen mittaristo erikseen)                                                                                                                           |
-+------------------------------------------------+----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Selventävät mittarit                           | 5-anonymiteetti                  | Muuttujan poistaminen                                                                                                                                                                      |
-+------------------------------------------------+----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Vakavuusmittarit                               | 5-anonymiteetti                  | Vastausvaihtoehtojen yhdistäminen (kaikki mittarit samanaikaisesti)                                                                                                                        |
-+------------------------------------------------+----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Pitkäkestoisuusmittarit                        | 5-anonymiteetti                  | Vastausvaihtoehtojen yhdistäminen (kaikki mittarit samanaikaisesti)                                                                                                                        |
-+------------------------------------------------+----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Vaikutukset jatkuvat yhä                       | 5-anonymiteetti                  | Muuttujan poistaminen                                                                                                                                                                      |
-+------------------------------------------------+----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Reaktiot kohtelulle                            | 5-anonymiteetti                  | Muuttujien yhdistäminen (ks. suunnitelma)                                                                                                                                                  |
-+------------------------------------------------+----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Ilmoitusjärjestelmän olemassaolo               | n \>= 30                         | Muuttujien yhdistäminen pareittain tai kaikki kolme                                                                                                                                        |
-+------------------------------------------------+----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Koulutuksen olemassaolo ilmoitusjärjestelmille | n \>= 30                         | Muuttujien yhdistäminen pareittain tai kaikki kolme                                                                                                                                        |
-+------------------------------------------------+----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Asenteet ilmoitusjärjestelmiä kohtaan          | 5-anonymiteetti                  | Vastausvaihtoehtojen yhdistäminen (7 \> 5 \> 3 kategoriaa)                                                                                                                                 |
-|                                                |                                  |                                                                                                                                                                                            |
-|                                                |                                  | Keskipisteen datamuunnos satunnaisesti lähimpiin arvoihin (3 tai 5)                                                                                                                        |
-+------------------------------------------------+----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Työuupumusmittaristo                           | 5-anonymiteetti                  | Vastausvaihtoehtojen yhdistäminen (pienimpään viereiseen luokkaan) kaikille mittareille samanaikaisesti                                                                                    |
-+------------------------------------------------+----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Työorganisaation toimenpiteet                  | n \>= 30                         | Vastausvaihtoehtojen yhdistäminen viereisiin luokkiin                                                                                                                                      |
-|                                                |                                  |                                                                                                                                                                                            |
-|                                                |                                  | Keskipisteen datamuunnos satunnaisesti lähimpiin arvoihin (2 tai 4)                                                                                                                        |
-+------------------------------------------------+----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Toimenpiteiden vaikuttavuus                    | Kategorisointi                   | Neljäksi kvartiiliksi                                                                                                                                                                      |
-+------------------------------------------------+----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Toimenpiteiden hyödyllisyys                    | 5-anonymiteetti                  | Vastausvaihtoehtojen yhdistäminen (7 \> 5 \> 3 kategoriaa)                                                                                                                                 |
-|                                                |                                  |                                                                                                                                                                                            |
-|                                                |                                  | Keskipisteen datamuunnos satunnaisesti lähimpiin arvoihin (3 tai 5)                                                                                                                        |
-+------------------------------------------------+----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Sukupuoli                                      | n \>= 30                         | Vastaajien poisto (kategoriat 3 tai 4)                                                                                                                                                     |
-|                                                |                                  |                                                                                                                                                                                            |
-|                                                |                                  | Ei mitään (kategoriat 1 tai 2; erittäin epätodennäköistä)                                                                                                                                  |
-+------------------------------------------------+----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Työrytmitys                                    | n \>= 30                         | Vastausvaihtoehtojen yhdistäminen (samankaltaisiin jos nominaalimuuttuja, viereiseen jos ordinaalimuuttuja)                                                                                |
-+------------------------------------------------+----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Organisaatioasema                              | 5-anonymiteetti                  | Kahden eri muuttujan rakentaminen: uuteen muuttujaan yhdistetään kaksi pienintä alkuperäisen muuttujan ryhmistä Johto-Hallinto-Asiantuntijat, tai kaikki kolme jos anonymiteetti ei täyty. |
-+------------------------------------------------+----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Työuran pituus                                 | Kategorisointi                   | Viideksi kvintiiliksi                                                                                                                                                                      |
-+------------------------------------------------+----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Muutossuunnitelmat                             | n \>= 30                         | Muuttujien yhdistäminen                                                                                                                                                                    |
-|                                                |                                  |                                                                                                                                                                                            |
-|                                                |                                  | Jos ei riitä: Vastausvaihtoehtojen yhdistäminen                                                                                                                                            |
-+------------------------------------------------+----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Muutossuunnitelmien syyt                       | Kategorisointi                   | Sisällönanalyysi, tulkittava määrä kategorioita jotka täyttävät määräsäännön n \>= 30                                                                                                      |
-+------------------------------------------------+----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+Kaikilla taustamuuttujilla seurataan seuraavaa prioriteettijärjestystä muutoksissa:
 
-: Anonymisoinnin tarkastus- ja muutosmenetelmät muuttujaryhmittäin {#tbl-anonymisointimenettelyt}
+1.  Organisaatioaseman (`Organisaatioasema`) kategoriat yhdistetään vähintään neljäksi kategoriaksi.
+2.  Työrytmin (`k32, k33, k34, k35, k37`) kategoriat yhdistetään vähintään kolmeksi kategoriaksi.
+    1.  Poikkeuksena `k34`, jolle ei voida tehdä muutoksia.
+3.  Työuran pituuden (`k41`) fraktiileja vähennetään vähintään kolmeen fraktiiliin.
+4.  Sukupuolen (`k31`) kategoriat yhdistetään vähintään kahteen kategoriaan.
+5.  Organisaatiokuuluvuuden (`k2`) kategoriat yhdistetään vähintään kolmeen kategoriaan.
 
-## Taustamuuttujien määräsääntötarkistus
+**Kohta 4: Harvinaisten ilmiöiden 5-anonymisointi taustamuuttujia vastaan**
+
+Jokainen kohdassa 2 listattu muuttuja ristiintaulukoidaan yksitellen jokaista taustamuuttujaa kohtaan. Koska taustamuuttujia on yhdeksän kappaletta ja harvinaisia ilmiöitä 62, vertailuja tehdään yhteensä 558 kappaletta.
+
+Tätä varten projektipäällikkö on kirjoittanut funktion `k_anonymity()`, joka löytyy osana R-pakettia `ranon` ([GitHubissa](https://github.com/osaal/ranon) `osaal/ranon`)[^anonymisointi-1]. Funktio ottaa yhden tai useamman kategorisen muuttujan, ja palauttaa kaikki kategoriayhdistelmät, joiden solumäärät ristiintaulukoinnissa alittavat ennalta määritetyn raja-arvon (tässä tutkimuksessa viisi). Jos funktiolle annetaan vain yksi muuttuja, tarkistus tehdään muuttujan kategorioille, jolloin kyseessä on yksinkertainen määräsäännön anonymisointitarkistus.
+
+[^anonymisointi-1]: Kirjoitushetkellä (12.9.2024) `master`-haaralla on virhe funktiossa. Virhe on korjattu commitissa `#7cdd062`, joka löytyy haaralta `v0.2`. Kunnes uusi versio on mergattu `master`-haaraan, paketin kannattaa asentaa käyttäen `renv::install(osaal/ranon@v0.2)`.
+
+**HUOM:** Kirjoitushetkellä paketin funktio ei toimi kuten pitäisi. Olemme korjanneet funktion ja testanneet kaikki alla olevat koodaukset simuloidulla datalla ennen anonymisoinnin suorittamista. Korjattu funktio löytyy tämän luvun alusta, ensimmäisestä koodiblokista.
+
+## Kohta 1: Taustamuuttujien anonymisointi
 
 ```{r}
-#| label: taustamuuttujat-maarasaanto
-#| eval: false
+#| label: anon-01-taustamuuttujat
 
-# Organisaatioryhmä
-data %>%
-  select(k2) %>%
-  table(useNA = "always")
+# Muuttujaa voi käyttää myöhemmin looppaamiseen
+taustamuuttujat <- rlang::exprs(
+  k2,
+  k31, k32, k33, k34, k35, k37,
+  Organisaatioasema,
+  k41
+)
 
-# Sukupuoli
-data %>%
-  select(k31) %>%
-  table(useNA = "always")
+# Tässä ei voida loopata helposti, sillä muuttujien raja-arvot eroavat ja muuttujaa k41 ei tarkisteta ollenkaan
+# Testattu toimivaksi tekaistulla datalla. HUOM: Vaatii nykyiset funktiossa olevat korjaukset (ks. code block 00_anon_funktiot)
 
-# Ammattiryhmä
-data %>%
-  select(k40) %>%
-  table(useNA = "always")
+k_anonymity(data, limit = 5, k2)
+k_anonymity(data, limit = 30, k31)
+k_anonymity(data, limit = 10, k32)
+k_anonymity(data, limit = 10, k33)
+k_anonymity(data, limit = 10, k34)
+k_anonymity(data, limit = 10, k35)
+k_anonymity(data, limit = 10, k37)
+k_anonymity(data, limit = 10, Organisaatioasema)
 ```
 
-Jokaisessa yllä olevassa solussa pitää olla vähintään `n = 30` vastaajaa. Jos tämä ei täyty, tehdään seuraavat muutokset:
+Tulokset kuvaillaan tässä.
 
--   `k2` Organisaatioryhmä: Järjestöt yhdistetään koulutusorganisaatioihin: `k2 == 3 | k2 == 4 ~ 3`
--   `k31` Sukupuoli: Muu ja/tai En halua vastata -vastaajat poistetaan: `data %>% filter(k31 != 3) %>% filter(k31 != 4)` (jos molemmat täyttyvät; jätä pois toinen filter-verbi tarpeen mukaan)
--   `k40` Ammattiryhmä: **MITÄ TEHDÄÄN, JÄTETÄÄNKÖ MUU POIS? EI PITÄISI TULLA VASTAAN...**
-
-## Organisaatioaseman 5-anonymiteetin tarkastus
+Muutokset kuvaillaan tässä.
 
 ```{r}
-ftable(xtabs(~ Organisaatioasema + k2 + k31, data = data))
+#| label: anon-01-muutokset
+
+
+
 ```
 
-Jokaisessa solussa yllä pitäisi olla joko `n = 0` vastaajaa tai vähintään `n = 5` vastaajaa. Näissä tapauksissa ei tarvita tehdä mitään.
-
-Jos vastaajamäärä jossain solussa on `0 > n > 5`, tehdään tarpeelliset muutokset vain järjestöjen ja koulutusorganisaatioiden osalta:
-
-1.  Yhdistetään kaksi pienintä seuraavista ryhmistä: johto, asiantuntijat, hallintohenkilöstö
-2.  Yhdistetään kaikki kolme seuraavista ryhmistä: johto, asiantuntijat, hallintohenkilöstö
-
-**Tähän samanlainen funktio kuin valmistelussa tehty organisaatioaseman ryhmäkoodaus: Tehdään uusi muuttuja "Organisaatioasema_2" (tmv.), data -\> filter -\> mutate -\> rows_update**
-
-## VANHAA Organisaation sisäinen epäasiallinen kohtelu
+## Kohta 2: Harvinaisten ilmiöiden anonymisointi
 
 ```{r}
-#| label: 01_anon_ek_itse_sisa
-#| eval: false
+#| label: anon-02-harvinaisetilmiot
 
-# Rivittäin vasemmalta oikealle
-par(mfrow = c(2, 4))
-data %>%
-  select(k3_1:k3_7) %>%
-  sapply(
-    .,
-    plot_freq
+# Muuttujaa voi käyttää nyt ja myöhemmin looppaamiseen
+muuttujat <- rlang::exprs(
+  k3_1, k3_2, k3_3, k3_4, k3_5, k3_6, k3_7,
+  k4_1, k4_2, k4_3, k4_4, k4_5, k4_6, k4_7,
+  k12_1, k12_2, k12_3, k12_4, k12_5, k12_6, k12_7,
+  k13_1, k13_2, k13_3, k13_4, k13_5, k13_6, k13_7,
+  k5_3_1, k5_3_2,
+  k7_10_1, k7_10_2,
+  k8_11_1, k8_11_2,
+  k9_5_1, k9_5_2, k9_10_1, k9_10_2,
+  k10_2_1, k10_2_2, k10_10_1, k10_10_2, k10_11_1, k10_11_2,
+  k11_6_1, k11_6_2,
+  k14_3_1, k14_3_2,
+  k16_10_1, k16_10_2,
+  k17_11_1, k17_11_2,
+  k18_5_1, k18_5_2, k18_10_1, k18_10_2,
+  k19_2_1, k19_2_2, k19_10_1, k19_10_2, k19_11_1, k19_11_2,
+  k22_1_1, k22_2_1, k22_3_1,
+  k23_1, k23_2, k23_3, k23_4, k23_5, k23_6, k23_7, k23_8, k23_9, k23_10, k23_11
   )
 
-```
+# Loopataan harvinaisten ilmiöiden muuttujien läpi ja suoritettaan yhden muuttujan k-anonymisointi (eli yksinkertainen solujen tarkastus)
+# HUOM: Listaus sisältää muuttujaryhmät k3_1:k4_7, k12_1:k13_7, k22_1_1:k22_3_1 ja k23_1:k23_11. Näitä ei anonymisointisuunnitelman mukaisesti kuitenkaan tarkisteta.
+# Testattu toimivaksi tekaistulla datalla. HUOM: Vaatii nykyiset funktiossa olevat korjaukset (ks. code block 00_anon_funktiot)
 
-```{r}
-#| label: 02_anon_ek_koll_sisa
-#| eval: false
+tulokset_kohta2 <- list()
+for (i in muuttujat) {
+  tulokset_kohta2[[rlang::as_string(i)]] <- k_anonymity(data, limit = 5, i)
+}
 
-# Rivittäin vasemmalta oikealle
-par(mfrow = c(2, 4))
-data %>%
-  select(k4_1:k4_7) %>%
-  sapply(
-    .,
-    plot_freq
-  )
+# Poistetaan väliaikaiset muuttujat siisteyden vuoksi
+rm(i, temp)
 
 ```
 
-```{r}
-#| label: 03_anon_ek_sisa_tarkennukset
-#| eval: false
+Tulokset kuvaillaan tässä.
 
-# Rivittäin vasemmalta oikealle
-par(mfrow = c(2, 4))
-data %>%
-  select(k3_1:k3_7) %>%
-  sapply(
-    .,
-    plot_freq
-  )
+Muutokset kuvaillaan tässä.
+
+```{r}
+#| label: anon-02-muutokset
+
+
+
+```
+
+## Kohta 3: Taustamuuttujien k-anonymisointi toisiaan vastaan
+
+```{r}
+#| label: anon-03-taustamuuttujat-k_anon
+
+# Testattu toimivaksi tekaistulla datalla. HUOM: Vaatii nykyiset funktiossa olevat korjaukset (ks. code block 00_anon_funktiot)
+
+k_anonymity(data, limit = 5, k2, Organisaatioasema)
+k_anonymity(data, limit = 5, k2, Organisaatioasema, k31)
+k_anonymity(data, limit = 5, k2, Organisaatioasema, k32)
+k_anonymity(data, limit = 5, k2, Organisaatioasema, k33)
+k_anonymity(data, limit = 5, k2, Organisaatioasema, k34)
+k_anonymity(data, limit = 5, k2, Organisaatioasema, k35)
+k_anonymity(data, limit = 5, k2, Organisaatioasema, k37)
+k_anonymity(data, limit = 5, k2, Organisaatioasema, k41)
+
+```
+
+Tulokset kuvaillaan tässä.
+
+Muutokset kuvaillaan tässä.
+
+```{r}
+#| label: anon-03-muutokset
+
+
+
+```
+
+## Kohta 4: Harvinaisten ilmiöiden k-anonymisointi taustamuuttujia vastaan
+
+```{r}
+#| label: anon-04-harvinaiset_k-anon
+
+# Testattu toimivaksi tekaistulla datalla. HUOM: Vaatii nykyiset funktiossa olevat korjaukset (ks. code block 00_anon_funktiot)
+
+tulokset_kohta4 <- list()
+
+for (i in muuttujat) {
+  temp <- list()
+  for (j in taustamuuttujat) {
+    temp[[rlang::as_string(j)]] <- k_anonymity(data, limit = 5, i, j)
+  }
+  tulokset_kohta4[[rlang::as_string(i)]] <- temp
+}
+
+# Poistetaan väliaikaiset muuttujat siisteyden vuoksi
+rm(i, j, temp)
+```
+
+Tulokset kuvaillaan tässä.
+
+Muutokset kuvaillaan tässä.
+
+```{r}
+#| label: anon-04-muutokset
+
+
+
+```
+
+## Datan tallennus
+
+Anonymisoinnin jälkeen tallensimme lopullisen datatiedoston `csv`-muotoon. Tallennusta ei ole saatavilla verkkosivun lähdekoodista tietosuojan takia.
+
+```{r}
+#| label: anon-tallennus
+
+write.csv2(
+  data,
+  file = "output/anonymisoitudata.csv"
+)
 
 ```

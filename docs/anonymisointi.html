@@ -99,7 +99,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-sidebar docked nav-fixed">
+<body class="nav-sidebar docked nav-fixed slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -289,14 +289,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#järjestys" id="toc-järjestys" class="nav-link active" data-scroll-target="#järjestys"><span class="header-section-number">18.1</span> Järjestys</a></li>
-  <li><a href="#taustamuuttujien-määräsääntötarkistus" id="toc-taustamuuttujien-määräsääntötarkistus" class="nav-link" data-scroll-target="#taustamuuttujien-määräsääntötarkistus"><span class="header-section-number">18.2</span> Taustamuuttujien määräsääntötarkistus</a></li>
-  <li><a href="#organisaatioaseman-5-anonymiteetin-tarkastus" id="toc-organisaatioaseman-5-anonymiteetin-tarkastus" class="nav-link" data-scroll-target="#organisaatioaseman-5-anonymiteetin-tarkastus"><span class="header-section-number">18.3</span> Organisaatioaseman 5-anonymiteetin tarkastus</a></li>
-  <li><a href="#vanhaa-organisaation-sisäinen-epäasiallinen-kohtelu" id="toc-vanhaa-organisaation-sisäinen-epäasiallinen-kohtelu" class="nav-link" data-scroll-target="#vanhaa-organisaation-sisäinen-epäasiallinen-kohtelu"><span class="header-section-number">18.4</span> VANHAA Organisaation sisäinen epäasiallinen kohtelu</a></li>
+  <li><a href="#kohta-1-taustamuuttujien-anonymisointi" id="toc-kohta-1-taustamuuttujien-anonymisointi" class="nav-link" data-scroll-target="#kohta-1-taustamuuttujien-anonymisointi"><span class="header-section-number">18.2</span> Kohta 1: Taustamuuttujien anonymisointi</a></li>
+  <li><a href="#kohta-2-harvinaisten-ilmiöiden-anonymisointi" id="toc-kohta-2-harvinaisten-ilmiöiden-anonymisointi" class="nav-link" data-scroll-target="#kohta-2-harvinaisten-ilmiöiden-anonymisointi"><span class="header-section-number">18.3</span> Kohta 2: Harvinaisten ilmiöiden anonymisointi</a></li>
+  <li><a href="#kohta-3-taustamuuttujien-k-anonymisointi-toisiaan-vastaan" id="toc-kohta-3-taustamuuttujien-k-anonymisointi-toisiaan-vastaan" class="nav-link" data-scroll-target="#kohta-3-taustamuuttujien-k-anonymisointi-toisiaan-vastaan"><span class="header-section-number">18.4</span> Kohta 3: Taustamuuttujien k-anonymisointi toisiaan vastaan</a></li>
+  <li><a href="#kohta-4-harvinaisten-ilmiöiden-k-anonymisointi-taustamuuttujia-vastaan" id="toc-kohta-4-harvinaisten-ilmiöiden-k-anonymisointi-taustamuuttujia-vastaan" class="nav-link" data-scroll-target="#kohta-4-harvinaisten-ilmiöiden-k-anonymisointi-taustamuuttujia-vastaan"><span class="header-section-number">18.5</span> Kohta 4: Harvinaisten ilmiöiden k-anonymisointi taustamuuttujia vastaan</a></li>
+  <li><a href="#datan-tallennus" id="toc-datan-tallennus" class="nav-link" data-scroll-target="#datan-tallennus"><span class="header-section-number">18.6</span> Datan tallennus</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -324,289 +326,294 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.matrix</span>(x) <span class="sc">%&gt;%</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">table</span>(<span class="at">useNA =</span> <span class="st">"ifany"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">barplot</span>()</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Projektipäällikön kirjoittama funktio k-anonymiteetin tarkistamiseksi.</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Funktio haettu manuaalisesti GitHubista (osaal/ranon#a114b6a).</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Funktio vaatii paketit checkmate, cli, dplyr ja rlang.</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># HUOM: Muutettu paketin versiosta toimivaksi.</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>k_anonymity <span class="ot">&lt;-</span> <span class="cf">function</span>(data, limit, ...) {</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Argument checks</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span>(checkmate<span class="sc">::</span><span class="fu">check_data_frame</span>(data) <span class="sc">||</span> checkmate<span class="sc">::</span><span class="fu">check_tibble</span>(data))) {</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    cli<span class="sc">::</span><span class="fu">cli_abort</span>(<span class="fu">c</span>(</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>      <span class="st">"{.var data} must be a data frame or tibble"</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>      <span class="st">"x"</span> <span class="ot">=</span> <span class="st">"You supplied the type {.cls class(data)}"</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    ))</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span>(checkmate<span class="sc">::</span><span class="fu">check_int</span>(limit))) {</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    cli<span class="sc">::</span><span class="fu">cli_abort</span>(<span class="fu">c</span>(</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>      <span class="st">"{.var limit} must be a single integer"</span>,</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>      <span class="st">"x"</span> <span class="ot">=</span> <span class="st">"You supplied the type {.cls class(limit)}"</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    ))</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Select data according to variables</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  cols <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">quos</span>(...)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Capture error from incorrect cols and return more helpful error message</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  selected_data <span class="ot">&lt;-</span> rlang<span class="sc">::</span><span class="fu">try_fetch</span>(</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    data <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">!!!</span>cols),</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">error =</span> <span class="cf">function</span>(cnd) {</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>      cli<span class="sc">::</span><span class="fu">cli_abort</span>(<span class="fu">c</span>(</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>        <span class="st">"All supplied columns must exist in {.var data}"</span>,</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>        <span class="st">"X"</span> <span class="ot">=</span> <span class="st">"You supplied the column names {sapply(cols, rlang::f_text)}"</span>,</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>        <span class="st">"i"</span> <span class="ot">=</span> <span class="st">"{.var data} contains the columns {names(data)}"</span>,</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>        <span class="st">"i"</span> <span class="ot">=</span> <span class="st">"Tip: Negated columns must also exist in the data"</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>      <span class="at">parent =</span> cnd)</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Crosstabulate and retrieve all unique combinations that fall below the limit</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>  low_count_cells <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">table</span>(selected_data)) <span class="sc">|&gt;</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(Freq <span class="sc">&lt;</span> limit)</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Exit early if no cells fall below the threshold</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(low_count_cells) <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>    <span class="fu">message</span>(<span class="st">"All variable combinations are at or above the supplied threshold"</span>)</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="cn">NULL</span>)</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(low_count_cells)</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<section id="järjestys" class="level2" data-number="18.1">
+<div class="cell">
+<details>
+<summary>Koodi</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"output/puhdistettudata.csv"</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="järjestys" class="level2 page-columns page-full" data-number="18.1">
 <h2 data-number="18.1" class="anchored" data-anchor-id="järjestys"><span class="header-section-number">18.1</span> Järjestys</h2>
 <ol type="1">
-<li>Tarkistetaan taustamuuttujien anonymiteetti (yleensä määräsääntö, ks. alla)
-<ol type="1">
-<li>Tässä voidaan joutua poistamaan vastaajia sukupuolen anonymisoinnin takia</li>
-</ol></li>
-<li>Tarkistetaan erikseen organisaatioasemamuuttujan anonymiteetti 5-anonymiteetillä
-<ol type="1">
-<li>Tässä voidaan joutua rakentamaan kaksi organisaatioasemamuuttujaa (ks. alla)</li>
-</ol></li>
-<li>K-anonymiteetin toteuttaminen taustamuuttujia vastaan</li>
-<li>Määräsäännön toteuttaminen muille, kuin taustamuuttujille</li>
+<li>Tarkistetaan taustamuuttujien kategoriat harvinaisten vastausten osalta yksitellen, ja yhdistetään kategorioita tarpeen mukaan.</li>
+<li>Tarkistetaan harvinaisten ilmiöiden muuttujien kategoriat harvinaisten vastausten osalta yksitellen, ja yhdistetään tai poistetaan kategorioita/muuttujia tarpeen mukaan.</li>
+<li>Taustamuuttujat 5-anonymisoidaan kahden ja kolmen muuttujan yhdistelmissä, ja yhdistetään kategorioita tarpeen mukaan.</li>
+<li>Harvinaiset ilmiöt 5-anonymisoidaan taustamuuttujia vastaan kahden muuttujan yhdistelmissä, ja yhdistetään tai poistetaan kategorioita/muuttujia tarpeen mukaan.</li>
 </ol>
-<p><strong>k-anonymiteetin</strong> <strong>taustamuuttujat</strong>:</p>
+<p><strong>Kohta 1: Käsiteltävät taustamuuttujat:</strong></p>
 <ol type="1">
-<li>Organisaatioryhmä (<code>k2</code>, neljä kategoriaa) –&gt; (1) Pelastuslaitos tai ensihoito, (2) Sopimuspalokunta tai palokuntayhdistys, (3) Pelastusalan valtakunnallinen järjestö, (4) Koulutusorganisaatio
+<li>Organisaatiokuuluvuus (<code>k2</code>, neljä kategoriaa)
+<ol type="1">
+<li>Kaikilla vastaajilla tulee olla yksi arvo.</li>
+<li>Määräsääntö: <code>n &gt; 5</code></li>
+<li>Yhdistetään luokat <code>1</code> ja <code>2</code> sekä <code>3</code> ja <code>4</code> tarpeen vaatiessa.</li>
+</ol></li>
+<li>Sukupuoli (<code>k31</code>, neljä kategoriaa)
 <ol type="1">
 <li>Kaikilla vastaajilla tulee olla yksi arvo.</li>
 <li>Määräsääntö: <code>n &gt; 30</code></li>
+<li>Yhdistetään luokat <code>1</code>, <code>3</code> ja <code>4</code> pienimpään toiseen luokkaan, joka täyttää määräsäännön.</li>
 </ol></li>
-<li>Sukupuoli (<code>k31</code>, neljä kategoriaa) –&gt; (1) Nainen, (2) Mies, (3) Muu, (4) En halua vastata
+<li>Työrytmi (<code>k32-k35</code>, <code>k37</code>)
 <ol type="1">
-<li>Kaikilla vastaajilla tulee olla yksi arvo.</li>
-<li>Määräsääntö: <code>n &gt; 30</code></li>
+<li>Kaikilla vastaajilla tulee olla yksi arvo, organisaatiokuuluvuudensa mukaisesti.</li>
+<li>Määräsääntö: <code>n &gt; 10</code></li>
+<li>Muuttuja <code>k32</code>: Yhdistetään samanaiheiseen kategoriaan tarpeen vaatiessa.</li>
+<li>Muuttuja <code>k33</code>: Yhdistetään viereiseen kategoriaan tarpeen vaatiessa.</li>
+<li>Muuttuja <code>k34</code>: Ei muutoksia.</li>
+<li>Muuttuja <code>k35</code>: Yhdistetään viereiseen kategoriaan tarpeen vaatiessa.</li>
+<li>Muuttuja <code>k37</code>: Yhdistetään samanaiheiseen kategoriaan tarpeen vaatiessa.</li>
 </ol></li>
-<li>Organisaatioasema (<code>Organisaatioasema</code>, kuusi kategoriaa) –&gt; (1) Johto- tai esihenkilötaso, (2) Suorittava henkilöstö, (3) Asiantuntijat, (4) Hallinnollinen tai tukipalveluhenkilöstö, (5) Opetushenkilöstö, (6) Opiskelija
+<li>Organisaatioasema (<code>Organisaatioasema</code>, kuusi kategoriaa)
 <ol type="1">
 <li>Kaikilla vastaajilla tulee olla yksi arvo.</li>
 <li>Rakennetaan eri organisaatioasemamuuttujista, ks. <a href="valmistelu.html#sec-organisaatioaseman-ryhmäkoodaus"><span>Alaluku&nbsp;17.4.1</span></a>.</li>
-<li>5-anonymiteetti muita taustamuuttujia vastaan.</li>
+<li>Määräsääntö: <code>n &gt; 10</code></li>
+<li>Yhdistetään luokat <code>1</code> ja <code>4</code> tarpeen vaatiessa.</li>
+<li>Muut luokat yhdistetään aiheittain tarpeen vaatiessa.</li>
 </ol></li>
-<li>Ammattiryhmä (<code>k40</code>, kolme kategoriaa) –&gt; (1) Pelastaja, (2) Ensihoitaja, (3) Muu ammattiryhmä
+<li>Työuran pituus (<code>k41</code>) –&gt; Viiden fraktiilin luokitus
 <ol type="1">
-<li>Vain organisaatioryhmä <code>k2 == 1</code> (Pelastuslaitos tai ensihoito) joilla on organisaatioasema <code>Organisaatioasema == 2</code> (Suorittava henkilöstö) saavat arvon tälle muuttujille.</li>
-<li>Muut vastaajat saavat arvon <code>NA</code>.</li>
-<li>Määräsääntö: <code>n &gt; 30</code></li>
+<li>Kaikilla vastaajilla tulee olla yksi arvo.</li>
+<li>Luokitellaan viiteen fraktiiliin, mikä riittää yksimuuttuja-anonymisoinnille.</li>
 </ol></li>
 </ol>
-<p><strong>k-anonymiteetin tarkistettavat muuttujat:</strong></p>
+<p><strong>Kohta 2: Harvinaisten ilmiöiden muuttujat:</strong></p>
 <ol type="1">
-<li>Epäasiallisen ja väkivaltaisen kohtelun yleisyysmittarit (<code>k3_1:k4_7</code>,<code>k12_1:k12_7</code>)</li>
-<li>Kohtelun selventävät mittarit (<code>k5_1_1:k11_16_2</code>, <code>k14_1_:k20_7_2</code>)</li>
-<li>Kohdatun kohtelun vaikutusten vakavuus (<code>k21_1:k21_3</code>)</li>
-<li>Kohtatun kohtelun vaikutusten pitkäkestoisuus (<code>k22_1:k22_3</code>)</li>
-<li>Vaikutukset jatkuvat vielä (<code>k22_1_1:k22_3_1</code>)</li>
-<li>Reaktiot epäasialliseen tai väkivaltaiseen kohteluun (<code>k23_1:k23_11</code>)</li>
-<li>Asenteet ilmoitusjärjestelmää kohtaan (<code>k26_1:k26_18</code>)</li>
-<li>Työuupumusmittaristo (<code>k27_1:k27_4</code>)</li>
-<li>Toimenpiteiden hyödyllisyys (<code>k30_1:k30_13</code>)</li>
-</ol>
-<p><strong>Määräsääntöä soveltavat muuttujat:</strong></p>
+<li>Epäasiallisen ja väkivaltaisen kohtelun yleisyys (<code>k3_1:k4_7</code>, <code>k12_1:k13_7</code>)
 <ol type="1">
-<li>Ilmoitusjärjestelmän olemassaolo (<code>k24_1:k24_3</code>)</li>
-<li>Koulutuksen olemassaolo ilmoitusjärjestelmälle (<code>k25_1:k25_3</code>)</li>
-<li>Työorganisaation toimenpiteet ja ohjeet (<code>k28_1:k28_12</code>)</li>
-<li>Toimenpiteiden ja ohjeiden koettu vaikuttavuus (<code>k29_1:k29_12</code>)</li>
-<li>Työ- tai osallistumistoiminnan rytmitys (<code>k32:k35</code>, <code>k37</code>)</li>
-<li>Osallistumisen pituus henkilöhistoriassa (<code>k41</code>)</li>
-<li>Työkuvan muutosten suunnitelmat (<code>k42_1_1:k42_3_3</code>)</li>
-<li>Syyt työkuvan muutosten suunnitelmille (<code>Muutossyyt</code>)</li>
-</ol>
-<div id="tbl-anonymisointimenettelyt" class="anchored">
-<table class="table">
-<caption>Taulukko&nbsp;18.1: Anonymisoinnin tarkastus- ja muutosmenetelmät muuttujaryhmittäin</caption>
-<colgroup>
-<col style="width: 17%">
-<col style="width: 12%">
-<col style="width: 68%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Muuttujaryhmä</th>
-<th>Anonymiteetin tarkastusmenetelmä</th>
-<th>Muutosmenetelmä, jos vaatimus ei täyty</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Suostumus</td>
-<td>ei mitään</td>
-<td>ei mitään</td>
-</tr>
-<tr class="even">
-<td>Organisaatioryhmä</td>
-<td>n &gt;= 30</td>
-<td>Vastausvaihtoehtojen yhdistäminen</td>
-</tr>
-<tr class="odd">
-<td>Yleisyysmittarit</td>
-<td>5-anonymiteetti</td>
-<td>Vastausvaihtoehtojen yhdistäminen (jokainen mittaristo erikseen)</td>
-</tr>
-<tr class="even">
-<td>Selventävät mittarit</td>
-<td>5-anonymiteetti</td>
-<td>Muuttujan poistaminen</td>
-</tr>
-<tr class="odd">
-<td>Vakavuusmittarit</td>
-<td>5-anonymiteetti</td>
-<td>Vastausvaihtoehtojen yhdistäminen (kaikki mittarit samanaikaisesti)</td>
-</tr>
-<tr class="even">
-<td>Pitkäkestoisuusmittarit</td>
-<td>5-anonymiteetti</td>
-<td>Vastausvaihtoehtojen yhdistäminen (kaikki mittarit samanaikaisesti)</td>
-</tr>
-<tr class="odd">
-<td>Vaikutukset jatkuvat yhä</td>
-<td>5-anonymiteetti</td>
-<td>Muuttujan poistaminen</td>
-</tr>
-<tr class="even">
-<td>Reaktiot kohtelulle</td>
-<td>5-anonymiteetti</td>
-<td>Muuttujien yhdistäminen (ks. suunnitelma)</td>
-</tr>
-<tr class="odd">
-<td>Ilmoitusjärjestelmän olemassaolo</td>
-<td>n &gt;= 30</td>
-<td>Muuttujien yhdistäminen pareittain tai kaikki kolme</td>
-</tr>
-<tr class="even">
-<td>Koulutuksen olemassaolo ilmoitusjärjestelmille</td>
-<td>n &gt;= 30</td>
-<td>Muuttujien yhdistäminen pareittain tai kaikki kolme</td>
-</tr>
-<tr class="odd">
-<td>Asenteet ilmoitusjärjestelmiä kohtaan</td>
-<td>5-anonymiteetti</td>
-<td><p>Vastausvaihtoehtojen yhdistäminen (7 &gt; 5 &gt; 3 kategoriaa)</p>
-<p>Keskipisteen datamuunnos satunnaisesti lähimpiin arvoihin (3 tai 5)</p></td>
-</tr>
-<tr class="even">
-<td>Työuupumusmittaristo</td>
-<td>5-anonymiteetti</td>
-<td>Vastausvaihtoehtojen yhdistäminen (pienimpään viereiseen luokkaan) kaikille mittareille samanaikaisesti</td>
-</tr>
-<tr class="odd">
-<td>Työorganisaation toimenpiteet</td>
-<td>n &gt;= 30</td>
-<td><p>Vastausvaihtoehtojen yhdistäminen viereisiin luokkiin</p>
-<p>Keskipisteen datamuunnos satunnaisesti lähimpiin arvoihin (2 tai 4)</p></td>
-</tr>
-<tr class="even">
-<td>Toimenpiteiden vaikuttavuus</td>
-<td>Kategorisointi</td>
-<td>Neljäksi kvartiiliksi</td>
-</tr>
-<tr class="odd">
-<td>Toimenpiteiden hyödyllisyys</td>
-<td>5-anonymiteetti</td>
-<td><p>Vastausvaihtoehtojen yhdistäminen (7 &gt; 5 &gt; 3 kategoriaa)</p>
-<p>Keskipisteen datamuunnos satunnaisesti lähimpiin arvoihin (3 tai 5)</p></td>
-</tr>
-<tr class="even">
-<td>Sukupuoli</td>
-<td>n &gt;= 30</td>
-<td><p>Vastaajien poisto (kategoriat 3 tai 4)</p>
-<p>Ei mitään (kategoriat 1 tai 2; erittäin epätodennäköistä)</p></td>
-</tr>
-<tr class="odd">
-<td>Työrytmitys</td>
-<td>n &gt;= 30</td>
-<td>Vastausvaihtoehtojen yhdistäminen (samankaltaisiin jos nominaalimuuttuja, viereiseen jos ordinaalimuuttuja)</td>
-</tr>
-<tr class="even">
-<td>Organisaatioasema</td>
-<td>5-anonymiteetti</td>
-<td>Kahden eri muuttujan rakentaminen: uuteen muuttujaan yhdistetään kaksi pienintä alkuperäisen muuttujan ryhmistä Johto-Hallinto-Asiantuntijat, tai kaikki kolme jos anonymiteetti ei täyty.</td>
-</tr>
-<tr class="odd">
-<td>Työuran pituus</td>
-<td>Kategorisointi</td>
-<td>Viideksi kvintiiliksi</td>
-</tr>
-<tr class="even">
-<td>Muutossuunnitelmat</td>
-<td>n &gt;= 30</td>
-<td><p>Muuttujien yhdistäminen</p>
-<p>Jos ei riitä: Vastausvaihtoehtojen yhdistäminen</p></td>
-</tr>
-<tr class="odd">
-<td>Muutossuunnitelmien syyt</td>
-<td>Kategorisointi</td>
-<td>Sisällönanalyysi, tulkittava määrä kategorioita jotka täyttävät määräsäännön n &gt;= 30</td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section id="taustamuuttujien-määräsääntötarkistus" class="level2" data-number="18.2">
-<h2 data-number="18.2" class="anchored" data-anchor-id="taustamuuttujien-määräsääntötarkistus"><span class="header-section-number">18.2</span> Taustamuuttujien määräsääntötarkistus</h2>
-<div class="cell">
-<details>
-<summary>Koodi</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Organisaatioryhmä</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(k2) <span class="sc">%&gt;%</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table</span>(<span class="at">useNA =</span> <span class="st">"always"</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Sukupuoli</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(k31) <span class="sc">%&gt;%</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table</span>(<span class="at">useNA =</span> <span class="st">"always"</span>)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Ammattiryhmä</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(k40) <span class="sc">%&gt;%</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table</span>(<span class="at">useNA =</span> <span class="st">"always"</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<p>Jokaisessa yllä olevassa solussa pitää olla vähintään <code>n = 30</code> vastaajaa. Jos tämä ei täyty, tehdään seuraavat muutokset:</p>
-<ul>
-<li><code>k2</code> Organisaatioryhmä: Järjestöt yhdistetään koulutusorganisaatioihin: <code>k2 == 3 | k2 == 4 ~ 3</code></li>
-<li><code>k31</code> Sukupuoli: Muu ja/tai En halua vastata -vastaajat poistetaan: <code>data %&gt;% filter(k31 != 3) %&gt;% filter(k31 != 4)</code> (jos molemmat täyttyvät; jätä pois toinen filter-verbi tarpeen mukaan)</li>
-<li><code>k40</code> Ammattiryhmä: <strong>MITÄ TEHDÄÄN, JÄTETÄÄNKÖ MUU POIS? EI PITÄISI TULLA VASTAAN…</strong></li>
-</ul>
-</section>
-<section id="organisaatioaseman-5-anonymiteetin-tarkastus" class="level2" data-number="18.3">
-<h2 data-number="18.3" class="anchored" data-anchor-id="organisaatioaseman-5-anonymiteetin-tarkastus"><span class="header-section-number">18.3</span> Organisaatioaseman 5-anonymiteetin tarkastus</h2>
-<div class="cell">
-<details>
-<summary>Koodi</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ftable</span>(<span class="fu">xtabs</span>(<span class="sc">~</span> Organisaatioasema <span class="sc">+</span> k2 <span class="sc">+</span> k31, <span class="at">data =</span> data))</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<p>Jokaisessa solussa yllä pitäisi olla joko <code>n = 0</code> vastaajaa tai vähintään <code>n = 5</code> vastaajaa. Näissä tapauksissa ei tarvita tehdä mitään.</p>
-<p>Jos vastaajamäärä jossain solussa on <code>0 &gt; n &gt; 5</code>, tehdään tarpeelliset muutokset vain järjestöjen ja koulutusorganisaatioiden osalta:</p>
+<li>Yhteensä 28 muuttujaa</li>
+<li>Kaikilla vastaajilla tulee olla yksi arvo, mikä voi myös olla arvo <code>NA</code></li>
+<li>Sovelletaan 5-anonymiteettia (ks. kohta 4)</li>
+</ol></li>
+<li>Kohtelun selventävät mittarit (<code>k5_3_1:k5_3_2</code>, <code>k7_10_1:k7_10_2</code>, <code>k8_11_1:k8_11_2</code>, <code>k9_5_1:k9_5_2</code>, <code>k9_10_1:k9_10_2</code>, <code>k10_2_1:k10_2_2</code>, <code>k10_10_1:k10_10_2</code>, <code>k10_11_1:k10_11_2</code>, <code>k11_6_1:k11_6_2</code>, <code>k14_3_1:k14_3_2</code>, <code>k16_10_1:k16_10_2</code>, <code>k17_11_1:k17_11_2</code>, <code>k18_5_1:k18_5_2</code>, <code>k18_10_1:k18_10_2</code>, <code>k19_2_1:k19_2_2</code>, <code>k19_10_1:k19_10_2</code>, <code>k19_11_1:k19_11_2</code>)
 <ol type="1">
-<li>Yhdistetään kaksi pienintä seuraavista ryhmistä: johto, asiantuntijat, hallintohenkilöstö</li>
-<li>Yhdistetään kaikki kolme seuraavista ryhmistä: johto, asiantuntijat, hallintohenkilöstö</li>
+<li>Yhteensä 34 muuttujaa</li>
+<li>Kaikilla vastaajilla tulee olla yksi arvo, mikä voi myös olla arvo <code>NA</code> tai <code>-1</code></li>
+<li>Määräsääntö: <code>n &gt; 5</code></li>
+<li>Muuttuja poistetaan jos määräsääntö ei täyty jokaisen kategorian osalta (<code>NA</code>, <code>-1</code>, <code>1</code>)</li>
+</ol></li>
+<li>Vaikutukset jatkuvat yhä (<code>k22_1_1:k22_3_1</code>)
+<ol type="1">
+<li>Yhteensä 3 muuttujaa</li>
+<li>Kaikilla vastaajilla tulee olla yksi arvo, mikä voi myös olla arvo <code>NA</code> tai <code>-1</code></li>
+<li>Sovelletaan 5-anonymiteettia (ks. kohta 4)</li>
+</ol></li>
+<li>Reaktiot kohteluun (<code>k23_1:k23_11</code>)
+<ol type="1">
+<li>Yhteensä 11 muuttujaa</li>
+<li>Kaikilla vastaajilla tulee olla yksi arvo, mikä voi myös olla arvo <code>NA</code> tai <code>-1</code></li>
+<li>Sovelletaan 5-anonymiteettia (ks. kohta 4)</li>
+</ol></li>
 </ol>
-<p><strong>Tähän samanlainen funktio kuin valmistelussa tehty organisaatioaseman ryhmäkoodaus: Tehdään uusi muuttuja “Organisaatioasema_2” (tmv.), data -&gt; filter -&gt; mutate -&gt; rows_update</strong></p>
+<p><strong>Kohta 3: Taustamuuttujien 5-anonymisointi ristiintaulukoimalla</strong></p>
+<ol type="1">
+<li>Organisaatiokuuluvuus x Organisaatioasema (<code>k2 * Organisaatioasema</code>)</li>
+<li>Organisaatiokuuluvuus * Organisaatioasema * Sukupuoli (<code>k2 * Organisaatioasema * k31</code>)</li>
+<li>Organisaatiokuuluvuus x Organisaatioasema x Työrytmi (<code>k2 * Organisaatioasema * k32, k33, k34, k35, k37</code>)</li>
+<li>Organisaatiokuuluvuus x Organisaatioasema x Työuran pituus (<code>k2 * Organisaatioasema * k41</code>)</li>
+</ol>
+<p>Kaikilla taustamuuttujilla seurataan seuraavaa prioriteettijärjestystä muutoksissa:</p>
+<ol type="1">
+<li>Organisaatioaseman (<code>Organisaatioasema</code>) kategoriat yhdistetään vähintään neljäksi kategoriaksi.</li>
+<li>Työrytmin (<code>k32, k33, k34, k35, k37</code>) kategoriat yhdistetään vähintään kolmeksi kategoriaksi.
+<ol type="1">
+<li>Poikkeuksena <code>k34</code>, jolle ei voida tehdä muutoksia.</li>
+</ol></li>
+<li>Työuran pituuden (<code>k41</code>) fraktiileja vähennetään vähintään kolmeen fraktiiliin.</li>
+<li>Sukupuolen (<code>k31</code>) kategoriat yhdistetään vähintään kahteen kategoriaan.</li>
+<li>Organisaatiokuuluvuuden (<code>k2</code>) kategoriat yhdistetään vähintään kolmeen kategoriaan.</li>
+</ol>
+<p><strong>Kohta 4: Harvinaisten ilmiöiden 5-anonymisointi taustamuuttujia vastaan</strong></p>
+<p>Jokainen kohdassa 2 listattu muuttuja ristiintaulukoidaan yksitellen jokaista taustamuuttujaa kohtaan. Koska taustamuuttujia on yhdeksän kappaletta ja harvinaisia ilmiöitä 62, vertailuja tehdään yhteensä 558 kappaletta.</p>
+<div class="page-columns page-full"><p>Tätä varten projektipäällikkö on kirjoittanut funktion <code>k_anonymity()</code>, joka löytyy osana R-pakettia <code>ranon</code> (<a href="https://github.com/osaal/ranon">GitHubissa</a> <code>osaal/ranon</code>)<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Funktio ottaa yhden tai useamman kategorisen muuttujan, ja palauttaa kaikki kategoriayhdistelmät, joiden solumäärät ristiintaulukoinnissa alittavat ennalta määritetyn raja-arvon (tässä tutkimuksessa viisi). Jos funktiolle annetaan vain yksi muuttuja, tarkistus tehdään muuttujan kategorioille, jolloin kyseessä on yksinkertainen määräsäännön anonymisointitarkistus.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Kirjoitushetkellä (12.9.2024) <code>master</code>-haaralla on virhe funktiossa. Virhe on korjattu commitissa <code>#7cdd062</code>, joka löytyy haaralta <code>v0.2</code>. Kunnes uusi versio on mergattu <code>master</code>-haaraan, paketin kannattaa asentaa käyttäen <code>renv::install(osaal/ranon@v0.2)</code>.</p></li></div></div>
+<p><strong>HUOM:</strong> Kirjoitushetkellä paketin funktio ei toimi kuten pitäisi. Olemme korjanneet funktion ja testanneet kaikki alla olevat koodaukset simuloidulla datalla ennen anonymisoinnin suorittamista. Korjattu funktio löytyy tämän luvun alusta, ensimmäisestä koodiblokista.</p>
 </section>
-<section id="vanhaa-organisaation-sisäinen-epäasiallinen-kohtelu" class="level2" data-number="18.4">
-<h2 data-number="18.4" class="anchored" data-anchor-id="vanhaa-organisaation-sisäinen-epäasiallinen-kohtelu"><span class="header-section-number">18.4</span> VANHAA Organisaation sisäinen epäasiallinen kohtelu</h2>
+<section id="kohta-1-taustamuuttujien-anonymisointi" class="level2" data-number="18.2">
+<h2 data-number="18.2" class="anchored" data-anchor-id="kohta-1-taustamuuttujien-anonymisointi"><span class="header-section-number">18.2</span> Kohta 1: Taustamuuttujien anonymisointi</h2>
 <div class="cell">
 <details>
 <summary>Koodi</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rivittäin vasemmalta oikealle</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>))</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(k3_1<span class="sc">:</span>k3_7) <span class="sc">%&gt;%</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sapply</span>(</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    .,</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    plot_freq</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Muuttujaa voi käyttää myöhemmin looppaamiseen</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>taustamuuttujat <span class="ot">&lt;-</span> rlang<span class="sc">::</span><span class="fu">exprs</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  k2,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  k31, k32, k33, k34, k35, k37,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  Organisaatioasema,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  k41</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Tässä ei voida loopata helposti, sillä muuttujien raja-arvot eroavat ja muuttujaa k41 ei tarkisteta ollenkaan</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Testattu toimivaksi tekaistulla datalla. HUOM: Vaatii nykyiset funktiossa olevat korjaukset (ks. code block 00_anon_funktiot)</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="fu">k_anonymity</span>(data, <span class="at">limit =</span> <span class="dv">5</span>, k2)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="fu">k_anonymity</span>(data, <span class="at">limit =</span> <span class="dv">30</span>, k31)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="fu">k_anonymity</span>(data, <span class="at">limit =</span> <span class="dv">10</span>, k32)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="fu">k_anonymity</span>(data, <span class="at">limit =</span> <span class="dv">10</span>, k33)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="fu">k_anonymity</span>(data, <span class="at">limit =</span> <span class="dv">10</span>, k34)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="fu">k_anonymity</span>(data, <span class="at">limit =</span> <span class="dv">10</span>, k35)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="fu">k_anonymity</span>(data, <span class="at">limit =</span> <span class="dv">10</span>, k37)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="fu">k_anonymity</span>(data, <span class="at">limit =</span> <span class="dv">10</span>, Organisaatioasema)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
+<p>Tulokset kuvaillaan tässä.</p>
+<p>Muutokset kuvaillaan tässä.</p>
+</section>
+<section id="kohta-2-harvinaisten-ilmiöiden-anonymisointi" class="level2" data-number="18.3">
+<h2 data-number="18.3" class="anchored" data-anchor-id="kohta-2-harvinaisten-ilmiöiden-anonymisointi"><span class="header-section-number">18.3</span> Kohta 2: Harvinaisten ilmiöiden anonymisointi</h2>
 <div class="cell">
 <details>
 <summary>Koodi</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rivittäin vasemmalta oikealle</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>))</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(k4_1<span class="sc">:</span>k4_7) <span class="sc">%&gt;%</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sapply</span>(</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    .,</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    plot_freq</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Muuttujaa voi käyttää nyt ja myöhemmin looppaamiseen</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>muuttujat <span class="ot">&lt;-</span> rlang<span class="sc">::</span><span class="fu">exprs</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  k3_1, k3_2, k3_3, k3_4, k3_5, k3_6, k3_7,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  k4_1, k4_2, k4_3, k4_4, k4_5, k4_6, k4_7,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  k12_1, k12_2, k12_3, k12_4, k12_5, k12_6, k12_7,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  k13_1, k13_2, k13_3, k13_4, k13_5, k13_6, k13_7,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  k5_3_1, k5_3_2,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  k7_10_1, k7_10_2,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  k8_11_1, k8_11_2,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  k9_5_1, k9_5_2, k9_10_1, k9_10_2,</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  k10_2_1, k10_2_2, k10_10_1, k10_10_2, k10_11_1, k10_11_2,</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  k11_6_1, k11_6_2,</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  k14_3_1, k14_3_2,</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  k16_10_1, k16_10_2,</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  k17_11_1, k17_11_2,</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  k18_5_1, k18_5_2, k18_10_1, k18_10_2,</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  k19_2_1, k19_2_2, k19_10_1, k19_10_2, k19_11_1, k19_11_2,</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  k22_1_1, k22_2_1, k22_3_1,</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  k23_1, k23_2, k23_3, k23_4, k23_5, k23_6, k23_7, k23_8, k23_9, k23_10, k23_11</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Loopataan harvinaisten ilmiöiden muuttujien läpi ja suoritettaan yhden muuttujan k-anonymisointi (eli yksinkertainen solujen tarkastus)</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="co"># HUOM: Listaus sisältää muuttujaryhmät k3_1:k4_7, k12_1:k13_7, k22_1_1:k22_3_1 ja k23_1:k23_11. Näitä ei anonymisointisuunnitelman mukaisesti kuitenkaan tarkisteta.</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Testattu toimivaksi tekaistulla datalla. HUOM: Vaatii nykyiset funktiossa olevat korjaukset (ks. code block 00_anon_funktiot)</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>tulokset_kohta2 <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> muuttujat) {</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>  tulokset_kohta2[[rlang<span class="sc">::</span><span class="fu">as_string</span>(i)]] <span class="ot">&lt;-</span> <span class="fu">k_anonymity</span>(data, <span class="at">limit =</span> <span class="dv">5</span>, i)</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Poistetaan väliaikaiset muuttujat siisteyden vuoksi</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(i, temp)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
+<p>Tulokset kuvaillaan tässä.</p>
+<p>Muutokset kuvaillaan tässä.</p>
+</section>
+<section id="kohta-3-taustamuuttujien-k-anonymisointi-toisiaan-vastaan" class="level2" data-number="18.4">
+<h2 data-number="18.4" class="anchored" data-anchor-id="kohta-3-taustamuuttujien-k-anonymisointi-toisiaan-vastaan"><span class="header-section-number">18.4</span> Kohta 3: Taustamuuttujien k-anonymisointi toisiaan vastaan</h2>
 <div class="cell">
 <details>
 <summary>Koodi</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rivittäin vasemmalta oikealle</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>))</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(k3_1<span class="sc">:</span>k3_7) <span class="sc">%&gt;%</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sapply</span>(</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    .,</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    plot_freq</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testattu toimivaksi tekaistulla datalla. HUOM: Vaatii nykyiset funktiossa olevat korjaukset (ks. code block 00_anon_funktiot)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">k_anonymity</span>(data, <span class="at">limit =</span> <span class="dv">5</span>, k2, Organisaatioasema)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">k_anonymity</span>(data, <span class="at">limit =</span> <span class="dv">5</span>, k2, Organisaatioasema, k31)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">k_anonymity</span>(data, <span class="at">limit =</span> <span class="dv">5</span>, k2, Organisaatioasema, k32)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">k_anonymity</span>(data, <span class="at">limit =</span> <span class="dv">5</span>, k2, Organisaatioasema, k33)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">k_anonymity</span>(data, <span class="at">limit =</span> <span class="dv">5</span>, k2, Organisaatioasema, k34)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">k_anonymity</span>(data, <span class="at">limit =</span> <span class="dv">5</span>, k2, Organisaatioasema, k35)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">k_anonymity</span>(data, <span class="at">limit =</span> <span class="dv">5</span>, k2, Organisaatioasema, k37)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="fu">k_anonymity</span>(data, <span class="at">limit =</span> <span class="dv">5</span>, k2, Organisaatioasema, k41)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Tulokset kuvaillaan tässä.</p>
+<p>Muutokset kuvaillaan tässä.</p>
+</section>
+<section id="kohta-4-harvinaisten-ilmiöiden-k-anonymisointi-taustamuuttujia-vastaan" class="level2" data-number="18.5">
+<h2 data-number="18.5" class="anchored" data-anchor-id="kohta-4-harvinaisten-ilmiöiden-k-anonymisointi-taustamuuttujia-vastaan"><span class="header-section-number">18.5</span> Kohta 4: Harvinaisten ilmiöiden k-anonymisointi taustamuuttujia vastaan</h2>
+<div class="cell">
+<details>
+<summary>Koodi</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testattu toimivaksi tekaistulla datalla. HUOM: Vaatii nykyiset funktiossa olevat korjaukset (ks. code block 00_anon_funktiot)</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>tulokset_kohta4 <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> muuttujat) {</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  temp <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> taustamuuttujat) {</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    temp[[rlang<span class="sc">::</span><span class="fu">as_string</span>(j)]] <span class="ot">&lt;-</span> <span class="fu">k_anonymity</span>(data, <span class="at">limit =</span> <span class="dv">5</span>, i, j)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  tulokset_kohta4[[rlang<span class="sc">::</span><span class="fu">as_string</span>(i)]] <span class="ot">&lt;-</span> temp</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Poistetaan väliaikaiset muuttujat siisteyden vuoksi</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(i, j, temp)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Tulokset kuvaillaan tässä.</p>
+<p>Muutokset kuvaillaan tässä.</p>
+</section>
+<section id="datan-tallennus" class="level2" data-number="18.6">
+<h2 data-number="18.6" class="anchored" data-anchor-id="datan-tallennus"><span class="header-section-number">18.6</span> Datan tallennus</h2>
+<p>Anonymisoinnin jälkeen tallensimme lopullisen datatiedoston <code>csv</code>-muotoon. Tallennusta ei ole saatavilla verkkosivun lähdekoodista tietosuojan takia.</p>
+<div class="cell">
+<details>
+<summary>Koodi</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv2</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  data,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">file =</span> <span class="st">"output/anonymisoitudata.csv"</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 
 
 </section>
+
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
