@@ -30,6 +30,7 @@ book:
         - eksportointi.qmd
         - nimeaminen.qmd
         - valmistelu.qmd
+        - puhdistaminen.qmd
         - anonymisointi.qmd
     - part: "Mittariston validointi"
       chapters:
@@ -80,6 +81,7 @@ book:
         - eksportointi.qmd
         - nimeaminen.qmd
         - valmistelu.qmd
+        - puhdistaminen.qmd
         - anonymisointi.qmd
     
     - id: validointi

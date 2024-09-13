@@ -1,0 +1,14 @@
+{
+  "hash": "0eb4591890432395035c81530b6dd391",
+  "result": {
+    "markdown": "# Puhdistaminen {#sec-puhdistaminen}\n\n\n---\neval: false\n---\n\n\nTässä osiossa puhdistamme datatiedostosta joitain virheellisiä kyselyvastauksia sekä tarkistamme puuttuvien vastausten piirteet.\n\n## Esivalmistelu {#sec-puhdistaminen-esivalmistelu}\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(tidyverse)\nlibrary(mice)\n```\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\ndata <- read.csv2(\"output/koodattudata.csv\")\n```\n:::\n\n\n## Suostumuksensa kieltäneiden poistaminen {#sec-puhdistaminen-suostumuskiellot}\n\nEnnen poistamista datatiedostossa oli  vastaajaa. Webropolissa tapahtuneen virheen takia kuitenkin osa vastaajista onnistuivat palauttamaan kyselylomakkeen, vaikka he eivät antaneet suostumusta tietojen käsittelyyn. Näillä vastaajilla ei ole muuta tietoa, kuin `k1 == 2`, ja heidät pitää poistaa datatiedostosta.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# Otetaan mukaan vain suostumuksensa antaneet vastaajat\ndata <- data |>\n  dplyr::filter(k1 == 1)\n```\n:::\n\n\nPoistamisen jälkeen datatiedostossa oli  vastaajaa.\n\n## Puuttuvien vastausten piirreanalyysi {#sec-puhdistaminen-puuttuvat}\n\nTähän laitetaan puuttuvien vastausten analysointi `mice`-paketilla. Tarkistetaan ainakin:\n\n1.  Onko datassa vastaajia, jotka jättivät vastaamatta koko kyselyyn? (Eli `NA` kaikissa kysymyksissä, joissa sellainen voi esiintyä)\n    1.  Poistetaan datatiedostosta\n    2.  Motivaatio: Vaikka he vastasivat taustakysymyksiin (sillä he eivät voineet palauttaa kyselyä vastaamatta pakollisiin kysymyksiin), heidän datansa ei tule sisältymään käytännössä mihinkään analyysiin.\n\n## Datan tallennus {#sec-puhdistaminen-tallennus}\n\nViimeiseksi data tallennettiin tilapäiseksi tiedostoksi anonymisointia varten. Tallennusta ei ole saatavilla verkkosivun lähdekoodista tietosuojan takia.\n\n\n::: {.cell}\n\n```{.r .cell-code}\nwrite.csv2(data, file = \"output/puhdistettudata.csv\")\n```\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
