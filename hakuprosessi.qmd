@@ -23,10 +23,10 @@ library(magrittr)
 library(PRISMA2020)
 
 # Käytämme csv2-funktiota, koska Excel ei suostu exportoimaan csv-tiedostoa pilkkuerottimella puolipiste-erottimen sijaan, jostain syystä.
-tiedot <- read.csv2("data/20240702_PRISMAtiedot.csv") %>% PRISMA_data(.)
 
 PRISMA_flowdiagram(
-  tiedot,
+  tiedot <- read.csv2("data/kirjallisuuskatsaus/prismatiedot.csv") %>%
+    PRISMA_data(.),
   previous = FALSE,
   other = TRUE,
   detail_databases = FALSE,

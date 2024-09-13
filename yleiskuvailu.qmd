@@ -19,8 +19,8 @@ suppressPackageStartupMessages({
 })
 
 # Ladataan data csv-tiedostosta
-data <- read.csv2("data/20240528_tulostenmetatiedot.csv")
-harhadata <- read.csv2("data/laadunarviointi_määrällisetkyselyt.csv")
+data <- read.csv2("data/kirjallisuuskatsaus/metatiedot.csv")
+laatu_määrälliset <- read.csv2("data/kirjallisuuskatsaus/laadunarviointi_määrällisetkyselyt.csv")
 
 ```
 
@@ -51,15 +51,17 @@ harhadata <- read.csv2("data/laadunarviointi_määrällisetkyselyt.csv")
 #| label: fig-yleiskuvailu-vuosi
 #| fig-cap: "Kirjallisuuskatsauksen tulokset julkaisuvuosittain"
 
-vuodet <- seq(from = 2010, to = 2023)
-
-kuva1 <- ggplot(data = data, mapping = aes(x = Vuosi)) + 
+ggplot(data = data, mapping = aes(x = Vuosi)) + 
   geom_bar(stat = "count", fill = "#c20e1a") +
   labs(y = "Määrä (n)") + 
-  scale_x_continuous(breaks = vuodet) + 
-  geom_text(aes(label = ..count..), stat = "count", vjust = 1.5, colour = "white")
+  scale_x_continuous(breaks = seq(from = 2010, to = 2023)) + 
+  geom_text(
+    aes(label = after_stat(count)),
+    stat = "count",
+    vjust = 1.5,
+    colour = "white"
+  )
 
-kuva1
 ```
 
 Tutkimusten julkaisuvuodet painottuvat 2010-luvun loppupuolelle ja 2020-luvun alkuun. Julkaisuvuosien mediaani on `r median(data$Vuosi, na.rm = TRUE)`.
@@ -78,15 +80,17 @@ Tutkimusten julkaisuvuodet painottuvat 2010-luvun loppupuolelle ja 2020-luvun al
 #| label: fig-yleiskuvailu-asetelmat
 #| fig-cap: "Kirjallisuuskatsauksen tulokset tutkimusasetelmittain"
 
-asetelmat <- unique(data$Tutkimusasetelma)
-
-kuva3 <- ggplot(data = data, mapping = aes(x = Tutkimusasetelma)) + 
+ggplot(data = data, mapping = aes(x = Tutkimusasetelma)) + 
   geom_bar(stat = "count", fill = "#c20e1a") +
   labs(y = "Määrä (n)", x = "Tutkimusasetelmat") + 
-  scale_x_discrete(breaks = asetelmat) +
-  geom_text(aes(label = ..count..), stat = "count", vjust = 1.5, colour = "white")
+  scale_x_discrete(breaks = unique(data$Tutkimusasetelma)) +
+  geom_text(
+    aes(label = after_stat(count)),
+    stat = "count",
+    vjust = 1.5,
+    colour = "white"
+  )
 
-kuva3
 ```
 
 Yleisin tutkimusasetelma on määrällinen, ylivoimaisesti toteutettu kyselyllä mutta joitain rekisteritutkimuksia myös. Laadullisissa tutkimuksissa hyödynnettiin kyselylomakkeita, yksilö- ja ryhmähaastatteluja sekä havainnointia ja etnografiaa. Monimenetelmälliset asetelmat yhdistivät useasti määrällisen, strukturoidun kyselyn ja haastattelututkimuksen, joko kehittäen kyselytyökalua laadullisin menetelmin tai rakentaen toimintasuunnitelmaa kyselytulosten pohjalta.
@@ -97,15 +101,17 @@ Yleisin tutkimusasetelma on määrällinen, ylivoimaisesti toteutettu kyselyllä
 #| label: fig-yleiskuvailu-julkaisumuodot
 #| fig-cap: "Kirjallisuuskatsauksen tulokset julkaisumuodottain"
 
-muodot <- unique(data$Muoto)
-
-kuva4 <- ggplot(data = data, mapping = aes(x = Muoto)) + 
+ggplot(data = data, mapping = aes(x = Muoto)) + 
   geom_bar(stat = "count", fill = "#c20e1a") +
   labs(y = "Määrä (n)", x = "Julkaisumuodot") + 
-  scale_x_discrete(breaks = muodot) +
-  geom_text(aes(label = ..count..), stat = "count", vjust = 1.5, colour = "white")
+  scale_x_discrete(breaks = unique(data$Muoto)) +
+  geom_text(
+    aes(label = after_stat(count)),
+    stat = "count",
+    vjust = 1.5,
+    colour = "white"
+  )
 
-kuva4
 ```
 
 Yleisin julkaisumuoto on vertaisarvioitu tutkimusartikkeli, ja sitä seuraavaksi opinnäyte. Organisaatioraportteja ei löytynyt suuresti, ja haku tuotti vain yhden sisällytetyn vertaisarvioidun kirjan luvun.
@@ -136,16 +142,22 @@ Yleisin julkaisumuoto on vertaisarvioitu tutkimusartikkeli, ja sitä seuraavaksi
 #| label: fig-yleiskuvailu-maat
 #| fig-cap: 'Kirjallisuuskatsauksen tulokset maittain ja julkaisumuodottain. Tuloksissa ei ole  suomalaisia tutkimuksia. N/A = Ei sovellettavissa.'
 
-maat <- unique(data$Toteutusmaa)
-
-kuva5 <- data %>% dplyr::filter(Toteutusmaa != "Suomi") %>%
+data %>% dplyr::filter(Toteutusmaa != "Suomi") %>%
   ggplot(mapping = aes(x = Toteutusmaa, fill = Muoto)) + 
   geom_bar(stat = "count") +
   labs(y = "Määrä (n)", x = "Toteutusmaat") + 
-  scale_x_discrete(breaks = maat, guide = guide_axis(angle = 45)) +
-  geom_text(aes(label = ..count..), stat = "count", vjust = -0.5, colour = "black", position = position_stack(vjust = 0.5))
+  scale_x_discrete(
+    breaks = unique(data$Toteutusmaa),
+    guide = guide_axis(angle = 45)
+  ) +
+  geom_text(
+    aes(label = after_stat(count)),
+    stat = "count",
+    vjust = -0.5,
+    colour = "black",
+    position = position_stack(vjust = 0.5)
+  )
 
-kuva5
 ```
 
 Kuvasta on poistettu suomalaiset tutkimukset, koska tutkimuksia haettiin useammassa muodossa kuin eurooppalaisia tutkimuksia.
@@ -180,7 +192,7 @@ Hyväksyttävän tutkimuslaadun raja-arvo riippuu pätevien instrumenttien mää
 #| label: fig-yleiskuvailu-tutkimusharha-qssp-tutkimukset
 #| fig-cap: "Q-SSP-harha-arvion tulokset aakkosjärjestyksessä tutkimuksittain (n = 52)"
 
-harhadata %>%
+laatu_määrälliset %>%
   ggplot(mapping = aes(x = Viite)) +
   geom_col(aes(y = Score), fill = "#c20e1a") +
   geom_hline(yintercept = 73) +
@@ -196,11 +208,20 @@ Tutkimuksista vain kaksi yltävät laadukkaan tutkimuksen tasolle työkalun muka
 #| label: fig-yleiskuvailu-tutkimusharha-qssp-osaalueet
 #| fig-cap: "Q-SSP-harha-arvion tulokset instrumenteittain (n = 52)"
 
-harhadata_pivot <- harhadata %>%
-  tidyr::pivot_longer(Johdanto_1:Etiikka_3, names_to = "Osaalue")
-ggplot(harhadata_pivot, aes(y = Osaalue, fill = value)) +
+laatu_määrälliset_pivot <- laatu_määrälliset %>%
+  tidyr::pivot_longer(
+    Johdanto_1:Etiikka_3,
+    names_to = "Osaalue"
+  )
+
+ggplot(laatu_määrälliset_pivot, aes(y = Osaalue, fill = value)) +
   geom_bar(orientation = "y") +
-  geom_text(aes(label = ..count..), stat = "count", colour = "black", position = position_stack(vjust = 0.5))
+  geom_text(
+    aes(label = after_stat(count)),
+    stat = "count",
+    colour = "black",
+    position = position_stack(vjust = 0.5)
+  )
 ```
 
 @fig-yleiskuvailu-tutkimusharha-qssp-tutkimukset näyttää tutkimusten tulokset instrumenteittain. Tutkimusten luotettavimmat tiedot löytyvät johdanto-osuuksista, joissa jopa 48 tutkimusta (92 %) kuvailevat ja motivoivat tutkimusongelman tekstissä.
@@ -216,7 +237,7 @@ Tarkistimme myös, onko julkaisumuotojen välillä eroja tutkimusten kokonaisris
 #| fig-cap: "Q-SSP-arvion tulokset julkaisumuodottain"
 
 ggbetweenstats(
-  harhadata,
+  laatu_määrälliset,
   x = Julkaisumuoto,
   y = Score,
   type = "parametric",

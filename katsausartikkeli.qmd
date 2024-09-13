@@ -52,15 +52,15 @@ Kaikki data on UTF-8-mallisessa `.csv`-tiedostossa käyttäen puolipistettä ero
 ### PRISMA-kulkukaavion tiedot
 
 # Käytämme csv2-funktiota, koska Excel ei suostu exportoimaan csv-tiedostoa pilkkuerottimella puolipiste-erottimen sijaan, jostain syystä.
-prisma <- read.csv2("data/artikkeli_PRISMAtiedot.csv") %>% PRISMA_data(.)
+prisma <- read.csv2("data/kirjallisuuskatsaus/artikkeli/prismatiedot.csv") %>% PRISMA_data(.)
 
 ### Yleiskuvatiedot
-data <- read.csv2("data/20240528_tulostenmetatiedot.csv") %>%
+data <- read.csv2("data/kirjallisuuskatsaus/metatiedot.csv") %>%
   tibble() %>%
   dplyr::filter(Haku %in% c(1:4, 6))
 
 ### Määrällisten kyselyjen laadunarviointitiedot
-harhadata <- read.csv2("data/laadunarviointi_määrällisetkyselyt.csv") %>%
+laatu_määrälliset <- read.csv2("data/kirjallisuuskatsaus/laadunarviointi_määrällisetkyselyt.csv") %>%
   tibble() %>%
   dplyr::filter(!Viite %in% c(
     "Huotari 2019",
@@ -74,13 +74,13 @@ harhadata <- read.csv2("data/laadunarviointi_määrällisetkyselyt.csv") %>%
   ))
 
 ### Laadullisten tutkimusten laadunarviointitiedot
-laatu_laadulliset <- read.csv2("data/laadunarviointi_laadullisettutkimukset.csv") %>%
+laatu_laadulliset <- read.csv2("data/kirjallisuuskatsaus/laadunarviointi_laadullisettutkimukset.csv") %>%
   tibble()
 
 ### Käsitemääritelmätiedot
 
 # Luetaan data ja korvataan tyhjät solut nollalla (käsittää vain numeraalit)
-maaritelmadata <- read.csv2("data/artikkeli_määritelmät.csv") %>%
+maaritelmadata <- read.csv2("data/kirjallisuuskatsaus/artikkeli/määritelmät.csv") %>%
   tibble() %>%
   replace(is.na(.), 0) %>%
   dplyr::filter(!Artikkeli %in% c(
@@ -97,13 +97,13 @@ maaritelmadata <- read.csv2("data/artikkeli_määritelmät.csv") %>%
 ### Vakiintuneiden mittareiden tiedot
 
 # Tämä tiedosto on varmennettu etukäteen, ettei sisällä viidennen haun tietoja.
-mittarit_vakiintuneet <- read.csv2("data/artikkeli_mittarit_vakiintuneet.csv") %>%
+mittarit_vakiintuneet <- read.csv2("data/kirjallisuuskatsaus/artikkeli/mittarit_vakiintuneet.csv") %>%
   tibble()
 
 ### Itsekehitettyjen mittareiden tiedot
 
 # Poistetaan viidennen haun tiedot, jos niitä esiintyy.
-mittarit_itsekehitetyt <- read.csv2("data/artikkeli_mittarit_itsekehitetyt.csv") %>%
+mittarit_itsekehitetyt <- read.csv2("data/kirjallisuuskatsaus/artikkeli/mittarit_itsekehitetyt.csv") %>%
   tibble() %>%
   dplyr::filter(!Viittaus %in% c(
     "Huotari 2019",
@@ -118,9 +118,8 @@ mittarit_itsekehitetyt <- read.csv2("data/artikkeli_mittarit_itsekehitetyt.csv")
 
 ### Meta-analyysin tiedot
 
-metadata <- read.csv2("data/metaanalyysidata.csv") %>%
-  dplyr::filter(!stringr::str_detect(väkivaltamuoto, ","))
-metadata <- metadata %>%
+metadata <- read.csv2("data/kirjallisuuskatsaus/artikkeli/metaanalyysi.csv") %>%
+  dplyr::filter(!stringr::str_detect(väkivaltamuoto, ",")) %>%
   tibble::rowid_to_column("ID")
 
 ```
@@ -158,7 +157,12 @@ ggplot(data = data, mapping = aes(x = Vuosi)) +
   geom_bar(stat = "count", fill = "#c20e1a") +
   labs(y = "Määrä (n)") + 
   scale_x_continuous(breaks = seq(from = 2010, to = 2023)) + 
-  geom_text(aes(label = ..count..), stat = "count", vjust = 1.5, colour = "white")
+  geom_text(
+    aes(label = after_stat(count)),
+    stat = "count",
+    vjust = 1.5,
+    colour = "white"
+  )
 ```
 
 ### Tutkimusasetelmat {#sec-katsausartikkeli-yleiskuva-tutkimusasetelmat}
@@ -171,7 +175,12 @@ ggplot(data = data, mapping = aes(x = Tutkimusasetelma)) +
   geom_bar(stat = "count", fill = "#c20e1a") +
   labs(y = "Määrä (n)", x = "Tutkimusasetelmat") + 
   scale_x_discrete(breaks = unique(data$Tutkimusasetelma)) +
-  geom_text(aes(label = ..count..), stat = "count", vjust = 1.5, colour = "white")
+  geom_text(
+    aes(label = after_stat(count)),
+    stat = "count",
+    vjust = 1.5,
+    colour = "white"
+  )
 ```
 
 ### Julkaisumuodot {#sec-katsausartikkeli-yleiskuva-julkaisumuodot}
@@ -184,7 +193,12 @@ ggplot(data = data, mapping = aes(x = Muoto)) +
   geom_bar(stat = "count", fill = "#c20e1a") +
   labs(y = "Määrä (n)", x = "Julkaisumuodot") + 
   scale_x_discrete(breaks = unique(data$Muoto)) +
-  geom_text(aes(label = ..count..), stat = "count", vjust = 1.5, colour = "white")
+  geom_text(
+    aes(label = after_stat(count)),
+    stat = "count",
+    vjust = 1.5,
+    colour = "white"
+  )
 ```
 
 ### Tutkimusmaat {#sec-katsausartikkeli-yleiskuva-tutkimusmaat}
@@ -197,8 +211,17 @@ data %>% dplyr::filter(Toteutusmaa != "Suomi") %>%
   ggplot(mapping = aes(x = Toteutusmaa, fill = Muoto)) + 
   geom_bar(stat = "count") +
   labs(y = "Määrä (n)", x = "Toteutusmaat") + 
-  scale_x_discrete(breaks = unique(data$Toteutusmaa), guide = guide_axis(angle = 45)) +
-  geom_text(aes(label = ..count..), stat = "count", vjust = -0.5, colour = "black", position = position_stack(vjust = 0.5))
+  scale_x_discrete(
+    breaks = unique(data$Toteutusmaa),
+    guide = guide_axis(angle = 45)
+  ) +
+  geom_text(
+    aes(label = after_stat(count)),
+    stat = "count",
+    vjust = -0.5,
+    colour = "black",
+    position = position_stack(vjust = 0.5)
+  )
 ```
 
 ## Tutkimuksen laadunarviointi {#sec-katsausartikkeli-laadunarviointi}
@@ -211,7 +234,7 @@ Laadunarviointi seuraa samaa menetelmää kuin yleisen kirjallisuuskatsauksen tu
 #| label: fig-art-laadunarviointi-maaralliset-qssp
 #| fig-cap: "Q-SSP-laadunarvioinnin tulokset aakkosjärjestyksessä tutkimuksittain (n = 45). Sisältää haut 1-4 ja 6"
 
-harhadata %>%
+laatu_määrälliset %>%
   ggplot(mapping = aes(x = Viite)) +
   geom_col(aes(y = Score), fill = "#c20e1a") +
   geom_hline(yintercept = 73) +
@@ -225,11 +248,17 @@ harhadata %>%
 #| label: fig-art-laadunarviointi-maaralliset-alueet
 #| fig-cap: "Q-SSP-laadunarvioinnin tulokset instrumenttain (n = 45). Sisältää haut 1-4 ja 6"
 
-harhadata_pivot <- harhadata %>%
+laatu_määrälliset_pivot <- laatu_määrälliset %>%
   tidyr::pivot_longer(Johdanto_1:Etiikka_3, names_to = "Osaalue")
-ggplot(harhadata_pivot, aes(y = Osaalue, fill = value)) +
+
+ggplot(laatu_määrälliset_pivot, aes(y = Osaalue, fill = value)) +
   geom_bar(orientation = "y") +
-  geom_text(aes(label = ..count..), stat = "count", colour = "black", position = position_stack(vjust = 0.5))
+  geom_text(
+    aes(label = after_stat(count)),
+    stat = "count",
+    colour = "black",
+    position = position_stack(vjust = 0.5)
+  )
 ```
 
 ```{r}
@@ -237,7 +266,7 @@ ggplot(harhadata_pivot, aes(y = Osaalue, fill = value)) +
 #| fig-cap: "Q-SSP-laadunarvioinnin tulokset eri julkaisumuodoittain. Sisältää haut 1-4 ja 6"
 
 ggbetweenstats(
-  harhadata,
+  laatu_määrälliset,
   x = Julkaisumuoto,
   y = Score,
   type = "parametric",
@@ -267,9 +296,15 @@ laatu_laadulliset %>%
 
 laatu_laadulliset_pivot <- laatu_laadulliset %>%
   tidyr::pivot_longer(Otsikko:Muu_2, names_to = "Osaalue")
+
 ggplot(laatu_laadulliset_pivot, aes(y = Osaalue, fill = value)) +
   geom_bar(orientation = "y") +
-  geom_text(aes(label = ..count..), stat = "count", colour = "black", position = position_stack(vjust = 0.5))
+  geom_text(
+    aes(label = after_stat(count)),
+    stat = "count",
+    colour = "black",
+    position = position_stack(vjust = 0.5)
+  )
 ```
 
 ## Epäasiallisen ja väkivaltaisen kohtelun määritelmät {#sec-katsausartikkeli-maaritelmat}
@@ -279,7 +314,10 @@ ggplot(laatu_laadulliset_pivot, aes(y = Osaalue, fill = value)) +
 
 maaritelmadata <- maaritelmadata %>%
   mutate(
-    across(c(Antaa.määritelmän., Lakiviite, Tutkimusviite, Sanakirjaviite, Organisaatioviite), as.factor)
+    across(
+      c(Antaa.määritelmän., Lakiviite, Tutkimusviite, Sanakirjaviite, Organisaatioviite),
+      as.factor
+    )
   )
 ```
 
@@ -295,7 +333,12 @@ ggplot(data = maaritelmadata, mapping = aes(x = Tutkimuskategoria)) +
   geom_bar(stat = "count", fill = "#c20e1a") +
   labs(y = "Määrä (n)", x = "Tutkimuskategoria") + 
   scale_x_discrete(breaks = unique(maaritelmadata$Tutkimuskategoria)) +
-  geom_text(aes(label = ..count..), stat = "count", vjust = 1.5, colour = "white")
+  geom_text(
+    aes(label = after_stat(count)),
+    stat = "count",
+    vjust = 1.5,
+    colour = "white"
+  )
 ```
 
 Tutkimuksista `r maaritelmadata %>% filter(Antaa.määritelmän. == 1) %>% nrow()` kappaletta antavat määritelmän analysoimalle käsitteelleen.
@@ -322,7 +365,12 @@ maaritelmadata %>%
     geom_bar(stat = "count", fill = "#c20e1a") +
     labs(y = "Määrä (n)", x = "Antaa määritelmän") + 
     scale_x_discrete(breaks = unique(maaritelmadata$"Antaa.määritelmän.")) +
-    geom_text(aes(label = ..count..), stat = "count", vjust = 1.5, colour = "white")
+    geom_text(
+      aes(label = after_stat(count)),
+      stat = "count",
+      vjust = 1.5,
+      colour = "white"
+    )
 ```
 
 Väkivaltatutkimusten aihealueet:
@@ -357,7 +405,12 @@ ggplot(data = mittarit_vakiintuneet, mapping = aes(x = Aihealue)) +
   geom_bar(stat = "count", fill = "#c20e1a") +
   labs(y = "Määrä (n)", x = "Aihealue") + 
   scale_x_discrete(breaks = unique(mittarit_vakiintuneet$Aihealue)) +
-  geom_text(aes(label = ..count..), stat = "count", vjust = 1.5, colour = "white")
+  geom_text(
+    aes(label = after_stat(count)),
+    stat = "count",
+    vjust = 1.5,
+    colour = "white"
+  )
 ```
 
 ```{r}
@@ -366,7 +419,15 @@ ggplot(data = mittarit_vakiintuneet, mapping = aes(x = Aihealue)) +
 #| column: page
 
 mittarit_vakiintuneet %>%
-  knitr::kable(., col.names = c("Aihealue", "Mittarin nimi", "Alkuperäinen lähde", "Viittaava lähde"))
+  knitr::kable(
+    .,
+    col.names = c(
+      "Aihealue",
+      "Mittarin nimi",
+      "Alkuperäinen lähde",
+      "Viittaava lähde"
+    )
+  )
 ```
 
 ### Itsekehitetyt mittarit {#sec-katsausartikkeli-menetelmat-itsekehitetyt}
@@ -382,7 +443,12 @@ ggplot(data = mittarit_itsekehitetyt, mapping = aes(x = Aihealue)) +
   geom_bar(stat = "count", fill = "#c20e1a") +
   labs(y = "Määrä (n)", x = "Aihealue") + 
   scale_x_discrete(breaks = unique(mittarit_itsekehitetyt$Aihealue)) +
-  geom_text(aes(label = ..count..), stat = "count", vjust = 1.5, colour = "white")
+  geom_text(
+    aes(label = after_stat(count)),
+    stat = "count",
+    vjust = 1.5,
+    colour = "white"
+  )
 ```
 
 #### Alatyypit
@@ -395,7 +461,12 @@ ggplot(data = mittarit_itsekehitetyt, mapping = aes(x = Alatyyppi)) +
   geom_bar(stat = "count", fill = "#c20e1a") +
   labs(y = "Määrä (n)", x = "Alatyyppi") + 
   scale_x_discrete(breaks = unique(mittarit_itsekehitetyt$Alatyyppi)) +
-  geom_text(aes(label = ..count..), stat = "count", vjust = 1.5, colour = "white")
+  geom_text(
+    aes(label = after_stat(count)),
+    stat = "count",
+    vjust = 1.5,
+    colour = "white"
+  )
 ```
 
 #### Näkökulmat
@@ -408,7 +479,12 @@ ggplot(data = mittarit_itsekehitetyt, mapping = aes(x = Näkökulma)) +
   geom_bar(stat = "count", fill = "#c20e1a") +
   labs(y = "Määrä (n)", x = "Näkökulma") + 
   scale_x_discrete(breaks = unique(mittarit_itsekehitetyt$Näkökulma)) +
-  geom_text(aes(label = ..count..), stat = "count", vjust = 1.5, colour = "white")
+  geom_text(
+    aes(label = after_stat(count)),
+    stat = "count",
+    vjust = 1.5,
+    colour = "white"
+  )
 ```
 :::
 
@@ -462,6 +538,7 @@ metadata <- metadata %>%
     pros_log = numeric(nrow(metadata)),
     pros_sqrtse = numeric(nrow(metadata))
   )
+
 metadata <- metadata %>%
   dplyr::select(ID, otoskoko, pros) %>%
   dplyr::filter(pros != 0) %>%
