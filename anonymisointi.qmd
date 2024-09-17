@@ -1,7 +1,7 @@
 # Anonymisointi {#sec-anonymisointi}
 
 ---
-eval: false
+eval: true
 ---
 
 Tutkimus anonymisoidaan [anonymisointisuunnitelman](https://osf.io/r3hs2) mukaisesti.
@@ -77,12 +77,36 @@ data <- read.csv2("output/puhdistettudata.csv")
 
 ```
 
+## UUSI RATKAISU, vie tekstiin
+
+Järjestykseen muutoksia:
+
+-   Tehdään ensin taustamuuttujien kategoriatarkastus yksitellen kuten aikaisemmin. Muutokset tehdään kuten aikaisemmin. (Kohta 1 säilyy)
+
+-   Sitten tehdään harvinaisten ilmiöiden kategoriatarkastus yksitellen kuten aikaisemmin. Muutokset tehdään kuten aikaisemmin. (Kohta 2 säilyy)
+
+-   Sitten tehdään taustamuuttujien k-anonymisointi kolmen muuttujan yhdistelmissä (ei tehdä kahden muuttujan tarkistusta). (Kohta 3 muuttuu)
+
+    -   Lasketaan tässä k tasoon 4, eli 4-anonymisointi
+
+    -   Muutostarpeita: Yhdistetään organisaatiokuuluvuuksissa järjestöt ja koulutusorganisaatiot, yhdistetään organisaatioasemassa johto ja hallinto sekä asiantuntijat ja opetushenkilöstö kahdeksi kategoriaksi.
+
+    -   Näiden lisäksi muutetaan neljän vastaajan vastauksia:
+
+        -   Vastaaja (asema == 3 & k2 == 1 & k32 == 2) vaihdetaan asema == 1
+
+        -   Vastaajat (asema == 6 & k2 == 3 & k31 == 1) vaihdetaan satunnaisesti k31 == 2 tai 3
+
+-   Sitten tehdään harvinaiset ilmiöt kuten aikaisemmin. (Kohta 4 säilyy)
+
 ## Järjestys {#sec-anonymisointi-jarjestys}
 
 1.  Tarkistetaan taustamuuttujien kategoriat harvinaisten vastausten osalta yksitellen, ja yhdistetään kategorioita tarpeen mukaan.
 2.  Tarkistetaan harvinaisten ilmiöiden muuttujien kategoriat harvinaisten vastausten osalta yksitellen, ja yhdistetään tai poistetaan kategorioita/muuttujia tarpeen mukaan.
-3.  Taustamuuttujat 5-anonymisoidaan kahden ja kolmen muuttujan yhdistelmissä, ja yhdistetään kategorioita tarpeen mukaan.
+3.  Taustamuuttujat 4-anonymisoidaan kolmen muuttujan yhdistelmissä, ja yhdistetään kategorioita tarpeen mukaan[^anonymisointi-1].
 4.  Harvinaiset ilmiöt 5-anonymisoidaan taustamuuttujia vastaan kahden muuttujan yhdistelmissä, ja yhdistetään tai poistetaan kategorioita/muuttujia tarpeen mukaan.
+
+[^anonymisointi-1]: Alkuperäisessä suunnitelmassa tarkoituksena oli 5-anonymisoida muuttujat kahden ja kolmen muuttujan yhdistelmissä. Tarkastaessamme anonymisointia huomasimme kuitenkin, ettei 5-anonymiteettiä voitu toteuttaa ilman suuria, vahingollisia kategoriayhdistämisiä. Tämä olisi vähentänyt datan jatkokäytettävyyttä niin paljon, ettei sitä voitu motivoida. Laskemalla k-arvon neljään voimme suorittaa anonymisoinnin sopivalla määrällä kategoriayhdistelmiä, jotta jatkokäytettävyys säilyy. Jätimme myös pois kahden muuttujan tarkistuksen, sillä kolmen muuttujan tarkistus automaattisesti takaa kahden muuttujan välisen anonymiteetin.
 
 **Kohta 1: Käsiteltävät taustamuuttujat:**
 
@@ -132,12 +156,11 @@ data <- read.csv2("output/puhdistettudata.csv")
     2.  Kaikilla vastaajilla tulee olla yksi arvo, mikä voi myös olla arvo `NA` tai `-1`
     3.  Sovelletaan 5-anonymiteettia (ks. kohta 4)
 
-**Kohta 3: Taustamuuttujien 5-anonymisointi ristiintaulukoimalla**
+**Kohta 3: Taustamuuttujien 4-anonymisointi ristiintaulukoimalla**
 
-1.  Organisaatiokuuluvuus x Organisaatioasema (`k2 * Organisaatioasema`)
-2.  Organisaatiokuuluvuus \* Organisaatioasema \* Sukupuoli (`k2 * Organisaatioasema * k31`)
-3.  Organisaatiokuuluvuus x Organisaatioasema x Työrytmi (`k2 * Organisaatioasema * k32, k33, k34, k35, k37`)
-4.  Organisaatiokuuluvuus x Organisaatioasema x Työuran pituus (`k2 * Organisaatioasema * k41`)
+1.  Organisaatiokuuluvuus \* Organisaatioasema \* Sukupuoli (`k2 * Organisaatioasema * k31`)
+2.  Organisaatiokuuluvuus x Organisaatioasema x Työrytmi (`k2 * Organisaatioasema * k32, k33, k34, k35, k37`)
+3.  Organisaatiokuuluvuus x Organisaatioasema x Työuran pituus (`k2 * Organisaatioasema * k41`)
 
 Kaikilla taustamuuttujilla seurataan seuraavaa prioriteettijärjestystä muutoksissa:
 
@@ -150,7 +173,7 @@ Kaikilla taustamuuttujilla seurataan seuraavaa prioriteettijärjestystä muutoks
 
 **Kohta 4: Harvinaisten ilmiöiden 5-anonymisointi taustamuuttujia vastaan**
 
-Jokainen kohdassa 2 listattu muuttuja ristiintaulukoidaan yksitellen jokaista taustamuuttujaa kohtaan. Koska taustamuuttujia on yhdeksän kappaletta ja harvinaisia ilmiöitä 62, vertailuja tehdään yhteensä 558 kappaletta.
+Jokainen kohdassa 2 listattu muuttuja ristiintaulukoidaan yksitellen jokaista taustamuuttujaa kohtaan. **Koska taustamuuttujia on yhdeksän kappaletta ja harvinaisia ilmiöitä 62, vertailuja tehdään yhteensä 558 kappaletta. \[TARKISTA LUVUT UUDELLEEN\]**
 
 Tätä varten projektipäällikkö on kirjoittanut funktion `k_anonymity()`, joka löytyy osana R-pakettia `ranon` ([GitHubissa](https://github.com/osaal/ranon) `osaal/ranon`). Funktio ottaa yhden tai useamman kategorisen muuttujan, ja palauttaa kaikki kategoriayhdistelmät, joiden solumäärät ristiintaulukoinnissa alittavat ennalta määritetyn raja-arvon (tässä tutkimuksessa viisi). Jos funktiolle annetaan vain yksi muuttuja, tarkistus tehdään muuttujan kategorioille, jolloin kyseessä on yksinkertainen määräsäännön anonymisointitarkistus.
 
@@ -182,14 +205,119 @@ k_anonymity(data, limit = 10, k37)
 k_anonymity(data, limit = 10, Organisaatioasema)
 ```
 
-Tulokset kuvaillaan tässä.
+Organisaatiokuuluvuusmuuttujalla (`k2`) ei ollut yhtään ongelmallista kategoriaa.
 
-Muutokset kuvaillaan tässä.
+Sukupuolimuuttujalla (`k31`) oli yksi ongelmallinen kategoria: muunsukupuolisia (`k31 == 3`) oli seitsemän vastaajaa. Seuraavaksi pienin ryhmä oli vastaamisesta kieltäytyneet (`k31 == 4`, yhteensä `r summary(as.factor(data$k31))[4]` vastaajaa).
+
+Pelastuslaitoksen tai ensihoidon työrytmimuuttujalla (`k32`) oli yksi ongelmallinen kategoria: työ- tai virkavapaalla olevia (`k32 == 4`) oli yhteensä kaksi kappaletta. Seuraavaksi pienin ryhmä oli kahdentoista tunnin työvuorot (`k32 == 2`, yhteensä `r summary(as.factor(data$k32))[2]` vastaajaa).
+
+Sopimuspalokuntien ja palokuntayhdistysten viikottaisen työmääräarvion muuttujalla (`k33`) oli yksi ongelmallinen kategoria: yli 21 tuntia viikossa tekeviä (`k33 == 5`) oli yhteensä 8 henkilöä.
+
+Sopimuspalokuntien ja palokuntayhdistysten varallaolomuuttujalla (`k34`) ei ollut yhtään ongelmallista kategoriaa.
+
+Sopimuspalokuntien ja palokuntayhdistysten varallaolon kuukausittaisen työmääräarvion muuttujalla (`k35`) oli yksi ongelmallinen kategoria: yli 200 tuntia tekeviä (`k35 == 5`) oli yhteensä 7 vastaajaa.
+
+Järjestöjen ja koulutusorganisaatioiden työrytmimuuttujalla (`k37`) ei ollut yhtään ongelmallista kategoriaa.
+
+Rakennetulla organisaatioasemamuuttujalla (`Organisaatioasema`) ei ollut yhtään ongelmallista kategoriaa.
+
+Teimme seuraavat muutokset:
+
+-   Sukupuoli (`k31`): Muunsukupuoliset yhdistettiin vastaamisesta kieltäytyneisiin uudeksi koodiksi `3`. Täten koodia `4` ei enää esiinny, ja uudet koodivaihtoehdot ovat `1` (Mies), `2` (Nainen) ja `3` (Muu tai ei halua vastata).
+
+-   Pelastuslaitoksen tai ensihoidon työrytmi (`k32`): Työ- tai virkavapaaalla olevat yhdistettiin virasto- tai toimistotyöaikaan (`3`). Täten koodia `4` ei enää esiinny, ja uudet koodivaihtoehdot ovat `-1` (ei esitetty), `1` (24h työvuorot), `2` (12h työvuorot) ja `3` (Virasto- tai toimistotyöaika, työ- tai virkavapaalla).
+
+-   Sopimuspalokuntien ja palokuntayhdistysten viikottainen työmääräarvio (`k33`). Yli 21 tuntia tekevät (`5`) yhdistettiin viereiseen 11-20 tuntia viikossa tekeviin (`4`). Täten koodia `5` ei enää esiinny, ja uudet koodivaihtoehdot ovat `-1` (ei esitetty), `1` (alle 2 tuntia viikossa), `2` (2-5 tuntia viikossa), `3` (6-10 tuntia viikossa) ja `4` (yli 10 tuntia viikossa).
+
+-   Sopimuspalokuntien ja palokuntayhdistysten varallaolon kuukausittainen työmääräarvio (`k35`): Yli 200 tuntia tekevät (`5`) yhdistettiin viereiseen 121-200 tuntia tekeviin (`4`). Täten koodia `5` ei enää esiinny, ja uudet koodivaihtoehdot ovat `-1` (ei esitetty), `1` (en ollenkaan), `2` (1-60 tuntia), `3` (61-120 tuntia) ja `4` (yli 120 tuntia).
 
 ```{r}
 #| label: anon-03-muutokset
 
+# Sukupuolen muutos (k31)
+data <- data |>
+  mutate(
+    across(
+      k31,
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        2 ~ 2,
+        3 ~ 3,
+        4 ~ 3
+      )
+    )
+  )
 
+# Pelastuslaitoksen ja ensihoidon työrytmin muutos (k32)
+data <- data |>
+  mutate(
+    across(
+      k32,
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        2 ~ 2,
+        3 ~ 3,
+        4 ~ 3,
+        -1 ~ -1
+      )
+    )
+  )
+
+# Sopimuspalokuntien ja palokuntayhdistysten viikottaisen työmääräarvion muutos (k33)
+data <- data |>
+  mutate(
+    across(
+      k33,
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        2 ~ 2,
+        3 ~ 3,
+        4 ~ 4,
+        5 ~ 4,
+        -1 ~ -1
+      )
+    )
+  )
+
+# Sopimuspalokuntien ja palokuntayhdistysten varallaolon kuukausittaisen työmääräarvion muutos (k35)
+data <- data |>
+  mutate(
+    across(
+      k35,
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        2 ~ 2,
+        3 ~ 3,
+        4 ~ 4,
+        5 ~ 4,
+        -1 ~ -1
+      )
+    )
+  )
+```
+
+Näiden lisäksi luokittelimme työuran pituuden muuttujan (`k41`) viiteen fraktiiliin.
+
+```{r}
+#| label: anon-03-1-fraktiililuokitus
+fraktiilit <- quantile(
+  data$k41,
+  probs = c(0, 0.25, 0.5, 0.75, 1)
+)
+
+data <- data |>
+  mutate(
+    k41 = cut(
+      k41,
+      breaks = as.vector(fraktiilit),
+      labels = c(1, 2, 3, 4),
+      include.lowest = TRUE
+    )
+  )
 
 ```
 
@@ -217,7 +345,7 @@ muuttujat <- rlang::exprs(
   k19_2_1, k19_2_2, k19_10_1, k19_10_2, k19_11_1, k19_11_2,
   k22_1_1, k22_2_1, k22_3_1,
   k23_1, k23_2, k23_3, k23_4, k23_5, k23_6, k23_7, k23_8, k23_9, k23_10, k23_11
-  )
+)
 
 # Loopataan harvinaisten ilmiöiden muuttujien läpi ja suoritettaan yhden muuttujan k-anonymisointi (eli yksinkertainen solujen tarkastus)
 # HUOM: Listaus sisältää muuttujaryhmät k3_1:k4_7, k12_1:k13_7, k22_1_1:k22_3_1 ja k23_1:k23_11. Näitä ei anonymisointisuunnitelman mukaisesti kuitenkaan tarkisteta.
@@ -233,77 +361,174 @@ rm(i, temp)
 
 ```
 
-Tulokset kuvaillaan tässä.
+Tarkistettavista muuttujista seuraavilla esiintyi ongelmia:
 
-Muutokset kuvaillaan tässä.
+-   `k7_10_1` (aseella tai voimankäyttövälineellä uhkaaminen, organisaation sisäinen, itse koettu): Vain neljä vastaajaa ovat kokeneet
+
+-   `k8_11_2` (voimankäyttövälineellä tai aseella vahingoittaminen, organisaation sisäinen, havaittu): Vain yksi vastaaja on havainnut
+
+-   `k9_5_1` (pakotettu seksuaalinen teko tai raiskaus, tai näiden yritys, organisaation sisäinen, itse koettu): Vain kolme vastaajaa ovat kokeneet
+
+-   `k18_5_1` (pakotettu seksuaalinen teko tai raiskaus, tai näiden yritys, organisaation ulkopuolinen, itse koettu): Vain kaksi vastaajaa ovat kokeneet
+
+-   `k18_5_2` (pakotettu seksuaalinen teko tai raiskaus, tai näiden yritys, organisaation ulkopuolinen, havaittu): Vain kaksi vastaajaa ovat havainneet
+
+Poistimme nämä muuttujat datatiedostosta kokonaan.
 
 ```{r}
 #| label: anon-05-muutokset
 
-
+data <- data |>
+  dplyr::select(!all_of(c("k7_10_1", "k8_11_2", "k9_5_1", "k18_5_1", "k18_5_2")))
 
 ```
 
 ## Kohta 3: Taustamuuttujien k-anonymisointi toisiaan vastaan {#sec-anonymisointi-kohta3}
 
+Tarkistimme taustamuuttujien 4-anonymiteetin ristiintaulukoimalla yllä mainitut muuttujayhdistelmät yksitellen ja viemällä tulokset Excel-taulukkoon. Taulukossa kokeilimme erilaisia kategoriayhdistämisiä tarkistaaksemme, millaisia vaikutuksia anonymiteetin täyttymiseen niillä olisi.
+
 ```{r}
-#| label: anon-06-taustamuuttujat-k_anon
+#| label: anon-06-taustamuuttujat-k_anon-2
 
-# Testattu toimivaksi tekaistulla datalla. HUOM: Vaatii nykyiset funktiossa olevat korjaukset (ks. code block 00_anon_funktiot)
-
-k_anonymity(data, limit = 5, k2, Organisaatioasema)
-k_anonymity(data, limit = 5, k2, Organisaatioasema, k31)
-k_anonymity(data, limit = 5, k2, Organisaatioasema, k32)
-k_anonymity(data, limit = 5, k2, Organisaatioasema, k33)
-k_anonymity(data, limit = 5, k2, Organisaatioasema, k34)
-k_anonymity(data, limit = 5, k2, Organisaatioasema, k35)
-k_anonymity(data, limit = 5, k2, Organisaatioasema, k37)
-k_anonymity(data, limit = 5, k2, Organisaatioasema, k41)
+k_anonymity(data, limit = 5, k2, Organisaatioasema, k32) |> filter(Freq != 0)
+k_anonymity(data, limit = 5, k2, Organisaatioasema, k33) |> filter(Freq != 0)
+k_anonymity(data, limit = 5, k2, Organisaatioasema, k34) |> filter(Freq != 0)
+k_anonymity(data, limit = 5, k2, Organisaatioasema, k35) |> filter(Freq != 0)
+k_anonymity(data, limit = 5, k2, Organisaatioasema, k37) |> filter(Freq != 0)
+k_anonymity(data, limit = 5, k2, Organisaatioasema, k41) |> filter(Freq != 0)
+k_anonymity(data, limit = 5, k2, Organisaatioasema, k31) |> filter(Freq != 0)
 
 ```
 
-Tulokset kuvaillaan tässä.
+Anonymiteettiä tarkastellessa emme ottaneet huomioon arvoa `-1`. Vastaaja on saanut tämän arvon, jos hänelle ei olla näytetty kysymystä; arvo määräytyy täydellisesti organisaatiokuuluvuudesta, jolloin siitä ei voida päätellä mitään uniikkia tietoa.
 
-Muutokset kuvaillaan tässä.
+Sopimuspalokuntien ja palokuntayhdistysten työrytmimuuttujien kohdalla muutoksia ei tarvittu tehdä ollenkaan, sillä 4-anonymiteetin kriteerit täyttyivät valmiiksi.
+
+Sukupuolen osalta totesimme, että arvoa `3` (muunsukupuolinen tai ei halua vastata) ei tarvita anonymisoida enempää, sillä arvosta ei enää voi päätellä, onko vastaajan sukupuoli muu kuin mies tai nainen, vai onko hän pidättäytynyt antamasta sukupuoltaan. Arvo ei siten sisällä pääteltävissä olevaa henkilötietoa.
+
+Pelastuslaitosten ja ensihoidon työrytmimuuttujan (`k32`) osalta tunnistimme ongelmaksi johdon ja hallinnollisen henkilöstön 12-tuntisten päivien vastaajat.
+
+Järjestöjen ja koulutusorganisaatioiden työrytmimuuttujan (`k37`) osalta tunnistimme yhden ongelman: hallinnollisen ja opetushenkilöstön työ- tai virkavapaalla olevat vastaajat.
+
+Työuran pituuden (`k41`) tarkastelussa tunnistimme useita ongelmia. Useimmat ongelmat eivät korjaannu organisaatioaseman tai organisaatiokuuluvuuden yhdistämisellä. Vähentämällä fraktiileja neljään korjasimme useimmat ongelmat.
+
+Korjataksemme useimmat ongelmat, päätimme tehdä seuraavat muutokset:
+
+-   Organisaatiokuuluvuudessa (`k2`) yhdistimme järjestöt ja koulutusorganisaatiot (`3` ja `4`) arvoksi `3`. Täten arvoa `4` ei enää ole, ja muuttujalla on kolme kategoriaa: `1` (Pelastuslaitokset ja ensihoito), `2` (Sopimuspalokunnat ja palokuntayhdistykset) ja `3` (Pelastusalan valtakunnalliset järjestöt, pelastusliitot sekä koulutusorganisaatiot).
+
+-   Organisaatioasemassa (`Organisaatioasema`) yhdistimme johto- ja esihenkilötason, asiantuntijatason sekä hallinnollisen ja tukipalveluhenkilöstötason (arvot `1`, `3` ja `4`) arvoksi `1`. Muutimme arvojen numerointia sopivammaksi, jolloin muuttujalla on neljä kategoriaa: `1` (Johto, asiantuntijat ja hallinto), `2` (Suorittava henkilöstö), `3` (Opetushenkilöstö) ja `4` (Opiskelija)
+
+-   Vähensimme työuran pituuden (`k41`) fraktiileja neljäksi. Muutos jouduttiin tekemään takautuvasti tässä dokumentissa, sillä aikaisempi data tuhottiin ensimmäisessä fraktiilimuutoksessa. Dokumentissa on huomio alaviitteenä fraktiilikoodauksen kohdassa.
+
+Muutosehdotusten lisäksi jouduimme muuttamaan vastausarvoja neljälle vastaajalle, jotta heidän anonymiteettinsa voidaan taata:
+
+-   Yksi asiantuntija sopimuspalokunnista tai palokuntayhdistyksistä, joka työskentelee virasto- tai toimistotyöajalla muutettiin pelastuslaitoksen tai ensihoidon henkilöstöksi. Vaikka taustamuuttujista ei yksittäin luultavasti voitaisi tunnistaa vastaajaa, hänen muut vastauksensa voivat riittää yksilöimään hänet. Vastaanottavassa ryhmässä on yli 4 vastaajaa jokaisessa taustamuuttujatarkastuksessa, joten tunnistettavuuden riski laskee huomattavasti.
+
+-   Kolme naispuolista opiskelijaa järjestöistä tai koulutusorganisaatioista muutettiin satunnaisesti joko miespuolisiksi tai muu-ryhmään. Kuten yllä, näiden vastaajien anonymiteetti olisi voinut rikkoutua muiden vastausten tarkistuksessa. Vastaanottavissa ryhmissä on yli 4 vastajaa jokaisessa taustamuuttujatarkastuksessa, joten tunnistettavuuden riski laskee niin ikään näille vastaajille huomattavasti.
+
+Emme näe, että kyselytutkimuksen myöhemmät tulokset vaikuttuvat suuresti näiden vastaajien datamuunnoksista. Anonymiteetin kannalta hyöty on tutkimuksellista haittaa nähden suurempi.
+
+Tilastoteknisesti teimme neljän vastaajan datamuunnokset ensin ja kategorioiden yhdistämiset jälkeen.
 
 ```{r}
 #| label: anon-07-muutokset
 
+# Asiantuntija sopimuspalokunnista tai palokuntayhdistyksistä, joka työskentelee virasto- tai toimistotyöajalla muutetaan pelastuslaitoksen tai ensihoidon henkilöstöksi
+data$k2 <- replace(
+  data$k2,
+  data$ID == 260,
+  1
+)
 
+# Naispuoliset opiskelijat järjestöistä tai koulutusorganisaatioista muutetaan satunnaisesti miespuolisiksi tai muu-ryhmään
+data$k31 <- replace(
+  data$k31,
+  data$ID %in% c(181, 182, 187),
+  sample(c(2, 3), 1, replace = TRUE)
+)
+
+# Organisaatiokuuluvuuden muutos
+data <- data |>
+  mutate(
+    across(
+      k2,
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        2 ~ 2,
+        c(3,4) ~ 3
+      )
+    )
+  )
+
+# Organisaatioaseman muutos
+data <- data |>
+  mutate(
+    across(
+      Organisaatioasema,
+      ~ case_match(
+        .x,
+        c(1, 3) ~ 1,
+        2 ~ 2,
+        c(4, 5) ~ 3,
+        6 ~ 4
+      )
+    )
+  )
 
 ```
 
 ## Kohta 4: Harvinaisten ilmiöiden k-anonymisointi taustamuuttujia vastaan {#sec-anonymisointi-kohta4}
 
-```{r}
-#| label: anon-08-harvinaiset_k-anon
+**Tässä on ongelmia käytännössä kaikilla muuttujilla. Tämän toteuttaminen johtaisi melkein kaikkien sensitiivisten muuttujien poistamiseen. Konsultoidaan Tietoarkistoa asiasta ennen toteuttamista, ja tehdään väliaikaiset tulokset anonymisoituna käsin (alle 5 ei ilmaista numerona).**
 
-# Testattu toimivaksi tekaistulla datalla. HUOM: Vaatii nykyiset funktiossa olevat korjaukset (ks. code block 00_anon_funktiot)
+## Kooste muutoksista {#sec-anonymisointi-kooste}
 
-tulokset_kohta4 <- list()
+Seuraavat muutokset tehtiin datatiedostolle:
 
-for (i in muuttujat) {
-  temp <- list()
-  for (j in taustamuuttujat) {
-    temp[[rlang::as_string(j)]] <- k_anonymity(data, limit = 5, i, j)
-  }
-  tulokset_kohta4[[rlang::as_string(i)]] <- temp
-}
+-   Organisaatiokuuluvuus (`k2`): Järjestöt (`3`) ja koulutusorganisaatiot (`4`) yhdistettiin yhdeksi luokaksi.
 
-# Poistetaan väliaikaiset muuttujat siisteyden vuoksi
-rm(i, j, temp)
-```
+    -   Uudet koodit: `1` (Pelastuslaitokset ja ensihoito), `2` (Sopimuspalokunnat ja palokuntayhdistykset), `3` (Järjestöt, pelastusliitot ja koulut)
 
-Tulokset kuvaillaan tässä.
+-   Poistimme seuraavat muuttujat:
 
-Muutokset kuvaillaan tässä.
+    -   `k7_10_1` (aseella tai voimankäyttövälineellä uhkaaminen, organisaation sisäinen, itse koettu)
 
-```{r}
-#| label: anon-09-muutokset
+    -   `k8_11_2` (voimankäyttövälineellä tai aseella vahingoittaminen, organisaation sisäinen, havaittu)
 
+    -   `k9_5_1` (pakotettu seksuaalinen teko tai raiskaus, tai näiden yritys, organisaation sisäinen, itse koettu)
 
+    -   `k18_5_1` (pakotettu seksuaalinen teko tai raiskaus, tai näiden yritys, organisaation ulkopuolinen, itse koettu)
 
-```
+    -   `k18_5_2` (pakotettu seksuaalinen teko tai raiskaus, tai näiden yritys, organisaation ulkopuolinen, havaittu)
+
+-   Sukupuoli (`k31`): Muunsukupuoliset (`3`) ja vastaamisesta kieltäytyneet (`4`) yhdistettiin yhdeksi luokaksi.
+
+    -   Uudet koodit: `1` (Nainen), `2` (Mies), `3` (Muu/EHV)
+
+-   Työrytmi, pelastuslaitokset tai ensihoito (`k32`): Virasto- tai toimistotyöaika (`3`) ja työ- tai virkavapaalla (`4`) yhdistettiin yhdeksi luokaksi.
+
+    -   Uudet koodit: `1` (24h työvuorot), `2` (12h työvuorot), `3` (Muu työaika tai vapaalla), `-1` (ei esitetty)
+
+-   Viikottainen työmääräarvio, sopimuspalokunnat ja palokuntayhdistykset (`k33`): 11-20 tuntia (`4`) ja yli 21 tuntia (`5`) yhdistettiin yhdeksi luokaksi.
+
+    -   Uudet koodit: `1` (Alle 2 tuntia viikossa), `2` (2-5 tuntia viikossa), `3` (6-10 tuntia viikossa), `4` (Yli 10 tuntia viikossa), `-1` (ei esitetty)
+
+-   Varallaolon kuukausittainen työmääräarvio, sopimuspalokunnat ja palokuntayhdistykset (`k35`): 121-200 tuntia (`4`) ja yli 200 tuntia (`5`) yhdistettiin yhdeksi luokaksi.
+
+    -   Uudet koodit: `1` (En ollenkaan), `2` (1-60 tuntia), `3` (61-120 tuntia), `4` (Yli 120 tuntia), `-1` (ei esitetty)
+
+-   Organisaatioasema (`Organisaatioasema`): Johto- tai esihenkilötaso (`1`) ja hallinnollinen tai tukipalveluhenkilöstö (`4`) yhdistettiin yhdeksi luokaksi, ja asiantuntijat (`3`) ja opetushenkilöstö (`5`) yhdistettiin yhdeksi luokaksi.
+
+    -   Uudet koodit: `1` (Johto- tai hallintotaso), `2` (Suorittava henkilöstö), `3` (Asiantuntijat ja opettajat), `4` (Opiskelijat)
+
+-   Työuran pituus (`k41`) luokiteltiin neljään fraktiiliin.
+
+    -   Uudet koodit: `1` (alin neljännes), `2` (toinen neljännes), `3` (kolmas neljännes), `4` (ylin neljännes)
+
+-   Yhden vastaajan organisaatiokuuluvuus (`2`) muutettiin suojataksemme vastaajan anonymiteettiä.
+
+-   Kolmen vastaajan sukupuolet (`k31`) muutettiin satunnaisesti suojataksemme vastaajien anonymiteettiä.
 
 ## Datan tallennus {#sec-anonymisointi-datantallennus}
 
@@ -312,6 +537,6 @@ Anonymisoinnin jälkeen tallensimme lopullisen datatiedoston `csv`-muotoon. Tall
 ```{r}
 #| label: anon-10-tallennus
 
-write.csv2(data, file = "output/anonymisoitudata.csv")
+write.csv2(data, file = "output/anonymisoitudata.csv", row.names = FALSE)
 
 ```

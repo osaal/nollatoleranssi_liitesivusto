@@ -1,7 +1,7 @@
 # Puhdistaminen {#sec-puhdistaminen}
 
 ---
-eval: false
+eval: true
 ---
 
 Tässä osiossa puhdistamme datatiedostosta joitain virheellisiä kyselyvastauksia sekä tarkistamme puuttuvien vastausten piirteet.
@@ -19,7 +19,7 @@ library(mice)
 ```{r}
 #| label: puhdistaminen-01-importointi
 
-data <- read.csv2("output/koodattudata.csv")
+data <- read.csv2("output/koodattudata.csv", tryLogical = FALSE)
 
 ```
 
@@ -40,11 +40,25 @@ Poistamisen jälkeen datatiedostossa oli `r nrow(data)` vastaajaa.
 
 ## Puuttuvien vastausten piirreanalyysi {#sec-puhdistaminen-puuttuvat}
 
-Tähän laitetaan puuttuvien vastausten analysointi `mice`-paketilla. Tarkistetaan ainakin:
+Tarkistimme puuttuvien vastausten piirteet `mice`-paketin `md.pattern`-toiminnolla. Piirteet luokitellaan eri yhdistelmiin olemassaolevista ja puuttuvista vastauksista, ja niiden esiintymismäärät lasketaan yhteen. Tarkastimme näistä eniten esiintyvät puuttuvat muuttujayhdistelmät.
 
-1.  Onko datassa vastaajia, jotka jättivät vastaamatta koko kyselyyn? (Eli `NA` kaikissa kysymyksissä, joissa sellainen voi esiintyä)
-    1.  Poistetaan datatiedostosta
-    2.  Motivaatio: Vaikka he vastasivat taustakysymyksiin (sillä he eivät voineet palauttaa kyselyä vastaamatta pakollisiin kysymyksiin), heidän datansa ei tule sisältymään käytännössä mihinkään analyysiin.
+```{r}
+#| label: puhdistaminen-03-puuttuvatpiirre
+
+puuttuvat <- data |>
+  mice::md.pattern(plot = FALSE) |>
+  as_tibble(rownames = "Määrä")
+puuttuvat$Määrä <- as.numeric(puuttuvat$Määrä)
+
+```
+
+Puuttuvien vastausten uniikkeja muuttujayhdistelmiä on yhteensä 889 kappaletta.
+
+Yleisimmällä puuttivien vastausten yhdistelmällä on 91 vastaajaa (yhdistelmä A). Tältä muuttujayhdistelmältä löytyy puuttuvia vastauksia kaikilta työuran muutossuunnitelmien muuttujilta. Toisin sanoen, nämä 91 vastaajaa eivät ole suunnitelleet mitään muutoksia toimintaan osallistumiseensa, mutta ovat vastanneet kaikkiin muihin kyselyn kysymyksiin.
+
+Toiseksi yleisimmällä puuttuvien vastausten yhdistelmällä on 10 vastajaa (yhdistelmä B). Tältä muuttujayhdistelmältä löytyy puuttuvia vastauksia vain työuran muutossuunnitelmien muuttujilla vastausvaihtoehdoilla "Olen toteuttamassa" ja "Olen jo tehnyt". Toisin sanoen, nämä 10 vastaajaa ovat vastanneet kaikkiin muihin kysymyksiin, mutta eivät ole ilmaisseet olevansa toteuttamassa tai jo tehneensä mitään toimintaan osallistumisen muutoksia.
+
+Muut yhdistelmät tippuvat alle 10 vastaajan. Emme näe tarpeen käsitellä näitä muuttujayhdistelmiä, sillä määrät ovat jo alle promillen koko datatiedostosta.
 
 ## Datan tallennus {#sec-puhdistaminen-tallennus}
 
@@ -53,6 +67,6 @@ Viimeiseksi data tallennettiin tilapäiseksi tiedostoksi anonymisointia varten. 
 ```{r}
 #| label: puhdistaminen-XX-tallennus
 
-write.csv2(data, file = "output/puhdistettudata.csv")
+write.csv2(data, file = "output/puhdistettudata.csv", row.names = FALSE)
 
 ```

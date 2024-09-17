@@ -1,0 +1,14 @@
+Type: project
+Description: Nollatoleranssi-hankkeen tekninen liitesivusto
+Depends:
+  tidyverse
+  prisma-flowdiagram/PRISMA2020@main
+  ggstatsplot
+  metafor
+  knitr
+  PRISMAstatement
+  mice
+  checkmate
+  cli
+  rlang
+

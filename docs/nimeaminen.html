@@ -215,13 +215,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
   </li>
   <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-kyselyn-tulokset" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Kyselyn tulokset</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-kyselyn-tulokset">    
+        <li>
+    <a class="dropdown-item" href="./metatiedot.html" rel="" target="">
+ <span class="dropdown-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Kyselyn metatiedot</span></span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-mittariston-validointi" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">Mittariston validointi</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-mittariston-validointi">    
         <li>
     <a class="dropdown-item" href="./efabias.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Esiintyvyyden EFA-mallin bias-testit</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Esiintyvyyden EFA-mallin bias-testit</span></span></a>
   </li>  
     </ul>
   </li>
@@ -319,7 +330,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span id="sec-nimeaminen" class="quarto-section-identifier"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Nimeäminen</span></span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Koodi</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title"><span id="sec-nimeaminen" class="quarto-section-identifier"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Nimeäminen</span></span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Koodi</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Näytä kaikki koodi</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Piilota kaikki koodi</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">Näytä lähdekoodi</a></li></ul></div></div>
 </div>
 
 
@@ -337,6 +348,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Seuraavaksi muuttujat nimettiin hankkeessa vakiintuneiden lyhenteiden mukaisesti. Tässä listataan nimeämiset lomakkeen (ja täten datatiedoston) järjestyksessä.</p>
 <p>Alkuperäiset nimeämiset löytyvät <code>csv</code>-tiedostosta tämän verkkosivun lähdekoodissa, kansiossa <code>data &gt; muuttujiennimet.csv</code>.</p>
 <p>Alkuperäiset data-arvot löytyvät niinikään <code>csv</code>-tiedostosta sijainnissa <code>data &gt; alkuperaisetarvot.csv</code>.</p>
+<div class="cell">
+<details>
+<summary>Koodi</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Koodi</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Avataan eksportoitu data sekä muuttujien nimet</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># HUOM: Nimet ovat tiedoston ensimmäisessä sarakkeessa, mutta ne haetaan tiedostosta merkkivektorina</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"output/Nollatoleranssi_yhdistettydata.csv"</span>, <span class="at">tryLogical =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>nimet <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"data/muuttujiennimet.csv"</span>, <span class="at">encoding =</span> <span class="st">"latin1"</span>, <span class="at">tryLogical =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Koodi) <span class="sc">%&gt;%</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.vector</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unlist</span>()</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Lisätään nimet "Linkkiversio" ja "Kieliversio", jotta datan uudelleennimeäminen olisi helpompaa</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>nimet <span class="ot">&lt;-</span> <span class="fu">append</span>(nimet, <span class="fu">c</span>(<span class="st">"Linkkiversio"</span>, <span class="st">"Kieliversio"</span>), <span class="at">after =</span> <span class="dv">0</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(data) <span class="ot">&lt;-</span> nimet</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Koodi</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv2</span>(data, <span class="st">"output/nimettydata.csv"</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 <section id="sec-nimeaminen-metatiedot" class="level2" data-number="15.1">
 <h2 data-number="15.1" class="anchored" data-anchor-id="sec-nimeaminen-metatiedot"><span class="header-section-number">15.1</span> Metatiedot</h2>
 <ol type="1">
@@ -806,126 +846,163 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Lähdekoodi</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Nimeäminen {#sec-nimeaminen}</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Seuraavaksi muuttujat nimettiin hankkeessa vakiintuneiden lyhenteiden mukaisesti. Tässä listataan nimeämiset lomakkeen (ja täten datatiedoston) järjestyksessä.</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>Alkuperäiset nimeämiset löytyvät <span class="in">`csv`</span>-tiedostosta tämän verkkosivun lähdekoodissa, kansiossa <span class="in">`data &gt; muuttujiennimet.csv`</span>.</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>Alkuperäiset data-arvot löytyvät niinikään <span class="in">`csv`</span>-tiedostosta sijainnissa <span class="in">`data &gt; alkuperaisetarvot.csv`</span>.</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## Metatiedot {#sec-nimeaminen-metatiedot}</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Linkkiversio** jätettiin sellaiseksi.</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Kieliversio** jätettiin sellaiseksi.</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**k1**: Olen tietoinen minusta kerättävistä tiedoista sekä niiden käsittelystä, ja annan suostumukseni tietojen keruuseen:</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>**k2**: Mihin organisaatioon/toimialaan kuulut?</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">## Organisaation sisäiset kokemukset {#sec-nimeaminen-sisaisetkokemukset}</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>**k3\_\[1-7\]**: Kuinka usein olet itse kohdannut seuraavia epäasiallisen kohtelun muotoja organisaatiosi sisällä viimeisen 12 kuukauden aikana? (7 alakysymystä)</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="ss">6.  </span>**k4\_\[1-7\]**: Kuinka usein olet havainnut kollegan kohdanneen seuraavia epäasiallisen kohtelun muotoja organisaatiosi sisällä viimeisen 12 kuukauden aikana? (7 alakysymystä)</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="ss">7.  </span>**k5\_\[1-9\]\_\[1-2\]**: Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä verbaalisesta väkivallasta:</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Ensimmäinen luku: 9 alakysymystä</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>Toinen luku: (1) Minä koin, (2) Kollegani koki</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="ss">8.  </span>**k6\_\[1-10\]\_\[1-2\]**: Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä omaisuuden vahingoittamisesta tai varastamisesta:</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Ensimmäinen luku: 10 alakysymystä</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>Toinen luku: (1) Minä koin, (2) Kollegani koki</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="ss">9.  </span>**k7\_\[1-14\]\_\[1-2\]**: Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta:</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Ensimmäinen luku: 14 alakysymystä</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>Toinen luku: (1) Minä koin, (2) Kollegani koki</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="ss">10. </span>**k8\_\[1-11\]\_\[1-2\]**: Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta:</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Ensimmäinen luku: 11 alakysymystä</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>Toinen luku: (1) Minä koin, (2) Kollegani koki</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="ss">11. </span>**k9\_\[1-10\]\_\[1-2\]**: Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä seksuaalisesta häirinnästä tai väkivallasta:</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Ensimmäinen luku: 10 alakysymystä</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>Toinen luku: (1) Minä koin, (2) Kollegani koki</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="ss">12. </span>**k10\_\[1-11\]\_\[1-2\]**: Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta:</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Ensimmäinen luku: 11 alakysymystä</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>Toinen luku: (1) Minä koin, (2) Kollegani koki</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="ss">13. </span>**k11\_\[1-16\]\_\[1-2\]**: Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä:</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Ensimmäinen luku: 16 alakysymystä</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>Toinen luku: (1) Minä koin, (2) Kollegani koki</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="fu">## Organisaation ulkopuoliset kokemukset {#sec-nimeaminen-ulkopuolisetkokemukset}</span></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="ss">14. </span>**k12\_\[1-7\]**: Kuinka usein olet itse kohdannut seuraavia epäasiallisen kohtelun muotoja organisaatiosi ulkopuoliselta henkilöltä viimeisen 12 kuukauden aikana? (7 alakysymystä)</span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="ss">15. </span>**k13\_\[1-7\]**: Kuinka usein olet havainnut kollegan kohdanneen seuraavia epäasiallisen kohtelun muotoja organisaatiosi ulkopuoliselta henkilöltä viimeisen 12 kuukauden aikana? (7 alakysymystä)</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="ss">16. </span>**k14\_\[1-9\]\_\[1-2\]**: Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta verbaalisesta väkivallasta:</span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Ensimmäinen luku: 9 alakysymystä</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>Toinen luku: (1) Minä koin, (2) Kollegani koki</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="ss">17. </span>**k15\_\[1-10\]\_\[1-2\]**: Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta omaisuuden vahingoittamisesta tai varastamisesta:</span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Ensimmäinen luku: 10 alakysymystä</span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>Toinen luku: (1) Minä koin, (2) Kollegani koki</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="ss">18. </span>**k16\_\[1-14\]\_\[1-2\]**: Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta:</span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Ensimmäinen luku: 14 alakysymystä</span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>Toinen luku: (1) Minä koin, (2) Kollegani koki</span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="ss">19. </span>**k17\_\[1-11\]\_\[1-2\]**: Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta:</span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Ensimmäinen luku: 11 alakysymystä</span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>Toinen luku: (1) Minä koin, (2) Kollegani koki</span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="ss">20. </span>**k18\_\[1-10\]\_\[1-2\]**: Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta seksuaalisesta häirinnästä tai väkivallasta:</span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="ss">    5.  </span>Ensimmäinen luku: 10 alakysymystä</span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="ss">    6.  </span>Toinen luku: (1) Minä koin, (2) Kollegani koki</span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="ss">21. </span>**k19\_\[1-11\]\_\[1-2\]**: Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta:</span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Ensimmäinen luku: 11 alakysymystä</span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>Toinen luku: (1) Minä koin, (2) Kollegani koki</span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="ss">22. </span>**k20\_\[1-7\]\_\[1-2\]**: Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta syrjinnästä:</span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Ensimmäinen luku: 7 alakysymystä</span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>Toinen luku: (1) Minä koin, (2) Kollegani koki</span>
-<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="fu">## Kohtelun vaikutukset {#sec-nimeaminen-vaikutukset}</span></span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="ss">23. </span>**k21\_\[1-3\]**: Miten vakavia sinuun kohdistuneen epäasiallisen käytöksen vaikutukset olivat?</span>
-<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Fyysiset vaikutukset</span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>Psyykkiset vaikutukset</span>
-<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a><span class="ss">    3.  </span>Ammatilliset vaikutukset</span>
-<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a><span class="ss">24. </span>**k22\_\[1-3\]**: Miten pitkäkestoisia sinuun kohdistuneen epäasiallisen kohtelun vaikutukset olivat?</span>
-<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Fyysiset vaikutukset</span>
-<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>Psyykkiset vaikutukset</span>
-<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a><span class="ss">    3.  </span>Ammatilliset vaikutukset</span>
-<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a><span class="ss">25. </span>**k22\_\[1-3\]\_1**: ... Jatkuu tällä hetkellä</span>
-<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a><span class="ss">26. </span>**k23\_\[1-11\]**: Miten reagoit epäasiallisen kohtelun kokemukseesi? (11 alakysymystä)</span>
-<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a><span class="fu">## Ilmoitusjärjestelmät ja työolot {#sec-nimeaminen-ilmoitusjarjestelmat}</span></span>
-<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a><span class="ss">27. </span>**k24\_\[1-3\]**: Onko organisaatiollasi käytössä ilmoitusjärjestelmä, jossa voit ilmoittaa epäasiallisen kohtelun tilanteista?</span>
-<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Organisaation sisällä tapahtuneille tilanteille</span>
-<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>Organisaation ulkopuolelta tulleelle kohtelulle</span>
-<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a><span class="ss">    3.  </span>Sekä sisäiset että ulkoiset tilanteet yhdessä järjestelmässä</span>
-<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a><span class="ss">28. </span>**k25\_\[1-3\]**: Onko organisaatiollasi tarjolla koulutusta ilmoitusjärjestelmän käyttöön?</span>
-<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Organisaation sisällä tapahtuneille tilanteille</span>
-<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>Organisaation ulkopuolelta tulleelle kohtelulle</span>
-<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a><span class="ss">    3.  </span>Sekä sisäiset että ulkoiset tilanteet yhdessä järjestelmässä</span>
-<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a><span class="ss">29. </span>**k26\_\[1-18\]**: Ota kantaa seuraaviin väitteisiin ilmoitusjärjestelmistä ja niiden käytöstä (18 alakysymystä)</span>
-<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a><span class="ss">30. </span>**k27\_\[1-4\]**: Seuraavat väittämät koskevat työtilannettasi ja sitä koskevia tuntemuksiasi. Miten usein seuraavat väittämät kuvaavat tilannettasi?</span>
-<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Tunnen itseni henkisesti uupuneeksi työssäni</span>
-<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>En ole kiinnostunut enkä innostunut työstäni</span>
-<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a><span class="ss">    3.  </span>Minun on vaikea pysyä tarkkaavaisena työssäni</span>
-<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a><span class="ss">    4.  </span>En pysty hallitsemaan tunteitani työssäni</span>
-<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a><span class="fu">## Toimenpiteet {#sec-nimeaminen-toimenpiteet}</span></span>
-<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a><span class="ss">31. </span>**k28\_\[1-12\]**: Onko organisaatiossasi käytössä seuraavia epäasialliseen kohteluun liittyviä toimenpiteitä tai ohjeita? (12 alakysymystä)</span>
-<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a><span class="ss">32. </span>**k29\_\[1-12\]**: Miten edellä olevat toimet mielestäsi vaikuttavat epäasiallisen kohtelun esiintyvyyteen? (12 alakysymystä)</span>
-<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a><span class="ss">33. </span>**k30\_\[1-13\]**: Miten hyödyllisinä koet seuraavat ehdotetut toimenpiteet epäasiallisen kohtelun estämiseksi tai vähentämiseksi? (13 alakysymystä)</span>
-<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a><span class="fu">## Taustakysymykset {#sec-nimeaminen-taustakysymykset}</span></span>
-<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a><span class="ss">34. </span>**k31**: Mikä sukupuolesi on?</span>
-<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a><span class="ss">35. </span>**k32**: Millaisella työrytmityksellä olet töissä pelastuslaitoksella tai ensihoidossa?</span>
-<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a><span class="ss">36. </span>**k33**: Kuinka monta tuntia käytät keskimäärin aikaa palokuntatoimintaan viikossa, poisluettuna varallaolo?</span>
-<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a><span class="ss">37. </span>**k34**: Teetkö varallaoloa tai oletko sopimuksenvaraisessa hälytysvalmiudessa?</span>
-<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a><span class="ss">38. </span>**k35**: Kuinka monta tuntia teet varallaoloa keskimäärin kuukaudessa?</span>
-<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a><span class="ss">39. </span>**k36\_\[1-7\]**: Millaisia toimintoja teet sopimuspalokunnassasi tai palokuntayhdistyksessäsi? (7 alakysymystä)</span>
-<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a><span class="ss">40. </span>**k37**: Millaisella rytmityksellä toimit organisaatiossasi?</span>
-<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a><span class="ss">41. </span>**k38**: Missä asemassa toimit organisaatiossasi pääsääntöisesti? (Järjestöt ja koulutusorganisaatiot)</span>
-<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a><span class="ss">42. </span>**k39**: Missä asemassa toimit organisaatiossasi pääsääntöisesti? (Pelastuslaitokset ja ensihoito sekä sopimuspalokunnat ja palokuntayhdistykset)</span>
-<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a><span class="ss">43. </span>**k40**: Mihin ammattiryhmään kuulut?</span>
-<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a><span class="ss">44. </span>**k41**: Kuinka kauan olet toiminut pelastusalalla tai ensihoidossa?</span>
-<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a><span class="ss">45. </span>**k42\_\[1-3\]\_\[1-3\]**: Onko sinulla ollut viimeisen 12 kuukauden aikana aikeita tai suunnitelmia muuttaa tilannettasi seuraavilla tavoilla, tai oletko jo muuttanut tilannettasi?</span>
-<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Ensimmäinen luku: (1) Muuttaa tehtävänkuvaani, (2) Vaihtaa organisaatiotani, (3) Lähteä alalta</span>
-<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>Toinen luku: (1) Olen harkinnut, (2) Olen toteuttamassa, (3) Olen jo tehnyt</span>
-<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a><span class="ss">46. </span>**k43**: Voitko kertoa syitä muutoksellesi tai sen aikeille?</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Nimeäminen {#sec-nimeaminen}</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>eval: true</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>Seuraavaksi muuttujat nimettiin hankkeessa vakiintuneiden lyhenteiden mukaisesti. Tässä listataan nimeämiset lomakkeen (ja täten datatiedoston) järjestyksessä.</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>Alkuperäiset nimeämiset löytyvät <span class="in">`csv`</span>-tiedostosta tämän verkkosivun lähdekoodissa, kansiossa <span class="in">`data &gt; muuttujiennimet.csv`</span>.</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>Alkuperäiset data-arvot löytyvät niinikään <span class="in">`csv`</span>-tiedostosta sijainnissa <span class="in">`data &gt; alkuperaisetarvot.csv`</span>.</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: nimeaminen-00-paketit</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: nimeaminen-01-nimeaminen</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Avataan eksportoitu data sekä muuttujien nimet</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="co"># HUOM: Nimet ovat tiedoston ensimmäisessä sarakkeessa, mutta ne haetaan tiedostosta merkkivektorina</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"output/Nollatoleranssi_yhdistettydata.csv"</span>, <span class="at">tryLogical =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>nimet <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"data/muuttujiennimet.csv"</span>, <span class="at">encoding =</span> <span class="st">"latin1"</span>, <span class="at">tryLogical =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Koodi) <span class="sc">%&gt;%</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.vector</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unlist</span>()</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Lisätään nimet "Linkkiversio" ja "Kieliversio", jotta datan uudelleennimeäminen olisi helpompaa</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>nimet <span class="ot">&lt;-</span> <span class="fu">append</span>(nimet, <span class="fu">c</span>(<span class="st">"Linkkiversio"</span>, <span class="st">"Kieliversio"</span>), <span class="at">after =</span> <span class="dv">0</span>)</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(data) <span class="ot">&lt;-</span> nimet</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: nimeaminen-02-tallennus</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv2</span>(data, <span class="st">"output/nimettydata.csv"</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a><span class="fu">## Metatiedot {#sec-nimeaminen-metatiedot}</span></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Linkkiversio** jätettiin sellaiseksi.</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Kieliversio** jätettiin sellaiseksi.</span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**k1**: Olen tietoinen minusta kerättävistä tiedoista sekä niiden käsittelystä, ja annan suostumukseni tietojen keruuseen:</span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>**k2**: Mihin organisaatioon/toimialaan kuulut?</span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a><span class="fu">## Organisaation sisäiset kokemukset {#sec-nimeaminen-sisaisetkokemukset}</span></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>**k3\_\[1-7\]**: Kuinka usein olet itse kohdannut seuraavia epäasiallisen kohtelun muotoja organisaatiosi sisällä viimeisen 12 kuukauden aikana? (7 alakysymystä)</span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a><span class="ss">6.  </span>**k4\_\[1-7\]**: Kuinka usein olet havainnut kollegan kohdanneen seuraavia epäasiallisen kohtelun muotoja organisaatiosi sisällä viimeisen 12 kuukauden aikana? (7 alakysymystä)</span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a><span class="ss">7.  </span>**k5\_\[1-9\]\_\[1-2\]**: Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä verbaalisesta väkivallasta:</span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Ensimmäinen luku: 9 alakysymystä</span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>Toinen luku: (1) Minä koin, (2) Kollegani koki</span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a><span class="ss">8.  </span>**k6\_\[1-10\]\_\[1-2\]**: Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä omaisuuden vahingoittamisesta tai varastamisesta:</span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Ensimmäinen luku: 10 alakysymystä</span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>Toinen luku: (1) Minä koin, (2) Kollegani koki</span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a><span class="ss">9.  </span>**k7\_\[1-14\]\_\[1-2\]**: Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta:</span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Ensimmäinen luku: 14 alakysymystä</span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>Toinen luku: (1) Minä koin, (2) Kollegani koki</span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a><span class="ss">10. </span>**k8\_\[1-11\]\_\[1-2\]**: Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta:</span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Ensimmäinen luku: 11 alakysymystä</span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>Toinen luku: (1) Minä koin, (2) Kollegani koki</span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a><span class="ss">11. </span>**k9\_\[1-10\]\_\[1-2\]**: Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä seksuaalisesta häirinnästä tai väkivallasta:</span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Ensimmäinen luku: 10 alakysymystä</span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>Toinen luku: (1) Minä koin, (2) Kollegani koki</span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a><span class="ss">12. </span>**k10\_\[1-11\]\_\[1-2\]**: Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta:</span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Ensimmäinen luku: 11 alakysymystä</span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>Toinen luku: (1) Minä koin, (2) Kollegani koki</span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a><span class="ss">13. </span>**k11\_\[1-16\]\_\[1-2\]**: Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä:</span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Ensimmäinen luku: 16 alakysymystä</span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>Toinen luku: (1) Minä koin, (2) Kollegani koki</span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a><span class="fu">## Organisaation ulkopuoliset kokemukset {#sec-nimeaminen-ulkopuolisetkokemukset}</span></span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a><span class="ss">14. </span>**k12\_\[1-7\]**: Kuinka usein olet itse kohdannut seuraavia epäasiallisen kohtelun muotoja organisaatiosi ulkopuoliselta henkilöltä viimeisen 12 kuukauden aikana? (7 alakysymystä)</span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a><span class="ss">15. </span>**k13\_\[1-7\]**: Kuinka usein olet havainnut kollegan kohdanneen seuraavia epäasiallisen kohtelun muotoja organisaatiosi ulkopuoliselta henkilöltä viimeisen 12 kuukauden aikana? (7 alakysymystä)</span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a><span class="ss">16. </span>**k14\_\[1-9\]\_\[1-2\]**: Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta verbaalisesta väkivallasta:</span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Ensimmäinen luku: 9 alakysymystä</span>
+<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>Toinen luku: (1) Minä koin, (2) Kollegani koki</span>
+<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a><span class="ss">17. </span>**k15\_\[1-10\]\_\[1-2\]**: Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta omaisuuden vahingoittamisesta tai varastamisesta:</span>
+<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Ensimmäinen luku: 10 alakysymystä</span>
+<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>Toinen luku: (1) Minä koin, (2) Kollegani koki</span>
+<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a><span class="ss">18. </span>**k16\_\[1-14\]\_\[1-2\]**: Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta:</span>
+<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Ensimmäinen luku: 14 alakysymystä</span>
+<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>Toinen luku: (1) Minä koin, (2) Kollegani koki</span>
+<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a><span class="ss">19. </span>**k17\_\[1-11\]\_\[1-2\]**: Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta:</span>
+<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Ensimmäinen luku: 11 alakysymystä</span>
+<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>Toinen luku: (1) Minä koin, (2) Kollegani koki</span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a><span class="ss">20. </span>**k18\_\[1-10\]\_\[1-2\]**: Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta seksuaalisesta häirinnästä tai väkivallasta:</span>
+<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a><span class="ss">    5.  </span>Ensimmäinen luku: 10 alakysymystä</span>
+<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a><span class="ss">    6.  </span>Toinen luku: (1) Minä koin, (2) Kollegani koki</span>
+<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a><span class="ss">21. </span>**k19\_\[1-11\]\_\[1-2\]**: Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta:</span>
+<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Ensimmäinen luku: 11 alakysymystä</span>
+<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>Toinen luku: (1) Minä koin, (2) Kollegani koki</span>
+<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a><span class="ss">22. </span>**k20\_\[1-7\]\_\[1-2\]**: Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta syrjinnästä:</span>
+<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Ensimmäinen luku: 7 alakysymystä</span>
+<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>Toinen luku: (1) Minä koin, (2) Kollegani koki</span>
+<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a><span class="fu">## Kohtelun vaikutukset {#sec-nimeaminen-vaikutukset}</span></span>
+<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a><span class="ss">23. </span>**k21\_\[1-3\]**: Miten vakavia sinuun kohdistuneen epäasiallisen käytöksen vaikutukset olivat?</span>
+<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Fyysiset vaikutukset</span>
+<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>Psyykkiset vaikutukset</span>
+<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a><span class="ss">    3.  </span>Ammatilliset vaikutukset</span>
+<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a><span class="ss">24. </span>**k22\_\[1-3\]**: Miten pitkäkestoisia sinuun kohdistuneen epäasiallisen kohtelun vaikutukset olivat?</span>
+<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Fyysiset vaikutukset</span>
+<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>Psyykkiset vaikutukset</span>
+<span id="cb4-119"><a href="#cb4-119" aria-hidden="true" tabindex="-1"></a><span class="ss">    3.  </span>Ammatilliset vaikutukset</span>
+<span id="cb4-120"><a href="#cb4-120" aria-hidden="true" tabindex="-1"></a><span class="ss">25. </span>**k22\_\[1-3\]\_1**: ... Jatkuu tällä hetkellä</span>
+<span id="cb4-121"><a href="#cb4-121" aria-hidden="true" tabindex="-1"></a><span class="ss">26. </span>**k23\_\[1-11\]**: Miten reagoit epäasiallisen kohtelun kokemukseesi? (11 alakysymystä)</span>
+<span id="cb4-122"><a href="#cb4-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-123"><a href="#cb4-123" aria-hidden="true" tabindex="-1"></a><span class="fu">## Ilmoitusjärjestelmät ja työolot {#sec-nimeaminen-ilmoitusjarjestelmat}</span></span>
+<span id="cb4-124"><a href="#cb4-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-125"><a href="#cb4-125" aria-hidden="true" tabindex="-1"></a><span class="ss">27. </span>**k24\_\[1-3\]**: Onko organisaatiollasi käytössä ilmoitusjärjestelmä, jossa voit ilmoittaa epäasiallisen kohtelun tilanteista?</span>
+<span id="cb4-126"><a href="#cb4-126" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Organisaation sisällä tapahtuneille tilanteille</span>
+<span id="cb4-127"><a href="#cb4-127" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>Organisaation ulkopuolelta tulleelle kohtelulle</span>
+<span id="cb4-128"><a href="#cb4-128" aria-hidden="true" tabindex="-1"></a><span class="ss">    3.  </span>Sekä sisäiset että ulkoiset tilanteet yhdessä järjestelmässä</span>
+<span id="cb4-129"><a href="#cb4-129" aria-hidden="true" tabindex="-1"></a><span class="ss">28. </span>**k25\_\[1-3\]**: Onko organisaatiollasi tarjolla koulutusta ilmoitusjärjestelmän käyttöön?</span>
+<span id="cb4-130"><a href="#cb4-130" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Organisaation sisällä tapahtuneille tilanteille</span>
+<span id="cb4-131"><a href="#cb4-131" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>Organisaation ulkopuolelta tulleelle kohtelulle</span>
+<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a><span class="ss">    3.  </span>Sekä sisäiset että ulkoiset tilanteet yhdessä järjestelmässä</span>
+<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a><span class="ss">29. </span>**k26\_\[1-18\]**: Ota kantaa seuraaviin väitteisiin ilmoitusjärjestelmistä ja niiden käytöstä (18 alakysymystä)</span>
+<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a><span class="ss">30. </span>**k27\_\[1-4\]**: Seuraavat väittämät koskevat työtilannettasi ja sitä koskevia tuntemuksiasi. Miten usein seuraavat väittämät kuvaavat tilannettasi?</span>
+<span id="cb4-135"><a href="#cb4-135" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Tunnen itseni henkisesti uupuneeksi työssäni</span>
+<span id="cb4-136"><a href="#cb4-136" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>En ole kiinnostunut enkä innostunut työstäni</span>
+<span id="cb4-137"><a href="#cb4-137" aria-hidden="true" tabindex="-1"></a><span class="ss">    3.  </span>Minun on vaikea pysyä tarkkaavaisena työssäni</span>
+<span id="cb4-138"><a href="#cb4-138" aria-hidden="true" tabindex="-1"></a><span class="ss">    4.  </span>En pysty hallitsemaan tunteitani työssäni</span>
+<span id="cb4-139"><a href="#cb4-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-140"><a href="#cb4-140" aria-hidden="true" tabindex="-1"></a><span class="fu">## Toimenpiteet {#sec-nimeaminen-toimenpiteet}</span></span>
+<span id="cb4-141"><a href="#cb4-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-142"><a href="#cb4-142" aria-hidden="true" tabindex="-1"></a><span class="ss">31. </span>**k28\_\[1-12\]**: Onko organisaatiossasi käytössä seuraavia epäasialliseen kohteluun liittyviä toimenpiteitä tai ohjeita? (12 alakysymystä)</span>
+<span id="cb4-143"><a href="#cb4-143" aria-hidden="true" tabindex="-1"></a><span class="ss">32. </span>**k29\_\[1-12\]**: Miten edellä olevat toimet mielestäsi vaikuttavat epäasiallisen kohtelun esiintyvyyteen? (12 alakysymystä)</span>
+<span id="cb4-144"><a href="#cb4-144" aria-hidden="true" tabindex="-1"></a><span class="ss">33. </span>**k30\_\[1-13\]**: Miten hyödyllisinä koet seuraavat ehdotetut toimenpiteet epäasiallisen kohtelun estämiseksi tai vähentämiseksi? (13 alakysymystä)</span>
+<span id="cb4-145"><a href="#cb4-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-146"><a href="#cb4-146" aria-hidden="true" tabindex="-1"></a><span class="fu">## Taustakysymykset {#sec-nimeaminen-taustakysymykset}</span></span>
+<span id="cb4-147"><a href="#cb4-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-148"><a href="#cb4-148" aria-hidden="true" tabindex="-1"></a><span class="ss">34. </span>**k31**: Mikä sukupuolesi on?</span>
+<span id="cb4-149"><a href="#cb4-149" aria-hidden="true" tabindex="-1"></a><span class="ss">35. </span>**k32**: Millaisella työrytmityksellä olet töissä pelastuslaitoksella tai ensihoidossa?</span>
+<span id="cb4-150"><a href="#cb4-150" aria-hidden="true" tabindex="-1"></a><span class="ss">36. </span>**k33**: Kuinka monta tuntia käytät keskimäärin aikaa palokuntatoimintaan viikossa, poisluettuna varallaolo?</span>
+<span id="cb4-151"><a href="#cb4-151" aria-hidden="true" tabindex="-1"></a><span class="ss">37. </span>**k34**: Teetkö varallaoloa tai oletko sopimuksenvaraisessa hälytysvalmiudessa?</span>
+<span id="cb4-152"><a href="#cb4-152" aria-hidden="true" tabindex="-1"></a><span class="ss">38. </span>**k35**: Kuinka monta tuntia teet varallaoloa keskimäärin kuukaudessa?</span>
+<span id="cb4-153"><a href="#cb4-153" aria-hidden="true" tabindex="-1"></a><span class="ss">39. </span>**k36\_\[1-7\]**: Millaisia toimintoja teet sopimuspalokunnassasi tai palokuntayhdistyksessäsi? (7 alakysymystä)</span>
+<span id="cb4-154"><a href="#cb4-154" aria-hidden="true" tabindex="-1"></a><span class="ss">40. </span>**k37**: Millaisella rytmityksellä toimit organisaatiossasi?</span>
+<span id="cb4-155"><a href="#cb4-155" aria-hidden="true" tabindex="-1"></a><span class="ss">41. </span>**k38**: Missä asemassa toimit organisaatiossasi pääsääntöisesti? (Järjestöt ja koulutusorganisaatiot)</span>
+<span id="cb4-156"><a href="#cb4-156" aria-hidden="true" tabindex="-1"></a><span class="ss">42. </span>**k39**: Missä asemassa toimit organisaatiossasi pääsääntöisesti? (Pelastuslaitokset ja ensihoito sekä sopimuspalokunnat ja palokuntayhdistykset)</span>
+<span id="cb4-157"><a href="#cb4-157" aria-hidden="true" tabindex="-1"></a><span class="ss">43. </span>**k40**: Mihin ammattiryhmään kuulut?</span>
+<span id="cb4-158"><a href="#cb4-158" aria-hidden="true" tabindex="-1"></a><span class="ss">44. </span>**k41**: Kuinka kauan olet toiminut pelastusalalla tai ensihoidossa?</span>
+<span id="cb4-159"><a href="#cb4-159" aria-hidden="true" tabindex="-1"></a><span class="ss">45. </span>**k42\_\[1-3\]\_\[1-3\]**: Onko sinulla ollut viimeisen 12 kuukauden aikana aikeita tai suunnitelmia muuttaa tilannettasi seuraavilla tavoilla, tai oletko jo muuttanut tilannettasi?</span>
+<span id="cb4-160"><a href="#cb4-160" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Ensimmäinen luku: (1) Muuttaa tehtävänkuvaani, (2) Vaihtaa organisaatiotani, (3) Lähteä alalta</span>
+<span id="cb4-161"><a href="#cb4-161" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>Toinen luku: (1) Olen harkinnut, (2) Olen toteuttamassa, (3) Olen jo tehnyt</span>
+<span id="cb4-162"><a href="#cb4-162" aria-hidden="true" tabindex="-1"></a><span class="ss">46. </span>**k43**: Voitko kertoa syitä muutoksellesi tai sen aikeille?</span>
+</code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

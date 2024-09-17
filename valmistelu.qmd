@@ -1,7 +1,7 @@
 # Valmistelu {#sec-valmistelu}
 
 ---
-eval: false
+eval: true
 ---
 
 ```{r}
@@ -21,7 +21,7 @@ lapply(paketit, require, character.only = TRUE)
 ```{r}
 #| label: valmistelu-01-importointi
 
-data <- read.csv2("data/nimettydata.csv", tryLogical = FALSE) %>% as_tibble()
+data <- read.csv2("output/nimettydata.csv", tryLogical = FALSE) %>% as_tibble()
 
 ```
 
@@ -539,6 +539,6 @@ Koodausten jälkeen tallensimme lopullisen datatiedoston `csv`-muotoon. Tallennu
 ```{r}
 #| label: valmistelu-10-datatallennus
 
-write.csv2(data, file = "output/koodattudata.csv")
+write.csv2(data, file = "output/koodattudata.csv", row.names = FALSE)
 
 ```

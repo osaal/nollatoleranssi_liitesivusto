@@ -1,10 +1,46 @@
 # Nimeäminen {#sec-nimeaminen}
 
+---
+eval: true
+---
+
 Seuraavaksi muuttujat nimettiin hankkeessa vakiintuneiden lyhenteiden mukaisesti. Tässä listataan nimeämiset lomakkeen (ja täten datatiedoston) järjestyksessä.
 
 Alkuperäiset nimeämiset löytyvät `csv`-tiedostosta tämän verkkosivun lähdekoodissa, kansiossa `data > muuttujiennimet.csv`.
 
 Alkuperäiset data-arvot löytyvät niinikään `csv`-tiedostosta sijainnissa `data > alkuperaisetarvot.csv`.
+
+```{r}
+#| label: nimeaminen-00-paketit
+
+library(tidyverse)
+
+```
+
+```{r}
+#| label: nimeaminen-01-nimeaminen
+
+# Avataan eksportoitu data sekä muuttujien nimet
+# HUOM: Nimet ovat tiedoston ensimmäisessä sarakkeessa, mutta ne haetaan tiedostosta merkkivektorina
+
+data <- read.csv2("output/Nollatoleranssi_yhdistettydata.csv", tryLogical = FALSE)
+nimet <- read.csv2("data/muuttujiennimet.csv", encoding = "latin1", tryLogical = FALSE) %>%
+  dplyr::select(Koodi) %>%
+  as.vector() %>%
+  unlist()
+
+# Lisätään nimet "Linkkiversio" ja "Kieliversio", jotta datan uudelleennimeäminen olisi helpompaa
+nimet <- append(nimet, c("Linkkiversio", "Kieliversio"), after = 0)
+colnames(data) <- nimet
+
+```
+
+```{r}
+#| label: nimeaminen-02-tallennus
+
+write.csv2(data, "output/nimettydata.csv", row.names = FALSE)
+
+```
 
 ## Metatiedot {#sec-nimeaminen-metatiedot}
 

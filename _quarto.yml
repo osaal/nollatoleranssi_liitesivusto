@@ -32,6 +32,9 @@ book:
         - valmistelu.qmd
         - puhdistaminen.qmd
         - anonymisointi.qmd
+    - part: "Kyselyn tulokset"
+      chapters:
+        - metatiedot.qmd
     - part: "Mittariston validointi"
       chapters:
         - efabias.qmd
@@ -46,6 +49,7 @@ book:
       - sidebar:kirjallisuuskatsaus
       - sidebar:katsauksenhaut
       - sidebar:kyselyprosessi
+      - sidebar:kyselyntulokset
       - sidebar:validointi
       - text: "Lähteet"
         file: lahteet.qmd
@@ -83,6 +87,11 @@ book:
         - valmistelu.qmd
         - puhdistaminen.qmd
         - anonymisointi.qmd
+    
+    - id: kyselyntulokset
+      title: "Kyselyn tulokset"
+      contents:
+        - metatiedot.qmd
     
     - id: validointi
       title: "Mittariston validointi"

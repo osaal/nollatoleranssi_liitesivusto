@@ -1,0 +1,278 @@
+# Kyselyn metatiedot {#sec-metatiedot}
+
+---
+eval: true
+---
+
+Tässä osiossa käymme läpi kyselytutkimuksen meta- ja taustatietojen tulokset. Tiedot pohjautuvat anonymisoituun datatiedostoon, jolloin ne ovat tarkistettavissa Tietoarkistoon sijoitetusta arkistokopiosta. Datatiedostoa ei ole saatavilla verkkosivun lähdekoodista. Suomalaisessa korkeakoulussa affilioitunut tutkija tai pro gradu -tutkielman tekijä voi ladata datatiedoston Tietoarkistosta kirjautumalla sisään HAKA-tunnistautumisella.
+
+## Metatietoja Webropolista {#sec-metatiedot-webropol}
+
+### Webropolista haetut tiedot kyselyn avaus- ja täyttöasteista {#sec-metatiedot-webropol-asteet}
+
+Haimme Webropol-palvelusta suoraan tiedot kyselylinkkien avauksesta, täytön aloittamisesta sekä kyselyn lähettämisestä. Kyselyn lähettämisaste vastaa kyselytutkimuksen vastausmääriä ennen puhdistamista ja anonymisointia. Tietoja ei ole saatavilla datatiedostosta.
+
+@tbl-metatiedot-webropolasteet osoittaa kunkin kyselylinkin avaus-, aloittamis- ja lähettämismäärät, sekä niiden prosentuaaliset osuudet avausmäärästä.
+
+| Kyselylinkki                                        | Avattu vastaajan toimesta | Vastaaminen aloitettu | Vastaus lähetetty |
+|-------------------|------------------|------------------|------------------|
+| Johdon kautta                                       | 560 (100 %)               | 376 (67 %)            | 249 (44 %)        |
+| Toimistojen, viestinnän ja yhteyshenkilöiden kautta | 1 068 (100 %)             | 622 (58 %)            | 422 (40 %)        |
+| Median kautta                                       | 1 223 (100 %)             | 643 (53 %)            | 377 (31 %)        |
+| **Yhteensä**                                        | **2 851 (100 %)**         | **1 641 (58 %)**      | **1 048 (37 %)**  |
+
+: Kyselylomakkeen avaus-, aloittamis- ja lähettämisasteet (n ja %) kyselylinkin mukaan {#tbl-metatiedot-webropolasteet}
+
+### Webropolista vietyjen raporttien vastausmäärät kieli- ja linkkiversioiden mukaan {#sec-metatiedot-webropol-linkkijakieli}
+
+Veimme Webropolista kaikki kyselytiedot eriteltynä suomen- ja ruotsinkielisten kyselyversioiden vastaajien välillä (ks. @sec-eksportointi). @tbl-metatiedot-linkkijakieli esittää vastausmäärät eriteltynä kyselylinkkien ja kieliversioiden välillä.
+
+| Kyselylinkki                                        | Suomenkielinen | Ruotsinkielinen | Yhteensä          |
+|--------------------|------------------|------------------|------------------|
+| Johdon kautta                                       | 242 (97 %)     | 7 (3 %)         | **249 (100 %)**   |
+| Toimistojen, viestinnän ja yhteyshenkilöiden kautta | 388 (92 %)     | 34 (8 %)        | **422 (100 %)**   |
+| Median kautta                                       | 352 (93 %)     | 25 (7 %)        | **377 (100 %)**   |
+| **Yhteensä**                                        | **982 (94 %)** | **66 (6 %)**    | **1 048 (100 %)** |
+
+: Kyselylomakkeen vastausmäärät kyselylinkin ja kieliversion mukaan (n ja %) ennen puhdistamista ja anonymisointia {#tbl-metatiedot-linkkijakieli}
+
+### Suostumuksensa kieltäneet vastaajat {#sec-metatiedot-webropol-kieltaytyneet}
+
+Virheen takia Webropol-järjestelmässä tallentui tiedot myös niistä vastaajista, jotka kieltäytyivät tietojensa käsittelystä ja arkistoinnista. Näiden tiedot poistettiin kyselyn käsittelyn yhteydessä (ks. @sec-puhdistaminen-suostumuskiellot).
+
+Ennen puhdistamista vastaajia oli yhteensä 1 048 kappaletta. Kieltävän suostumuksen antaneita oli yhteensä 23 kappaletta. Jäljelle jäi siten 1 025 vastaajaa.
+
+## Datatiedoston metatietojen kuvailu {#sec-metatiedot-metatiedot}
+
+```{r}
+#| label: metatiedot-00-paketit
+
+library(tidyverse)
+
+```
+
+```{r}
+#| label: metatiedot-01-avaaminen
+
+data <- read.csv2("output/anonymisoitudata.csv", tryLogical = FALSE)
+
+```
+
+Lopullisessa otoksessa on yhteensä `r nrow(data)` vastaajaa.
+
+### Yhteydenottomenetelmät {#sec-metatiedot-metatiedot-yhteydenottomenetelmat}
+
+```{r}
+#| label: fig-metatiedot-yhteydenottomenetelmat
+#| fig-cap: "Tutkimuksen vastaajat yhteydenottomenetelmittäin"
+
+data |>
+  mutate(
+    Linkkiversio = factor(
+      Linkkiversio,
+      labels = c("Johdon kautta", "Henkilöstön kautta", "Median kautta")
+    )
+  ) |>
+  ggplot(data = _, mapping = aes(x = Linkkiversio)) + 
+  geom_bar(stat = "count", fill = "#c20e1a") +
+  labs(y = "Määrä (n)", x = "Yhteydenottomenetelmät") + 
+  geom_text(
+    aes(label = after_stat(count)),
+    stat = "count",
+    vjust = 1.5,
+    colour = "white"
+  )
+
+```
+
+### Kieliversio {#sec-metatiedot-metatiedot-kieliversio}
+
+```{r}
+#| label: fig-metatiedot-kieliversio
+#| fig-cap: "Tutkimuksen vastaajat kyselyn kielen mukaan"
+
+data |>
+  mutate(
+    Kieliversio = factor(
+      Kieliversio,
+      labels = c("Suomi", "Ruotsi")
+    )
+  ) |>
+  ggplot(data = _, mapping = aes(x = Kieliversio)) + 
+  geom_bar(stat = "count", fill = "#c20e1a") +
+  labs(y = "Määrä (n)", x = "Kyselyn vastauskieli") + 
+  geom_text(
+    aes(label = after_stat(count)),
+    stat = "count",
+    vjust = 1.5,
+    colour = "white"
+  )
+```
+
+## Taustamuuttujat {#sec-metatiedot-taustamuuttujat}
+
+### Sukupuoli
+
+```{r}
+#| label: fig-metatiedot-sukupuoli
+#| fig-cap: "Tutkimuksen vastaajat sukupuolen mukaan"
+
+data |>
+  mutate(
+    k31 = factor(
+      k31,
+      labels = c("Nainen", "Mies", "Muu/EHV")
+    )
+  ) |>
+  ggplot(data = _, mapping = aes(x = k31)) + 
+  geom_bar(stat = "count", fill = "#c20e1a") +
+  labs(
+    y = "Määrä (n)",
+    x = "Sukupuoli",
+    caption = "Muu/EHV: Muunsukupuolinen tai ei halunnut vastata"
+  ) + 
+  geom_text(
+    aes(label = after_stat(count)),
+    stat = "count",
+    vjust = 1.5,
+    colour = "white"
+  ) +
+  theme(
+    plot.caption = element_text(hjust = 0)
+  )
+```
+
+### Organisaatiokuuluvuus
+
+```{r}
+#| label: fig-metatiedot-organisaatio
+#| fig-cap: "Tutkimuksen vastaajat organisaatioryhmän mukaan"
+
+data |>
+  mutate(
+    k2 = factor(
+      k2,
+      labels = c(
+        "Pelastuslaitos tai ensihoito",
+        "Sopimuspalokunta tai palokuntayhdistys",
+        "Järjestö, pelastusliitto tai koulu")
+    )
+  ) |>
+  ggplot(data = _, mapping = aes(x = k2)) + 
+  geom_bar(stat = "count", fill = "#c20e1a") +
+  labs(
+    y = "Määrä (n)",
+    x = "Organisaatioryhmä"
+  ) + 
+  geom_text(
+    aes(label = after_stat(count)),
+    stat = "count",
+    vjust = 1.5,
+    colour = "white"
+  ) + 
+  scale_x_discrete(
+    labels = function(x) str_wrap(x, width = 10)
+  )
+```
+
+### Työrytmitys
+
+```{r}
+#| label: fig-metatiedot-tyorytmi
+#| layout-nrow: 3
+#| fig-cap: "Tutkimuksen vastaajat työrytmityksen mukaan"
+#| fig-subcap:
+#|   - "Pelastuslaitos tai ensihoito"
+#|   - "Sopimuspalokunta tai palokuntayhdistys"
+#|   - "Järjestö, liitto tai koulu"
+
+data |>
+  filter(k2 == 1) |>
+  mutate(
+    k32 = factor(
+      k32,
+      labels = c(
+        "24h työvuorot",
+        "12h työvuorot",
+        "Muu työaika tai vapaalla"
+      )
+    )
+  ) |>
+  ggplot(data = _, mapping = aes(x = k32)) + 
+  geom_bar(stat = "count", fill = "#c20e1a") +
+  labs(
+    y = "Määrä (n)",
+    x = "Työrytmitys",
+    caption = "Vain pelastuslaitoksella tai ensihoidossa työskentelevät (n = 603)"
+  ) + 
+  geom_text(
+    aes(label = after_stat(count)),
+    stat = "count",
+    vjust = 1.5,
+    colour = "white"
+  ) +
+  theme(
+    plot.caption = element_text(hjust = 0)
+  )
+
+data |>
+  filter(k2 == 2) |>
+  mutate(
+    k33 = factor(
+      k33,
+      labels = c(
+        "Alle 2 tuntia viikossa",
+        "2-5 tuntia viikossa",
+        "6-10 tuntia viikossa",
+        "Yli 10 tuntia viikossa"
+      )
+    )
+  ) |>
+  ggplot(data = _, mapping = aes(x = k33)) + 
+  geom_bar(stat = "count", fill = "#c20e1a") +
+  labs(
+    y = "Määrä (n)",
+    x = "Työrytmitys",
+    caption = "Vain sopimuspalokunnissa tai palokuntayhdistyksissä toimivat (n = 341)"
+  ) + 
+  geom_text(
+    aes(label = after_stat(count)),
+    stat = "count",
+    vjust = 1.5,
+    colour = "white"
+  ) +
+  theme(
+    plot.caption = element_text(hjust = 0)
+  )
+
+data |>
+  filter(k2 == 3) |>
+  mutate(
+    k37 = factor(
+      k37,
+      levels = c(1, 2, 3, 4),
+      labels = c(
+        "Virasto- tai toimistotyöaika",
+        "Opiskelija",
+        "Kokonaistyöaika",
+        "Työ- tai virkavapaalla, muuten poissa organisaatiosta"
+      )
+    )
+  ) |>
+  ggplot(data = _, mapping = aes(x = k37)) + 
+  geom_bar(stat = "count", fill = "#c20e1a") +
+  labs(
+    y = "Määrä (n)",
+    x = "Työrytmitys",
+    caption = "Vain järjestöissä, pelastusliitoissa ja kouluissa toimivat (n = 81)"
+  ) + 
+  geom_text(
+    aes(label = after_stat(count)),
+    stat = "count",
+    vjust = 1.5,
+    colour = "white"
+  ) +
+  theme(
+    plot.caption = element_text(hjust = 0)
+  )
+```

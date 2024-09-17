@@ -1,447 +1,449 @@
-Koodi;Alkuperäinen teksti;
-k3_1;Kuinka usein olet itse kohdannut seuraavia epäasiallisen kohtelun muotoja organisaatiosi sisällä viimeisen 12 kuukauden aikana?:Verbaalinen väkivalta;
-k3_2;Kuinka usein olet itse kohdannut seuraavia epäasiallisen kohtelun muotoja organisaatiosi sisällä viimeisen 12 kuukauden aikana?:Omaisuuden vahingoittaminen tai varastaminen;
-k3_3;Kuinka usein olet itse kohdannut seuraavia epäasiallisen kohtelun muotoja organisaatiosi sisällä viimeisen 12 kuukauden aikana?:Uhkailu;
-k3_4;Kuinka usein olet itse kohdannut seuraavia epäasiallisen kohtelun muotoja organisaatiosi sisällä viimeisen 12 kuukauden aikana?:Fyysinen väkivalta;
-k3_5;Kuinka usein olet itse kohdannut seuraavia epäasiallisen kohtelun muotoja organisaatiosi sisällä viimeisen 12 kuukauden aikana?:Seksuaalinen häirintä tai väkivalta;
-k3_6;Kuinka usein olet itse kohdannut seuraavia epäasiallisen kohtelun muotoja organisaatiosi sisällä viimeisen 12 kuukauden aikana?:Vihamielisyys tai epäkohtelias käyttäytyminen;
-k3_7;Kuinka usein olet itse kohdannut seuraavia epäasiallisen kohtelun muotoja organisaatiosi sisällä viimeisen 12 kuukauden aikana?:Syrjintä;
-k4_1;Kuinka usein olet havainnut kollegan kohdanneen seuraavia epäasiallisen kohtelun muotoja organisaatiosi sisällä viimeisen 12 kuukauden aikana?:Verbaalinen väkivalta;
-k4_2;Kuinka usein olet havainnut kollegan kohdanneen seuraavia epäasiallisen kohtelun muotoja organisaatiosi sisällä viimeisen 12 kuukauden aikana?:Omaisuuden vahingoittaminen tai varastaminen;
-k4_3;Kuinka usein olet havainnut kollegan kohdanneen seuraavia epäasiallisen kohtelun muotoja organisaatiosi sisällä viimeisen 12 kuukauden aikana?:Uhkailu;
-k4_4;Kuinka usein olet havainnut kollegan kohdanneen seuraavia epäasiallisen kohtelun muotoja organisaatiosi sisällä viimeisen 12 kuukauden aikana?:Fyysinen väkivalta;
-k4_5;Kuinka usein olet havainnut kollegan kohdanneen seuraavia epäasiallisen kohtelun muotoja organisaatiosi sisällä viimeisen 12 kuukauden aikana?:Seksuaalinen häirintä tai väkivalta;
-k4_6;Kuinka usein olet havainnut kollegan kohdanneen seuraavia epäasiallisen kohtelun muotoja organisaatiosi sisällä viimeisen 12 kuukauden aikana?:Vihamielisyys tai epäkohtelias käyttäytyminen;
-k4_7;Kuinka usein olet havainnut kollegan kohdanneen seuraavia epäasiallisen kohtelun muotoja organisaatiosi sisällä viimeisen 12 kuukauden aikana?:Syrjintä;
-k5_1_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä verbaalisesta väkivallasta::Nöyryyttäminen, häpäiseminen:Minä koin;
-k5_1_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä verbaalisesta väkivallasta::Nöyryyttäminen, häpäiseminen:Kollegani koki;
-k5_2_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä verbaalisesta väkivallasta::Nolaaminen: vähättely, alentaminen, holhoava käyttäytyminen:Minä koin;
-k5_2_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä verbaalisesta väkivallasta::Nolaaminen: vähättely, alentaminen, holhoava käyttäytyminen:Kollegani koki;
-k5_3_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä verbaalisesta väkivallasta::Nuhtelu toisten edessä:Minä koin;
-k5_3_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä verbaalisesta väkivallasta::Nuhtelu toisten edessä:Kollegani koki;
-k5_4_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä verbaalisesta väkivallasta::Työn arvostelu epäoikeudenmukaisella tai loukkaavalla tavalla:Minä koin;
-k5_4_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä verbaalisesta väkivallasta::Työn arvostelu epäoikeudenmukaisella tai loukkaavalla tavalla:Kollegani koki;
-k5_5_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä verbaalisesta väkivallasta::Huutaminen:Minä koin;
-k5_5_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä verbaalisesta väkivallasta::Huutaminen:Kollegani koki;
-k5_6_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä verbaalisesta väkivallasta::Kiroilu tai henkilöön kohdistuva kiroaminen:Minä koin;
-k5_6_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä verbaalisesta väkivallasta::Kiroilu tai henkilöön kohdistuva kiroaminen:Kollegani koki;
-k5_7_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä verbaalisesta väkivallasta::Loukkaava nimittely:Minä koin;
-k5_7_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä verbaalisesta väkivallasta::Loukkaava nimittely:Kollegani koki;
-k5_8_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä verbaalisesta väkivallasta::Valheellinen syyttäminen:Minä koin;
-k5_8_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä verbaalisesta väkivallasta::Valheellinen syyttäminen:Kollegani koki;
-k5_9_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä verbaalisesta väkivallasta::Ärsyttämismielessä sanotut asiat:Minä koin;
-k5_9_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä verbaalisesta väkivallasta::Ärsyttämismielessä sanotut asiat:Kollegani koki;
-k6_1_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä omaisuuden vahingoittamisesta tai varastamisesta::Työvälineiden varastaminen:Minä koin;
-k6_1_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä omaisuuden vahingoittamisesta tai varastamisesta::Työvälineiden varastaminen:Kollegani koki;
-k6_2_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä omaisuuden vahingoittamisesta tai varastamisesta::Työvälineiden piilottaminen tai kätkeminen:Minä koin;
-k6_2_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä omaisuuden vahingoittamisesta tai varastamisesta::Työvälineiden piilottaminen tai kätkeminen:Kollegani koki;
-k6_3_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä omaisuuden vahingoittamisesta tai varastamisesta::Työvälineiden rikkominen:Minä koin;
-k6_3_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä omaisuuden vahingoittamisesta tai varastamisesta::Työvälineiden rikkominen:Kollegani koki;
-k6_4_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä omaisuuden vahingoittamisesta tai varastamisesta::Työvälineiden likaaminen tai niihin töhertäminen:Minä koin;
-k6_4_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä omaisuuden vahingoittamisesta tai varastamisesta::Työvälineiden likaaminen tai niihin töhertäminen:Kollegani koki;
-k6_5_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä omaisuuden vahingoittamisesta tai varastamisesta::Työvälineiden luvaton käyttö:Minä koin;
-k6_5_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä omaisuuden vahingoittamisesta tai varastamisesta::Työvälineiden luvaton käyttö:Kollegani koki;
-k6_6_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä omaisuuden vahingoittamisesta tai varastamisesta::Henkilökohtaisen omaisuuden varastaminen:Minä koin;
-k6_6_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä omaisuuden vahingoittamisesta tai varastamisesta::Henkilökohtaisen omaisuuden varastaminen:Kollegani koki;
-k6_7_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä omaisuuden vahingoittamisesta tai varastamisesta::Henkilökohtaisen omaisuuden piilottaminen tai kätkeminen:Minä koin;
-k6_7_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä omaisuuden vahingoittamisesta tai varastamisesta::Henkilökohtaisen omaisuuden piilottaminen tai kätkeminen:Kollegani koki;
-k6_8_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä omaisuuden vahingoittamisesta tai varastamisesta::Henkilökohtaisen omaisuuden rikkominen:Minä koin;
-k6_8_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä omaisuuden vahingoittamisesta tai varastamisesta::Henkilökohtaisen omaisuuden rikkominen:Kollegani koki;
-k6_9_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä omaisuuden vahingoittamisesta tai varastamisesta::Henkilökohtaisen omaisuuden likaaminen tai niihin töhertäminen:Minä koin;
-k6_9_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä omaisuuden vahingoittamisesta tai varastamisesta::Henkilökohtaisen omaisuuden likaaminen tai niihin töhertäminen:Kollegani koki;
-k6_10_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä omaisuuden vahingoittamisesta tai varastamisesta::Henkilökohtaisen omaisuuden luvaton käyttö:Minä koin;
-k6_10_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä omaisuuden vahingoittamisesta tai varastamisesta::Henkilökohtaisen omaisuuden luvaton käyttö:Kollegani koki;
-k7_1_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Pelottelu:Minä koin;
-k7_1_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Pelottelu:Kollegani koki;
-k7_2_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Työn tai liikkumisen estäminen:Minä koin;
-k7_2_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Työn tai liikkumisen estäminen:Kollegani koki;
-k7_3_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Äänen korottaminen:Minä koin;
-k7_3_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Äänen korottaminen:Kollegani koki;
-k7_4_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Vuorovaikutustilanteessa liian lähelle tuleminen:Minä koin;
-k7_4_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Vuorovaikutustilanteessa liian lähelle tuleminen:Kollegani koki;
-k7_5_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Törkeiden eleiden näyttäminen:Minä koin;
-k7_5_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Törkeiden eleiden näyttäminen:Kollegani koki;
-k7_6_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Muu törkeä käyttäytyminen:Minä koin;
-k7_6_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Muu törkeä käyttäytyminen:Kollegani koki;
-k7_7_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Mulkoilu tai tuijottaminen:Minä koin;
-k7_7_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Mulkoilu tai tuijottaminen:Kollegani koki;
-k7_8_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Fyysisellä väkivallalla uhkaaminen:Minä koin;
-k7_8_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Fyysisellä väkivallalla uhkaaminen:Kollegani koki;
-k7_9_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Esineellä heittämisellä uhkaaminen:Minä koin;
-k7_9_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Esineellä heittämisellä uhkaaminen:Kollegani koki;
-k7_10_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Aseella tai voimankäyttövälineellä uhkaaminen:Minä koin;
-k7_10_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Aseella tai voimankäyttövälineellä uhkaaminen:Kollegani koki;
-k7_11_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Tappamisella uhkaaminen:Minä koin;
-k7_11_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Tappamisella uhkaaminen:Kollegani koki;
-k7_12_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Seuraaminen:Minä koin;
-k7_12_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Seuraaminen:Kollegani koki;
-k7_13_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Tarkkailu:Minä koin;
-k7_13_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Tarkkailu:Kollegani koki;
-k7_14_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Läheisiin kohdistuvalla väkivallalla uhkaaminen:Minä koin;
-k7_14_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Läheisiin kohdistuvalla väkivallalla uhkaaminen:Kollegani koki;
-k8_1_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta::Lyöminen:Minä koin;
-k8_1_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta::Lyöminen:Kollegani koki;
-k8_2_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta::Tuuppaaminen tai tönäiseminen:Minä koin;
-k8_2_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta::Tuuppaaminen tai tönäiseminen:Kollegani koki;
-k8_3_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta::Tarkoituksella henkilöön törmääminen liiallisella voimalla:Minä koin;
-k8_3_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta::Tarkoituksella henkilöön törmääminen liiallisella voimalla:Kollegani koki;
-k8_4_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta::Päälle sylkäiseminen:Minä koin;
-k8_4_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta::Päälle sylkäiseminen:Kollegani koki;
-k8_5_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta::Esineellä heittäminen:Minä koin;
-k8_5_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta::Esineellä heittäminen:Kollegani koki;
-k8_6_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta::Kiinni tarttuminen:Minä koin;
-k8_6_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta::Kiinni tarttuminen:Kollegani koki;
-k8_7_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta::Potkaiseminen:Minä koin;
-k8_7_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta::Potkaiseminen:Kollegani koki;
-k8_8_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta::Kuristaminen:Minä koin;
-k8_8_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta::Kuristaminen:Kollegani koki;
-k8_9_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta::Raapiminen:Minä koin;
-k8_9_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta::Raapiminen:Kollegani koki;
-k8_10_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta::Hiuksista tarttuminen:Minä koin;
-k8_10_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta::Hiuksista tarttuminen:Kollegani koki;
-k8_11_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta::Voimankäyttövälineillä tai aseella vahingoittaminen:Minä koin;
-k8_11_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta::Voimankäyttövälineillä tai aseella vahingoittaminen:Kollegani koki;
-k9_1_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä seksuaalisesta häirinnästä tai väkivallasta::Seksuaaliset vitsit tai nöyryyttävät seksuaaliset kommentit:Minä koin;
-k9_1_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä seksuaalisesta häirinnästä tai väkivallasta::Seksuaaliset vitsit tai nöyryyttävät seksuaaliset kommentit:Kollegani koki;
-k9_2_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä seksuaalisesta häirinnästä tai väkivallasta::Seksuaaliset keholliset eleet:Minä koin;
-k9_2_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä seksuaalisesta häirinnästä tai väkivallasta::Seksuaaliset keholliset eleet:Kollegani koki;
-k9_3_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä seksuaalisesta häirinnästä tai väkivallasta::Toistuvat tapaamisen tai puhelinnumeron vaatimukset:Minä koin;
-k9_3_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä seksuaalisesta häirinnästä tai väkivallasta::Toistuvat tapaamisen tai puhelinnumeron vaatimukset:Kollegani koki;
-k9_4_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä seksuaalisesta häirinnästä tai väkivallasta::Seksuaalinen tai seksuaalissävytteinen vihjailu:Minä koin;
-k9_4_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä seksuaalisesta häirinnästä tai väkivallasta::Seksuaalinen tai seksuaalissävytteinen vihjailu:Kollegani koki;
-k9_5_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä seksuaalisesta häirinnästä tai väkivallasta::Pakotettu seksuaalinen teko tai raiskaus, tai näiden yritys:Minä koin;
-k9_5_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä seksuaalisesta häirinnästä tai väkivallasta::Pakotettu seksuaalinen teko tai raiskaus, tai näiden yritys:Kollegani koki;
-k9_6_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä seksuaalisesta häirinnästä tai väkivallasta::Sukuelinten, rintojen tai pakaroiden koskettelu tai tämän yritys:Minä koin;
-k9_6_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä seksuaalisesta häirinnästä tai väkivallasta::Sukuelinten, rintojen tai pakaroiden koskettelu tai tämän yritys:Kollegani koki;
-k9_7_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä seksuaalisesta häirinnästä tai väkivallasta::Seksualisoiva tai epäasiallinen koskettelu muiden kuin sukuelinten, rintojen tai pakaroiden alueella:Minä koin;
-k9_7_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä seksuaalisesta häirinnästä tai väkivallasta::Seksualisoiva tai epäasiallinen koskettelu muiden kuin sukuelinten, rintojen tai pakaroiden alueella:Kollegani koki;
-k9_8_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä seksuaalisesta häirinnästä tai väkivallasta::Ei-toivottujen lahjojen tai muiden huomionosoituksien antaminen:Minä koin;
-k9_8_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä seksuaalisesta häirinnästä tai väkivallasta::Ei-toivottujen lahjojen tai muiden huomionosoituksien antaminen:Kollegani koki;
-k9_9_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä seksuaalisesta häirinnästä tai väkivallasta::Ei-toivottujen kuvien lähettäminen tai kuvaaminen:Minä koin;
-k9_9_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä seksuaalisesta häirinnästä tai väkivallasta::Ei-toivottujen kuvien lähettäminen tai kuvaaminen:Kollegani koki;
-k9_10_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä seksuaalisesta häirinnästä tai väkivallasta::Seksuaalissävytteisen materiaalin levittäminen tai esilläpito:Minä koin;
-k9_10_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä seksuaalisesta häirinnästä tai väkivallasta::Seksuaalissävytteisen materiaalin levittäminen tai esilläpito:Kollegani koki;
-k10_1_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta::Henkilön toiminnasta muille valittaminen ennen keskustelua kohteen kanssa:Minä koin;
-k10_1_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta::Henkilön toiminnasta muille valittaminen ennen keskustelua kohteen kanssa:Kollegani koki;
-k10_2_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta::Henkilökohtaisen, luottamuksellisen tiedon jakaminen:Minä koin;
-k10_2_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta::Henkilökohtaisen, luottamuksellisen tiedon jakaminen:Kollegani koki;
-k10_3_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta::Välinpitämättömyys tai tiedon pimittäminen:Minä koin;
-k10_3_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta::Välinpitämättömyys tai tiedon pimittäminen:Kollegani koki;
-k10_4_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta::Useat tai jatkuva kritiikki, vähättely, virheiden hakeminen:Minä koin;
-k10_4_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta::Useat tai jatkuva kritiikki, vähättely, virheiden hakeminen:Kollegani koki;
-k10_5_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta::Juoruilu, valheellisen tiedon levittäminen:Minä koin;
-k10_5_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta::Juoruilu, valheellisen tiedon levittäminen:Kollegani koki;
-k10_6_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta::Ehdotuksen tai ideoiden huomioimatta jättäminen tai vähättely:Minä koin;
-k10_6_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta::Ehdotuksen tai ideoiden huomioimatta jättäminen tai vähättely:Kollegani koki;
-k10_7_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta::Työstä ei anneta tunnustusta:Minä koin;
-k10_7_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta::Työstä ei anneta tunnustusta:Kollegani koki;
-k10_8_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta::Aikaisemmista lupauksista luopuminen:Minä koin;
-k10_8_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta::Aikaisemmista lupauksista luopuminen:Kollegani koki;
-k10_9_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta::Huumoriin kiedottu loukkaus:Minä koin;
-k10_9_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta::Huumoriin kiedottu loukkaus:Kollegani koki;
-k10_10_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta::Sosiaalinen tai ammatillinen eristäminen, toiminnasta tai keskustelusta poisjättäminen:Minä koin;
-k10_10_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta::Sosiaalinen tai ammatillinen eristäminen, toiminnasta tai keskustelusta poisjättäminen:Kollegani koki;
-k10_11_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta::Maalittaminen (yhden henkilön kehotuksesta tapahtuva suuren joukon hyökkäys viesteillä, esim. sähköposteilla tai sosiaalisessa mediassa):Minä koin;
-k10_11_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta::Maalittaminen (yhden henkilön kehotuksesta tapahtuva suuren joukon hyökkäys viesteillä, esim. sähköposteilla tai sosiaalisessa mediassa):Kollegani koki;
-k11_1_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Virkaan tai tehtävään nimittäminen tai vastuunjako muuten kuin osaamiseen tai pätevyyteen perustuen:Minä koin;
-k11_1_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Virkaan tai tehtävään nimittäminen tai vastuunjako muuten kuin osaamiseen tai pätevyyteen perustuen:Kollegani koki;
-k11_2_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Epätasapuolinen johtamis- ja esihenkilötoiminta:Minä koin;
-k11_2_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Epätasapuolinen johtamis- ja esihenkilötoiminta:Kollegani koki;
-k11_3_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Loukkaava kielenkäyttö, herjaaminen:Minä koin;
-k11_3_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Loukkaava kielenkäyttö, herjaaminen:Kollegani koki;
-k11_4_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Ryhmiin liittyvät yleistykset (esim. vähemmistövitsit):Minä koin;
-k11_4_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Ryhmiin liittyvät yleistykset (esim. vähemmistövitsit):Kollegani koki;
-k11_5_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Työhaastattelun yhteydessä kysymykset perhesuunnitelmista:Minä koin;
-k11_5_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Työhaastattelun yhteydessä kysymykset perhesuunnitelmista:Kollegani koki;
-k11_6_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Työvarusteiden epäsopivuus (esimerkiksi vääränkokoiset varusteet):Minä koin;
-k11_6_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Työvarusteiden epäsopivuus (esimerkiksi vääränkokoiset varusteet):Kollegani koki;
-k11_7_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Työkollegoiden erilaiset odotukset henkilökohtaisten ominaisuuksien perusteella:Minä koin;
-k11_7_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Työkollegoiden erilaiset odotukset henkilökohtaisten ominaisuuksien perusteella:Kollegani koki;
-k11_8_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Pätevyyden vähättely henkilökohtaisten ominaisuuksien perusteella:Minä koin;
-k11_8_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Pätevyyden vähättely henkilökohtaisten ominaisuuksien perusteella:Kollegani koki;
-k11_9_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Muuhun kuin osaamiseen ja tehtävien vaativuuteen liittyvät palkitsemiserot:Minä koin;
-k11_9_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Muuhun kuin osaamiseen ja tehtävien vaativuuteen liittyvät palkitsemiserot:Kollegani koki;
-k11_10_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Kohtuullisten mukautusten epääminen vammaiselta henkilöltä:Minä koin;
-k11_10_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Kohtuullisten mukautusten epääminen vammaiselta henkilöltä:Kollegani koki;
-k11_11_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Käskyt tai ohjeet syrjiä toista henkilöä (asiakasta, potilasta tai työkollegaa):Minä koin;
-k11_11_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Käskyt tai ohjeet syrjiä toista henkilöä (asiakasta, potilasta tai työkollegaa):Kollegani koki;
-k11_12_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Vastatoimiin ryhtyminen yhdenvertaisuusrikkomusten ilmoituksen takia:Minä koin;
-k11_12_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Vastatoimiin ryhtyminen yhdenvertaisuusrikkomusten ilmoituksen takia:Kollegani koki;
-k11_13_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Syrjivä kohtelu ammattiyhdistystoimintaan osallistumisen takia:Minä koin;
-k11_13_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Syrjivä kohtelu ammattiyhdistystoimintaan osallistumisen takia:Kollegani koki;
-k11_14_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Irtisanominen tai sillä uhkaaminen henkilökohtaisten ominaisuuksien takia:Minä koin;
-k11_14_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Irtisanominen tai sillä uhkaaminen henkilökohtaisten ominaisuuksien takia:Kollegani koki;
-k11_15_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Tehtävien jakaminen muun kuin osaamisen tai pätevyyteen perusteella:Minä koin;
-k11_15_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Tehtävien jakaminen muun kuin osaamisen tai pätevyyteen perusteella:Kollegani koki;
-k11_16_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Muuhun kuin osaamiseen tai pätevyyteen perustuvat palkkaerot (esim. henkilökohtaisen lisän osalta):Minä koin;
-k11_16_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Muuhun kuin osaamiseen tai pätevyyteen perustuvat palkkaerot (esim. henkilökohtaisen lisän osalta):Kollegani koki;
-k12_1;Kuinka usein olet itse kohdannut seuraavia epäasiallisen kohtelun muotoja organisaatiosi ulkopuoliselta henkilöltä viimeisen 12 kuukauden aikana?:Verbaalinen väkivalta;
-k12_2;Kuinka usein olet itse kohdannut seuraavia epäasiallisen kohtelun muotoja organisaatiosi ulkopuoliselta henkilöltä viimeisen 12 kuukauden aikana?:Omaisuuden vahingoittaminen tai varastaminen;
-k12_3;Kuinka usein olet itse kohdannut seuraavia epäasiallisen kohtelun muotoja organisaatiosi ulkopuoliselta henkilöltä viimeisen 12 kuukauden aikana?:Uhkailu;
-k12_4;Kuinka usein olet itse kohdannut seuraavia epäasiallisen kohtelun muotoja organisaatiosi ulkopuoliselta henkilöltä viimeisen 12 kuukauden aikana?:Fyysinen väkivalta;
-k12_5;Kuinka usein olet itse kohdannut seuraavia epäasiallisen kohtelun muotoja organisaatiosi ulkopuoliselta henkilöltä viimeisen 12 kuukauden aikana?:Seksuaalinen häirintä tai väkivalta;
-k12_6;Kuinka usein olet itse kohdannut seuraavia epäasiallisen kohtelun muotoja organisaatiosi ulkopuoliselta henkilöltä viimeisen 12 kuukauden aikana?:Vihamielisyys tai epäkohtelias käyttäytyminen;
-k12_7;Kuinka usein olet itse kohdannut seuraavia epäasiallisen kohtelun muotoja organisaatiosi ulkopuoliselta henkilöltä viimeisen 12 kuukauden aikana?:Syrjintä;
-k13_1;Kuinka usein olet havainnut kollegan kohdanneen seuraavia epäasiallisen kohtelun muotoja organisaatiosi ulkopuoliselta henkilöltä viimeisen 12 kuukauden aikana?:Verbaalinen väkivalta;
-k13_2;Kuinka usein olet havainnut kollegan kohdanneen seuraavia epäasiallisen kohtelun muotoja organisaatiosi ulkopuoliselta henkilöltä viimeisen 12 kuukauden aikana?:Omaisuuden vahingoittaminen tai varastaminen;
-k13_3;Kuinka usein olet havainnut kollegan kohdanneen seuraavia epäasiallisen kohtelun muotoja organisaatiosi ulkopuoliselta henkilöltä viimeisen 12 kuukauden aikana?:Uhkailu;
-k13_4;Kuinka usein olet havainnut kollegan kohdanneen seuraavia epäasiallisen kohtelun muotoja organisaatiosi ulkopuoliselta henkilöltä viimeisen 12 kuukauden aikana?:Fyysinen väkivalta;
-k13_5;Kuinka usein olet havainnut kollegan kohdanneen seuraavia epäasiallisen kohtelun muotoja organisaatiosi ulkopuoliselta henkilöltä viimeisen 12 kuukauden aikana?:Seksuaalinen häirintä tai väkivalta;
-k13_6;Kuinka usein olet havainnut kollegan kohdanneen seuraavia epäasiallisen kohtelun muotoja organisaatiosi ulkopuoliselta henkilöltä viimeisen 12 kuukauden aikana?:Vihamielisyys tai epäkohtelias käyttäytyminen;
-k13_7;Kuinka usein olet havainnut kollegan kohdanneen seuraavia epäasiallisen kohtelun muotoja organisaatiosi ulkopuoliselta henkilöltä viimeisen 12 kuukauden aikana?:Syrjintä;
-k14_1_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta verbaalisesta väkivallasta::Nöyryyttäminen, häpäiseminen:Minä koin;
-k14_1_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta verbaalisesta väkivallasta::Nöyryyttäminen, häpäiseminen:Kollegani koki;
-k14_2_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta verbaalisesta väkivallasta::Nolaaminen: vähättely, alentaminen, holhoava käyttäytyminen:Minä koin;
-k14_2_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta verbaalisesta väkivallasta::Nolaaminen: vähättely, alentaminen, holhoava käyttäytyminen:Kollegani koki;
-k14_3_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta verbaalisesta väkivallasta::Nuhtelu toisten edessä:Minä koin;
-k14_3_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta verbaalisesta väkivallasta::Nuhtelu toisten edessä:Kollegani koki;
-k14_4_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta verbaalisesta väkivallasta::Työn arvostelu epäoikeudenmukaisella tai loukkaavalla tavalla:Minä koin;
-k14_4_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta verbaalisesta väkivallasta::Työn arvostelu epäoikeudenmukaisella tai loukkaavalla tavalla:Kollegani koki;
-k14_5_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta verbaalisesta väkivallasta::Huutaminen:Minä koin;
-k14_5_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta verbaalisesta väkivallasta::Huutaminen:Kollegani koki;
-k14_6_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta verbaalisesta väkivallasta::Kiroilu tai henkilöön kohdistuva kiroaminen:Minä koin;
-k14_6_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta verbaalisesta väkivallasta::Kiroilu tai henkilöön kohdistuva kiroaminen:Kollegani koki;
-k14_7_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta verbaalisesta väkivallasta::Loukkaaminen tai nimittely:Minä koin;
-k14_7_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta verbaalisesta väkivallasta::Loukkaaminen tai nimittely:Kollegani koki;
-k14_8_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta verbaalisesta väkivallasta::Valheellinen syyttäminen:Minä koin;
-k14_8_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta verbaalisesta väkivallasta::Valheellinen syyttäminen:Kollegani koki;
-k14_9_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta verbaalisesta väkivallasta::Ärsyttämismielessä sanotut asiat:Minä koin;
-k14_9_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta verbaalisesta väkivallasta::Ärsyttämismielessä sanotut asiat:Kollegani koki;
-k15_1_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta omaisuuden vahingoittamisesta tai varastamisesta::Työvälineiden varastaminen:Minä koin;
-k15_1_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta omaisuuden vahingoittamisesta tai varastamisesta::Työvälineiden varastaminen:Kollegani koki;
-k15_2_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta omaisuuden vahingoittamisesta tai varastamisesta::Työvälineiden piilottaminen tai kätkeminen:Minä koin;
-k15_2_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta omaisuuden vahingoittamisesta tai varastamisesta::Työvälineiden piilottaminen tai kätkeminen:Kollegani koki;
-k15_3_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta omaisuuden vahingoittamisesta tai varastamisesta::Työvälineiden rikkominen:Minä koin;
-k15_3_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta omaisuuden vahingoittamisesta tai varastamisesta::Työvälineiden rikkominen:Kollegani koki;
-k15_4_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta omaisuuden vahingoittamisesta tai varastamisesta::Työvälineiden likaaminen tai niihin töhertäminen:Minä koin;
-k15_4_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta omaisuuden vahingoittamisesta tai varastamisesta::Työvälineiden likaaminen tai niihin töhertäminen:Kollegani koki;
-k15_5_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta omaisuuden vahingoittamisesta tai varastamisesta::Työvälineiden luvaton käyttö:Minä koin;
-k15_5_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta omaisuuden vahingoittamisesta tai varastamisesta::Työvälineiden luvaton käyttö:Kollegani koki;
-k15_6_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta omaisuuden vahingoittamisesta tai varastamisesta::Henkilökohtaisen omaisuuden varastaminen:Minä koin;
-k15_6_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta omaisuuden vahingoittamisesta tai varastamisesta::Henkilökohtaisen omaisuuden varastaminen:Kollegani koki;
-k15_7_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta omaisuuden vahingoittamisesta tai varastamisesta::Henkilökohtaisen omaisuuden piilottaminen tai kätkeminen:Minä koin;
-k15_7_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta omaisuuden vahingoittamisesta tai varastamisesta::Henkilökohtaisen omaisuuden piilottaminen tai kätkeminen:Kollegani koki;
-k15_8_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta omaisuuden vahingoittamisesta tai varastamisesta::Henkilökohtaisen omaisuuden rikkominen:Minä koin;
-k15_8_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta omaisuuden vahingoittamisesta tai varastamisesta::Henkilökohtaisen omaisuuden rikkominen:Kollegani koki;
-k15_9_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta omaisuuden vahingoittamisesta tai varastamisesta::Henkilökohtaisen omaisuuden likaaminen tai niihin töhertäminen:Minä koin;
-k15_9_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta omaisuuden vahingoittamisesta tai varastamisesta::Henkilökohtaisen omaisuuden likaaminen tai niihin töhertäminen:Kollegani koki;
-k15_10_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta omaisuuden vahingoittamisesta tai varastamisesta::Henkilökohtaisen omaisuuden luvaton käyttö:Minä koin;
-k15_10_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta omaisuuden vahingoittamisesta tai varastamisesta::Henkilökohtaisen omaisuuden luvaton käyttö:Kollegani koki;
-k16_1_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Pelottelu:Minä koin;
-k16_1_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Pelottelu:Kollegani koki;
-k16_2_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Työn tai liikkumisen estäminen:Minä koin;
-k16_2_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Työn tai liikkumisen estäminen:Kollegani koki;
-k16_3_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Äänen korottaminen:Minä koin;
-k16_3_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Äänen korottaminen:Kollegani koki;
-k16_4_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Vuorovaikutustilanteessa liian lähelle tuleminen:Minä koin;
-k16_4_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Vuorovaikutustilanteessa liian lähelle tuleminen:Kollegani koki;
-k16_5_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Törkeiden eleiden näyttäminen:Minä koin;
-k16_5_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Törkeiden eleiden näyttäminen:Kollegani koki;
-k16_6_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Muu törkeä käyttäytyminen:Minä koin;
-k16_6_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Muu törkeä käyttäytyminen:Kollegani koki;
-k16_7_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Mulkoilu tai tuijottaminen:Minä koin;
-k16_7_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Mulkoilu tai tuijottaminen:Kollegani koki;
-k16_8_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Fyysisellä väkivallalla uhkaaminen:Minä koin;
-k16_8_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Fyysisellä väkivallalla uhkaaminen:Kollegani koki;
-k16_9_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Esineellä heittämisellä uhkaaminen:Minä koin;
-k16_9_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Esineellä heittämisellä uhkaaminen:Kollegani koki;
-k16_10_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Aseella tai voimankäyttövälineellä uhkaaminen:Minä koin;
-k16_10_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Aseella tai voimankäyttövälineellä uhkaaminen:Kollegani koki;
-k16_11_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Tappamisella uhkaaminen:Minä koin;
-k16_11_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Tappamisella uhkaaminen:Kollegani koki;
-k16_12_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Seuraaminen:Minä koin;
-k16_12_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Seuraaminen:Kollegani koki;
-k16_13_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Tarkkailu:Minä koin;
-k16_13_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Tarkkailu:Kollegani koki;
-k16_14_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Läheisiin kohdistuvalla väkivallalla uhkaaminen:Minä koin;
-k16_14_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Läheisiin kohdistuvalla väkivallalla uhkaaminen:Kollegani koki;
-k17_1_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta::Lyöminen:Minä koin;
-k17_1_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta::Lyöminen:Kollegani koki;
-k17_2_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta::Tuuppaaminen tai tönäiseminen:Minä koin;
-k17_2_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta::Tuuppaaminen tai tönäiseminen:Kollegani koki;
-k17_3_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta::Tarkoituksella henkilöön törmääminen liiallisella voimalla:Minä koin;
-k17_3_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta::Tarkoituksella henkilöön törmääminen liiallisella voimalla:Kollegani koki;
-k17_4_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta::Päälle sylkäiseminen:Minä koin;
-k17_4_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta::Päälle sylkäiseminen:Kollegani koki;
-k17_5_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta::Esineellä heittäminen:Minä koin;
-k17_5_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta::Esineellä heittäminen:Kollegani koki;
-k17_6_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta::Kiinni tarttuminen:Minä koin;
-k17_6_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta::Kiinni tarttuminen:Kollegani koki;
-k17_7_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta::Potkaiseminen:Minä koin;
-k17_7_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta::Potkaiseminen:Kollegani koki;
-k17_8_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta::Kuristaminen:Minä koin;
-k17_8_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta::Kuristaminen:Kollegani koki;
-k17_9_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta::Raapiminen:Minä koin;
-k17_9_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta::Raapiminen:Kollegani koki;
-k17_10_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta::Hiuksista tarttuminen:Minä koin;
-k17_10_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta::Hiuksista tarttuminen:Kollegani koki;
-k17_11_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta::Voimankäyttövälineillä tai aseella vahingoittaminen:Minä koin;
-k17_11_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta::Voimankäyttövälineillä tai aseella vahingoittaminen:Kollegani koki;
-k18_1_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta seksuaalisesta häirinnästä tai väkivallasta::Seksuaaliset vitsit tai nöyryyttävät seksuaaliset kommentit:Minä koin;
-k18_1_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta seksuaalisesta häirinnästä tai väkivallasta::Seksuaaliset vitsit tai nöyryyttävät seksuaaliset kommentit:Kollegani koki;
-k18_2_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta seksuaalisesta häirinnästä tai väkivallasta::Seksuaaliset keholliset eleet:Minä koin;
-k18_2_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta seksuaalisesta häirinnästä tai väkivallasta::Seksuaaliset keholliset eleet:Kollegani koki;
-k18_3_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta seksuaalisesta häirinnästä tai väkivallasta::Toistuvat tapaamisen tai puhelinnumeron vaatimukset:Minä koin;
-k18_3_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta seksuaalisesta häirinnästä tai väkivallasta::Toistuvat tapaamisen tai puhelinnumeron vaatimukset:Kollegani koki;
-k18_4_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta seksuaalisesta häirinnästä tai väkivallasta::Seksuaalinen tai seksuaalissävytteinen vihjailu:Minä koin;
-k18_4_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta seksuaalisesta häirinnästä tai väkivallasta::Seksuaalinen tai seksuaalissävytteinen vihjailu:Kollegani koki;
-k18_5_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta seksuaalisesta häirinnästä tai väkivallasta::Pakotettu seksuaalinen teko tai raiskaus, tai näiden yritys:Minä koin;
-k18_5_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta seksuaalisesta häirinnästä tai väkivallasta::Pakotettu seksuaalinen teko tai raiskaus, tai näiden yritys:Kollegani koki;
-k18_6_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta seksuaalisesta häirinnästä tai väkivallasta::Sukuelinten, rintojen tai pakaroiden koskettelu tai tämän yritys:Minä koin;
-k18_6_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta seksuaalisesta häirinnästä tai väkivallasta::Sukuelinten, rintojen tai pakaroiden koskettelu tai tämän yritys:Kollegani koki;
-k18_7_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta seksuaalisesta häirinnästä tai väkivallasta::Hyväileminen tai epäasiallinen koskettelu muiden kuin sukuelinten, rintojen tai pakaroiden alueella:Minä koin;
-k18_7_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta seksuaalisesta häirinnästä tai väkivallasta::Hyväileminen tai epäasiallinen koskettelu muiden kuin sukuelinten, rintojen tai pakaroiden alueella:Kollegani koki;
-k18_8_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta seksuaalisesta häirinnästä tai väkivallasta::Ei-toivottujen lahjojen tai muiden huomionosoituksien antaminen:Minä koin;
-k18_8_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta seksuaalisesta häirinnästä tai väkivallasta::Ei-toivottujen lahjojen tai muiden huomionosoituksien antaminen:Kollegani koki;
-k18_9_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta seksuaalisesta häirinnästä tai väkivallasta::Ei-toivottujen kuvien lähettäminen tai kuvaaminen:Minä koin;
-k18_9_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta seksuaalisesta häirinnästä tai väkivallasta::Ei-toivottujen kuvien lähettäminen tai kuvaaminen:Kollegani koki;
-k18_10_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta seksuaalisesta häirinnästä tai väkivallasta::Seksuaalissävytteisen materiaalin levittäminen tai esilläpito:Minä koin;
-k18_10_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta seksuaalisesta häirinnästä tai väkivallasta::Seksuaalissävytteisen materiaalin levittäminen tai esilläpito:Kollegani koki;
-k19_1_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta::Henkilön toiminnasta muille valittaminen ennen keskustelua kohteen kanssa:Minä koin;
-k19_1_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta::Henkilön toiminnasta muille valittaminen ennen keskustelua kohteen kanssa:Kollegani koki;
-k19_2_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta::Henkilökohtaisen, luottamuksellisen tiedon jakaminen:Minä koin;
-k19_2_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta::Henkilökohtaisen, luottamuksellisen tiedon jakaminen:Kollegani koki;
-k19_3_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta::Välinpitämättömyys tai tiedon pimittäminen:Minä koin;
-k19_3_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta::Välinpitämättömyys tai tiedon pimittäminen:Kollegani koki;
-k19_4_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta::Useat tai jatkuva kritiikki, vähättely, virheiden hakeminen:Minä koin;
-k19_4_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta::Useat tai jatkuva kritiikki, vähättely, virheiden hakeminen:Kollegani koki;
-k19_5_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta::Juoruilu, valheellisen tiedon levittäminen:Minä koin;
-k19_5_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta::Juoruilu, valheellisen tiedon levittäminen:Kollegani koki;
-k19_6_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta::Ehdotuksen tai ideoiden huomioimatta jättäminen tai vähättely:Minä koin;
-k19_6_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta::Ehdotuksen tai ideoiden huomioimatta jättäminen tai vähättely:Kollegani koki;
-k19_7_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta::Työstä ei anneta tunnustusta:Minä koin;
-k19_7_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta::Työstä ei anneta tunnustusta:Kollegani koki;
-k19_8_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta::Aikaisemmista lupauksista luopuminen:Minä koin;
-k19_8_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta::Aikaisemmista lupauksista luopuminen:Kollegani koki;
-k19_9_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta::Huumoriin kiedottu loukkaus:Minä koin;
-k19_9_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta::Huumoriin kiedottu loukkaus:Kollegani koki;
-k19_10_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta::Sosiaalinen tai ammatillinen eristäminen, toiminnasta tai keskustelusta poisjättäminen:Minä koin;
-k19_10_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta::Sosiaalinen tai ammatillinen eristäminen, toiminnasta tai keskustelusta poisjättäminen:Kollegani koki;
-k19_11_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta::Maalittaminen (yhden henkilön kehotuksesta tapahtuva suuren joukon hyökkäys viesteillä, esim. sähköposteilla tai sosiaalisessa mediassa):Minä koin;
-k19_11_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta::Maalittaminen (yhden henkilön kehotuksesta tapahtuva suuren joukon hyökkäys viesteillä, esim. sähköposteilla tai sosiaalisessa mediassa):Kollegani koki;
-k20_1_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta syrjinnästä::Loukkaava kielenkäyttö, herjaaminen:Minä koin;
-k20_1_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta syrjinnästä::Loukkaava kielenkäyttö, herjaaminen:Kollegani koki;
-k20_2_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta syrjinnästä::Ryhmiin liittyvät yleistykset (esim. vähemmistövitsit):Minä koin;
-k20_2_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta syrjinnästä::Ryhmiin liittyvät yleistykset (esim. vähemmistövitsit):Kollegani koki;
-k20_3_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta syrjinnästä::Organisaation ulkopuolisten henkilöiden erilaiset odotukset henkilökohtaisten ominaisuuksien perusteella:Minä koin;
-k20_3_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta syrjinnästä::Organisaation ulkopuolisten henkilöiden erilaiset odotukset henkilökohtaisten ominaisuuksien perusteella:Kollegani koki;
-k20_4_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta syrjinnästä::Pätevyyden vähättely henkilökohtaisten ominaisuuksien perusteella:Minä koin;
-k20_4_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta syrjinnästä::Pätevyyden vähättely henkilökohtaisten ominaisuuksien perusteella:Kollegani koki;
-k20_5_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta syrjinnästä::Kohtuullisten mukautusten epääminen vammaiselta henkilöltä:Minä koin;
-k20_5_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta syrjinnästä::Kohtuullisten mukautusten epääminen vammaiselta henkilöltä:Kollegani koki;
-k20_6_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta syrjinnästä::Käskyt tai ohjeet syrjiä toista henkilöä (asiakasta, potilasta tai työkollegaa):Minä koin;
-k20_6_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta syrjinnästä::Käskyt tai ohjeet syrjiä toista henkilöä (asiakasta, potilasta tai työkollegaa):Kollegani koki;
-k20_7_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta syrjinnästä::Syrjivä kohtelu ammattiyhdistystoimintaan osallistumisen takia:Minä koin;
-k20_7_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta syrjinnästä::Syrjivä kohtelu ammattiyhdistystoimintaan osallistumisen takia:Kollegani koki;
-k21_1;Miten vakavia sinuun kohdistuneen epäasiallisen käytöksen vaikutukset olivat?:Fyysiset vaikutukset;
-k21_2;Miten vakavia sinuun kohdistuneen epäasiallisen käytöksen vaikutukset olivat?:Psyykkiset vaikutukset;
-k21_3;Miten vakavia sinuun kohdistuneen epäasiallisen käytöksen vaikutukset olivat?:Ammatilliset vaikutukset;
-k22_1; (Miten pitkäkestoisia sinuun kohdistuneen epäasiallisen kohtelun vaikutukset olivat?):Fyysiset vaikutukset;
-k22_2; (Miten pitkäkestoisia sinuun kohdistuneen epäasiallisen kohtelun vaikutukset olivat?):Psyykkiset vaikutukset;
-k22_3; (Miten pitkäkestoisia sinuun kohdistuneen epäasiallisen kohtelun vaikutukset olivat?):Ammatilliset vaikutukset;
-k22_1_1; (Miten pitkäkestoisia sinuun kohdistuneen epäasiallisen kohtelun vaikutukset olivat?):Fyysiset vaikutukset:Jatkuu tällä hetkellä;
-k22_2_1; (Miten pitkäkestoisia sinuun kohdistuneen epäasiallisen kohtelun vaikutukset olivat?):Psyykkiset vaikutukset:Jatkuu tällä hetkellä;
-k22_3_1; (Miten pitkäkestoisia sinuun kohdistuneen epäasiallisen kohtelun vaikutukset olivat?):Ammatilliset vaikutukset:Jatkuu tällä hetkellä;
-k23_1;Miten reagoit epäasiallisen kohtelun kokemukseesi?:Ilmoitin kohtelusta esihenkilölleni;
-k23_2;Miten reagoit epäasiallisen kohtelun kokemukseesi?:Hain lääketieteellistä hoitoa;
-k23_3;Miten reagoit epäasiallisen kohtelun kokemukseesi?:Hain psykososiaalista hoitoa (esimerkiksi defusing- tai debriefing-menettely, työpsykologin tapaaminen);
-k23_4;Miten reagoit epäasiallisen kohtelun kokemukseesi?:Hain rikosoikeudellista apua;
-k23_5;Miten reagoit epäasiallisen kohtelun kokemukseesi?:Tein ilmoituksen organisaation käyttämässä järjestelmässä (esimerkiksi työtapaturma-, uhka- ja väkivaltatilanne-, vaaratapahtuma- tai muu työsuojeluilmoitus);
-k23_6;Miten reagoit epäasiallisen kohtelun kokemukseesi?:Hälytin turvallisuusviranomaiset (esim. hätäpuhelu, Virven käyttö);
-k23_7;Miten reagoit epäasiallisen kohtelun kokemukseesi?:Muutin suojavarustekäytäntöjäni;
-k23_8;Miten reagoit epäasiallisen kohtelun kokemukseesi?:Kerroin kollegoilleni kohtelusta;
-k23_9;Miten reagoit epäasiallisen kohtelun kokemukseesi?:Jäin pois toiminnasta, jätin menemättä tehtäviin;
-k23_10;Miten reagoit epäasiallisen kohtelun kokemukseesi?:Ilmoitin asiasta luottamushenkilölle tai työsuojeluun;
-k23_11;Miten reagoit epäasiallisen kohtelun kokemukseesi?:Ilmoitin asiasta johtohenkilölle, ohittaen esihenkilöni;
-k24_1;Onko organisaatiollasi käytössä ilmoitusjärjestelmä, jossa voit ilmoittaa epäasiallisen kohtelun tilanteista?:Organisaation sisällä tapahtuneille tilanteille;
-k24_2;Onko organisaatiollasi käytössä ilmoitusjärjestelmä, jossa voit ilmoittaa epäasiallisen kohtelun tilanteista?:Organisaation ulkopuolelta tulleelle kohtelulle;
-k24_3;Onko organisaatiollasi käytössä ilmoitusjärjestelmä, jossa voit ilmoittaa epäasiallisen kohtelun tilanteista?:Sekä sisäiset että ulkoiset tilanteet yhdessä järjestelmässä;
-k25_1;Onko organisaatiollasi tarjolla koulutusta ilmoitusjärjestelmän käyttöön?:Organisaation sisällä tapahtuneille tilanteille;
-k25_2;Onko organisaatiollasi tarjolla koulutusta ilmoitusjärjestelmän käyttöön?:Organisaation ulkopuolelta tulleelle kohtelulle;
-k25_3;Onko organisaatiollasi tarjolla koulutusta ilmoitusjärjestelmän käyttöön?:Sekä sisäiset että ulkoiset tilanteet yhdessä järjestelmässä;
-k26_1;Ota kantaa seuraaviin väitteisiin ilmoitusjärjestelmistä ja niiden käytöstä:Ilmoitusjärjestelmät ovat liian työläitä tai raskaita;
-k26_2;Ota kantaa seuraaviin väitteisiin ilmoitusjärjestelmistä ja niiden käytöstä:Ilmoituksen tekeminen ei johda toimenpiteisiin;
-k26_3;Ota kantaa seuraaviin väitteisiin ilmoitusjärjestelmistä ja niiden käytöstä:Pelkään vastatoimia esihenkilöiltäni tai johdolta, jos tekisin ilmoituksen;
-k26_4;Ota kantaa seuraaviin väitteisiin ilmoitusjärjestelmistä ja niiden käytöstä:Jos epäasiallisen kohtelun tekijä on alentuneessa toimintatilassa, häntä ei voi syyttää toiminnastaan;
-k26_5;Ota kantaa seuraaviin väitteisiin ilmoitusjärjestelmistä ja niiden käytöstä:Teen ilmoituksen jokaisesta kokemastani epäasiallisesta kohtelusta;
-k26_6;Ota kantaa seuraaviin väitteisiin ilmoitusjärjestelmistä ja niiden käytöstä:Konfliktitilanteet ovat osa työtäni;
-k26_7;Ota kantaa seuraaviin väitteisiin ilmoitusjärjestelmistä ja niiden käytöstä:Minulla ei ole tilaisuutta tai mahdollisuutta tehdä ilmoituksia;
-k26_8;Ota kantaa seuraaviin väitteisiin ilmoitusjärjestelmistä ja niiden käytöstä:Minulle on epäselvää, milloin ilmoitus pitäisi täyttää;
-k26_9;Ota kantaa seuraaviin väitteisiin ilmoitusjärjestelmistä ja niiden käytöstä:Unohdan tehdä ilmoituksen kokemastani epäasiallisesta kohtelusta;
-k26_10;Ota kantaa seuraaviin väitteisiin ilmoitusjärjestelmistä ja niiden käytöstä:Pelkään ilmoituksen johtavan oman ammattitaitoni kyseenalaistamiseen;
-k26_11;Ota kantaa seuraaviin väitteisiin ilmoitusjärjestelmistä ja niiden käytöstä:Oletan, että joku muu hoitaa ilmoituksen puolestani;
-k26_12;Ota kantaa seuraaviin väitteisiin ilmoitusjärjestelmistä ja niiden käytöstä:Valtakunnallisesti yhtenäisestä ilmoitusprosessista olisi hyötyä;
-k26_13;Ota kantaa seuraaviin väitteisiin ilmoitusjärjestelmistä ja niiden käytöstä:En ilmoita epäasiallisesta kohtelusta, koska en halua pahaa tekijälle;
-k26_14;Ota kantaa seuraaviin väitteisiin ilmoitusjärjestelmistä ja niiden käytöstä:Epäasiallisen kohtelun kokemukset ovat yksittäistapahtumia;
-k26_15;Ota kantaa seuraaviin väitteisiin ilmoitusjärjestelmistä ja niiden käytöstä:En tee ilmoituksia, koska tekijä saa tietää niistä;
-k26_16;Ota kantaa seuraaviin väitteisiin ilmoitusjärjestelmistä ja niiden käytöstä:Kollegani näkisivät minut ongelmallisena tai vaikeana jos tekisin ilmoituksen;
-k26_17;Ota kantaa seuraaviin väitteisiin ilmoitusjärjestelmistä ja niiden käytöstä:Pelkään menettäväni työpaikkani ilmoituksen myötä;
-k26_18;Ota kantaa seuraaviin väitteisiin ilmoitusjärjestelmistä ja niiden käytöstä:Pelkään kollegoideni ryhtyvän vastatoimiin, jos tekisin ilmoituksen;
-k27_1;Seuraavat väittämät koskevat työtilannettasi ja sitä koskevia tuntemuksiasi. Miten usein seuraavat väittämät kuvaavat tilannettasi?:Tunnen itseni henkisesti uupuneeksi työssäni;
-k27_2;Seuraavat väittämät koskevat työtilannettasi ja sitä koskevia tuntemuksiasi. Miten usein seuraavat väittämät kuvaavat tilannettasi?:En ole kiinnostunut enkä innostunut työstäni;
-k27_3;Seuraavat väittämät koskevat työtilannettasi ja sitä koskevia tuntemuksiasi. Miten usein seuraavat väittämät kuvaavat tilannettasi?:Minun on vaikea pysyä tarkkaavaisena työssäni;
-k27_4;Seuraavat väittämät koskevat työtilannettasi ja sitä koskevia tuntemuksiasi. Miten usein seuraavat väittämät kuvaavat tilannettasi?:En pysty hallitsemaan tunteitani työssäni;
-k28_1;Onko organisaatiossasi käytössä seuraavia epäasialliseen kohteluun liittyviä toimenpiteitä tai ohjeita?:Tasa-arvo- tai yhdenvertaisuussuunnitelma;
-k28_2;Onko organisaatiossasi käytössä seuraavia epäasialliseen kohteluun liittyviä toimenpiteitä tai ohjeita?:Toimintaohjeet epäasialliseen käytökseen, häirintään tai seksuaaliseen häirintään reagointiin;
-k28_3;Onko organisaatiossasi käytössä seuraavia epäasialliseen kohteluun liittyviä toimenpiteitä tai ohjeita?:Henkilöstön turvallisuusselvitykset;
-k28_4;Onko organisaatiossasi käytössä seuraavia epäasialliseen kohteluun liittyviä toimenpiteitä tai ohjeita?:Ohjeet alaikäisten koskemattomuuden turvaamiselle;
-k28_5;Onko organisaatiossasi käytössä seuraavia epäasialliseen kohteluun liittyviä toimenpiteitä tai ohjeita?:Nuorten kanssa toimivien rikostaustojen tarkastaminen;
-k28_6;Onko organisaatiossasi käytössä seuraavia epäasialliseen kohteluun liittyviä toimenpiteitä tai ohjeita?:Ohjeet ahdistelutilanteen käsittelyyn;
-k28_7;Onko organisaatiossasi käytössä seuraavia epäasialliseen kohteluun liittyviä toimenpiteitä tai ohjeita?:Ohjeet uhka- ja väkivaltatilanteen käsittelyyn;
-k28_8;Onko organisaatiossasi käytössä seuraavia epäasialliseen kohteluun liittyviä toimenpiteitä tai ohjeita?:Ilmoitusjärjestelmä epäasiallisen kohtelun raportoimiseksi;
-k28_9;Onko organisaatiossasi käytössä seuraavia epäasialliseen kohteluun liittyviä toimenpiteitä tai ohjeita?:Koulutus uhka- ja väkivaltatilanteiden kohtaamiseen;
-k28_10;Onko organisaatiossasi käytössä seuraavia epäasialliseen kohteluun liittyviä toimenpiteitä tai ohjeita?:Koulutus epäasiallisen kohtelun tunnistamiseen;
-k28_11;Onko organisaatiossasi käytössä seuraavia epäasialliseen kohteluun liittyviä toimenpiteitä tai ohjeita?:Keskustelutilaisuuksia tasa-arvo- ja yhdenvertaisuusaiheista;
-k28_12;Onko organisaatiossasi käytössä seuraavia epäasialliseen kohteluun liittyviä toimenpiteitä tai ohjeita?:Henkilöstön infotilaisuudet organisaation yhdenvertaisuustilanteesta;
-k29_1;Miten edellä olevat toimet mielestäsi vaikuttavat epäasiallisen kohtelun esiintyvyyteen?:Tasa-arvo- tai yhdenvertaisuus-suunnitelma;
-k29_2;Miten edellä olevat toimet mielestäsi vaikuttavat epäasiallisen kohtelun esiintyvyyteen?:Toimintaohjeet epäasialliseen käytökseen, häirintään tai seksuaaliseen häirintään reagointiin;
-k29_3;Miten edellä olevat toimet mielestäsi vaikuttavat epäasiallisen kohtelun esiintyvyyteen?:Henkilöstön turvallisuusselvitykset;
-k29_4;Miten edellä olevat toimet mielestäsi vaikuttavat epäasiallisen kohtelun esiintyvyyteen?:Ohjeet alaikäisten koskemattomuuden turvaamiselle;
-k29_5;Miten edellä olevat toimet mielestäsi vaikuttavat epäasiallisen kohtelun esiintyvyyteen?:Nuorten kanssa toimivien rikostaustojen tarkastaminen;
-k29_6;Miten edellä olevat toimet mielestäsi vaikuttavat epäasiallisen kohtelun esiintyvyyteen?:Ohjeet ahdistelutilanteen käsittelyyn;
-k29_7;Miten edellä olevat toimet mielestäsi vaikuttavat epäasiallisen kohtelun esiintyvyyteen?:Ohjeet uhka- ja väkivaltatilanteen käsittelyyn;
-k29_8;Miten edellä olevat toimet mielestäsi vaikuttavat epäasiallisen kohtelun esiintyvyyteen?:Ilmoitusjärjestelmä epäasiallisen kohtelun raportoimiseksi;
-k29_9;Miten edellä olevat toimet mielestäsi vaikuttavat epäasiallisen kohtelun esiintyvyyteen?:Koulutus uhka- ja väkivaltatilanteiden kohtaamiseen;
-k29_10;Miten edellä olevat toimet mielestäsi vaikuttavat epäasiallisen kohtelun esiintyvyyteen?:Koulutus epäasiallisen kohtelun tunnistamiseen;
-k29_11;Miten edellä olevat toimet mielestäsi vaikuttavat epäasiallisen kohtelun esiintyvyyteen?:Keskustelutilaisuuksia tasa-arvo- ja yhdenvertaisuusaiheista;
-k29_12;Miten edellä olevat toimet mielestäsi vaikuttavat epäasiallisen kohtelun esiintyvyyteen?:Henkilöstön infotilaisuudet organisaation yhdenvertaisuustilanteesta;
-k30_1;Miten hyödyllisinä koet seuraavat ehdotetut toimenpiteet epäasiallisen kohtelun estämiseksi tai vähentämiseksi?:Voimankäyttökoulutus tai -välineiden käyttöönotto;
-k30_2;Miten hyödyllisinä koet seuraavat ehdotetut toimenpiteet epäasiallisen kohtelun estämiseksi tai vähentämiseksi?:Toimintaan osallistuvat puuttuvat havaitsemaansa epäasialliseen kohteluun;
-k30_3;Miten hyödyllisinä koet seuraavat ehdotetut toimenpiteet epäasiallisen kohtelun estämiseksi tai vähentämiseksi?:Ohjeet epäasiallisen kohtelun jälkeisistä menettelyistä, esimerkiksi puuttumisprosessista tai jatkoavun saamisesta;
-k30_4;Miten hyödyllisinä koet seuraavat ehdotetut toimenpiteet epäasiallisen kohtelun estämiseksi tai vähentämiseksi?:Yhdenvertaisuuden koulutukset;
-k30_5;Miten hyödyllisinä koet seuraavat ehdotetut toimenpiteet epäasiallisen kohtelun estämiseksi tai vähentämiseksi?:Avoimet keskustelut organisaatiossa epäasiallisesta kohtelusta yleisellä tasolla (ei yksittäisistä tapahtumista);
-k30_6;Miten hyödyllisinä koet seuraavat ehdotetut toimenpiteet epäasiallisen kohtelun estämiseksi tai vähentämiseksi?:Turvallisuusviranomaisten yhteistyön parantaminen;
-k30_7;Miten hyödyllisinä koet seuraavat ehdotetut toimenpiteet epäasiallisen kohtelun estämiseksi tai vähentämiseksi?:Lainsäädännön tiukentaminen tai rikosoikeudellisten seuraamuksien jyrkentäminen;
-k30_8;Miten hyödyllisinä koet seuraavat ehdotetut toimenpiteet epäasiallisen kohtelun estämiseksi tai vähentämiseksi?:Johdon selkeä ilmaisu epäasiallisen kohtelun nollatoleranssille;
-k30_9;Miten hyödyllisinä koet seuraavat ehdotetut toimenpiteet epäasiallisen kohtelun estämiseksi tai vähentämiseksi?:Organisaation nimetty yhdenvertaisuusvastaava;
-k30_10;Miten hyödyllisinä koet seuraavat ehdotetut toimenpiteet epäasiallisen kohtelun estämiseksi tai vähentämiseksi?:Monimuotoiset työyhteisöt;
-k30_11;Miten hyödyllisinä koet seuraavat ehdotetut toimenpiteet epäasiallisen kohtelun estämiseksi tai vähentämiseksi?:Rikosilmoituksen tekeminen automaattisesti epäasiallisen kohtelun tilanteissa;
-k30_12;Miten hyödyllisinä koet seuraavat ehdotetut toimenpiteet epäasiallisen kohtelun estämiseksi tai vähentämiseksi?:Nimettömän palautteen tai ilmoituskanavan käyttö;
-k30_13;Miten hyödyllisinä koet seuraavat ehdotetut toimenpiteet epäasiallisen kohtelun estämiseksi tai vähentämiseksi?:Työterveydenhuollon tuen laajentaminen;
-k31;Mikä sukupuolesi on?;
-k32;Millaisella työrytmityksellä olet töissä pelastuslaitoksella tai ensihoidossa?;
-k33;Kuinka monta tuntia käytät keskimäärin aikaa palokuntatoimintaan viikossa, poisluettuna varallaolo?;
-k34;Teetkö varallaoloa tai oletko sopimuksenvaraisessa hälytysvalmiudessa?;
-k35;Kuinka monta tuntia teet varallaoloa keskimäärin kuukaudessa?;
-k36_1;Millaisia toimintoja teet sopimuspalokunnassasi tai palokuntayhdistyksessäsi?:Sammutus- ja pelastustoiminta;
-k36_2;Millaisia toimintoja teet sopimuspalokunnassasi tai palokuntayhdistyksessäsi?:Ensivastetoiminta;
-k36_3;Millaisia toimintoja teet sopimuspalokunnassasi tai palokuntayhdistyksessäsi?:Yhdistystoiminnan johto- tai hallintotehtävät;
-k36_4;Millaisia toimintoja teet sopimuspalokunnassasi tai palokuntayhdistyksessäsi?:Operatiiviset johtotehtävät;
-k36_5;Millaisia toimintoja teet sopimuspalokunnassasi tai palokuntayhdistyksessäsi?:Muut operatiiviset tehtävät;
-k36_6;Millaisia toimintoja teet sopimuspalokunnassasi tai palokuntayhdistyksessäsi?:Muut vastuutehtävät;
-k36_7;Millaisia toimintoja teet sopimuspalokunnassasi tai palokuntayhdistyksessäsi?:Tukitoiminnot;
-k37;Millaisella rytmityksellä toimit organisaatiossasi?;
-k38;Missä asemassa toimit organisaatiossasi pääsääntöisesti?;
-k39;Missä asemassa toimit organisaatiossasi pääsääntöisesti?;
-k40;Mihin ammattiryhmään kuulut?;
-k41;Kuinka kauan olet toiminut pelastusalalla tai ensihoidossa?:;
-k42_1_1;Onko sinulla ollut viimeisen 12 kuukauden aikana aikeita tai suunnitelmia muuttaa tilannettasi seuraavilla tavoilla, tai oletko jo muuttanut tilannettasi?:Muuttaa tehtävänkuvaani:Olen harkinnut;
-k42_1_2;Onko sinulla ollut viimeisen 12 kuukauden aikana aikeita tai suunnitelmia muuttaa tilannettasi seuraavilla tavoilla, tai oletko jo muuttanut tilannettasi?:Muuttaa tehtävänkuvaani:Olen toteuttamassa;
-k42_1_3;Onko sinulla ollut viimeisen 12 kuukauden aikana aikeita tai suunnitelmia muuttaa tilannettasi seuraavilla tavoilla, tai oletko jo muuttanut tilannettasi?:Muuttaa tehtävänkuvaani:Olen jo tehnyt;
-k42_2_1;Onko sinulla ollut viimeisen 12 kuukauden aikana aikeita tai suunnitelmia muuttaa tilannettasi seuraavilla tavoilla, tai oletko jo muuttanut tilannettasi?:Vaihtaa organisaatiotani:Olen harkinnut;
-k42_2_2;Onko sinulla ollut viimeisen 12 kuukauden aikana aikeita tai suunnitelmia muuttaa tilannettasi seuraavilla tavoilla, tai oletko jo muuttanut tilannettasi?:Vaihtaa organisaatiotani:Olen toteuttamassa;
-k42_2_3;Onko sinulla ollut viimeisen 12 kuukauden aikana aikeita tai suunnitelmia muuttaa tilannettasi seuraavilla tavoilla, tai oletko jo muuttanut tilannettasi?:Vaihtaa organisaatiotani:Olen jo tehnyt;
-k42_3_1;Onko sinulla ollut viimeisen 12 kuukauden aikana aikeita tai suunnitelmia muuttaa tilannettasi seuraavilla tavoilla, tai oletko jo muuttanut tilannettasi?:Lähteä alalta:Olen harkinnut;
-k42_3_2;Onko sinulla ollut viimeisen 12 kuukauden aikana aikeita tai suunnitelmia muuttaa tilannettasi seuraavilla tavoilla, tai oletko jo muuttanut tilannettasi?:Lähteä alalta:Olen toteuttamassa;
-k42_3_3;Onko sinulla ollut viimeisen 12 kuukauden aikana aikeita tai suunnitelmia muuttaa tilannettasi seuraavilla tavoilla, tai oletko jo muuttanut tilannettasi?:Lähteä alalta:Olen jo tehnyt;
-k43;Voitko kertoa syitä muutoksellesi tai sen aikeille?;
+Koodi;Alkuperäinen teksti
+k1;Olen tietoinen minusta kerättävistä tiedoista sekä niiden käsittelystä, ja annan suostumukseni tietojen keruuseen:
+k2;Mihin organisaatioon/toimialaan kuulut?
+k3_1;Kuinka usein olet itse kohdannut seuraavia epäasiallisen kohtelun muotoja organisaatiosi sisällä viimeisen 12 kuukauden aikana?:Verbaalinen väkivalta
+k3_2;Kuinka usein olet itse kohdannut seuraavia epäasiallisen kohtelun muotoja organisaatiosi sisällä viimeisen 12 kuukauden aikana?:Omaisuuden vahingoittaminen tai varastaminen
+k3_3;Kuinka usein olet itse kohdannut seuraavia epäasiallisen kohtelun muotoja organisaatiosi sisällä viimeisen 12 kuukauden aikana?:Uhkailu
+k3_4;Kuinka usein olet itse kohdannut seuraavia epäasiallisen kohtelun muotoja organisaatiosi sisällä viimeisen 12 kuukauden aikana?:Fyysinen väkivalta
+k3_5;Kuinka usein olet itse kohdannut seuraavia epäasiallisen kohtelun muotoja organisaatiosi sisällä viimeisen 12 kuukauden aikana?:Seksuaalinen häirintä tai väkivalta
+k3_6;Kuinka usein olet itse kohdannut seuraavia epäasiallisen kohtelun muotoja organisaatiosi sisällä viimeisen 12 kuukauden aikana?:Vihamielisyys tai epäkohtelias käyttäytyminen
+k3_7;Kuinka usein olet itse kohdannut seuraavia epäasiallisen kohtelun muotoja organisaatiosi sisällä viimeisen 12 kuukauden aikana?:Syrjintä
+k4_1;Kuinka usein olet havainnut kollegan kohdanneen seuraavia epäasiallisen kohtelun muotoja organisaatiosi sisällä viimeisen 12 kuukauden aikana?:Verbaalinen väkivalta
+k4_2;Kuinka usein olet havainnut kollegan kohdanneen seuraavia epäasiallisen kohtelun muotoja organisaatiosi sisällä viimeisen 12 kuukauden aikana?:Omaisuuden vahingoittaminen tai varastaminen
+k4_3;Kuinka usein olet havainnut kollegan kohdanneen seuraavia epäasiallisen kohtelun muotoja organisaatiosi sisällä viimeisen 12 kuukauden aikana?:Uhkailu
+k4_4;Kuinka usein olet havainnut kollegan kohdanneen seuraavia epäasiallisen kohtelun muotoja organisaatiosi sisällä viimeisen 12 kuukauden aikana?:Fyysinen väkivalta
+k4_5;Kuinka usein olet havainnut kollegan kohdanneen seuraavia epäasiallisen kohtelun muotoja organisaatiosi sisällä viimeisen 12 kuukauden aikana?:Seksuaalinen häirintä tai väkivalta
+k4_6;Kuinka usein olet havainnut kollegan kohdanneen seuraavia epäasiallisen kohtelun muotoja organisaatiosi sisällä viimeisen 12 kuukauden aikana?:Vihamielisyys tai epäkohtelias käyttäytyminen
+k4_7;Kuinka usein olet havainnut kollegan kohdanneen seuraavia epäasiallisen kohtelun muotoja organisaatiosi sisällä viimeisen 12 kuukauden aikana?:Syrjintä
+k5_1_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä verbaalisesta väkivallasta::Nöyryyttäminen, häpäiseminen:Minä koin
+k5_1_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä verbaalisesta väkivallasta::Nöyryyttäminen, häpäiseminen:Kollegani koki
+k5_2_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä verbaalisesta väkivallasta::Nolaaminen: vähättely, alentaminen, holhoava käyttäytyminen:Minä koin
+k5_2_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä verbaalisesta väkivallasta::Nolaaminen: vähättely, alentaminen, holhoava käyttäytyminen:Kollegani koki
+k5_3_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä verbaalisesta väkivallasta::Nuhtelu toisten edessä:Minä koin
+k5_3_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä verbaalisesta väkivallasta::Nuhtelu toisten edessä:Kollegani koki
+k5_4_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä verbaalisesta väkivallasta::Työn arvostelu epäoikeudenmukaisella tai loukkaavalla tavalla:Minä koin
+k5_4_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä verbaalisesta väkivallasta::Työn arvostelu epäoikeudenmukaisella tai loukkaavalla tavalla:Kollegani koki
+k5_5_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä verbaalisesta väkivallasta::Huutaminen:Minä koin
+k5_5_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä verbaalisesta väkivallasta::Huutaminen:Kollegani koki
+k5_6_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä verbaalisesta väkivallasta::Kiroilu tai henkilöön kohdistuva kiroaminen:Minä koin
+k5_6_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä verbaalisesta väkivallasta::Kiroilu tai henkilöön kohdistuva kiroaminen:Kollegani koki
+k5_7_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä verbaalisesta väkivallasta::Loukkaava nimittely:Minä koin
+k5_7_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä verbaalisesta väkivallasta::Loukkaava nimittely:Kollegani koki
+k5_8_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä verbaalisesta väkivallasta::Valheellinen syyttäminen:Minä koin
+k5_8_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä verbaalisesta väkivallasta::Valheellinen syyttäminen:Kollegani koki
+k5_9_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä verbaalisesta väkivallasta::Ärsyttämismielessä sanotut asiat:Minä koin
+k5_9_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä verbaalisesta väkivallasta::Ärsyttämismielessä sanotut asiat:Kollegani koki
+k6_1_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä omaisuuden vahingoittamisesta tai varastamisesta::Työvälineiden varastaminen:Minä koin
+k6_1_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä omaisuuden vahingoittamisesta tai varastamisesta::Työvälineiden varastaminen:Kollegani koki
+k6_2_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä omaisuuden vahingoittamisesta tai varastamisesta::Työvälineiden piilottaminen tai kätkeminen:Minä koin
+k6_2_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä omaisuuden vahingoittamisesta tai varastamisesta::Työvälineiden piilottaminen tai kätkeminen:Kollegani koki
+k6_3_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä omaisuuden vahingoittamisesta tai varastamisesta::Työvälineiden rikkominen:Minä koin
+k6_3_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä omaisuuden vahingoittamisesta tai varastamisesta::Työvälineiden rikkominen:Kollegani koki
+k6_4_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä omaisuuden vahingoittamisesta tai varastamisesta::Työvälineiden likaaminen tai niihin töhertäminen:Minä koin
+k6_4_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä omaisuuden vahingoittamisesta tai varastamisesta::Työvälineiden likaaminen tai niihin töhertäminen:Kollegani koki
+k6_5_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä omaisuuden vahingoittamisesta tai varastamisesta::Työvälineiden luvaton käyttö:Minä koin
+k6_5_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä omaisuuden vahingoittamisesta tai varastamisesta::Työvälineiden luvaton käyttö:Kollegani koki
+k6_6_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä omaisuuden vahingoittamisesta tai varastamisesta::Henkilökohtaisen omaisuuden varastaminen:Minä koin
+k6_6_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä omaisuuden vahingoittamisesta tai varastamisesta::Henkilökohtaisen omaisuuden varastaminen:Kollegani koki
+k6_7_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä omaisuuden vahingoittamisesta tai varastamisesta::Henkilökohtaisen omaisuuden piilottaminen tai kätkeminen:Minä koin
+k6_7_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä omaisuuden vahingoittamisesta tai varastamisesta::Henkilökohtaisen omaisuuden piilottaminen tai kätkeminen:Kollegani koki
+k6_8_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä omaisuuden vahingoittamisesta tai varastamisesta::Henkilökohtaisen omaisuuden rikkominen:Minä koin
+k6_8_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä omaisuuden vahingoittamisesta tai varastamisesta::Henkilökohtaisen omaisuuden rikkominen:Kollegani koki
+k6_9_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä omaisuuden vahingoittamisesta tai varastamisesta::Henkilökohtaisen omaisuuden likaaminen tai niihin töhertäminen:Minä koin
+k6_9_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä omaisuuden vahingoittamisesta tai varastamisesta::Henkilökohtaisen omaisuuden likaaminen tai niihin töhertäminen:Kollegani koki
+k6_10_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä omaisuuden vahingoittamisesta tai varastamisesta::Henkilökohtaisen omaisuuden luvaton käyttö:Minä koin
+k6_10_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä omaisuuden vahingoittamisesta tai varastamisesta::Henkilökohtaisen omaisuuden luvaton käyttö:Kollegani koki
+k7_1_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Pelottelu:Minä koin
+k7_1_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Pelottelu:Kollegani koki
+k7_2_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Työn tai liikkumisen estäminen:Minä koin
+k7_2_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Työn tai liikkumisen estäminen:Kollegani koki
+k7_3_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Äänen korottaminen:Minä koin
+k7_3_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Äänen korottaminen:Kollegani koki
+k7_4_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Vuorovaikutustilanteessa liian lähelle tuleminen:Minä koin
+k7_4_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Vuorovaikutustilanteessa liian lähelle tuleminen:Kollegani koki
+k7_5_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Törkeiden eleiden näyttäminen:Minä koin
+k7_5_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Törkeiden eleiden näyttäminen:Kollegani koki
+k7_6_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Muu törkeä käyttäytyminen:Minä koin
+k7_6_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Muu törkeä käyttäytyminen:Kollegani koki
+k7_7_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Mulkoilu tai tuijottaminen:Minä koin
+k7_7_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Mulkoilu tai tuijottaminen:Kollegani koki
+k7_8_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Fyysisellä väkivallalla uhkaaminen:Minä koin
+k7_8_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Fyysisellä väkivallalla uhkaaminen:Kollegani koki
+k7_9_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Esineellä heittämisellä uhkaaminen:Minä koin
+k7_9_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Esineellä heittämisellä uhkaaminen:Kollegani koki
+k7_10_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Aseella tai voimankäyttövälineellä uhkaaminen:Minä koin
+k7_10_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Aseella tai voimankäyttövälineellä uhkaaminen:Kollegani koki
+k7_11_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Tappamisella uhkaaminen:Minä koin
+k7_11_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Tappamisella uhkaaminen:Kollegani koki
+k7_12_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Seuraaminen:Minä koin
+k7_12_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Seuraaminen:Kollegani koki
+k7_13_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Tarkkailu:Minä koin
+k7_13_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Tarkkailu:Kollegani koki
+k7_14_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Läheisiin kohdistuvalla väkivallalla uhkaaminen:Minä koin
+k7_14_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta::Läheisiin kohdistuvalla väkivallalla uhkaaminen:Kollegani koki
+k8_1_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta::Lyöminen:Minä koin
+k8_1_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta::Lyöminen:Kollegani koki
+k8_2_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta::Tuuppaaminen tai tönäiseminen:Minä koin
+k8_2_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta::Tuuppaaminen tai tönäiseminen:Kollegani koki
+k8_3_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta::Tarkoituksella henkilöön törmääminen liiallisella voimalla:Minä koin
+k8_3_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta::Tarkoituksella henkilöön törmääminen liiallisella voimalla:Kollegani koki
+k8_4_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta::Päälle sylkäiseminen:Minä koin
+k8_4_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta::Päälle sylkäiseminen:Kollegani koki
+k8_5_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta::Esineellä heittäminen:Minä koin
+k8_5_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta::Esineellä heittäminen:Kollegani koki
+k8_6_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta::Kiinni tarttuminen:Minä koin
+k8_6_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta::Kiinni tarttuminen:Kollegani koki
+k8_7_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta::Potkaiseminen:Minä koin
+k8_7_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta::Potkaiseminen:Kollegani koki
+k8_8_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta::Kuristaminen:Minä koin
+k8_8_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta::Kuristaminen:Kollegani koki
+k8_9_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta::Raapiminen:Minä koin
+k8_9_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta::Raapiminen:Kollegani koki
+k8_10_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta::Hiuksista tarttuminen:Minä koin
+k8_10_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta::Hiuksista tarttuminen:Kollegani koki
+k8_11_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta::Voimankäyttövälineillä tai aseella vahingoittaminen:Minä koin
+k8_11_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta::Voimankäyttövälineillä tai aseella vahingoittaminen:Kollegani koki
+k9_1_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä seksuaalisesta häirinnästä tai väkivallasta::Seksuaaliset vitsit tai nöyryyttävät seksuaaliset kommentit:Minä koin
+k9_1_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä seksuaalisesta häirinnästä tai väkivallasta::Seksuaaliset vitsit tai nöyryyttävät seksuaaliset kommentit:Kollegani koki
+k9_2_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä seksuaalisesta häirinnästä tai väkivallasta::Seksuaaliset keholliset eleet:Minä koin
+k9_2_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä seksuaalisesta häirinnästä tai väkivallasta::Seksuaaliset keholliset eleet:Kollegani koki
+k9_3_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä seksuaalisesta häirinnästä tai väkivallasta::Toistuvat tapaamisen tai puhelinnumeron vaatimukset:Minä koin
+k9_3_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä seksuaalisesta häirinnästä tai väkivallasta::Toistuvat tapaamisen tai puhelinnumeron vaatimukset:Kollegani koki
+k9_4_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä seksuaalisesta häirinnästä tai väkivallasta::Seksuaalinen tai seksuaalissävytteinen vihjailu:Minä koin
+k9_4_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä seksuaalisesta häirinnästä tai väkivallasta::Seksuaalinen tai seksuaalissävytteinen vihjailu:Kollegani koki
+k9_5_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä seksuaalisesta häirinnästä tai väkivallasta::Pakotettu seksuaalinen teko tai raiskaus, tai näiden yritys:Minä koin
+k9_5_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä seksuaalisesta häirinnästä tai väkivallasta::Pakotettu seksuaalinen teko tai raiskaus, tai näiden yritys:Kollegani koki
+k9_6_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä seksuaalisesta häirinnästä tai väkivallasta::Sukuelinten, rintojen tai pakaroiden koskettelu tai tämän yritys:Minä koin
+k9_6_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä seksuaalisesta häirinnästä tai väkivallasta::Sukuelinten, rintojen tai pakaroiden koskettelu tai tämän yritys:Kollegani koki
+k9_7_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä seksuaalisesta häirinnästä tai väkivallasta::Seksualisoiva tai epäasiallinen koskettelu muiden kuin sukuelinten, rintojen tai pakaroiden alueella:Minä koin
+k9_7_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä seksuaalisesta häirinnästä tai väkivallasta::Seksualisoiva tai epäasiallinen koskettelu muiden kuin sukuelinten, rintojen tai pakaroiden alueella:Kollegani koki
+k9_8_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä seksuaalisesta häirinnästä tai väkivallasta::Ei-toivottujen lahjojen tai muiden huomionosoituksien antaminen:Minä koin
+k9_8_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä seksuaalisesta häirinnästä tai väkivallasta::Ei-toivottujen lahjojen tai muiden huomionosoituksien antaminen:Kollegani koki
+k9_9_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä seksuaalisesta häirinnästä tai väkivallasta::Ei-toivottujen kuvien lähettäminen tai kuvaaminen:Minä koin
+k9_9_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä seksuaalisesta häirinnästä tai väkivallasta::Ei-toivottujen kuvien lähettäminen tai kuvaaminen:Kollegani koki
+k9_10_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä seksuaalisesta häirinnästä tai väkivallasta::Seksuaalissävytteisen materiaalin levittäminen tai esilläpito:Minä koin
+k9_10_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä seksuaalisesta häirinnästä tai väkivallasta::Seksuaalissävytteisen materiaalin levittäminen tai esilläpito:Kollegani koki
+k10_1_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta::Henkilön toiminnasta muille valittaminen ennen keskustelua kohteen kanssa:Minä koin
+k10_1_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta::Henkilön toiminnasta muille valittaminen ennen keskustelua kohteen kanssa:Kollegani koki
+k10_2_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta::Henkilökohtaisen, luottamuksellisen tiedon jakaminen:Minä koin
+k10_2_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta::Henkilökohtaisen, luottamuksellisen tiedon jakaminen:Kollegani koki
+k10_3_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta::Välinpitämättömyys tai tiedon pimittäminen:Minä koin
+k10_3_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta::Välinpitämättömyys tai tiedon pimittäminen:Kollegani koki
+k10_4_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta::Useat tai jatkuva kritiikki, vähättely, virheiden hakeminen:Minä koin
+k10_4_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta::Useat tai jatkuva kritiikki, vähättely, virheiden hakeminen:Kollegani koki
+k10_5_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta::Juoruilu, valheellisen tiedon levittäminen:Minä koin
+k10_5_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta::Juoruilu, valheellisen tiedon levittäminen:Kollegani koki
+k10_6_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta::Ehdotuksen tai ideoiden huomioimatta jättäminen tai vähättely:Minä koin
+k10_6_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta::Ehdotuksen tai ideoiden huomioimatta jättäminen tai vähättely:Kollegani koki
+k10_7_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta::Työstä ei anneta tunnustusta:Minä koin
+k10_7_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta::Työstä ei anneta tunnustusta:Kollegani koki
+k10_8_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta::Aikaisemmista lupauksista luopuminen:Minä koin
+k10_8_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta::Aikaisemmista lupauksista luopuminen:Kollegani koki
+k10_9_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta::Huumoriin kiedottu loukkaus:Minä koin
+k10_9_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta::Huumoriin kiedottu loukkaus:Kollegani koki
+k10_10_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta::Sosiaalinen tai ammatillinen eristäminen, toiminnasta tai keskustelusta poisjättäminen:Minä koin
+k10_10_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta::Sosiaalinen tai ammatillinen eristäminen, toiminnasta tai keskustelusta poisjättäminen:Kollegani koki
+k10_11_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta::Maalittaminen (yhden henkilön kehotuksesta tapahtuva suuren joukon hyökkäys viesteillä, esim. sähköposteilla tai sosiaalisessa mediassa):Minä koin
+k10_11_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäasiallisesta kohtelusta::Maalittaminen (yhden henkilön kehotuksesta tapahtuva suuren joukon hyökkäys viesteillä, esim. sähköposteilla tai sosiaalisessa mediassa):Kollegani koki
+k11_1_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Virkaan tai tehtävään nimittäminen tai vastuunjako muuten kuin osaamiseen tai pätevyyteen perustuen:Minä koin
+k11_1_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Virkaan tai tehtävään nimittäminen tai vastuunjako muuten kuin osaamiseen tai pätevyyteen perustuen:Kollegani koki
+k11_2_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Epätasapuolinen johtamis- ja esihenkilötoiminta:Minä koin
+k11_2_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Epätasapuolinen johtamis- ja esihenkilötoiminta:Kollegani koki
+k11_3_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Loukkaava kielenkäyttö, herjaaminen:Minä koin
+k11_3_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Loukkaava kielenkäyttö, herjaaminen:Kollegani koki
+k11_4_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Ryhmiin liittyvät yleistykset (esim. vähemmistövitsit):Minä koin
+k11_4_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Ryhmiin liittyvät yleistykset (esim. vähemmistövitsit):Kollegani koki
+k11_5_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Työhaastattelun yhteydessä kysymykset perhesuunnitelmista:Minä koin
+k11_5_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Työhaastattelun yhteydessä kysymykset perhesuunnitelmista:Kollegani koki
+k11_6_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Työvarusteiden epäsopivuus (esimerkiksi vääränkokoiset varusteet):Minä koin
+k11_6_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Työvarusteiden epäsopivuus (esimerkiksi vääränkokoiset varusteet):Kollegani koki
+k11_7_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Työkollegoiden erilaiset odotukset henkilökohtaisten ominaisuuksien perusteella:Minä koin
+k11_7_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Työkollegoiden erilaiset odotukset henkilökohtaisten ominaisuuksien perusteella:Kollegani koki
+k11_8_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Pätevyyden vähättely henkilökohtaisten ominaisuuksien perusteella:Minä koin
+k11_8_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Pätevyyden vähättely henkilökohtaisten ominaisuuksien perusteella:Kollegani koki
+k11_9_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Muuhun kuin osaamiseen ja tehtävien vaativuuteen liittyvät palkitsemiserot:Minä koin
+k11_9_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Muuhun kuin osaamiseen ja tehtävien vaativuuteen liittyvät palkitsemiserot:Kollegani koki
+k11_10_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Kohtuullisten mukautusten epääminen vammaiselta henkilöltä:Minä koin
+k11_10_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Kohtuullisten mukautusten epääminen vammaiselta henkilöltä:Kollegani koki
+k11_11_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Käskyt tai ohjeet syrjiä toista henkilöä (asiakasta, potilasta tai työkollegaa):Minä koin
+k11_11_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Käskyt tai ohjeet syrjiä toista henkilöä (asiakasta, potilasta tai työkollegaa):Kollegani koki
+k11_12_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Vastatoimiin ryhtyminen yhdenvertaisuusrikkomusten ilmoituksen takia:Minä koin
+k11_12_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Vastatoimiin ryhtyminen yhdenvertaisuusrikkomusten ilmoituksen takia:Kollegani koki
+k11_13_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Syrjivä kohtelu ammattiyhdistystoimintaan osallistumisen takia:Minä koin
+k11_13_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Syrjivä kohtelu ammattiyhdistystoimintaan osallistumisen takia:Kollegani koki
+k11_14_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Irtisanominen tai sillä uhkaaminen henkilökohtaisten ominaisuuksien takia:Minä koin
+k11_14_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Irtisanominen tai sillä uhkaaminen henkilökohtaisten ominaisuuksien takia:Kollegani koki
+k11_15_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Tehtävien jakaminen muun kuin osaamisen tai pätevyyteen perusteella:Minä koin
+k11_15_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Tehtävien jakaminen muun kuin osaamisen tai pätevyyteen perusteella:Kollegani koki
+k11_16_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Muuhun kuin osaamiseen tai pätevyyteen perustuvat palkkaerot (esim. henkilökohtaisen lisän osalta):Minä koin
+k11_16_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä::Muuhun kuin osaamiseen tai pätevyyteen perustuvat palkkaerot (esim. henkilökohtaisen lisän osalta):Kollegani koki
+k12_1;Kuinka usein olet itse kohdannut seuraavia epäasiallisen kohtelun muotoja organisaatiosi ulkopuoliselta henkilöltä viimeisen 12 kuukauden aikana?:Verbaalinen väkivalta
+k12_2;Kuinka usein olet itse kohdannut seuraavia epäasiallisen kohtelun muotoja organisaatiosi ulkopuoliselta henkilöltä viimeisen 12 kuukauden aikana?:Omaisuuden vahingoittaminen tai varastaminen
+k12_3;Kuinka usein olet itse kohdannut seuraavia epäasiallisen kohtelun muotoja organisaatiosi ulkopuoliselta henkilöltä viimeisen 12 kuukauden aikana?:Uhkailu
+k12_4;Kuinka usein olet itse kohdannut seuraavia epäasiallisen kohtelun muotoja organisaatiosi ulkopuoliselta henkilöltä viimeisen 12 kuukauden aikana?:Fyysinen väkivalta
+k12_5;Kuinka usein olet itse kohdannut seuraavia epäasiallisen kohtelun muotoja organisaatiosi ulkopuoliselta henkilöltä viimeisen 12 kuukauden aikana?:Seksuaalinen häirintä tai väkivalta
+k12_6;Kuinka usein olet itse kohdannut seuraavia epäasiallisen kohtelun muotoja organisaatiosi ulkopuoliselta henkilöltä viimeisen 12 kuukauden aikana?:Vihamielisyys tai epäkohtelias käyttäytyminen
+k12_7;Kuinka usein olet itse kohdannut seuraavia epäasiallisen kohtelun muotoja organisaatiosi ulkopuoliselta henkilöltä viimeisen 12 kuukauden aikana?:Syrjintä
+k13_1;Kuinka usein olet havainnut kollegan kohdanneen seuraavia epäasiallisen kohtelun muotoja organisaatiosi ulkopuoliselta henkilöltä viimeisen 12 kuukauden aikana?:Verbaalinen väkivalta
+k13_2;Kuinka usein olet havainnut kollegan kohdanneen seuraavia epäasiallisen kohtelun muotoja organisaatiosi ulkopuoliselta henkilöltä viimeisen 12 kuukauden aikana?:Omaisuuden vahingoittaminen tai varastaminen
+k13_3;Kuinka usein olet havainnut kollegan kohdanneen seuraavia epäasiallisen kohtelun muotoja organisaatiosi ulkopuoliselta henkilöltä viimeisen 12 kuukauden aikana?:Uhkailu
+k13_4;Kuinka usein olet havainnut kollegan kohdanneen seuraavia epäasiallisen kohtelun muotoja organisaatiosi ulkopuoliselta henkilöltä viimeisen 12 kuukauden aikana?:Fyysinen väkivalta
+k13_5;Kuinka usein olet havainnut kollegan kohdanneen seuraavia epäasiallisen kohtelun muotoja organisaatiosi ulkopuoliselta henkilöltä viimeisen 12 kuukauden aikana?:Seksuaalinen häirintä tai väkivalta
+k13_6;Kuinka usein olet havainnut kollegan kohdanneen seuraavia epäasiallisen kohtelun muotoja organisaatiosi ulkopuoliselta henkilöltä viimeisen 12 kuukauden aikana?:Vihamielisyys tai epäkohtelias käyttäytyminen
+k13_7;Kuinka usein olet havainnut kollegan kohdanneen seuraavia epäasiallisen kohtelun muotoja organisaatiosi ulkopuoliselta henkilöltä viimeisen 12 kuukauden aikana?:Syrjintä
+k14_1_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta verbaalisesta väkivallasta::Nöyryyttäminen, häpäiseminen:Minä koin
+k14_1_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta verbaalisesta väkivallasta::Nöyryyttäminen, häpäiseminen:Kollegani koki
+k14_2_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta verbaalisesta väkivallasta::Nolaaminen: vähättely, alentaminen, holhoava käyttäytyminen:Minä koin
+k14_2_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta verbaalisesta väkivallasta::Nolaaminen: vähättely, alentaminen, holhoava käyttäytyminen:Kollegani koki
+k14_3_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta verbaalisesta väkivallasta::Nuhtelu toisten edessä:Minä koin
+k14_3_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta verbaalisesta väkivallasta::Nuhtelu toisten edessä:Kollegani koki
+k14_4_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta verbaalisesta väkivallasta::Työn arvostelu epäoikeudenmukaisella tai loukkaavalla tavalla:Minä koin
+k14_4_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta verbaalisesta väkivallasta::Työn arvostelu epäoikeudenmukaisella tai loukkaavalla tavalla:Kollegani koki
+k14_5_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta verbaalisesta väkivallasta::Huutaminen:Minä koin
+k14_5_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta verbaalisesta väkivallasta::Huutaminen:Kollegani koki
+k14_6_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta verbaalisesta väkivallasta::Kiroilu tai henkilöön kohdistuva kiroaminen:Minä koin
+k14_6_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta verbaalisesta väkivallasta::Kiroilu tai henkilöön kohdistuva kiroaminen:Kollegani koki
+k14_7_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta verbaalisesta väkivallasta::Loukkaaminen tai nimittely:Minä koin
+k14_7_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta verbaalisesta väkivallasta::Loukkaaminen tai nimittely:Kollegani koki
+k14_8_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta verbaalisesta väkivallasta::Valheellinen syyttäminen:Minä koin
+k14_8_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta verbaalisesta väkivallasta::Valheellinen syyttäminen:Kollegani koki
+k14_9_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta verbaalisesta väkivallasta::Ärsyttämismielessä sanotut asiat:Minä koin
+k14_9_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta verbaalisesta väkivallasta::Ärsyttämismielessä sanotut asiat:Kollegani koki
+k15_1_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta omaisuuden vahingoittamisesta tai varastamisesta::Työvälineiden varastaminen:Minä koin
+k15_1_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta omaisuuden vahingoittamisesta tai varastamisesta::Työvälineiden varastaminen:Kollegani koki
+k15_2_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta omaisuuden vahingoittamisesta tai varastamisesta::Työvälineiden piilottaminen tai kätkeminen:Minä koin
+k15_2_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta omaisuuden vahingoittamisesta tai varastamisesta::Työvälineiden piilottaminen tai kätkeminen:Kollegani koki
+k15_3_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta omaisuuden vahingoittamisesta tai varastamisesta::Työvälineiden rikkominen:Minä koin
+k15_3_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta omaisuuden vahingoittamisesta tai varastamisesta::Työvälineiden rikkominen:Kollegani koki
+k15_4_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta omaisuuden vahingoittamisesta tai varastamisesta::Työvälineiden likaaminen tai niihin töhertäminen:Minä koin
+k15_4_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta omaisuuden vahingoittamisesta tai varastamisesta::Työvälineiden likaaminen tai niihin töhertäminen:Kollegani koki
+k15_5_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta omaisuuden vahingoittamisesta tai varastamisesta::Työvälineiden luvaton käyttö:Minä koin
+k15_5_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta omaisuuden vahingoittamisesta tai varastamisesta::Työvälineiden luvaton käyttö:Kollegani koki
+k15_6_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta omaisuuden vahingoittamisesta tai varastamisesta::Henkilökohtaisen omaisuuden varastaminen:Minä koin
+k15_6_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta omaisuuden vahingoittamisesta tai varastamisesta::Henkilökohtaisen omaisuuden varastaminen:Kollegani koki
+k15_7_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta omaisuuden vahingoittamisesta tai varastamisesta::Henkilökohtaisen omaisuuden piilottaminen tai kätkeminen:Minä koin
+k15_7_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta omaisuuden vahingoittamisesta tai varastamisesta::Henkilökohtaisen omaisuuden piilottaminen tai kätkeminen:Kollegani koki
+k15_8_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta omaisuuden vahingoittamisesta tai varastamisesta::Henkilökohtaisen omaisuuden rikkominen:Minä koin
+k15_8_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta omaisuuden vahingoittamisesta tai varastamisesta::Henkilökohtaisen omaisuuden rikkominen:Kollegani koki
+k15_9_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta omaisuuden vahingoittamisesta tai varastamisesta::Henkilökohtaisen omaisuuden likaaminen tai niihin töhertäminen:Minä koin
+k15_9_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta omaisuuden vahingoittamisesta tai varastamisesta::Henkilökohtaisen omaisuuden likaaminen tai niihin töhertäminen:Kollegani koki
+k15_10_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta omaisuuden vahingoittamisesta tai varastamisesta::Henkilökohtaisen omaisuuden luvaton käyttö:Minä koin
+k15_10_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta omaisuuden vahingoittamisesta tai varastamisesta::Henkilökohtaisen omaisuuden luvaton käyttö:Kollegani koki
+k16_1_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Pelottelu:Minä koin
+k16_1_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Pelottelu:Kollegani koki
+k16_2_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Työn tai liikkumisen estäminen:Minä koin
+k16_2_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Työn tai liikkumisen estäminen:Kollegani koki
+k16_3_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Äänen korottaminen:Minä koin
+k16_3_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Äänen korottaminen:Kollegani koki
+k16_4_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Vuorovaikutustilanteessa liian lähelle tuleminen:Minä koin
+k16_4_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Vuorovaikutustilanteessa liian lähelle tuleminen:Kollegani koki
+k16_5_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Törkeiden eleiden näyttäminen:Minä koin
+k16_5_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Törkeiden eleiden näyttäminen:Kollegani koki
+k16_6_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Muu törkeä käyttäytyminen:Minä koin
+k16_6_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Muu törkeä käyttäytyminen:Kollegani koki
+k16_7_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Mulkoilu tai tuijottaminen:Minä koin
+k16_7_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Mulkoilu tai tuijottaminen:Kollegani koki
+k16_8_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Fyysisellä väkivallalla uhkaaminen:Minä koin
+k16_8_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Fyysisellä väkivallalla uhkaaminen:Kollegani koki
+k16_9_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Esineellä heittämisellä uhkaaminen:Minä koin
+k16_9_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Esineellä heittämisellä uhkaaminen:Kollegani koki
+k16_10_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Aseella tai voimankäyttövälineellä uhkaaminen:Minä koin
+k16_10_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Aseella tai voimankäyttövälineellä uhkaaminen:Kollegani koki
+k16_11_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Tappamisella uhkaaminen:Minä koin
+k16_11_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Tappamisella uhkaaminen:Kollegani koki
+k16_12_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Seuraaminen:Minä koin
+k16_12_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Seuraaminen:Kollegani koki
+k16_13_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Tarkkailu:Minä koin
+k16_13_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Tarkkailu:Kollegani koki
+k16_14_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Läheisiin kohdistuvalla väkivallalla uhkaaminen:Minä koin
+k16_14_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta::Läheisiin kohdistuvalla väkivallalla uhkaaminen:Kollegani koki
+k17_1_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta::Lyöminen:Minä koin
+k17_1_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta::Lyöminen:Kollegani koki
+k17_2_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta::Tuuppaaminen tai tönäiseminen:Minä koin
+k17_2_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta::Tuuppaaminen tai tönäiseminen:Kollegani koki
+k17_3_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta::Tarkoituksella henkilöön törmääminen liiallisella voimalla:Minä koin
+k17_3_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta::Tarkoituksella henkilöön törmääminen liiallisella voimalla:Kollegani koki
+k17_4_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta::Päälle sylkäiseminen:Minä koin
+k17_4_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta::Päälle sylkäiseminen:Kollegani koki
+k17_5_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta::Esineellä heittäminen:Minä koin
+k17_5_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta::Esineellä heittäminen:Kollegani koki
+k17_6_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta::Kiinni tarttuminen:Minä koin
+k17_6_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta::Kiinni tarttuminen:Kollegani koki
+k17_7_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta::Potkaiseminen:Minä koin
+k17_7_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta::Potkaiseminen:Kollegani koki
+k17_8_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta::Kuristaminen:Minä koin
+k17_8_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta::Kuristaminen:Kollegani koki
+k17_9_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta::Raapiminen:Minä koin
+k17_9_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta::Raapiminen:Kollegani koki
+k17_10_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta::Hiuksista tarttuminen:Minä koin
+k17_10_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta::Hiuksista tarttuminen:Kollegani koki
+k17_11_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta::Voimankäyttövälineillä tai aseella vahingoittaminen:Minä koin
+k17_11_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta::Voimankäyttövälineillä tai aseella vahingoittaminen:Kollegani koki
+k18_1_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta seksuaalisesta häirinnästä tai väkivallasta::Seksuaaliset vitsit tai nöyryyttävät seksuaaliset kommentit:Minä koin
+k18_1_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta seksuaalisesta häirinnästä tai väkivallasta::Seksuaaliset vitsit tai nöyryyttävät seksuaaliset kommentit:Kollegani koki
+k18_2_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta seksuaalisesta häirinnästä tai väkivallasta::Seksuaaliset keholliset eleet:Minä koin
+k18_2_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta seksuaalisesta häirinnästä tai väkivallasta::Seksuaaliset keholliset eleet:Kollegani koki
+k18_3_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta seksuaalisesta häirinnästä tai väkivallasta::Toistuvat tapaamisen tai puhelinnumeron vaatimukset:Minä koin
+k18_3_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta seksuaalisesta häirinnästä tai väkivallasta::Toistuvat tapaamisen tai puhelinnumeron vaatimukset:Kollegani koki
+k18_4_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta seksuaalisesta häirinnästä tai väkivallasta::Seksuaalinen tai seksuaalissävytteinen vihjailu:Minä koin
+k18_4_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta seksuaalisesta häirinnästä tai väkivallasta::Seksuaalinen tai seksuaalissävytteinen vihjailu:Kollegani koki
+k18_5_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta seksuaalisesta häirinnästä tai väkivallasta::Pakotettu seksuaalinen teko tai raiskaus, tai näiden yritys:Minä koin
+k18_5_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta seksuaalisesta häirinnästä tai väkivallasta::Pakotettu seksuaalinen teko tai raiskaus, tai näiden yritys:Kollegani koki
+k18_6_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta seksuaalisesta häirinnästä tai väkivallasta::Sukuelinten, rintojen tai pakaroiden koskettelu tai tämän yritys:Minä koin
+k18_6_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta seksuaalisesta häirinnästä tai väkivallasta::Sukuelinten, rintojen tai pakaroiden koskettelu tai tämän yritys:Kollegani koki
+k18_7_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta seksuaalisesta häirinnästä tai väkivallasta::Hyväileminen tai epäasiallinen koskettelu muiden kuin sukuelinten, rintojen tai pakaroiden alueella:Minä koin
+k18_7_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta seksuaalisesta häirinnästä tai väkivallasta::Hyväileminen tai epäasiallinen koskettelu muiden kuin sukuelinten, rintojen tai pakaroiden alueella:Kollegani koki
+k18_8_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta seksuaalisesta häirinnästä tai väkivallasta::Ei-toivottujen lahjojen tai muiden huomionosoituksien antaminen:Minä koin
+k18_8_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta seksuaalisesta häirinnästä tai väkivallasta::Ei-toivottujen lahjojen tai muiden huomionosoituksien antaminen:Kollegani koki
+k18_9_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta seksuaalisesta häirinnästä tai väkivallasta::Ei-toivottujen kuvien lähettäminen tai kuvaaminen:Minä koin
+k18_9_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta seksuaalisesta häirinnästä tai väkivallasta::Ei-toivottujen kuvien lähettäminen tai kuvaaminen:Kollegani koki
+k18_10_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta seksuaalisesta häirinnästä tai väkivallasta::Seksuaalissävytteisen materiaalin levittäminen tai esilläpito:Minä koin
+k18_10_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta seksuaalisesta häirinnästä tai väkivallasta::Seksuaalissävytteisen materiaalin levittäminen tai esilläpito:Kollegani koki
+k19_1_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta::Henkilön toiminnasta muille valittaminen ennen keskustelua kohteen kanssa:Minä koin
+k19_1_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta::Henkilön toiminnasta muille valittaminen ennen keskustelua kohteen kanssa:Kollegani koki
+k19_2_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta::Henkilökohtaisen, luottamuksellisen tiedon jakaminen:Minä koin
+k19_2_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta::Henkilökohtaisen, luottamuksellisen tiedon jakaminen:Kollegani koki
+k19_3_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta::Välinpitämättömyys tai tiedon pimittäminen:Minä koin
+k19_3_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta::Välinpitämättömyys tai tiedon pimittäminen:Kollegani koki
+k19_4_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta::Useat tai jatkuva kritiikki, vähättely, virheiden hakeminen:Minä koin
+k19_4_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta::Useat tai jatkuva kritiikki, vähättely, virheiden hakeminen:Kollegani koki
+k19_5_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta::Juoruilu, valheellisen tiedon levittäminen:Minä koin
+k19_5_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta::Juoruilu, valheellisen tiedon levittäminen:Kollegani koki
+k19_6_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta::Ehdotuksen tai ideoiden huomioimatta jättäminen tai vähättely:Minä koin
+k19_6_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta::Ehdotuksen tai ideoiden huomioimatta jättäminen tai vähättely:Kollegani koki
+k19_7_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta::Työstä ei anneta tunnustusta:Minä koin
+k19_7_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta::Työstä ei anneta tunnustusta:Kollegani koki
+k19_8_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta::Aikaisemmista lupauksista luopuminen:Minä koin
+k19_8_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta::Aikaisemmista lupauksista luopuminen:Kollegani koki
+k19_9_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta::Huumoriin kiedottu loukkaus:Minä koin
+k19_9_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta::Huumoriin kiedottu loukkaus:Kollegani koki
+k19_10_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta::Sosiaalinen tai ammatillinen eristäminen, toiminnasta tai keskustelusta poisjättäminen:Minä koin
+k19_10_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta::Sosiaalinen tai ammatillinen eristäminen, toiminnasta tai keskustelusta poisjättäminen:Kollegani koki
+k19_11_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta::Maalittaminen (yhden henkilön kehotuksesta tapahtuva suuren joukon hyökkäys viesteillä, esim. sähköposteilla tai sosiaalisessa mediassa):Minä koin
+k19_11_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäasiallisesta kohtelusta::Maalittaminen (yhden henkilön kehotuksesta tapahtuva suuren joukon hyökkäys viesteillä, esim. sähköposteilla tai sosiaalisessa mediassa):Kollegani koki
+k20_1_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta syrjinnästä::Loukkaava kielenkäyttö, herjaaminen:Minä koin
+k20_1_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta syrjinnästä::Loukkaava kielenkäyttö, herjaaminen:Kollegani koki
+k20_2_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta syrjinnästä::Ryhmiin liittyvät yleistykset (esim. vähemmistövitsit):Minä koin
+k20_2_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta syrjinnästä::Ryhmiin liittyvät yleistykset (esim. vähemmistövitsit):Kollegani koki
+k20_3_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta syrjinnästä::Organisaation ulkopuolisten henkilöiden erilaiset odotukset henkilökohtaisten ominaisuuksien perusteella:Minä koin
+k20_3_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta syrjinnästä::Organisaation ulkopuolisten henkilöiden erilaiset odotukset henkilökohtaisten ominaisuuksien perusteella:Kollegani koki
+k20_4_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta syrjinnästä::Pätevyyden vähättely henkilökohtaisten ominaisuuksien perusteella:Minä koin
+k20_4_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta syrjinnästä::Pätevyyden vähättely henkilökohtaisten ominaisuuksien perusteella:Kollegani koki
+k20_5_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta syrjinnästä::Kohtuullisten mukautusten epääminen vammaiselta henkilöltä:Minä koin
+k20_5_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta syrjinnästä::Kohtuullisten mukautusten epääminen vammaiselta henkilöltä:Kollegani koki
+k20_6_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta syrjinnästä::Käskyt tai ohjeet syrjiä toista henkilöä (asiakasta, potilasta tai työkollegaa):Minä koin
+k20_6_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta syrjinnästä::Käskyt tai ohjeet syrjiä toista henkilöä (asiakasta, potilasta tai työkollegaa):Kollegani koki
+k20_7_1;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta syrjinnästä::Syrjivä kohtelu ammattiyhdistystoimintaan osallistumisen takia:Minä koin
+k20_7_2;Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta syrjinnästä::Syrjivä kohtelu ammattiyhdistystoimintaan osallistumisen takia:Kollegani koki
+k21_1;Miten vakavia sinuun kohdistuneen epäasiallisen käytöksen vaikutukset olivat?:Fyysiset vaikutukset
+k21_2;Miten vakavia sinuun kohdistuneen epäasiallisen käytöksen vaikutukset olivat?:Psyykkiset vaikutukset
+k21_3;Miten vakavia sinuun kohdistuneen epäasiallisen käytöksen vaikutukset olivat?:Ammatilliset vaikutukset
+k22_1; (Miten pitkäkestoisia sinuun kohdistuneen epäasiallisen kohtelun vaikutukset olivat?):Fyysiset vaikutukset
+k22_2; (Miten pitkäkestoisia sinuun kohdistuneen epäasiallisen kohtelun vaikutukset olivat?):Psyykkiset vaikutukset
+k22_3; (Miten pitkäkestoisia sinuun kohdistuneen epäasiallisen kohtelun vaikutukset olivat?):Ammatilliset vaikutukset
+k22_1_1; (Miten pitkäkestoisia sinuun kohdistuneen epäasiallisen kohtelun vaikutukset olivat?):Fyysiset vaikutukset:Jatkuu tällä hetkellä
+k22_2_1; (Miten pitkäkestoisia sinuun kohdistuneen epäasiallisen kohtelun vaikutukset olivat?):Psyykkiset vaikutukset:Jatkuu tällä hetkellä
+k22_3_1; (Miten pitkäkestoisia sinuun kohdistuneen epäasiallisen kohtelun vaikutukset olivat?):Ammatilliset vaikutukset:Jatkuu tällä hetkellä
+k23_1;Miten reagoit epäasiallisen kohtelun kokemukseesi?:Ilmoitin kohtelusta esihenkilölleni
+k23_2;Miten reagoit epäasiallisen kohtelun kokemukseesi?:Hain lääketieteellistä hoitoa
+k23_3;Miten reagoit epäasiallisen kohtelun kokemukseesi?:Hain psykososiaalista hoitoa (esimerkiksi defusing- tai debriefing-menettely, työpsykologin tapaaminen)
+k23_4;Miten reagoit epäasiallisen kohtelun kokemukseesi?:Hain rikosoikeudellista apua
+k23_5;Miten reagoit epäasiallisen kohtelun kokemukseesi?:Tein ilmoituksen organisaation käyttämässä järjestelmässä (esimerkiksi työtapaturma-, uhka- ja väkivaltatilanne-, vaaratapahtuma- tai muu työsuojeluilmoitus)
+k23_6;Miten reagoit epäasiallisen kohtelun kokemukseesi?:Hälytin turvallisuusviranomaiset (esim. hätäpuhelu, Virven käyttö)
+k23_7;Miten reagoit epäasiallisen kohtelun kokemukseesi?:Muutin suojavarustekäytäntöjäni
+k23_8;Miten reagoit epäasiallisen kohtelun kokemukseesi?:Kerroin kollegoilleni kohtelusta
+k23_9;Miten reagoit epäasiallisen kohtelun kokemukseesi?:Jäin pois toiminnasta, jätin menemättä tehtäviin
+k23_10;Miten reagoit epäasiallisen kohtelun kokemukseesi?:Ilmoitin asiasta luottamushenkilölle tai työsuojeluun
+k23_11;Miten reagoit epäasiallisen kohtelun kokemukseesi?:Ilmoitin asiasta johtohenkilölle, ohittaen esihenkilöni
+k24_1;Onko organisaatiollasi käytössä ilmoitusjärjestelmä, jossa voit ilmoittaa epäasiallisen kohtelun tilanteista?:Organisaation sisällä tapahtuneille tilanteille
+k24_2;Onko organisaatiollasi käytössä ilmoitusjärjestelmä, jossa voit ilmoittaa epäasiallisen kohtelun tilanteista?:Organisaation ulkopuolelta tulleelle kohtelulle
+k24_3;Onko organisaatiollasi käytössä ilmoitusjärjestelmä, jossa voit ilmoittaa epäasiallisen kohtelun tilanteista?:Sekä sisäiset että ulkoiset tilanteet yhdessä järjestelmässä
+k25_1;Onko organisaatiollasi tarjolla koulutusta ilmoitusjärjestelmän käyttöön?:Organisaation sisällä tapahtuneille tilanteille
+k25_2;Onko organisaatiollasi tarjolla koulutusta ilmoitusjärjestelmän käyttöön?:Organisaation ulkopuolelta tulleelle kohtelulle
+k25_3;Onko organisaatiollasi tarjolla koulutusta ilmoitusjärjestelmän käyttöön?:Sekä sisäiset että ulkoiset tilanteet yhdessä järjestelmässä
+k26_1;Ota kantaa seuraaviin väitteisiin ilmoitusjärjestelmistä ja niiden käytöstä:Ilmoitusjärjestelmät ovat liian työläitä tai raskaita
+k26_2;Ota kantaa seuraaviin väitteisiin ilmoitusjärjestelmistä ja niiden käytöstä:Ilmoituksen tekeminen ei johda toimenpiteisiin
+k26_3;Ota kantaa seuraaviin väitteisiin ilmoitusjärjestelmistä ja niiden käytöstä:Pelkään vastatoimia esihenkilöiltäni tai johdolta, jos tekisin ilmoituksen
+k26_4;Ota kantaa seuraaviin väitteisiin ilmoitusjärjestelmistä ja niiden käytöstä:Jos epäasiallisen kohtelun tekijä on alentuneessa toimintatilassa, häntä ei voi syyttää toiminnastaan
+k26_5;Ota kantaa seuraaviin väitteisiin ilmoitusjärjestelmistä ja niiden käytöstä:Teen ilmoituksen jokaisesta kokemastani epäasiallisesta kohtelusta
+k26_6;Ota kantaa seuraaviin väitteisiin ilmoitusjärjestelmistä ja niiden käytöstä:Konfliktitilanteet ovat osa työtäni
+k26_7;Ota kantaa seuraaviin väitteisiin ilmoitusjärjestelmistä ja niiden käytöstä:Minulla ei ole tilaisuutta tai mahdollisuutta tehdä ilmoituksia
+k26_8;Ota kantaa seuraaviin väitteisiin ilmoitusjärjestelmistä ja niiden käytöstä:Minulle on epäselvää, milloin ilmoitus pitäisi täyttää
+k26_9;Ota kantaa seuraaviin väitteisiin ilmoitusjärjestelmistä ja niiden käytöstä:Unohdan tehdä ilmoituksen kokemastani epäasiallisesta kohtelusta
+k26_10;Ota kantaa seuraaviin väitteisiin ilmoitusjärjestelmistä ja niiden käytöstä:Pelkään ilmoituksen johtavan oman ammattitaitoni kyseenalaistamiseen
+k26_11;Ota kantaa seuraaviin väitteisiin ilmoitusjärjestelmistä ja niiden käytöstä:Oletan, että joku muu hoitaa ilmoituksen puolestani
+k26_12;Ota kantaa seuraaviin väitteisiin ilmoitusjärjestelmistä ja niiden käytöstä:Valtakunnallisesti yhtenäisestä ilmoitusprosessista olisi hyötyä
+k26_13;Ota kantaa seuraaviin väitteisiin ilmoitusjärjestelmistä ja niiden käytöstä:En ilmoita epäasiallisesta kohtelusta, koska en halua pahaa tekijälle
+k26_14;Ota kantaa seuraaviin väitteisiin ilmoitusjärjestelmistä ja niiden käytöstä:Epäasiallisen kohtelun kokemukset ovat yksittäistapahtumia
+k26_15;Ota kantaa seuraaviin väitteisiin ilmoitusjärjestelmistä ja niiden käytöstä:En tee ilmoituksia, koska tekijä saa tietää niistä
+k26_16;Ota kantaa seuraaviin väitteisiin ilmoitusjärjestelmistä ja niiden käytöstä:Kollegani näkisivät minut ongelmallisena tai vaikeana jos tekisin ilmoituksen
+k26_17;Ota kantaa seuraaviin väitteisiin ilmoitusjärjestelmistä ja niiden käytöstä:Pelkään menettäväni työpaikkani ilmoituksen myötä
+k26_18;Ota kantaa seuraaviin väitteisiin ilmoitusjärjestelmistä ja niiden käytöstä:Pelkään kollegoideni ryhtyvän vastatoimiin, jos tekisin ilmoituksen
+k27_1;Seuraavat väittämät koskevat työtilannettasi ja sitä koskevia tuntemuksiasi. Miten usein seuraavat väittämät kuvaavat tilannettasi?:Tunnen itseni henkisesti uupuneeksi työssäni
+k27_2;Seuraavat väittämät koskevat työtilannettasi ja sitä koskevia tuntemuksiasi. Miten usein seuraavat väittämät kuvaavat tilannettasi?:En ole kiinnostunut enkä innostunut työstäni
+k27_3;Seuraavat väittämät koskevat työtilannettasi ja sitä koskevia tuntemuksiasi. Miten usein seuraavat väittämät kuvaavat tilannettasi?:Minun on vaikea pysyä tarkkaavaisena työssäni
+k27_4;Seuraavat väittämät koskevat työtilannettasi ja sitä koskevia tuntemuksiasi. Miten usein seuraavat väittämät kuvaavat tilannettasi?:En pysty hallitsemaan tunteitani työssäni
+k28_1;Onko organisaatiossasi käytössä seuraavia epäasialliseen kohteluun liittyviä toimenpiteitä tai ohjeita?:Tasa-arvo- tai yhdenvertaisuussuunnitelma
+k28_2;Onko organisaatiossasi käytössä seuraavia epäasialliseen kohteluun liittyviä toimenpiteitä tai ohjeita?:Toimintaohjeet epäasialliseen käytökseen, häirintään tai seksuaaliseen häirintään reagointiin
+k28_3;Onko organisaatiossasi käytössä seuraavia epäasialliseen kohteluun liittyviä toimenpiteitä tai ohjeita?:Henkilöstön turvallisuusselvitykset
+k28_4;Onko organisaatiossasi käytössä seuraavia epäasialliseen kohteluun liittyviä toimenpiteitä tai ohjeita?:Ohjeet alaikäisten koskemattomuuden turvaamiselle
+k28_5;Onko organisaatiossasi käytössä seuraavia epäasialliseen kohteluun liittyviä toimenpiteitä tai ohjeita?:Nuorten kanssa toimivien rikostaustojen tarkastaminen
+k28_6;Onko organisaatiossasi käytössä seuraavia epäasialliseen kohteluun liittyviä toimenpiteitä tai ohjeita?:Ohjeet ahdistelutilanteen käsittelyyn
+k28_7;Onko organisaatiossasi käytössä seuraavia epäasialliseen kohteluun liittyviä toimenpiteitä tai ohjeita?:Ohjeet uhka- ja väkivaltatilanteen käsittelyyn
+k28_8;Onko organisaatiossasi käytössä seuraavia epäasialliseen kohteluun liittyviä toimenpiteitä tai ohjeita?:Ilmoitusjärjestelmä epäasiallisen kohtelun raportoimiseksi
+k28_9;Onko organisaatiossasi käytössä seuraavia epäasialliseen kohteluun liittyviä toimenpiteitä tai ohjeita?:Koulutus uhka- ja väkivaltatilanteiden kohtaamiseen
+k28_10;Onko organisaatiossasi käytössä seuraavia epäasialliseen kohteluun liittyviä toimenpiteitä tai ohjeita?:Koulutus epäasiallisen kohtelun tunnistamiseen
+k28_11;Onko organisaatiossasi käytössä seuraavia epäasialliseen kohteluun liittyviä toimenpiteitä tai ohjeita?:Keskustelutilaisuuksia tasa-arvo- ja yhdenvertaisuusaiheista
+k28_12;Onko organisaatiossasi käytössä seuraavia epäasialliseen kohteluun liittyviä toimenpiteitä tai ohjeita?:Henkilöstön infotilaisuudet organisaation yhdenvertaisuustilanteesta
+k29_1;Miten edellä olevat toimet mielestäsi vaikuttavat epäasiallisen kohtelun esiintyvyyteen?:Tasa-arvo- tai yhdenvertaisuus-suunnitelma
+k29_2;Miten edellä olevat toimet mielestäsi vaikuttavat epäasiallisen kohtelun esiintyvyyteen?:Toimintaohjeet epäasialliseen käytökseen, häirintään tai seksuaaliseen häirintään reagointiin
+k29_3;Miten edellä olevat toimet mielestäsi vaikuttavat epäasiallisen kohtelun esiintyvyyteen?:Henkilöstön turvallisuusselvitykset
+k29_4;Miten edellä olevat toimet mielestäsi vaikuttavat epäasiallisen kohtelun esiintyvyyteen?:Ohjeet alaikäisten koskemattomuuden turvaamiselle
+k29_5;Miten edellä olevat toimet mielestäsi vaikuttavat epäasiallisen kohtelun esiintyvyyteen?:Nuorten kanssa toimivien rikostaustojen tarkastaminen
+k29_6;Miten edellä olevat toimet mielestäsi vaikuttavat epäasiallisen kohtelun esiintyvyyteen?:Ohjeet ahdistelutilanteen käsittelyyn
+k29_7;Miten edellä olevat toimet mielestäsi vaikuttavat epäasiallisen kohtelun esiintyvyyteen?:Ohjeet uhka- ja väkivaltatilanteen käsittelyyn
+k29_8;Miten edellä olevat toimet mielestäsi vaikuttavat epäasiallisen kohtelun esiintyvyyteen?:Ilmoitusjärjestelmä epäasiallisen kohtelun raportoimiseksi
+k29_9;Miten edellä olevat toimet mielestäsi vaikuttavat epäasiallisen kohtelun esiintyvyyteen?:Koulutus uhka- ja väkivaltatilanteiden kohtaamiseen
+k29_10;Miten edellä olevat toimet mielestäsi vaikuttavat epäasiallisen kohtelun esiintyvyyteen?:Koulutus epäasiallisen kohtelun tunnistamiseen
+k29_11;Miten edellä olevat toimet mielestäsi vaikuttavat epäasiallisen kohtelun esiintyvyyteen?:Keskustelutilaisuuksia tasa-arvo- ja yhdenvertaisuusaiheista
+k29_12;Miten edellä olevat toimet mielestäsi vaikuttavat epäasiallisen kohtelun esiintyvyyteen?:Henkilöstön infotilaisuudet organisaation yhdenvertaisuustilanteesta
+k30_1;Miten hyödyllisinä koet seuraavat ehdotetut toimenpiteet epäasiallisen kohtelun estämiseksi tai vähentämiseksi?:Voimankäyttökoulutus tai -välineiden käyttöönotto
+k30_2;Miten hyödyllisinä koet seuraavat ehdotetut toimenpiteet epäasiallisen kohtelun estämiseksi tai vähentämiseksi?:Toimintaan osallistuvat puuttuvat havaitsemaansa epäasialliseen kohteluun
+k30_3;Miten hyödyllisinä koet seuraavat ehdotetut toimenpiteet epäasiallisen kohtelun estämiseksi tai vähentämiseksi?:Ohjeet epäasiallisen kohtelun jälkeisistä menettelyistä, esimerkiksi puuttumisprosessista tai jatkoavun saamisesta
+k30_4;Miten hyödyllisinä koet seuraavat ehdotetut toimenpiteet epäasiallisen kohtelun estämiseksi tai vähentämiseksi?:Yhdenvertaisuuden koulutukset
+k30_5;Miten hyödyllisinä koet seuraavat ehdotetut toimenpiteet epäasiallisen kohtelun estämiseksi tai vähentämiseksi?:Avoimet keskustelut organisaatiossa epäasiallisesta kohtelusta yleisellä tasolla (ei yksittäisistä tapahtumista)
+k30_6;Miten hyödyllisinä koet seuraavat ehdotetut toimenpiteet epäasiallisen kohtelun estämiseksi tai vähentämiseksi?:Turvallisuusviranomaisten yhteistyön parantaminen
+k30_7;Miten hyödyllisinä koet seuraavat ehdotetut toimenpiteet epäasiallisen kohtelun estämiseksi tai vähentämiseksi?:Lainsäädännön tiukentaminen tai rikosoikeudellisten seuraamuksien jyrkentäminen
+k30_8;Miten hyödyllisinä koet seuraavat ehdotetut toimenpiteet epäasiallisen kohtelun estämiseksi tai vähentämiseksi?:Johdon selkeä ilmaisu epäasiallisen kohtelun nollatoleranssille
+k30_9;Miten hyödyllisinä koet seuraavat ehdotetut toimenpiteet epäasiallisen kohtelun estämiseksi tai vähentämiseksi?:Organisaation nimetty yhdenvertaisuusvastaava
+k30_10;Miten hyödyllisinä koet seuraavat ehdotetut toimenpiteet epäasiallisen kohtelun estämiseksi tai vähentämiseksi?:Monimuotoiset työyhteisöt
+k30_11;Miten hyödyllisinä koet seuraavat ehdotetut toimenpiteet epäasiallisen kohtelun estämiseksi tai vähentämiseksi?:Rikosilmoituksen tekeminen automaattisesti epäasiallisen kohtelun tilanteissa
+k30_12;Miten hyödyllisinä koet seuraavat ehdotetut toimenpiteet epäasiallisen kohtelun estämiseksi tai vähentämiseksi?:Nimettömän palautteen tai ilmoituskanavan käyttö
+k30_13;Miten hyödyllisinä koet seuraavat ehdotetut toimenpiteet epäasiallisen kohtelun estämiseksi tai vähentämiseksi?:Työterveydenhuollon tuen laajentaminen
+k31;Mikä sukupuolesi on?
+k32;Millaisella työrytmityksellä olet töissä pelastuslaitoksella tai ensihoidossa?
+k33;Kuinka monta tuntia käytät keskimäärin aikaa palokuntatoimintaan viikossa, poisluettuna varallaolo?
+k34;Teetkö varallaoloa tai oletko sopimuksenvaraisessa hälytysvalmiudessa?
+k35;Kuinka monta tuntia teet varallaoloa keskimäärin kuukaudessa?
+k36_1;Millaisia toimintoja teet sopimuspalokunnassasi tai palokuntayhdistyksessäsi?:Sammutus- ja pelastustoiminta
+k36_2;Millaisia toimintoja teet sopimuspalokunnassasi tai palokuntayhdistyksessäsi?:Ensivastetoiminta
+k36_3;Millaisia toimintoja teet sopimuspalokunnassasi tai palokuntayhdistyksessäsi?:Yhdistystoiminnan johto- tai hallintotehtävät
+k36_4;Millaisia toimintoja teet sopimuspalokunnassasi tai palokuntayhdistyksessäsi?:Operatiiviset johtotehtävät
+k36_5;Millaisia toimintoja teet sopimuspalokunnassasi tai palokuntayhdistyksessäsi?:Muut operatiiviset tehtävät
+k36_6;Millaisia toimintoja teet sopimuspalokunnassasi tai palokuntayhdistyksessäsi?:Muut vastuutehtävät
+k36_7;Millaisia toimintoja teet sopimuspalokunnassasi tai palokuntayhdistyksessäsi?:Tukitoiminnot
+k37;Millaisella rytmityksellä toimit organisaatiossasi?
+k38;Missä asemassa toimit organisaatiossasi pääsääntöisesti?
+k39;Missä asemassa toimit organisaatiossasi pääsääntöisesti?
+k40;Mihin ammattiryhmään kuulut?
+k41;Kuinka kauan olet toiminut pelastusalalla tai ensihoidossa?:
+k42_1_1;Onko sinulla ollut viimeisen 12 kuukauden aikana aikeita tai suunnitelmia muuttaa tilannettasi seuraavilla tavoilla, tai oletko jo muuttanut tilannettasi?:Muuttaa tehtävänkuvaani:Olen harkinnut
+k42_1_2;Onko sinulla ollut viimeisen 12 kuukauden aikana aikeita tai suunnitelmia muuttaa tilannettasi seuraavilla tavoilla, tai oletko jo muuttanut tilannettasi?:Muuttaa tehtävänkuvaani:Olen toteuttamassa
+k42_1_3;Onko sinulla ollut viimeisen 12 kuukauden aikana aikeita tai suunnitelmia muuttaa tilannettasi seuraavilla tavoilla, tai oletko jo muuttanut tilannettasi?:Muuttaa tehtävänkuvaani:Olen jo tehnyt
+k42_2_1;Onko sinulla ollut viimeisen 12 kuukauden aikana aikeita tai suunnitelmia muuttaa tilannettasi seuraavilla tavoilla, tai oletko jo muuttanut tilannettasi?:Vaihtaa organisaatiotani:Olen harkinnut
+k42_2_2;Onko sinulla ollut viimeisen 12 kuukauden aikana aikeita tai suunnitelmia muuttaa tilannettasi seuraavilla tavoilla, tai oletko jo muuttanut tilannettasi?:Vaihtaa organisaatiotani:Olen toteuttamassa
+k42_2_3;Onko sinulla ollut viimeisen 12 kuukauden aikana aikeita tai suunnitelmia muuttaa tilannettasi seuraavilla tavoilla, tai oletko jo muuttanut tilannettasi?:Vaihtaa organisaatiotani:Olen jo tehnyt
+k42_3_1;Onko sinulla ollut viimeisen 12 kuukauden aikana aikeita tai suunnitelmia muuttaa tilannettasi seuraavilla tavoilla, tai oletko jo muuttanut tilannettasi?:Lähteä alalta:Olen harkinnut
+k42_3_2;Onko sinulla ollut viimeisen 12 kuukauden aikana aikeita tai suunnitelmia muuttaa tilannettasi seuraavilla tavoilla, tai oletko jo muuttanut tilannettasi?:Lähteä alalta:Olen toteuttamassa
+k42_3_3;Onko sinulla ollut viimeisen 12 kuukauden aikana aikeita tai suunnitelmia muuttaa tilannettasi seuraavilla tavoilla, tai oletko jo muuttanut tilannettasi?:Lähteä alalta:Olen jo tehnyt
+k43;Voitko kertoa syitä muutoksellesi tai sen aikeille?
