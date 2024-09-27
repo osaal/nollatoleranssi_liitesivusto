@@ -12,6 +12,7 @@ Tässä osiossa tuotetaan kaikki kuviot ja analyysit [Pelastusalan DEIB-seminaar
 
 library(tidyverse)
 library(ggthemes)
+library(ggstatsplot)
 
 ```
 
@@ -97,4 +98,1011 @@ data |>
     size = 3,
   ) + 
   scale_fill_manual(values = c("#C20E1A", "#C5B568"))
+```
+
+## Kohtelun muodot {#sec-deibseminaari-muodot}
+
+::: panel-tabset
+### Verbaalinen väkivalta
+
+```{r}
+#| label: fig-deibseminaari-verbaalinen
+#| code-summary: "Verbaalisen väkivallan muodot"
+#| fig-cap: "Esiintyvän verbaalisen väkivallan muodot"
+#| warning: false
+
+data |>
+  filter(between(k3_1, 2, 8)) |>
+  select(k5_1_1:k5_9_2) |>
+  select(ends_with("_1")) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        NA ~ 0,
+        -1 ~ NA
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k5_1_1:k5_9_1,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = rev(sort(unique(value))),
+      labels = sapply(c(
+        "Kyllä",
+        "Ei"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Nöyryyttäminen, häpäiseminen",
+      "Nolaaminen",
+      "Nuhtelu toisten edessä",
+      "Työn loukkaava arvostelu",
+      "Huutaminen",
+      "Kiroilu tai kiroaminen",
+      "Loukkaava nimittely",
+      "Valheellinen syyttäminen",
+      "Ärsyttämismielessä sanotut asiat"
+    ), str_wrap, width = 36, USE.NAMES = FALSE)
+  ) +
+  labs(
+    x = "Suhde kaikista verbaalisen väkivallan kokeneista vastaajista (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(axis.title.y = element_blank()) + 
+  geom_text(
+    aes(
+      label = ifelse(
+        !is.na(value),
+        scales::percent(prop, accuracy = 0.1),
+        ""
+      )
+    ),
+    position = position_stack(vjust = 0.5),
+    size = 3,
+  ) + 
+  scale_fill_manual(values = c("#C20E1A", "#C5B568"))
+
+```
+
+### Omaisuusväkivalta
+
+```{r}
+#| label: fig-deibseminaari-omaisuus
+#| code-summary: "Omaisuuden vahingoittamisen tai varastamisen muodot"
+#| fig-cap: "Esiintyvän omaisuuden vahingoittamisen tai varastamisen muodot"
+#| warning: false
+
+data |>
+  filter(between(k3_2, 2, 8)) |>
+  select(k6_1_1:k6_10_2) |>
+  select(ends_with("_1")) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        NA ~ 0,
+        -1 ~ NA
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k6_1_1:k6_10_1,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = rev(sort(unique(value))),
+      labels = sapply(c(
+        "Kyllä",
+        "Ei"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Työvälineiden varastaminen",
+      "Työvälineiden piilottaminen",
+      "Työvälineiden rikkominen",
+      "Työvälineiden likaaminen",
+      "Työvälineiden luvaton käyttö",
+      "Henk.koht. omaisuuden varastaminen",
+      "Henk.koht. omaisuuden piilottaminen",
+      "Henk.koht. omaisuuden rikkominen",
+      "Henk.koht. omaisuuden likaaminen",
+      "Henk.koht. omaisuuden luvaton käyttö"
+    ), str_wrap, width = 36, USE.NAMES = FALSE)
+  ) +
+  labs(
+    x = "Suhde kaikista omaisuuden vahingoittamista tai varastamista kokeneista vastaajista (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(axis.title.y = element_blank()) + 
+  geom_text(
+    aes(
+      label = ifelse(
+        !is.na(value),
+        scales::percent(prop, accuracy = 0.1),
+        ""
+      )
+    ),
+    position = position_stack(vjust = 0.5),
+    size = 3,
+  ) + 
+  scale_fill_manual(values = c("#C20E1A", "#C5B568"))
+
+```
+
+### Uhkailu
+
+```{r}
+#| label: fig-deibseminaari-uhkailu
+#| code-summary: "Uhkailun muodot"
+#| fig-cap: "Esiintyvän uhkailun muodot"
+#| warning: false
+
+data |>
+  filter(between(k3_3, 2, 8)) |>
+  select(k7_1_1:k7_14_2) |>
+  select(ends_with("_1")) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        NA ~ 0,
+        -1 ~ NA
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k7_1_1:k7_14_1,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = rev(sort(unique(value))),
+      labels = sapply(c(
+        "Kyllä",
+        "Ei"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Pelottelu",
+      "Työn tai liikkumisen estäminen",
+      "Äänen korottaminen",
+      "Vuorovaikutustilanteessa liian lähelle tuleminen",
+      "Törkeiden eleiden näyttäminen",
+      "Muu törkeä käyttäytyminen",
+      "Mulkoilu tai tuijottaminen",
+      "Fyysisellä väkivallalla uhkaaminen",
+      "Esineellä heittämisellä uhkaaminen",
+      "Tappamisella uhkaaminen",
+      "Seuraaminen",
+      "Tarkkailu",
+      "Läheisten väkivallalla uhkaaminen"
+    ), str_wrap, width = 36, USE.NAMES = FALSE)
+  ) +
+  labs(
+    x = "Suhde kaikista uhkailua kokeneista vastaajista (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(axis.title.y = element_blank()) + 
+  geom_text(
+    aes(
+      label = ifelse(
+        !is.na(value),
+        scales::percent(prop, accuracy = 0.1),
+        ""
+      )
+    ),
+    position = position_stack(vjust = 0.5),
+    size = 3,
+  ) + 
+  scale_fill_manual(values = c("#C20E1A", "#C5B568"))
+
+```
+
+### Fyysinen väkivalta
+
+```{r}
+#| label: fig-deibseminaari-fyysinen
+#| code-summary: "Fyysisen väkivallan muodot"
+#| fig-cap: "Esiintyvän fyysisen väkivallan muodot"
+#| warning: false
+
+data |>
+  filter(between(k3_4, 2, 8)) |>
+  select(k8_1_1:k8_11_1) |>
+  select(ends_with("_1")) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        NA ~ 0,
+        -1 ~ NA
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k8_1_1:k8_11_1,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = rev(sort(unique(value))),
+      labels = sapply(c(
+        "Kyllä",
+        "Ei"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Lyöminen",
+      "Tuuppaaminen tai tönäiseminen",
+      "Tarkoituksella henkilöön törmääminen liiallisella voimalla",
+      "Päälle sylkäiseminen",
+      "Esineellä heittäminen",
+      "Kiinni tarttuminen",
+      "Potkaiseminen",
+      "Kuristaminen",
+      "Raapiminen",
+      "Hiuksista tarttuminen",
+      "Voimankäyttövälineillä tai aseella vahingoittaminen"
+    ), str_wrap, width = 36, USE.NAMES = FALSE)
+  ) +
+  labs(
+    x = "Suhde kaikista fyysistä väkivaltaa kokeneista vastaajista (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(axis.title.y = element_blank()) + 
+  geom_text(
+    aes(
+      label = ifelse(
+        !is.na(value),
+        scales::percent(prop, accuracy = 0.1),
+        ""
+      )
+    ),
+    position = position_stack(vjust = 0.5),
+    size = 3,
+  ) + 
+  scale_fill_manual(values = c("#C20E1A", "#C5B568"))
+
+```
+
+### Seksuaalinen väkivalta
+
+```{r}
+#| label: fig-deibseminaari-seksuaalinen
+#| code-summary: "Seksuaalisen väkivallan muodot"
+#| fig-cap: "Esiintyvän seksuaalisen väkivallan muodot"
+#| warning: false
+
+data |>
+  filter(between(k3_5, 2, 8)) |>
+  select(k9_1_1:k9_10_2) |>
+  select(ends_with("_1")) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        NA ~ 0,
+        -1 ~ NA
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k9_1_1:k9_10_1,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = rev(sort(unique(value))),
+      labels = sapply(c(
+        "Kyllä",
+        "Ei"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Vitsit tai nöyryyttävät kommentit",
+      "Keholliset eleet",
+      "Tapaamisen/numeron vaatiminen",
+      "Vihjailu",
+      "Sukuelinten, rintojen tai pakaroiden koskettelu(-yritys)",
+      "Muiden alueiden seksualisoiva koskettelu",
+      "Ei-toivottujen lahjojen antaminen",
+      "Ei-toivottujen kuvien lähettäminen tai kuvaaminen",
+      "Seksuaalissävytteisen materiaalin levittäminen tai esilläpito"
+    ), str_wrap, width = 36, USE.NAMES = FALSE)
+  ) +
+  labs(
+    x = "Suhde kaikista seksuaalista väkivaltaa kokeneista vastaajista (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(axis.title.y = element_blank()) + 
+  geom_text(
+    aes(
+      label = ifelse(
+        !is.na(value),
+        scales::percent(prop, accuracy = 0.1),
+        ""
+      )
+    ),
+    position = position_stack(vjust = 0.5),
+    size = 3,
+  ) + 
+  scale_fill_manual(values = c("#C20E1A", "#C5B568"))
+
+```
+
+### Vihamielisyys
+
+```{r}
+#| label: fig-deibseminaari-vihamielisyys
+#| code-summary: "Vihamielisyyden muodot"
+#| fig-cap: "Esiintyvän vihamielisyyden muodot"
+#| warning: false
+
+data |>
+  filter(between(k3_6, 2, 8)) |>
+  select(k10_1_1:k10_11_2) |>
+  select(ends_with("_1")) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        NA ~ 0,
+        -1 ~ NA
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k10_1_1:k10_11_1,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = rev(sort(unique(value))),
+      labels = sapply(c(
+        "Kyllä",
+        "Ei"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Henkilön toiminnasta muille valittaminen",
+      "Henkilökohtaisen, luottamuksellisen tiedon jakaminen",
+      "Välinpitämättömyys tai tiedon pimittäminen",
+      "Useat tai jatkuva kritiikki, vähättely, virheiden hakeminen",
+      "Juoruilu, valheellisen tiedon levittäminen",
+      "Ehdotuksen tai ideoiden huomioimatta jättäminen tai vähättely",
+      "Työstä ei anneta tunnustusta",
+      "Aikaisemmista lupauksista luopuminen",
+      "Huumoriin kiedottu loukkaus",
+      "Sosiaalinen tai ammatillinen eristäminen",
+      "Maalittaminen"
+    ), str_wrap, width = 36, USE.NAMES = FALSE)
+  ) +
+  labs(
+    x = "Suhde kaikista vihamielisyyttä kokeneista vastaajista (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(axis.title.y = element_blank()) + 
+  geom_text(
+    aes(
+      label = ifelse(
+        !is.na(value),
+        scales::percent(prop, accuracy = 0.1),
+        ""
+      )
+    ),
+    position = position_stack(vjust = 0.5),
+    size = 3,
+  ) + 
+  scale_fill_manual(values = c("#C20E1A", "#C5B568"))
+
+```
+
+### Syrjintä
+
+```{r}
+#| label: fig-deibseminaari-syrjinta
+#| code-summary: "Syrjinnän muodot"
+#| fig-cap: "Esiintyvän syrjinnän muodot"
+#| warning: false
+#| fig-height: 8
+
+data |>
+  filter(between(k3_7, 2, 8)) |>
+  select(k11_1_1:k11_16_2) |>
+  select(ends_with("_1")) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        NA ~ 0,
+        -1 ~ NA
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k11_1_1:k11_16_1,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = rev(sort(unique(value))),
+      labels = sapply(c(
+        "Kyllä",
+        "Ei"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Tehtävään nimittäminen muuten kuin osaamiseen tai pätevyyteen perustuen",
+      "Epätasapuolinen johtamis- ja esihenkilötoiminta",
+      "Loukkaava kielenkäyttö, herjaaminen",
+      "Ryhmiin liittyvät yleistykset (esim. vähemmistövitsit)",
+      "Työhaastattelun yhteydessä kysymykset perhesuunnitelmista",
+      "Työvarusteiden epäsopivuus (esimerkiksi vääränkokoiset varusteet)",
+      "Työkollegoiden erilaiset odotukset henk.koht. ominaisuuksien perusteella",
+      "Pätevyyden vähättely henkilökohtaisten ominaisuuksien perusteella",
+      "Muuhun kuin vaativuuteen liittyvät palkitsemiserot",
+      "Kohtuullisten mukautusten epääminen vammaiselta henkilöltä",
+      "Käskyt tai ohjeet syrjiä toista henkilöä",
+      "Vastatoimiin ryhtyminen yhdenvertaisuusrikkomusten ilmoituksen takia",
+      "Syrjivä kohtelu ammattiyhdistystoimintaan osallistumisen takia",
+      "Irtisanominen tai sillä uhkaaminen henkilökohtaisten ominaisuuksien takia",
+      "Tehtävien jakaminen muun kuin osaamisen tai pätevyyteen perusteella",
+      "Muuhun kuin osaamiseen perustuvat palkkaerot"
+    ), str_wrap, width = 36, USE.NAMES = FALSE)
+  ) +
+  labs(
+    x = "Suhde kaikista syrjintää kokeneista vastaajista (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(axis.title.y = element_blank()) + 
+  geom_text(
+    aes(
+      label = ifelse(
+        !is.na(value),
+        scales::percent(prop, accuracy = 0.1),
+        ""
+      )
+    ),
+    position = position_stack(vjust = 0.5),
+    size = 3,
+  ) + 
+  scale_fill_manual(values = c("#C20E1A", "#C5B568"))
+
+```
+:::
+
+## Mittareiden rakentaminen {#sec-deibseminaari-mittarit}
+
+Esiintyvyyden yhteysmittari on rakennettu summamuuttujana, käyttäen validointitutkimuksessa (@sec-kohtelu_validointi-osatutkimus2) estimoituja standardisoimattomia faktorilatauksia faktorilla `f1`. Puuttuvat arvot ovat muunnettu nollaksi ennen laskemista.
+
+Työuupumuksen mittari on rakennettu keskiarvomuuttujana, summaten työuupumusmittareiden arvot yhteen ja jakamalla neljällä. Puuttuvat arvot ovat jätetty pois laskennasta.
+
+Tasa-arvon ja yhdenvertaisuuden toimintaohjelman vaikutusmittari on rakennettu summamuuttujana, jossa summattiin yhteen kaikki 12 vaikutusmittaria. Puuttuvat arvot ovat muunnettu nollaksi ennen laskemista. Mittaria ei olla faktorianalysoitu etukäteen.
+
+```{r}
+#| label: deibseminaari-02-mittarit
+#| code-summary: "Mittareiden rakentaminen"
+
+data_evk <- data |>
+  mutate(
+    across(
+      k3_1:k3_7,
+      ~ case_match(
+        .x,
+        NA ~ 0,
+        .default = .x
+      )
+    )
+  ) |>
+  mutate(
+    EVK_sisä_itse = 0.8 * k3_1 + 0.138 * k3_2 + 0.403 * k3_3 + 0.055 * k3_4 + 0.284 * k3_5 + 1.040 * k3_6 + 0.976 * k3_7
+  )
+
+data_evk <- data_evk |>
+  mutate(
+    Työuupumus = (k27_1 + k27_2 + k27_3 + k27_4) / 4
+  )
+
+data_evk <- data_evk |>
+  mutate(
+    across(
+      k29_1:k29_12,
+      ~ case_match(
+        .x,
+        NA ~ 0,
+        .default = .x
+      )
+    )
+  ) |>
+  mutate(
+    TOvaikutus = k29_1 + k29_2 + k29_3 + k29_4 + k29_5 + k29_6 + k29_7 + k29_8 + k29_9 + k29_10 + k29_11 + k29_12
+  )
+
+```
+
+## Esiintymisen ryhmäkohtaiset erot {#sec-deibseminaari-esiintyvyyserot}
+
+::: panel-tabset
+### Sukupuoli
+
+```{r}
+#| label: fig-deibseminaari-sukupuoli
+#| fig-cap: "Sukupuolten väliset erot epäasiallisessa ja väkivaltaisessa kohtelussa"
+#| code-summary: "Sukupuolikohtaiset erot esiintyvyydessä"
+
+data_evk |>
+  mutate(
+    k31 = factor(
+      k31,
+      labels = c("Nainen", "Mies", "Muu/EHV")
+    )
+  ) |>
+  ggbetweenstats(
+    x = "k31",
+    y = "EVK_sisä_itse",
+    bf.message = FALSE,
+    xlab = "Sukupuoli",
+    ylab = "Epäasiallinen ja väkivaltainen kohtelu",
+    pairwise.display = "all",
+    type = "robust"
+  ) + 
+  ylim(0, 30)
+
+```
+
+### Ammattiryhmät
+
+```{r}
+#| label: fig-deibseminaari-ammattiryhma
+#| fig-cap: "Pelastajien ja ensihoitajien erot epäasiallisessa ja väkivaltaisessa kohtelussa"
+#| code-summary: "Ammattiryhmien erot esiintyvyydessä"
+
+data_evk |>
+  filter(Organisaatioasema == 2) |>
+  filter(between(k40, 1, 2)) |>
+  mutate(
+    k40 = factor(
+      k40,
+      levels = c(1, 2),
+      labels = c("Pelastaja", "Ensihoitaja")
+    )
+  ) |>
+  ggbetweenstats(
+    x = "k40",
+    y = "EVK_sisä_itse",
+    bf.message = FALSE,
+    xlab = "Ammattiasema",
+    ylab = "Epäasiallinen ja väkivaltainen kohtelu",
+    pairwise.display = "all",
+    type = "robust"
+  ) + 
+  ylim(0, 30)
+
+```
+
+### Organisaatiot
+
+```{r}
+#| label: fig-deibseminaari-organisaatioryhma
+#| fig-cap: "Organisaatioryhmien väliset erot epäasiallisessa ja väkivaltaisessa kohtelussa"
+#| code-summary: "Organisaatiokohtaiset erot esiintyvyydessä"
+
+data_evk |>
+  mutate(
+    k2 = factor(
+      k2,
+      labels = c(
+        "Pelastuslaitos tai ensihoito",
+        "Sopimuspalokunta tai palokuntayhdistys",
+        "Järjestö, pelastusliitto tai koulu"
+      )
+    )
+  ) |>
+  ggbetweenstats(
+    x = "k2",
+    y = "EVK_sisä_itse",
+    bf.message = FALSE,
+    xlab = "Organisaatioryhmä",
+    ylab = "Epäasiallinen ja väkivaltainen kohtelu",
+    pairwise.display = "all",
+    type = "robust"
+  ) + 
+  ylim(0, 30)
+
+```
+:::
+
+## Kohtelun vaikutukset {#sec-deibseminaari-vaikutukset}
+
+Ks. @fig-vaikutukset-vakavuus, @fig-vaikutukset-uupumuksentaso.
+
+## Kohtelun vaikutukset ryhmittäin {#sec-deibseminaari-vaikutuksetryhmat}
+
+::: panel-tabset
+### Fyysiset
+
+```{r}
+#| label: fig-deibseminaari-fyysiset
+#| fig-cap: "Fyysisten vaikutusten väliset erot epäasiallisessa ja väkivaltaisessa kohtelussa"
+#| code-summary: "Fyysisten vaikutusten väliset erot esiintyvyydessä"
+
+# Vakavia fyysisiä kokemuksia on vain yhdellä, jätetään pois testistä
+data_evk |>
+  filter(between(k21_1, 1, 3)) |>
+  mutate(
+    k21_1 = factor(
+      k21_1,
+      levels = c(1, 2, 3, 4),
+      labels = c(
+        "Ei vaikutusta",
+        "Lievät",
+        "Kohtalaiset",
+        "Vakavat"
+      )
+    )
+  ) |>
+  ggbetweenstats(
+    x = "k21_1",
+    y = "EVK_sisä_itse",
+    bf.message = FALSE,
+    xlab = "Fyysiset vaikutukset",
+    ylab = "Epäasiallinen ja väkivaltainen kohtelu",
+    pairwise.display = "all",
+    type = "robust"
+  ) + 
+  ylim(0, 30)
+
+```
+
+### Psyykkiset
+
+```{r}
+#| label: fig-deibseminaari-psyykkiset
+#| fig-cap: "Psyykkisten vaikutusten väliset erot epäasiallisessa ja väkivaltaisessa kohtelussa"
+#| code-summary: "Psyykkisten vaikutusten väliset erot esiintyvyydessä"
+
+data_evk |>
+  filter(between(k21_2, 1, 4)) |>
+  mutate(
+    k21_2 = factor(
+      k21_2,
+      levels = c(1, 2, 3, 4),
+      labels = c(
+        "Ei vaikutusta",
+        "Lievät",
+        "Kohtalaiset",
+        "Vakavat"
+      )
+    )
+  ) |>
+  ggbetweenstats(
+    x = "k21_2",
+    y = "EVK_sisä_itse",
+    bf.message = FALSE,
+    xlab = "Psyykkiset vaikutukset",
+    ylab = "Epäasiallinen ja väkivaltainen kohtelu",
+    pairwise.display = "all",
+    type = "robust"
+  ) + 
+  ylim(0, 30)
+
+```
+
+### Ammatilliset
+
+```{r}
+#| label: fig-deibseminaari-ammatilliset
+#| fig-cap: "Ammatillisten vaikutusten väliset erot epäasiallisessa ja väkivaltaisessa kohtelussa"
+#| code-summary: "Ammatillisten vaikutusten väliset erot esiintyvyydessä"
+
+data_evk |>
+  filter(between(k21_3, 1, 4)) |>
+  mutate(
+    k21_3 = factor(
+      k21_3,
+      levels = c(1, 2, 3, 4),
+      labels = c(
+        "Ei vaikutusta",
+        "Lievät",
+        "Kohtalaiset",
+        "Vakavat"
+      )
+    )
+  ) |>
+  ggbetweenstats(
+    x = "k21_3",
+    y = "EVK_sisä_itse",
+    bf.message = FALSE,
+    xlab = "Ammatilliset vaikutukset",
+    ylab = "Epäasiallinen ja väkivaltainen kohtelu",
+    pairwise.display = "all",
+    type = "robust"
+  ) + 
+  ylim(0, 30)
+
+```
+
+### Työuupumus
+
+```{r}
+#| label: fig-deibseminaari-tyouupumus
+#| fig-cap: "Työuupumuksen suhde epäasialliseen ja väkivaltaiseen kohteluun"
+#| code-summary: "Työuupumus sekä epäasiallinen ja väkivaltainen kohtelu"
+
+plot <- ggscatterstats(
+  data_evk,
+  x = "Työuupumus",
+  y = "EVK_sisä_itse",
+  bf.message = FALSE,
+  type = "robust",
+  xlab = "Työuupumus",
+  ylab = "Epäasiallinen ja väkivaltainen kohtelu"
+) + 
+  geom_vline(
+    xintercept = 3.13,
+    linetype = 2
+  )
+
+plot
+
+```
+:::
+
+## Toimenpiteiden koettu vaikutus {#sec-deibseminaari-toimenpidevaikutus}
+
+::: panel-tabset
+### Sukupuoli
+
+```{r}
+#| label: fig-deibseminaari-toimenpide-sukupuoli
+#| fig-cap: "Sukupuolten väliset erot toimintaohjelman koetussa vaikutuksessa"
+#| code-summary: "Sukupuolikohtaiset erot toimintaohjelmavaikutuksessa"
+
+data_evk |>
+  mutate(
+    k31 = factor(
+      k31,
+      labels = c("Nainen", "Mies", "Muu/EHV")
+    )
+  ) |>
+  ggbetweenstats(
+    x = "k31",
+    y = "TOvaikutus",
+    bf.message = FALSE,
+    xlab = "Sukupuoli",
+    ylab = "Toimintaohjelman koettu vaikutus",
+    pairwise.display = "all",
+    type = "robust"
+  )
+
+```
+
+### Ammattiryhmät
+
+```{r}
+#| label: fig-deibseminaari-toimenpide-ammattiryhma
+#| fig-cap: "Pelastajien ja ensihoitajien erot toimintaohjelman koetussa vaikutuksessa"
+#| code-summary: "Ammattiryhmien erot toimintaohjelmavaikutuksessa"
+
+data_evk |>
+  filter(Organisaatioasema == 2) |>
+  filter(between(k40, 1, 2)) |>
+  mutate(
+    k40 = factor(
+      k40,
+      levels = c(1, 2),
+      labels = c("Pelastaja", "Ensihoitaja")
+    )
+  ) |>
+  ggbetweenstats(
+    x = "k40",
+    y = "TOvaikutus",
+    bf.message = FALSE,
+    xlab = "Ammattiasema",
+    ylab = "Toimintaohjelman koettu vaikutus",
+    pairwise.display = "all",
+    type = "robust"
+  )
+
+```
+
+### Organisaatiot
+
+```{r}
+#| label: fig-deibseminaari-toimenpide-organisaatioryhma
+#| fig-cap: "Organisaatioryhmien väliset erot toimintaohjelman koetussa vaikutuksessa"
+#| code-summary: "Organisaatiokohtaiset erot toimintaohjelmavaikutuksessa"
+
+data_evk |>
+  mutate(
+    k2 = factor(
+      k2,
+      labels = c(
+        "Pelastuslaitos tai ensihoito",
+        "Sopimuspalokunta tai palokuntayhdistys",
+        "Järjestö, pelastusliitto tai koulu"
+      )
+    )
+  ) |>
+  ggbetweenstats(
+    x = "k2",
+    y = "TOvaikutus",
+    bf.message = FALSE,
+    xlab = "Organisaatioryhmä",
+    ylab = "Toimintaohjelman koettu vaikutus",
+    pairwise.display = "all",
+    type = "robust"
+  )
+
+```
+
+### Epäasiallisen ja väkivaltaisen kohtelun määrä
+
+```{r}
+#| label: fig-deibseminaari-toimenpidevaikutus
+#| fig-cap: "Tasa-arvon ja yhdenvertaisuuden toimintaohjelman vaikutusten suhde epäasialliseen ja väkivaltaiseen kohteluun"
+#| code-summary: "Kuvion rakentaminen"
+
+ggscatterstats(
+  data_evk,
+  x = "TOvaikutus",
+  y = "EVK_sisä_itse",
+  bf.message = FALSE,
+  type = "robust",
+  xlab = "Toimintaohjelman koettu vaikutus",
+  ylab = "Epäasiallinen ja väkivaltainen kohtelu"
+)
+
+```
+:::
+
+## Toimenpiteiden olemassaolon suhde kohtelun määrään {#sec-deibseminaari-toimenpidekohtelusuhde}
+
+```{r}
+#| label: fig-deibseminaari-toimenpidekohtelusuhde
+#| fig-cap: "Toimenpiteiden olemassaolon suhde kohtelun määrään"
+#| code-summary: "Kuvion rakentaminen"
+
+data_evk |>
+  mutate(
+    across(
+      k28_1:k28_12,
+      ~ case_match(
+        .x,
+        c(1:3, NA) ~ 0,
+        c(4:5) ~ 1
+      )
+    )
+  ) |>
+  mutate(
+    TOkäyttö = k28_1 + k28_2 + k28_3 + k28_4 + k28_5 + k28_6 + k28_7 + k28_8 + k28_9 + k28_10 + k28_11 + k28_12
+  ) |>
+  ggscatterstats(
+    x = "TOkäyttö",
+    y = "EVK_sisä_itse",
+    bf.message = FALSE,
+    type = "robust",
+    xlab = "Toimenpiteiden varma tai luultu käyttö",
+    ylab = "Epäasiallinen ja väkivaltainen kohtelu"
+  ) + 
+  xlim(0, 12) +
+  ylim(0, 30)
+
 ```
