@@ -1,0 +1,1597 @@
+# Epäasiallisen ja väkivaltaisen kohtelun esiintyvyyden mittarin validointi {#sec-kohtelu_validointi}
+
+---
+eval: true
+cache: true
+---
+
+Tässä osiossa suoritamme tilastollisen validoinnin epäasiallisen ja väkivaltaisen kohtelun esiintyvyyden mittarille. Osio liittyy rekisteröityyn tutkimusraporttiin "Epäasiallisen ja väkivaltaisen kohtelun suomen- ja ruotsinkielisen mittarin validointi pelastus- ja ensihoitoalalla" (Saal, Silfverhuth & Huovinen, 2024). Viittaamme raportin rekisteröityihin protokolliin tekstissä.
+
+```{r}
+#| label: kohtelu_validointi-00-paketit
+
+library(ggstatsplot)
+library(naniar)
+library(HH)
+library(EFAtools)
+library(lavaan)
+library(dynamic)
+library(semTools)
+library(tidyverse) # Tidyverse viimeiseksi, sillä HH:ssa useat dplyrin funktiot peittyvät
+
+```
+
+```{r}
+#| label: kohtelu_validointi-01-avaaminen
+
+data <- read.csv2("output/anonymisoitudata.csv", tryLogical = FALSE)
+
+```
+
+## Protokollamuutokset {#sec-kohtelu_validointi-protokollamuutokset}
+
+Raportin luvussa 2.1. (Kohderyhmä) esitimme neljä kohderyhmää, niiden määritelmät sekä niiden yhteenlasketut otoskoot (ks. raportin Taulukko 2). Nämä kohderyhmät määriteltiin kontrollimuuttujina luvussa 2.5. (Kontrollimuuttujat). Olemme poikenneet kohderyhmistä seuraavalla tavalla:
+
+-   Järjestöjen kohderyhmään lisättiin myös alueellisten pelastusliittojen henkilöstö
+
+-   Anonymisoinnissa jouduimme yhdistämään järjestöt ja koulutusorganisaatiot yhdeksi muuttujaksi, jotta heidän anonymiteettinsa säilyisivät.
+
+Raportin luvussa 2.2. (Yhteydenottomenetelmät) esitimme jokaiselle kohderyhmälle eritellyt yhteydenottomenetelmät. Menetelmät tarkentuivat ja laajenivat rekisteröinnin jälkeen (ks. @sec-tiedonkeruu). Poikkesimme suunnitelmasta seuraavalla tavalla:
+
+-   Yhteydenottomenetelmät nimettiin uudelleen vastaamaan toteutettuja menetelmiä paremmin.
+
+-   Vaihdoimme hyvinvointialueiden kirjaamot ja pelastuslaitosten viestinnät pelastuslaitosten ja ensihoidon yhteyshenkilöiksi.
+
+-   Suomen Pelastusalan Keskusjärjestön kautta pelastusliittojen viestintään lähetetty viesti lähetettiin pelastusliittojen johdolle, samanaikaisesti kuin SPEK:n kautta pelastusliittojen johdolle lähetetty viesti.
+
+-   Lisäsimme SPEK:n kautta sopimuspalokuntalaisten HAKA-järjestelmään ja siitä edelleen sopimuspalokunnille ja palokuntayhdistyksille välittetävä viesti. Tämä menetelmä laskettiin yhteyshenkilöiden ja viestinnän kautta välitettäväksi viestiksi.
+
+-   Lisäsimme uutiskirjeet seuraavissa palveluissa: Palokuntaan.fi ja Pelastusopiston uutiskirjeet ensihoidolle, pelastustoimelle, onnettomuuksien ehkäisyyn sekä pelastustoimintaan. Nämä laskettiin yhteyshenkilöiden ja viestinnän kautta välitettäviksi viesteiksi.
+
+-   Lisäsimme Spek.fi-sivustolla julkaistun tiedotteen sekä SSPL:n jäsenille lähetettävän tiedotteen. Nämä laskettiin median kautta välitettäviksi viesteiksi.
+
+-   Lähetimme muistutusviestit järjestöjen ja koulutusorganisaatioiden johtajille, ensihoidon ja pelastuslaitosten yhteyshenkilöille sekä järjestöjen ja koulutusorganisaatioiden toimistoihin ja viestintään 3.9.2024.
+
+## Deskriptiiviset tulokset {#sec-kohtelu_validointi-deskriptiiviset}
+
+Tiedonkeruu suoritettiin 15.8.-15.9.2024 välisenä aikana. Aineistoon kuuluu n = `r nrow(data)` vastaajaa.
+
+```{r}
+#| label: kohtelu_validointi-02-taustamuuttujat
+#| code-summary: "Sukupuoli"
+
+sukupuoli <- data |>
+  select(k31) |>
+  mutate(
+    k31 = factor(
+      k31,
+      labels = c("Nainen", "Mies", "Muu/EHV")
+    )
+  ) |>
+  table() |>
+  as.data.frame() |>
+  mutate(
+    Pros = (Freq / nrow(data)) * 100
+  )
+  
+```
+
+Vastaajista `r round(sukupuoli[2, "Pros"], digits = 1)` prosenttia (n = `r sukupuoli[2, "Freq"]`) olivat miehiä, `r round(sukupuoli[1, "Pros"], digits = 1)` prosenttia (n = `r sukupuoli[1, "Freq"]`) olivat naisia ja `r round(sukupuoli[3, "Pros"], digits = 1)` prosenttia (n = `r sukupuoli[3, "Freq"]`) muunsukupuolisia tai kieltäytyivät vastaamasta.
+
+Verrattuna tunnettuihin sukupuolijakaumiin, aineistossa on yliedustettuna naissukupuoliset henkilöt.
+
+```{r}
+#| label: kohtelu_validointi-03-taustamuuttujat
+#| code-summary: "Kohderyhmä"
+
+kohderyhma <- data |>
+  select(k2) |>
+  mutate(
+    k2 = factor(
+      k2,
+      labels = c(
+        "Pelastuslaitos tai ensihoito",
+        "Sopimuspalokunta tai palokuntayhdistys",
+        "Järjestö, pelastusliitto tai koulu")
+    )
+  ) |>
+  table() |>
+  as.data.frame() |>
+  mutate(
+    Pros = (Freq / nrow(data)) * 100
+  )
+  
+```
+
+Vastaajista `r round(kohderyhma[1, "Pros"], digits = 1)` prosenttia (n = `r kohderyhma[1, "Freq"]`) olivat pelastuslaitokselta tai ensihoidosta, `r round(kohderyhma[2, "Pros"], digits = 1)` prosenttia (n = `r kohderyhma[2, "Freq"]`) olivat sopimuspalokunnista tai palokuntayhdistyksistä ja `r round(kohderyhma[3, "Pros"], digits = 1)` prosenttia (n = `r kohderyhma[3, "Freq"]`) olivat järjestöistä, pelastusliitoista tai koulutusorganisaatioista.
+
+Kohderyhmätaulukon mukaan pelastuslaitosten ja ensihoidon osuus koko kohderyhmästä on noin 23,9 prosenttia, sopimuspalokuntien ja palokuntayhdistysten osuus noin 73,8 prosenttia, ja yhdistysten sekä koulutusorganisaatioiden yhteenlaskettu osuus noin 2,2 prosenttia. Aineistossamme on selkeästi yliedustettuina pelastuslaitokset ja ensihoito sekä hieman pienemmässä määrässä järjestöt, liitot ja koulutusorganisaatiot, ja aliedustettuina sopimuspalokunnat ja palokuntayhdistykset.
+
+```{r}
+#| label: kohtelu_validointi-04-taustamuuttujat
+#| code-summary: "Ammattiasema"
+
+ophenk_n <- data |>
+  filter(Organisaatioasema == 2) |>
+  filter(k2 == 1) |>
+  nrow() - 70 # 70 henkilöä ovat alinta johtoa, eivätkä vastanneet suorittavan henkilöstön osuuteen. Jotta prosenttiosuudet olisivat oikein, arvoa on korjattava tämän verran.
+
+ammattiasema <- data |>
+  filter(Organisaatioasema == 2) |>
+  select(k40) |>
+  mutate(
+    k40 = factor(
+      k40,
+      levels = c(1, 2, 3, -1),
+      labels = c(
+        "Pelastaja",
+        "Ensihoitaja",
+        "Muu",
+        "Sopimuspalokuntalainen operatiivisessa toiminnassa"
+      )
+    )
+  ) |>
+  table() |>
+  as.data.frame() |>
+  mutate(
+    Pros = (Freq / ophenk_n) * 100
+  )
+
+```
+
+Operatiivista toimintaa suorittavasta pelastuslaitosten ja ensihoidon henkilöstöstä (n = `r ophenk_n`[^kohtelu_validointi-1]) `r round(ammattiasema[1, "Pros"], digits = 1)` prosenttia (n = `r ammattiasema[1, "Freq"]`) olivat pelastajia, `r round(ammattiasema[2, "Pros"], digits = 1)` prosenttia (n = `r ammattiasema[2, "Freq"]`) olivat ensihoitajia ja `r round(ammattiasema[3, "Pros"], digits = 1)` prosenttia (n = `r ammattiasema[3, "Freq"]`) ilmoittivat muun ammattiryhmän.
+
+[^kohtelu_validointi-1]: Operatiiviseen henkilöstöön kuuluvat sekä suorittava henkilöstö (pelastajat, ensihoitajat) että alin johto (ryhmänjohtajat). Alin johto ei kuitenkaan kyselyvirheen takia vastanneet kysymykseen suorittavalle henkilöstölle. Tämän takia määrät ja prosenttiosuudet eivät vastaa todellisia. Prosenttiosuudet on laskettu käsin jakamalla kunkin ryhmän osiot oikealla otoskoolla (n = 428 operatiivista henkilöstöä - 70 alinta johtoa = 358 suorittavaa henkilöstöä).
+
+Kohderyhmätaulukon mukaisesti pelastajien osuus pelastuslaitosten henkilöstöstä on noin 49,4 prosenttia, ensihoitajien osuus noin 42,0 prosenttia ja muun henkilöstön osuus noin 8,6 prosenttia. Otoksessamme ensihoitajat ovat lievästi yliedustettuna ja pelastajat vastaavasti aliedustettuna, muun henkilöstön osuus vastaa käytännössä populaation osuutta.
+
+```{r}
+#| label: kohtelu_validointi-05-taustamuuttujat
+#| code-summary: "Kieliversio"
+
+kieli <- data |>
+  select(Kieliversio) |>
+  mutate(
+    Kieliversio = factor(
+      Kieliversio,
+      labels = c(
+        "Suomi",
+        "Ruotsi"
+      )
+    )
+  ) |>
+  table() |>
+  as.data.frame() |>
+  mutate(
+    Pros = (Freq / nrow(data)) * 100
+  )
+  
+```
+
+Vastaajista `r round(kieli[1, "Pros"], digits = 1)` prosenttia (n = `r kieli[1, "Freq"]`) vastasivat suomeksi ja `r round(kieli[2, "Pros"], digits = 1)` prosenttia (n = `r kieli[2, "Freq"]`) vastasivat ruotsiksi. Vastauskieli ei välttämättä edusta äidinkielen tai käytetyn kielen jakautumista kohdepopulaatiossa.
+
+```{r}
+#| label: kohtelu_validointi-06-taustamuuttujat
+#| code-summary: "Yhteydenottomenetelmät"
+
+yhteydenotto <- data |>
+  select(Linkkiversio) |>
+  mutate(
+    Linkkiversio = factor(
+      Linkkiversio,
+      labels = c(
+        "Johdon kautta",
+        "Henkilöstön kautta",
+        "Median kautta"
+      )
+    )
+  ) |>
+  table() |>
+  as.data.frame() |>
+  mutate(
+    Pros = (Freq / nrow(data)) * 100
+  )
+  
+```
+
+Vastaajista `r round(yhteydenotto[1, "Pros"], digits = 1)` prosenttia (n = `r yhteydenotto[1, "Freq"]`) vastasivat johdon kautta välitettyyn linkkiin, `r round(yhteydenotto[2, "Pros"], digits = 1)` prosenttia (n = `r yhteydenotto[2, "Freq"]`) vastasivat yhteyshenkilöiden tai toimistojen kautta välitettyyn linkkiin, ja `r round(yhteydenotto[3, "Pros"], digits = 1)` prosenttia (n = `r yhteydenotto[3, "Freq"]`) vastasivat median kautta välitettyyn linkkiin.
+
+```{r}
+#| label: tbl-kohtelu_validointi-kohtelu
+#| tbl-cap: "Epäasiallisen ja väkivaltaisen kohtelun muuttujien keskiarvot, mediaanit, keskihajonnat ja validit otoskoot"
+#| code-summary: "Kohtelun avainluvut"
+
+# Korjataan muuttujien järjestys putkessa myöhemmin
+jarjestys <- c(
+  "k3_1", "k3_2", "k3_3", "k3_4", "k3_5", "k3_6", "k3_7",
+  "k4_1", "k4_2", "k4_3", "k4_4", "k4_5", "k4_6", "k4_7",
+  "k12_1", "k12_2", "k12_3", "k12_4", "k12_5", "k12_6", "k12_7",
+  "k13_1", "k13_2", "k13_3", "k13_4", "k13_5", "k13_6", "k13_7"
+)
+
+kohtelu <- data |>
+  select(k3_1:k4_7, k12_1:k13_7) |>
+  summarise(
+    across(
+      everything(),
+      list(
+        mean = ~ round(mean(.x, na.rm = TRUE), digits = 2),
+        median = ~ median(.x, na.rm = TRUE),
+        sd = ~ round(sd(.x, na.rm = TRUE), digits = 2),
+        n = ~ sum(!is.na(.x))
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = everything(),
+    names_to = c("variable", "statistic"),
+    names_pattern = "^(.*_\\d+)_(.*)$"
+  ) |>
+  pivot_wider(
+    names_from = statistic,
+    values_from = value
+  ) |>
+  arrange(
+    factor(variable, levels = jarjestys)
+  )
+
+colnames(kohtelu) <- c("Muuttuja", "Keskiarvo", "Mediaani", "Keskihajonta", "Validi N")
+
+kohtelu |>
+  knitr::kable()
+
+```
+
+```{r}
+#| label: fig-kohtelu_validointi-kohtelukorrelaatio
+#| fig-cap: "Epäasiallisen ja väkivaltaisen kohtelun mittareiden korrelaatiomatriisi. Pearsonin tulomomenttikorrelaatiokerroin, Holm-muunnetut merkitsevyysarvot. Risti esittää 5 % alfatason ylittymistä, mustat viivat erottavat muuttujat neljään muuttujaryhmään kyselyssä mitatun tekokontekstin ja kohteen mukaisesti."
+#| code-summary: "Kohtelun korrelaatiomatriisi"
+
+kohtelu_korr <- data |>
+  select(k3_1:k4_7, k12_1:k13_7) |>
+  cor(method = "pearson", use = "pairwise.complete.obs")
+
+data |>
+  select(k3_1:k4_7, k12_1:k13_7) |>
+  ggcorrmat(
+    ggcorrplot.args = list(lab_size = 1, tl.cex = 7, tl.srt = 90)
+  ) +
+  geom_vline(xintercept = 7.5, color = "black", size = 0.5) +
+  geom_vline(xintercept = 14.5, color = "black", size = 0.5) +
+  geom_vline(xintercept = 21.5, color = "black", size = 0.5) +
+  geom_hline(yintercept = 6.5, color = "black", size = 0.5) +
+  geom_hline(yintercept = 13.5, color = "black", size = 0.5) +
+  geom_hline(yintercept = 20.5, color = "black", size = 0.5)
+
+```
+
+Epäasiallisen ja väkivaltaisen kohtelun mittarit näyttävät korreloivan kahdessa osiossa: organisaatiosisäiset mittarit korreloivat toistensa kanssa merkitsevästi ja keskikokoisilla tai jopa suurilla kerroimilla, ja sama koskee organisaatioulkoisia mittareita. Mittarit korreloivat keskenään kuitenkin heikommin ja useammin ei-merkitsevästi, kuten näkyy korrelelogramin ylävasemmasta kulmasta (@fig-kohtelu_validointi-kohtelukorrelaatio).
+
+Korrelaatioiden vahvuudet vaihtelevat välillä $r = `r min(kohtelu_korr[lower.tri(kohtelu_korr)])` - `r max(kohtelu_korr[lower.tri(kohtelu_korr)])`$. Pääsääntöisesti korrelaatiot ovat positiivisia. Korrelaatiomatriisin determinantti on $\det A = `r det(kohtelu_korr)`$.
+
+```{r}
+#| label: tbl-kohtelu_validointi-uupumus
+#| tbl-cap: "BAT 4-menetelmän työuupumuksen muuttujien keskiarvot, mediaanit, keskihajonnat ja validit otoskoot"
+#| code-summary: "Työuupumuksen avainluvut"
+
+# Korjataan muuttujien järjestys putkessa myöhemmin
+jarjestys <- c("k27_1", "k27_2", "k27_3", "k27_4")
+
+uupumus <- data |>
+  select(k27_1:k27_4) |>
+  summarise(
+    across(
+      everything(),
+      list(
+        mean = ~ round(mean(.x, na.rm = TRUE), digits = 2),
+        median = ~ median(.x, na.rm = TRUE),
+        sd = ~ round(sd(.x, na.rm = TRUE), digits = 2),
+        n = ~ sum(!is.na(.x))
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = everything(),
+    names_to = c("variable", "statistic"),
+    names_pattern = "^(.*_\\d+)_(.*)$"
+  ) |>
+  pivot_wider(
+    names_from = statistic,
+    values_from = value
+  ) |>
+  arrange(
+    factor(variable, levels = jarjestys)
+  )
+
+colnames(uupumus) <- c("Muuttuja", "Keskiarvo", "Mediaani", "Keskihajonta", "Validi N")
+
+uupumus |>
+  knitr::kable()
+
+```
+
+```{r}
+#| label: fig-kohtelu_validointi-uupumuskorrelaatio
+#| fig-cap: "BAT 4-menetelmän työuupumuksen mittareiden korrelaatiomatriisi. Pearsonin tulomomenttikorrelaatiokerroin, Holm-muunnetut merkitsevyysarvot. Risti esittää 5 % alfatason ylittymistä."
+#| code-summary: "Työuupumuksen korrelaatiomatriisi"
+
+uupumus_korr <- data |>
+  select(k27_1:k27_4) |>
+  cor(method = "pearson", use = "pairwise.complete.obs")
+
+data |>
+  select(k27_1:k27_4) |>
+  ggcorrmat()
+
+```
+
+Korrelaatiot ovat kaikki merkitsevästi positiivisia ja vaihtelevat välillä $r = `r min(uupumus_korr[lower.tri(uupumus_korr)])` - `r max(uupumus_korr[lower.tri(uupumus_korr)])`$. Korrelaatiomatriisin determinantti on $\det A = `r det(uupumus_korr)`$.
+
+```{r}
+#| label: kohtelu_validointi-07-puuttuviendata
+
+valitut <- data |>
+  select(k3_1:k4_7, k12_1:k13_7)
+
+puuttuvat_valitut <- data |>
+  select(k3_1:k4_7, k12_1:k13_7, k2, k40, Kieliversio, Linkkiversio) |>
+  mutate(
+    across(
+      k3_1:k13_7,
+      ~ case_match(
+        .x,
+        NA ~ 1,
+        .default = 0
+      )
+    )
+  )
+
+```
+
+::: panel-tabset
+### Puuttuvien arvojen määrä
+
+```{r}
+#| label: fig-kohtelu_validointi-kohtelupuuttuvat
+#| fig-cap: "Epäasiallisen ja väkivaltaisen kohtelun muuttujien puuttuvien arvojen määrät"
+
+gg_miss_var(valitut)
+
+```
+
+### Puuttuvien arvojen piirteet
+
+```{r}
+#| label: fig-kohtelu_validointi-kohteluupset
+#| fig-cap: "Epäasiallisen ja väkivaltaisen kohtelun muuttujien puuttuvien arvojen piirreanalyysi"
+
+gg_miss_upset(
+  valitut,
+  nsets = 28,
+  point.size = 1.0,
+  text.scale = 0.5
+)
+
+```
+:::
+
+Puuttuvia arvoja esiintyy eniten organisaation ulkopuolelta tulleen kollegahavaintojen muuttujien ryhmässä (@fig-kohtelu_validointi-kohtelupuuttuvat). Vähiten esiintyy vastaavasti organisaation sisällä omakohtaisten kokemusten ryhmässä.
+
+Upset-kuvio (@fig-kohtelu_validointi-kohteluupset) osoittaa, että kun organisaatiosisäisillä muuttujilla puuttuu vastaus, puute heijastuu usein muihin organisaatiosisäisiin muuttujiin. Samalla tavalla organisaatioulkoisten muuttujien puute heijastuu toisiin organisaatioulkoisiin muuttujiin.
+
+```{r}
+#| label: tbl-kohtelu_validointi-mcar
+#| tbl-cap: "Littlen MCAR-testi, epäasiallisen ja väkivaltaisen kohtelun muuttujat (k = 28)"
+#| code-summary: "Littlen MCAR-testi"
+
+valitut |>
+  mcar_test() |>
+  knitr::kable()
+
+```
+
+Littlen MCAR-testi on merkitsevä, osoittaen, että puuttuvat vastaukset mitä luultavammin eivät ole täysin satunnaisesti puuttuvia (engl. *missing completely at random*) (p \< .05). Merkitsevyys voi osittain johtua suuresta otoskoosta, mutta todisteet osoittaisivat kuitenkin, että puuttuvissa vastauksissa on jonkin tapaista systematiikkaa.
+
+```{r}
+#| label: tbl-kohtelu_validointi-khii-kohderyhmat
+#| tbl-cap: "Epäasiallisen ja väkivaltaisen kohtelun muuttujat kohderyhmittäin, frekvenssitaulukko ja khii neliö -testin tulokset (vertailu riveittäin sarakkeiden välillä)"
+#| code-summary: "Kohtelun puuttuvien arvojen vertailu kohderyhmien välillä"
+
+data_long <- puuttuvat_valitut |>
+  pivot_longer(
+    cols = k3_1:k13_7,
+    names_to = "variable",
+    values_to = "value"
+  )
+
+kontingenssi <- data_long |>
+  filter(value == 1) |>
+  group_by(variable, k2) |>
+  summarise(count = n(), .groups = "drop") |>
+  pivot_wider(
+    names_from = k2,
+    values_from = count,
+    values_fill = 0
+  )
+
+khiinelio <- data_long |>
+  group_by(variable) |>
+  summarise(
+    khii2 = list(
+      chisq.test(table(value, k2))
+    ),
+    .groups = "drop"
+  ) |>
+  mutate(
+    p = map_dbl(khii2, ~ .x$p.value),
+    khii2 = map_dbl(khii2, ~ .x$statistic)
+  ) |>
+  select(variable, p, khii2)
+
+kontingenssi |>
+  left_join(khiinelio, by = "variable") |>
+  knitr::kable()
+
+```
+
+Taulukon [-@tbl-kohtelu_validointi-khii-kohderyhmat] mukaan useimpien muuttujien puuttuvien arvojen määrät eivät eroa kohderyhmien välillä merkitsevästi. Poikkeuksena ovat muuttujat `k12_1`, `k13_7` ja `k4_7`, eli organisaatioulkoisen omakohtaisesti koetun verbaalisen väkivallan, organisaatioulkoisen kollegahavaitun syrjinnän sekä organisaatiosisäisen kollegahavaitun syrjinnän muuttujat. On kuitenkin huomattava, että määrät ovat hyvin pieniä, ja käytännössä jokainen testi sisältää odotettuja soluja, joiden koot ovat alle 5 havaintoa, jolloin khii neliö -testi ei ole luotettava riippuvuustesti. Poikkeuksena voidaan nähdä organisaatioulkoisen kollegahavaitun syrjinnän muuttuja, jossa on moninkertaisesti enemmän puuttuvia arvoja pelastuslaitosten ja ensihoidon kohderyhmässä kuin muissa.
+
+```{r}
+#| label: tbl-kohtelu_validointi-khii-ammattiryhma
+#| tbl-cap: "Epäasiallisen ja väkivaltaisen kohtelun muuttujat ammattiryhmittäin, frekvenssitaulukko ja khii neliö -testin tulokset (vertailu riveittäin sarakkeiden välillä)"
+#| code-summary: "Kohtelun puuttuvien arvojen vertailu ammattiryhmien välillä"
+
+data_long <- puuttuvat_valitut |>
+  filter(between(k40, 1, 2)) |>
+  pivot_longer(
+    cols = k3_1:k13_7,
+    names_to = "variable",
+    values_to = "value"
+  )
+
+kontingenssi <- data_long |>
+  filter(value == 1) |>
+  group_by(variable, k40) |>
+  summarise(count = n(), .groups = "drop") |>
+  pivot_wider(
+    names_from = k40,
+    values_from = count,
+    values_fill = 0
+  )
+
+khiinelio <- data_long |>
+  group_by(variable) |>
+  summarise(
+    khii2 = list(
+      chisq.test(table(value, k40))
+    ),
+    .groups = "drop"
+  ) |>
+  mutate(
+    p = map_dbl(khii2, ~ .x$p.value),
+    khii2 = map_dbl(khii2, ~ .x$statistic)
+  ) |>
+  select(variable, p, khii2)
+
+kontingenssi |>
+  left_join(khiinelio, by = "variable") |>
+  knitr::kable()
+
+```
+
+Taulukon [-@tbl-kohtelu_validointi-khii-ammattiryhma] mukaan mikään muuttuja ei eroa merkitsevästi puuttuvien vastausten määrässä pelastajien ja ensihoitajien välillä. Puuttuvia arvoja on hyvin vähän, joten khii neliö-testit eivät ole luotettavia, mutta puuttuminen ei myöskään oletettavasti aiheuta haittaa mallille myöhemmässä vaiheessa.
+
+```{r}
+#| label: tbl-kohtelu_validointi-khii-kieli
+#| tbl-cap: "Epäasiallisen ja väkivaltaisen kohtelun muuttujat kyselyn kielen mukaan, frekvenssitaulukko ja khii neliö -testin tulokset (vertailu riveittäin sarakkeiden välillä)"
+#| code-summary: "Kohtelun puuttuvien arvojen vertailu kyselyn kielten välillä"
+
+data_long <- puuttuvat_valitut |>
+  pivot_longer(
+    cols = k3_1:k13_7,
+    names_to = "variable",
+    values_to = "value"
+  )
+
+kontingenssi <- data_long |>
+  filter(value == 1) |>
+  group_by(variable, Kieliversio) |>
+  summarise(count = n(), .groups = "drop") |>
+  pivot_wider(
+    names_from = Kieliversio,
+    values_from = count,
+    values_fill = 0
+  )
+
+khiinelio <- data_long |>
+  group_by(variable) |>
+  summarise(
+    khii2 = list(
+      chisq.test(table(value, Kieliversio))
+    ),
+    .groups = "drop"
+  ) |>
+  mutate(
+    p = map_dbl(khii2, ~ .x$p.value),
+    khii2 = map_dbl(khii2, ~ .x$statistic)
+  ) |>
+  select(variable, p, khii2)
+
+kontingenssi |>
+  left_join(khiinelio, by = "variable") |>
+  knitr::kable()
+
+```
+
+Taulukon [-@tbl-kohtelu_validointi-khii-kieli] mukaan mikään muuttuja ei eroa merkitsevästi puuttuvien vastausten määrässä suomen- ja ruotsinkielisen kyselyn täyttäneiden välillä. Puuttuvia arvoja on hyvin vähän varsinkin ruotsinkielisen version täyttäneiden kesken, joten khii neliö-testit eivät ole luotettavia, mutta puuttuminen ei myöskään oletettavasti aiheuta haittaa mallille myöhemmässä vaiheessa.
+
+```{r}
+#| label: tbl-kohtelu_validointi-khii-yhteydenotto
+#| tbl-cap: "Epäasiallisen ja väkivaltaisen kohtelun muuttujat yhteydenottomenetelmien mukaan, frekvenssitaulukko ja khii neliö -testin tulokset (vertailu riveittäin sarakkeiden välillä)"
+#| code-summary: "Kohtelun puuttuvien arvojen vertailu yhteydenottomenetelmien välillä"
+
+data_long <- puuttuvat_valitut |>
+  pivot_longer(
+    cols = k3_1:k13_7,
+    names_to = "variable",
+    values_to = "value"
+  )
+
+kontingenssi <- data_long |>
+  filter(value == 1) |>
+  group_by(variable, Linkkiversio) |>
+  summarise(count = n(), .groups = "drop") |>
+  pivot_wider(
+    names_from = Linkkiversio,
+    values_from = count,
+    values_fill = 0
+  )
+
+khiinelio <- data_long |>
+  group_by(variable) |>
+  summarise(
+    khii2 = list(
+      chisq.test(table(value, Linkkiversio))
+    ),
+    .groups = "drop"
+  ) |>
+  mutate(
+    p = map_dbl(khii2, ~ .x$p.value),
+    khii2 = map_dbl(khii2, ~ .x$statistic)
+  ) |>
+  select(variable, p, khii2)
+
+kontingenssi |>
+  left_join(khiinelio, by = "variable") |>
+  knitr::kable()
+
+```
+
+Taulukon [-@tbl-kohtelu_validointi-khii-yhteydenotto] mukaan mikään muuttuja ei eroa merkitsevästi puuttuvien vastausten määrässä yhteydenottomenetelmien välillä. Poikkeuksena voi olla muuttuja `k4_7`, eli organisaatiosisäisesti kollegahavaittu syrjintä, joka mahdollisesti eroaa menetelmien välillä. P-arvo on kuitenkin yli vakiintuneen raja-arvon (p = .078), ja datan vähyys heikentää testin luotettavuutta.
+
+## Osatutkimus 1: Mittariston faktorirakenne {#sec-kohtelu_validointi-osatutkimus1}
+
+```{r}
+#| label: kohtelu_validointi-08-satunnaisotanta
+#| code-summary: "Satunnaisotanta"
+
+set.seed(987320)
+otos <- sample(c(1, 2), replace = TRUE, nrow(data), prob = c(0.3, 0.7))
+data <- data |>
+  add_column(
+    otos = otos,
+    .after = "ID"
+  )
+
+data.efa <- data |>
+  filter(otos == 1)
+
+data.cfa <- data |>
+  filter(otos == 2)
+
+```
+
+```{r}
+#| label: kohtelu_validointi-09-efasopivuustestit
+#| code-summary: "EFA-mallin sopivuustestit"
+
+# Mahalanobiksen etäisyys ja merkitsevyys
+data.efa$mahalanobis <- mahalanobis(
+  x = data.efa |> select(k3_1:k4_7, k12_1:k13_7),
+  center = data.efa |> select(k3_1:k4_7, k12_1:k13_7) |> colMeans(na.rm = TRUE),
+  cov = data.efa |> select(k3_1:k4_7, k12_1:k13_7) |> cov(use = "pairwise.complete.obs", method = "pearson")
+)
+data.efa$mahalanobis.p <- data.efa |>
+  select(mahalanobis) |>
+  unlist() |>
+  as.double() |>
+  pchisq(
+    df = data.efa |> select(k3_1:k4_7, k12_1:k13_7) |> ncol() - 1
+  )
+
+# Kerätään kaikki tulokset yhteen listaan
+tulokset.efa.sopivuus <- list()
+
+# Mahalanobiksen pohjalta poistettavat vastaajat
+tulokset.efa.sopivuus$poisto_n <- data.efa |>
+  filter(mahalanobis.p < .001) |>
+  summarise(n()) |>
+  as.numeric()
+
+# Bartlettin testi
+tulokset.efa.sopivuus$bart <- data.efa |>
+  select(k3_1:k4_7, k12_1:k13_7) |>
+  BARTLETT()
+
+# KMO-suure
+tulokset.efa.sopivuus$kmosuure <- data.efa |>
+  select(k3_1:k4_7, k12_1:k13_7) |>
+  KMO()
+
+# Korrelaatiomatriisin determinantti
+tulokset.efa.sopivuus$determinantti <- data.efa |>
+  select(k3_1:k4_7, k12_1:k13_7) |>
+  cor(method = "pearson", use = "pairwise.complete.obs") |>
+  det()
+
+# VIF-arvot
+tulokset.efa.sopivuus$vif <- data.efa |>
+  select(k3_1:k4_7, k12_1:k13_7) |>
+  vif()
+
+# Hullin menetelmä
+tulokset.efa.sopivuus$hull <- data.efa |>
+  select(k3_1:k4_7, k12_1:k13_7) |>
+  HULL(
+    method = "ML",
+    eigentype = "SMC",
+    decision_rule = "percentile"
+  )
+
+```
+
+Mahalanobiksen etäisyyden merkitsevyystestaus (p \< .001) osoittaa, että yhteensä `r tulokset.efa.sopivuus$poisto_n` vastaajaa pitäisi poistaa mallista.
+
+KMO-suureen koko on `r tulokset.efa.sopivuus$kmosuure$KMO`.
+
+Bartlettin testi on merkitsevä ($\chi^2 = `r tulokset.efa.sopivuus$bart$chisq`, \text{df} = `r tulokset.efa.sopivuus$bart$df`, p = `r tulokset.efa.sopivuus$bart$p_value`$).
+
+Korrelaatiomatriisin determinantti on `r tulokset.efa.sopivuus$determinantti`.
+
+Hullin menetelmän tulokset riippuvat käytetystä sopivuusindeksistä. CAF-indeksi ehdottaa `r tulokset.efa.sopivuus$hull$n_fac_CAF` faktoria, CFI ehdottaa `r tulokset.efa.sopivuus$hull$n_fac_CFI` faktoria ja RMSEA ehdottaa `r tulokset.efa.sopivuus$hull$n_fac_RMSEA` faktoria.
+
+Tulokset osoittavat kolmea suurempaa ongelmaa: Mahalanobiksen etäisyyden mukaan noin kolmannes vastaajista pitäisi poistaa mallista, Hullin menetelmän tulokset ovat osittain ristiriitaisia ja ehdottavat joko yhtä tai kahta faktoria, ja korrelaatiomatriisin determinantti on koko aineistolle liian pieni ja osoittaa multikollineariteettia.
+
+Jos vertaamme determinanttiongelmaa aikaisemmin tarkistettuun korrelaatiomatriisiin (@fig-kohtelu_validointi-kohtelukorrelaatio), ongelmallisia korrelaatioita (r \> 0.8) esiintyy vain organisaatioulkoisten muuttujien ryhmässä. Suurimpana ongelmana on omakohtaisesti koettujen ja kollegan kautta havaittujen kohtelujen korrelaatioissa, jossa suurin korrelaatio on jopa r = 0.87.
+
+Tarkistimme, jos ongelma johtuu ensisijaisesti organisaatioulkoisten muuttujien tekokontekstiryhmien välisistä korrelaatioista poistamalla kollegan kautta havaitut muuttujat analyysista.
+
+```{r}
+#| label: kohtelu_validointi-09b-efasopivuustestit
+#| code-summary: "EFA-mallin sopivuustestit, vain omakohtaisesti koettu kohtelu"
+
+# Tehdään uusi df testausta varten
+data.efa2 <- data.efa
+
+# Mahalanobiksen etäisyys ja merkitsevyys
+data.efa2$mahalanobis <- mahalanobis(
+  x = data.efa2 |> select(k3_1:k3_7, k12_1:k12_7),
+  center = data.efa2 |> select(k3_1:k3_7, k12_1:k12_7) |> colMeans(na.rm = TRUE),
+  cov = data.efa2 |> select(k3_1:k3_7, k12_1:k12_7) |> cov(use = "pairwise.complete.obs", method = "pearson")
+)
+data.efa2$mahalanobis.p <- data.efa2 |>
+  select(mahalanobis) |>
+  unlist() |>
+  as.double() |>
+  pchisq(
+    df = data.efa2 |> select(k3_1:k3_7, k12_1:k12_7) |> ncol() - 1
+  )
+
+# Kerätään kaikki tulokset yhteen listaan
+tulokset.efa2.sopivuus <- list()
+
+# Mahalanobiksen pohjalta poistettavat vastaajat
+tulokset.efa2.sopivuus$poisto_n <- data.efa2 |>
+  filter(mahalanobis.p < .001) |>
+  summarise(n()) |>
+  as.numeric()
+
+# Bartlettin testi
+tulokset.efa2.sopivuus$bart <- data.efa2 |>
+  select(k3_1:k3_7, k12_1:k12_7) |>
+  BARTLETT()
+
+# KMO-suure
+tulokset.efa2.sopivuus$kmosuure <- data.efa2 |>
+  select(k3_1:k3_7, k12_1:k12_7) |>
+  KMO()
+
+# Korrelaatiomatriisin determinantti
+tulokset.efa2.sopivuus$determinantti <- data.efa2 |>
+  select(k3_1:k3_7, k12_1:k12_7) |>
+  cor(method = "pearson", use = "pairwise.complete.obs") |>
+  det()
+
+# VIF-arvot
+tulokset.efa2.sopivuus$vif <- data.efa2 |>
+  select(k3_1:k3_7, k12_1:k12_7) |>
+  vif()
+
+# Hullin menetelmä
+tulokset.efa2.sopivuus$hull <- data.efa2 |>
+  select(k3_1:k3_7, k12_1:k12_7) |>
+  HULL(
+    method = "ML",
+    eigentype = "SMC",
+    decision_rule = "percentile"
+  )
+
+```
+
+Mahalanobiksen etäisyyden merkitsevyystestaus (p \< .001) osoittaa, että yhteensä `r tulokset.efa2.sopivuus$poisto_n` vastaajaa pitäisi poistaa mallista.
+
+KMO-suureen koko on `r tulokset.efa2.sopivuus$kmosuure$KMO`.
+
+Bartlettin testi on merkitsevä ($\chi^2 = `r tulokset.efa2.sopivuus$bart$chisq`, \text{df} = `r tulokset.efa2.sopivuus$bart$df`, p = `r tulokset.efa2.sopivuus$bart$p_value`$).
+
+Korrelaatiomatriisin determinantti on `r tulokset.efa2.sopivuus$determinantti`.
+
+Hullin menetelmän tulokset riippuvat käytetystä sopivuusindeksistä. CAF-indeksi ehdottaa `r tulokset.efa2.sopivuus$hull$n_fac_CAF` faktoria, CFI ehdottaa `r tulokset.efa2.sopivuus$hull$n_fac_CFI` faktoria ja RMSEA ehdottaa `r tulokset.efa2.sopivuus$hull$n_fac_RMSEA` faktoria.
+
+Koska tulokset osoittavat useita eri ristiriitoja, päätimme ajaa yhteensä 4 eri mallia kahdessa ryhmässä. Mallit 1A ja 1B käyttävät kaikkia 28 muuttujaa. Mallit 2A ja 2B käyttävät vain omakohtaisesti koettuja kokemuksia, eli 14 muuttujaa. A-malleissa sovitimme yhden faktorin mallin kaikille vastaajille (Mallit 1A, 2A) ja B-malleissa sovitimme kahden faktorin mallin kaikille vastaajille (Mallit 1B, 2B).
+
+```{r}
+#| label: kohtelu_validointi-10-efamallit
+#| code-summary: "EFA-mallit"
+
+efa.malli.1A <- data.efa |>
+  select(k3_1:k4_7, k12_1:k13_7) |>
+  efa(
+    nfactors = 1,
+    rotation = "oblimin",
+    estimator = "ML",
+    missing = "fiml"
+  )
+
+yhteenveto.efa.1A <- summary(
+  efa.malli.1A,
+  fit.measures = TRUE,
+  ci = TRUE,
+  efa = TRUE,
+  cutoff = 0.4,
+  dot.cutoff = 0
+)
+
+efa.malli.1B <- data.efa |>
+  select(k3_1:k4_7, k12_1:k13_7) |>
+  efa(
+    nfactors = 2,
+    rotation = "oblimin",
+    estimator = "ML",
+    missing = "fiml"
+  )
+
+yhteenveto.efa.1B <- summary(
+  efa.malli.1B,
+  fit.measures = TRUE,
+  ci = TRUE,
+  efa = TRUE,
+  cutoff = 0.4,
+  dot.cutoff = 0
+)
+
+efa.malli.2A <- data.efa2 |>
+  select(k3_1:k3_7, k12_1:k12_7) |>
+  efa(
+    nfactors = 1,
+    rotation = "oblimin",
+    estimator = "ML",
+    missing = "fiml"
+  )
+
+yhteenveto.efa.2A <- summary(
+  efa.malli.2A,
+  fit.measures = TRUE,
+  ci = TRUE,
+  efa = TRUE,
+  cutoff = 0.4,
+  dot.cutoff = 0
+)
+
+efa.malli.2B <- data.efa2 |>
+  select(k3_1:k3_7, k12_1:k12_7) |>
+  efa(
+    nfactors = 2,
+    rotation = "oblimin",
+    estimator = "ML",
+    missing = "fiml"
+  )
+
+yhteenveto.efa.2B <- summary(
+  efa.malli.2B,
+  fit.measures = TRUE,
+  ci = TRUE,
+  efa = TRUE,
+  cutoff = 0.4,
+  dot.cutoff = 0
+)
+
+```
+
+::: panel-tabset
+### Malli 1A
+
+```{r}
+#| label: kohtelu_validointi-11-efa1
+
+yhteenveto.efa.1A
+
+```
+
+### Malli 1B
+
+```{r}
+#| label: kohtelu_validointi-12-efa2
+
+yhteenveto.efa.1B
+
+```
+
+### Malli 2A
+
+```{r}
+#| label: kohtelu_validointi-13-efa3
+
+yhteenveto.efa.2A
+
+```
+
+### Malli 2B
+
+```{r}
+#| label: kohtelu_validointi-14-efa4
+
+yhteenveto.efa.2B
+
+```
+:::
+
+28 muuttujan mallit istuvat huonommin kuin 14 muuttujan mallit. Yhden faktorin mallit (A-mallit) istuvat aina huonommin kuin kahden faktorin mallit (B-mallit), ottaen huomioon myös faktorin lisäämisestä nousseen seliteasteen.
+
+Seliteasteet yhden faktorin malleilla ovat noin kolmannes kaikesta varianssista, kahden faktorin malleilla noin 50 prosenttia.
+
+Kahden faktorin malleissa faktorien välinen korrelaatio on noin 0,3 (merkitsevä 1 % alfatasolla).
+
+Useimmissa malleissa muuttuja `k3_5` (organisaatiosisäisesti koettu seksuaalinen häirintä tai väkivalta) ei tahdo asettua faktoreille kunnolla. Malli 1B:ssä muuttuja lataa merkitsevästi molemmille faktoreille, mutta latauskoko on alle 0,3 molemmissa tapauksissa. Malli 2A:ssa muuttuja on ainoa organisaatiosisäisten muuttujien ryhmästä, jonka lataus yhden faktorin mallissa on yli 0,3 (lataus = 0,411, merkitsevä 1 % alfa-tasolla). Malli 2B:ssä muuttuja samoin kuin Malli 1B:ssä, eli merkitsevästi mutta alle 0,3 tason molemmille faktoreille.
+
+Kokonaisuudessaan parhaiten sopiva malli on Malli 2B (14 omakohtaisen kokemuksen muuttujaa, kaksi faktoria). Teoreettisista syistä näemme, että muuttujat `k3_4` ja `k3_5` (organisaatiosisäisesti koettu fyysinen väkivalta sekä seksuaalinen häirintä tai väkivalta) asettuvat ensimmäiseen faktoriin, vaikka lataukset ovat matalampia. Heikot lataukset voivat osittain johtua pienestä varianssista, sillä varsinkin fyysisen väkivallan kohdalla kokemuksia on aineistossa erittäin vähän.
+
+On kuitenkin huomattava, että sopivuusindeksit eivät ole varsin hyviä. Mallin CFI-suure on 0.906 (alle yleisen raja-arvon 0.95) ja RMSEA on 0.108 (yli yleisen raja-arvon 0.05).
+
+Jatkamme toiseen osatutkimukseen seuraavalla mallilla:
+
+1.  Malliin sisältyy 14 muuttujaa, jotka mittaavat omakohtaisesti koettua epäasiallista ja väkivaltaista kohtelua.
+2.  14 muuttujasta 7 muuttujaa mittaavat kokemuksia organisaation sisäisesti, ja 7 muuttujaa organisaation ulkoisesti.
+3.  Muuttujat lataavat kahdelle faktorille: Organisaatiosisäiset kokemukset ja organisaatioulkoiset kokemukset.
+4.  Muuttujat eivät ristilataa faktoreiden välillä ollenkaan.
+5.  Latausten kokoja ei ennalta määritellä.
+6.  Faktorit korreloivat arvolla r = 0,3.
+7.  Muuttujien välisiä residuaalikorrelaatioita rajataan nollaan.
+8.  Molempien faktorien mittatasot asetetaan ensimmäisen muuttujan mukaan (verbaalinen väkivalta).
+
+## Eksploratiivinen analyysi: Noudatetaan Mahalanobiksen etäisyyden ehdotusta Malli 2B:ssä
+
+```{r}
+#| label: kohtelu_validointi-EKSPL-efamahalanobiksenmukaan
+
+efa.malli.2Bekspl <- data.efa2 |>
+  filter(mahalanobis.p > 0.001) |>
+  select(k3_1:k3_7, k12_1:k12_7) |>
+  efa(
+    nfactors = 2,
+    rotation = "oblimin",
+    estimator = "ML",
+    missing = "fiml"
+  )
+
+summary(
+  efa.malli.2Bekspl,
+  fit.measures = TRUE,
+  ci = TRUE,
+  efa = TRUE,
+  cutoff = 0.4,
+  dot.cutoff = 0
+)
+
+```
+
+Robustisuuden vuoksi kokeilimme jättää pois Mahalanobiksen etäisyystestin rikkoneet vastaajat. Sovitimme sitten EFA-mallin 2B käyttäen samoja asetuksia kuin aikaisemmin.
+
+Mallin sopivuus on käytännössä sama. AIC- ja BIC-arvot tippuvat reilusti, mutta CFI- ja RMSEA-indeksit pysyvät samoissa tasoissa.
+
+Faktorilataukset pysyvät kuta kuinkin samoilla tasoilla. Suurin muutos on muuttujan `k3_7` faktorilatauksen pienentyminen 0,061 pisteellä. Faktorilla `f2` kaikkien muuttujien lataukset laskevat noin 0,02-0,03 pisteellä, faktorilla ´f1´ useimmat muuttujat laskevat hieman enemmän, mutta muuttuja `k3_3` nousee 0,042 pistettä.
+
+Muuttuja `k3_1` lataa nyt myös merkitsevästi faktorille `f2`, mitä se ei tehnyt aikaisemmassa mallissa. Muutoin faktorilatausten merkitsevyydet pysyvät samoina kuin mallissa 2B.
+
+Varianssiseliteaste laskee lievästi (aikaisempi 51,4 %, nykyinen 47,9 %). Suurin muutos on kuitenkin faktorikorrelaatioissa: aikaisempi korrelaatio oli r = ,295 (merkitsevä 1 % alfatasolla), mutta vastaajien poisjättämisen myötä korrelaatio laskee tasolle r = ,1 (ei merkitsevä).
+
+## Osatutkimus 2: Faktorirakenteen validiteetti ja invarianssi {#sec-kohtelu_validointi-osatutkimus2}
+
+### Mallin estimointi
+
+```{r}
+#| label: kohtelu_validointi-15-cfamallimaaritelma
+
+# Käytetään pyöristettyjä faktoriarvoja EFA-mallista starttiarvoina, yrittääksemme korjata Heywood-tapauksen ongelman
+# Vaputettu faktorikorrelaatio (0.3)
+cfa.malli.1 <- '# latentit muuttujat
+                f1 =~ start(0.8)*k3_1 + start(0.5)*k3_2 + start(0.7)*k3_3 + start(0.2)*k3_4 + start(0.2)*k3_5 + start(0.8)*k3_6 + start(0.7)*k3_7
+                f2 =~ start(0.9)*k12_1 + start(0.6)*k12_2 + start(0.9)*k12_3 + start(0.8)*k12_4 + start(0.8)*k12_5 + start(0.8)*k12_6 + start(0.6)*k12_7
+                
+                # faktorikovarianssi
+                f1 ~~ f2
+                '
+```
+
+```{r}
+#| label: kohtelu_validointi-16-cfamalli1
+
+malli.1 <- cfa(
+  cfa.malli.1,
+  data = data.cfa |> select(k3_1:k3_7, k12_1:k12_7),
+  estimator = "MLR",
+  missing = "ml"
+)
+
+summary(malli.1, fit.measures = TRUE, standardized = TRUE, ci = TRUE)
+
+```
+
+Tunnistimme mallissa yhden Heywood-tapauksen, eli spesifikaation joka aiheuttaa hyväksymättömän tuloksen. Muuttujan `k12_6` standardisoitu lataus latenttia faktoria `f2` kohtaan ylittää yhden, mikä ei ole tilastollisesti mahdollista.
+
+Ohjeistuksen mukaan yksi ratkaisu voi olla asettaa estimointiprosessin aloituspainot lähemmäksi odotettuja arvoja, joten asetimme kaikki aloituspainot EFA-mallin antamien faktorilatauksiksi (pyöristettynä yhteen desimaaliin). Tämä ei ratkaissut ongelmaa, joten kokeilimme sen jälkeen jättää muuttujan `k12_6` pois mallista kokonaan. Tämä ei myöskään muuttanut tilannetta. Palautimme muuttujan ja kokeilimme vapauttaa faktorien välisen korrelaation. Tämä ratkaisi virheen, mutta muuttujan `k12_6` standardisoitu lataus on vieläkin yli yhden.
+
+Jatkamme tällä mallilla, mutta huomautamme, että muuttujan `k12_6` suhdetta faktoriin `f2` pitää tulkita hyvin varoen. Emme ole varmoja, miksi ongelmat esiintyivät mallissa.
+
+### Dynaamisten raja-arvojen simulointi ja globaalin istuvuuden tarkastus
+
+```{r}
+#| label: kohtelu_validointi-17-rajaarvot
+#| code-summary: "Dynaamisten raja-arvojen simulointi"
+
+likertHB(
+  model = malli.1,
+  data = data.cfa |> select(k3_1:k3_7, k12_1:k12_7),
+  estimator = "MLR"
+)
+
+```
+
+Simulaatio osoittaa, että sopivuusindeksien dynaamiset raja-arvot ovat SRMR \< ,04, RMSEA \< ,029 ja CFI \> ,983. Mallimme sopivuusindeksit ovat SRMR = ,076, RMSEA = ,097 ja CFI = ,869. Toisin sanoen, mallimme ei täytä indeksien raja-arvoja.
+
+### Paikallisen istuvuuden tarkastus
+
+```{r}
+#| label: kohtelu_validointi-18-residuaalit
+#| code-summary: "Paikallisen istuvuuden tarkastus"
+
+lavResiduals(malli.1)
+
+```
+
+Seuraavat standardisoimattomat residuaalikovarianssit ovat yli absoluuttisen 0,1:
+
+-   `k3_4 ~~ k3_2`
+-   `k3_5 ~~ k3_1`
+-   `k3_5 ~~ k3_3`
+-   `k12_1 ~~ k3_5`
+-   `k12_2 ~~ k3_2`
+-   `k12_4 ~~ k3_1`
+-   `k12_4 ~~ k3_7`
+-   `k12_4 ~~ k12_2`
+-   `k12_5 ~~ k3_5`
+-   `k12_7 ~~ k3_1`
+-   `k12_7 ~~ k3_3`
+-   `k12_7 ~~ k3_5`
+-   `k12_7 ~~ k3_6`
+-   `k12_7 ~~ k3_7`
+
+Residuaalikovariansseja esiintyy eniten organisaatioulkoisten ja organisaatiosisäisten muuttujien välillä. Kuitenkaan nämä virheet eivät yleensä kohdistu sisällöllisiin muuttujapareihin: vain muuttujaparit `_2`, `_5` ja `_7` (omaisuusväkivalta, seksuaalinen väkivalta sekä syrjintä) osoittavat absoluuttisia residuaalikovariansseja yli 0.1. Muuttuja `k12_7` (organisaatioulkoinen syrjintä) on erityisen ongelmallinen: sen residuaalikovarianssit ovat merkittäviä viiden organisaatiosisäisen muuttujan kanssa.
+
+Seuraavat standardisoidut residuaalikovarianssit ovat yli absoluuttisen kahden keskihajonnan (z \> \|1,96\|):
+
+-   `k12_1 ~~ k3_5`
+-   `k12_2 ~~ k3_2`
+-   `k12_3 ~~ k3_1`
+-   `k12_4 ~~ k3_1`
+-   `k12_4 ~~ k3_3`
+-   `k12_4 ~~ k3_6`
+-   `k12_4 ~~ k3_7`
+-   `k12_4 ~~ k12_2`
+-   `k12_5 ~~ k3_5`
+-   `k12_6 ~~ k3_6`
+-   `k12_7 ~~ k3_1`
+-   `k12_7 ~~ k3_3`
+-   `k12_7 ~~ k3_6`
+-   `k12_7 ~~ k3_7`
+
+Melkein kaikki ongelmalliset standardisoidut residuaalikovarianssit kohdistuvat faktorivälisiin muuttujakovariansseihin. Näistä ongelmallisimmat ovat muuttujille `k12_4` ja `k12_7`, joilla on viisi ja neljä ongelmallista residuaalikovarianssia. Muuttujaparit `_2`, `_5`, `_6` ja `_7` (omaisuusväkivalta, seksuaalinen väkivalta, vihamielisyys sekä syrjintä) osoittavat ongelmallisia residuaalikovariansseja. Muissa tapauksissa residuaalit ovat sisällöllisesti eroavien muuttujien välillä.
+
+Tiivistäen voidaan todeta, että ongelmat johtuvat pitkälti organisaatioulkoisista muuttujista. Useimmiten näiden residuaalikorrelaatiot ovat suuria organisaatiosisäisten muuttujien kanssa. Kuitenkin standardisoimattomat ja standardisoidut tarkistukset antavat hieman eri kuvia.
+
+### Modifikaatioindeksit
+
+```{r}
+#| label: kohtelu_validointi-18-modifikaatioindeksit1
+#| code-summary: "Modifikaatioindeksit, vain faktorilataukset"
+
+modificationIndices(malli.1) |>
+  arrange(desc(mi)) |>
+  filter(op == "=~")
+
+```
+
+Tarkistimme ensin modifikaatioindeksit kaikille faktorilatausrajauksille. Ainoa merkittävä muutos on muuttuja `k12_7` vapauttaminen lataamaan faktorille `f1`, mikä aiheuttaisi suunnilleen 121 pisteen pudotuksen khii neliö -suureessa ja faktorilatauksen 0,3. Kaikki muut indeksit ovat pieniä khii neliö -suureen pudotuksia (toiseksi suurin on 14,3) sekä pieniä odotettuja faktorilatauksia (suurin absoluuttinen lataus on 0,077).
+
+Faktorilatauksen vapauttaminen voi olla teoreettisesti motivoitua. Muuttuja `k12_7` edustaa organisaation ulkopuolelta tullutta syrjintää. Koska syrjintä kumpuaa usein yhteiskunnallisista, jaetuista asenteista, on hyvinkin mahdollista, että henkilö kokee samanaikaisesti organisaation sisällä ja ulkopuolelta tullutta syrjintää. On myös mahdollista, että syrjintää kokeva henkilö herkistyy kohtelun tunnistamiselle kautta tekokontekstin.
+
+```{r}
+#| label: kohtelu_validointi-19-modifikaatioindeksit2
+#| code-summary: "Modifikaatioindeksit, vain virhekorrelaatiot"
+
+modificationIndices(malli.1) |>
+  arrange(desc(mi)) |>
+  filter(op == "~~")
+
+```
+
+Tarkistimme seuraavaksi virhekorrelaatiot. Kaksi suurinta pudotusta khii neliö-testin suureessa tulisi muuttujaparien `k3_5 ~~ k12_5` ja `k3_7 ~~ k12_7` vapaasta virhekorrelaatiosta. Näiden odotetut virhekorrelaatiot ovat 0,076 ja 0,108. Muuttujaparin `k3_6 ~~ k3_7` virhekorrelaation vapauttaminen johtaisi vielä suurempaan korrelaatioon, 0,147, mutta sen khii neliö -suureen pienennys on hieman pienempi, 39,3.
+
+Virheiden vapauttaminen on haasteellisempaa kuin faktorilatauksen vapauttaminen. Toisaalta muuttujien tekokontekstit läpäisevät yhteiskorrelaatiot olivat teoreettisesti motivoituja, jolloin kahden faktorin rakenteessa korreloivat virheet voivat edustaa yhteistä vaihtelua, joka ei täyty yksittäisten faktoreiden rakenteessa. Toisaalta taas tämä yhteiskorrelaatio olisi pitänyt näkyä jo EFA-vaiheessa, jolloin olisimme valinneet yhden faktorin rakenteen kahden faktorin sijaan.
+
+Kolmantena mahdollisuutena on bifaktorirakenne: tekokontekstit määrittelevät osan kunkin epäasiallisen ja väkivaltaisen kohtelun esiintyvyydestä (eri tavoin), mutta kohtelut osoittavat *myös* yhteisen kausaalisen aiheuttajan.
+
+Kysymykseksi nousee kuitenkin, miksi vain kaksi muuttujaparia osoittavat merkittäviä hypoteettisia parannuksia modifikaatioindeksitarkastuksessa. Jos joko yhden faktorin tai bifaktorimalli olisi populaatiossa todellinen malli, muuttujapareja pitäisi olla useampia modifikaatioindekseissä. Näiden lisäksi virhekorrelaatioita tekokonteksteissa eri muuttujien välillä ei pitäisi esiintyä laajasti.
+
+### Eksploratiivinen analyysi: Ulkoisen syrjintämuuttujan latauksen vapauttaminen molemmille faktoreille
+
+```{r}
+#| label: kohtelu_validointi-EKSPL-vapautettuk12_7
+#| code-summary: "Uuden mallin määrittely ja estimointi"
+
+# Käytetään pyöristettyjä faktoriarvoja EFA-mallista starttiarvoina, yrittääksemme korjata Heywood-tapauksen ongelman
+# Vaputettu faktorikorrelaatio (0.3)
+
+cfa.malli.1b <- '# latentit muuttujat
+                f1 =~ start(0.8)*k3_1 + start(0.5)*k3_2 + start(0.7)*k3_3 + start(0.2)*k3_4 + start(0.2)*k3_5 + start(0.8)*k3_6 + start(0.7)*k3_7 + k12_7
+                f2 =~ start(0.9)*k12_1 + start(0.6)*k12_2 + start(0.9)*k12_3 + start(0.8)*k12_4 + start(0.8)*k12_5 + start(0.8)*k12_6 + start(0.6)*k12_7
+                
+                # faktorikovarianssi
+                f1 ~~ f2
+                '
+
+malli.1b <- cfa(
+  cfa.malli.1b,
+  data = data.cfa |> select(k3_1:k3_7, k12_1:k12_7),
+  estimator = "MLR",
+  missing = "ml"
+)
+
+summary(malli.1b, fit.measures = TRUE, standardized = TRUE, ci = TRUE)
+
+vrt.1b <- compareFit(
+  malli.1,
+  malli.1b,
+  moreIndices = TRUE
+)
+
+summary(vrt.1b)
+
+```
+
+Muuttujan `k12_7` vapauttaminen pienentää khii neliö -suuretta 41 pistettä. Pienennys on merkitsevä (p \< .0001). Robusti RMSEA tippuu tasolle RMSEA = .072, CFI-nousee tasolle CF = .943 ja SRMR tippuu tasolle .051. AIC- ja BIC-arvot laskevat molemmat hieman.
+
+Vaikka malli sopii paremmin, se ei kuitenkaan täytä dynaamisesti simuloituja raja-arvoja hyväksyttävälle mallisopivuudelle. Jatkoimme analyysia mallilla 1, jossa muuttuja `k12_7` on rajattu lataamaan vain faktorille `f1`.
+
+### Eksploratiivinen analyysi: Muuttujaparien `_2`, `_5`, `_6` ja `_7` virheiden korrelaatioiden salliminen
+
+```{r}
+#| label: kohtelu_validointi-EKSPL-vapautettuvirheita
+#| code-summary: "Uuden mallin määrittely ja estimointi"
+
+# Käytetään pyöristettyjä faktoriarvoja EFA-mallista starttiarvoina, yrittääksemme korjata Heywood-tapauksen ongelman
+# Vaputettu faktorikorrelaatio (0.3)
+
+cfa.malli.1c <- '# latentit muuttujat
+                f1 =~ start(0.8)*k3_1 + start(0.5)*k3_2 + start(0.7)*k3_3 + start(0.2)*k3_4 + start(0.2)*k3_5 + start(0.8)*k3_6 + start(0.7)*k3_7
+                f2 =~ start(0.9)*k12_1 + start(0.6)*k12_2 + start(0.9)*k12_3 + start(0.8)*k12_4 + start(0.8)*k12_5 + start(0.8)*k12_6 + start(0.6)*k12_7
+                
+                # faktorikovarianssi
+                f1 ~~ f2
+                
+                # residuaalikovarianssi
+                k3_2 ~~ k12_2
+                k3_5 ~~ k12_5
+                k3_6 ~~ k12_6
+                k3_7 ~~ k12_7
+                '
+
+malli.1c <- cfa(
+  cfa.malli.1c,
+  data = data.cfa |> select(k3_1:k3_7, k12_1:k12_7),
+  estimator = "MLR",
+  missing = "ml"
+)
+
+summary(malli.1c, fit.measures = TRUE, standardized = TRUE, ci = TRUE)
+
+vrt.1c <- compareFit(
+  malli.1,
+  malli.1c,
+  moreIndices = TRUE
+)
+
+summary(vrt.1c)
+
+lavResiduals(malli.1c)
+
+```
+
+Virheresiduaalien vapauttaminen tuottaa selkeästi paremmin istuvan mallin. Khii neliö -suure laskee melkein puolet koostaan ja muutos on merkitsevä. RMSEA tippuu lähemmäksi hyväksyttävää tasoa (RMSEA = ,066), CFI ja SRMR ovat myös hyväksyttävissä tasoissa (CFI = ,953, SRMR = ,066). AIC- ja BIC-suureet paranevat, joskin vain hieman.
+
+Virheiden kovarianssit ovat standardisoidulta kooltaan $0.193-0.309$, eli kohtuullisen suuria. Standardisoidut faktorilataukset muuttuvat vain lievästi, suurimmillaan muutos on +0,046 keskihajontaa (lataus `k3_7 ~~ f1`). Faktorikorrelaatio pysyy samalla tasolla kuin aikaisemmin. Interseptit pysyvät kuta kuinkin samoilla tasoilla. Myös residuaalit näyttävät pysyvän samoissa tasoissa.
+
+Ongelmallisia absoluuttisia residuaalikovariansseja ovat:
+
+-   `k3_4 ~~ k3_2`
+-   `k3_5 ~~ k3_3`
+-   `k3_7 ~~ k3_6` (Uusi)
+-   `k12_1 ~~ k3_5`
+-   `k12_4 ~~ k3_1`
+-   `k12_4 ~~ k12_2`
+-   `k12_7 ~~ k3_1`
+-   `k12_7 ~~ k3_3`
+-   `k12_7 ~~ k3_5`
+-   `k12_7 ~~ k3_6`
+-   `k12_7 ~~ k3_7`
+
+Virhekovarianssien vapauttaminen ratkaisi neljä aikaisemmin ongelmallista residuaalikovarianssia (`k3_5 ~~ k3_1`, `k12_2 ~~ k3_2`, `k12_4 ~~ k3_7`, `k12_5 ~~ k3_5`), mutta aiheutti yhden uuden ongelman (`k3_7 ~~ k3_6`). On huomattava, että virhekovarianssin `k12_7 ~~ k3_7` vapauttaminen ei ratkaissut sen ongelmaa, eli malli ei kuitenkaan pysty ottamaan kovarianssia huomioon.
+
+Ongelmallisia standardisoituja residuaalikovariansseja ovat:
+
+-   `k3_7 ~~ k3_3` (Uusi)
+-   `k3_7 ~~ k3_6` (Uusi)
+-   `k3_7 ~~ k3_7` (Uusi)
+-   `k12_1 ~~ k3_5`
+-   `k12_3 ~~ k3_1`
+-   `k12_4 ~~ k3_1`
+-   `k12_4 ~~ k3_3`
+-   `k12_4 ~~ k3_6`
+-   `k12_4 ~~ k3_7`
+-   `k12_4 ~~ k12_2`
+-   `k12_5 ~~ k12_1`
+-   `k12_5 ~~ k12_4`
+-   `k12_5 ~~ k12_5` (Uusi)
+-   `k12_6 ~~ k12_4` (Uusi)
+-   `k12_7 ~~ k3_1`
+-   `k12_7 ~~ k3_3`
+-   `k12_7 ~~ k3_6`
+-   `k12_7 ~~ k3_7`
+
+Vapauttaminen ratkaisi kolme ongelmallista standardisoitua residuaalikovarianssia (`k12_2 ~~ k3_2`, `k12_5 ~~ k3_5`, `k12_6 ~~ k3_6`) mutta aiheutti viisi uutta ongelmaa (`k3_7 ~~ k3_3`, `k3_7 ~~ k3_6`, `k3_7 ~~ k3_7`, `k12_5 ~~ k12_5`, `k12_6 ~~ k12_4`). On huomattava, että virhekovarianssin `k12_7 ~~ k3_7` vapauttaminen ei ratkaissut sen ongelmaa, eli malli ei kuitenkaan pysty ottamaan kovarianssia huomioon.
+
+### Eksploratiivinen analyysi: Syrjintämuuttujien poisjättäminen mallista
+
+```{r}
+#| label: kohtelu_validointi-EKSPL-syrjintapoistettu
+#| code-summary: "Uuden mallin määrittely ja estimointi"
+
+# Käytetään pyöristettyjä faktoriarvoja EFA-mallista starttiarvoina, yrittääksemme korjata Heywood-tapauksen ongelman
+# Vaputettu faktorikorrelaatio (0.3)
+
+cfa.malli.1d <- '# latentit muuttujat
+                f1 =~ start(0.8)*k3_1 + start(0.5)*k3_2 + start(0.7)*k3_3 + start(0.2)*k3_4 + start(0.2)*k3_5 + start(0.8)*k3_6
+                f2 =~ start(0.9)*k12_1 + start(0.6)*k12_2 + start(0.9)*k12_3 + start(0.8)*k12_4 + start(0.8)*k12_5 + start(0.8)*k12_6
+                
+                # faktorikovarianssi
+                f1 ~~ f2
+                '
+
+malli.1d <- cfa(
+  cfa.malli.1d,
+  data = data.cfa |> select(k3_1:k3_6, k12_1:k12_6),
+  estimator = "MLR",
+  missing = "ml"
+)
+
+summary(malli.1d, fit.measures = TRUE, standardized = TRUE, ci = TRUE)
+
+vrt.1d <- compareFit(
+  malli.1,
+  malli.1d,
+  moreIndices = TRUE
+)
+
+summary(vrt.1d)
+
+lavResiduals(malli.1d)
+
+```
+
+Syrjintämuuttujien (`k3_7`, `k12_7`) poisjättäminen mallista tuottaa selkeästi paremmin istuvan mallin. Khii neliö-suure tippuu melkein puolella. RMSEA on lievästi parempi (RMSEA = ,072), CFI- ja SRMR-indeksit jo selkeästi parempia (CFI = ,949, SRMR = ,052). AIC- ja BIC-arvot paranevat myös selkeästi.
+
+Faktorilataukset pysyvät kuta kuinkin samoissa kokoluokissa. Suurin absoluuttinen muutos on 0,068 keskihajontaa (`k3_6 ~~ f1`). Faktorikorrelaatio pysyy myös samassa kokoluokassa, vaikkakin laskee 0,02 keskihajontaa. Interseptit pysyvät melkein identtisinä, suurimmat muutokset ovat `k3_6` ja `k12_6` muuttujilla. Virhevarianssit pysyvät myös melkein samoina.
+
+Ongelmallisia absoluuttisia residuaalikovariansseja ovat:
+
+-   `k3_1 ~~ k12_4`
+-   `k3_2 ~~ k3_4`
+-   `k3_2 ~~ k12_2`
+-   `k3_3 ~~ k3_5`
+-   `k3_5 ~~ k12_1`
+-   `k3_5 ~~ k12_5`
+-   `k12_2 ~~ k12_4`
+
+Ongelmallisia standardisoituja residuaalikovariansseja ovat:
+
+-   `k3_1 ~~ k12_3`
+-   `k3_1 ~~ k12_4`
+-   `k3_2 ~~ k12_2`
+-   `k3_3 ~~ k3_5`
+-   `k3_3 ~~ k12_4`
+-   `k3_4 ~~ k3_6`
+-   `k3_5 ~~ k12_1`
+-   `k3_5 ~~ k12_5`
+-   `k3_6 ~~ k12_1`
+-   `k3_6 ~~ k12_4`
+-   `k3_6 ~~ k12_6`
+-   `k12_1 ~~ k12_2`
+-   `k12_2 ~~ k12_4`
+-   `k12_4 ~~ k12_6`
+
+Tässä mallissa emme näe yhtä suuria sisällöllistesti samankaltaisten muuttujien virhekovariansseja. Poikkeuksina ovat `_2` (absoluuttinen ja standardisoitu), `_5` (absoluuttinen ja standardisoitu) sekä `_6` (standardisoitu).
+
+### Eksploratiivinen analyysi: Bifaktorimalli
+
+```{r}
+#| label: kohtelu_validointi-20-bifaktorimallimaaritelma
+#| code-summary: "Bifaktorimallin määrittely"
+
+cfa.malli.2  <- '# latentit muuttujat
+                f1 =~ k3_1 + k3_2 + k3_3 + k3_4 + k3_5 + k3_6 + k3_7
+                f2 =~ k12_1 + k12_2 + k12_3 + k12_4 + k12_5 + k12_6 + k12_7
+                
+                # yleinen faktori
+                gen =~ k3_1 + k3_2 + k3_3 + k3_4 + k3_5 + k3_6 + k3_7 + k12_1 + k12_2 + k12_3 + k12_4 + k12_5 + k12_6 + k12_7
+                '
+
+```
+
+```{r}
+#| label: kohtelu_validointi-21-bifaktorimalli
+#| code-summary: "Bifaktorimallin estimointi"
+
+malli.2 <- cfa(
+  cfa.malli.2,
+  data = data.cfa |> select(k3_1:k3_7, k12_1:k12_7),
+  estimator = "MLR",
+  missing = "ml",
+  orthogonal = TRUE,
+  std.lv = TRUE
+)
+
+summary(malli.2, fit.measures = TRUE, standardized = TRUE, ci = TRUE)
+
+```
+
+Bifaktorimallia ei saada sovitettua oikein. Suurimpana ongelmana on Heywood-tapaus, jossa muuttujan `k3_1` residuaalivarianssi on negatiivinen. Jätämme selvityksen tähän.
+
+### Mittausinvarianssi
+
+```{r}
+#| label: kohtelu_validointi-22-datavalmistelu
+
+data.cfa2 <- data.cfa |>
+  select(k3_1:k3_7, k12_1:k12_7, k2, k40, Kieliversio, Linkkiversio)
+
+```
+
+#### Kohderyhmät
+
+Vertasimme kahden faktorin mallin invarianssia kohderyhmien välillä (kolme kategoriaa).
+
+```{r}
+#| label: kohtelu_validointi-23-invarianssi-kohderyhmat
+#| code-summary: "Mittausinvarianssi: Kohderyhmät"
+#| eval: false
+
+# Malleissa käytetään kaikkia vastaajia.
+
+inv.1.kohderyhma <- cfa(
+  cfa.malli.1,
+  data = data.cfa2 |> select(k3_1:k3_7, k12_1:k12_7, k2),
+  estimator = "MLR",
+  missing = "ml",
+  group = "k2"
+)
+
+inv.2.kohderyhma <- cfa(
+  cfa.malli.1,
+  data = data.cfa2 |> select(k3_1:k3_7, k12_1:k12_7, k2),
+  estimator = "MLR",
+  missing = "ml",
+  group = "k2",
+  group.equal = "loadings"
+)
+
+inv.3.kohderyhma <- cfa(
+  cfa.malli.1,
+  data = data.cfa2 |> select(k3_1:k3_7, k12_1:k12_7, k2),
+  estimator = "MLR",
+  missing = "ml",
+  group = "k2",
+  group.equal = c("loadings", "intercepts", "residuals")
+)
+
+inv.4.kohderyhma <- cfa(
+  cfa.malli.1,
+  data = data.cfa2 |> select(k3_1:k3_7, k12_1:k12_7, k2),
+  estimator = "MLR",
+  missing = "ml",
+  group = "k2",
+  group.equal = c("loadings", "intercepts", "residuals")
+)
+
+# Mallien vertailu
+vrt.kohderyhma <- compareFit(
+  inv.1.kohderyhma,
+  inv.2.kohderyhma,
+  inv.3.kohderyhma,
+  inv.4.kohderyhma,
+  moreIndices = TRUE
+)
+
+summary(vrt.kohderyhma)
+
+```
+
+**\[Tätä ei voida tällä hetkellä tehdä, sillä malli väittää, ettei pelastajien ryhmässä ole varianssia kolmella muuttujalla, vaikka varianssia todellisuudessa on.\]**
+
+#### Ammattiasemat
+
+Vertasimme kahden faktorin mallin invarianssia ammattiasemien välillä (kaksi kategoriaa: pelastajat ja ensihoitajat).
+
+```{r}
+#| label: kohtelu_validointi-24-invarianssi-ammattiasemat
+#| code-summary: "Mittausinvarianssi: Ammattiasemat"
+
+# Malleissa käytetään vain pelastajia (1) ja ensihoitajia (2)
+
+inv.1.ammattiasema <- cfa(
+  cfa.malli.1,
+  data = data.cfa2 |>
+    select(k3_1:k3_7, k12_1:k12_7, k40) |>
+    filter(between(k40, 1, 2)),
+  estimator = "MLR",
+  missing = "ml",
+  group = "k40"
+)
+
+inv.2.ammattiasema <- cfa(
+  cfa.malli.1,
+  data = data.cfa2 |>
+    select(k3_1:k3_7, k12_1:k12_7, k40) |>
+    filter(between(k40, 1, 2)),
+  estimator = "MLR",
+  missing = "ml",
+  group = "k40",
+  group.equal = "loadings"
+)
+
+inv.3.ammattiasema <- cfa(
+  cfa.malli.1,
+  data = data.cfa2 |>
+    select(k3_1:k3_7, k12_1:k12_7, k40) |>
+    filter(between(k40, 1, 2)),
+  estimator = "MLR",
+  missing = "ml",
+  group = "k40",
+  group.equal = c("loadings", "intercepts", "residuals")
+)
+
+inv.4.ammattiasema <- cfa(
+  cfa.malli.1,
+  data = data.cfa2 |>
+    select(k3_1:k3_7, k12_1:k12_7, k40) |>
+    filter(between(k40, 1, 2)),
+  estimator = "MLR",
+  missing = "ml",
+  group = "k40",
+  group.equal = c("loadings", "intercepts", "residuals")
+)
+
+# Mallien vertailu
+vrt.ammattiasema <- compareFit(
+  inv.1.ammattiasema,
+  inv.2.ammattiasema,
+  inv.3.ammattiasema,
+  inv.4.ammattiasema,
+  moreIndices = TRUE
+)
+
+summary(vrt.ammattiasema)
+
+```
+
+Rakenneinvariantit mallit sopivat suurin piirtein yhtä heikosti kuin yleismalli. Globaalit sopivuusindeksit eivät täytä raja-arvoja.
+
+Heikon invarianssin mallit sopivat merkitsevästi huonommin kuin rakenneinvariantit mallit (p = ,003). CFI-mitan muutos on $\Delta\text{CFI} = -0.021$, mikä on juuri hyväksyttävän CFI-muutoksen rajalla (\<= 0.02). AIC- ja BIC-indeksit nousevat molemmat, osoittaen huonompaa sopivuutta.
+
+Vahvan invarianssin mallit sopivat merkitsevästi huonommin kuin heikon invarianssin mallit (p = ,000002). CFI-mitan muutos on $\Delta\text{CFI} = -0.140$, mikä on selkeästi enemmän kuin suurin hyväksyttävä muutos. AIC- ja BIC-indeksit nousevat molemmat reilusti aikaisempaa nousua enemmän, osoittaen vielä huonompaa istuvuutta kuin heikon invarianssin malleissa.
+
+Mallien pohjalta voimme todeta, että vahva invarianssi ei näytä täyttyvän pelastajien ja ensihoitajien välillä. Heikko invarianssi täyttyy ehkä (CFI-muutos on hyväksyttävän rajalla), mutta mallin istuvuus on heikohko (RMSEA = ,076, CFI = ,918, SRMR = ,118). Toisin sanoen: pelastajien ja ensihoitajien välillä faktorilataukset ovat kuta kuinkin invariantit, mutta lähtökohdat (interseptit) eroavat, joten suoria vertauksia mittareiden tasoissa ei pitäisi tehdä.
+
+#### Kyselyn kieliversio
+
+Vertasimme kahden faktorin mallin invarianssia kyselyn kielen mukaan (kaksi kategoriaa: suomi ja ruotsi).
+
+```{r}
+#| label: kohtelu_validointi-25-invarianssi-kieliversiot
+#| code-summary: "Mittausinvarianssi: Kyselyn kielet"
+
+# Malleissa käytetään kaikkia vastaajia
+
+inv.1.kieliversio <- cfa(
+  cfa.malli.1,
+  data = data.cfa2 |>
+    select(k3_1:k3_7, k12_1:k12_7, Kieliversio),
+  estimator = "MLR",
+  missing = "ml",
+  group = "Kieliversio"
+)
+
+inv.2.kieliversio <- cfa(
+  cfa.malli.1,
+  data = data.cfa2 |>
+    select(k3_1:k3_7, k12_1:k12_7, Kieliversio),
+  estimator = "MLR",
+  missing = "ml",
+  group = "Kieliversio",
+  group.equal = "loadings"
+)
+
+inv.3.kieliversio <- cfa(
+  cfa.malli.1,
+  data = data.cfa2 |>
+    select(k3_1:k3_7, k12_1:k12_7, Kieliversio),
+  estimator = "MLR",
+  missing = "ml",
+  group = "Kieliversio",
+  group.equal = c("loadings", "intercepts", "residuals")
+)
+
+inv.4.kieliversio <- cfa(
+  cfa.malli.1,
+  data = data.cfa2 |>
+    select(k3_1:k3_7, k12_1:k12_7, Kieliversio),
+  estimator = "MLR",
+  missing = "ml",
+  group = "Kieliversio",
+  group.equal = c("loadings", "intercepts", "residuals")
+)
+
+# Mallien vertailu
+vrt.kieliversio <- compareFit(
+  inv.1.kieliversio,
+  inv.2.kieliversio,
+  inv.3.kieliversio,
+  inv.4.kieliversio,
+  moreIndices = TRUE
+)
+
+summary(vrt.kieliversio)
+
+
+```
+
+Rakenneinvariantit mallit istuvat heikohkosti aineistoon (RMSEA = ,090, CFI = ,909, SRMR = ,080).
+
+Heikon invarianssin mallien khii neliö-testin istuvuusero rakenneinvariantteihin malleihin ei ole merkitsevä (p = ,757). Muutokset mallin globaaleihin istuuvuusindekseihin ovat hyväksyttävissä rajoissa ($\Delta\text{RMSEA} < 0.001, \Delta\text{CFI} = -0.008, \Delta\text{SRMR} = 0.005$). AIC-arvo nousee lievästi, BIC-arvo laskee lievästi, jolloin relatiiviset istuvuusindeksit eivät näytä selkeää muutossuuntaa.
+
+Vahvan invarianssin malli istuu merkitsevästi huonommin kuin heikon invarianssin malli (p = ,000002). Muutokset ovat kuitenkin osittain hyväksyttävissä rajoissa globaaleilla istuvuusindekseillä ($\Delta\text{RMSEA} = 0.001, \Delta\text{CFI} = -0.019, \Delta\text{SRMR} = 0.039$). AIC- ja BIC-arvot nousevat molemmat, AIC reilusti enemmän kuin BIC.
+
+Kieliversioiden välillä täyttyy selkeästi heikon invarianssin vaatimus, eli faktorilataukset ovat samat suomen- ja ruotsinkielisillä mittareilla. Vahvan invarianssin osalta tulokset ovat epävarmoja, eli mittareiden lähtökohdista ei voida luotettavasti sanoa, ovatko ne samat vai eriävät kieliversioiden välillä.
+
+#### Yhteydenottomenetelmät
+
+Vertasimme kahden faktorin mallin invarianssia kyselyn yhteydenottonmenetelmien mukaan (kolme kategoriaa: johdon kautta, yhteyshenkilöiden ja toimistojen kautta, ja median kautta).
+
+```{r}
+#| label: kohtelu_validointi-26-invarianssi-yhteydenottomenetelmat
+#| code-summary: "Mittausinvarianssi: Yhteydenottomenetelmät"
+
+# Malleissa käytetään kaikkia vastaajia
+
+inv.1.yhteydenotto <- cfa(
+  cfa.malli.1,
+  data = data.cfa2 |>
+    select(k3_1:k3_7, k12_1:k12_7, Linkkiversio),
+  estimator = "MLR",
+  missing = "ml",
+  group = "Linkkiversio"
+)
+
+inv.2.yhteydenotto <- cfa(
+  cfa.malli.1,
+  data = data.cfa2 |>
+    select(k3_1:k3_7, k12_1:k12_7, Linkkiversio),
+  estimator = "MLR",
+  missing = "ml",
+  group = "Linkkiversio",
+  group.equal = "loadings"
+)
+
+inv.3.yhteydenotto <- cfa(
+  cfa.malli.1,
+  data = data.cfa2 |>
+    select(k3_1:k3_7, k12_1:k12_7, Linkkiversio),
+  estimator = "MLR",
+  missing = "ml",
+  group = "Linkkiversio",
+  group.equal = c("loadings", "intercepts", "residuals")
+)
+
+inv.4.yhteydenotto <- cfa(
+  cfa.malli.1,
+  data = data.cfa2 |>
+    select(k3_1:k3_7, k12_1:k12_7, Linkkiversio),
+  estimator = "MLR",
+  missing = "ml",
+  group = "Linkkiversio",
+  group.equal = c("loadings", "intercepts", "residuals")
+)
+
+# Mallien vertailu
+vrt.yhteydenotto <- compareFit(
+  inv.1.yhteydenotto,
+  inv.2.yhteydenotto,
+  inv.3.yhteydenotto,
+  inv.4.yhteydenotto,
+  moreIndices = TRUE
+)
+
+summary(vrt.yhteydenotto)
+
+
+```
+
+Rakenneinvariantit mallit istuvat heikohkosti aineistoon (RMSEA = ,090, CFI = ,909, SRMR = ,080).
+
+Heikon invarianssin mallien khii neliö -testin istuvuusero rakenneinvariantteihin malleihin ei ole merkitsevä (p = ,180). Muutokset mallin globaaleihin istuvuusindekseihin ovat hyväksyttävissä rajoissa, joskin SRMR-arvon nousu on suurempi kuin muut ($\Delta\text{RMSEA} = -0.002, \Delta\text{CFI} = -0.006, \Delta\text{SRMR} = 0.023$). BIC-arvo tippuu hieman, mutta AIC-arvo nousee vastaavasti.
+
+Vahvan invarianssin testi osoittaa merkitsevästi huonompaa sopivuutta (p \< .0001). RMSEA ja SRMR nousevat reilusti ja CFI vastaavasti tippuu. AIC- ja BIC-arvot huonontuvat selkeästi rakenne- ja heikon invarianssin mallien vertailua enemmän.
+
+Voidaan todeta, että malli ei ole vahvasti invariantti yhteydenottomenetelmien välillä. Malli voi olla heikosti invariantti, mutta tulos on aikaisempia tuloksia epävarmempi.
+
+1.  Käytetään vastaajia, jotka eivät sisältyneet ensimmäiseen osatutkimukseen
+2.  Asetetaan ensimmäisessä osatutkimuksessa tunnistettu malli CFA-menetelmällä
+3.  CFA:
+    1.  Ekstraktio: Robusti ML
+    2.  Estimointi: FIML
+4.  Ulkoinen validiteetti:
+    1.  Korrelaatio mittarin ja työuupumusmittarin välillä r \> 0, p \< .05
+5.  Erotteluvaliditeetti:
+    1.  Korrelaatio yksittäisten mittareiden ja työuupumusmittareiden välillä r \< .90
+6.  Konvergenssivaliditeetti:
+    1.  Kohtelun mittareiden korrelaatiomatriisi faktoreittain, "merkittäviä" korrelaatioita
+7.  Mallin sopivuus:
+    1.  Khiin neliö -testin p \> .05
+    2.  Simuloidaan RMSEA, CFI ja SRMR -raja-arvot
+        1.  Vähintään kaksi kolmesta indeksistä täyttävät raja-arvon
+    3.  Tarkistetaan modifikaatioindeksit: (tässä ei määritelty, mitä tehdään!)
+8.  Mittausinvarianssi:
+    1.  Rakenne, heikko, vahva ja tiukka (step-wise lopetus)
+    2.  Kohderyhmät (kolme kategoriaa)
+    3.  Ammattiasemat (kaksi kategoriaa: pelastajat ja ensihoitajat)
+    4.  Kieli (kaksi kategoriaa)
+    5.  Yhteydenottomenetelmät (kolme kategoriaa)

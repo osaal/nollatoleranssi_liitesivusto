@@ -7,6 +7,7 @@ eval: true
 ```{r}
 #| label: valmistelu-00-paketit
 #| echo: false
+#| warning: false
 
 # Avataan tarvittavat paketit. Jos niitä ei ole asennettuna, ladataan ne verkosta.
 
@@ -227,7 +228,6 @@ data <- data %>%
 # Koodin selitykselle, ks. koodiblokki 02_sysmis_esiintyvyydet
 
 # Reaktiot, muutetaan kaikki olemassa olevat arvot arvoksi "1", jätetään NA
-
 data <- data %>%
   mutate(
     across(
@@ -288,7 +288,8 @@ data <- data %>%
 ### Taustakysymykset {#sec-valmistelu-puuttuvatarvot-taustakysymykset}
 
 4.  **Sopimuspalokuntien organisaatiotoimimuuttujat**: Kaikki olemassa olevat arvot (ei `NA`) muutetaan arvoksi `1`, jotta voidaan myöhemmin hyödyntää muuttujaa organisaatioasemamuuttujan rakentamisessa helpommin. Tämä tehdään ennen kaikkia muita muunnoksia.
-5.  **Taustakysymykset:** Kysymykset verrataan vastaajan organisaatiokuuluvuuteen. Niihin kysymyksiin, joihin vastaaja ei voinut vastata, merkitään arvo `-1`. Koska kaikki taustakysymykset olivat pakollisia, `NA`-arvoja ei pitäisi esiintyä ollenkaan kysymyksillä `k31-k41`.
+5.  **Työkuvan muutossuunnitelmat:** Kaikki olemassa olevat arvot (ei `NA`) muutetaan arvoksi `1`.
+6.  **Taustakysymykset:** Kysymykset verrataan vastaajan organisaatiokuuluvuuteen. Niihin kysymyksiin, joihin vastaaja ei voinut vastata, merkitään arvo `-1`. Koska kaikki taustakysymykset olivat pakollisia, `NA`-arvoja ei pitäisi esiintyä ollenkaan kysymyksillä `k31-k41`.
     -   Pelastuslaitokset ja ensihoito näkevät kysymykset `k32, k39, k40` (eli ei näe kysymyksiä `k33, k34, k35, k36, k37, k38`)
     -   Sopimuspalokunnat ja palokuntayhdistykset näkevät kysymykset `k33, k34, k35, k36` (eli ei näe kysymyksiä `k32, k37, k38, k39, k40`)
     -   Valtakunnalliset järjestöt näkevät kysymykset `k37, k38` (eli ei näe kysymyksiä `k32, k33, k34, k35, k36, k39, k40`)
@@ -305,6 +306,18 @@ data <- data %>%
   mutate(
     across(
       k36_1:k36_7,
+      ~ case_when(
+        !is.na(.x) ~ 1,
+        .default = .x
+      )
+    )
+  )
+
+# Muutossuunnitelmat, muutetaan kaikki olemassa olevat arvot arvoksi "1", jätetään NA
+data <- data %>%
+  mutate(
+    across(
+      k42_1_1:k42_3_3,
       ~ case_when(
         !is.na(.x) ~ 1,
         .default = .x
@@ -435,6 +448,26 @@ data <- data %>%
     )
   )
 
+# Ehdotettujen toimenpiteiden koettu hyödyllisyys
+data <- data %>%
+  mutate(
+    across(
+      k30_1:k30_13,
+      ~ case_match(
+        .x,
+        1 ~ 7,
+        2 ~ 6,
+        3 ~ 5,
+        4 ~ 4,
+        5 ~ 3,
+        6 ~ 2,
+        7 ~ 1,
+        -1 ~ -1,
+        NA ~ NA
+      )
+    )
+  )
+
 # Tekee varallaoloa
 data <- data %>%
   mutate(
@@ -531,6 +564,22 @@ data <- data %>%
   select(-(k36_1:k36_7) & -(k38:k39)) %>%
   relocate(Organisaatioasema, .before = k40)
 ```
+
+## Avovastauksen laadullinen koodaus
+
+Tallensimme kaikki ei-tyhjät avovastaukset ID-numeron kanssa `csv`-muotoon laadullista koodausta varten.
+
+```{r}
+#| label: valmistelu-10-laadullinentallennus
+
+data |>
+  filter(!(k43 == '')) |>
+  select(ID, k43) |>
+  write.csv2("output/k43_koodattavaksi.csv", row.names = FALSE, fileEncoding = "UTF-8")
+
+```
+
+Korjasimme ääkköset Excelin "Korvaa"-työkalulla.
 
 ## Datan tallennus {#sec-valmistelu-datatallennus}
 

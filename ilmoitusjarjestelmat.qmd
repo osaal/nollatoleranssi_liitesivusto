@@ -1,0 +1,356 @@
+# Ilmoitusjärjestelmät {#sec-ilmoitusjarjestelmat}
+
+---
+eval: true
+---
+
+Tässä osiossa käsitellään epäasiallisen ja väkivaltaisen kohtelun ilmoitusjärjestelmiä koskevia kysymyksiä:
+
+-   Ilmoitusjärjestelmien olemassaolo (`k24_1:k24_3`)
+-   Koulutuksen olemassaolo ilmoitusjärjestelmille (`k25_1:k25_3`)
+-   Asenteet ilmoitusjärjestelmiä kohtaan (`k26_1:k26_18`)
+
+```{r}
+#| label: ilmoitusjarjestelmat-00-paketit
+
+library(tidyverse)
+library(ggpubr)
+
+```
+
+```{r}
+#| label: ilmoitusjarjestelmat-01-avaaminen
+
+data <- read.csv2("output/anonymisoitudata.csv", tryLogical = FALSE)
+
+```
+
+## Ilmoitusjärjestelmien olemassaolo {#sec-ilmoitusjarjestelmat-olemassaolo}
+
+```{r}
+#| label: fig-ilmoitusjarjestelmat-olemassaolo
+#| fig-cap: "Eri ilmoitusjärjestelmien raportoitu olemassaolo"
+
+data |>
+  select(k24_1:k24_3) |>
+  pivot_longer(
+    cols = k24_1:k24_3,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = c(1, 3, 2),
+      labels = sapply(c(
+        "Kyllä",
+        "En osaa sanoa",
+        "Ei"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Organisaation sisällä tapahtuneille tilanteille",
+      "Organisaation ulkopuolelta tulleelle kohtelulle",
+      "Sekä sisäiset että ulkoiset tilanteet yhdessä järjestelmässä"
+    ), str_wrap, width = 18, USE.NAMES = FALSE)
+  ) +
+  labs(
+    x = "Suhde kaikista vastaajista (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(axis.title.y = element_blank()) +
+  geom_text(
+    aes(
+      label = ifelse(
+        test = is.na(value), 
+        yes = "",
+        no = scales::percent(prop, accuracy = 0.1, decimal.mark = ","))
+    ),
+    position = position_stack(vjust = 0.5),
+    color = "white"
+  )
+
+```
+
+## Ilmoitusjärjestelmien koulutukset {#sec-ilmoitusjarjestelmat-koulutus}
+
+```{r}
+#| label: fig-ilmoitusjarjestelmat-koulutus
+#| fig-cap: "Olemassa olevien ilmoitusjärjestelmien koulutukset"
+
+sisa <- data |>
+  filter(between(k25_1, 0, 3)) |>
+  select(k25_1) |>
+  pivot_longer(
+    cols = k25_1,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = c(3, 2, 1, 0),
+      labels = sapply(c(
+        "On koulutusta, ja olen käynyt sen",
+        "On koulutusta, mutta en ole käynyt sitä",
+        "Ei ole koulutusta",
+        "En osaa sanoa"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Organisaation sisällä tapahtuneille tilanteille"
+    ), str_wrap, width = 18, USE.NAMES = FALSE)
+  ) +
+  labs(
+    fill = "Vastaukset"
+  ) +
+  theme(axis.title.y = element_blank()) +
+  geom_text(
+    aes(
+      label = ifelse(
+        test = is.na(value), 
+        yes = "",
+        no = scales::percent(prop, accuracy = 0.1, decimal.mark = ","))
+    ),
+    position = position_stack(vjust = 0.5),
+    color = "white"
+  )
+
+ulko <- data |>
+  filter(between(k25_2, 0, 3)) |>
+  select(k25_2) |>
+  pivot_longer(
+    cols = k25_2,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = c(3, 2, 1, 0),
+      labels = sapply(c(
+        "On koulutusta, ja olen käynyt sen",
+        "On koulutusta, mutta en ole käynyt sitä",
+        "Ei ole koulutusta",
+        "En osaa sanoa"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Organisaation ulkopuolelta tulleelle kohtelulle"
+    ), str_wrap, width = 18, USE.NAMES = FALSE)
+  ) +
+  labs(
+    fill = "Vastaukset"
+  ) +
+  theme(axis.title.y = element_blank()) +
+  geom_text(
+    aes(
+      label = ifelse(
+        test = is.na(value), 
+        yes = "",
+        no = scales::percent(prop, accuracy = 0.1, decimal.mark = ","))
+    ),
+    position = position_stack(vjust = 0.5),
+    color = "white"
+  )
+
+molemmat <- data |>
+  filter(between(k25_3, 0, 3)) |>
+  select(k25_3) |>
+  pivot_longer(
+    cols = k25_3,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = c(3, 2, 1, 0),
+      labels = sapply(c(
+        "On koulutusta, ja olen käynyt sen",
+        "On koulutusta, mutta en ole käynyt sitä",
+        "Ei ole koulutusta",
+        "En osaa sanoa"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Sekä sisäiset että ulkoiset tilanteet yhdessä järjestelmässä"
+    ), str_wrap, width = 18, USE.NAMES = FALSE)
+  ) +
+  labs(
+    fill = "Vastaukset"
+  ) +
+  theme(axis.title.y = element_blank(), axis.title.x = element_blank()) +
+  geom_text(
+    aes(
+      label = ifelse(
+        test = is.na(value), 
+        yes = "",
+        no = scales::percent(prop, accuracy = 0.1, decimal.mark = ","))
+    ),
+    position = position_stack(vjust = 0.5),
+    color = "white"
+  )
+
+fig <- ggarrange(
+  sisa + rremove("legend") + rremove("xlab"),
+  ulko + rremove("legend") + rremove("xlab"),
+  molemmat + rremove("legend") + rremove("xlab"),
+  ncol = 1,
+  nrow = 3,
+  legend = "bottom",
+  common.legend = TRUE
+)
+
+annotate_figure(
+  fig,
+  bottom = text_grob("Suhde vastaajista, joiden mielestä organisaatiolla on kyseinen järjestelmä käytössä (%)")
+)
+
+```
+
+## Asenteet ilmoitusjärjestelmiä kohtaan {#sec-ilmoitusjarjestelmat-asenteet}
+
+```{r}
+#| label: fig-ilmoitusjarjestelmat-asenteet
+#| fig-cap: "Asenteet ilmoitusjärjestelmiä kohtaan"
+
+# Muutetaan data pitkään formaattiin
+data_long <- data |>
+  select(k26_1:k26_18) |>
+  pivot_longer(
+    cols = k26_1:k26_18,
+    names_to = "variable",
+    values_to = "value"
+  )
+
+# Haetaan haluttu muuttujajärjestys sekä muuttujien vanhat ja uudet nimet
+jarjestys <- data_long |>
+  filter(value == 7) |>
+  group_by(variable) |>
+  summarise(ordercount = n()) |>
+  arrange(ordercount) |>
+  pull(variable)
+
+vanhat_nimet <- data |>
+  select(k26_1:k26_18) |>
+  colnames()
+
+uudet_nimet <- sapply(c(
+    "Liian raskaita",
+    "Ei johda toimenpiteisiin",
+    "Pelkään vastatoimia",
+    "Tekijää ei voi syyttää toiminnastaan",
+    "Ilmoitan kaikki tilanteet",
+    "Konfliktitilanteet ovat osa työtäni",
+    "Ei ole tilaisuutta tehdä ilmoitusta",
+    "Epäselvää, milloin ilmoitus tulisi tehdä",
+    "Unohdan tehdä ilmoituksen",
+    "Ammattitaitoni kyseenalaistettaisiin",
+    "Joku muu hoitaa puolestani",
+    "Valtakunnallisesta prosessista olisi hyötyä",
+    "En halua pahaa tekijälle",
+    "Kokemukset ovat yksittäistapahtumia",
+    "Tekijä saa tietää ilmoituksesta",
+    "Kollegani näkisivät minut vaikeana",
+    "Pelkään menettäväni työpaikkani",
+    "Pelkään kollegoideni ryhtyvän vastatoimiin"
+  ), str_wrap, width = 36, USE.NAMES = FALSE)
+
+# Piirretään kuva
+data_long |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = factor(
+      variable,
+      levels = jarjestys,
+      labels = setNames(as.list(uudet_nimet), vanhat_nimet)[jarjestys]),
+    x = prop,
+    fill = factor(
+      value,
+      levels = sort(unique(value)),
+      labels = sapply(c(
+        "Erittäin eri mieltä",
+        "Eri mieltä",
+        "Jokseenkin eri mieltä",
+        "Ei samaa eikä eri mieltä",
+        "Jokseenkin samaa mieltä",
+        "Samaa mieltä",
+        "Erittäin samaa mieltä"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  labs(
+    x = "Suhde kaikista vastaajista (%)
+    Järjestetty erittäin samaa mieltä olevien määrän mukaan laskevassa järjestyksessä",
+    fill = "Vastaukset"
+  ) +
+  theme(axis.title.y = element_blank()) + 
+  geom_vline(
+    linetype = 2,
+    xintercept = 0.25
+  ) + 
+  geom_vline(
+    linetype = 2,
+    xintercept = 0.5
+  ) + 
+  geom_vline(
+    linetype = 2,
+    xintercept = 0.75
+  )
+```

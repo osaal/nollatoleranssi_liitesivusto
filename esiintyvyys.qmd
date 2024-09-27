@@ -1,0 +1,684 @@
+# Epäasiallisen ja väkivaltaisen kohtelun esiintyvyys {#sec-esiintyvyys}
+
+---
+eval: true
+cache: true
+---
+
+Tässä osiossa käsitellään kyselytuloksia liittyen epäasiallisen ja väkivaltaisen kohtelun esiintyvyyteen:
+
+-   Kohtelun yleisyysmittarit (`k3_1:k4_7`, `k12_1:k13_7`)
+-   Kohtelua selventävät mittarit (`k5_1_1:k11_16_2`, `k14_1_1:k20_7_2`)
+
+```{r}
+#| label: esiintyvyys-00-paketit
+
+library(tidyverse)
+
+```
+
+```{r}
+#| label: esiintyvyys-01-avaaminen
+
+data <- read.csv2("output/anonymisoitudata.csv", tryLogical = FALSE)
+
+```
+
+## Organisaation sisällä esiintyvä epäasiallinen ja väkivaltainen kohtelu {#sec-esiintyvyys-sisa}
+
+### Omakohtaisesti kohdattu {#sec-esiintyvyys-sisa-itse}
+
+```{r}
+#| label: fig-esiintyvyys-sisa-itse
+#| fig-cap: "Omakohtaisesti kohdattu organisaation sisäinen epäasiallinen ja väkivaltainen kohtelu"
+
+data |>
+  select(k3_1:k3_7) |>
+  pivot_longer(
+    cols = k3_1:k3_7,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = rev(sort(unique(value))),
+      labels = sapply(c(
+        "Useita kertoja päivässä",
+        "Kerran päivässä",
+        "Useita kertoja viikossa",
+        "Kerran viikossa",
+        "Useita kertoja kuukaudessa",
+        "Kerran kuukaudessa",
+        "Harvemmin kuin kerran kuukaudessa",
+        "En kertaakaan"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Verbaalinen väkivalta",
+      "Omaisuuden vahingoittaminen tai varastaminen",
+      "Uhkailu",
+      "Fyysinen väkivalta",
+      "Seksuaalinen häirintä tai väkivalta",
+      "Vihamielisyys tai epäkohtelias käyttäytyminen",
+      "Syrjintä"
+    ), str_wrap, width = 18, USE.NAMES = FALSE)
+  ) +
+  labs(
+    x = "Suhde kaikista vastaajista (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(axis.title.y = element_blank()) + 
+  geom_text(
+    aes(
+      y = 7,
+      x = 0.729,
+      hjust = 1,
+      label = "72,9 %"
+    )
+  ) + 
+  geom_text(
+    aes(
+      y = 6,
+      x = 0.574,
+      hjust = 1,
+      label = "57,4 %"
+    )
+  ) + 
+  geom_text(
+    aes(
+      y = 5,
+      x = 0.876,
+      hjust = 1,
+      label = "87,6 %"
+    )
+  ) + 
+  geom_text(
+    aes(
+      y = 4,
+      x = 0.969,
+      hjust = 1,
+      label = "96,9 %"
+    )
+  ) + 
+  geom_text(
+    aes(
+      y = 3,
+      x = 0.879,
+      hjust = 1,
+      label = "87,9 %"
+    )
+  ) + 
+  geom_text(
+    aes(
+      y = 2,
+      x = 0.922,
+      hjust = 1,
+      label = "92,2 %"
+    )
+  ) + 
+  geom_text(
+    aes(
+      y = 1,
+      x = 0.726,
+      hjust = 1,
+      label = "72,6 %"
+    )
+  )
+
+```
+
+```{r}
+#| label: tbl-esiintyvyys-sisa-itse
+#| tbl-cap: "Omakohtaisesti kohdattu organisaation sisäinen epäasiallinen ja väkivaltainen kohtelu, osuus kaikista vastaajista (muuttujakohtaisesti)"
+
+data |>
+  select(k3_1:k3_7) |>
+  pivot_longer(
+    cols = k3_1:k3_7,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ungroup() |>
+  mutate(
+    across(
+      variable,
+      ~ case_match(
+        .x,
+        "k3_1" ~ "Verbaalinen väkivalta",
+        "k3_2" ~ "Omaisuuden vahingoittaminen tai varastaminen",
+        "k3_3" ~ "Uhkailu",
+        "k3_4" ~ "Fyysinen väkivalta",
+        "k3_5" ~ "Seksuaalinen häirintä tai väkivalta",
+        "k3_6" ~ "Vihamielisyys tai epäkohtelias käyttäytyminen",
+        "k3_7" ~ "Syrjintä"
+      )
+    )
+  ) |>
+  mutate(
+    across(
+      value,
+      ~ case_match(
+        .x,
+        1 ~ "En kertaakaan",
+        2 ~ "Harvemmin kuin kerran kuukaudessa",
+        3 ~ "Kerran kuukaudessa",
+        4 ~ "Useita kertoja kuukaudessa",
+        5 ~ "Kerran viikossa",
+        6 ~ "Useita kertoja viikossa",
+        7 ~ "Kerran päivässä",
+        8 ~ "Useita kertoja päivässä"
+      )
+    )
+  ) |>
+  xtabs(prop ~ variable + value, data = _) |>
+  knitr::kable(digits = 3)
+  
+```
+
+### Havaittu kollegan kohdanneen {#sec-esiintyvyys-sisa-kollega}
+
+```{r}
+#| label: fig-esiintyvyys-sisa-kollega
+#| fig-cap: "Kollegan kohtaama organisaation sisäinen epäasiallinen ja väkivaltainen kohtelu"
+
+data |>
+  select(k4_1:k4_7) |>
+  pivot_longer(
+    cols = k4_1:k4_7,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = rev(sort(unique(value))),
+      labels = sapply(c(
+        "Useita kertoja päivässä",
+        "Kerran päivässä",
+        "Useita kertoja viikossa",
+        "Kerran viikossa",
+        "Useita kertoja kuukaudessa",
+        "Kerran kuukaudessa",
+        "Harvemmin kuin kerran kuukaudessa",
+        "En kertaakaan"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Verbaalinen väkivalta",
+      "Omaisuuden vahingoittaminen tai varastaminen",
+      "Uhkailu",
+      "Fyysinen väkivalta",
+      "Seksuaalinen häirintä tai väkivalta",
+      "Vihamielisyys tai epäkohtelias käyttäytyminen",
+      "Syrjintä"
+    ), str_wrap, width = 18, USE.NAMES = FALSE)
+  ) +
+  labs(
+    x = "Suhde kaikista vastaajista (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(axis.title.y = element_blank()) + 
+  geom_text(
+    aes(
+      y = 7,
+      x = 0.687,
+      hjust = 1,
+      label = "68,7 %"
+    )
+  ) + 
+  geom_text(
+    aes(
+      y = 6,
+      x = 0.555,
+      hjust = 1,
+      label = "55,5 %"
+    )
+  ) + 
+  geom_text(
+    aes(
+      y = 5,
+      x = 0.810,
+      hjust = 1,
+      label = "81,0 %"
+    )
+  ) + 
+  geom_text(
+    aes(
+      y = 4,
+      x = 0.956,
+      hjust = 1,
+      label = "95,6 %"
+    )
+  ) + 
+  geom_text(
+    aes(
+      y = 3,
+      x = 0.864,
+      hjust = 1,
+      label = "86,4 %"
+    )
+  ) + 
+  geom_text(
+    aes(
+      y = 2,
+      x = 0.920,
+      hjust = 1,
+      label = "92,0 %"
+    )
+  ) + 
+  geom_text(
+    aes(
+      y = 1,
+      x = 0.676,
+      hjust = 1,
+      label = "67,6 %"
+    )
+  )
+
+```
+
+```{r}
+#| label: tbl-esiintyvyys-sisa-kollega
+#| tbl-cap: "Kollegan kohtaama organisaation sisäinen epäasiallinen ja väkivaltainen kohtelu, osuus kaikista vastaajista (muuttujakohtaisesti)"
+
+data |>
+  select(k4_1:k4_7) |>
+  pivot_longer(
+    cols = k4_1:k4_7,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ungroup() |>
+  mutate(
+    across(
+      variable,
+      ~ case_match(
+        .x,
+        "k4_1" ~ "Verbaalinen väkivalta",
+        "k4_2" ~ "Omaisuuden vahingoittaminen tai varastaminen",
+        "k4_3" ~ "Uhkailu",
+        "k4_4" ~ "Fyysinen väkivalta",
+        "k4_5" ~ "Seksuaalinen häirintä tai väkivalta",
+        "k4_6" ~ "Vihamielisyys tai epäkohtelias käyttäytyminen",
+        "k4_7" ~ "Syrjintä"
+      )
+    )
+  ) |>
+  mutate(
+    across(
+      value,
+      ~ case_match(
+        .x,
+        1 ~ "En kertaakaan",
+        2 ~ "Harvemmin kuin kerran kuukaudessa",
+        3 ~ "Kerran kuukaudessa",
+        4 ~ "Useita kertoja kuukaudessa",
+        5 ~ "Kerran viikossa",
+        6 ~ "Useita kertoja viikossa",
+        7 ~ "Kerran päivässä",
+        8 ~ "Useita kertoja päivässä"
+      )
+    )
+  ) |>
+  xtabs(prop ~ variable + value, data = _) |>
+  knitr::kable(digits = 3)
+```
+
+## Organisaation ulkopuolelta tullut epäasiallinen ja väkivaltainen kohtelu {#sec-esiintyvyys-ulko}
+
+### Omakohtaisesti kohdattu {#sec-esiintyvyys-ulko-itse}
+
+```{r}
+#| label: fig-esiintyvyys-ulko-itse
+#| fig-cap: "Omakohtaisesti kohdattu organisaation ulkopuolelta tuleva epäasiallinen ja väkivaltainen kohtelu"
+
+data |>
+  select(k12_1:k12_7) |>
+  pivot_longer(
+    cols = k12_1:k12_7,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = rev(sort(unique(value))),
+      labels = sapply(c(
+        "Useita kertoja päivässä",
+        "Kerran päivässä",
+        "Useita kertoja viikossa",
+        "Kerran viikossa",
+        "Useita kertoja kuukaudessa",
+        "Kerran kuukaudessa",
+        "Harvemmin kuin kerran kuukaudessa",
+        "En kertaakaan"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Verbaalinen väkivalta",
+      "Omaisuuden vahingoittaminen tai varastaminen",
+      "Uhkailu",
+      "Fyysinen väkivalta",
+      "Seksuaalinen häirintä tai väkivalta",
+      "Vihamielisyys tai epäkohtelias käyttäytyminen",
+      "Syrjintä"
+    ), str_wrap, width = 18, USE.NAMES = FALSE)
+  ) +
+  labs(
+    x = "Suhde kaikista vastaajista (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(axis.title.y = element_blank()) + 
+  geom_text(
+    aes(
+      y = 7,
+      x = 0.830,
+      hjust = 1,
+      label = "83,0 %"
+    )
+  ) + 
+  geom_text(
+    aes(
+      y = 6,
+      x = 0.554,
+      hjust = 1,
+      label = "55,4 %"
+    )
+  ) + 
+  geom_text(
+    aes(
+      y = 5,
+      x = 0.792,
+      hjust = 1,
+      label = "79,2 %"
+    )
+  ) + 
+  geom_text(
+    aes(
+      y = 4,
+      x = 0.818,
+      hjust = 1,
+      label = "81,8 %"
+    )
+  ) + 
+  geom_text(
+    aes(
+      y = 3,
+      x = 0.678,
+      hjust = 1,
+      label = "67,8 %"
+    )
+  ) + 
+  geom_text(
+    aes(
+      y = 2,
+      x = 0.884,
+      hjust = 1,
+      label = "88,4 %"
+    )
+  ) + 
+  geom_text(
+    aes(
+      y = 1,
+      x = 0.597,
+      hjust = 1,
+      label = "59,7 %"
+    )
+  )
+```
+
+```{r}
+#| label: tbl-esiintyvyys-ulko-itse
+#| tbl-cap: "Omakohtaisesti kohdattu organisaation ulkopuolelta tuleva epäasiallinen ja väkivaltainen kohtelu, osuus kaikista vastaajista (muuttujakohtaisesti)"
+
+data |>
+  select(k12_1:k12_7) |>
+  pivot_longer(
+    cols = k12_1:k12_7,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ungroup() |>
+  mutate(
+    across(
+      variable,
+      ~ case_match(
+        .x,
+        "k12_1" ~ "Verbaalinen väkivalta",
+        "k12_2" ~ "Omaisuuden vahingoittaminen tai varastaminen",
+        "k12_3" ~ "Uhkailu",
+        "k12_4" ~ "Fyysinen väkivalta",
+        "k12_5" ~ "Seksuaalinen häirintä tai väkivalta",
+        "k12_6" ~ "Vihamielisyys tai epäkohtelias käyttäytyminen",
+        "k12_7" ~ "Syrjintä"
+      )
+    )
+  ) |>
+  mutate(
+    across(
+      value,
+      ~ case_match(
+        .x,
+        1 ~ "En kertaakaan",
+        2 ~ "Harvemmin kuin kerran kuukaudessa",
+        3 ~ "Kerran kuukaudessa",
+        4 ~ "Useita kertoja kuukaudessa",
+        5 ~ "Kerran viikossa",
+        6 ~ "Useita kertoja viikossa",
+        7 ~ "Kerran päivässä",
+        8 ~ "Useita kertoja päivässä"
+      )
+    )
+  ) |>
+  xtabs(prop ~ variable + value, data = _) |>
+  knitr::kable(digits = 3)
+```
+
+### Havaittu kollegan kohdanneen {#sec-esiintyvyys-ulko-kollega}
+
+```{r}
+#| label: fig-esiintyvyys-ulko-kollega
+#| fig-cap: "Kollegan kohtaama organisaation ulkopuolelta tuleva epäasiallinen ja väkivaltainen kohtelu"
+
+data |>
+  select(k13_1:k13_7) |>
+  pivot_longer(
+    cols = k13_1:k13_7,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = rev(sort(unique(value))),
+      labels = sapply(c(
+        "Useita kertoja päivässä",
+        "Kerran päivässä",
+        "Useita kertoja viikossa",
+        "Kerran viikossa",
+        "Useita kertoja kuukaudessa",
+        "Kerran kuukaudessa",
+        "Harvemmin kuin kerran kuukaudessa",
+        "En kertaakaan"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Verbaalinen väkivalta",
+      "Omaisuuden vahingoittaminen tai varastaminen",
+      "Uhkailu",
+      "Fyysinen väkivalta",
+      "Seksuaalinen häirintä tai väkivalta",
+      "Vihamielisyys tai epäkohtelias käyttäytyminen",
+      "Syrjintä"
+    ), str_wrap, width = 18, USE.NAMES = FALSE)
+  ) +
+  labs(
+    x = "Suhde kaikista vastaajista (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(axis.title.y = element_blank()) + 
+  geom_text(
+    aes(
+      y = 7,
+      x = 0.817,
+      hjust = 1,
+      label = "81,7 %"
+    )
+  ) + 
+  geom_text(
+    aes(
+      y = 6,
+      x = 0.556,
+      hjust = 1,
+      label = "55,6 %"
+    )
+  ) + 
+  geom_text(
+    aes(
+      y = 5,
+      x = 0.758,
+      hjust = 1,
+      label = "75,8 %"
+    )
+  ) + 
+  geom_text(
+    aes(
+      y = 4,
+      x = 0.791,
+      hjust = 1,
+      label = "79,1 %"
+    )
+  ) + 
+  geom_text(
+    aes(
+      y = 3,
+      x = 0.667,
+      hjust = 1,
+      label = "66,7 %"
+    )
+  ) + 
+  geom_text(
+    aes(
+      y = 2,
+      x = 0.873,
+      hjust = 1,
+      label = "87,3 %"
+    )
+  ) + 
+  geom_text(
+    aes(
+      y = 1,
+      x = 0.593,
+      hjust = 1,
+      label = "59,3 %"
+    )
+  )
+```
+
+```{r}
+#| label: tbl-esiintyvyys-ulko-kollega
+#| tbl-cap: "Kollegan kohtaama organisaation ulkopuolelta tuleva epäasiallinen ja väkivaltainen kohtelu, osuus kaikista vastaajista (muuttujakohtaisesti)"
+
+data |>
+  select(k13_1:k13_7) |>
+  pivot_longer(
+    cols = k13_1:k13_7,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ungroup() |>
+  mutate(
+    across(
+      variable,
+      ~ case_match(
+        .x,
+        "k13_1" ~ "Verbaalinen väkivalta",
+        "k13_2" ~ "Omaisuuden vahingoittaminen tai varastaminen",
+        "k13_3" ~ "Uhkailu",
+        "k13_4" ~ "Fyysinen väkivalta",
+        "k13_5" ~ "Seksuaalinen häirintä tai väkivalta",
+        "k13_6" ~ "Vihamielisyys tai epäkohtelias käyttäytyminen",
+        "k13_7" ~ "Syrjintä"
+      )
+    )
+  ) |>
+  mutate(
+    across(
+      value,
+      ~ case_match(
+        .x,
+        1 ~ "En kertaakaan",
+        2 ~ "Harvemmin kuin kerran kuukaudessa",
+        3 ~ "Kerran kuukaudessa",
+        4 ~ "Useita kertoja kuukaudessa",
+        5 ~ "Kerran viikossa",
+        6 ~ "Useita kertoja viikossa",
+        7 ~ "Kerran päivässä",
+        8 ~ "Useita kertoja päivässä"
+      )
+    )
+  ) |>
+  xtabs(prop ~ variable + value, data = _) |>
+  knitr::kable(digits = 3)
+```

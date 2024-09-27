@@ -321,6 +321,16 @@ data <- data |>
 
 ```
 
+Fraktiilirajat ovat:
+
+-   0-25 %: `r fraktiilit[2]` vuotta tai alle
+
+-   25-50 %: `r fraktiilit[2]` - `r fraktiilit[3]` vuotta
+
+-   50-75 %: `r fraktiilit[3]` - `r fraktiilit[4]` vuotta
+
+-   75-100 %: `r fraktiilit[4]` vuotta tai yli
+
 ## Kohta 2: Harvinaisten ilmiöiden anonymisointi {#sec-anonymisointi-kohta2}
 
 ```{r}
@@ -524,7 +534,7 @@ Seuraavat muutokset tehtiin datatiedostolle:
 
 -   Työuran pituus (`k41`) luokiteltiin neljään fraktiiliin.
 
-    -   Uudet koodit: `1` (alin neljännes), `2` (toinen neljännes), `3` (kolmas neljännes), `4` (ylin neljännes)
+    -   Uudet koodit: `1` (`r fraktiilit[2]` vuotta tai alle), `2` (`r fraktiilit[2]` - `r fraktiilit[3]` vuotta), `3` (`r fraktiilit[3]` - `r fraktiilit[4]` vuotta), `4` (`r fraktiilit[4]` vuotta tai yli)
 
 -   Yhden vastaajan organisaatiokuuluvuus (`2`) muutettiin suojataksemme vastaajan anonymiteettiä.
 

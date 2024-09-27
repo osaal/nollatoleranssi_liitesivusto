@@ -222,16 +222,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="./metatiedot.html" rel="" target="">
  <span class="dropdown-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Kyselyn metatiedot</span></span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./taustamuuttujat.html" rel="" target="">
+ <span class="dropdown-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Taustamuuttujat</span></span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./esiintyvyys.html" rel="" target="">
+ <span class="dropdown-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Epäasiallisen ja väkivaltaisen kohtelun esiintyvyys</span></span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./vaikutukset.html" rel="" target="">
+ <span class="dropdown-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Koetun kohtelun vaikutukset</span></span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./ilmoitusjarjestelmat.html" rel="" target="">
+ <span class="dropdown-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Ilmoitusjärjestelmät</span></span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./organisaatiotoimet.html" rel="" target="">
+ <span class="dropdown-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Organisaatiotoimet</span></span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-mittariston-validointi" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
- <span class="menu-text">Mittariston validointi</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-mittaristojen-validoinnit" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Mittaristojen validoinnit</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-mittariston-validointi">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-mittaristojen-validoinnit">    
         <li>
-    <a class="dropdown-item" href="./efabias.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Esiintyvyyden EFA-mallin bias-testit</span></span></a>
+    <a class="dropdown-item" href="./kohtelu_validointi.html" rel="" target="">
+ <span class="dropdown-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Epäasiallisen ja väkivaltaisen kohtelun esiintyvyyden mittarin validointi</span></span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-esitysmateriaaleja" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Esitysmateriaaleja</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-esitysmateriaaleja">    
+        <li>
+    <a class="dropdown-item" href="./deibseminaari.html" rel="" target="">
+ <span class="dropdown-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Pelastusalan DEIB-seminaari</span></span></a>
   </li>  
     </ul>
   </li>
@@ -717,6 +748,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
+<p>Fraktiilirajat ovat:</p>
+<ul>
+<li><p>0-25 %: 6 vuotta tai alle</p></li>
+<li><p>25-50 %: 6 - 14 vuotta</p></li>
+<li><p>50-75 %: 14 - 25 vuotta</p></li>
+<li><p>75-100 %: 25 vuotta tai yli</p></li>
+</ul>
 </section>
 <section id="sec-anonymisointi-kohta2" class="level2" data-number="18.4">
 <h2 data-number="18.4" class="anchored" data-anchor-id="sec-anonymisointi-kohta2"><span class="header-section-number">18.4</span> Kohta 2: Harvinaisten ilmiöiden anonymisointi</h2>
@@ -1001,7 +1039,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li><p>Työuran pituus (<code>k41</code>) luokiteltiin neljään fraktiiliin.</p>
 <ul>
-<li>Uudet koodit: <code>1</code> (alin neljännes), <code>2</code> (toinen neljännes), <code>3</code> (kolmas neljännes), <code>4</code> (ylin neljännes)</li>
+<li>Uudet koodit: <code>1</code> (6 vuotta tai alle), <code>2</code> (6 - 14 vuotta), <code>3</code> (14 - 25 vuotta), <code>4</code> (25 vuotta tai yli)</li>
 </ul></li>
 <li><p>Yhden vastaajan organisaatiokuuluvuus (<code>2</code>) muutettiin suojataksemme vastaajan anonymiteettiä.</p></li>
 <li><p>Kolmen vastaajan sukupuolet (<code>k31</code>) muutettiin satunnaisesti suojataksemme vastaajien anonymiteettiä.</p></li>
@@ -1640,225 +1678,235 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb39-331"><a href="#cb39-331" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-332"><a href="#cb39-332" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb39-333"><a href="#cb39-333" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-334"><a href="#cb39-334" aria-hidden="true" tabindex="-1"></a><span class="fu">## Kohta 2: Harvinaisten ilmiöiden anonymisointi {#sec-anonymisointi-kohta2}</span></span>
+<span id="cb39-334"><a href="#cb39-334" aria-hidden="true" tabindex="-1"></a>Fraktiilirajat ovat:</span>
 <span id="cb39-335"><a href="#cb39-335" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-338"><a href="#cb39-338" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb39-339"><a href="#cb39-339" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: anon-04-harvinaisetilmiot</span></span>
-<span id="cb39-340"><a href="#cb39-340" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-341"><a href="#cb39-341" aria-hidden="true" tabindex="-1"></a><span class="co"># Muuttujaa voi käyttää nyt ja myöhemmin looppaamiseen</span></span>
-<span id="cb39-342"><a href="#cb39-342" aria-hidden="true" tabindex="-1"></a>muuttujat <span class="ot">&lt;-</span> rlang<span class="sc">::</span><span class="fu">exprs</span>(</span>
-<span id="cb39-343"><a href="#cb39-343" aria-hidden="true" tabindex="-1"></a>  k3_1, k3_2, k3_3, k3_4, k3_5, k3_6, k3_7,</span>
-<span id="cb39-344"><a href="#cb39-344" aria-hidden="true" tabindex="-1"></a>  k4_1, k4_2, k4_3, k4_4, k4_5, k4_6, k4_7,</span>
-<span id="cb39-345"><a href="#cb39-345" aria-hidden="true" tabindex="-1"></a>  k12_1, k12_2, k12_3, k12_4, k12_5, k12_6, k12_7,</span>
-<span id="cb39-346"><a href="#cb39-346" aria-hidden="true" tabindex="-1"></a>  k13_1, k13_2, k13_3, k13_4, k13_5, k13_6, k13_7,</span>
-<span id="cb39-347"><a href="#cb39-347" aria-hidden="true" tabindex="-1"></a>  k5_3_1, k5_3_2,</span>
-<span id="cb39-348"><a href="#cb39-348" aria-hidden="true" tabindex="-1"></a>  k7_10_1, k7_10_2,</span>
-<span id="cb39-349"><a href="#cb39-349" aria-hidden="true" tabindex="-1"></a>  k8_11_1, k8_11_2,</span>
-<span id="cb39-350"><a href="#cb39-350" aria-hidden="true" tabindex="-1"></a>  k9_5_1, k9_5_2, k9_10_1, k9_10_2,</span>
-<span id="cb39-351"><a href="#cb39-351" aria-hidden="true" tabindex="-1"></a>  k10_2_1, k10_2_2, k10_10_1, k10_10_2, k10_11_1, k10_11_2,</span>
-<span id="cb39-352"><a href="#cb39-352" aria-hidden="true" tabindex="-1"></a>  k11_6_1, k11_6_2,</span>
-<span id="cb39-353"><a href="#cb39-353" aria-hidden="true" tabindex="-1"></a>  k14_3_1, k14_3_2,</span>
-<span id="cb39-354"><a href="#cb39-354" aria-hidden="true" tabindex="-1"></a>  k16_10_1, k16_10_2,</span>
-<span id="cb39-355"><a href="#cb39-355" aria-hidden="true" tabindex="-1"></a>  k17_11_1, k17_11_2,</span>
-<span id="cb39-356"><a href="#cb39-356" aria-hidden="true" tabindex="-1"></a>  k18_5_1, k18_5_2, k18_10_1, k18_10_2,</span>
-<span id="cb39-357"><a href="#cb39-357" aria-hidden="true" tabindex="-1"></a>  k19_2_1, k19_2_2, k19_10_1, k19_10_2, k19_11_1, k19_11_2,</span>
-<span id="cb39-358"><a href="#cb39-358" aria-hidden="true" tabindex="-1"></a>  k22_1_1, k22_2_1, k22_3_1,</span>
-<span id="cb39-359"><a href="#cb39-359" aria-hidden="true" tabindex="-1"></a>  k23_1, k23_2, k23_3, k23_4, k23_5, k23_6, k23_7, k23_8, k23_9, k23_10, k23_11</span>
-<span id="cb39-360"><a href="#cb39-360" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb39-361"><a href="#cb39-361" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-362"><a href="#cb39-362" aria-hidden="true" tabindex="-1"></a><span class="co"># Loopataan harvinaisten ilmiöiden muuttujien läpi ja suoritettaan yhden muuttujan k-anonymisointi (eli yksinkertainen solujen tarkastus)</span></span>
-<span id="cb39-363"><a href="#cb39-363" aria-hidden="true" tabindex="-1"></a><span class="co"># HUOM: Listaus sisältää muuttujaryhmät k3_1:k4_7, k12_1:k13_7, k22_1_1:k22_3_1 ja k23_1:k23_11. Näitä ei anonymisointisuunnitelman mukaisesti kuitenkaan tarkisteta.</span></span>
-<span id="cb39-364"><a href="#cb39-364" aria-hidden="true" tabindex="-1"></a><span class="co"># Testattu toimivaksi tekaistulla datalla. HUOM: Vaatii nykyiset funktiossa olevat korjaukset (ks. code block 00_anon_funktiot)</span></span>
-<span id="cb39-365"><a href="#cb39-365" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-366"><a href="#cb39-366" aria-hidden="true" tabindex="-1"></a>tulokset_kohta2 <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb39-367"><a href="#cb39-367" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> muuttujat) {</span>
-<span id="cb39-368"><a href="#cb39-368" aria-hidden="true" tabindex="-1"></a>  tulokset_kohta2[[rlang<span class="sc">::</span><span class="fu">as_string</span>(i)]] <span class="ot">&lt;-</span> <span class="fu">k_anonymity</span>(data, <span class="at">limit =</span> <span class="dv">5</span>, i)</span>
-<span id="cb39-369"><a href="#cb39-369" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb39-370"><a href="#cb39-370" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-371"><a href="#cb39-371" aria-hidden="true" tabindex="-1"></a><span class="co"># Poistetaan väliaikaiset muuttujat siisteyden vuoksi</span></span>
-<span id="cb39-372"><a href="#cb39-372" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(i, temp)</span>
-<span id="cb39-373"><a href="#cb39-373" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-374"><a href="#cb39-374" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb39-336"><a href="#cb39-336" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>0-25 %: <span class="in">`r fraktiilit[2]`</span> vuotta tai alle</span>
+<span id="cb39-337"><a href="#cb39-337" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-338"><a href="#cb39-338" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>25-50 %: <span class="in">`r fraktiilit[2]`</span> - <span class="in">`r fraktiilit[3]`</span> vuotta</span>
+<span id="cb39-339"><a href="#cb39-339" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-340"><a href="#cb39-340" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>50-75 %: <span class="in">`r fraktiilit[3]`</span> - <span class="in">`r fraktiilit[4]`</span> vuotta</span>
+<span id="cb39-341"><a href="#cb39-341" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-342"><a href="#cb39-342" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>75-100 %: <span class="in">`r fraktiilit[4]`</span> vuotta tai yli</span>
+<span id="cb39-343"><a href="#cb39-343" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-344"><a href="#cb39-344" aria-hidden="true" tabindex="-1"></a><span class="fu">## Kohta 2: Harvinaisten ilmiöiden anonymisointi {#sec-anonymisointi-kohta2}</span></span>
+<span id="cb39-345"><a href="#cb39-345" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-348"><a href="#cb39-348" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb39-349"><a href="#cb39-349" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: anon-04-harvinaisetilmiot</span></span>
+<span id="cb39-350"><a href="#cb39-350" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-351"><a href="#cb39-351" aria-hidden="true" tabindex="-1"></a><span class="co"># Muuttujaa voi käyttää nyt ja myöhemmin looppaamiseen</span></span>
+<span id="cb39-352"><a href="#cb39-352" aria-hidden="true" tabindex="-1"></a>muuttujat <span class="ot">&lt;-</span> rlang<span class="sc">::</span><span class="fu">exprs</span>(</span>
+<span id="cb39-353"><a href="#cb39-353" aria-hidden="true" tabindex="-1"></a>  k3_1, k3_2, k3_3, k3_4, k3_5, k3_6, k3_7,</span>
+<span id="cb39-354"><a href="#cb39-354" aria-hidden="true" tabindex="-1"></a>  k4_1, k4_2, k4_3, k4_4, k4_5, k4_6, k4_7,</span>
+<span id="cb39-355"><a href="#cb39-355" aria-hidden="true" tabindex="-1"></a>  k12_1, k12_2, k12_3, k12_4, k12_5, k12_6, k12_7,</span>
+<span id="cb39-356"><a href="#cb39-356" aria-hidden="true" tabindex="-1"></a>  k13_1, k13_2, k13_3, k13_4, k13_5, k13_6, k13_7,</span>
+<span id="cb39-357"><a href="#cb39-357" aria-hidden="true" tabindex="-1"></a>  k5_3_1, k5_3_2,</span>
+<span id="cb39-358"><a href="#cb39-358" aria-hidden="true" tabindex="-1"></a>  k7_10_1, k7_10_2,</span>
+<span id="cb39-359"><a href="#cb39-359" aria-hidden="true" tabindex="-1"></a>  k8_11_1, k8_11_2,</span>
+<span id="cb39-360"><a href="#cb39-360" aria-hidden="true" tabindex="-1"></a>  k9_5_1, k9_5_2, k9_10_1, k9_10_2,</span>
+<span id="cb39-361"><a href="#cb39-361" aria-hidden="true" tabindex="-1"></a>  k10_2_1, k10_2_2, k10_10_1, k10_10_2, k10_11_1, k10_11_2,</span>
+<span id="cb39-362"><a href="#cb39-362" aria-hidden="true" tabindex="-1"></a>  k11_6_1, k11_6_2,</span>
+<span id="cb39-363"><a href="#cb39-363" aria-hidden="true" tabindex="-1"></a>  k14_3_1, k14_3_2,</span>
+<span id="cb39-364"><a href="#cb39-364" aria-hidden="true" tabindex="-1"></a>  k16_10_1, k16_10_2,</span>
+<span id="cb39-365"><a href="#cb39-365" aria-hidden="true" tabindex="-1"></a>  k17_11_1, k17_11_2,</span>
+<span id="cb39-366"><a href="#cb39-366" aria-hidden="true" tabindex="-1"></a>  k18_5_1, k18_5_2, k18_10_1, k18_10_2,</span>
+<span id="cb39-367"><a href="#cb39-367" aria-hidden="true" tabindex="-1"></a>  k19_2_1, k19_2_2, k19_10_1, k19_10_2, k19_11_1, k19_11_2,</span>
+<span id="cb39-368"><a href="#cb39-368" aria-hidden="true" tabindex="-1"></a>  k22_1_1, k22_2_1, k22_3_1,</span>
+<span id="cb39-369"><a href="#cb39-369" aria-hidden="true" tabindex="-1"></a>  k23_1, k23_2, k23_3, k23_4, k23_5, k23_6, k23_7, k23_8, k23_9, k23_10, k23_11</span>
+<span id="cb39-370"><a href="#cb39-370" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb39-371"><a href="#cb39-371" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-372"><a href="#cb39-372" aria-hidden="true" tabindex="-1"></a><span class="co"># Loopataan harvinaisten ilmiöiden muuttujien läpi ja suoritettaan yhden muuttujan k-anonymisointi (eli yksinkertainen solujen tarkastus)</span></span>
+<span id="cb39-373"><a href="#cb39-373" aria-hidden="true" tabindex="-1"></a><span class="co"># HUOM: Listaus sisältää muuttujaryhmät k3_1:k4_7, k12_1:k13_7, k22_1_1:k22_3_1 ja k23_1:k23_11. Näitä ei anonymisointisuunnitelman mukaisesti kuitenkaan tarkisteta.</span></span>
+<span id="cb39-374"><a href="#cb39-374" aria-hidden="true" tabindex="-1"></a><span class="co"># Testattu toimivaksi tekaistulla datalla. HUOM: Vaatii nykyiset funktiossa olevat korjaukset (ks. code block 00_anon_funktiot)</span></span>
 <span id="cb39-375"><a href="#cb39-375" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-376"><a href="#cb39-376" aria-hidden="true" tabindex="-1"></a>Tarkistettavista muuttujista seuraavilla esiintyi ongelmia:</span>
-<span id="cb39-377"><a href="#cb39-377" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-378"><a href="#cb39-378" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k7_10_1`</span> (aseella tai voimankäyttövälineellä uhkaaminen, organisaation sisäinen, itse koettu): Vain neljä vastaajaa ovat kokeneet</span>
-<span id="cb39-379"><a href="#cb39-379" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-380"><a href="#cb39-380" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k8_11_2`</span> (voimankäyttövälineellä tai aseella vahingoittaminen, organisaation sisäinen, havaittu): Vain yksi vastaaja on havainnut</span>
-<span id="cb39-381"><a href="#cb39-381" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-382"><a href="#cb39-382" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k9_5_1`</span> (pakotettu seksuaalinen teko tai raiskaus, tai näiden yritys, organisaation sisäinen, itse koettu): Vain kolme vastaajaa ovat kokeneet</span>
+<span id="cb39-376"><a href="#cb39-376" aria-hidden="true" tabindex="-1"></a>tulokset_kohta2 <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb39-377"><a href="#cb39-377" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> muuttujat) {</span>
+<span id="cb39-378"><a href="#cb39-378" aria-hidden="true" tabindex="-1"></a>  tulokset_kohta2[[rlang<span class="sc">::</span><span class="fu">as_string</span>(i)]] <span class="ot">&lt;-</span> <span class="fu">k_anonymity</span>(data, <span class="at">limit =</span> <span class="dv">5</span>, i)</span>
+<span id="cb39-379"><a href="#cb39-379" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb39-380"><a href="#cb39-380" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-381"><a href="#cb39-381" aria-hidden="true" tabindex="-1"></a><span class="co"># Poistetaan väliaikaiset muuttujat siisteyden vuoksi</span></span>
+<span id="cb39-382"><a href="#cb39-382" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(i, temp)</span>
 <span id="cb39-383"><a href="#cb39-383" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-384"><a href="#cb39-384" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k18_5_1`</span> (pakotettu seksuaalinen teko tai raiskaus, tai näiden yritys, organisaation ulkopuolinen, itse koettu): Vain kaksi vastaajaa ovat kokeneet</span>
+<span id="cb39-384"><a href="#cb39-384" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb39-385"><a href="#cb39-385" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-386"><a href="#cb39-386" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k18_5_2`</span> (pakotettu seksuaalinen teko tai raiskaus, tai näiden yritys, organisaation ulkopuolinen, havaittu): Vain kaksi vastaajaa ovat havainneet</span>
+<span id="cb39-386"><a href="#cb39-386" aria-hidden="true" tabindex="-1"></a>Tarkistettavista muuttujista seuraavilla esiintyi ongelmia:</span>
 <span id="cb39-387"><a href="#cb39-387" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-388"><a href="#cb39-388" aria-hidden="true" tabindex="-1"></a>Poistimme nämä muuttujat datatiedostosta kokonaan.</span>
+<span id="cb39-388"><a href="#cb39-388" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k7_10_1`</span> (aseella tai voimankäyttövälineellä uhkaaminen, organisaation sisäinen, itse koettu): Vain neljä vastaajaa ovat kokeneet</span>
 <span id="cb39-389"><a href="#cb39-389" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-392"><a href="#cb39-392" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb39-393"><a href="#cb39-393" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: anon-05-muutokset</span></span>
-<span id="cb39-394"><a href="#cb39-394" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-395"><a href="#cb39-395" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
-<span id="cb39-396"><a href="#cb39-396" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">!</span><span class="fu">all_of</span>(<span class="fu">c</span>(<span class="st">"k7_10_1"</span>, <span class="st">"k8_11_2"</span>, <span class="st">"k9_5_1"</span>, <span class="st">"k18_5_1"</span>, <span class="st">"k18_5_2"</span>)))</span>
+<span id="cb39-390"><a href="#cb39-390" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k8_11_2`</span> (voimankäyttövälineellä tai aseella vahingoittaminen, organisaation sisäinen, havaittu): Vain yksi vastaaja on havainnut</span>
+<span id="cb39-391"><a href="#cb39-391" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-392"><a href="#cb39-392" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k9_5_1`</span> (pakotettu seksuaalinen teko tai raiskaus, tai näiden yritys, organisaation sisäinen, itse koettu): Vain kolme vastaajaa ovat kokeneet</span>
+<span id="cb39-393"><a href="#cb39-393" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-394"><a href="#cb39-394" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k18_5_1`</span> (pakotettu seksuaalinen teko tai raiskaus, tai näiden yritys, organisaation ulkopuolinen, itse koettu): Vain kaksi vastaajaa ovat kokeneet</span>
+<span id="cb39-395"><a href="#cb39-395" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-396"><a href="#cb39-396" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k18_5_2`</span> (pakotettu seksuaalinen teko tai raiskaus, tai näiden yritys, organisaation ulkopuolinen, havaittu): Vain kaksi vastaajaa ovat havainneet</span>
 <span id="cb39-397"><a href="#cb39-397" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-398"><a href="#cb39-398" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb39-398"><a href="#cb39-398" aria-hidden="true" tabindex="-1"></a>Poistimme nämä muuttujat datatiedostosta kokonaan.</span>
 <span id="cb39-399"><a href="#cb39-399" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-400"><a href="#cb39-400" aria-hidden="true" tabindex="-1"></a><span class="fu">## Kohta 3: Taustamuuttujien k-anonymisointi toisiaan vastaan {#sec-anonymisointi-kohta3}</span></span>
-<span id="cb39-401"><a href="#cb39-401" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-402"><a href="#cb39-402" aria-hidden="true" tabindex="-1"></a>Tarkistimme taustamuuttujien 4-anonymiteetin ristiintaulukoimalla yllä mainitut muuttujayhdistelmät yksitellen ja viemällä tulokset Excel-taulukkoon. Taulukossa kokeilimme erilaisia kategoriayhdistämisiä tarkistaaksemme, millaisia vaikutuksia anonymiteetin täyttymiseen niillä olisi.</span>
-<span id="cb39-403"><a href="#cb39-403" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-406"><a href="#cb39-406" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb39-407"><a href="#cb39-407" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: anon-06-taustamuuttujat-k_anon-2</span></span>
-<span id="cb39-408"><a href="#cb39-408" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-409"><a href="#cb39-409" aria-hidden="true" tabindex="-1"></a><span class="fu">k_anonymity</span>(data, <span class="at">limit =</span> <span class="dv">5</span>, k2, Organisaatioasema, k32) <span class="sc">|&gt;</span> <span class="fu">filter</span>(Freq <span class="sc">!=</span> <span class="dv">0</span>)</span>
-<span id="cb39-410"><a href="#cb39-410" aria-hidden="true" tabindex="-1"></a><span class="fu">k_anonymity</span>(data, <span class="at">limit =</span> <span class="dv">5</span>, k2, Organisaatioasema, k33) <span class="sc">|&gt;</span> <span class="fu">filter</span>(Freq <span class="sc">!=</span> <span class="dv">0</span>)</span>
-<span id="cb39-411"><a href="#cb39-411" aria-hidden="true" tabindex="-1"></a><span class="fu">k_anonymity</span>(data, <span class="at">limit =</span> <span class="dv">5</span>, k2, Organisaatioasema, k34) <span class="sc">|&gt;</span> <span class="fu">filter</span>(Freq <span class="sc">!=</span> <span class="dv">0</span>)</span>
-<span id="cb39-412"><a href="#cb39-412" aria-hidden="true" tabindex="-1"></a><span class="fu">k_anonymity</span>(data, <span class="at">limit =</span> <span class="dv">5</span>, k2, Organisaatioasema, k35) <span class="sc">|&gt;</span> <span class="fu">filter</span>(Freq <span class="sc">!=</span> <span class="dv">0</span>)</span>
-<span id="cb39-413"><a href="#cb39-413" aria-hidden="true" tabindex="-1"></a><span class="fu">k_anonymity</span>(data, <span class="at">limit =</span> <span class="dv">5</span>, k2, Organisaatioasema, k37) <span class="sc">|&gt;</span> <span class="fu">filter</span>(Freq <span class="sc">!=</span> <span class="dv">0</span>)</span>
-<span id="cb39-414"><a href="#cb39-414" aria-hidden="true" tabindex="-1"></a><span class="fu">k_anonymity</span>(data, <span class="at">limit =</span> <span class="dv">5</span>, k2, Organisaatioasema, k41) <span class="sc">|&gt;</span> <span class="fu">filter</span>(Freq <span class="sc">!=</span> <span class="dv">0</span>)</span>
-<span id="cb39-415"><a href="#cb39-415" aria-hidden="true" tabindex="-1"></a><span class="fu">k_anonymity</span>(data, <span class="at">limit =</span> <span class="dv">5</span>, k2, Organisaatioasema, k31) <span class="sc">|&gt;</span> <span class="fu">filter</span>(Freq <span class="sc">!=</span> <span class="dv">0</span>)</span>
-<span id="cb39-416"><a href="#cb39-416" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-417"><a href="#cb39-417" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb39-402"><a href="#cb39-402" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb39-403"><a href="#cb39-403" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: anon-05-muutokset</span></span>
+<span id="cb39-404"><a href="#cb39-404" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-405"><a href="#cb39-405" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb39-406"><a href="#cb39-406" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">!</span><span class="fu">all_of</span>(<span class="fu">c</span>(<span class="st">"k7_10_1"</span>, <span class="st">"k8_11_2"</span>, <span class="st">"k9_5_1"</span>, <span class="st">"k18_5_1"</span>, <span class="st">"k18_5_2"</span>)))</span>
+<span id="cb39-407"><a href="#cb39-407" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-408"><a href="#cb39-408" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb39-409"><a href="#cb39-409" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-410"><a href="#cb39-410" aria-hidden="true" tabindex="-1"></a><span class="fu">## Kohta 3: Taustamuuttujien k-anonymisointi toisiaan vastaan {#sec-anonymisointi-kohta3}</span></span>
+<span id="cb39-411"><a href="#cb39-411" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-412"><a href="#cb39-412" aria-hidden="true" tabindex="-1"></a>Tarkistimme taustamuuttujien 4-anonymiteetin ristiintaulukoimalla yllä mainitut muuttujayhdistelmät yksitellen ja viemällä tulokset Excel-taulukkoon. Taulukossa kokeilimme erilaisia kategoriayhdistämisiä tarkistaaksemme, millaisia vaikutuksia anonymiteetin täyttymiseen niillä olisi.</span>
+<span id="cb39-413"><a href="#cb39-413" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-416"><a href="#cb39-416" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb39-417"><a href="#cb39-417" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: anon-06-taustamuuttujat-k_anon-2</span></span>
 <span id="cb39-418"><a href="#cb39-418" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-419"><a href="#cb39-419" aria-hidden="true" tabindex="-1"></a>Anonymiteettiä tarkastellessa emme ottaneet huomioon arvoa <span class="in">`-1`</span>. Vastaaja on saanut tämän arvon, jos hänelle ei olla näytetty kysymystä; arvo määräytyy täydellisesti organisaatiokuuluvuudesta, jolloin siitä ei voida päätellä mitään uniikkia tietoa.</span>
-<span id="cb39-420"><a href="#cb39-420" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-421"><a href="#cb39-421" aria-hidden="true" tabindex="-1"></a>Sopimuspalokuntien ja palokuntayhdistysten työrytmimuuttujien kohdalla muutoksia ei tarvittu tehdä ollenkaan, sillä 4-anonymiteetin kriteerit täyttyivät valmiiksi.</span>
-<span id="cb39-422"><a href="#cb39-422" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-423"><a href="#cb39-423" aria-hidden="true" tabindex="-1"></a>Sukupuolen osalta totesimme, että arvoa <span class="in">`3`</span> (muunsukupuolinen tai ei halua vastata) ei tarvita anonymisoida enempää, sillä arvosta ei enää voi päätellä, onko vastaajan sukupuoli muu kuin mies tai nainen, vai onko hän pidättäytynyt antamasta sukupuoltaan. Arvo ei siten sisällä pääteltävissä olevaa henkilötietoa.</span>
-<span id="cb39-424"><a href="#cb39-424" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-425"><a href="#cb39-425" aria-hidden="true" tabindex="-1"></a>Pelastuslaitosten ja ensihoidon työrytmimuuttujan (<span class="in">`k32`</span>) osalta tunnistimme ongelmaksi johdon ja hallinnollisen henkilöstön 12-tuntisten päivien vastaajat.</span>
+<span id="cb39-419"><a href="#cb39-419" aria-hidden="true" tabindex="-1"></a><span class="fu">k_anonymity</span>(data, <span class="at">limit =</span> <span class="dv">5</span>, k2, Organisaatioasema, k32) <span class="sc">|&gt;</span> <span class="fu">filter</span>(Freq <span class="sc">!=</span> <span class="dv">0</span>)</span>
+<span id="cb39-420"><a href="#cb39-420" aria-hidden="true" tabindex="-1"></a><span class="fu">k_anonymity</span>(data, <span class="at">limit =</span> <span class="dv">5</span>, k2, Organisaatioasema, k33) <span class="sc">|&gt;</span> <span class="fu">filter</span>(Freq <span class="sc">!=</span> <span class="dv">0</span>)</span>
+<span id="cb39-421"><a href="#cb39-421" aria-hidden="true" tabindex="-1"></a><span class="fu">k_anonymity</span>(data, <span class="at">limit =</span> <span class="dv">5</span>, k2, Organisaatioasema, k34) <span class="sc">|&gt;</span> <span class="fu">filter</span>(Freq <span class="sc">!=</span> <span class="dv">0</span>)</span>
+<span id="cb39-422"><a href="#cb39-422" aria-hidden="true" tabindex="-1"></a><span class="fu">k_anonymity</span>(data, <span class="at">limit =</span> <span class="dv">5</span>, k2, Organisaatioasema, k35) <span class="sc">|&gt;</span> <span class="fu">filter</span>(Freq <span class="sc">!=</span> <span class="dv">0</span>)</span>
+<span id="cb39-423"><a href="#cb39-423" aria-hidden="true" tabindex="-1"></a><span class="fu">k_anonymity</span>(data, <span class="at">limit =</span> <span class="dv">5</span>, k2, Organisaatioasema, k37) <span class="sc">|&gt;</span> <span class="fu">filter</span>(Freq <span class="sc">!=</span> <span class="dv">0</span>)</span>
+<span id="cb39-424"><a href="#cb39-424" aria-hidden="true" tabindex="-1"></a><span class="fu">k_anonymity</span>(data, <span class="at">limit =</span> <span class="dv">5</span>, k2, Organisaatioasema, k41) <span class="sc">|&gt;</span> <span class="fu">filter</span>(Freq <span class="sc">!=</span> <span class="dv">0</span>)</span>
+<span id="cb39-425"><a href="#cb39-425" aria-hidden="true" tabindex="-1"></a><span class="fu">k_anonymity</span>(data, <span class="at">limit =</span> <span class="dv">5</span>, k2, Organisaatioasema, k31) <span class="sc">|&gt;</span> <span class="fu">filter</span>(Freq <span class="sc">!=</span> <span class="dv">0</span>)</span>
 <span id="cb39-426"><a href="#cb39-426" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-427"><a href="#cb39-427" aria-hidden="true" tabindex="-1"></a>Järjestöjen ja koulutusorganisaatioiden työrytmimuuttujan (<span class="in">`k37`</span>) osalta tunnistimme yhden ongelman: hallinnollisen ja opetushenkilöstön työ- tai virkavapaalla olevat vastaajat.</span>
+<span id="cb39-427"><a href="#cb39-427" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb39-428"><a href="#cb39-428" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-429"><a href="#cb39-429" aria-hidden="true" tabindex="-1"></a>Työuran pituuden (<span class="in">`k41`</span>) tarkastelussa tunnistimme useita ongelmia. Useimmat ongelmat eivät korjaannu organisaatioaseman tai organisaatiokuuluvuuden yhdistämisellä. Vähentämällä fraktiileja neljään korjasimme useimmat ongelmat.</span>
+<span id="cb39-429"><a href="#cb39-429" aria-hidden="true" tabindex="-1"></a>Anonymiteettiä tarkastellessa emme ottaneet huomioon arvoa <span class="in">`-1`</span>. Vastaaja on saanut tämän arvon, jos hänelle ei olla näytetty kysymystä; arvo määräytyy täydellisesti organisaatiokuuluvuudesta, jolloin siitä ei voida päätellä mitään uniikkia tietoa.</span>
 <span id="cb39-430"><a href="#cb39-430" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-431"><a href="#cb39-431" aria-hidden="true" tabindex="-1"></a>Korjataksemme useimmat ongelmat, päätimme tehdä seuraavat muutokset:</span>
+<span id="cb39-431"><a href="#cb39-431" aria-hidden="true" tabindex="-1"></a>Sopimuspalokuntien ja palokuntayhdistysten työrytmimuuttujien kohdalla muutoksia ei tarvittu tehdä ollenkaan, sillä 4-anonymiteetin kriteerit täyttyivät valmiiksi.</span>
 <span id="cb39-432"><a href="#cb39-432" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-433"><a href="#cb39-433" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Organisaatiokuuluvuudessa (<span class="in">`k2`</span>) yhdistimme järjestöt ja koulutusorganisaatiot (<span class="in">`3`</span> ja <span class="in">`4`</span>) arvoksi <span class="in">`3`</span>. Täten arvoa <span class="in">`4`</span> ei enää ole, ja muuttujalla on kolme kategoriaa: <span class="in">`1`</span> (Pelastuslaitokset ja ensihoito), <span class="in">`2`</span> (Sopimuspalokunnat ja palokuntayhdistykset) ja <span class="in">`3`</span> (Pelastusalan valtakunnalliset järjestöt, pelastusliitot sekä koulutusorganisaatiot).</span>
+<span id="cb39-433"><a href="#cb39-433" aria-hidden="true" tabindex="-1"></a>Sukupuolen osalta totesimme, että arvoa <span class="in">`3`</span> (muunsukupuolinen tai ei halua vastata) ei tarvita anonymisoida enempää, sillä arvosta ei enää voi päätellä, onko vastaajan sukupuoli muu kuin mies tai nainen, vai onko hän pidättäytynyt antamasta sukupuoltaan. Arvo ei siten sisällä pääteltävissä olevaa henkilötietoa.</span>
 <span id="cb39-434"><a href="#cb39-434" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-435"><a href="#cb39-435" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Organisaatioasemassa (<span class="in">`Organisaatioasema`</span>) yhdistimme johto- ja esihenkilötason, asiantuntijatason sekä hallinnollisen ja tukipalveluhenkilöstötason (arvot <span class="in">`1`</span>, <span class="in">`3`</span> ja <span class="in">`4`</span>) arvoksi <span class="in">`1`</span>. Muutimme arvojen numerointia sopivammaksi, jolloin muuttujalla on neljä kategoriaa: <span class="in">`1`</span> (Johto, asiantuntijat ja hallinto), <span class="in">`2`</span> (Suorittava henkilöstö), <span class="in">`3`</span> (Opetushenkilöstö) ja <span class="in">`4`</span> (Opiskelija)</span>
+<span id="cb39-435"><a href="#cb39-435" aria-hidden="true" tabindex="-1"></a>Pelastuslaitosten ja ensihoidon työrytmimuuttujan (<span class="in">`k32`</span>) osalta tunnistimme ongelmaksi johdon ja hallinnollisen henkilöstön 12-tuntisten päivien vastaajat.</span>
 <span id="cb39-436"><a href="#cb39-436" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-437"><a href="#cb39-437" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Vähensimme työuran pituuden (<span class="in">`k41`</span>) fraktiileja neljäksi. Muutos jouduttiin tekemään takautuvasti tässä dokumentissa, sillä aikaisempi data tuhottiin ensimmäisessä fraktiilimuutoksessa. Dokumentissa on huomio alaviitteenä fraktiilikoodauksen kohdassa.</span>
+<span id="cb39-437"><a href="#cb39-437" aria-hidden="true" tabindex="-1"></a>Järjestöjen ja koulutusorganisaatioiden työrytmimuuttujan (<span class="in">`k37`</span>) osalta tunnistimme yhden ongelman: hallinnollisen ja opetushenkilöstön työ- tai virkavapaalla olevat vastaajat.</span>
 <span id="cb39-438"><a href="#cb39-438" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-439"><a href="#cb39-439" aria-hidden="true" tabindex="-1"></a>Muutosehdotusten lisäksi jouduimme muuttamaan vastausarvoja neljälle vastaajalle, jotta heidän anonymiteettinsa voidaan taata:</span>
+<span id="cb39-439"><a href="#cb39-439" aria-hidden="true" tabindex="-1"></a>Työuran pituuden (<span class="in">`k41`</span>) tarkastelussa tunnistimme useita ongelmia. Useimmat ongelmat eivät korjaannu organisaatioaseman tai organisaatiokuuluvuuden yhdistämisellä. Vähentämällä fraktiileja neljään korjasimme useimmat ongelmat.</span>
 <span id="cb39-440"><a href="#cb39-440" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-441"><a href="#cb39-441" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Yksi asiantuntija sopimuspalokunnista tai palokuntayhdistyksistä, joka työskentelee virasto- tai toimistotyöajalla muutettiin pelastuslaitoksen tai ensihoidon henkilöstöksi. Vaikka taustamuuttujista ei yksittäin luultavasti voitaisi tunnistaa vastaajaa, hänen muut vastauksensa voivat riittää yksilöimään hänet. Vastaanottavassa ryhmässä on yli 4 vastaajaa jokaisessa taustamuuttujatarkastuksessa, joten tunnistettavuuden riski laskee huomattavasti.</span>
+<span id="cb39-441"><a href="#cb39-441" aria-hidden="true" tabindex="-1"></a>Korjataksemme useimmat ongelmat, päätimme tehdä seuraavat muutokset:</span>
 <span id="cb39-442"><a href="#cb39-442" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-443"><a href="#cb39-443" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Kolme naispuolista opiskelijaa järjestöistä tai koulutusorganisaatioista muutettiin satunnaisesti joko miespuolisiksi tai muu-ryhmään. Kuten yllä, näiden vastaajien anonymiteetti olisi voinut rikkoutua muiden vastausten tarkistuksessa. Vastaanottavissa ryhmissä on yli 4 vastajaa jokaisessa taustamuuttujatarkastuksessa, joten tunnistettavuuden riski laskee niin ikään näille vastaajille huomattavasti.</span>
+<span id="cb39-443"><a href="#cb39-443" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Organisaatiokuuluvuudessa (<span class="in">`k2`</span>) yhdistimme järjestöt ja koulutusorganisaatiot (<span class="in">`3`</span> ja <span class="in">`4`</span>) arvoksi <span class="in">`3`</span>. Täten arvoa <span class="in">`4`</span> ei enää ole, ja muuttujalla on kolme kategoriaa: <span class="in">`1`</span> (Pelastuslaitokset ja ensihoito), <span class="in">`2`</span> (Sopimuspalokunnat ja palokuntayhdistykset) ja <span class="in">`3`</span> (Pelastusalan valtakunnalliset järjestöt, pelastusliitot sekä koulutusorganisaatiot).</span>
 <span id="cb39-444"><a href="#cb39-444" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-445"><a href="#cb39-445" aria-hidden="true" tabindex="-1"></a>Emme näe, että kyselytutkimuksen myöhemmät tulokset vaikuttuvat suuresti näiden vastaajien datamuunnoksista. Anonymiteetin kannalta hyöty on tutkimuksellista haittaa nähden suurempi.</span>
+<span id="cb39-445"><a href="#cb39-445" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Organisaatioasemassa (<span class="in">`Organisaatioasema`</span>) yhdistimme johto- ja esihenkilötason, asiantuntijatason sekä hallinnollisen ja tukipalveluhenkilöstötason (arvot <span class="in">`1`</span>, <span class="in">`3`</span> ja <span class="in">`4`</span>) arvoksi <span class="in">`1`</span>. Muutimme arvojen numerointia sopivammaksi, jolloin muuttujalla on neljä kategoriaa: <span class="in">`1`</span> (Johto, asiantuntijat ja hallinto), <span class="in">`2`</span> (Suorittava henkilöstö), <span class="in">`3`</span> (Opetushenkilöstö) ja <span class="in">`4`</span> (Opiskelija)</span>
 <span id="cb39-446"><a href="#cb39-446" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-447"><a href="#cb39-447" aria-hidden="true" tabindex="-1"></a>Tilastoteknisesti teimme neljän vastaajan datamuunnokset ensin ja kategorioiden yhdistämiset jälkeen.</span>
+<span id="cb39-447"><a href="#cb39-447" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Vähensimme työuran pituuden (<span class="in">`k41`</span>) fraktiileja neljäksi. Muutos jouduttiin tekemään takautuvasti tässä dokumentissa, sillä aikaisempi data tuhottiin ensimmäisessä fraktiilimuutoksessa. Dokumentissa on huomio alaviitteenä fraktiilikoodauksen kohdassa.</span>
 <span id="cb39-448"><a href="#cb39-448" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-451"><a href="#cb39-451" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb39-452"><a href="#cb39-452" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: anon-07-muutokset</span></span>
-<span id="cb39-453"><a href="#cb39-453" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-454"><a href="#cb39-454" aria-hidden="true" tabindex="-1"></a><span class="co"># Asiantuntija sopimuspalokunnista tai palokuntayhdistyksistä, joka työskentelee virasto- tai toimistotyöajalla muutetaan pelastuslaitoksen tai ensihoidon henkilöstöksi</span></span>
-<span id="cb39-455"><a href="#cb39-455" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>k2 <span class="ot">&lt;-</span> <span class="fu">replace</span>(</span>
-<span id="cb39-456"><a href="#cb39-456" aria-hidden="true" tabindex="-1"></a>  data<span class="sc">$</span>k2,</span>
-<span id="cb39-457"><a href="#cb39-457" aria-hidden="true" tabindex="-1"></a>  data<span class="sc">$</span>ID <span class="sc">==</span> <span class="dv">260</span>,</span>
-<span id="cb39-458"><a href="#cb39-458" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span></span>
-<span id="cb39-459"><a href="#cb39-459" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb39-460"><a href="#cb39-460" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-461"><a href="#cb39-461" aria-hidden="true" tabindex="-1"></a><span class="co"># Naispuoliset opiskelijat järjestöistä tai koulutusorganisaatioista muutetaan satunnaisesti miespuolisiksi tai muu-ryhmään</span></span>
-<span id="cb39-462"><a href="#cb39-462" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>k31 <span class="ot">&lt;-</span> <span class="fu">replace</span>(</span>
-<span id="cb39-463"><a href="#cb39-463" aria-hidden="true" tabindex="-1"></a>  data<span class="sc">$</span>k31,</span>
-<span id="cb39-464"><a href="#cb39-464" aria-hidden="true" tabindex="-1"></a>  data<span class="sc">$</span>ID <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">181</span>, <span class="dv">182</span>, <span class="dv">187</span>),</span>
-<span id="cb39-465"><a href="#cb39-465" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>), <span class="dv">1</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb39-466"><a href="#cb39-466" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb39-467"><a href="#cb39-467" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-468"><a href="#cb39-468" aria-hidden="true" tabindex="-1"></a><span class="co"># Organisaatiokuuluvuuden muutos</span></span>
-<span id="cb39-469"><a href="#cb39-469" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
-<span id="cb39-470"><a href="#cb39-470" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb39-471"><a href="#cb39-471" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
-<span id="cb39-472"><a href="#cb39-472" aria-hidden="true" tabindex="-1"></a>      k2,</span>
-<span id="cb39-473"><a href="#cb39-473" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_match</span>(</span>
-<span id="cb39-474"><a href="#cb39-474" aria-hidden="true" tabindex="-1"></a>        .x,</span>
-<span id="cb39-475"><a href="#cb39-475" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb39-476"><a href="#cb39-476" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
-<span id="cb39-477"><a href="#cb39-477" aria-hidden="true" tabindex="-1"></a>        <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>) <span class="sc">~</span> <span class="dv">3</span></span>
-<span id="cb39-478"><a href="#cb39-478" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb39-479"><a href="#cb39-479" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb39-480"><a href="#cb39-480" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb39-481"><a href="#cb39-481" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-482"><a href="#cb39-482" aria-hidden="true" tabindex="-1"></a><span class="co"># Organisaatioaseman muutos</span></span>
-<span id="cb39-483"><a href="#cb39-483" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
-<span id="cb39-484"><a href="#cb39-484" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb39-485"><a href="#cb39-485" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
-<span id="cb39-486"><a href="#cb39-486" aria-hidden="true" tabindex="-1"></a>      Organisaatioasema,</span>
-<span id="cb39-487"><a href="#cb39-487" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_match</span>(</span>
-<span id="cb39-488"><a href="#cb39-488" aria-hidden="true" tabindex="-1"></a>        .x,</span>
-<span id="cb39-489"><a href="#cb39-489" aria-hidden="true" tabindex="-1"></a>        <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>) <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb39-490"><a href="#cb39-490" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
-<span id="cb39-491"><a href="#cb39-491" aria-hidden="true" tabindex="-1"></a>        <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">5</span>) <span class="sc">~</span> <span class="dv">3</span>,</span>
-<span id="cb39-492"><a href="#cb39-492" aria-hidden="true" tabindex="-1"></a>        <span class="dv">6</span> <span class="sc">~</span> <span class="dv">4</span></span>
-<span id="cb39-493"><a href="#cb39-493" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb39-494"><a href="#cb39-494" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb39-495"><a href="#cb39-495" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb39-496"><a href="#cb39-496" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-497"><a href="#cb39-497" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb39-498"><a href="#cb39-498" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-499"><a href="#cb39-499" aria-hidden="true" tabindex="-1"></a><span class="fu">## Kohta 4: Harvinaisten ilmiöiden k-anonymisointi taustamuuttujia vastaan {#sec-anonymisointi-kohta4}</span></span>
-<span id="cb39-500"><a href="#cb39-500" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-501"><a href="#cb39-501" aria-hidden="true" tabindex="-1"></a>**Tässä on ongelmia käytännössä kaikilla muuttujilla. Tämän toteuttaminen johtaisi melkein kaikkien sensitiivisten muuttujien poistamiseen. Konsultoidaan Tietoarkistoa asiasta ennen toteuttamista, ja tehdään väliaikaiset tulokset anonymisoituna käsin (alle 5 ei ilmaista numerona).**</span>
-<span id="cb39-502"><a href="#cb39-502" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-503"><a href="#cb39-503" aria-hidden="true" tabindex="-1"></a><span class="fu">## Kooste muutoksista {#sec-anonymisointi-kooste}</span></span>
-<span id="cb39-504"><a href="#cb39-504" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-505"><a href="#cb39-505" aria-hidden="true" tabindex="-1"></a>Seuraavat muutokset tehtiin datatiedostolle:</span>
+<span id="cb39-449"><a href="#cb39-449" aria-hidden="true" tabindex="-1"></a>Muutosehdotusten lisäksi jouduimme muuttamaan vastausarvoja neljälle vastaajalle, jotta heidän anonymiteettinsa voidaan taata:</span>
+<span id="cb39-450"><a href="#cb39-450" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-451"><a href="#cb39-451" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Yksi asiantuntija sopimuspalokunnista tai palokuntayhdistyksistä, joka työskentelee virasto- tai toimistotyöajalla muutettiin pelastuslaitoksen tai ensihoidon henkilöstöksi. Vaikka taustamuuttujista ei yksittäin luultavasti voitaisi tunnistaa vastaajaa, hänen muut vastauksensa voivat riittää yksilöimään hänet. Vastaanottavassa ryhmässä on yli 4 vastaajaa jokaisessa taustamuuttujatarkastuksessa, joten tunnistettavuuden riski laskee huomattavasti.</span>
+<span id="cb39-452"><a href="#cb39-452" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-453"><a href="#cb39-453" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Kolme naispuolista opiskelijaa järjestöistä tai koulutusorganisaatioista muutettiin satunnaisesti joko miespuolisiksi tai muu-ryhmään. Kuten yllä, näiden vastaajien anonymiteetti olisi voinut rikkoutua muiden vastausten tarkistuksessa. Vastaanottavissa ryhmissä on yli 4 vastajaa jokaisessa taustamuuttujatarkastuksessa, joten tunnistettavuuden riski laskee niin ikään näille vastaajille huomattavasti.</span>
+<span id="cb39-454"><a href="#cb39-454" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-455"><a href="#cb39-455" aria-hidden="true" tabindex="-1"></a>Emme näe, että kyselytutkimuksen myöhemmät tulokset vaikuttuvat suuresti näiden vastaajien datamuunnoksista. Anonymiteetin kannalta hyöty on tutkimuksellista haittaa nähden suurempi.</span>
+<span id="cb39-456"><a href="#cb39-456" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-457"><a href="#cb39-457" aria-hidden="true" tabindex="-1"></a>Tilastoteknisesti teimme neljän vastaajan datamuunnokset ensin ja kategorioiden yhdistämiset jälkeen.</span>
+<span id="cb39-458"><a href="#cb39-458" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-461"><a href="#cb39-461" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb39-462"><a href="#cb39-462" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: anon-07-muutokset</span></span>
+<span id="cb39-463"><a href="#cb39-463" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-464"><a href="#cb39-464" aria-hidden="true" tabindex="-1"></a><span class="co"># Asiantuntija sopimuspalokunnista tai palokuntayhdistyksistä, joka työskentelee virasto- tai toimistotyöajalla muutetaan pelastuslaitoksen tai ensihoidon henkilöstöksi</span></span>
+<span id="cb39-465"><a href="#cb39-465" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>k2 <span class="ot">&lt;-</span> <span class="fu">replace</span>(</span>
+<span id="cb39-466"><a href="#cb39-466" aria-hidden="true" tabindex="-1"></a>  data<span class="sc">$</span>k2,</span>
+<span id="cb39-467"><a href="#cb39-467" aria-hidden="true" tabindex="-1"></a>  data<span class="sc">$</span>ID <span class="sc">==</span> <span class="dv">260</span>,</span>
+<span id="cb39-468"><a href="#cb39-468" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span></span>
+<span id="cb39-469"><a href="#cb39-469" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb39-470"><a href="#cb39-470" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-471"><a href="#cb39-471" aria-hidden="true" tabindex="-1"></a><span class="co"># Naispuoliset opiskelijat järjestöistä tai koulutusorganisaatioista muutetaan satunnaisesti miespuolisiksi tai muu-ryhmään</span></span>
+<span id="cb39-472"><a href="#cb39-472" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>k31 <span class="ot">&lt;-</span> <span class="fu">replace</span>(</span>
+<span id="cb39-473"><a href="#cb39-473" aria-hidden="true" tabindex="-1"></a>  data<span class="sc">$</span>k31,</span>
+<span id="cb39-474"><a href="#cb39-474" aria-hidden="true" tabindex="-1"></a>  data<span class="sc">$</span>ID <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">181</span>, <span class="dv">182</span>, <span class="dv">187</span>),</span>
+<span id="cb39-475"><a href="#cb39-475" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>), <span class="dv">1</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb39-476"><a href="#cb39-476" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb39-477"><a href="#cb39-477" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-478"><a href="#cb39-478" aria-hidden="true" tabindex="-1"></a><span class="co"># Organisaatiokuuluvuuden muutos</span></span>
+<span id="cb39-479"><a href="#cb39-479" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb39-480"><a href="#cb39-480" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb39-481"><a href="#cb39-481" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
+<span id="cb39-482"><a href="#cb39-482" aria-hidden="true" tabindex="-1"></a>      k2,</span>
+<span id="cb39-483"><a href="#cb39-483" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_match</span>(</span>
+<span id="cb39-484"><a href="#cb39-484" aria-hidden="true" tabindex="-1"></a>        .x,</span>
+<span id="cb39-485"><a href="#cb39-485" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb39-486"><a href="#cb39-486" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
+<span id="cb39-487"><a href="#cb39-487" aria-hidden="true" tabindex="-1"></a>        <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>) <span class="sc">~</span> <span class="dv">3</span></span>
+<span id="cb39-488"><a href="#cb39-488" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb39-489"><a href="#cb39-489" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb39-490"><a href="#cb39-490" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb39-491"><a href="#cb39-491" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-492"><a href="#cb39-492" aria-hidden="true" tabindex="-1"></a><span class="co"># Organisaatioaseman muutos</span></span>
+<span id="cb39-493"><a href="#cb39-493" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb39-494"><a href="#cb39-494" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb39-495"><a href="#cb39-495" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
+<span id="cb39-496"><a href="#cb39-496" aria-hidden="true" tabindex="-1"></a>      Organisaatioasema,</span>
+<span id="cb39-497"><a href="#cb39-497" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_match</span>(</span>
+<span id="cb39-498"><a href="#cb39-498" aria-hidden="true" tabindex="-1"></a>        .x,</span>
+<span id="cb39-499"><a href="#cb39-499" aria-hidden="true" tabindex="-1"></a>        <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>) <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb39-500"><a href="#cb39-500" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
+<span id="cb39-501"><a href="#cb39-501" aria-hidden="true" tabindex="-1"></a>        <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">5</span>) <span class="sc">~</span> <span class="dv">3</span>,</span>
+<span id="cb39-502"><a href="#cb39-502" aria-hidden="true" tabindex="-1"></a>        <span class="dv">6</span> <span class="sc">~</span> <span class="dv">4</span></span>
+<span id="cb39-503"><a href="#cb39-503" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb39-504"><a href="#cb39-504" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb39-505"><a href="#cb39-505" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb39-506"><a href="#cb39-506" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-507"><a href="#cb39-507" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Organisaatiokuuluvuus (<span class="in">`k2`</span>): Järjestöt (<span class="in">`3`</span>) ja koulutusorganisaatiot (<span class="in">`4`</span>) yhdistettiin yhdeksi luokaksi.</span>
+<span id="cb39-507"><a href="#cb39-507" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb39-508"><a href="#cb39-508" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-509"><a href="#cb39-509" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Uudet koodit: <span class="in">`1`</span> (Pelastuslaitokset ja ensihoito), <span class="in">`2`</span> (Sopimuspalokunnat ja palokuntayhdistykset), <span class="in">`3`</span> (Järjestöt, pelastusliitot ja koulut)</span>
+<span id="cb39-509"><a href="#cb39-509" aria-hidden="true" tabindex="-1"></a><span class="fu">## Kohta 4: Harvinaisten ilmiöiden k-anonymisointi taustamuuttujia vastaan {#sec-anonymisointi-kohta4}</span></span>
 <span id="cb39-510"><a href="#cb39-510" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-511"><a href="#cb39-511" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Poistimme seuraavat muuttujat:</span>
+<span id="cb39-511"><a href="#cb39-511" aria-hidden="true" tabindex="-1"></a>**Tässä on ongelmia käytännössä kaikilla muuttujilla. Tämän toteuttaminen johtaisi melkein kaikkien sensitiivisten muuttujien poistamiseen. Konsultoidaan Tietoarkistoa asiasta ennen toteuttamista, ja tehdään väliaikaiset tulokset anonymisoituna käsin (alle 5 ei ilmaista numerona).**</span>
 <span id="cb39-512"><a href="#cb39-512" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-513"><a href="#cb39-513" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="in">`k7_10_1`</span> (aseella tai voimankäyttövälineellä uhkaaminen, organisaation sisäinen, itse koettu)</span>
+<span id="cb39-513"><a href="#cb39-513" aria-hidden="true" tabindex="-1"></a><span class="fu">## Kooste muutoksista {#sec-anonymisointi-kooste}</span></span>
 <span id="cb39-514"><a href="#cb39-514" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-515"><a href="#cb39-515" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="in">`k8_11_2`</span> (voimankäyttövälineellä tai aseella vahingoittaminen, organisaation sisäinen, havaittu)</span>
+<span id="cb39-515"><a href="#cb39-515" aria-hidden="true" tabindex="-1"></a>Seuraavat muutokset tehtiin datatiedostolle:</span>
 <span id="cb39-516"><a href="#cb39-516" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-517"><a href="#cb39-517" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="in">`k9_5_1`</span> (pakotettu seksuaalinen teko tai raiskaus, tai näiden yritys, organisaation sisäinen, itse koettu)</span>
+<span id="cb39-517"><a href="#cb39-517" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Organisaatiokuuluvuus (<span class="in">`k2`</span>): Järjestöt (<span class="in">`3`</span>) ja koulutusorganisaatiot (<span class="in">`4`</span>) yhdistettiin yhdeksi luokaksi.</span>
 <span id="cb39-518"><a href="#cb39-518" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-519"><a href="#cb39-519" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="in">`k18_5_1`</span> (pakotettu seksuaalinen teko tai raiskaus, tai näiden yritys, organisaation ulkopuolinen, itse koettu)</span>
+<span id="cb39-519"><a href="#cb39-519" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Uudet koodit: <span class="in">`1`</span> (Pelastuslaitokset ja ensihoito), <span class="in">`2`</span> (Sopimuspalokunnat ja palokuntayhdistykset), <span class="in">`3`</span> (Järjestöt, pelastusliitot ja koulut)</span>
 <span id="cb39-520"><a href="#cb39-520" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-521"><a href="#cb39-521" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="in">`k18_5_2`</span> (pakotettu seksuaalinen teko tai raiskaus, tai näiden yritys, organisaation ulkopuolinen, havaittu)</span>
+<span id="cb39-521"><a href="#cb39-521" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Poistimme seuraavat muuttujat:</span>
 <span id="cb39-522"><a href="#cb39-522" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-523"><a href="#cb39-523" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Sukupuoli (<span class="in">`k31`</span>): Muunsukupuoliset (<span class="in">`3`</span>) ja vastaamisesta kieltäytyneet (<span class="in">`4`</span>) yhdistettiin yhdeksi luokaksi.</span>
+<span id="cb39-523"><a href="#cb39-523" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="in">`k7_10_1`</span> (aseella tai voimankäyttövälineellä uhkaaminen, organisaation sisäinen, itse koettu)</span>
 <span id="cb39-524"><a href="#cb39-524" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-525"><a href="#cb39-525" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Uudet koodit: <span class="in">`1`</span> (Nainen), <span class="in">`2`</span> (Mies), <span class="in">`3`</span> (Muu/EHV)</span>
+<span id="cb39-525"><a href="#cb39-525" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="in">`k8_11_2`</span> (voimankäyttövälineellä tai aseella vahingoittaminen, organisaation sisäinen, havaittu)</span>
 <span id="cb39-526"><a href="#cb39-526" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-527"><a href="#cb39-527" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Työrytmi, pelastuslaitokset tai ensihoito (<span class="in">`k32`</span>): Virasto- tai toimistotyöaika (<span class="in">`3`</span>) ja työ- tai virkavapaalla (<span class="in">`4`</span>) yhdistettiin yhdeksi luokaksi.</span>
+<span id="cb39-527"><a href="#cb39-527" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="in">`k9_5_1`</span> (pakotettu seksuaalinen teko tai raiskaus, tai näiden yritys, organisaation sisäinen, itse koettu)</span>
 <span id="cb39-528"><a href="#cb39-528" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-529"><a href="#cb39-529" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Uudet koodit: <span class="in">`1`</span> (24h työvuorot), <span class="in">`2`</span> (12h työvuorot), <span class="in">`3`</span> (Muu työaika tai vapaalla), <span class="in">`-1`</span> (ei esitetty)</span>
+<span id="cb39-529"><a href="#cb39-529" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="in">`k18_5_1`</span> (pakotettu seksuaalinen teko tai raiskaus, tai näiden yritys, organisaation ulkopuolinen, itse koettu)</span>
 <span id="cb39-530"><a href="#cb39-530" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-531"><a href="#cb39-531" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Viikottainen työmääräarvio, sopimuspalokunnat ja palokuntayhdistykset (<span class="in">`k33`</span>): 11-20 tuntia (<span class="in">`4`</span>) ja yli 21 tuntia (<span class="in">`5`</span>) yhdistettiin yhdeksi luokaksi.</span>
+<span id="cb39-531"><a href="#cb39-531" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="in">`k18_5_2`</span> (pakotettu seksuaalinen teko tai raiskaus, tai näiden yritys, organisaation ulkopuolinen, havaittu)</span>
 <span id="cb39-532"><a href="#cb39-532" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-533"><a href="#cb39-533" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Uudet koodit: <span class="in">`1`</span> (Alle 2 tuntia viikossa), <span class="in">`2`</span> (2-5 tuntia viikossa), <span class="in">`3`</span> (6-10 tuntia viikossa), <span class="in">`4`</span> (Yli 10 tuntia viikossa), <span class="in">`-1`</span> (ei esitetty)</span>
+<span id="cb39-533"><a href="#cb39-533" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Sukupuoli (<span class="in">`k31`</span>): Muunsukupuoliset (<span class="in">`3`</span>) ja vastaamisesta kieltäytyneet (<span class="in">`4`</span>) yhdistettiin yhdeksi luokaksi.</span>
 <span id="cb39-534"><a href="#cb39-534" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-535"><a href="#cb39-535" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Varallaolon kuukausittainen työmääräarvio, sopimuspalokunnat ja palokuntayhdistykset (<span class="in">`k35`</span>): 121-200 tuntia (<span class="in">`4`</span>) ja yli 200 tuntia (<span class="in">`5`</span>) yhdistettiin yhdeksi luokaksi.</span>
+<span id="cb39-535"><a href="#cb39-535" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Uudet koodit: <span class="in">`1`</span> (Nainen), <span class="in">`2`</span> (Mies), <span class="in">`3`</span> (Muu/EHV)</span>
 <span id="cb39-536"><a href="#cb39-536" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-537"><a href="#cb39-537" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Uudet koodit: <span class="in">`1`</span> (En ollenkaan), <span class="in">`2`</span> (1-60 tuntia), <span class="in">`3`</span> (61-120 tuntia), <span class="in">`4`</span> (Yli 120 tuntia), <span class="in">`-1`</span> (ei esitetty)</span>
+<span id="cb39-537"><a href="#cb39-537" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Työrytmi, pelastuslaitokset tai ensihoito (<span class="in">`k32`</span>): Virasto- tai toimistotyöaika (<span class="in">`3`</span>) ja työ- tai virkavapaalla (<span class="in">`4`</span>) yhdistettiin yhdeksi luokaksi.</span>
 <span id="cb39-538"><a href="#cb39-538" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-539"><a href="#cb39-539" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Organisaatioasema (<span class="in">`Organisaatioasema`</span>): Johto- tai esihenkilötaso (<span class="in">`1`</span>) ja hallinnollinen tai tukipalveluhenkilöstö (<span class="in">`4`</span>) yhdistettiin yhdeksi luokaksi, ja asiantuntijat (<span class="in">`3`</span>) ja opetushenkilöstö (<span class="in">`5`</span>) yhdistettiin yhdeksi luokaksi.</span>
+<span id="cb39-539"><a href="#cb39-539" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Uudet koodit: <span class="in">`1`</span> (24h työvuorot), <span class="in">`2`</span> (12h työvuorot), <span class="in">`3`</span> (Muu työaika tai vapaalla), <span class="in">`-1`</span> (ei esitetty)</span>
 <span id="cb39-540"><a href="#cb39-540" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-541"><a href="#cb39-541" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Uudet koodit: <span class="in">`1`</span> (Johto- tai hallintotaso), <span class="in">`2`</span> (Suorittava henkilöstö), <span class="in">`3`</span> (Asiantuntijat ja opettajat), <span class="in">`4`</span> (Opiskelijat)</span>
+<span id="cb39-541"><a href="#cb39-541" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Viikottainen työmääräarvio, sopimuspalokunnat ja palokuntayhdistykset (<span class="in">`k33`</span>): 11-20 tuntia (<span class="in">`4`</span>) ja yli 21 tuntia (<span class="in">`5`</span>) yhdistettiin yhdeksi luokaksi.</span>
 <span id="cb39-542"><a href="#cb39-542" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-543"><a href="#cb39-543" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Työuran pituus (<span class="in">`k41`</span>) luokiteltiin neljään fraktiiliin.</span>
+<span id="cb39-543"><a href="#cb39-543" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Uudet koodit: <span class="in">`1`</span> (Alle 2 tuntia viikossa), <span class="in">`2`</span> (2-5 tuntia viikossa), <span class="in">`3`</span> (6-10 tuntia viikossa), <span class="in">`4`</span> (Yli 10 tuntia viikossa), <span class="in">`-1`</span> (ei esitetty)</span>
 <span id="cb39-544"><a href="#cb39-544" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-545"><a href="#cb39-545" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Uudet koodit: <span class="in">`1`</span> (alin neljännes), <span class="in">`2`</span> (toinen neljännes), <span class="in">`3`</span> (kolmas neljännes), <span class="in">`4`</span> (ylin neljännes)</span>
+<span id="cb39-545"><a href="#cb39-545" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Varallaolon kuukausittainen työmääräarvio, sopimuspalokunnat ja palokuntayhdistykset (<span class="in">`k35`</span>): 121-200 tuntia (<span class="in">`4`</span>) ja yli 200 tuntia (<span class="in">`5`</span>) yhdistettiin yhdeksi luokaksi.</span>
 <span id="cb39-546"><a href="#cb39-546" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-547"><a href="#cb39-547" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Yhden vastaajan organisaatiokuuluvuus (<span class="in">`2`</span>) muutettiin suojataksemme vastaajan anonymiteettiä.</span>
+<span id="cb39-547"><a href="#cb39-547" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Uudet koodit: <span class="in">`1`</span> (En ollenkaan), <span class="in">`2`</span> (1-60 tuntia), <span class="in">`3`</span> (61-120 tuntia), <span class="in">`4`</span> (Yli 120 tuntia), <span class="in">`-1`</span> (ei esitetty)</span>
 <span id="cb39-548"><a href="#cb39-548" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-549"><a href="#cb39-549" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Kolmen vastaajan sukupuolet (<span class="in">`k31`</span>) muutettiin satunnaisesti suojataksemme vastaajien anonymiteettiä.</span>
+<span id="cb39-549"><a href="#cb39-549" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Organisaatioasema (<span class="in">`Organisaatioasema`</span>): Johto- tai esihenkilötaso (<span class="in">`1`</span>) ja hallinnollinen tai tukipalveluhenkilöstö (<span class="in">`4`</span>) yhdistettiin yhdeksi luokaksi, ja asiantuntijat (<span class="in">`3`</span>) ja opetushenkilöstö (<span class="in">`5`</span>) yhdistettiin yhdeksi luokaksi.</span>
 <span id="cb39-550"><a href="#cb39-550" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-551"><a href="#cb39-551" aria-hidden="true" tabindex="-1"></a><span class="fu">## Datan tallennus {#sec-anonymisointi-datantallennus}</span></span>
+<span id="cb39-551"><a href="#cb39-551" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Uudet koodit: <span class="in">`1`</span> (Johto- tai hallintotaso), <span class="in">`2`</span> (Suorittava henkilöstö), <span class="in">`3`</span> (Asiantuntijat ja opettajat), <span class="in">`4`</span> (Opiskelijat)</span>
 <span id="cb39-552"><a href="#cb39-552" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-553"><a href="#cb39-553" aria-hidden="true" tabindex="-1"></a>Anonymisoinnin jälkeen tallensimme lopullisen datatiedoston <span class="in">`csv`</span>-muotoon. Tallennusta ei ole saatavilla verkkosivun lähdekoodista tietosuojan takia.</span>
+<span id="cb39-553"><a href="#cb39-553" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Työuran pituus (<span class="in">`k41`</span>) luokiteltiin neljään fraktiiliin.</span>
 <span id="cb39-554"><a href="#cb39-554" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-557"><a href="#cb39-557" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb39-558"><a href="#cb39-558" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: anon-10-tallennus</span></span>
-<span id="cb39-559"><a href="#cb39-559" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-560"><a href="#cb39-560" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv2</span>(data, <span class="at">file =</span> <span class="st">"output/anonymisoitudata.csv"</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb39-561"><a href="#cb39-561" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-562"><a href="#cb39-562" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb39-555"><a href="#cb39-555" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Uudet koodit: <span class="in">`1`</span> (<span class="in">`r fraktiilit[2]`</span> vuotta tai alle), <span class="in">`2`</span> (<span class="in">`r fraktiilit[2]`</span> - <span class="in">`r fraktiilit[3]`</span> vuotta), <span class="in">`3`</span> (<span class="in">`r fraktiilit[3]`</span> - <span class="in">`r fraktiilit[4]`</span> vuotta), <span class="in">`4`</span> (<span class="in">`r fraktiilit[4]`</span> vuotta tai yli)</span>
+<span id="cb39-556"><a href="#cb39-556" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-557"><a href="#cb39-557" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Yhden vastaajan organisaatiokuuluvuus (<span class="in">`2`</span>) muutettiin suojataksemme vastaajan anonymiteettiä.</span>
+<span id="cb39-558"><a href="#cb39-558" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-559"><a href="#cb39-559" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Kolmen vastaajan sukupuolet (<span class="in">`k31`</span>) muutettiin satunnaisesti suojataksemme vastaajien anonymiteettiä.</span>
+<span id="cb39-560"><a href="#cb39-560" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-561"><a href="#cb39-561" aria-hidden="true" tabindex="-1"></a><span class="fu">## Datan tallennus {#sec-anonymisointi-datantallennus}</span></span>
+<span id="cb39-562"><a href="#cb39-562" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-563"><a href="#cb39-563" aria-hidden="true" tabindex="-1"></a>Anonymisoinnin jälkeen tallensimme lopullisen datatiedoston <span class="in">`csv`</span>-muotoon. Tallennusta ei ole saatavilla verkkosivun lähdekoodista tietosuojan takia.</span>
+<span id="cb39-564"><a href="#cb39-564" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-567"><a href="#cb39-567" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb39-568"><a href="#cb39-568" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: anon-10-tallennus</span></span>
+<span id="cb39-569"><a href="#cb39-569" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-570"><a href="#cb39-570" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv2</span>(data, <span class="at">file =</span> <span class="st">"output/anonymisoitudata.csv"</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb39-571"><a href="#cb39-571" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-572"><a href="#cb39-572" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

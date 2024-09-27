@@ -3,7 +3,8 @@
 .RData
 .Ruserdata
 /.quarto/
-/_site/
 **/TESTI*
 /output/
 /data/nimettydata.csv
+/*_cache/
+/_freeze/

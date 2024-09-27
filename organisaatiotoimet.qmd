@@ -1,0 +1,286 @@
+# Organisaatiotoimet {#sec-organisaatiotoimet}
+
+---
+eval: true
+---
+
+Tässä osiossa käsitellään organisaatioon liittyviä toimenpidekysymyksiä:
+
+-   Organisaation käyttämät toimet (`k28_1:k28_12`)
+-   Toimen koettu vaikutus (`k29_1:k29_12`)
+-   Erilaisten ehdotettujen toimenpiteiden koettu hyödyllisyys (`k30_1:k30_13`)
+
+```{r}
+#| label: organisaatiotoimet-00-paketit
+
+library(tidyverse)
+library(ggridges)
+
+```
+
+```{r}
+#| label: organisaatiotoimet-01-avaaminen
+
+data <- read.csv2("output/anonymisoitudata.csv", tryLogical = FALSE)
+
+```
+
+## Organisaation käyttämät toimet {#sec-organisaatiotoimet-kaytetyt}
+
+```{r}
+#| label: fig-organisaatiotoimet-kaytetyt
+#| fig-cap: "Organisaatioiden käyttämät toimet vastaajien käsityksen mukaan"
+
+# Muutetaan data pitkään formaattiin
+data_long <- data |>
+  select(k28_1:k28_12) |>
+  pivot_longer(
+    cols = k28_1:k28_12,
+    names_to = "variable",
+    values_to = "value"
+  )
+
+# Haetaan haluttu muuttujajärjestys sekä muuttujien vanhat ja uudet nimet
+jarjestys <- data_long |>
+  filter(value == 5) |>
+  group_by(variable) |>
+  summarise(ordercount = n()) |>
+  arrange(ordercount) |>
+  pull(variable)
+
+vanhat_nimet <- data |>
+  select(k28_1:k28_12) |>
+  colnames()
+
+uudet_nimet <- sapply(c(
+    "Tasa-arvo- tai yhdenvertaisuussuunnitelma",
+    "Toimintaohjeet epäasialliseen käytökseen, häirintään tai seksuaaliseen häirintään reagointiin",
+    "Henkilöstön turvallisuusselvitykset",
+    "Ohjeet alaikäisten koskemattomuuden turvaamiselle",
+    "Nuorten kanssa toimivien rikostaustojen tarkastaminen",
+    "Ohjeet ahdistelutilanteen käsittelyyn",
+    "Ohjeet uhka- ja väkivaltatilanteen käsittelyyn",
+    "Ilmoitusjärjestelmä epäasiallisen kohtelun raportoimiseksi",
+    "Koulutus uhka- ja väkivaltatilanteiden kohtaamiseen",
+    "Koulutus epäasiallisen kohtelun tunnistamiseen",
+    "Keskustelutilaisuuksia tasa-arvo- ja yhdenvertaisuusaiheista",
+    "Henkilöstön infotilaisuudet organisaation yhdenvertaisuustilanteesta"
+  ), str_wrap, width = 36, USE.NAMES = FALSE)
+
+# Piirretään kuva
+data_long |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = factor(
+      variable,
+      levels = jarjestys,
+      labels = setNames(as.list(uudet_nimet), vanhat_nimet)[jarjestys]),
+    x = prop,
+    fill = factor(
+      value,
+      levels = sort(unique(value)),
+      labels = sapply(c(
+        "Tiedän, että ei ole käytössä",
+        "Luulen, että ei ole käytössä",
+        "En osaa sanoa",
+        "Luulen, että on käytössä",
+        "Tiedän, että on käytössä"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  labs(
+    x = "Suhde kaikista vastaajista (%)",
+    caption = "Järjestetty laskevassa järjestyksessä aloittaen toimenpiteistä, jotka tiedetään parhaiten olevan käytössä",
+    fill = "Vastaukset"
+  ) +
+  theme(axis.title.y = element_blank(), plot.caption = element_text(hjust = 0.5)) +
+  geom_vline(
+    linetype = 2,
+    xintercept = 0.25
+  ) + 
+  geom_vline(
+    linetype = 2,
+    xintercept = 0.5
+  ) + 
+  geom_vline(
+    linetype = 2,
+    xintercept = 0.75
+  )
+
+```
+
+## Toimien koettu vaikutus {#sec-organisaatiotoimet-vaikutus}
+
+```{r}
+#| label: fig-organisaatiotoimet-vaikutus
+#| fig-cap: "Organisaatiotoimien koettu vaikutus"
+
+# Muutetaan data pitkään formaattiin
+data_long <- data |>
+  select(k29_1:k29_12) |>
+  pivot_longer(
+    cols = k29_1:k29_12,
+    names_to = "variable",
+    values_to = "value"
+  )
+
+# Valmistellaan järjestys (laskevassa järjestyksessä keskiarvon mukaan)
+jarjestys <- data_long |>
+  group_by(variable) |>
+  summarise(mean_value = mean(value, na.rm = TRUE)) |>
+  arrange(mean_value) |>
+  pull(variable)
+
+# Haetaan vanhat ja uudet muuttujanimet kuviota varten
+vanhat_nimet <- data |>
+  select(k29_1:k29_12) |>
+  colnames()
+
+uudet_nimet <- sapply(c(
+    "Tasa-arvo- tai yhdenvertaisuussuunnitelma",
+    "Toimintaohjeet epäasialliseen käytökseen reagointiin",
+    "Henkilöstön turvallisuusselvitykset",
+    "Ohjeet alaikäisten koskemattomuuden turvaamiselle",
+    "Nuorten kanssa toimivien rikostaustojen tarkastaminen",
+    "Ohjeet ahdistelutilanteen käsittelyyn",
+    "Ohjeet uhka- ja väkivaltatilanteen käsittelyyn",
+    "Ilmoitusjärjestelmä epäasiallisen kohtelun raportoimiseksi",
+    "Koulutus uhka- ja väkivaltatilanteiden kohtaamiseen",
+    "Koulutus epäasiallisen kohtelun tunnistamiseen",
+    "Keskustelutilaisuuksia tasa-arvo- ja yhdenvertaisuusaiheista",
+    "Henkilöstön yhdenvertaisuuden infotilaisuudet"
+  ), str_wrap, width = 36, USE.NAMES = FALSE)
+
+data_long |>
+  ggplot(aes(
+    x = value,
+    y = factor(
+      variable,
+      levels = jarjestys,
+      labels = setNames(as.list(uudet_nimet), vanhat_nimet)[jarjestys]
+    ),
+    fill = stat(x)
+  )) +
+  geom_density_ridges_gradient(
+    scale = 2,
+    rel_min_height = 0.01
+  ) +
+  scale_fill_viridis_c(option = "C") +
+  scale_x_continuous(breaks = 0:10) +
+  labs(
+    x = "Arvot (0-10)",
+    y = NULL,
+    caption = "Järjestetty laskevassa järjestyksessä keskiarvon mukaan",
+    fill = "Arvo"
+  ) +
+  theme_ridges() +
+  theme(
+    axis.text.y = element_text(size = 8, vjust = 0.5),
+    plot.caption = element_text(size = 10, hjust = 0.5)
+  ) +
+  geom_vline(
+    linetype = 2,
+    xintercept = 5
+  )
+
+```
+
+## Ehdotettujen toimenpiteiden koettu hyödyllisyys {#sec-organisaatiotoimet-ehdotushyoty}
+
+```{r}
+#| label: fig-organisaatiotoimet-ehdotushyoty
+#| fig-cap: "Ehdotettujen toimenpiteiden koettu hyödyllisyys"
+
+# Muutetaan data pitkään formaattiin
+data_long <- data |>
+  select(k30_1:k30_13) |>
+  pivot_longer(
+    cols = k30_1:k30_13,
+    names_to = "variable",
+    values_to = "value"
+  )
+
+# Haetaan haluttu muuttujajärjestys sekä muuttujien vanhat ja uudet nimet
+jarjestys <- data_long |>
+  filter(value == 7) |>
+  group_by(variable) |>
+  summarise(ordercount = n()) |>
+  arrange(ordercount) |>
+  pull(variable)
+
+vanhat_nimet <- data |>
+  select(k30_1:k30_13) |>
+  colnames()
+
+uudet_nimet <- sapply(c(
+    "Voimankäyttökoulutus tai -välineiden käyttöönotto",
+    "Puuttuminen epäasialliseen kohteluun",
+    "Ohjeet epäasiallisen kohtelun jälkeisistä menettelyistä",
+    "Yhdenvertaisuuden koulutukset",
+    "Avoimet keskustelut epäasiallisesta kohtelusta yleisellä tasolla",
+    "Turvallisuusviranomaisten yhteistyön parantaminen",
+    "Lainsäädännön tai seuraamuksien tiukentaminen",
+    "Johdon selkeä nollatoleranssin ilmaisu",
+    "Organisaation nimetty yhdenvertaisuusvastaava",
+    "Monimuotoiset työyhteisöt",
+    "Automaattiset rikosilmoitukset",
+    "Nimettömän palautteen tai ilmoituskanavan käyttö",
+    "Työterveydenhuollon tuen laajentaminen"
+  ), str_wrap, width = 36, USE.NAMES = FALSE)
+
+# Piirretään kuva
+data_long |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = factor(
+      variable,
+      levels = jarjestys,
+      labels = setNames(as.list(uudet_nimet), vanhat_nimet)[jarjestys]),
+    x = prop,
+    fill = factor(
+      value,
+      levels = sort(unique(value)),
+      labels = sapply(c(
+        "Erittäin hyödytön",
+        "Hyödytön",
+        "Jokseenkin hyödytön",
+        "Ei hyödyllinen eikä hyödytön",
+        "Jokseenkin hyödyllinen",
+        "Hyödyllinen",
+        "Erittäin hyödyllinen"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  labs(
+    x = "Suhde kaikista vastaajista (%)",
+    caption = "Järjestetty laskevassa järjestyksessä erittäin hyödylliseksi koettujen ehdotusten mukaan",
+    fill = "Vastaukset"
+  ) +
+  theme(axis.title.y = element_blank(), plot.caption = element_text(hjust = 0.5)) +
+  geom_vline(
+    linetype = 2,
+    xintercept = 0.25
+  ) + 
+  geom_vline(
+    linetype = 2,
+    xintercept = 0.5
+  ) + 
+  geom_vline(
+    linetype = 2,
+    xintercept = 0.75
+  )
+```

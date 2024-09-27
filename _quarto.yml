@@ -35,9 +35,18 @@ book:
     - part: "Kyselyn tulokset"
       chapters:
         - metatiedot.qmd
-    - part: "Mittariston validointi"
+        - taustamuuttujat.qmd
+        - esiintyvyys.qmd
+        - vaikutukset.qmd
+        - ilmoitusjarjestelmat.qmd
+        - organisaatiotoimet.qmd
+    - part: "Mittaristojen validoinnit"
       chapters:
-        - efabias.qmd
+        - kohtelu_validointi.qmd
+    - part: "Esitysmateriaaleja"
+      chapters:
+        - deibseminaari.qmd
+
     - lahteet.qmd
   
   navbar:
@@ -51,6 +60,7 @@ book:
       - sidebar:kyselyprosessi
       - sidebar:kyselyntulokset
       - sidebar:validointi
+      - sidebar:esitykset
       - text: "Lähteet"
         file: lahteet.qmd
   
@@ -92,11 +102,22 @@ book:
       title: "Kyselyn tulokset"
       contents:
         - metatiedot.qmd
+        - taustamuuttujat.qmd
+        - esiintyvyys.qmd
+        - vaikutukset.qmd
+        - ilmoitusjarjestelmat.qmd
+        - organisaatiotoimet.qmd
     
     - id: validointi
-      title: "Mittariston validointi"
+      title: "Mittaristojen validoinnit"
       contents:
-        - efabias.qmd
+        - kohtelu_validointi.qmd
+    
+    - id: esitykset
+      title: "Esitysmateriaaleja"
+      contents:
+        - deibseminaari.qmd
+
 format:
   html:
     theme:

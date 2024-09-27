@@ -1,0 +1,403 @@
+# Taustamuuttujat {#sec-taustamuuttujat}
+
+---
+eval: true
+---
+
+```{r}
+#| label: taustamuuttujat-00-paketit
+
+library(tidyverse)
+```
+
+```{r}
+#| label: taustamuuttujat-01-avaaminen
+
+data <- read.csv2("output/anonymisoitudata.csv", tryLogical = FALSE)
+```
+
+## Sukupuoli {#sec-taustamuuttujat-sukupuoli}
+
+```{r}
+#| label: fig-taustamuuttujat-sukupuoli
+#| fig-cap: "Tutkimuksen vastaajat sukupuolen mukaan"
+
+data |>
+  mutate(
+    k31 = factor(
+      k31,
+      labels = c("Nainen", "Mies", "Muu/EHV")
+    )
+  ) |>
+  ggplot(data = _, mapping = aes(x = k31)) + 
+  geom_bar(stat = "count", fill = "#c20e1a") +
+  labs(
+    y = "Määrä (n)",
+    x = "Sukupuoli",
+    caption = "Muu/EHV: Muunsukupuolinen tai ei halunnut vastata"
+  ) + 
+  geom_text(
+    aes(label = after_stat(count)),
+    stat = "count",
+    vjust = 1.5,
+    colour = "white"
+  ) +
+  theme(
+    plot.caption = element_text(hjust = 0)
+  )
+```
+
+## Organisaatiokuuluvuus {#sec-taustamuuttujat-organisaatiokuuluvuus}
+
+```{r}
+#| label: fig-taustamuuttujat-organisaatio
+#| fig-cap: "Tutkimuksen vastaajat organisaatioryhmän mukaan"
+
+data |>
+  mutate(
+    k2 = factor(
+      k2,
+      labels = c(
+        "Pelastuslaitos tai ensihoito",
+        "Sopimuspalokunta tai palokuntayhdistys",
+        "Järjestö, pelastusliitto tai koulu")
+    )
+  ) |>
+  ggplot(data = _, mapping = aes(x = k2)) + 
+  geom_bar(stat = "count", fill = "#c20e1a") +
+  labs(
+    y = "Määrä (n)",
+    x = "Organisaatioryhmä"
+  ) + 
+  geom_text(
+    aes(label = after_stat(count)),
+    stat = "count",
+    vjust = 1.5,
+    colour = "white"
+  ) + 
+  scale_x_discrete(
+    labels = function(x) str_wrap(x, width = 18)
+  )
+```
+
+## Työrytmitys {#sec-taustamuuttujat-tyorytmitys}
+
+```{r}
+#| label: fig-taustamuuttujat-tyorytmi
+#| layout-nrow: 2
+#| fig-cap: "Tutkimuksen vastaajat työrytmityksen mukaan"
+#| fig-subcap:
+#|   - "Pelastuslaitos tai ensihoito"
+#|   - "Järjestö, liitto tai koulu"
+#|   - "Sopimuspalokunta tai palokuntayhdistys"
+#|   - "Hälytysvalmiudessa olevat sopimuspalokuntalaiset"
+
+data |>
+  filter(k2 == 1) |>
+  mutate(
+    k32 = factor(
+      k32,
+      labels = c(
+        "24h työvuorot",
+        "12h työvuorot",
+        "Muu työaika tai vapaalla"
+      )
+    )
+  ) |>
+  ggplot(data = _, mapping = aes(x = k32)) + 
+  geom_bar(stat = "count", fill = "#c20e1a") +
+  labs(
+    y = "Määrä (n)",
+    x = "Työrytmitys",
+    caption = "Vain pelastuslaitoksella tai ensihoidossa työskentelevät (n = 603)"
+  ) + 
+  geom_text(
+    aes(label = after_stat(count)),
+    stat = "count",
+    vjust = 1.5,
+    colour = "white"
+  ) +
+  theme(
+    plot.caption = element_text(hjust = 0)
+  ) + 
+  scale_x_discrete(
+    labels = function(x) str_wrap(x, width = 18)
+  )
+
+data |>
+  filter(k2 == 3) |>
+  mutate(
+    k37 = factor(
+      k37,
+      levels = c(1, 2, 3, 4),
+      labels = c(
+        "Virasto- tai toimistotyöaika",
+        "Opiskelija",
+        "Kokonaistyöaika",
+        "Työ- tai virkavapaalla, muuten poissa organisaatiosta"
+      )
+    )
+  ) |>
+  ggplot(data = _, mapping = aes(x = k37)) + 
+  geom_bar(stat = "count", fill = "#c20e1a") +
+  labs(
+    y = "Määrä (n)",
+    x = "Työrytmitys",
+    caption = "Vain järjestöissä, pelastusliitoissa ja kouluissa toimivat (n = 81)"
+  ) + 
+  geom_text(
+    aes(label = after_stat(count)),
+    stat = "count",
+    vjust = 1.5,
+    colour = "white"
+  ) +
+  theme(
+    plot.caption = element_text(hjust = 0)
+  ) + 
+  scale_x_discrete(
+    labels = function(x) str_wrap(x, width = 18)
+  )
+
+data |>
+  filter(k2 == 2) |>
+  mutate(
+    k33 = factor(
+      k33,
+      labels = c(
+        "Alle 2 tuntia viikossa",
+        "2-5 tuntia viikossa",
+        "6-10 tuntia viikossa",
+        "Yli 10 tuntia viikossa"
+      )
+    )
+  ) |>
+  ggplot(data = _, mapping = aes(x = k33)) + 
+  geom_bar(stat = "count", fill = "#c20e1a") +
+  labs(
+    y = "Määrä (n)",
+    x = "Työrytmitys",
+    caption = "Vain sopimuspalokunnissa tai palokuntayhdistyksissä toimivat (n = 341)"
+  ) + 
+  geom_text(
+    aes(label = after_stat(count)),
+    stat = "count",
+    vjust = 1.5,
+    colour = "white"
+  ) +
+  theme(
+    plot.caption = element_text(hjust = 0)
+  ) + 
+  scale_x_discrete(
+    labels = function(x) str_wrap(x, width = 18)
+  )
+
+data |>
+  filter(k2 == 2 & k34 == 1) |>
+  mutate(
+    k35 = factor(
+      k35,
+      labels = c(
+        "En ollenkaan",
+        "1-60 tuntia kuukaudessa",
+        "61-120 tuntia kuukaudessa",
+        "Yli 120 tuntia kuukaudessa"
+      )
+    )
+  ) |>
+  ggplot(data = _, mapping = aes(x = k35)) + 
+  geom_bar(stat = "count", fill = "#c20e1a") +
+  labs(
+    y = "Määrä (n)",
+    x = "Varallaolon kuukausittainen työaika-arvio",
+    caption = "Vain hälytysvalmiudessa tai varalla olevat sopimuspalokuntalaiset (n = 106)"
+  ) + 
+  geom_text(
+    aes(label = after_stat(count)),
+    stat = "count",
+    vjust = 1.5,
+    colour = "white"
+  ) +
+  theme(
+    plot.caption = element_text(hjust = 0)
+  ) + 
+  scale_x_discrete(
+    labels = function(x) str_wrap(x, width = 18)
+  )
+
+```
+
+## Organisaatioasema {#sec-taustamuuttujat-organisaatioasema}
+
+```{r}
+#| label: fig-taustamuuttujat-asema
+#| fig-cap: "Tutkimuksen vastaajat organisaatioaseman mukaan"
+
+data |>
+  mutate(
+    Organisaatioasema = factor(
+      Organisaatioasema,
+      labels = c(
+        "Johto- tai hallintotaso",
+        "Suorittava henkilöstö",
+        "Asiantuntijat ja opettajat",
+        "Opiskelijat"
+      )
+    )
+  ) |>
+  ggplot(data = _, mapping = aes(x = Organisaatioasema)) + 
+  geom_bar(stat = "count", fill = "#c20e1a") +
+  labs(
+    y = "Määrä (n)",
+    x = "Organisaatioasema"
+  ) + 
+  geom_text(
+    aes(label = after_stat(count)),
+    stat = "count",
+    vjust = 1.5,
+    colour = "white"
+  ) + 
+  scale_x_discrete(
+    labels = function(x) str_wrap(x, width = 18)
+  )
+```
+
+## Suorittavan henkilöstön ammattiryhmä {#sec-taustamuuttujat-ammattiryhma}
+
+```{r}
+#| label: fig-taustamuuttujat-ammattiryhma
+#| fig-cap: "Tutkimuksen vastaajat ammattiryhmän mukaan"
+
+data |>
+  filter(Organisaatioasema == 2) |>
+  mutate(
+    k40 = factor(
+      k40,
+      levels = c(1, 2, 3, -1),
+      labels = c(
+        "Pelastaja",
+        "Ensihoitaja",
+        "Muu",
+        "Ei nähnyt kysymystä†"
+      )
+    )
+  ) |>
+  ggplot(data = _, mapping = aes(x = k40)) + 
+  geom_bar(stat = "count", fill = "#c20e1a") +
+  labs(
+    y = "Määrä (n)",
+    x = "Ammattiryhmä",
+    caption = "Vain suorittava henkilöstö (n = 548)*
+    † 190 sopimuspalokuntalaista koodattiin suorittavaksi henkilöstöksi,
+    mutta he eivät pääseet vastaamaan ammattiryhmäkysymykseen.
+    * 70 pelastuslaitosten alinta johtoa koodattiin suorittavaksi henkilöstöksi,
+    mutta he eivät pääseet vastaamaan kysymykseen."
+  ) + 
+  geom_text(
+    aes(label = after_stat(count)),
+    stat = "count",
+    vjust = 1.5,
+    colour = "white"
+  ) + 
+  scale_x_discrete(
+    labels = function(x) str_wrap(x, width = 18)
+  ) +
+  theme(
+    plot.caption = element_text(hjust = 0)
+  )
+```
+
+## Uran pituus {#sec-taustamuuttujat-uranpituus}
+
+```{r}
+#| label: fig-taustamuuttujat-uranpituus
+#| fig-cap: "Tutkimuksen vastaajat uran pituuden mukaan"
+
+data |>
+  mutate(
+    k41 = factor(
+      k41,
+      levels = c(1, 2, 3, 4),
+      labels = c(
+        "6 vuotta tai alle",
+        "6-14 vuotta",
+        "14-25 vuotta",
+        "25 vuotta tai yli"
+      )
+    )
+  ) |>
+  ggplot(data = _, mapping = aes(x = k41)) + 
+  geom_bar(stat = "count", fill = "#c20e1a") +
+  labs(
+    y = "Määrä (n)",
+    x = "Uran pituus"
+  ) + 
+  geom_text(
+    aes(label = after_stat(count)),
+    stat = "count",
+    vjust = 1.5,
+    colour = "white"
+  ) + 
+  scale_x_discrete(
+    labels = function(x) str_wrap(x, width = 18)
+  ) +
+  theme(
+    plot.caption = element_text(hjust = 0)
+  )
+```
+
+## Muutosaikeet {#sec-taustamuuttujat-muutosaikeet}
+
+```{r}
+#| label: fig-taustamuuttujat-muutosaikeet
+#| fig-cap: "Vastaajien muutosaikeet"
+
+# Tämä koodiosuus on rakennettu hyödyntäen ChatGPT:tä ideointiin ja koodirungon rakentamiseen. Tutkija on viimeistellyt koodin ja varmentanut sen toimivuuden.
+
+# Data tarvitaan ensin pitkään muotoon. Haetaan kaikki yhdeksän muutosaiemuuttujaa, ja jaetaan ne muuttujanimien mukaan eri ryhmiin ja alaryhmiin.
+df_long <- data %>%
+  select(k42_1_1:k42_3_3) %>%
+  pivot_longer(cols = starts_with("k42"), 
+               names_to = "variable", 
+               values_to = "value") %>%
+  filter(value == 1) %>%
+  mutate(group = substr(variable, 1, 5),  # Ryhmät (k43_1, k43_2, k43_3)
+         sub_var = substr(variable, 7, 7))  # Alaryhmät (1, 2, 3)
+
+# Rakennetaan kuvio
+ggplot(df_long, aes(x = sub_var)) +
+  geom_bar(stat = "count", fill = "#c20e1a") +
+  facet_wrap(
+    ~ group,
+    labeller = as_labeller(c(
+      k42_1 = "Muuttaa tehtävänkuvaani",
+      k42_2 = "Vaihtaa organisaatiotani",
+      k42_3 = "Lähteä alalta"
+    ))
+  ) +
+  labs(
+    y = "Määrä (n)",
+    title = "Onko sinulla ollut viimeisen 12 kuukauden aikana aikeita tai suunnitelmia
+    muuttaa tilannettasi seuraavilla tavoilla, tai oletko jo muuttanut tilannettasi?"
+  ) + 
+  scale_x_discrete(
+    labels = c(
+      "Olen harkinnut",
+      "Olen toteuttamassa",
+      "Olen jo tehnyt"
+    )
+  ) + theme(
+    axis.text.x = element_text(
+      angle = 30,
+      vjust = 0.8,
+      hjust = 0.8
+    ),
+    axis.title.x = element_blank()
+  ) + 
+  geom_text(
+    aes(label = after_stat(count)),
+    stat = "count",
+    vjust = 1.5,
+    colour = "white"
+  )
+
+```

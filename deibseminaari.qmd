@@ -1,0 +1,100 @@
+# Pelastusalan DEIB-seminaari {#sec-deibseminaari}
+
+---
+eval: true
+---
+
+Tässä osiossa tuotetaan kaikki kuviot ja analyysit [Pelastusalan DEIB-seminaarissa](https://sppl.fi/deib2024/) 1.10.2024 pidettävälle esitykselle.
+
+```{r}
+#| label: deibseminaari-00-paketit
+#| code-summary: "R-paketit"
+
+library(tidyverse)
+library(ggthemes)
+
+```
+
+```{r}
+#| label: deibseminaari-01-avaaminen
+#| code-summary: "Datan avaaminen"
+
+data <- read.csv2("output/anonymisoitudata.csv", tryLogical = FALSE)
+
+```
+
+## Kohtelun esiintyvyys {#sec-deibseminaari-esiintyvyys}
+
+```{r}
+#| label: fig-deibseminaari-esiintyvyys
+#| code-summary: "Yleisesiintyvyyden kuvio"
+#| fig-cap: "Epäasiallisen ja väkivaltaisen kohtelun esiintyminen organisaatioiden sisällä viimeisen 12 kuukauden ajan"
+#| warning: false
+
+data |>
+  select(k3_1:k3_7) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        1 ~ 0,
+        c(2:8) ~ 1,
+        .default = NA
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k3_1:k3_7,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = c(1, 0),
+      labels = sapply(c(
+        "Vähintään kerran",
+        "Ei ollenkaan"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Verbaalinen väkivalta",
+      "Omaisuuden vahingoittaminen tai varastaminen",
+      "Uhkailu",
+      "Fyysinen väkivalta",
+      "Seksuaalinen häirintä tai väkivalta",
+      "Vihamielisyys tai epäkohtelias käyttäytyminen",
+      "Syrjintä"
+    ), str_wrap, width = 18, USE.NAMES = FALSE)
+  ) +
+  labs(
+    x = "Suhde kaikista vastaajista (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(axis.title.y = element_blank()) + 
+  geom_text(
+    aes(
+      label = ifelse(
+        !is.na(value),
+        scales::percent(prop, accuracy = 0.1),
+        ""
+      )
+    ),
+    position = position_stack(vjust = 0.5),
+    size = 3,
+  ) + 
+  scale_fill_manual(values = c("#C20E1A", "#C5B568"))
+```
