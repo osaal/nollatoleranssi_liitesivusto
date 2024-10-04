@@ -43,9 +43,10 @@ book:
     - part: "Mittaristojen validoinnit"
       chapters:
         - kohtelu_validointi.qmd
-    - part: "Esitysmateriaaleja"
+    - part: "Esitykset ja kirjoitukset"
       chapters:
         - deibseminaari.qmd
+        - blogi1.qmd
 
     - lahteet.qmd
   
@@ -114,9 +115,10 @@ book:
         - kohtelu_validointi.qmd
     
     - id: esitykset
-      title: "Esitysmateriaaleja"
+      title: "Esitykset ja kirjoitukset"
       contents:
         - deibseminaari.qmd
+        - blogi1.qmd
 
 format:
   html:

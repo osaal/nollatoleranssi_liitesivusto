@@ -1,0 +1,756 @@
+# Blogi: Epäasiallisen ja väkivaltaisen kohtelun esiintyvyys pelastus- ja ensihoitoalalla
+
+---
+eval: true
+---
+
+```{r}
+#| label: blogi1-00-valmistelu
+
+library(tidyverse)
+library(scales)
+library(ggstatsplot)
+data <- read.csv2("output/anonymisoitudata.csv", tryLogical = FALSE)
+
+```
+
+*Tämä blogikirjoitus julkaistaan Pelastusopiston blogissa 16.10.2024.*
+
+*Pelastusopiston toteuttama ja Palosuojelurahaston rahoittama Nollatoleranssi-hanke on selvittänyt epäasiallisen ja väkivaltaisen kohtelun esiintyvyyttä, vaikutuksia ja toimenpiteitä pelastusalalla. Tämä blogi on osa neljän julkaisun blogisarjaa, jossa käsitellään valtakunnallisen kyselytutkimuksen tuloksia. Seuraava blogi julkaistaan 20. marraskuuta 2024.*
+
+Osana Nollatoleranssi-tutkimushanketta toteutimme valtakunnallisen kyselyn pelastus- ja ensihoitoalan toimijoille. Kysely oli avoinna 15.8.-15.9.2024 ja siihen osallistui yli tuhat vastaajaa pelastusalan eri organisaatioista ja työtehtävistä. Kiitämme kaikkia vastaajia suuresti osallistumisestanne!
+
+Tässä ensimmäisessä blogissa keskitymme epäasiallisen ja väkivaltaisen kohtelun esiintyvyyteen. Mitä on epäasiallinen ja väkivaltainen kohtelu ja missä muodoissa sitä esiintyy pelastus- ja ensihoitoalalla? Missä konteksteissa epäasiallisuutta ja väkivaltaisuutta koetaan ja ketkä kokevat sitä?
+
+## Epäasiallisen ja väkivaltaisen kohtelun määrittely ja mittaaminen
+
+Väkivalta on arkipäiväinen käsite, jonka me kaikki tunnistamme, mutta jonka määrittely on yllättävän haasteellista. Jotkut teot tunnistetaan selkeästi väkivaltana, kuten aseella vahingoittaminen tai potkiminen. Näiden fyysisten väkivallan muotojen lisäksi tunnistamme yleisesti myös verbaalista väkivaltaa, kuten nimittäminen tai kiroaminen, sekä seksuaalista väkivaltaa, kuten epäsopiva kosketteleminen tai seksuaalissävytteinen vihjailu.
+
+Väkivaltaa voi kuitenkin toteuttaa monella muulla tavalla. Terveyden ja hyvinvoinnin laitos määrittelee väkivallan "vallan, kontrollin tai fyysisen voiman \[tahallisena käyttönä\] tai sillä uhkaamista" jos ja kun väkivaltateko johtaa henkilön tai ihmisryhmän vahingoittumiseen [@bildjuschkin2019, s. 5]. Tutkija Sherry Hamby on ehdottanut väkivallalle neljän ominaisuuden määritelmän: väkivalta on tarkoituksellista toimintaa, jota väkivallan kohde ei halua eikä tarvitsisi kokea, ja jonka toteuttaminen aiheuttaa kohteelle haittaa [@hamby2017].
+
+Tähän määritelmään mahtuu paljon muutakin kuin fyysistä, verbaalista ja seksuaalista väkivaltaa. Hankkeen kyselytutkimuksessa päätimme kehittää seitsemän ulottuvuuden määritelmän nojautuen aikaisempaan tutkimukseen: verbaalinen väkivalta, omaisuuden vahingoittaminen tai varastaminen (ns. välineellinen väkivalta), uhkailu, fyysinen väkivalta, seksuaalinen väkivalta, vihamielisyys sekä syrjintä.
+
+Välineellinen väkivalta kohdistuu henkilön työvälineisiin tai henkilökohtaiseen omaisuuteen, ja sen tarkoituksena on usein aiheuttaa pelkoa, ahdistusta tai muuta negatiivista tunnetta vastaanottajassa. Pelastus- ja ensihoitoalalla tämä voi näkyä esimerkiksi ambulanssin vahingoittamisena tai työkollegan varusteiden piilottamisena tai tahallisena likaamisena.
+
+Uhkailu voidaan nähdä omana muotonaan erillään muista väkivallan muodoista. Kuten välineellinen väkivalta, uhkailun tarkoituksena on loukata tai aiheuttaa pelon tunnetta, mutta uhkailu liittyy myös eri väkivaltamuotojen toteuttamisaikeisiin. Esimerkiksi tappamisella tai raiskauksella uhkaaminen, mutta myös seuraaminen ja tarkkailu, täyttävät uhkailun määritelmän.
+
+Vihamielisyys on alakäsite, joka kattaa monia eri epäystävällisiä vuorovaikutustilanteita kahden henkilön välillä. Vihamielisyyteen voidaan laskea esimerkiksi sosiaalinen eristäminen, juoruilu ja valheiden levittäminen sekä muu työpaikkakiusaaminen.
+
+Syrjintä on laissa kiellettyä toisen henkilön epätasa-arvoista kohtelua henkilöön liittyvän syyn perusteella. Syrjintää ja muita väkivaltamuotoja yhdistävät muun muassa niiden tarpeettomuus ja ei-haluttu luonne sekä niiden tieteellisesti todistetut henkilö- ja organisaatiohaitat.
+
+Kaikkia näitä muotoja voi esiintyä niin organisaation sisällä, työkollegoiden kesken, tai organisaation ulkopuolella, asiakkailta, potilailta tai sidosryhmiltä. Mittasimme siksi Nollatoleranssi-hankkeessa epäasiallista ja väkivaltaista kohtelua näissä molemmissa tekokonteksteissa.
+
+## Epäasiallisen ja väkivaltaisen kohtelun esiintyvyys
+
+```{r}
+#| label: blogi1-01-laskentaa
+
+# Lasketaan kaikki, jotka eivät ole kokeneet mitään sisäistä kohtelua. NA lasketaan mukaan tähän määrään.
+eikokemusta.sisa <- data |>
+  filter(
+    if_all(
+      k3_1:k3_7,
+      ~ .x == 1 | is.na(.x)
+    )
+  ) |>
+  nrow()
+
+# Tehdään sama ulkoiselle
+eikokemusta.ulko <- data |>
+  filter(
+    if_all(
+      k12_1:k12_7,
+      ~ .x == 1 | is.na(.x)
+    )
+  ) |>
+  nrow()
+
+```
+
+Epäasiallisen ja väkivaltaisen kohtelun kokemus on yhtä yleistä organisaation sisällä, että ulkopuolella. Organisaation sisällä `r nrow(data)-eikokemusta.sisa` vastaajaa (`r round(((nrow(data)-eikokemusta.sisa)/nrow(data))*100, digits = 0)` prosenttia) ovat kokeneet vähintään yhden epäasiallisen ja väkivaltaisen kohtelun muodon vähintään kerran viime 12 kuukauden aikana. Organisaatioulkoisesti vastaavasti `r nrow(data)-eikokemusta.ulko` vastaajaa (`r round(((nrow(data)-eikokemusta.ulko)/nrow(data))*100, digits = 0)` prosenttia) ovat kokeneet vähintään yhden muodon vähintään kerran.
+
+Yleisimmät epäasiallisen ja väkivaltaisen kohtelun muodot ovat vihamielisyys ja verbaalinen väkivalta (@fig-esiintyvyys). Organisaatiosisäisesti neljännes vastaajista ovat kohdanneet syrjintää, kun taas organisaation ulkopuolelta tulee useammin uhkailua.
+
+```{r}
+#| label: fig-esiintyvyys
+#| layout-nrow: 1
+#| fig-cap: "Epäasiallisen ja väkivaltaisen kohtelun kokemukset viimeisen 12 kuukauden ajan"
+#| fig-subcap:
+#| -  "Organisaation sisältä tulleet"
+#| -  "Organisaation ulkopuolelta tulleet"
+
+# Organisaation sisältä tulleet
+data |>
+  select(k3_1:k3_7) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        1 ~ 0,
+        c(2:8) ~ 1,
+        .default = NA
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k3_1:k3_7,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = c(1, 0),
+      labels = sapply(c(
+        "Vähintään kerran",
+        "En ollenkaan"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Verbaalinen väkivalta",
+      "Omaisuuden vahingoittaminen tai varastaminen",
+      "Uhkailu",
+      "Fyysinen väkivalta",
+      "Seksuaalinen häirintä tai väkivalta",
+      "Vihamielisyys tai epäkohtelias käyttäytyminen",
+      "Syrjintä"
+    ), str_wrap, width = 18, USE.NAMES = FALSE)
+  ) +
+  labs(
+    x = "Kokemusten määrä viimeisen 12 kuukauden aikana (%)",
+    fill = "Kokemukset"
+  ) +
+  theme(axis.title.y = element_blank()) + 
+  geom_text(
+    aes(
+      label = ifelse(
+        !is.na(value),
+        scales::percent(prop, accuracy = 0.1),
+        ""
+      )
+    ),
+    position = position_stack(vjust = 0.5),
+    size = 3,
+  ) + 
+  scale_fill_manual(values = c("#C20E1A", "#C5B568"))
+
+# Organisaation ulkopuolelta tulleet
+data |>
+  select(k12_1:k12_7) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        1 ~ 0,
+        c(2:8) ~ 1,
+        .default = NA
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k12_1:k12_7,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = c(1, 0),
+      labels = sapply(c(
+        "Vähintään kerran",
+        "En ollenkaan"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Verbaalinen väkivalta",
+      "Omaisuuden vahingoittaminen tai varastaminen",
+      "Uhkailu",
+      "Fyysinen väkivalta",
+      "Seksuaalinen häirintä tai väkivalta",
+      "Vihamielisyys tai epäkohtelias käyttäytyminen",
+      "Syrjintä"
+    ), str_wrap, width = 18, USE.NAMES = FALSE)
+  ) +
+  labs(
+    x = "Kokemusten määrä viimeisen 12 kuukauden aikana (%)",
+    fill = "Kokemukset"
+  ) +
+  theme(axis.title.y = element_blank()) + 
+  geom_text(
+    aes(
+      label = ifelse(
+        !is.na(value),
+        scales::percent(prop, accuracy = 0.1),
+        ""
+      )
+    ),
+    position = position_stack(vjust = 0.5),
+    size = 3,
+  ) + 
+  scale_fill_manual(values = c("#C20E1A", "#C5B568"))
+
+```
+
+Kaikki väkivaltamuodot ovat yleisempiä organisaation ulkopuolelta tulleina, paitsi syrjintä, jota koetaan useammin organisaation sisältä kuin ulkoa. Koska vähintään yhden kokemuksen kokeneiden määrät ovat käytännössä samat molemmissa tekokonteksteissa, tämä tarkoittaa, että organisaation ulkopuolella yksittäinen vastaaja kokee useammin useita eri muotoja kuin organisaation sisällä.
+
+Erot tekokontekstien välillä eivät kuitenkaan ole tasaisia kaikkien muotojen välillä: esimerkiksi vihamielisyyttä koetaan vain 1,4 prosenttiyksikköä useammin organisaation ulkopuolelta kuin sisältä. Toisaalta esimerkiksi fyysistä väkivaltaa koetaan moninkertaisesti enemmän organisaation ulkopuolelta kuin työyhteisön sisältä.
+
+Yleisimmissä väkivaltamuodoissa on eroja tekokontekstin mukaan (@fig-muodot). Organisaatiosisäiset muodot ovat useimmiten vihamielisyyttä tai verbaalista väkivaltaa, ja organisaatioulkoiset muodot useimmiten verbaalista väkivaltaa tai uhkailua. Yli seitsemästäkymmenestä eri kyselyssä mitatusta muodosta vain kaksi muotoa löytyvät molempien tekokontekstien yleisimmistä muodoista: ärsyttämismielessä sanotut asiat sekä työn loukkaava arvostelu.
+
+```{r}
+#| label: fig-muodot
+#| fig-cap: "Epäasiallisen ja väkivaltaisen kohtelun yleisimmät muodot"
+#| layout-nrow: 2
+#| fig-subcap: 
+#| -  "Organisaation sisällä"
+#| -  "Organisaation ulkopuolella"
+
+ryhmat <- c(
+  "Verbaalinen",
+  "Omaisuus",
+  "Uhkailu",
+  "Fyysinen",
+  "Seksuaalinen",
+  "Vihamielisyys",
+  "Syrjintä"
+)
+
+varit_ryhmat <- setNames(
+  as.list(pal_viridis(option = "C", direction = -1, begin = 0.3)(7)),
+  ryhmat
+)
+
+# Nimet haettu Webropol-palvelun alkuperäisestä lomakkeesta. Nimistä poistettu ne muuttujat, jotka poistettiin anonymisoinnin yhteydessä.
+nimet.sisa <- sapply(c(
+  "Nöyryyttäminen, häpäiseminen",
+  "Nolaaminen",
+  "Nuhtelu toisten edessä",
+  "Työn loukkaava arvostelu",
+  "Huutaminen",
+  "Kiroilu tai kiroaminen",
+  "Loukkaava nimittely",
+  "Valheellinen syyttäminen",
+  "Ärsyttämismielessä sanotut asiat",
+  "Työvälineiden varastaminen",
+  "Työvälineiden piilottaminen",
+  "Työvälineiden rikkominen",
+  "Työvälineiden likaaminen",
+  "Työvälineiden luvaton käyttö",
+  "Henk.koht. omaisuuden varastaminen",
+  "Henk.koht. omaisuuden piilottaminen",
+  "Henk.koht. omaisuuden rikkominen",
+  "Henk.koht. omaisuuden likaaminen",
+  "Henk.koht. omaisuuden luvaton käyttö",
+  "Pelottelu",
+  "Työn tai liikkumisen estäminen",
+  "Äänen korottaminen",
+  "Vuorovaikutustilanteessa liian lähelle tuleminen",
+  "Törkeiden eleiden näyttäminen",
+  "Muu törkeä käyttäytyminen",
+  "Mulkoilu tai tuijottaminen",
+  "Fyysisellä väkivallalla uhkaaminen",
+  "Esineellä heittämisellä uhkaaminen",
+  "Tappamisella uhkaaminen",
+  "Seuraaminen",
+  "Tarkkailu",
+  "Läheisten väkivallalla uhkaaminen",
+  "Lyöminen",
+  "Tuuppaaminen tai tönäiseminen",
+  "Tarkoituksella henkilöön törmääminen liiallisella voimalla",
+  "Päälle sylkäiseminen",
+  "Esineellä heittäminen",
+  "Kiinni tarttuminen",
+  "Potkaiseminen",
+  "Kuristaminen",
+  "Raapiminen",
+  "Hiuksista tarttuminen",
+  "Voimankäyttövälineillä tai aseella vahingoittaminen",
+  "Vitsit tai nöyryyttävät kommentit",
+  "Keholliset eleet",
+  "Tapaamisen/numeron vaatiminen",
+  "Vihjailu",
+  "Sukuelinten, rintojen tai pakaroiden koskettelu(-yritys)",
+  "Muiden alueiden seksualisoiva koskettelu",
+  "Ei-toivottujen lahjojen antaminen",
+  "Ei-toivottujen kuvien lähettäminen tai kuvaaminen",
+  "Seksuaalissävytteisen materiaalin levittäminen tai esilläpito",
+  "Henkilön toiminnasta muille valittaminen",
+  "Henkilökohtaisen, luottamuksellisen tiedon jakaminen",
+  "Välinpitämättömyys tai tiedon pimittäminen",
+  "Useat tai jatkuva kritiikki, vähättely, virheiden hakeminen",
+  "Juoruilu, valheellisen tiedon levittäminen",
+  "Ehdotuksen tai ideoiden huomioimatta jättäminen tai vähättely",
+  "Työstä ei anneta tunnustusta",
+  "Aikaisemmista lupauksista luopuminen",
+  "Huumoriin kiedottu loukkaus",
+  "Sosiaalinen tai ammatillinen eristäminen",
+  "Maalittaminen",
+  "Tehtävään nimittäminen muuten kuin osaamiseen tai pätevyyteen perustuen",
+  "Epätasapuolinen johtamis- ja esihenkilötoiminta",
+  "Loukkaava kielenkäyttö, herjaaminen",
+  "Ryhmiin liittyvät yleistykset (esim. vähemmistövitsit)",
+  "Työhaastattelun yhteydessä kysymykset perhesuunnitelmista",
+  "Työvarusteiden epäsopivuus (esimerkiksi vääränkokoiset varusteet)",
+  "Työkollegoiden erilaiset odotukset henk.koht. ominaisuuksien perusteella",
+  "Pätevyyden vähättely henkilökohtaisten ominaisuuksien perusteella",
+  "Muuhun kuin vaativuuteen liittyvät palkitsemiserot",
+  "Kohtuullisten mukautusten epääminen vammaiselta henkilöltä",
+  "Käskyt tai ohjeet syrjiä toista henkilöä",
+  "Vastatoimiin ryhtyminen yhdenvertaisuusrikkomusten ilmoituksen takia",
+  "Syrjivä kohtelu ammattiyhdistystoimintaan osallistumisen takia",
+  "Irtisanominen tai sillä uhkaaminen henkilökohtaisten ominaisuuksien takia",
+  "Tehtävien jakaminen muun kuin osaamisen tai pätevyyteen perusteella",
+  "Muuhun kuin osaamiseen perustuvat palkkaerot"
+), str_wrap, width = 36, USE.NAMES = FALSE)
+
+sisa.kaikki <- data |>
+  select(k5_1_1:k11_16_1) |>
+  select(ends_with("_1")) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        NA ~ 0,
+        -1 ~ 0
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k5_1_1:k11_16_1,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  filter(value == 1) |>
+  select(!value) |>
+  ungroup() |>
+  mutate(
+    group = case_when(
+      str_detect(variable, "k5") ~ "Verbaalinen",
+      str_detect(variable, "k6") ~ "Omaisuus",
+      str_detect(variable, "k7") ~ "Uhkailu",
+      str_detect(variable, "k8") ~ "Fyysinen",
+      str_detect(variable, "k9") ~ "Seksuaalinen",
+      str_detect(variable, "k10") ~ "Vihamielisyys",
+      str_detect(variable, "k11") ~ "Syrjintä",
+      TRUE ~ "VIRHE"
+    )
+  ) |>
+  mutate(
+    group = factor(
+      group,
+      levels = ryhmat
+    )
+  )
+
+jarjestys.sisa <- sisa.kaikki |>
+  pull(variable)
+
+vanhat_nimet.sisa <- data |>
+  select(k5_1_1:k11_16_1) |>
+  select(ends_with("_1")) |>
+  colnames()
+
+nimet.sisa <- setNames(
+  as.list(nimet.sisa),
+  vanhat_nimet.sisa
+)[jarjestys.sisa]
+
+yleisimmat.sisa <- sisa.kaikki |>
+  arrange(desc(prop)) |>
+  slice_head(n = 10) |>
+  mutate(
+    variable = map_chr(
+      variable,
+      ~ nimet.sisa[[.x]]
+    )
+  )
+
+# Sisäisen kohtelun kymmenen yleisintä kokemusmuotoa (% kohtelumuodon kokeneista vastaajista)
+yleisimmat.sisa |>
+  ggplot(aes(
+    x = prop,
+    y = reorder(variable, prop),
+    fill = group
+  )) +
+  geom_bar(stat = "identity") + 
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) + 
+  labs(
+    x = "Suhde kohtelun ylämuodon kokeneista vastaajista (%)",
+    fill = "Ylämuoto"
+  ) + 
+  theme(axis.title.y = element_blank()) + 
+  geom_text(
+    aes(
+      label = scales::percent(prop, accuracy = 0.1)
+    ),
+    position = position_stack(vjust = 0.9),
+    size = 3,
+  ) + 
+  scale_fill_manual(values = varit_ryhmat)
+
+# Nimet haettu Webropol-palvelun alkuperäisestä lomakkeesta. Nimistä poistettu ne muuttujat, jotka poistettiin anonymisoinnin yhteydessä.
+nimet.ulko <- sapply(c(
+  "Nöyryyttäminen, häpäiseminen",
+  "Nolaaminen",
+  "Nuhtelu toisten edessä",
+  "Työn loukkaava arvostelu",
+  "Huutaminen",
+  "Kiroilu tai kiroaminen",
+  "Loukkaava nimittely",
+  "Valheellinen syyttäminen",
+  "Ärsyttämismielessä sanotut asiat",
+  "Työvälineiden varastaminen",
+  "Työvälineiden piilottaminen",
+  "Työvälineiden rikkominen",
+  "Työvälineiden likaaminen",
+  "Työvälineiden luvaton käyttö",
+  "Henk.koht. omaisuuden varastaminen",
+  "Henk.koht. omaisuuden piilottaminen",
+  "Henk.koht. omaisuuden rikkominen",
+  "Henk.koht. omaisuuden likaaminen",
+  "Henk.koht. omaisuuden luvaton käyttö",
+  "Pelottelu",
+  "Työn tai liikkumisen estäminen",
+  "Äänen korottaminen",
+  "Vuorovaikutustilanteessa liian lähelle tuleminen",
+  "Törkeiden eleiden näyttäminen",
+  "Muu törkeä käyttäytyminen",
+  "Mulkoilu tai tuijottaminen",
+  "Fyysisellä väkivallalla uhkaaminen",
+  "Esineellä heittämisellä uhkaaminen",
+  "Aseella tai voimankäyttövälineellä uhkaaminen",
+  "Tappamisella uhkaaminen",
+  "Seuraaminen",
+  "Tarkkailu",
+  "Läheisiin väkivallalla uhkaaminen",
+  "Lyöminen",
+  "Tuuppaaminen tai tönäiseminen",
+  "Tarkoituksella henkilöön törmääminen liiallisella voimalla",
+  "Päälle sylkäiseminen",
+  "Esineellä heittäminen",
+  "Kiinni tarttuminen",
+  "Potkaiseminen",
+  "Kuristaminen",
+  "Raapiminen",
+  "Hiuksista tarttuminen",
+  "Voimankäyttövälineillä tai aseella vahingoittaminen",
+  "Vitsit tai nöyryyttävät kommentit",
+  "Keholliset eleet",
+  "Tapaamisen/numeron vaatiminen",
+  "Vihjailu",
+  "Sukuelinten, rintojen tai pakaroiden koskettelu(-yritys)",
+  "Muiden alueiden seksualisoiva koskettelu",
+  "Ei-toivottujen lahjojen antaminen",
+  "Ei-toivottujen kuvien lähettäminen tai kuvaaminen",
+  "Seksuaalissävytteisen materiaalin levittäminen tai esilläpito",
+  "Henkilön toiminnasta muille valittaminen",
+  "Henkilökohtaisen, luottamuksellisen tiedon jakaminen",
+  "Välinpitämättömyys tai tiedon pimittäminen",
+  "Useat tai jatkuva kritiikki, vähättely, virheiden hakeminen",
+  "Juoruilu, valheellisen tiedon levittäminen",
+  "Ehdotuksen tai ideoiden huomioimatta jättäminen tai vähättely",
+  "Työstä ei anneta tunnustusta",
+  "Aikaisemmista lupauksista luopuminen",
+  "Huumoriin kiedottu loukkaus",
+  "Sosiaalinen tai ammatillinen eristäminen",
+  "Maalittaminen",
+  "Loukkaava kielenkäyttö, herjaaminen",
+  "Ryhmiin liittyvät yleistykset (esim. vähemmistövitsit)",
+  "Ulkopuolisten erilaiset odotukset henk.koht. ominaisuuksien perusteella",
+  "Pätevyyden vähättely henkilökohtaisten ominaisuuksien perusteella",
+  "Kohtuullisten mukautusten epääminen vammaiselta henkilöltä",
+  "Käskyt tai ohjeet syrjiä toista henkilöä",
+  "Syrjivä kohtelu ammattiyhdistystoimintaan osallistumisen takia"
+), str_wrap, width = 36, USE.NAMES = FALSE)
+
+ulko.kaikki <- data |>
+  select(k14_1_1:k20_7_1) |>
+  select(ends_with("_1")) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        NA ~ 0,
+        -1 ~ 0
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k14_1_1:k20_7_1,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  filter(value == 1) |>
+  select(!value) |>
+  ungroup() |>
+  mutate(
+    group = case_when(
+      str_detect(variable, "k14") ~ "Verbaalinen",
+      str_detect(variable, "k15") ~ "Omaisuus",
+      str_detect(variable, "k16") ~ "Uhkailu",
+      str_detect(variable, "k17") ~ "Fyysinen",
+      str_detect(variable, "k18") ~ "Seksuaalinen",
+      str_detect(variable, "k19") ~ "Vihamielisyys",
+      str_detect(variable, "k20") ~ "Syrjintä",
+      TRUE ~ "VIRHE"
+    )
+  ) |>
+  mutate(
+    group = factor(
+      group,
+      levels = c(
+        "Verbaalinen",
+        "Omaisuus",
+        "Uhkailu",
+        "Fyysinen",
+        "Seksuaalinen",
+        "Vihamielisyys",
+        "Syrjintä"
+      )
+    )
+  )
+
+jarjestys.ulko <- ulko.kaikki |>
+  pull(variable)
+
+vanhat_nimet.ulko <- data |>
+  select(k14_1_1:k20_7_1) |>
+  select(ends_with("_1")) |>
+  colnames()
+
+nimet.ulko <- setNames(
+  as.list(nimet.ulko),
+  vanhat_nimet.ulko
+)[jarjestys.ulko]
+
+yleisimmat.ulko <- ulko.kaikki |>
+  arrange(desc(prop)) |>
+  slice_head(n = 10) |>
+  mutate(
+    variable = map_chr(
+      variable,
+      ~ nimet.ulko[[.x]]
+    )
+  )
+
+# Ulkoisen kohtelun kymmenen yleisintä kokemusmuotoa (% kohtelumuodon kokeneista vastaajista)
+yleisimmat.ulko |>
+  ggplot(aes(
+    x = prop,
+    y = reorder(variable, prop),
+    fill = group
+  )) +
+  geom_bar(stat = "identity") + 
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) + 
+  labs(
+    x = "Suhde kohtelun ylämuodon kokeneista vastaajista (%)",
+    fill = "Ylämuoto"
+  ) + 
+  theme(axis.title.y = element_blank()) + 
+  geom_text(
+    aes(
+      label = scales::percent(prop, accuracy = 0.1)
+    ),
+    position = position_stack(vjust = 0.9),
+    size = 3,
+  ) + 
+  scale_fill_manual(values = varit_ryhmat)
+
+```
+
+Tiivistäen voidaan todeta, että epäasiallinen ja väkivaltainen kohtelu on hyvinkin yleistä pelastus- ja ensihoitoalalla, mutta näyttäytyy hieman erilaisena riippuen siitä, esiintyykö kohtelua organisaatiosisäisesti vai tuleeko sitä organisaation ulkopuolisilta henkilöiltä. Molemmissa tekokonteksteissa noin puolet kaikista toimijoista ovat kokeneet jotain epäasiallista tai väkivaltaista kohtelua. Molemmissa tekokontekstissa verbaalinen väkivalta ja vihamielisyys ovat erityisen yleisiä, mutta organisaatioiden sisällä esiintyy myös paljon syrjintää, kun taas organisaation ulkopuolelta koetaan uhkailua. Käyttäytymisen alamuodot eroavat myös toisistaan, mutta keskittyvät sanalliseen epäasiallisuuteen.
+
+## Kokemusten erot pelastajien ja ensihoitajien välillä
+
+Rakensimme kahdet eri mittarit, jotka mittaavat epäasiallisen ja väkivaltaisen kohtelun kokemuksia eri tekokontekstien välillä. Mittarit vaihtelevat nollan ja 49 pisteen välillä. Mittarilla maksimimäärä tarkoittaa, että vastaaja on kokenut jokaisen epäasiallisen ja väkivaltaisen kohtelun ylämuodon useita kertoja päivässä, ja minimimäärä, että vastaaja ei ole kokenut ollenkaan epäasiallista tai väkivaltaista kohtelua, tai että hän ei vastannut kysymyksiin.
+
+```{r}
+#| label: blogi1-02-mittarikoodaus
+
+# Koodataan uudelleen omakohtaisesti koetut mittarit, jotta "En kertaakaan" sekä vastaamatta jättäminen ovat arvo 0 ja muut vastaukset arvot 1-7 alkuperäisessä järjestyksessä.
+data <- data |>
+  mutate(
+    across(
+      c(k3_1:k3_7, k12_1:k12_7),
+      ~ case_match(
+        .x,
+        NA ~ 0,
+        1 ~ 0,
+        2 ~ 1,
+        3 ~ 2,
+        4 ~ 3,
+        5 ~ 4,
+        6 ~ 5,
+        7 ~ 6,
+        8 ~ 7
+      )
+    )
+  ) |>
+  mutate(
+    EVK_sisä = k3_1 + k3_2 + k3_3 + k3_4 + k3_5 + k3_6 + k3_7,
+    EVK_ulko = k12_1 + k12_2 + k12_3 + k12_4 + k12_5 + k12_6 + k12_7
+  )
+
+```
+
+Sekä organisaatiosisäisten että organisaatioulkoisten kohtelun mittareilla on eroja pelastajien ja ensihoitajien välillä (@fig-evkXammattiryhma). Erot organisaation sisällä ovat kuitenkin hyvin pieniä: keskivertoensihoitaja kokee vain 0,8 pistettä enemmän epäasiallista ja väkivaltaista kohtelua, mikä melkein viidenkymmenen pisteen skaalalla on hyvin pieni ero.
+
+Organisaatioiden ulkopuolelta tulleen epäasiallisen ja väkivaltaisen kohtelun kohdalla ero on jo huomattavasti suurempi. Ensihoitajat kokevat keskimäärin 5,6 pistettä enemmän epäasiallista ja väkivaltaista kohtelua kuin pelastajat.
+
+```{r}
+#| label: fig-evkXammattiryhma
+#| fig-cap: "Epäasiallisen ja väkivaltaisen kohtelun kokemukset ammattiryhmittäin"
+#| layout-ncol: 2
+#| fig-subcap: 
+#| -  "Organisaatiosisäisesti"
+#| -  "Organisaatioulkoisesti"
+data |>
+  filter(Organisaatioasema == 2) |>
+  filter(between(k40, 1, 2)) |>
+  mutate(
+    k40 = factor(
+      k40,
+      levels = c(1, 2),
+      labels = c("Pelastaja", "Ensihoitaja")
+    )
+  ) |>
+  ggbetweenstats(
+    x = "k40",
+    y = "EVK_sisä",
+    bf.message = FALSE,
+    xlab = "Ammattiasema",
+    ylab = "Sisäinen epäasiallinen ja väkivaltainen kohtelu",
+    pairwise.display = "all",
+    type = "robust"
+  ) + 
+  ylim(0, 49)
+
+data |>
+  filter(Organisaatioasema == 2) |>
+  filter(between(k40, 1, 2)) |>
+  mutate(
+    k40 = factor(
+      k40,
+      levels = c(1, 2),
+      labels = c("Pelastaja", "Ensihoitaja")
+    )
+  ) |>
+  ggbetweenstats(
+    x = "k40",
+    y = "EVK_ulko",
+    bf.message = TRUE,
+    xlab = "Ammattiasema",
+    ylab = "Ulkoinen epäasiallinen ja väkivaltainen kohtelu",
+    pairwise.display = "all",
+    type = "robust"
+  )
+
+```
+
+## Kokemusten erot sukupuolten välillä
+
+Epäasiallisen ja väkivaltaisen kohtelun kokemusmäärät eroavat myös sukupuolten välillä (@fig-evkXsukupuoli). Kuten aikaisemmin, myös tässä vertailussa erot ovat pieniä. Keskivertonaissukupuolinen kokee noin 1 pistettä enemmän epäasiallista ja väkivaltaista kohtelua kuin keskivertomiessukupuolinen. Muunsukupuoliset ja sukupuolensa raportoimatta jättäneet eivät eroa miehistä tai naisista tilastollisesti, mutta heidän määränsä vastaajista on hyvin pieni eikä siitä voida luotettavasti vetää johtopäätöksiä.
+
+Organisaatioulkoisen kohtelun kohdalta nähdään samanlaiset tulokset, joskin naisten ero miehiin nousee vajaaseen kahteen pisteeseen. Kuitenkin voidaan todeta, että sukupuolikohtaiset erot ovat pieniä.
+
+```{r}
+#| label: fig-evkXsukupuoli
+#| fig-cap: "Epäasiallisen ja väkivaltaisen kohtelun kokemukset sukupuolittain"
+#| layout-ncol: 2
+#| fig-subcap: 
+#| -  "Organisaatiosisäisesti"
+#| -  "Organisaatioulkoisesti"
+data |>
+  mutate(
+    k31 = factor(
+      k31,
+      labels = c("Nainen", "Mies", "Muu/EHV")
+    )
+  ) |>
+  ggbetweenstats(
+    x = "k31",
+    y = "EVK_sisä",
+    bf.message = FALSE,
+    xlab = "Sukupuoli",
+    ylab = "Sisäinen epäasiallinen ja väkivaltainen kohtelu",
+    pairwise.display = "all",
+    type = "robust"
+  ) + 
+  ylim(0, 49)
+
+data |>
+  mutate(
+    k31 = factor(
+      k31,
+      labels = c("Nainen", "Mies", "Muu/EHV")
+    )
+  ) |>
+  ggbetweenstats(
+    x = "k31",
+    y = "EVK_ulko",
+    bf.message = TRUE,
+    xlab = "Sukupuoli",
+    ylab = "Ulkoinen epäasiallinen ja väkivaltainen kohtelu",
+    pairwise.display = "all",
+    type = "robust"
+  ) + 
+  ylim(0, 49)
+
+```
+
+## Yhteenveto
+
+Pelastusalalla ja ensihoidossa näyttää esiintyvän paljonkin epäasiallista ja väkivaltaista kohtelua. Lievä enemmistö on kokenut jotain epäasiallisuutta kuluneen vuoden aikana. Kuitenkin tekokonteksti näyttää vaikuttavan suuresti kohtelun muotoihin, mikä voi peilata ihmissuhteiden eroja työkollega- ja potilas- tai asiakaskonteksteissa.
+
+Työpaikkasisäisesti raportoidaan eniten vihamielisyyttä, verbaalista väkivaltaa ja syrjintää, kuten että työstä ei anneta tunnustusta, tietoa pimitetään tai jätetään raportoimatta, henkilöitä nolataan tai ärsytetään. Asiakkaiden, potilaiden ja sidosryhmien kohtaamisissa kohteluksi muodostuu varsinkin verbaalinen väkivalta sekä uhkailu, äänen korottamisen, huutamisen ja kiroilun, loukkausten sekä eleellisten uhkailevien käytösten muodossa.
+
+Työpaikkasisäisesti epäasiallisen ja väkivaltaisen kohtelun määrissä ei nähdä käytännölle merkittäviä eroja sukupuolten välillä tai pelastajien ja ensihoitajien välillä. Tätä voi tulkita niin, että ongelma piilee laajemmassa organisaatio- tai työpaikkakulttuurissa, eikä niinkään yksittäisissä henkilöissä ja henkilöiden välisissä suhteissa. 
+
+Organisaation ulkopuolella tilanne muuttuu: sukupuolten erot pysyvät vielä kuta kuinkin samoissa tasoissa, mutta ensihoitajat kokevat moninkertaisesti enemmän epäasiallista ja väkivaltaista kohtelua kuin pelastajat. Syytä emme suoraan voi tunnistaa tästä tutkimuksesta, mutta voidaan spekuloida. On mahdollista, että ensihoitajilla yksinkertaisesti on enemmän potilaskohtaamisia, jolloin altistuminen epäasialliselle ja väkivaltaiselle kohtelulle kasvaa. Ensihoitotehtävien luonne voi myös vaikuttaa määrään. Emme pysty tässä tutkimuksessa erottelemaan laajasti ensihoitotehtäviä suorittavia pelastajia (ns. pelastaja-ensihoitajia); jos ensihoitajuus tehtävämuotona altistaa epäasialliselle ja väkivaltaiselle kohtelulle, näitä tekevät pelastajat tulisi osoittaa suurempaa kohtelumäärää kuin muut pelastajat.
+
+Lopputoteamuksena voimme sanoa, että epäasiallista ja väkivaltaista kohtelua esiintyy hyvinkin paljon pelastus- ja ensihoitoalalla. Keskivertoasemalla puolet henkilöstöstä ovat kokeneet tällaista kohtelua, mikä ei voi olla vaikuttamatta organisaation työkulttuuriin, henkilöstön motivaatioon sekä terveyteen. Seuraavassa blogijulkaisussa käsittelemme epäasiallisen ja väkivaltaisen kohtelun vaikutuksia, niin organisaatio- kuin yksilötasolla.
+
+*Pelastustoimen nollatoleranssi syrjinnälle ja häirinnälle - faktaa vai fiktiota? on Pelastusopiston toteuttama ja Palosuojelurahaston rahoittama tutkimushanke, joka selvittää pelastusalalla esiintyvän epäasiallisen ja väkivaltaisen kokemuksen määrää, vaikutuksia ja estäviä toimenpiteitä. Hanke toteutetaan ajalla 1.10.2023-28.2.2025. Hankkeessa suoritettiin laaja kirjallisuuskatsaus aikaisemmasta tutkimuksesta, jonka pohjalta rakennettiin ja suoritettiin valtakunnallinen kyselytutkimus. Hankkeen tuloksia työstetään pelastusalaa osallistavissa asiantuntijatyöpajoissa, ja tuloksista vedostetaan toimenpide- ja jatkotutkimusehdotukset. Lue lisää hankkeesta osoitteessa https://www.pelastusopisto.fi/nollatoleranssi. Hankkeesta viestitään sosiaalisessa mediassa aihetunnisteella #PTNollatoleranssi*
+
