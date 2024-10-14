@@ -2713,11 +2713,12 @@
     },
     "patchwork": {
       "Package": "patchwork",
-      "Version": "1.2.0",
+      "Version": "1.3.0",
       "Source": "Repository",
       "Repository": "RSPM",
       "Requirements": [
         "cli",
+        "farver",
         "ggplot2",
         "grDevices",
         "graphics",
@@ -2727,7 +2728,7 @@
         "stats",
         "utils"
       ],
-      "Hash": "9c8ab14c00ac07e9e04d1664c0b74486"
+      "Hash": "e23fb9ecb1258207bcb763d78d513439"
     },
     "pbapply": {
       "Package": "pbapply",

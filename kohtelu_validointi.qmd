@@ -658,6 +658,8 @@ Bartlettin testi on merkitsevä ($\chi^2 = `r tulokset.efa.sopivuus$bart$chisq`,
 
 Korrelaatiomatriisin determinantti on `r tulokset.efa.sopivuus$determinantti`.
 
+Kolmella muutujalla on VIF-suureet yli 10: `k12_1`, `k13_1` ja `k13_3`. Näiden lisäksi muuttujat `k12_3` ja `k13_6` ovat yli 9, eli lähellä raja-arvoa.
+
 Hullin menetelmän tulokset riippuvat käytetystä sopivuusindeksistä. CAF-indeksi ehdottaa `r tulokset.efa.sopivuus$hull$n_fac_CAF` faktoria, CFI ehdottaa `r tulokset.efa.sopivuus$hull$n_fac_CFI` faktoria ja RMSEA ehdottaa `r tulokset.efa.sopivuus$hull$n_fac_RMSEA` faktoria.
 
 Tulokset osoittavat kolmea suurempaa ongelmaa: Mahalanobiksen etäisyyden mukaan noin kolmannes vastaajista pitäisi poistaa mallista, Hullin menetelmän tulokset ovat osittain ristiriitaisia ja ehdottavat joko yhtä tai kahta faktoria, ja korrelaatiomatriisin determinantti on koko aineistolle liian pieni ja osoittaa multikollineariteettia.
@@ -736,6 +738,8 @@ Bartlettin testi on merkitsevä ($\chi^2 = `r tulokset.efa2.sopivuus$bart$chisq`
 
 Korrelaatiomatriisin determinantti on `r tulokset.efa2.sopivuus$determinantti`.
 
+Kaikkien muuttujien VIF-suureet ovat alle 10. Suurin VIF-suure on muuttujalla `k12_1` (VIF = `r tulokset.efa2.sopivuus$vif[["k12_1"]]`).
+
 Hullin menetelmän tulokset riippuvat käytetystä sopivuusindeksistä. CAF-indeksi ehdottaa `r tulokset.efa2.sopivuus$hull$n_fac_CAF` faktoria, CFI ehdottaa `r tulokset.efa2.sopivuus$hull$n_fac_CFI` faktoria ja RMSEA ehdottaa `r tulokset.efa2.sopivuus$hull$n_fac_RMSEA` faktoria.
 
 Koska tulokset osoittavat useita eri ristiriitoja, päätimme ajaa yhteensä 4 eri mallia kahdessa ryhmässä. Mallit 1A ja 1B käyttävät kaikkia 28 muuttujaa. Mallit 2A ja 2B käyttävät vain omakohtaisesti koettuja kokemuksia, eli 14 muuttujaa. A-malleissa sovitimme yhden faktorin mallin kaikille vastaajille (Mallit 1A, 2A) ja B-malleissa sovitimme kahden faktorin mallin kaikille vastaajille (Mallit 1B, 2B).
@@ -758,8 +762,7 @@ yhteenveto.efa.1A <- summary(
   fit.measures = TRUE,
   ci = TRUE,
   efa = TRUE,
-  cutoff = 0.4,
-  dot.cutoff = 0
+  cutoff = 0
 )
 
 efa.malli.1B <- data.efa |>
@@ -776,8 +779,7 @@ yhteenveto.efa.1B <- summary(
   fit.measures = TRUE,
   ci = TRUE,
   efa = TRUE,
-  cutoff = 0.4,
-  dot.cutoff = 0
+  cutoff = 0
 )
 
 efa.malli.2A <- data.efa2 |>
@@ -794,8 +796,7 @@ yhteenveto.efa.2A <- summary(
   fit.measures = TRUE,
   ci = TRUE,
   efa = TRUE,
-  cutoff = 0.4,
-  dot.cutoff = 0
+  cutoff = 0
 )
 
 efa.malli.2B <- data.efa2 |>
@@ -812,8 +813,7 @@ yhteenveto.efa.2B <- summary(
   fit.measures = TRUE,
   ci = TRUE,
   efa = TRUE,
-  cutoff = 0.4,
-  dot.cutoff = 0
+  cutoff = 0
 )
 
 ```
@@ -909,7 +909,7 @@ Robustisuuden vuoksi kokeilimme jättää pois Mahalanobiksen etäisyystestin ri
 
 Mallin sopivuus on käytännössä sama. AIC- ja BIC-arvot tippuvat reilusti, mutta CFI- ja RMSEA-indeksit pysyvät samoissa tasoissa.
 
-Faktorilataukset pysyvät kuta kuinkin samoilla tasoilla. Suurin muutos on muuttujan `k3_7` faktorilatauksen pienentyminen 0,061 pisteellä. Faktorilla `f2` kaikkien muuttujien lataukset laskevat noin 0,02-0,03 pisteellä, faktorilla ´f1´ useimmat muuttujat laskevat hieman enemmän, mutta muuttuja `k3_3` nousee 0,042 pistettä.
+Faktorilataukset pysyvät kuta kuinkin samoilla tasoilla. Suurin muutos on muuttujan `k3_7` faktorilatauksen pienentyminen 0,061 pisteellä. Faktorilla `f2` kaikkien muuttujien lataukset laskevat noin 0,02-0,03 pisteellä, faktorilla `f1` useimmat muuttujat laskevat hieman enemmän, mutta muuttuja `k3_3` nousee 0,042 pistettä.
 
 Muuttuja `k3_1` lataa nyt myös merkitsevästi faktorille `f2`, mitä se ei tehnyt aikaisemmassa mallissa. Muutoin faktorilatausten merkitsevyydet pysyvät samoina kuin mallissa 2B.
 
@@ -939,8 +939,9 @@ cfa.malli.1 <- '# latentit muuttujat
 malli.1 <- cfa(
   cfa.malli.1,
   data = data.cfa |> select(k3_1:k3_7, k12_1:k12_7),
-  estimator = "MLR",
-  missing = "ml"
+  estimator = "WLSMV", # Robusti ML aiheuttaa ongelmia, kokeillaan siirtyä robustiin DLWS-estimaattoriin
+  missing = "pairwise", # Robusti DLWS hyväksyy listwise, pairwise tai imputoidut datasetit
+  ordered = TRUE
 )
 
 summary(malli.1, fit.measures = TRUE, standardized = TRUE, ci = TRUE)
@@ -958,14 +959,22 @@ Jatkamme tällä mallilla, mutta huomautamme, että muuttujan `k12_6` suhdetta f
 ```{r}
 #| label: kohtelu_validointi-17-rajaarvot
 #| code-summary: "Dynaamisten raja-arvojen simulointi"
+#| eval: false
 
 likertHB(
   model = malli.1,
   data = data.cfa |> select(k3_1:k3_7, k12_1:k12_7),
-  estimator = "MLR"
+  estimator = "WLSMV",
+  reps = 100
 )
 
 ```
+
+**Uusi teksti:**
+
+Emme pysty simuloimaan raja-arvoja, sillä sisäisesti koetun fyysisen väkivallan muuttujalla on liian pieni varianssi. Simulaation tekemissä bootstrap-otoksissa syntyy tilanteita, joissa muuttujan varianssi on nolla, jolloin estimaattia ei voida laskea.
+
+**Vanha teksti:**
 
 Simulaatio osoittaa, että sopivuusindeksien dynaamiset raja-arvot ovat SRMR \< ,04, RMSEA \< ,029 ja CFI \> ,983. Mallimme sopivuusindeksit ovat SRMR = ,076, RMSEA = ,097 ja CFI = ,869. Toisin sanoen, mallimme ei täytä indeksien raja-arvoja.
 
@@ -1053,6 +1062,69 @@ Kolmantena mahdollisuutena on bifaktorirakenne: tekokontekstit määrittelevät 
 
 Kysymykseksi nousee kuitenkin, miksi vain kaksi muuttujaparia osoittavat merkittäviä hypoteettisia parannuksia modifikaatioindeksitarkastuksessa. Jos joko yhden faktorin tai bifaktorimalli olisi populaatiossa todellinen malli, muuttujapareja pitäisi olla useampia modifikaatioindekseissä. Näiden lisäksi virhekorrelaatioita tekokonteksteissa eri muuttujien välillä ei pitäisi esiintyä laajasti.
 
+### Erotteluvaliditeetti
+
+```{r}
+#| label: fig-kohtelu_validointi-validiteettikorrelaatio
+#| fig-cap: "Epäasiallisen ja väkivaltaisen kohtelun mittareiden korrelaatiomatriisi työuupumuksen mittareiden kanssa. Pearsonin tulomomenttikorrelaatiokerroin, Holm-muunnetut merkitsevyysarvot. Risti esittää 5 % alfatason ylittymistä, mustat viivat erottavat muuttujat neljään muuttujaryhmään kyselyssä mitatun tekokontekstin ja kohteen mukaisesti."
+#| code-summary: "Kohtelun ja työuupumuksen korrelaatiomatriisi"
+
+validiteetti_korr <- data.cfa |>
+  select(k3_1:k3_7, k12_1:k12_7, k27_1:k27_4) |>
+  cor(method = "pearson", use = "pairwise.complete.obs")
+
+data.cfa |>
+  select(k3_1:k3_7, k12_1:k12_7, k27_1:k27_4) |>
+  ggcorrmat(
+    ggcorrplot.args = list(lab_size = 1, tl.cex = 7, tl.srt = 90)
+  ) +
+  geom_vline(xintercept = 7.5, color = "black", size = 0.5) +
+  geom_vline(xintercept = 14.5, color = "black", size = 0.5) +
+  geom_vline(xintercept = 21.5, color = "black", size = 0.5) +
+  geom_hline(yintercept = 6.5, color = "black", size = 0.5) +
+  geom_hline(yintercept = 13.5, color = "black", size = 0.5) +
+  geom_hline(yintercept = 20.5, color = "black", size = 0.5) 
+
+```
+
+Organisaatiosisäiset muuttujat korreloivat useimmiten merkitsevästi työuupumusmittareiden kanssa, paitsi mittari `k3_4`, joka ei korreloi ollenkaan työuupumuksen kanssa. Muuttuja `k3_2` ei korreloi kolmannen työuupumusmittarin kanssa, ja muuttuja `k3_5` ei korreloi neljännen työuupumusmittarin kanssa.
+
+Organisaatioulkoiset muuttujat korreloivat yleensä vain ensimmäisen työuupumusmittarin kanssa, ja muut korrelaatiot ovat yleensä ei-merkitsevä. Muuttujat `k12_6` ja `k12_7` korreloivat myös toisen ja kolmannen työuupumusmittarin kanssa, ja muuttuja `k12_2` toisen työuupumusmittarin kanssa.
+
+Korrelaatiot eivät ole liian suuria, eli mittarit näyttävät mittaavan eri asioita.
+
+### Ulkoinen validiteetti
+
+```{r}
+#| label: kohtelu_validointi-XX-ulkoinenvaliditeetti
+#| code-summary: "Ulkoisen validiteetin testaus"
+
+cfa.malli.ulkval <- '# kohtelumuuttujat
+                    f1 =~ start(0.8)*k3_1 + start(0.5)*k3_2 + start(0.7)*k3_3 + start(0.2)*k3_4 + start(0.2)*k3_5 + start(0.8)*k3_6 + start(0.7)*k3_7
+                    f2 =~ start(0.9)*k12_1 + start(0.6)*k12_2 + start(0.9)*k12_3 + start(0.8)*k12_4 + start(0.8)*k12_5 + start(0.8)*k12_6 + start(0.6)*k12_7
+                
+                    # työuupumusmuuttuja, aikaisemman tutkimuksen painot
+                    uup =~ 0.67 * k27_1 + 0.66 * k27_2 + 0.70 * k27_3 + 0.54 * k27_4
+                
+                    # faktorikovarianssi
+                    f1 ~~ f2
+                    f1 ~~ uup
+                    f2 ~~ uup
+                    '
+
+malli.ulkval <- cfa(
+  cfa.malli.ulkval,
+  data = data.cfa |> select(k3_1:k3_7, k12_1:k12_7, k27_1:k27_4),
+  estimator = "WLSMV",
+  missing = "pairwise",
+  ordered = TRUE
+)
+
+summary(malli.ulkval, fit.measures = TRUE, standardized = TRUE, ci = TRUE)
+
+```
+Työuupumuksen latentti muuttuja korreloi organisaatiosisäisen epäasiallisen ja väkivaltaisen kohtelun faktorin kanssa tasolla $r = 0,409$. Organisaatioulkoisen kohtelun faktorin kanssa korrelaatio on pienempi, $r = 0,265$.
+
 ### Eksploratiivinen analyysi: Ulkoisen syrjintämuuttujan latauksen vapauttaminen molemmille faktoreille
 
 ```{r}
@@ -1073,8 +1145,9 @@ cfa.malli.1b <- '# latentit muuttujat
 malli.1b <- cfa(
   cfa.malli.1b,
   data = data.cfa |> select(k3_1:k3_7, k12_1:k12_7),
-  estimator = "MLR",
-  missing = "ml"
+  estimator = "WLSMV",
+  missing = "pairwise",
+  ordered = TRUE
 )
 
 summary(malli.1b, fit.measures = TRUE, standardized = TRUE, ci = TRUE)
@@ -1119,8 +1192,9 @@ cfa.malli.1c <- '# latentit muuttujat
 malli.1c <- cfa(
   cfa.malli.1c,
   data = data.cfa |> select(k3_1:k3_7, k12_1:k12_7),
-  estimator = "MLR",
-  missing = "ml"
+  estimator = "WLSMV",
+  missing = "pairwise",
+  ordered = TRUE
 )
 
 summary(malli.1c, fit.measures = TRUE, standardized = TRUE, ci = TRUE)
@@ -1200,8 +1274,9 @@ cfa.malli.1d <- '# latentit muuttujat
 malli.1d <- cfa(
   cfa.malli.1d,
   data = data.cfa |> select(k3_1:k3_6, k12_1:k12_6),
-  estimator = "MLR",
-  missing = "ml"
+  estimator = "WLSMV",
+  missing = "pairwise",
+  ordered = TRUE
 )
 
 summary(malli.1d, fit.measures = TRUE, standardized = TRUE, ci = TRUE)
@@ -1209,7 +1284,8 @@ summary(malli.1d, fit.measures = TRUE, standardized = TRUE, ci = TRUE)
 vrt.1d <- compareFit(
   malli.1,
   malli.1d,
-  moreIndices = TRUE
+  moreIndices = TRUE,
+  nested = FALSE
 )
 
 summary(vrt.1d)
@@ -1274,19 +1350,81 @@ cfa.malli.2  <- '# latentit muuttujat
 malli.2 <- cfa(
   cfa.malli.2,
   data = data.cfa |> select(k3_1:k3_7, k12_1:k12_7),
-  estimator = "MLR",
-  missing = "ml",
+  estimator = "WLSMV",
+  missing = "pairwise",
   orthogonal = TRUE,
-  std.lv = TRUE
+  std.lv = TRUE,
+  ordered = TRUE
 )
 
 summary(malli.2, fit.measures = TRUE, standardized = TRUE, ci = TRUE)
 
+vrt.2 <- compareFit(
+  malli.1,
+  malli.2,
+  moreIndices = TRUE
+)
+
+summary(vrt.2)
+
 ```
+
+**Uusi teksti:**
+
+**\[Malli asettuu hyvin DWLS-menetelmällä, analysoi!\]**
+
+**Vanha teksti:**
 
 Bifaktorimallia ei saada sovitettua oikein. Suurimpana ongelmana on Heywood-tapaus, jossa muuttujan `k3_1` residuaalivarianssi on negatiivinen. Jätämme selvityksen tähän.
 
+### Eksploratiivinen analyysi: Bifaktori ilman syrjintää
+
+**HUOM: Heywood-case, joka korjaantuu rajaamalla muuttujan `k12_4` latauksen arvoon `0.4`, eli lähellä alkuperäistä estimaattia.**
+
+```{r}
+#| label: kohtelu_validointi-XX-bifaktorieisyrj-mallimaaritelma
+#| code-summary: "Toisen bifaktorimallin määrittely"
+
+cfa.malli.2b  <- '# latentit muuttujat
+                f1 =~ k3_1 + k3_2 + k3_3 + k3_4 + k3_5 + k3_6
+                f2 =~ k12_1 + k12_2 + k12_3 + 0.4*k12_4 + k12_5 + k12_6
+                
+                # yleinen faktori
+                gen =~ k3_1 + k3_2 + k3_3 + k3_4 + k3_5 + k3_6 + k12_1 + k12_2 + k12_3 + k12_4 + k12_5 + k12_6
+                '
+
+```
+
+```{r}
+#| label: kohtelu_validointi-XX-bifaktorieisyrjmalli
+#| code-summary: "Toisen bifaktorimallin estimointi"
+
+malli.2b <- cfa(
+  cfa.malli.2b,
+  data = data.cfa |> select(k3_1:k3_6, k12_1:k12_6),
+  estimator = "WLSMV",
+  missing = "pairwise",
+  orthogonal = TRUE,
+  std.lv = TRUE,
+  ordered = TRUE
+)
+
+summary(malli.2b, fit.measures = TRUE, standardized = TRUE, ci = TRUE)
+
+vrt.2b <- compareFit(
+  malli.1,
+  malli.2b,
+  moreIndices = TRUE,
+  nested = FALSE
+)
+
+summary(vrt.2b)
+
+```
+
 ### Mittausinvarianssi
+
+**HUOM: Mittausinvarianssia ei voida testata robustilla DWLS-estimaattorilla, sillä data ei riitä siihen.**
 
 ```{r}
 #| label: kohtelu_validointi-22-datavalmistelu
@@ -1330,7 +1468,7 @@ inv.3.kohderyhma <- cfa(
   estimator = "MLR",
   missing = "ml",
   group = "k2",
-  group.equal = c("loadings", "intercepts", "residuals")
+  group.equal = c("loadings", "intercepts")
 )
 
 inv.4.kohderyhma <- cfa(
@@ -1396,7 +1534,7 @@ inv.3.ammattiasema <- cfa(
   estimator = "MLR",
   missing = "ml",
   group = "k40",
-  group.equal = c("loadings", "intercepts", "residuals")
+  group.equal = c("loadings", "intercepts")
 )
 
 inv.4.ammattiasema <- cfa(
@@ -1423,13 +1561,17 @@ summary(vrt.ammattiasema)
 
 ```
 
-Rakenneinvariantit mallit sopivat suurin piirtein yhtä heikosti kuin yleismalli. Globaalit sopivuusindeksit eivät täytä raja-arvoja.
+Rakenneinvariantit mallit sopivat suurin piirtein yhtä heikosti kuin yleismalli. Globaalit sopivuusindeksit eivät täytä raja-arvoja (RMSEA = ,068, CFI = ,940, SRMR = ,082).
 
 Heikon invarianssin mallit sopivat merkitsevästi huonommin kuin rakenneinvariantit mallit (p = ,003). CFI-mitan muutos on $\Delta\text{CFI} = -0.021$, mikä on juuri hyväksyttävän CFI-muutoksen rajalla (\<= 0.02). AIC- ja BIC-indeksit nousevat molemmat, osoittaen huonompaa sopivuutta.
 
-Vahvan invarianssin mallit sopivat merkitsevästi huonommin kuin heikon invarianssin mallit (p = ,000002). CFI-mitan muutos on $\Delta\text{CFI} = -0.140$, mikä on selkeästi enemmän kuin suurin hyväksyttävä muutos. AIC- ja BIC-indeksit nousevat molemmat reilusti aikaisempaa nousua enemmän, osoittaen vielä huonompaa istuvuutta kuin heikon invarianssin malleissa.
+Vahvan invarianssin mallit sopivat samoin kuin heikon invarianssin mallit (p = ,129). CFI-mitan muutos on $\Delta\text{CFI} = -0.007$, mikä hyväksyttävän muutoksen rajan sisällä. AIC nousee erittäin vähän ja BIC laskee hieman.
 
-Mallien pohjalta voimme todeta, että vahva invarianssi ei näytä täyttyvän pelastajien ja ensihoitajien välillä. Heikko invarianssi täyttyy ehkä (CFI-muutos on hyväksyttävän rajalla), mutta mallin istuvuus on heikohko (RMSEA = ,076, CFI = ,918, SRMR = ,118). Toisin sanoen: pelastajien ja ensihoitajien välillä faktorilataukset ovat kuta kuinkin invariantit, mutta lähtökohdat (interseptit) eroavat, joten suoria vertauksia mittareiden tasoissa ei pitäisi tehdä.
+Tiukan invarianssin malli sopii merkitsevästi huonommin kuin heikon invarianssin malli (p = ,0004). CFI-mitan muutos on $\Delta\text{CFI} = -0.134$, mikä on selkeästi suurempi kuin hyväksyttävä muutos. AIC- ja BIC-arvot nousevat molemmat.
+
+Mallien pohjalta voimme todeta, että vahva invarianssi ei näytä täyttyvän pelastajien ja ensihoitajien välillä. Heikko invarianssi täyttyy ehkä (CFI-muutos on hyväksyttävän rajalla), mutta mallin istuvuus on heikohko (RMSEA = ,076, CFI = ,918, SRMR = ,118). Jos heikko invarianssi hyväksyttäisiin, tulisi myös hyväksyä vahva invarianssi, sillä sen sopivuuden huonontuminen on hyvin pieni verrattuna heikon invarianssin malliin. Tiukka invarianssi ei täyty.
+
+Toisin sanoen: pelastajien ja ensihoitajien välillä faktorilataukset ja lähtökohdat (interseptit) ovat kuta kuinkin invariantit, mutta virhemittauksessa on selkeitä eroja.
 
 #### Kyselyn kieliversio
 
@@ -1467,7 +1609,7 @@ inv.3.kieliversio <- cfa(
   estimator = "MLR",
   missing = "ml",
   group = "Kieliversio",
-  group.equal = c("loadings", "intercepts", "residuals")
+  group.equal = c("loadings", "intercepts")
 )
 
 inv.4.kieliversio <- cfa(
@@ -1498,9 +1640,11 @@ Rakenneinvariantit mallit istuvat heikohkosti aineistoon (RMSEA = ,090, CFI = ,9
 
 Heikon invarianssin mallien khii neliö-testin istuvuusero rakenneinvariantteihin malleihin ei ole merkitsevä (p = ,757). Muutokset mallin globaaleihin istuuvuusindekseihin ovat hyväksyttävissä rajoissa ($\Delta\text{RMSEA} < 0.001, \Delta\text{CFI} = -0.008, \Delta\text{SRMR} = 0.005$). AIC-arvo nousee lievästi, BIC-arvo laskee lievästi, jolloin relatiiviset istuvuusindeksit eivät näytä selkeää muutossuuntaa.
 
-Vahvan invarianssin malli istuu merkitsevästi huonommin kuin heikon invarianssin malli (p = ,000002). Muutokset ovat kuitenkin osittain hyväksyttävissä rajoissa globaaleilla istuvuusindekseillä ($\Delta\text{RMSEA} = 0.001, \Delta\text{CFI} = -0.019, \Delta\text{SRMR} = 0.039$). AIC- ja BIC-arvot nousevat molemmat, AIC reilusti enemmän kuin BIC.
+Vahvan invarianssin malli istuu merkitsevästi huonommin kuin heikon invarianssin malli (p = ,047). Muutokset ovat kuitenkin hyväksyttävissä rajoissa globaaleilla istuvuusindekseillä ($\Delta\text{RMSEA} = -0.003, \Delta\text{CFI} = -0.001, \Delta\text{SRMR} = 0$). AIC- ja BIC-arvot laskevat molemmat, BIC reilusti AIC:tä enemmän.
 
-Kieliversioiden välillä täyttyy selkeästi heikon invarianssin vaatimus, eli faktorilataukset ovat samat suomen- ja ruotsinkielisillä mittareilla. Vahvan invarianssin osalta tulokset ovat epävarmoja, eli mittareiden lähtökohdista ei voida luotettavasti sanoa, ovatko ne samat vai eriävät kieliversioiden välillä.
+Tiukan invarianssin malli istuu merkitsevästi huonommin kuin vahvan invarianssin malli (p = ,0007). Muutokset ylittävät myös hyväksyttävien muutosten rajat jokseenkin selkeästi ($\Delta\text{RMSEA} = 0.004, \Delta\text{CFI} = -0.018, \Delta\text{SRMR} = 0.038$). Sekä AIC- että BIC-arvot nousevat selkeästi, osoittaen huonompaa istuvuutta.
+
+Kieliversioiden välillä täyttyy heikon ja vahvan invarianssin vaatimus, eli faktorilataukset sekä interseptit ovat samat suomen- ja ruotsinkielisillä mittareilla. Tiukka invarianssi ei kuitenkaan täyty, eli virhemittaukset eivät ole samat molemmilla kieliversioilla.
 
 #### Yhteydenottomenetelmät
 
@@ -1538,7 +1682,7 @@ inv.3.yhteydenotto <- cfa(
   estimator = "MLR",
   missing = "ml",
   group = "Linkkiversio",
-  group.equal = c("loadings", "intercepts", "residuals")
+  group.equal = c("loadings", "intercepts")
 )
 
 inv.4.yhteydenotto <- cfa(
@@ -1562,36 +1706,18 @@ vrt.yhteydenotto <- compareFit(
 
 summary(vrt.yhteydenotto)
 
-
 ```
 
-Rakenneinvariantit mallit istuvat heikohkosti aineistoon (RMSEA = ,090, CFI = ,909, SRMR = ,080).
+Rakenneinvariantit mallit istuvat heikohkosti aineistoon (RMSEA = ,094, CFI = ,901, SRMR = ,085).
 
 Heikon invarianssin mallien khii neliö -testin istuvuusero rakenneinvariantteihin malleihin ei ole merkitsevä (p = ,180). Muutokset mallin globaaleihin istuvuusindekseihin ovat hyväksyttävissä rajoissa, joskin SRMR-arvon nousu on suurempi kuin muut ($\Delta\text{RMSEA} = -0.002, \Delta\text{CFI} = -0.006, \Delta\text{SRMR} = 0.023$). BIC-arvo tippuu hieman, mutta AIC-arvo nousee vastaavasti.
 
-Vahvan invarianssin testi osoittaa merkitsevästi huonompaa sopivuutta (p \< .0001). RMSEA ja SRMR nousevat reilusti ja CFI vastaavasti tippuu. AIC- ja BIC-arvot huonontuvat selkeästi rakenne- ja heikon invarianssin mallien vertailua enemmän.
+Vahvan invarianssin malli istuu merkitsevästi heikon invarianssin mallia huonommin (p = ,025). Muutokset ovat kuitenkin hyväksyttävissä rajoissa ($\Delta\text{RMSEA} = -0.003, \Delta\text{CFI} = -0.003, \Delta\text{SRMR} = 0.001$). AIC- ja BIC-arvot laskevat molemmat, BIC selkesti enemmän.
 
-Voidaan todeta, että malli ei ole vahvasti invariantti yhteydenottomenetelmien välillä. Malli voi olla heikosti invariantti, mutta tulos on aikaisempia tuloksia epävarmempi.
+Tiukan invarianssin malli istuu merkitsevästi huonommin kuin vahvan invarianssin malli (p = 0,0000002). Kaikki indeksiarvot muuttuvat enemmän kuin hyväksyttävän muutoksen rajat sallivat ($\Delta\text{RMSEA} = 0.021, \Delta\text{CFI} = -0.073, \Delta\text{SRMR} = 0.066$). AIC- ja BIC-arvot nousevat reilusti.
 
-1.  Käytetään vastaajia, jotka eivät sisältyneet ensimmäiseen osatutkimukseen
-2.  Asetetaan ensimmäisessä osatutkimuksessa tunnistettu malli CFA-menetelmällä
-3.  CFA:
-    1.  Ekstraktio: Robusti ML
-    2.  Estimointi: FIML
-4.  Ulkoinen validiteetti:
-    1.  Korrelaatio mittarin ja työuupumusmittarin välillä r \> 0, p \< .05
-5.  Erotteluvaliditeetti:
-    1.  Korrelaatio yksittäisten mittareiden ja työuupumusmittareiden välillä r \< .90
-6.  Konvergenssivaliditeetti:
-    1.  Kohtelun mittareiden korrelaatiomatriisi faktoreittain, "merkittäviä" korrelaatioita
-7.  Mallin sopivuus:
-    1.  Khiin neliö -testin p \> .05
-    2.  Simuloidaan RMSEA, CFI ja SRMR -raja-arvot
-        1.  Vähintään kaksi kolmesta indeksistä täyttävät raja-arvon
-    3.  Tarkistetaan modifikaatioindeksit: (tässä ei määritelty, mitä tehdään!)
-8.  Mittausinvarianssi:
-    1.  Rakenne, heikko, vahva ja tiukka (step-wise lopetus)
-    2.  Kohderyhmät (kolme kategoriaa)
-    3.  Ammattiasemat (kaksi kategoriaa: pelastajat ja ensihoitajat)
-    4.  Kieli (kaksi kategoriaa)
-    5.  Yhteydenottomenetelmät (kolme kategoriaa)
+Malli näyttää vahvasti invariantilta, eli faktorilataukset ja interseptit ovat samoja. Tiukkaa invarianssia malli ei kuitenkaan täytä, eli virhemittaukset eroavat ryhmien välillä.
+
+#### Yhteenveto
+
+Kohderyhmien välistä invarianssitestausta ei voitu suorittaa vähäisen varianssin takia. Muut invarianssitestaukset osoittavat kuitenkin, että mittarit ovat vahvasti invariantteja ammattiasemien, kielten ja yhteydenottomenetelmien välillä. Tiukka invarianssi ei täyty missään vertailussa.

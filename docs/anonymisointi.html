@@ -242,6 +242,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="./organisaatiotoimet.html" rel="" target="">
  <span class="dropdown-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Organisaatiotoimet</span></span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./ryhmavertailut.html" rel="" target="">
+ <span class="dropdown-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Ryhmävertailut</span></span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -251,7 +255,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="dropdown-menu" aria-labelledby="nav-menu-mittaristojen-validoinnit">    
         <li>
     <a class="dropdown-item" href="./kohtelu_validointi.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Epäasiallisen ja väkivaltaisen kohtelun esiintyvyyden mittarin validointi</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Epäasiallisen ja väkivaltaisen kohtelun esiintyvyyden mittarin validointi</span></span></a>
   </li>  
     </ul>
   </li>
@@ -262,11 +266,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="dropdown-menu" aria-labelledby="nav-menu-esitykset-ja-kirjoitukset">    
         <li>
     <a class="dropdown-item" href="./deibseminaari.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Pelastusalan DEIB-seminaari</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Pelastusalan DEIB-seminaari</span></span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./blogi1.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Blogi: Epäasiallisen ja väkivaltaisen kohtelun esiintyvyys pelastus- ja ensihoitoalalla</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Blogi: Epäasiallisuutta ja väkivaltaa esiintyy pelastusalalla ja ensihoidossa laajasti</span></span></a>
   </li>  
     </ul>
   </li>
@@ -651,7 +655,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Organisaatiokuuluvuusmuuttujalla (<code>k2</code>) ei ollut yhtään ongelmallista kategoriaa.</p>
 <p>Sukupuolimuuttujalla (<code>k31</code>) oli yksi ongelmallinen kategoria: muunsukupuolisia (<code>k31 == 3</code>) oli seitsemän vastaajaa. Seuraavaksi pienin ryhmä oli vastaamisesta kieltäytyneet (<code>k31 == 4</code>, yhteensä 31 vastaajaa).</p>
 <p>Pelastuslaitoksen tai ensihoidon työrytmimuuttujalla (<code>k32</code>) oli yksi ongelmallinen kategoria: työ- tai virkavapaalla olevia (<code>k32 == 4</code>) oli yhteensä kaksi kappaletta. Seuraavaksi pienin ryhmä oli kahdentoista tunnin työvuorot (<code>k32 == 2</code>, yhteensä 328 vastaajaa).</p>
-<p>Sopimuspalokuntien ja palokuntayhdistysten viikottaisen työmääräarvion muuttujalla (<code>k33</code>) oli yksi ongelmallinen kategoria: yli 21 tuntia viikossa tekeviä (<code>k33 == 5</code>) oli yhteensä 8 henkilöä.</p>
+<p>Sopimuspalokuntien ja palokuntayhdistysten viikottaisen työmääräarvion muuttujalla (<code>k33</code>) oli yksi ongelmallinen kategoria: yli 21 tuntia viikossa tekeviä (<code>k33 == 5</code>) oli yhteensä 7 henkilöä.</p>
 <p>Sopimuspalokuntien ja palokuntayhdistysten varallaolomuuttujalla (<code>k34</code>) ei ollut yhtään ongelmallista kategoriaa.</p>
 <p>Sopimuspalokuntien ja palokuntayhdistysten varallaolon kuukausittaisen työmääräarvion muuttujalla (<code>k35</code>) oli yksi ongelmallinen kategoria: yli 200 tuntia tekeviä (<code>k35 == 5</code>) oli yhteensä 7 vastaajaa.</p>
 <p>Järjestöjen ja koulutusorganisaatioiden työrytmimuuttujalla (<code>k37</code>) ei ollut yhtään ongelmallista kategoriaa.</p>
@@ -1572,7 +1576,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb39-217"><a href="#cb39-217" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-218"><a href="#cb39-218" aria-hidden="true" tabindex="-1"></a>Pelastuslaitoksen tai ensihoidon työrytmimuuttujalla (<span class="in">`k32`</span>) oli yksi ongelmallinen kategoria: työ- tai virkavapaalla olevia (<span class="in">`k32 == 4`</span>) oli yhteensä kaksi kappaletta. Seuraavaksi pienin ryhmä oli kahdentoista tunnin työvuorot (<span class="in">`k32 == 2`</span>, yhteensä <span class="in">`r summary(as.factor(data$k32))[2]`</span> vastaajaa).</span>
 <span id="cb39-219"><a href="#cb39-219" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-220"><a href="#cb39-220" aria-hidden="true" tabindex="-1"></a>Sopimuspalokuntien ja palokuntayhdistysten viikottaisen työmääräarvion muuttujalla (<span class="in">`k33`</span>) oli yksi ongelmallinen kategoria: yli 21 tuntia viikossa tekeviä (<span class="in">`k33 == 5`</span>) oli yhteensä 8 henkilöä.</span>
+<span id="cb39-220"><a href="#cb39-220" aria-hidden="true" tabindex="-1"></a>Sopimuspalokuntien ja palokuntayhdistysten viikottaisen työmääräarvion muuttujalla (<span class="in">`k33`</span>) oli yksi ongelmallinen kategoria: yli 21 tuntia viikossa tekeviä (<span class="in">`k33 == 5`</span>) oli yhteensä 7 henkilöä.</span>
 <span id="cb39-221"><a href="#cb39-221" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-222"><a href="#cb39-222" aria-hidden="true" tabindex="-1"></a>Sopimuspalokuntien ja palokuntayhdistysten varallaolomuuttujalla (<span class="in">`k34`</span>) ei ollut yhtään ongelmallista kategoriaa.</span>
 <span id="cb39-223"><a href="#cb39-223" aria-hidden="true" tabindex="-1"></a></span>

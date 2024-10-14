@@ -1,0 +1,463 @@
+# Ryhmävertailut {#sec-ryhmavertailut}
+
+---
+eval: true
+---
+
+Tässä osiossa suoritetaan kaikki raportissa mainitut ryhmien väliset vertailut.
+
+```{r}
+#| label: ryhmavertailut-00-paketit
+#| code-summary: "Osiossa käytetyt paketit"
+
+library(tidyverse)
+library(ggstatsplot)
+
+```
+
+```{r}
+#| label: ryhmavertailut-01-avaaminen
+#| code-summary: "Datan avaaminen"
+
+data <- read.csv2("output/anonymisoitudata.csv", tryLogical = FALSE)
+
+```
+
+## Epäasiallisen ja väkivaltaisen kohtelun esiintyvyyden ryhmävertailut {#sec-ryhmavertailut-esiintyvyys}
+
+Vertailuissa käytetään yksinkertaisia summamuuttujia, jotka ynnäävät yhteen kohtelun esiintyvyysmittarit neljässä eri muodossa (sisäiset koetut, sisäiset havaitut, ulkoiset koetut ja ulkoiset havaitut).
+
+```{r}
+#| label: ryhmavertailut-02-esiintyvyys-summamuuttujat
+#| code-summary: "Esiintyvyyden summamuuttujien rakentaminen"
+
+# Koodataan uudelleen mittarit, jotta NA == 0 ja muut arvot pysyvät samoina.
+data <- data |>
+  mutate(
+    across(
+      c(k3_1:k4_7, k12_1:k13_7),
+      ~ case_match(
+        .x,
+        NA ~ 0,
+        .default = .x
+      )
+    )
+  ) |>
+  mutate(
+    EVK_sisä_koettu = k3_1 + k3_2 + k3_3 + k3_4 + k3_5 + k3_6 + k3_7,
+    EVK_ulko_koettu = k12_1 + k12_2 + k12_3 + k12_4 + k12_5 + k12_6 + k12_7,
+    EVK_sisä_havaittu = k4_1 + k4_2 + k4_3 + k4_4 + k4_5 + k4_6 + k4_7,
+    EVK_ulko_havaittu = k13_1 + k13_2 + k13_3 + k13_4 + k13_5 + k13_6 + k13_7
+  )
+
+```
+
+### Sukupuoli {#sec-ryhmavertailut-esiintyvyys-sukupuoli}
+
+```{r}
+#| label: fig-ryhmavertailut-esiintyvyys-sukupuoli
+#| fig-cap: "Epäasiallisen ja väkivaltaisen kohtelun esiintyvyys sukupuolittain"
+#| code-summary: "Esiintyvyyden sukupuolikohtaisen vertailun kuvion rakentaminen"
+#| fig-height: 8
+
+sp_sisa_koettu <- data |>
+  mutate(
+    k31 = factor(
+      k31,
+      labels = c("Nainen", "Mies", "Muu/EHV")
+    )
+  ) |>
+  ggbetweenstats(
+    x = "k31",
+    y = "EVK_sisä_koettu",
+    bf.message = FALSE,
+    xlab = "Sukupuoli",
+    ylab = "Epäasiallisen ja väkivaltaisen\nkohtelun kokemukset",
+    pairwise.display = "all",
+    type = "robust",
+    title = "Sisäinen"
+  ) + 
+  ylim(0, 49) + 
+  theme(
+    plot.subtitle = element_text(size = 6)
+  )
+
+sp_ulko_koettu <- data |>
+  mutate(
+    k31 = factor(
+      k31,
+      labels = c("Nainen", "Mies", "Muu/EHV")
+    )
+  ) |>
+  ggbetweenstats(
+    x = "k31",
+    y = "EVK_ulko_koettu",
+    bf.message = TRUE,
+    xlab = "Sukupuoli",
+    ylab = "",
+    pairwise.display = "all",
+    type = "robust",
+    title = "Ulkoinen"
+  ) + 
+  ylim(0, 49) + 
+  theme(
+    plot.subtitle = element_text(size = 6)
+  )
+
+sp_sisa_havaittu <- data |>
+  mutate(
+    k31 = factor(
+      k31,
+      labels = c("Nainen", "Mies", "Muu/EHV")
+    )
+  ) |>
+  ggbetweenstats(
+    x = "k31",
+    y = "EVK_sisä_havaittu",
+    bf.message = FALSE,
+    xlab = "Sukupuoli",
+    ylab = "Epäasiallisen ja väkivaltaisen\nkohtelun kollegahavainnot",
+    pairwise.display = "all",
+    type = "robust",
+    title = "Sisäinen"
+  ) + 
+  ylim(0, 49) + 
+  theme(
+    plot.subtitle = element_text(size = 6)
+  )
+
+sp_ulko_havaittu <- data |>
+  mutate(
+    k31 = factor(
+      k31,
+      labels = c("Nainen", "Mies", "Muu/EHV")
+    )
+  ) |>
+  ggbetweenstats(
+    x = "k31",
+    y = "EVK_ulko_havaittu",
+    bf.message = TRUE,
+    xlab = "Sukupuoli",
+    ylab = "",
+    pairwise.display = "all",
+    type = "robust",
+    title = "Ulkoinen"
+  ) + 
+  ylim(0, 49) + 
+  theme(
+    plot.subtitle = element_text(size = 6)
+  )
+
+sp_sisa_koettu + sp_ulko_koettu + sp_sisa_havaittu + sp_ulko_havaittu
+
+```
+
+### Organisaatiokuuluvuus {#sec-ryhmavertailut-esiintyvyys-organisaatiokuuluvuus}
+
+```{r}
+#| label: fig-ryhmavertailut-esiintyvyys-organisaatiokuuluvuus
+#| fig-cap: "Epäasiallisen ja väkivaltaisen kohtelun esiintyvyys organisaatioittain"
+#| code-summary: "Esiintyvyyden organisaatiokohtaisen vertailun kuvion rakentaminen"
+#| fig-height: 8
+
+org_sisa_koettu <- data |>
+  mutate(
+    k2 = factor(
+      k2,
+      labels = c("Pelastuslaitokset\nja ensihoito", "Sopimus-\npalokunnat", "Järjestöt, liitot\nja koulut")
+    )
+  ) |>
+  ggbetweenstats(
+    x = "k2",
+    y = "EVK_sisä_koettu",
+    bf.message = FALSE,
+    xlab = "Organisaatio",
+    ylab = "Epäasiallisen ja väkivaltaisen\nkohtelun kokemukset",
+    pairwise.display = "all",
+    type = "robust",
+    title = "Sisäinen"
+  ) + 
+  ylim(0, 49) + 
+  theme(
+    plot.subtitle = element_text(size = 6)
+  )
+
+org_ulko_koettu <- data |>
+  mutate(
+    k2 = factor(
+      k2,
+      labels = c("Pelastuslaitokset\nja ensihoito", "Sopimus-\npalokunnat", "Järjestöt, liitot\nja koulut")
+    )
+  ) |>
+  ggbetweenstats(
+    x = "k2",
+    y = "EVK_ulko_koettu",
+    bf.message = TRUE,
+    xlab = "Organisaatio",
+    ylab = "",
+    pairwise.display = "all",
+    type = "robust",
+    title = "Ulkoinen"
+  ) + 
+  ylim(0, 49) + 
+  theme(
+    plot.subtitle = element_text(size = 6)
+  )
+
+org_sisa_havaittu <- data |>
+  mutate(
+    k2 = factor(
+      k2,
+      labels = c("Pelastuslaitokset\nja ensihoito", "Sopimus-\npalokunnat", "Järjestöt, liitot\nja koulut")
+    )
+  ) |>
+  ggbetweenstats(
+    x = "k2",
+    y = "EVK_sisä_havaittu",
+    bf.message = FALSE,
+    xlab = "Organisaatio",
+    ylab = "Epäasiallisen ja väkivaltaisen\nkohtelun kollegahavainnot",
+    pairwise.display = "all",
+    type = "robust",
+    title = "Sisäinen"
+  ) + 
+  ylim(0, 49) + 
+  theme(
+    plot.subtitle = element_text(size = 6)
+  )
+
+org_ulko_havaittu <- data |>
+  mutate(
+    k2 = factor(
+      k2,
+      labels = c("Pelastuslaitokset\nja ensihoito", "Sopimus-\npalokunnat", "Järjestöt, liitot\nja koulut")
+    )
+  ) |>
+  ggbetweenstats(
+    x = "k2",
+    y = "EVK_ulko_havaittu",
+    bf.message = TRUE,
+    xlab = "Organisaatio",
+    ylab = "",
+    pairwise.display = "all",
+    type = "robust",
+    title = "Ulkoinen"
+  ) + 
+  ylim(0, 49) + 
+  theme(
+    plot.subtitle = element_text(size = 6)
+  )
+
+org_sisa_koettu + org_ulko_koettu + org_sisa_havaittu + org_ulko_havaittu
+
+```
+
+### Organisaatioasema {#sec-ryhmavertailut-esiintyvyys-organisaatioasema}
+
+```{r}
+#| label: fig-ryhmavertailut-esiintyvyys-organisaatioasema
+#| fig-cap: "Epäasiallisen ja väkivaltaisen kohtelun esiintyvyys organisaatioasemittain"
+#| code-summary: "Esiintyvyyden asemakohtaisen vertailun kuvion rakentaminen"
+#| fig-height: 8
+
+asema_sisa_koettu <- data |>
+  mutate(
+    Organisaatioasema = factor(
+      Organisaatioasema,
+      labels = c("Johto- tai\nhallintotaso", "Suorittava\nhenkilöstö", "Asiantuntijat\nja opettajat", "Opiskelijat")
+    )
+  ) |>
+  ggbetweenstats(
+    x = "Organisaatioasema",
+    y = "EVK_sisä_koettu",
+    bf.message = FALSE,
+    xlab = "Organisaatioasema",
+    ylab = "Epäasiallisen ja väkivaltaisen\nkohtelun kokemukset",
+    pairwise.display = "significant",
+    type = "parametric",
+    title = "Sisäinen"
+  ) + 
+  ylim(0, 49) + 
+  theme(
+    plot.subtitle = element_text(size = 6)
+  )
+
+asema_ulko_koettu <- data |>
+  mutate(
+    Organisaatioasema = factor(
+      Organisaatioasema,
+      labels = c("Johto- tai\nhallintotaso", "Suorittava\nhenkilöstö", "Asiantuntijat\nja opettajat", "Opiskelijat")
+    )
+  ) |>
+  ggbetweenstats(
+    x = "Organisaatioasema",
+    y = "EVK_ulko_koettu",
+    bf.message = FALSE,
+    xlab = "Organisaatioasema",
+    ylab = "",
+    pairwise.display = "significant",
+    type = "parametric",
+    title = "Ulkoinen"
+  ) + 
+  ylim(0, 49) + 
+  theme(
+    plot.subtitle = element_text(size = 6)
+  )
+
+asema_sisa_havaittu <- data |>
+  mutate(
+    Organisaatioasema = factor(
+      Organisaatioasema,
+      labels = c("Johto- tai\nhallintotaso", "Suorittava\nhenkilöstö", "Asiantuntijat\nja opettajat", "Opiskelijat")
+    )
+  ) |>
+  ggbetweenstats(
+    x = "Organisaatioasema",
+    y = "EVK_sisä_havaittu",
+    bf.message = FALSE,
+    xlab = "Organisaatioasema",
+    ylab = "Epäasiallisen ja väkivaltaisen\nkohtelun kollegahavainnot",
+    pairwise.display = "significant",
+    type = "parametric",
+    title = "Sisäinen"
+  ) + 
+  ylim(0, 49) + 
+  theme(
+    plot.subtitle = element_text(size = 6)
+  )
+
+asema_ulko_havaittu <- data |>
+  mutate(
+    Organisaatioasema = factor(
+      Organisaatioasema,
+      labels = c("Johto- tai\nhallintotaso", "Suorittava\nhenkilöstö", "Asiantuntijat\nja opettajat", "Opiskelijat")
+    )
+  ) |>
+  ggbetweenstats(
+    x = "Organisaatioasema",
+    y = "EVK_ulko_havaittu",
+    bf.message = FALSE,
+    xlab = "Organisaatioasema",
+    ylab = "",
+    pairwise.display = "significant",
+    type = "parametric",
+    title = "Ulkoinen"
+  ) + 
+  ylim(0, 49) + 
+  theme(
+    plot.subtitle = element_text(size = 6)
+  )
+
+asema_sisa_koettu + asema_ulko_koettu + asema_sisa_havaittu + asema_ulko_havaittu
+
+```
+
+### Työrytmitys {#sec-ryhmavertailut-esiintyvyys-tyorytmitys}
+
+### Kokemusvuodet {#sec-ryhmavertailut-esiintyvyys-kokemusvuodet}
+
+```{r}
+#| label: fig-ryhmavertailut-esiintyvyys-kokemusvuodet
+#| fig-cap: "Epäasiallisen ja väkivaltaisen kohtelun esiintyvyys kokemusvuosien mukaan"
+#| code-summary: "Esiintyvyyden urapituuskohtaisen vertailun kuvion rakentaminen"
+#| fig-height: 8
+
+vuodet_sisa_koettu <- data |>
+  mutate(
+    k41 = factor(
+      k41,
+      levels = c(1, 2, 3, 4),
+      labels = c("<= 6 vuotta", "6-14 vuotta", "14-25 vuotta", ">= 25 vuotta")
+    )
+  ) |>
+  ggbetweenstats(
+    x = "k41",
+    y = "EVK_sisä_koettu",
+    bf.message = FALSE,
+    xlab = "Uran pituus",
+    ylab = "Epäasiallisen ja väkivaltaisen\nkohtelun kokemukset",
+    pairwise.display = "significant",
+    type = "robust",
+    title = "Sisäinen",
+    centrality.plotting = FALSE
+  ) + 
+  ylim(0, 49) + 
+  theme(
+    plot.subtitle = element_text(size = 6)
+  )
+
+vuodet_ulko_koettu <- data |>
+  mutate(
+    k41 = factor(
+      k41,
+      levels = c(1, 2, 3, 4),
+      labels = c("<= 6 vuotta", "6-14 vuotta", "14-25 vuotta", ">= 25 vuotta")
+    )
+  ) |>
+  ggbetweenstats(
+    x = "k41",
+    y = "EVK_ulko_koettu",
+    bf.message = TRUE,
+    xlab = "Uran pituus",
+    ylab = "",
+    pairwise.display = "significant",
+    type = "robust",
+    title = "Ulkoinen",
+    centrality.plotting = FALSE
+  ) + 
+  ylim(0, 49) + 
+  theme(
+    plot.subtitle = element_text(size = 6)
+  )
+
+vuodet_sisa_havaittu <- data |>
+  mutate(
+    k41 = factor(
+      k41,
+      levels = c(1, 2, 3, 4),
+      labels = c("<= 6 vuotta", "6-14 vuotta", "14-25 vuotta", ">= 25 vuotta")
+    )
+  ) |>
+  ggbetweenstats(
+    x = "k41",
+    y = "EVK_sisä_havaittu",
+    bf.message = FALSE,
+    xlab = "Uran pituus",
+    ylab = "Epäasiallisen ja väkivaltaisen\nkohtelun kollegahavainnot",
+    pairwise.display = "significant",
+    type = "robust",
+    title = "Sisäinen",
+    centrality.plotting = FALSE
+  ) + 
+  ylim(0, 49) + 
+  theme(
+    plot.subtitle = element_text(size = 6)
+  )
+
+vuodet_ulko_havaittu <- data |>
+  mutate(
+    k41 = factor(
+      k41,
+      levels = c(1, 2, 3, 4),
+      labels = c("<= 6 vuotta", "6-14 vuotta", "14-25 vuotta", ">= 25 vuotta")
+    )
+  ) |>
+  ggbetweenstats(
+    x = "k41",
+    y = "EVK_ulko_havaittu",
+    bf.message = TRUE,
+    xlab = "Uran pituus",
+    ylab = "",
+    pairwise.display = "significant",
+    type = "robust",
+    title = "Ulkoinen",
+    centrality.plotting = FALSE
+  ) + 
+  ylim(0, 49) + 
+  theme(
+    plot.subtitle = element_text(size = 6)
+  )
+
+vuodet_sisa_koettu + vuodet_ulko_koettu + vuodet_sisa_havaittu + vuodet_ulko_havaittu
+
+```

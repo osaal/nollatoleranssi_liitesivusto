@@ -211,7 +211,7 @@ Sukupuolimuuttujalla (`k31`) oli yksi ongelmallinen kategoria: muunsukupuolisia 
 
 Pelastuslaitoksen tai ensihoidon työrytmimuuttujalla (`k32`) oli yksi ongelmallinen kategoria: työ- tai virkavapaalla olevia (`k32 == 4`) oli yhteensä kaksi kappaletta. Seuraavaksi pienin ryhmä oli kahdentoista tunnin työvuorot (`k32 == 2`, yhteensä `r summary(as.factor(data$k32))[2]` vastaajaa).
 
-Sopimuspalokuntien ja palokuntayhdistysten viikottaisen työmääräarvion muuttujalla (`k33`) oli yksi ongelmallinen kategoria: yli 21 tuntia viikossa tekeviä (`k33 == 5`) oli yhteensä 8 henkilöä.
+Sopimuspalokuntien ja palokuntayhdistysten viikottaisen työmääräarvion muuttujalla (`k33`) oli yksi ongelmallinen kategoria: yli 21 tuntia viikossa tekeviä (`k33 == 5`) oli yhteensä 7 henkilöä.
 
 Sopimuspalokuntien ja palokuntayhdistysten varallaolomuuttujalla (`k34`) ei ollut yhtään ongelmallista kategoriaa.
 

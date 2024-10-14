@@ -243,6 +243,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="./organisaatiotoimet.html" rel="" target="">
  <span class="dropdown-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Organisaatiotoimet</span></span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./ryhmavertailut.html" rel="" target="">
+ <span class="dropdown-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Ryhmävertailut</span></span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -252,7 +256,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="dropdown-menu" aria-labelledby="nav-menu-mittaristojen-validoinnit">    
         <li>
     <a class="dropdown-item" href="./kohtelu_validointi.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Epäasiallisen ja väkivaltaisen kohtelun esiintyvyyden mittarin validointi</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Epäasiallisen ja väkivaltaisen kohtelun esiintyvyyden mittarin validointi</span></span></a>
   </li>  
     </ul>
   </li>
@@ -263,11 +267,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="dropdown-menu" aria-labelledby="nav-menu-esitykset-ja-kirjoitukset">    
         <li>
     <a class="dropdown-item" href="./deibseminaari.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Pelastusalan DEIB-seminaari</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Pelastusalan DEIB-seminaari</span></span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./blogi1.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Blogi: Epäasiallisen ja väkivaltaisen kohtelun esiintyvyys pelastus- ja ensihoitoalalla</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Blogi: Epäasiallisuutta ja väkivaltaa esiintyy pelastusalalla ja ensihoidossa laajasti</span></span></a>
   </li>  
     </ul>
   </li>
@@ -769,6 +773,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="16.4" class="anchored" data-anchor-id="sec-valmistelu-uudelleenkoodaukset"><span class="header-section-number">16.4</span> Uudelleenkoodaukset</h2>
 <p>Loogisen tulkittavuuden vuoksi teemme seuraavat uudelleenkoodaukset:</p>
 <ol type="1">
+<li>k[3-4, 12-13]_[1-7] (Epäasiallisen ja väkivaltaisen kohtelun esiintyvyys, neljä mittaristoa):
+<ol type="1">
+<li>(1) -&gt; (0)</li>
+<li>(2) -&gt; (1)</li>
+<li>(3) -&gt; (2)</li>
+<li>(4) -&gt; (3)</li>
+<li>(5) -&gt; (4)</li>
+<li>(6) -&gt; (5)</li>
+<li>(7) -&gt; (6)</li>
+<li>(8) -&gt; (7)</li>
+</ol></li>
 <li>k25_[1-3] (Raportointijärjestelmien koulutuksen olemassaolo):
 <ol type="1">
 <li>(1) -&gt; (3)</li>
@@ -805,48 +820,48 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details>
 <summary>Koodi</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Raportointijärjestelmien koulutuksen olemassaolo</span></span>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Epäasiallisen ja väkivaltaisen kohtelun esiintyvyys, neljä mittaristoa</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>      k25_1<span class="sc">:</span>k25_3,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(k3_1<span class="sc">:</span>k4_7, k12_1<span class="sc">:</span>k13_7),</span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_match</span>(</span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        .x,</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>        <span class="dv">3</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        <span class="dv">4</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>        <span class="sc">-</span><span class="dv">1</span> <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span>,</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>        <span class="cn">NA</span> <span class="sc">~</span> <span class="cn">NA</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Asenteet ilmoitusjärjestelmiä kohtaan</span></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>      k26_1<span class="sc">:</span>k26_18,</span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_match</span>(</span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>        .x,</span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span> <span class="sc">~</span> <span class="dv">7</span>,</span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="sc">~</span> <span class="dv">6</span>,</span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>        <span class="dv">3</span> <span class="sc">~</span> <span class="dv">5</span>,</span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>        <span class="dv">4</span> <span class="sc">~</span> <span class="dv">4</span>,</span>
-<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>        <span class="dv">5</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
-<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>        <span class="dv">6</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
-<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>        <span class="dv">7</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>        <span class="dv">3</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        <span class="dv">4</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>        <span class="dv">5</span> <span class="sc">~</span> <span class="dv">4</span>,</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>        <span class="dv">6</span> <span class="sc">~</span> <span class="dv">5</span>,</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>        <span class="dv">7</span> <span class="sc">~</span> <span class="dv">6</span>,</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>        <span class="dv">8</span> <span class="sc">~</span> <span class="dv">7</span>,</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>        <span class="cn">NA</span> <span class="sc">~</span> <span class="cn">NA</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Raportointijärjestelmien koulutuksen olemassaolo</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>      k25_1<span class="sc">:</span>k25_3,</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_match</span>(</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>        .x,</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>        <span class="dv">3</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>        <span class="dv">4</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
 <span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>        <span class="sc">-</span><span class="dv">1</span> <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span>,</span>
 <span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>        <span class="cn">NA</span> <span class="sc">~</span> <span class="cn">NA</span></span>
 <span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>      )</span>
 <span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Ehdotettujen toimenpiteiden koettu hyödyllisyys</span></span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Asenteet ilmoitusjärjestelmiä kohtaan</span></span>
 <span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
 <span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
-<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>      k30_1<span class="sc">:</span>k30_13,</span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>      k26_1<span class="sc">:</span>k26_18,</span>
 <span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_match</span>(</span>
 <span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>        .x,</span>
 <span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span> <span class="sc">~</span> <span class="dv">7</span>,</span>
@@ -862,20 +877,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a><span class="co"># Tekee varallaoloa</span></span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a><span class="co"># Ehdotettujen toimenpiteiden koettu hyödyllisyys</span></span>
 <span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
 <span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
-<span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a>      k34,</span>
+<span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a>      k30_1<span class="sc">:</span>k30_13,</span>
 <span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_match</span>(</span>
 <span id="cb8-64"><a href="#cb8-64" aria-hidden="true" tabindex="-1"></a>        .x,</span>
-<span id="cb8-65"><a href="#cb8-65" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb8-66"><a href="#cb8-66" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
-<span id="cb8-67"><a href="#cb8-67" aria-hidden="true" tabindex="-1"></a>        <span class="sc">-</span><span class="dv">1</span> <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span>,</span>
-<span id="cb8-68"><a href="#cb8-68" aria-hidden="true" tabindex="-1"></a>        <span class="cn">NA</span> <span class="sc">~</span> <span class="cn">NA</span></span>
-<span id="cb8-69"><a href="#cb8-69" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb8-70"><a href="#cb8-70" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb8-71"><a href="#cb8-71" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-65"><a href="#cb8-65" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span> <span class="sc">~</span> <span class="dv">7</span>,</span>
+<span id="cb8-66"><a href="#cb8-66" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="sc">~</span> <span class="dv">6</span>,</span>
+<span id="cb8-67"><a href="#cb8-67" aria-hidden="true" tabindex="-1"></a>        <span class="dv">3</span> <span class="sc">~</span> <span class="dv">5</span>,</span>
+<span id="cb8-68"><a href="#cb8-68" aria-hidden="true" tabindex="-1"></a>        <span class="dv">4</span> <span class="sc">~</span> <span class="dv">4</span>,</span>
+<span id="cb8-69"><a href="#cb8-69" aria-hidden="true" tabindex="-1"></a>        <span class="dv">5</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
+<span id="cb8-70"><a href="#cb8-70" aria-hidden="true" tabindex="-1"></a>        <span class="dv">6</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
+<span id="cb8-71"><a href="#cb8-71" aria-hidden="true" tabindex="-1"></a>        <span class="dv">7</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb8-72"><a href="#cb8-72" aria-hidden="true" tabindex="-1"></a>        <span class="sc">-</span><span class="dv">1</span> <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span>,</span>
+<span id="cb8-73"><a href="#cb8-73" aria-hidden="true" tabindex="-1"></a>        <span class="cn">NA</span> <span class="sc">~</span> <span class="cn">NA</span></span>
+<span id="cb8-74"><a href="#cb8-74" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb8-75"><a href="#cb8-75" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-76"><a href="#cb8-76" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-77"><a href="#cb8-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-78"><a href="#cb8-78" aria-hidden="true" tabindex="-1"></a><span class="co"># Tekee varallaoloa</span></span>
+<span id="cb8-79"><a href="#cb8-79" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb8-80"><a href="#cb8-80" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb8-81"><a href="#cb8-81" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
+<span id="cb8-82"><a href="#cb8-82" aria-hidden="true" tabindex="-1"></a>      k34,</span>
+<span id="cb8-83"><a href="#cb8-83" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_match</span>(</span>
+<span id="cb8-84"><a href="#cb8-84" aria-hidden="true" tabindex="-1"></a>        .x,</span>
+<span id="cb8-85"><a href="#cb8-85" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb8-86"><a href="#cb8-86" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb8-87"><a href="#cb8-87" aria-hidden="true" tabindex="-1"></a>        <span class="sc">-</span><span class="dv">1</span> <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span>,</span>
+<span id="cb8-88"><a href="#cb8-88" aria-hidden="true" tabindex="-1"></a>        <span class="cn">NA</span> <span class="sc">~</span> <span class="cn">NA</span></span>
+<span id="cb8-89"><a href="#cb8-89" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb8-90"><a href="#cb8-90" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-91"><a href="#cb8-91" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <section id="sec-valmistelu-uudelleenkoodaukset-organisaatioasema" class="level3" data-number="16.4.1">
@@ -1670,214 +1705,243 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb12-397"><a href="#cb12-397" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-398"><a href="#cb12-398" aria-hidden="true" tabindex="-1"></a>Loogisen tulkittavuuden vuoksi teemme seuraavat uudelleenkoodaukset:</span>
 <span id="cb12-399"><a href="#cb12-399" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-400"><a href="#cb12-400" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>k25<span class="sc">\_\[</span>1-3<span class="sc">\]</span> (Raportointijärjestelmien koulutuksen olemassaolo):</span>
-<span id="cb12-401"><a href="#cb12-401" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span><span class="sc">\(</span>1<span class="sc">\)</span> -<span class="sc">\&gt;</span> (3)</span>
-<span id="cb12-402"><a href="#cb12-402" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span><span class="sc">\(</span>2<span class="sc">\)</span> = (2)</span>
-<span id="cb12-403"><a href="#cb12-403" aria-hidden="true" tabindex="-1"></a><span class="ss">    3.  </span><span class="sc">\(</span>3<span class="sc">\)</span> -<span class="sc">\&gt;</span> (1)</span>
-<span id="cb12-404"><a href="#cb12-404" aria-hidden="true" tabindex="-1"></a><span class="ss">    4.  </span><span class="sc">\(</span>4<span class="sc">\)</span> -<span class="sc">\&gt;</span> (0)</span>
-<span id="cb12-405"><a href="#cb12-405" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>k26<span class="sc">\_\[</span>1-18<span class="sc">\]</span> (Asenteet ilmoitusjärjestelmiä kohtaan):</span>
-<span id="cb12-406"><a href="#cb12-406" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span><span class="sc">\(</span>1<span class="sc">\)</span> -<span class="sc">\&gt;</span> (7)</span>
-<span id="cb12-407"><a href="#cb12-407" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span><span class="sc">\(</span>2<span class="sc">\)</span> -<span class="sc">\&gt;</span> (6)</span>
-<span id="cb12-408"><a href="#cb12-408" aria-hidden="true" tabindex="-1"></a><span class="ss">    3.  </span><span class="sc">\(</span>3<span class="sc">\)</span> -<span class="sc">\&gt;</span> (5)</span>
-<span id="cb12-409"><a href="#cb12-409" aria-hidden="true" tabindex="-1"></a><span class="ss">    4.  </span><span class="sc">\(</span>4<span class="sc">\)</span> = (4)</span>
-<span id="cb12-410"><a href="#cb12-410" aria-hidden="true" tabindex="-1"></a><span class="ss">    5.  </span><span class="sc">\(</span>5<span class="sc">\)</span> -<span class="sc">\&gt;</span> (3)</span>
-<span id="cb12-411"><a href="#cb12-411" aria-hidden="true" tabindex="-1"></a><span class="ss">    6.  </span><span class="sc">\(</span>6<span class="sc">\)</span> -<span class="sc">\&gt;</span> (2)</span>
-<span id="cb12-412"><a href="#cb12-412" aria-hidden="true" tabindex="-1"></a><span class="ss">    7.  </span><span class="sc">\(</span>7<span class="sc">\)</span> -<span class="sc">\&gt;</span> (1)</span>
-<span id="cb12-413"><a href="#cb12-413" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>k30<span class="sc">\_\[</span>1-13<span class="sc">\]</span> (Toimenpiteiden koettu hyödyllisyys):</span>
-<span id="cb12-414"><a href="#cb12-414" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span><span class="sc">\(</span>1<span class="sc">\)</span> -<span class="sc">\&gt;</span> (7)</span>
-<span id="cb12-415"><a href="#cb12-415" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span><span class="sc">\(</span>2<span class="sc">\)</span> -<span class="sc">\&gt;</span> (6)</span>
-<span id="cb12-416"><a href="#cb12-416" aria-hidden="true" tabindex="-1"></a><span class="ss">    3.  </span><span class="sc">\(</span>3<span class="sc">\)</span> -<span class="sc">\&gt;</span> (5)</span>
-<span id="cb12-417"><a href="#cb12-417" aria-hidden="true" tabindex="-1"></a><span class="ss">    4.  </span><span class="sc">\(</span>4<span class="sc">\)</span> = (4)</span>
-<span id="cb12-418"><a href="#cb12-418" aria-hidden="true" tabindex="-1"></a><span class="ss">    5.  </span><span class="sc">\(</span>5<span class="sc">\)</span> -<span class="sc">\&gt;</span> (3)</span>
-<span id="cb12-419"><a href="#cb12-419" aria-hidden="true" tabindex="-1"></a><span class="ss">    6.  </span><span class="sc">\(</span>6<span class="sc">\)</span> -<span class="sc">\&gt;</span> (2)</span>
-<span id="cb12-420"><a href="#cb12-420" aria-hidden="true" tabindex="-1"></a><span class="ss">    7.  </span><span class="sc">\(</span>7<span class="sc">\)</span> -<span class="sc">\&gt;</span> (1)</span>
-<span id="cb12-421"><a href="#cb12-421" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>k34 (Tekee varallaoloa):</span>
-<span id="cb12-422"><a href="#cb12-422" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span><span class="sc">\(</span>1<span class="sc">\)</span> = (1)</span>
-<span id="cb12-423"><a href="#cb12-423" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span><span class="sc">\(</span>2<span class="sc">\)</span> -<span class="sc">\&gt;</span> (0)</span>
-<span id="cb12-424"><a href="#cb12-424" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-427"><a href="#cb12-427" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-428"><a href="#cb12-428" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: valmistelu-08-uudelleenkoodaus</span></span>
-<span id="cb12-429"><a href="#cb12-429" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-430"><a href="#cb12-430" aria-hidden="true" tabindex="-1"></a><span class="co"># Raportointijärjestelmien koulutuksen olemassaolo</span></span>
-<span id="cb12-431"><a href="#cb12-431" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
-<span id="cb12-432"><a href="#cb12-432" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb12-433"><a href="#cb12-433" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
-<span id="cb12-434"><a href="#cb12-434" aria-hidden="true" tabindex="-1"></a>      k25_1<span class="sc">:</span>k25_3,</span>
-<span id="cb12-435"><a href="#cb12-435" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_match</span>(</span>
-<span id="cb12-436"><a href="#cb12-436" aria-hidden="true" tabindex="-1"></a>        .x,</span>
-<span id="cb12-437"><a href="#cb12-437" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
-<span id="cb12-438"><a href="#cb12-438" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
-<span id="cb12-439"><a href="#cb12-439" aria-hidden="true" tabindex="-1"></a>        <span class="dv">3</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb12-440"><a href="#cb12-440" aria-hidden="true" tabindex="-1"></a>        <span class="dv">4</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
-<span id="cb12-441"><a href="#cb12-441" aria-hidden="true" tabindex="-1"></a>        <span class="sc">-</span><span class="dv">1</span> <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span>,</span>
-<span id="cb12-442"><a href="#cb12-442" aria-hidden="true" tabindex="-1"></a>        <span class="cn">NA</span> <span class="sc">~</span> <span class="cn">NA</span></span>
-<span id="cb12-443"><a href="#cb12-443" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb12-444"><a href="#cb12-444" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb12-445"><a href="#cb12-445" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb12-446"><a href="#cb12-446" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-447"><a href="#cb12-447" aria-hidden="true" tabindex="-1"></a><span class="co"># Asenteet ilmoitusjärjestelmiä kohtaan</span></span>
-<span id="cb12-448"><a href="#cb12-448" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
-<span id="cb12-449"><a href="#cb12-449" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb12-450"><a href="#cb12-450" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
-<span id="cb12-451"><a href="#cb12-451" aria-hidden="true" tabindex="-1"></a>      k26_1<span class="sc">:</span>k26_18,</span>
-<span id="cb12-452"><a href="#cb12-452" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_match</span>(</span>
-<span id="cb12-453"><a href="#cb12-453" aria-hidden="true" tabindex="-1"></a>        .x,</span>
-<span id="cb12-454"><a href="#cb12-454" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span> <span class="sc">~</span> <span class="dv">7</span>,</span>
-<span id="cb12-455"><a href="#cb12-455" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="sc">~</span> <span class="dv">6</span>,</span>
-<span id="cb12-456"><a href="#cb12-456" aria-hidden="true" tabindex="-1"></a>        <span class="dv">3</span> <span class="sc">~</span> <span class="dv">5</span>,</span>
-<span id="cb12-457"><a href="#cb12-457" aria-hidden="true" tabindex="-1"></a>        <span class="dv">4</span> <span class="sc">~</span> <span class="dv">4</span>,</span>
-<span id="cb12-458"><a href="#cb12-458" aria-hidden="true" tabindex="-1"></a>        <span class="dv">5</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
-<span id="cb12-459"><a href="#cb12-459" aria-hidden="true" tabindex="-1"></a>        <span class="dv">6</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
-<span id="cb12-460"><a href="#cb12-460" aria-hidden="true" tabindex="-1"></a>        <span class="dv">7</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb12-461"><a href="#cb12-461" aria-hidden="true" tabindex="-1"></a>        <span class="sc">-</span><span class="dv">1</span> <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span>,</span>
-<span id="cb12-462"><a href="#cb12-462" aria-hidden="true" tabindex="-1"></a>        <span class="cn">NA</span> <span class="sc">~</span> <span class="cn">NA</span></span>
-<span id="cb12-463"><a href="#cb12-463" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb12-464"><a href="#cb12-464" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb12-465"><a href="#cb12-465" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb12-466"><a href="#cb12-466" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-467"><a href="#cb12-467" aria-hidden="true" tabindex="-1"></a><span class="co"># Ehdotettujen toimenpiteiden koettu hyödyllisyys</span></span>
-<span id="cb12-468"><a href="#cb12-468" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
-<span id="cb12-469"><a href="#cb12-469" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb12-470"><a href="#cb12-470" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
-<span id="cb12-471"><a href="#cb12-471" aria-hidden="true" tabindex="-1"></a>      k30_1<span class="sc">:</span>k30_13,</span>
-<span id="cb12-472"><a href="#cb12-472" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_match</span>(</span>
-<span id="cb12-473"><a href="#cb12-473" aria-hidden="true" tabindex="-1"></a>        .x,</span>
-<span id="cb12-474"><a href="#cb12-474" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span> <span class="sc">~</span> <span class="dv">7</span>,</span>
-<span id="cb12-475"><a href="#cb12-475" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="sc">~</span> <span class="dv">6</span>,</span>
-<span id="cb12-476"><a href="#cb12-476" aria-hidden="true" tabindex="-1"></a>        <span class="dv">3</span> <span class="sc">~</span> <span class="dv">5</span>,</span>
-<span id="cb12-477"><a href="#cb12-477" aria-hidden="true" tabindex="-1"></a>        <span class="dv">4</span> <span class="sc">~</span> <span class="dv">4</span>,</span>
-<span id="cb12-478"><a href="#cb12-478" aria-hidden="true" tabindex="-1"></a>        <span class="dv">5</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
-<span id="cb12-479"><a href="#cb12-479" aria-hidden="true" tabindex="-1"></a>        <span class="dv">6</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
-<span id="cb12-480"><a href="#cb12-480" aria-hidden="true" tabindex="-1"></a>        <span class="dv">7</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb12-481"><a href="#cb12-481" aria-hidden="true" tabindex="-1"></a>        <span class="sc">-</span><span class="dv">1</span> <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span>,</span>
-<span id="cb12-482"><a href="#cb12-482" aria-hidden="true" tabindex="-1"></a>        <span class="cn">NA</span> <span class="sc">~</span> <span class="cn">NA</span></span>
-<span id="cb12-483"><a href="#cb12-483" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb12-484"><a href="#cb12-484" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb12-485"><a href="#cb12-485" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb12-486"><a href="#cb12-486" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-487"><a href="#cb12-487" aria-hidden="true" tabindex="-1"></a><span class="co"># Tekee varallaoloa</span></span>
-<span id="cb12-488"><a href="#cb12-488" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
-<span id="cb12-489"><a href="#cb12-489" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb12-490"><a href="#cb12-490" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
-<span id="cb12-491"><a href="#cb12-491" aria-hidden="true" tabindex="-1"></a>      k34,</span>
-<span id="cb12-492"><a href="#cb12-492" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_match</span>(</span>
-<span id="cb12-493"><a href="#cb12-493" aria-hidden="true" tabindex="-1"></a>        .x,</span>
-<span id="cb12-494"><a href="#cb12-494" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb12-495"><a href="#cb12-495" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
-<span id="cb12-496"><a href="#cb12-496" aria-hidden="true" tabindex="-1"></a>        <span class="sc">-</span><span class="dv">1</span> <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span>,</span>
-<span id="cb12-497"><a href="#cb12-497" aria-hidden="true" tabindex="-1"></a>        <span class="cn">NA</span> <span class="sc">~</span> <span class="cn">NA</span></span>
-<span id="cb12-498"><a href="#cb12-498" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb12-499"><a href="#cb12-499" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb12-500"><a href="#cb12-500" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb12-501"><a href="#cb12-501" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-502"><a href="#cb12-502" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-503"><a href="#cb12-503" aria-hidden="true" tabindex="-1"></a><span class="fu">### Organisaatioaseman ryhmäkoodaus {#sec-valmistelu-uudelleenkoodaukset-organisaatioasema}</span></span>
-<span id="cb12-504"><a href="#cb12-504" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-505"><a href="#cb12-505" aria-hidden="true" tabindex="-1"></a>Ennen anonymisointia kolmen organisaatioaseman muuttujat (<span class="in">`k36_[1-7], k38, k39`</span>) tulee yhdistää yhdeksi muuttujaksi anonymisointisuunnitelman mukaisesti.</span>
-<span id="cb12-506"><a href="#cb12-506" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-507"><a href="#cb12-507" aria-hidden="true" tabindex="-1"></a>Lopullisessa muuttujassa on kuusi luokkaa: (1) Johto- tai esihenkilötaso, (2) Suorittava henkilöstö, (3) Asiantuntijat, (4) Hallinnollinen tai tukipalveluhenkilöstö, (5) Opetushenkilöstö, (6) Opiskelijat.</span>
-<span id="cb12-508"><a href="#cb12-508" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-511"><a href="#cb12-511" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-512"><a href="#cb12-512" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: valmistelu-09-organisaatioasema</span></span>
-<span id="cb12-513"><a href="#cb12-513" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-514"><a href="#cb12-514" aria-hidden="true" tabindex="-1"></a><span class="co"># Jokaisen organisaatioryhmän kohdalla tehdään seuraavasti:</span></span>
-<span id="cb12-515"><a href="#cb12-515" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Valitse ryhmädata filter()-verbillä</span></span>
-<span id="cb12-516"><a href="#cb12-516" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Muuta Organisaatioasema-muuttuja ryhmän asemamuuttujan arvojen mukaisesti (ks. taustakysymykset-osio yllä sekä anonymisointisuunnitelma)</span></span>
-<span id="cb12-517"><a href="#cb12-517" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Päivitä vanha data uuden ryhmädatan riveillä ID-muuttujan avulla rows_update()-verbillä</span></span>
-<span id="cb12-518"><a href="#cb12-518" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-519"><a href="#cb12-519" aria-hidden="true" tabindex="-1"></a><span class="co"># Näissä ei tarvitse käsitellä arvoa "-1", sillä meillä on täydellinen data käytettävissä jokaiselle organisaatio-ositetulle muuttujalle.</span></span>
-<span id="cb12-520"><a href="#cb12-520" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-521"><a href="#cb12-521" aria-hidden="true" tabindex="-1"></a><span class="co"># Laadi tyhjä muuttuja ensin, jotta voidaan yhdistää data myöhemmin</span></span>
-<span id="cb12-522"><a href="#cb12-522" aria-hidden="true" tabindex="-1"></a><span class="co"># Placeholder-arvo on 0</span></span>
-<span id="cb12-523"><a href="#cb12-523" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
-<span id="cb12-524"><a href="#cb12-524" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_column</span>(<span class="at">Organisaatioasema =</span> <span class="fu">numeric</span>(<span class="fu">nrow</span>(data)))</span>
-<span id="cb12-525"><a href="#cb12-525" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-526"><a href="#cb12-526" aria-hidden="true" tabindex="-1"></a><span class="co"># Pelastuslaitokset ja ensihoito (k2 == 1)</span></span>
-<span id="cb12-527"><a href="#cb12-527" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
-<span id="cb12-528"><a href="#cb12-528" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(k2 <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb12-529"><a href="#cb12-529" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb12-530"><a href="#cb12-530" aria-hidden="true" tabindex="-1"></a>    <span class="at">Organisaatioasema =</span> <span class="fu">case_when</span>(</span>
-<span id="cb12-531"><a href="#cb12-531" aria-hidden="true" tabindex="-1"></a>      k39 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">|</span> k39 <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb12-532"><a href="#cb12-532" aria-hidden="true" tabindex="-1"></a>      k39 <span class="sc">==</span> <span class="dv">3</span> <span class="sc">|</span> k39 <span class="sc">==</span> <span class="dv">4</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
-<span id="cb12-533"><a href="#cb12-533" aria-hidden="true" tabindex="-1"></a>      k39 <span class="sc">==</span> <span class="dv">5</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
-<span id="cb12-534"><a href="#cb12-534" aria-hidden="true" tabindex="-1"></a>      k39 <span class="sc">==</span> <span class="dv">6</span> <span class="sc">~</span> <span class="dv">4</span></span>
-<span id="cb12-535"><a href="#cb12-535" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb12-536"><a href="#cb12-536" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb12-537"><a href="#cb12-537" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rows_update</span>(</span>
-<span id="cb12-538"><a href="#cb12-538" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> data,</span>
-<span id="cb12-539"><a href="#cb12-539" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> .,</span>
-<span id="cb12-540"><a href="#cb12-540" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="st">"ID"</span></span>
-<span id="cb12-541"><a href="#cb12-541" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb12-400"><a href="#cb12-400" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>k<span class="sc">\[</span>3-4, 12-13<span class="sc">\]\_\[</span>1-7<span class="sc">\]</span> (Epäasiallisen ja väkivaltaisen kohtelun esiintyvyys, neljä mittaristoa):</span>
+<span id="cb12-401"><a href="#cb12-401" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span><span class="sc">\(</span>1<span class="sc">\)</span> -<span class="sc">\&gt;</span> (0)</span>
+<span id="cb12-402"><a href="#cb12-402" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span><span class="sc">\(</span>2<span class="sc">\)</span> -<span class="sc">\&gt;</span> (1)</span>
+<span id="cb12-403"><a href="#cb12-403" aria-hidden="true" tabindex="-1"></a><span class="ss">    3.  </span><span class="sc">\(</span>3<span class="sc">\)</span> -<span class="sc">\&gt;</span> (2)</span>
+<span id="cb12-404"><a href="#cb12-404" aria-hidden="true" tabindex="-1"></a><span class="ss">    4.  </span><span class="sc">\(</span>4<span class="sc">\)</span> -<span class="sc">\&gt;</span> (3)</span>
+<span id="cb12-405"><a href="#cb12-405" aria-hidden="true" tabindex="-1"></a><span class="ss">    5.  </span><span class="sc">\(</span>5<span class="sc">\)</span> -<span class="sc">\&gt;</span> (4)</span>
+<span id="cb12-406"><a href="#cb12-406" aria-hidden="true" tabindex="-1"></a><span class="ss">    6.  </span><span class="sc">\(</span>6<span class="sc">\)</span> -<span class="sc">\&gt;</span> (5)</span>
+<span id="cb12-407"><a href="#cb12-407" aria-hidden="true" tabindex="-1"></a><span class="ss">    7.  </span><span class="sc">\(</span>7<span class="sc">\)</span> -<span class="sc">\&gt;</span> (6)</span>
+<span id="cb12-408"><a href="#cb12-408" aria-hidden="true" tabindex="-1"></a><span class="ss">    8.  </span><span class="sc">\(</span>8<span class="sc">\)</span> -<span class="sc">\&gt;</span> (7)</span>
+<span id="cb12-409"><a href="#cb12-409" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>k25<span class="sc">\_\[</span>1-3<span class="sc">\]</span> (Raportointijärjestelmien koulutuksen olemassaolo):</span>
+<span id="cb12-410"><a href="#cb12-410" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span><span class="sc">\(</span>1<span class="sc">\)</span> -<span class="sc">\&gt;</span> (3)</span>
+<span id="cb12-411"><a href="#cb12-411" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span><span class="sc">\(</span>2<span class="sc">\)</span> = (2)</span>
+<span id="cb12-412"><a href="#cb12-412" aria-hidden="true" tabindex="-1"></a><span class="ss">    3.  </span><span class="sc">\(</span>3<span class="sc">\)</span> -<span class="sc">\&gt;</span> (1)</span>
+<span id="cb12-413"><a href="#cb12-413" aria-hidden="true" tabindex="-1"></a><span class="ss">    4.  </span><span class="sc">\(</span>4<span class="sc">\)</span> -<span class="sc">\&gt;</span> (0)</span>
+<span id="cb12-414"><a href="#cb12-414" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>k26<span class="sc">\_\[</span>1-18<span class="sc">\]</span> (Asenteet ilmoitusjärjestelmiä kohtaan):</span>
+<span id="cb12-415"><a href="#cb12-415" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span><span class="sc">\(</span>1<span class="sc">\)</span> -<span class="sc">\&gt;</span> (7)</span>
+<span id="cb12-416"><a href="#cb12-416" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span><span class="sc">\(</span>2<span class="sc">\)</span> -<span class="sc">\&gt;</span> (6)</span>
+<span id="cb12-417"><a href="#cb12-417" aria-hidden="true" tabindex="-1"></a><span class="ss">    3.  </span><span class="sc">\(</span>3<span class="sc">\)</span> -<span class="sc">\&gt;</span> (5)</span>
+<span id="cb12-418"><a href="#cb12-418" aria-hidden="true" tabindex="-1"></a><span class="ss">    4.  </span><span class="sc">\(</span>4<span class="sc">\)</span> = (4)</span>
+<span id="cb12-419"><a href="#cb12-419" aria-hidden="true" tabindex="-1"></a><span class="ss">    5.  </span><span class="sc">\(</span>5<span class="sc">\)</span> -<span class="sc">\&gt;</span> (3)</span>
+<span id="cb12-420"><a href="#cb12-420" aria-hidden="true" tabindex="-1"></a><span class="ss">    6.  </span><span class="sc">\(</span>6<span class="sc">\)</span> -<span class="sc">\&gt;</span> (2)</span>
+<span id="cb12-421"><a href="#cb12-421" aria-hidden="true" tabindex="-1"></a><span class="ss">    7.  </span><span class="sc">\(</span>7<span class="sc">\)</span> -<span class="sc">\&gt;</span> (1)</span>
+<span id="cb12-422"><a href="#cb12-422" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>k30<span class="sc">\_\[</span>1-13<span class="sc">\]</span> (Toimenpiteiden koettu hyödyllisyys):</span>
+<span id="cb12-423"><a href="#cb12-423" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span><span class="sc">\(</span>1<span class="sc">\)</span> -<span class="sc">\&gt;</span> (7)</span>
+<span id="cb12-424"><a href="#cb12-424" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span><span class="sc">\(</span>2<span class="sc">\)</span> -<span class="sc">\&gt;</span> (6)</span>
+<span id="cb12-425"><a href="#cb12-425" aria-hidden="true" tabindex="-1"></a><span class="ss">    3.  </span><span class="sc">\(</span>3<span class="sc">\)</span> -<span class="sc">\&gt;</span> (5)</span>
+<span id="cb12-426"><a href="#cb12-426" aria-hidden="true" tabindex="-1"></a><span class="ss">    4.  </span><span class="sc">\(</span>4<span class="sc">\)</span> = (4)</span>
+<span id="cb12-427"><a href="#cb12-427" aria-hidden="true" tabindex="-1"></a><span class="ss">    5.  </span><span class="sc">\(</span>5<span class="sc">\)</span> -<span class="sc">\&gt;</span> (3)</span>
+<span id="cb12-428"><a href="#cb12-428" aria-hidden="true" tabindex="-1"></a><span class="ss">    6.  </span><span class="sc">\(</span>6<span class="sc">\)</span> -<span class="sc">\&gt;</span> (2)</span>
+<span id="cb12-429"><a href="#cb12-429" aria-hidden="true" tabindex="-1"></a><span class="ss">    7.  </span><span class="sc">\(</span>7<span class="sc">\)</span> -<span class="sc">\&gt;</span> (1)</span>
+<span id="cb12-430"><a href="#cb12-430" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>k34 (Tekee varallaoloa):</span>
+<span id="cb12-431"><a href="#cb12-431" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span><span class="sc">\(</span>1<span class="sc">\)</span> = (1)</span>
+<span id="cb12-432"><a href="#cb12-432" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span><span class="sc">\(</span>2<span class="sc">\)</span> -<span class="sc">\&gt;</span> (0)</span>
+<span id="cb12-433"><a href="#cb12-433" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-436"><a href="#cb12-436" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-437"><a href="#cb12-437" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: valmistelu-08-uudelleenkoodaus</span></span>
+<span id="cb12-438"><a href="#cb12-438" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-439"><a href="#cb12-439" aria-hidden="true" tabindex="-1"></a><span class="co"># Epäasiallisen ja väkivaltaisen kohtelun esiintyvyys, neljä mittaristoa</span></span>
+<span id="cb12-440"><a href="#cb12-440" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb12-441"><a href="#cb12-441" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb12-442"><a href="#cb12-442" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
+<span id="cb12-443"><a href="#cb12-443" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(k3_1<span class="sc">:</span>k4_7, k12_1<span class="sc">:</span>k13_7),</span>
+<span id="cb12-444"><a href="#cb12-444" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_match</span>(</span>
+<span id="cb12-445"><a href="#cb12-445" aria-hidden="true" tabindex="-1"></a>        .x,</span>
+<span id="cb12-446"><a href="#cb12-446" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb12-447"><a href="#cb12-447" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb12-448"><a href="#cb12-448" aria-hidden="true" tabindex="-1"></a>        <span class="dv">3</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
+<span id="cb12-449"><a href="#cb12-449" aria-hidden="true" tabindex="-1"></a>        <span class="dv">4</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
+<span id="cb12-450"><a href="#cb12-450" aria-hidden="true" tabindex="-1"></a>        <span class="dv">5</span> <span class="sc">~</span> <span class="dv">4</span>,</span>
+<span id="cb12-451"><a href="#cb12-451" aria-hidden="true" tabindex="-1"></a>        <span class="dv">6</span> <span class="sc">~</span> <span class="dv">5</span>,</span>
+<span id="cb12-452"><a href="#cb12-452" aria-hidden="true" tabindex="-1"></a>        <span class="dv">7</span> <span class="sc">~</span> <span class="dv">6</span>,</span>
+<span id="cb12-453"><a href="#cb12-453" aria-hidden="true" tabindex="-1"></a>        <span class="dv">8</span> <span class="sc">~</span> <span class="dv">7</span>,</span>
+<span id="cb12-454"><a href="#cb12-454" aria-hidden="true" tabindex="-1"></a>        <span class="cn">NA</span> <span class="sc">~</span> <span class="cn">NA</span></span>
+<span id="cb12-455"><a href="#cb12-455" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb12-456"><a href="#cb12-456" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb12-457"><a href="#cb12-457" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb12-458"><a href="#cb12-458" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-459"><a href="#cb12-459" aria-hidden="true" tabindex="-1"></a><span class="co"># Raportointijärjestelmien koulutuksen olemassaolo</span></span>
+<span id="cb12-460"><a href="#cb12-460" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb12-461"><a href="#cb12-461" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb12-462"><a href="#cb12-462" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
+<span id="cb12-463"><a href="#cb12-463" aria-hidden="true" tabindex="-1"></a>      k25_1<span class="sc">:</span>k25_3,</span>
+<span id="cb12-464"><a href="#cb12-464" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_match</span>(</span>
+<span id="cb12-465"><a href="#cb12-465" aria-hidden="true" tabindex="-1"></a>        .x,</span>
+<span id="cb12-466"><a href="#cb12-466" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
+<span id="cb12-467"><a href="#cb12-467" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
+<span id="cb12-468"><a href="#cb12-468" aria-hidden="true" tabindex="-1"></a>        <span class="dv">3</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb12-469"><a href="#cb12-469" aria-hidden="true" tabindex="-1"></a>        <span class="dv">4</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb12-470"><a href="#cb12-470" aria-hidden="true" tabindex="-1"></a>        <span class="sc">-</span><span class="dv">1</span> <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span>,</span>
+<span id="cb12-471"><a href="#cb12-471" aria-hidden="true" tabindex="-1"></a>        <span class="cn">NA</span> <span class="sc">~</span> <span class="cn">NA</span></span>
+<span id="cb12-472"><a href="#cb12-472" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb12-473"><a href="#cb12-473" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb12-474"><a href="#cb12-474" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb12-475"><a href="#cb12-475" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-476"><a href="#cb12-476" aria-hidden="true" tabindex="-1"></a><span class="co"># Asenteet ilmoitusjärjestelmiä kohtaan</span></span>
+<span id="cb12-477"><a href="#cb12-477" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb12-478"><a href="#cb12-478" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb12-479"><a href="#cb12-479" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
+<span id="cb12-480"><a href="#cb12-480" aria-hidden="true" tabindex="-1"></a>      k26_1<span class="sc">:</span>k26_18,</span>
+<span id="cb12-481"><a href="#cb12-481" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_match</span>(</span>
+<span id="cb12-482"><a href="#cb12-482" aria-hidden="true" tabindex="-1"></a>        .x,</span>
+<span id="cb12-483"><a href="#cb12-483" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span> <span class="sc">~</span> <span class="dv">7</span>,</span>
+<span id="cb12-484"><a href="#cb12-484" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="sc">~</span> <span class="dv">6</span>,</span>
+<span id="cb12-485"><a href="#cb12-485" aria-hidden="true" tabindex="-1"></a>        <span class="dv">3</span> <span class="sc">~</span> <span class="dv">5</span>,</span>
+<span id="cb12-486"><a href="#cb12-486" aria-hidden="true" tabindex="-1"></a>        <span class="dv">4</span> <span class="sc">~</span> <span class="dv">4</span>,</span>
+<span id="cb12-487"><a href="#cb12-487" aria-hidden="true" tabindex="-1"></a>        <span class="dv">5</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
+<span id="cb12-488"><a href="#cb12-488" aria-hidden="true" tabindex="-1"></a>        <span class="dv">6</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
+<span id="cb12-489"><a href="#cb12-489" aria-hidden="true" tabindex="-1"></a>        <span class="dv">7</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb12-490"><a href="#cb12-490" aria-hidden="true" tabindex="-1"></a>        <span class="sc">-</span><span class="dv">1</span> <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span>,</span>
+<span id="cb12-491"><a href="#cb12-491" aria-hidden="true" tabindex="-1"></a>        <span class="cn">NA</span> <span class="sc">~</span> <span class="cn">NA</span></span>
+<span id="cb12-492"><a href="#cb12-492" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb12-493"><a href="#cb12-493" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb12-494"><a href="#cb12-494" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb12-495"><a href="#cb12-495" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-496"><a href="#cb12-496" aria-hidden="true" tabindex="-1"></a><span class="co"># Ehdotettujen toimenpiteiden koettu hyödyllisyys</span></span>
+<span id="cb12-497"><a href="#cb12-497" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb12-498"><a href="#cb12-498" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb12-499"><a href="#cb12-499" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
+<span id="cb12-500"><a href="#cb12-500" aria-hidden="true" tabindex="-1"></a>      k30_1<span class="sc">:</span>k30_13,</span>
+<span id="cb12-501"><a href="#cb12-501" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_match</span>(</span>
+<span id="cb12-502"><a href="#cb12-502" aria-hidden="true" tabindex="-1"></a>        .x,</span>
+<span id="cb12-503"><a href="#cb12-503" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span> <span class="sc">~</span> <span class="dv">7</span>,</span>
+<span id="cb12-504"><a href="#cb12-504" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="sc">~</span> <span class="dv">6</span>,</span>
+<span id="cb12-505"><a href="#cb12-505" aria-hidden="true" tabindex="-1"></a>        <span class="dv">3</span> <span class="sc">~</span> <span class="dv">5</span>,</span>
+<span id="cb12-506"><a href="#cb12-506" aria-hidden="true" tabindex="-1"></a>        <span class="dv">4</span> <span class="sc">~</span> <span class="dv">4</span>,</span>
+<span id="cb12-507"><a href="#cb12-507" aria-hidden="true" tabindex="-1"></a>        <span class="dv">5</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
+<span id="cb12-508"><a href="#cb12-508" aria-hidden="true" tabindex="-1"></a>        <span class="dv">6</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
+<span id="cb12-509"><a href="#cb12-509" aria-hidden="true" tabindex="-1"></a>        <span class="dv">7</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb12-510"><a href="#cb12-510" aria-hidden="true" tabindex="-1"></a>        <span class="sc">-</span><span class="dv">1</span> <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span>,</span>
+<span id="cb12-511"><a href="#cb12-511" aria-hidden="true" tabindex="-1"></a>        <span class="cn">NA</span> <span class="sc">~</span> <span class="cn">NA</span></span>
+<span id="cb12-512"><a href="#cb12-512" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb12-513"><a href="#cb12-513" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb12-514"><a href="#cb12-514" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb12-515"><a href="#cb12-515" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-516"><a href="#cb12-516" aria-hidden="true" tabindex="-1"></a><span class="co"># Tekee varallaoloa</span></span>
+<span id="cb12-517"><a href="#cb12-517" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb12-518"><a href="#cb12-518" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb12-519"><a href="#cb12-519" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
+<span id="cb12-520"><a href="#cb12-520" aria-hidden="true" tabindex="-1"></a>      k34,</span>
+<span id="cb12-521"><a href="#cb12-521" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_match</span>(</span>
+<span id="cb12-522"><a href="#cb12-522" aria-hidden="true" tabindex="-1"></a>        .x,</span>
+<span id="cb12-523"><a href="#cb12-523" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb12-524"><a href="#cb12-524" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb12-525"><a href="#cb12-525" aria-hidden="true" tabindex="-1"></a>        <span class="sc">-</span><span class="dv">1</span> <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span>,</span>
+<span id="cb12-526"><a href="#cb12-526" aria-hidden="true" tabindex="-1"></a>        <span class="cn">NA</span> <span class="sc">~</span> <span class="cn">NA</span></span>
+<span id="cb12-527"><a href="#cb12-527" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb12-528"><a href="#cb12-528" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb12-529"><a href="#cb12-529" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb12-530"><a href="#cb12-530" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-531"><a href="#cb12-531" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-532"><a href="#cb12-532" aria-hidden="true" tabindex="-1"></a><span class="fu">### Organisaatioaseman ryhmäkoodaus {#sec-valmistelu-uudelleenkoodaukset-organisaatioasema}</span></span>
+<span id="cb12-533"><a href="#cb12-533" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-534"><a href="#cb12-534" aria-hidden="true" tabindex="-1"></a>Ennen anonymisointia kolmen organisaatioaseman muuttujat (<span class="in">`k36_[1-7], k38, k39`</span>) tulee yhdistää yhdeksi muuttujaksi anonymisointisuunnitelman mukaisesti.</span>
+<span id="cb12-535"><a href="#cb12-535" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-536"><a href="#cb12-536" aria-hidden="true" tabindex="-1"></a>Lopullisessa muuttujassa on kuusi luokkaa: (1) Johto- tai esihenkilötaso, (2) Suorittava henkilöstö, (3) Asiantuntijat, (4) Hallinnollinen tai tukipalveluhenkilöstö, (5) Opetushenkilöstö, (6) Opiskelijat.</span>
+<span id="cb12-537"><a href="#cb12-537" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-540"><a href="#cb12-540" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-541"><a href="#cb12-541" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: valmistelu-09-organisaatioasema</span></span>
 <span id="cb12-542"><a href="#cb12-542" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-543"><a href="#cb12-543" aria-hidden="true" tabindex="-1"></a><span class="co"># Valtakunnalliset järjestöt (k2 == 3) sekä koulutusorganisaatiot (k2 == 4)</span></span>
-<span id="cb12-544"><a href="#cb12-544" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
-<span id="cb12-545"><a href="#cb12-545" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(k2 <span class="sc">==</span> <span class="dv">3</span> <span class="sc">|</span> k2 <span class="sc">==</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb12-546"><a href="#cb12-546" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb12-547"><a href="#cb12-547" aria-hidden="true" tabindex="-1"></a>    <span class="at">Organisaatioasema =</span> <span class="fu">case_when</span>(</span>
-<span id="cb12-548"><a href="#cb12-548" aria-hidden="true" tabindex="-1"></a>      k38 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb12-549"><a href="#cb12-549" aria-hidden="true" tabindex="-1"></a>      k38 <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
-<span id="cb12-550"><a href="#cb12-550" aria-hidden="true" tabindex="-1"></a>      k38 <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="dv">4</span>,</span>
-<span id="cb12-551"><a href="#cb12-551" aria-hidden="true" tabindex="-1"></a>      k38 <span class="sc">==</span> <span class="dv">4</span> <span class="sc">~</span> <span class="dv">5</span>,</span>
-<span id="cb12-552"><a href="#cb12-552" aria-hidden="true" tabindex="-1"></a>      k38 <span class="sc">==</span> <span class="dv">5</span> <span class="sc">~</span> <span class="dv">6</span></span>
-<span id="cb12-553"><a href="#cb12-553" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb12-554"><a href="#cb12-554" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb12-555"><a href="#cb12-555" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rows_update</span>(</span>
-<span id="cb12-556"><a href="#cb12-556" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> data,</span>
-<span id="cb12-557"><a href="#cb12-557" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> .,</span>
-<span id="cb12-558"><a href="#cb12-558" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="st">"ID"</span></span>
-<span id="cb12-559"><a href="#cb12-559" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb12-560"><a href="#cb12-560" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-561"><a href="#cb12-561" aria-hidden="true" tabindex="-1"></a><span class="co"># Seuraavalla pitää yhdistää monivalintakysymykset prioriteettijärjestyksen mukaan.</span></span>
-<span id="cb12-562"><a href="#cb12-562" aria-hidden="true" tabindex="-1"></a><span class="co"># case_when valitsee ensimmäisen vastaavan arvon järjestyksessä, eli voimme käyttää tätä hyödyksemme prioriteetin soveltamisessa.</span></span>
-<span id="cb12-563"><a href="#cb12-563" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-564"><a href="#cb12-564" aria-hidden="true" tabindex="-1"></a><span class="co"># Sopimuspalokunnat ja palokuntayhdistykset (k2 == 2)</span></span>
-<span id="cb12-565"><a href="#cb12-565" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
-<span id="cb12-566"><a href="#cb12-566" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(k2 <span class="sc">==</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb12-567"><a href="#cb12-567" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb12-568"><a href="#cb12-568" aria-hidden="true" tabindex="-1"></a>    <span class="at">Organisaatioasema =</span> <span class="fu">case_when</span>(</span>
-<span id="cb12-569"><a href="#cb12-569" aria-hidden="true" tabindex="-1"></a>      k36_3 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">|</span> k36_6 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">1</span>, <span class="co"># Yhdistystoiminnan johto- tai hallintotehtävät, tai muut vastuutehtävät</span></span>
-<span id="cb12-570"><a href="#cb12-570" aria-hidden="true" tabindex="-1"></a>      k36_1 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">|</span> k36_2 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">|</span> k36_4 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">|</span> k36_5 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">2</span>, <span class="co"># Sammutus-, pelastus- tai ensivastetoiminta, operatiiviset johtotehtävät, tai muut vastuutehtävät</span></span>
-<span id="cb12-571"><a href="#cb12-571" aria-hidden="true" tabindex="-1"></a>      k36_7 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">4</span> <span class="co"># Tukitoiminnot</span></span>
-<span id="cb12-572"><a href="#cb12-572" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb12-573"><a href="#cb12-573" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb12-574"><a href="#cb12-574" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rows_update</span>(</span>
-<span id="cb12-575"><a href="#cb12-575" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> data,</span>
-<span id="cb12-576"><a href="#cb12-576" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> .,</span>
-<span id="cb12-577"><a href="#cb12-577" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="st">"ID"</span></span>
-<span id="cb12-578"><a href="#cb12-578" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb12-579"><a href="#cb12-579" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-580"><a href="#cb12-580" aria-hidden="true" tabindex="-1"></a><span class="co"># Viimeiseksi poistetaan vanhat yksityiskohtaiset muuttujat, koska niitä ei käytetä tulevaisuudessa ollenkaan. Siirretään myös Organisaatioasema loogisempaan paikkaan.</span></span>
-<span id="cb12-581"><a href="#cb12-581" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
-<span id="cb12-582"><a href="#cb12-582" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>(k36_1<span class="sc">:</span>k36_7) <span class="sc">&amp;</span> <span class="sc">-</span>(k38<span class="sc">:</span>k39)) <span class="sc">%&gt;%</span></span>
-<span id="cb12-583"><a href="#cb12-583" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(Organisaatioasema, <span class="at">.before =</span> k40)</span>
-<span id="cb12-584"><a href="#cb12-584" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-585"><a href="#cb12-585" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-586"><a href="#cb12-586" aria-hidden="true" tabindex="-1"></a><span class="fu">## Avovastauksen laadullinen koodaus</span></span>
-<span id="cb12-587"><a href="#cb12-587" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-588"><a href="#cb12-588" aria-hidden="true" tabindex="-1"></a>Tallensimme kaikki ei-tyhjät avovastaukset ID-numeron kanssa <span class="in">`csv`</span>-muotoon laadullista koodausta varten.</span>
+<span id="cb12-543"><a href="#cb12-543" aria-hidden="true" tabindex="-1"></a><span class="co"># Jokaisen organisaatioryhmän kohdalla tehdään seuraavasti:</span></span>
+<span id="cb12-544"><a href="#cb12-544" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Valitse ryhmädata filter()-verbillä</span></span>
+<span id="cb12-545"><a href="#cb12-545" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Muuta Organisaatioasema-muuttuja ryhmän asemamuuttujan arvojen mukaisesti (ks. taustakysymykset-osio yllä sekä anonymisointisuunnitelma)</span></span>
+<span id="cb12-546"><a href="#cb12-546" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Päivitä vanha data uuden ryhmädatan riveillä ID-muuttujan avulla rows_update()-verbillä</span></span>
+<span id="cb12-547"><a href="#cb12-547" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-548"><a href="#cb12-548" aria-hidden="true" tabindex="-1"></a><span class="co"># Näissä ei tarvitse käsitellä arvoa "-1", sillä meillä on täydellinen data käytettävissä jokaiselle organisaatio-ositetulle muuttujalle.</span></span>
+<span id="cb12-549"><a href="#cb12-549" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-550"><a href="#cb12-550" aria-hidden="true" tabindex="-1"></a><span class="co"># Laadi tyhjä muuttuja ensin, jotta voidaan yhdistää data myöhemmin</span></span>
+<span id="cb12-551"><a href="#cb12-551" aria-hidden="true" tabindex="-1"></a><span class="co"># Placeholder-arvo on 0</span></span>
+<span id="cb12-552"><a href="#cb12-552" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb12-553"><a href="#cb12-553" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_column</span>(<span class="at">Organisaatioasema =</span> <span class="fu">numeric</span>(<span class="fu">nrow</span>(data)))</span>
+<span id="cb12-554"><a href="#cb12-554" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-555"><a href="#cb12-555" aria-hidden="true" tabindex="-1"></a><span class="co"># Pelastuslaitokset ja ensihoito (k2 == 1)</span></span>
+<span id="cb12-556"><a href="#cb12-556" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb12-557"><a href="#cb12-557" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(k2 <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-558"><a href="#cb12-558" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb12-559"><a href="#cb12-559" aria-hidden="true" tabindex="-1"></a>    <span class="at">Organisaatioasema =</span> <span class="fu">case_when</span>(</span>
+<span id="cb12-560"><a href="#cb12-560" aria-hidden="true" tabindex="-1"></a>      k39 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">|</span> k39 <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb12-561"><a href="#cb12-561" aria-hidden="true" tabindex="-1"></a>      k39 <span class="sc">==</span> <span class="dv">3</span> <span class="sc">|</span> k39 <span class="sc">==</span> <span class="dv">4</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
+<span id="cb12-562"><a href="#cb12-562" aria-hidden="true" tabindex="-1"></a>      k39 <span class="sc">==</span> <span class="dv">5</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
+<span id="cb12-563"><a href="#cb12-563" aria-hidden="true" tabindex="-1"></a>      k39 <span class="sc">==</span> <span class="dv">6</span> <span class="sc">~</span> <span class="dv">4</span></span>
+<span id="cb12-564"><a href="#cb12-564" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb12-565"><a href="#cb12-565" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb12-566"><a href="#cb12-566" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rows_update</span>(</span>
+<span id="cb12-567"><a href="#cb12-567" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> data,</span>
+<span id="cb12-568"><a href="#cb12-568" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> .,</span>
+<span id="cb12-569"><a href="#cb12-569" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="st">"ID"</span></span>
+<span id="cb12-570"><a href="#cb12-570" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb12-571"><a href="#cb12-571" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-572"><a href="#cb12-572" aria-hidden="true" tabindex="-1"></a><span class="co"># Valtakunnalliset järjestöt (k2 == 3) sekä koulutusorganisaatiot (k2 == 4)</span></span>
+<span id="cb12-573"><a href="#cb12-573" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb12-574"><a href="#cb12-574" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(k2 <span class="sc">==</span> <span class="dv">3</span> <span class="sc">|</span> k2 <span class="sc">==</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-575"><a href="#cb12-575" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb12-576"><a href="#cb12-576" aria-hidden="true" tabindex="-1"></a>    <span class="at">Organisaatioasema =</span> <span class="fu">case_when</span>(</span>
+<span id="cb12-577"><a href="#cb12-577" aria-hidden="true" tabindex="-1"></a>      k38 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb12-578"><a href="#cb12-578" aria-hidden="true" tabindex="-1"></a>      k38 <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
+<span id="cb12-579"><a href="#cb12-579" aria-hidden="true" tabindex="-1"></a>      k38 <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="dv">4</span>,</span>
+<span id="cb12-580"><a href="#cb12-580" aria-hidden="true" tabindex="-1"></a>      k38 <span class="sc">==</span> <span class="dv">4</span> <span class="sc">~</span> <span class="dv">5</span>,</span>
+<span id="cb12-581"><a href="#cb12-581" aria-hidden="true" tabindex="-1"></a>      k38 <span class="sc">==</span> <span class="dv">5</span> <span class="sc">~</span> <span class="dv">6</span></span>
+<span id="cb12-582"><a href="#cb12-582" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb12-583"><a href="#cb12-583" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb12-584"><a href="#cb12-584" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rows_update</span>(</span>
+<span id="cb12-585"><a href="#cb12-585" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> data,</span>
+<span id="cb12-586"><a href="#cb12-586" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> .,</span>
+<span id="cb12-587"><a href="#cb12-587" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="st">"ID"</span></span>
+<span id="cb12-588"><a href="#cb12-588" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb12-589"><a href="#cb12-589" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-592"><a href="#cb12-592" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-593"><a href="#cb12-593" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: valmistelu-10-laadullinentallennus</span></span>
-<span id="cb12-594"><a href="#cb12-594" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-595"><a href="#cb12-595" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
-<span id="cb12-596"><a href="#cb12-596" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>(k43 <span class="sc">==</span> <span class="st">''</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb12-597"><a href="#cb12-597" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(ID, k43) <span class="sc">|&gt;</span></span>
-<span id="cb12-598"><a href="#cb12-598" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write.csv2</span>(<span class="st">"output/k43_koodattavaksi.csv"</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>, <span class="at">fileEncoding =</span> <span class="st">"UTF-8"</span>)</span>
-<span id="cb12-599"><a href="#cb12-599" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-600"><a href="#cb12-600" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-601"><a href="#cb12-601" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-602"><a href="#cb12-602" aria-hidden="true" tabindex="-1"></a>Korjasimme ääkköset Excelin "Korvaa"-työkalulla.</span>
-<span id="cb12-603"><a href="#cb12-603" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-604"><a href="#cb12-604" aria-hidden="true" tabindex="-1"></a><span class="fu">## Datan tallennus {#sec-valmistelu-datatallennus}</span></span>
-<span id="cb12-605"><a href="#cb12-605" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-606"><a href="#cb12-606" aria-hidden="true" tabindex="-1"></a>Koodausten jälkeen tallensimme lopullisen datatiedoston <span class="in">`csv`</span>-muotoon. Tallennusta ei ole saatavilla verkkosivun lähdekoodista tietosuojan takia.</span>
-<span id="cb12-607"><a href="#cb12-607" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-610"><a href="#cb12-610" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-611"><a href="#cb12-611" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: valmistelu-10-datatallennus</span></span>
-<span id="cb12-612"><a href="#cb12-612" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-613"><a href="#cb12-613" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv2</span>(data, <span class="at">file =</span> <span class="st">"output/koodattudata.csv"</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb12-590"><a href="#cb12-590" aria-hidden="true" tabindex="-1"></a><span class="co"># Seuraavalla pitää yhdistää monivalintakysymykset prioriteettijärjestyksen mukaan.</span></span>
+<span id="cb12-591"><a href="#cb12-591" aria-hidden="true" tabindex="-1"></a><span class="co"># case_when valitsee ensimmäisen vastaavan arvon järjestyksessä, eli voimme käyttää tätä hyödyksemme prioriteetin soveltamisessa.</span></span>
+<span id="cb12-592"><a href="#cb12-592" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-593"><a href="#cb12-593" aria-hidden="true" tabindex="-1"></a><span class="co"># Sopimuspalokunnat ja palokuntayhdistykset (k2 == 2)</span></span>
+<span id="cb12-594"><a href="#cb12-594" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb12-595"><a href="#cb12-595" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(k2 <span class="sc">==</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-596"><a href="#cb12-596" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb12-597"><a href="#cb12-597" aria-hidden="true" tabindex="-1"></a>    <span class="at">Organisaatioasema =</span> <span class="fu">case_when</span>(</span>
+<span id="cb12-598"><a href="#cb12-598" aria-hidden="true" tabindex="-1"></a>      k36_3 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">|</span> k36_6 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">1</span>, <span class="co"># Yhdistystoiminnan johto- tai hallintotehtävät, tai muut vastuutehtävät</span></span>
+<span id="cb12-599"><a href="#cb12-599" aria-hidden="true" tabindex="-1"></a>      k36_1 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">|</span> k36_2 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">|</span> k36_4 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">|</span> k36_5 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">2</span>, <span class="co"># Sammutus-, pelastus- tai ensivastetoiminta, operatiiviset johtotehtävät, tai muut vastuutehtävät</span></span>
+<span id="cb12-600"><a href="#cb12-600" aria-hidden="true" tabindex="-1"></a>      k36_7 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">4</span> <span class="co"># Tukitoiminnot</span></span>
+<span id="cb12-601"><a href="#cb12-601" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb12-602"><a href="#cb12-602" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb12-603"><a href="#cb12-603" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rows_update</span>(</span>
+<span id="cb12-604"><a href="#cb12-604" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> data,</span>
+<span id="cb12-605"><a href="#cb12-605" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> .,</span>
+<span id="cb12-606"><a href="#cb12-606" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="st">"ID"</span></span>
+<span id="cb12-607"><a href="#cb12-607" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb12-608"><a href="#cb12-608" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-609"><a href="#cb12-609" aria-hidden="true" tabindex="-1"></a><span class="co"># Viimeiseksi poistetaan vanhat yksityiskohtaiset muuttujat, koska niitä ei käytetä tulevaisuudessa ollenkaan. Siirretään myös Organisaatioasema loogisempaan paikkaan.</span></span>
+<span id="cb12-610"><a href="#cb12-610" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb12-611"><a href="#cb12-611" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>(k36_1<span class="sc">:</span>k36_7) <span class="sc">&amp;</span> <span class="sc">-</span>(k38<span class="sc">:</span>k39)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-612"><a href="#cb12-612" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(Organisaatioasema, <span class="at">.before =</span> k40)</span>
+<span id="cb12-613"><a href="#cb12-613" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb12-614"><a href="#cb12-614" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-615"><a href="#cb12-615" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-615"><a href="#cb12-615" aria-hidden="true" tabindex="-1"></a><span class="fu">## Avovastauksen laadullinen koodaus</span></span>
+<span id="cb12-616"><a href="#cb12-616" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-617"><a href="#cb12-617" aria-hidden="true" tabindex="-1"></a>Tallensimme kaikki ei-tyhjät avovastaukset ID-numeron kanssa <span class="in">`csv`</span>-muotoon laadullista koodausta varten.</span>
+<span id="cb12-618"><a href="#cb12-618" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-621"><a href="#cb12-621" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-622"><a href="#cb12-622" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: valmistelu-10-laadullinentallennus</span></span>
+<span id="cb12-623"><a href="#cb12-623" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-624"><a href="#cb12-624" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb12-625"><a href="#cb12-625" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>(k43 <span class="sc">==</span> <span class="st">''</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb12-626"><a href="#cb12-626" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(ID, k43) <span class="sc">|&gt;</span></span>
+<span id="cb12-627"><a href="#cb12-627" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write.csv2</span>(<span class="st">"output/k43_koodattavaksi.csv"</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>, <span class="at">fileEncoding =</span> <span class="st">"UTF-8"</span>)</span>
+<span id="cb12-628"><a href="#cb12-628" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-629"><a href="#cb12-629" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-630"><a href="#cb12-630" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-631"><a href="#cb12-631" aria-hidden="true" tabindex="-1"></a>Korjasimme ääkköset Excelin "Korvaa"-työkalulla.</span>
+<span id="cb12-632"><a href="#cb12-632" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-633"><a href="#cb12-633" aria-hidden="true" tabindex="-1"></a><span class="fu">## Datan tallennus {#sec-valmistelu-datatallennus}</span></span>
+<span id="cb12-634"><a href="#cb12-634" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-635"><a href="#cb12-635" aria-hidden="true" tabindex="-1"></a>Koodausten jälkeen tallensimme lopullisen datatiedoston <span class="in">`csv`</span>-muotoon. Tallennusta ei ole saatavilla verkkosivun lähdekoodista tietosuojan takia.</span>
+<span id="cb12-636"><a href="#cb12-636" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-639"><a href="#cb12-639" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-640"><a href="#cb12-640" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: valmistelu-10-datatallennus</span></span>
+<span id="cb12-641"><a href="#cb12-641" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-642"><a href="#cb12-642" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv2</span>(data, <span class="at">file =</span> <span class="st">"output/koodattudata.csv"</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb12-643"><a href="#cb12-643" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-644"><a href="#cb12-644" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

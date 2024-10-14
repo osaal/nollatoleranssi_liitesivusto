@@ -243,6 +243,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="./organisaatiotoimet.html" rel="" target="">
  <span class="dropdown-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Organisaatiotoimet</span></span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./ryhmavertailut.html" rel="" target="">
+ <span class="dropdown-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Ryhmävertailut</span></span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -252,7 +256,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="dropdown-menu" aria-labelledby="nav-menu-mittaristojen-validoinnit">    
         <li>
     <a class="dropdown-item" href="./kohtelu_validointi.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Epäasiallisen ja väkivaltaisen kohtelun esiintyvyyden mittarin validointi</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Epäasiallisen ja väkivaltaisen kohtelun esiintyvyyden mittarin validointi</span></span></a>
   </li>  
     </ul>
   </li>
@@ -263,11 +267,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="dropdown-menu" aria-labelledby="nav-menu-esitykset-ja-kirjoitukset">    
         <li>
     <a class="dropdown-item" href="./deibseminaari.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Pelastusalan DEIB-seminaari</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Pelastusalan DEIB-seminaari</span></span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./blogi1.html" rel="" target="">
- <span class="dropdown-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Blogi: Epäasiallisen ja väkivaltaisen kohtelun esiintyvyys pelastus- ja ensihoitoalalla</span></span></a>
+ <span class="dropdown-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Blogi: Epäasiallisuutta ja väkivaltaa esiintyy pelastusalalla ja ensihoidossa laajasti</span></span></a>
   </li>  
     </ul>
   </li>
@@ -332,6 +336,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./organisaatiotoimet.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Organisaatiotoimet</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ryhmavertailut.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Ryhmävertailut</span></span></a>
   </div>
 </li>
     </ul>
@@ -516,7 +526,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div class="cell" data-hash="esiintyvyys_cache/html/tbl-esiintyvyys-sisa-itse_cc8b653a1f30d16a4bdfd5236dcb1597">
+<div class="cell" data-hash="esiintyvyys_cache/html/tbl-esiintyvyys-sisa-itse_31584561e4acb7784fa171cde0455471">
 <details>
 <summary>Koodi</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
@@ -550,14 +560,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>      value,</span>
 <span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_match</span>(</span>
 <span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>        .x,</span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span> <span class="sc">~</span> <span class="st">"En kertaakaan"</span>,</span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="sc">~</span> <span class="st">"Harvemmin kuin kerran kuukaudessa"</span>,</span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>        <span class="dv">3</span> <span class="sc">~</span> <span class="st">"Kerran kuukaudessa"</span>,</span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>        <span class="dv">4</span> <span class="sc">~</span> <span class="st">"Useita kertoja kuukaudessa"</span>,</span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>        <span class="dv">5</span> <span class="sc">~</span> <span class="st">"Kerran viikossa"</span>,</span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>        <span class="dv">6</span> <span class="sc">~</span> <span class="st">"Useita kertoja viikossa"</span>,</span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>        <span class="dv">7</span> <span class="sc">~</span> <span class="st">"Kerran päivässä"</span>,</span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>        <span class="dv">8</span> <span class="sc">~</span> <span class="st">"Useita kertoja päivässä"</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>        <span class="dv">0</span> <span class="sc">~</span> <span class="st">"En kertaakaan"</span>,</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span> <span class="sc">~</span> <span class="st">"Harvemmin kuin kerran kuukaudessa"</span>,</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="sc">~</span> <span class="st">"Kerran kuukaudessa"</span>,</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>        <span class="dv">3</span> <span class="sc">~</span> <span class="st">"Useita kertoja kuukaudessa"</span>,</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>        <span class="dv">4</span> <span class="sc">~</span> <span class="st">"Kerran viikossa"</span>,</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>        <span class="dv">5</span> <span class="sc">~</span> <span class="st">"Useita kertoja viikossa"</span>,</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>        <span class="dv">6</span> <span class="sc">~</span> <span class="st">"Kerran päivässä"</span>,</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>        <span class="dv">7</span> <span class="sc">~</span> <span class="st">"Useita kertoja päivässä"</span></span>
 <span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>      )</span>
 <span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
@@ -569,20 +579,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <table class="table table-sm table-striped small">
 <caption>Taulukko&nbsp;21.1: Omakohtaisesti kohdattu organisaation sisäinen epäasiallinen ja väkivaltainen kohtelu, osuus kaikista vastaajista (muuttujakohtaisesti)</caption>
 <colgroup>
-<col style="width: 20%">
-<col style="width: 6%">
-<col style="width: 15%">
-<col style="width: 8%">
+<col style="width: 22%">
+<col style="width: 16%">
+<col style="width: 9%">
 <col style="width: 7%">
 <col style="width: 7%">
-<col style="width: 12%">
-<col style="width: 10%">
-<col style="width: 10%">
+<col style="width: 13%">
+<col style="width: 11%">
+<col style="width: 11%">
 </colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;"></th>
-<th style="text-align: right;">En kertaakaan</th>
 <th style="text-align: right;">Harvemmin kuin kerran kuukaudessa</th>
 <th style="text-align: right;">Kerran kuukaudessa</th>
 <th style="text-align: right;">Kerran päivässä</th>
@@ -597,10 +605,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">Fyysinen väkivalta</td>
 <td style="text-align: right;">0.969</td>
 <td style="text-align: right;">0.021</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.002</td>
-<td style="text-align: right;">0.000</td>
-<td style="text-align: right;">0.000</td>
-<td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.000</td>
 </tr>
@@ -608,10 +615,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">Omaisuuden vahingoittaminen tai varastaminen</td>
 <td style="text-align: right;">0.922</td>
 <td style="text-align: right;">0.064</td>
-<td style="text-align: right;">0.005</td>
-<td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.002</td>
+<td style="text-align: right;">0.005</td>
 <td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.000</td>
 </tr>
@@ -619,32 +625,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">Seksuaalinen häirintä tai väkivalta</td>
 <td style="text-align: right;">0.876</td>
 <td style="text-align: right;">0.087</td>
-<td style="text-align: right;">0.016</td>
-<td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.001</td>
 <td style="text-align: right;">0.010</td>
-<td style="text-align: right;">0.001</td>
+<td style="text-align: right;">0.016</td>
+<td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.001</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Syrjintä</td>
 <td style="text-align: right;">0.729</td>
 <td style="text-align: right;">0.158</td>
+<td style="text-align: right;">0.013</td>
+<td style="text-align: right;">0.024</td>
 <td style="text-align: right;">0.056</td>
 <td style="text-align: right;">0.002</td>
 <td style="text-align: right;">0.009</td>
-<td style="text-align: right;">0.024</td>
-<td style="text-align: right;">0.002</td>
-<td style="text-align: right;">0.013</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Uhkailu</td>
 <td style="text-align: right;">0.879</td>
 <td style="text-align: right;">0.090</td>
-<td style="text-align: right;">0.008</td>
-<td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.002</td>
 <td style="text-align: right;">0.011</td>
+<td style="text-align: right;">0.008</td>
 <td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.002</td>
 </tr>
@@ -652,23 +655,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">Verbaalinen väkivalta</td>
 <td style="text-align: right;">0.726</td>
 <td style="text-align: right;">0.191</td>
-<td style="text-align: right;">0.040</td>
-<td style="text-align: right;">0.001</td>
 <td style="text-align: right;">0.009</td>
 <td style="text-align: right;">0.021</td>
-<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.040</td>
+<td style="text-align: right;">0.001</td>
 <td style="text-align: right;">0.009</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Vihamielisyys tai epäkohtelias käyttäytyminen</td>
 <td style="text-align: right;">0.574</td>
 <td style="text-align: right;">0.268</td>
+<td style="text-align: right;">0.012</td>
+<td style="text-align: right;">0.056</td>
 <td style="text-align: right;">0.073</td>
 <td style="text-align: right;">0.002</td>
 <td style="text-align: right;">0.007</td>
-<td style="text-align: right;">0.056</td>
-<td style="text-align: right;">0.001</td>
-<td style="text-align: right;">0.012</td>
 </tr>
 </tbody>
 </table>
@@ -796,7 +797,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div class="cell" data-hash="esiintyvyys_cache/html/tbl-esiintyvyys-sisa-kollega_f3805d50c2094899d180fd5c59d87909">
+<div class="cell" data-hash="esiintyvyys_cache/html/tbl-esiintyvyys-sisa-kollega_acd163ec0633305c6ebda367e880ebee">
 <details>
 <summary>Koodi</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
@@ -830,14 +831,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>      value,</span>
 <span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_match</span>(</span>
 <span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>        .x,</span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span> <span class="sc">~</span> <span class="st">"En kertaakaan"</span>,</span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="sc">~</span> <span class="st">"Harvemmin kuin kerran kuukaudessa"</span>,</span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>        <span class="dv">3</span> <span class="sc">~</span> <span class="st">"Kerran kuukaudessa"</span>,</span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>        <span class="dv">4</span> <span class="sc">~</span> <span class="st">"Useita kertoja kuukaudessa"</span>,</span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>        <span class="dv">5</span> <span class="sc">~</span> <span class="st">"Kerran viikossa"</span>,</span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>        <span class="dv">6</span> <span class="sc">~</span> <span class="st">"Useita kertoja viikossa"</span>,</span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>        <span class="dv">7</span> <span class="sc">~</span> <span class="st">"Kerran päivässä"</span>,</span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>        <span class="dv">8</span> <span class="sc">~</span> <span class="st">"Useita kertoja päivässä"</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>        <span class="dv">0</span> <span class="sc">~</span> <span class="st">"En kertaakaan"</span>,</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span> <span class="sc">~</span> <span class="st">"Harvemmin kuin kerran kuukaudessa"</span>,</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="sc">~</span> <span class="st">"Kerran kuukaudessa"</span>,</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>        <span class="dv">3</span> <span class="sc">~</span> <span class="st">"Useita kertoja kuukaudessa"</span>,</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>        <span class="dv">4</span> <span class="sc">~</span> <span class="st">"Kerran viikossa"</span>,</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>        <span class="dv">5</span> <span class="sc">~</span> <span class="st">"Useita kertoja viikossa"</span>,</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>        <span class="dv">6</span> <span class="sc">~</span> <span class="st">"Kerran päivässä"</span>,</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>        <span class="dv">7</span> <span class="sc">~</span> <span class="st">"Useita kertoja päivässä"</span></span>
 <span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>      )</span>
 <span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
@@ -849,20 +850,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <table class="table table-sm table-striped small">
 <caption>Taulukko&nbsp;21.2: Kollegan kohtaama organisaation sisäinen epäasiallinen ja väkivaltainen kohtelu, osuus kaikista vastaajista (muuttujakohtaisesti)</caption>
 <colgroup>
-<col style="width: 20%">
-<col style="width: 6%">
-<col style="width: 15%">
-<col style="width: 8%">
+<col style="width: 22%">
+<col style="width: 16%">
+<col style="width: 9%">
 <col style="width: 7%">
 <col style="width: 7%">
-<col style="width: 12%">
-<col style="width: 10%">
-<col style="width: 10%">
+<col style="width: 13%">
+<col style="width: 11%">
+<col style="width: 11%">
 </colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;"></th>
-<th style="text-align: right;">En kertaakaan</th>
 <th style="text-align: right;">Harvemmin kuin kerran kuukaudessa</th>
 <th style="text-align: right;">Kerran kuukaudessa</th>
 <th style="text-align: right;">Kerran päivässä</th>
@@ -877,10 +876,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">Fyysinen väkivalta</td>
 <td style="text-align: right;">0.956</td>
 <td style="text-align: right;">0.029</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.002</td>
-<td style="text-align: right;">0.000</td>
-<td style="text-align: right;">0.000</td>
-<td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.000</td>
 </tr>
@@ -888,67 +886,61 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">Omaisuuden vahingoittaminen tai varastaminen</td>
 <td style="text-align: right;">0.920</td>
 <td style="text-align: right;">0.060</td>
+<td style="text-align: right;">0.001</td>
+<td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.008</td>
 <td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.000</td>
-<td style="text-align: right;">0.000</td>
-<td style="text-align: right;">0.000</td>
-<td style="text-align: right;">0.001</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Seksuaalinen häirintä tai väkivalta</td>
 <td style="text-align: right;">0.810</td>
 <td style="text-align: right;">0.130</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.014</td>
 <td style="text-align: right;">0.029</td>
 <td style="text-align: right;">0.001</td>
 <td style="text-align: right;">0.002</td>
-<td style="text-align: right;">0.014</td>
-<td style="text-align: right;">0.000</td>
-<td style="text-align: right;">0.000</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Syrjintä</td>
 <td style="text-align: right;">0.687</td>
 <td style="text-align: right;">0.194</td>
+<td style="text-align: right;">0.009</td>
+<td style="text-align: right;">0.043</td>
 <td style="text-align: right;">0.049</td>
 <td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.008</td>
-<td style="text-align: right;">0.043</td>
-<td style="text-align: right;">0.002</td>
-<td style="text-align: right;">0.009</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Uhkailu</td>
 <td style="text-align: right;">0.864</td>
 <td style="text-align: right;">0.094</td>
+<td style="text-align: right;">0.001</td>
+<td style="text-align: right;">0.007</td>
 <td style="text-align: right;">0.022</td>
 <td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.002</td>
-<td style="text-align: right;">0.007</td>
-<td style="text-align: right;">0.000</td>
-<td style="text-align: right;">0.001</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Verbaalinen väkivalta</td>
 <td style="text-align: right;">0.676</td>
 <td style="text-align: right;">0.220</td>
+<td style="text-align: right;">0.006</td>
+<td style="text-align: right;">0.034</td>
 <td style="text-align: right;">0.050</td>
 <td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.008</td>
-<td style="text-align: right;">0.034</td>
-<td style="text-align: right;">0.000</td>
-<td style="text-align: right;">0.006</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Vihamielisyys tai epäkohtelias käyttäytyminen</td>
 <td style="text-align: right;">0.555</td>
 <td style="text-align: right;">0.276</td>
+<td style="text-align: right;">0.009</td>
+<td style="text-align: right;">0.057</td>
 <td style="text-align: right;">0.083</td>
 <td style="text-align: right;">0.001</td>
 <td style="text-align: right;">0.013</td>
-<td style="text-align: right;">0.057</td>
-<td style="text-align: right;">0.001</td>
-<td style="text-align: right;">0.009</td>
 </tr>
 </tbody>
 </table>
@@ -1079,7 +1071,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div class="cell" data-hash="esiintyvyys_cache/html/tbl-esiintyvyys-ulko-itse_e2e7e981c48d3a02caf08317c02ec5e4">
+<div class="cell" data-hash="esiintyvyys_cache/html/tbl-esiintyvyys-ulko-itse_de64a0ab77303b7bd4fe3010ccf910c4">
 <details>
 <summary>Koodi</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
@@ -1113,14 +1105,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>      value,</span>
 <span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_match</span>(</span>
 <span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>        .x,</span>
-<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span> <span class="sc">~</span> <span class="st">"En kertaakaan"</span>,</span>
-<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="sc">~</span> <span class="st">"Harvemmin kuin kerran kuukaudessa"</span>,</span>
-<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>        <span class="dv">3</span> <span class="sc">~</span> <span class="st">"Kerran kuukaudessa"</span>,</span>
-<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>        <span class="dv">4</span> <span class="sc">~</span> <span class="st">"Useita kertoja kuukaudessa"</span>,</span>
-<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>        <span class="dv">5</span> <span class="sc">~</span> <span class="st">"Kerran viikossa"</span>,</span>
-<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>        <span class="dv">6</span> <span class="sc">~</span> <span class="st">"Useita kertoja viikossa"</span>,</span>
-<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>        <span class="dv">7</span> <span class="sc">~</span> <span class="st">"Kerran päivässä"</span>,</span>
-<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>        <span class="dv">8</span> <span class="sc">~</span> <span class="st">"Useita kertoja päivässä"</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>        <span class="dv">0</span> <span class="sc">~</span> <span class="st">"En kertaakaan"</span>,</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span> <span class="sc">~</span> <span class="st">"Harvemmin kuin kerran kuukaudessa"</span>,</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="sc">~</span> <span class="st">"Kerran kuukaudessa"</span>,</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>        <span class="dv">3</span> <span class="sc">~</span> <span class="st">"Useita kertoja kuukaudessa"</span>,</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>        <span class="dv">4</span> <span class="sc">~</span> <span class="st">"Kerran viikossa"</span>,</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>        <span class="dv">5</span> <span class="sc">~</span> <span class="st">"Useita kertoja viikossa"</span>,</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>        <span class="dv">6</span> <span class="sc">~</span> <span class="st">"Kerran päivässä"</span>,</span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>        <span class="dv">7</span> <span class="sc">~</span> <span class="st">"Useita kertoja päivässä"</span></span>
 <span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>      )</span>
 <span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
@@ -1132,20 +1124,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <table class="table table-sm table-striped small">
 <caption>Taulukko&nbsp;21.3: Omakohtaisesti kohdattu organisaation ulkopuolelta tuleva epäasiallinen ja väkivaltainen kohtelu, osuus kaikista vastaajista (muuttujakohtaisesti)</caption>
 <colgroup>
-<col style="width: 20%">
-<col style="width: 6%">
-<col style="width: 15%">
-<col style="width: 8%">
+<col style="width: 22%">
+<col style="width: 16%">
+<col style="width: 9%">
 <col style="width: 7%">
 <col style="width: 7%">
-<col style="width: 12%">
-<col style="width: 10%">
-<col style="width: 10%">
+<col style="width: 13%">
+<col style="width: 11%">
+<col style="width: 11%">
 </colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;"></th>
-<th style="text-align: right;">En kertaakaan</th>
 <th style="text-align: right;">Harvemmin kuin kerran kuukaudessa</th>
 <th style="text-align: right;">Kerran kuukaudessa</th>
 <th style="text-align: right;">Kerran päivässä</th>
@@ -1160,21 +1150,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">Fyysinen väkivalta</td>
 <td style="text-align: right;">0.818</td>
 <td style="text-align: right;">0.144</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.004</td>
 <td style="text-align: right;">0.012</td>
 <td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.001</td>
-<td style="text-align: right;">0.004</td>
-<td style="text-align: right;">0.001</td>
-<td style="text-align: right;">0.000</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Omaisuuden vahingoittaminen tai varastaminen</td>
 <td style="text-align: right;">0.884</td>
 <td style="text-align: right;">0.092</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.008</td>
-<td style="text-align: right;">0.000</td>
-<td style="text-align: right;">0.000</td>
-<td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.000</td>
 </tr>
@@ -1182,56 +1170,51 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">Seksuaalinen häirintä tai väkivalta</td>
 <td style="text-align: right;">0.792</td>
 <td style="text-align: right;">0.120</td>
+<td style="text-align: right;">0.004</td>
+<td style="text-align: right;">0.022</td>
 <td style="text-align: right;">0.044</td>
 <td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.001</td>
-<td style="text-align: right;">0.022</td>
-<td style="text-align: right;">0.000</td>
-<td style="text-align: right;">0.004</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Syrjintä</td>
 <td style="text-align: right;">0.830</td>
 <td style="text-align: right;">0.114</td>
+<td style="text-align: right;">0.004</td>
+<td style="text-align: right;">0.012</td>
 <td style="text-align: right;">0.018</td>
 <td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.001</td>
-<td style="text-align: right;">0.012</td>
-<td style="text-align: right;">0.000</td>
-<td style="text-align: right;">0.004</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Uhkailu</td>
 <td style="text-align: right;">0.678</td>
 <td style="text-align: right;">0.198</td>
+<td style="text-align: right;">0.006</td>
+<td style="text-align: right;">0.035</td>
 <td style="text-align: right;">0.065</td>
 <td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.003</td>
-<td style="text-align: right;">0.035</td>
-<td style="text-align: right;">0.000</td>
-<td style="text-align: right;">0.006</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Verbaalinen väkivalta</td>
 <td style="text-align: right;">0.597</td>
 <td style="text-align: right;">0.231</td>
+<td style="text-align: right;">0.014</td>
+<td style="text-align: right;">0.053</td>
 <td style="text-align: right;">0.082</td>
 <td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.012</td>
-<td style="text-align: right;">0.053</td>
-<td style="text-align: right;">0.000</td>
-<td style="text-align: right;">0.014</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Vihamielisyys tai epäkohtelias käyttäytyminen</td>
 <td style="text-align: right;">0.554</td>
 <td style="text-align: right;">0.235</td>
+<td style="text-align: right;">0.017</td>
+<td style="text-align: right;">0.083</td>
 <td style="text-align: right;">0.086</td>
 <td style="text-align: right;">0.002</td>
 <td style="text-align: right;">0.012</td>
-<td style="text-align: right;">0.083</td>
-<td style="text-align: right;">0.001</td>
-<td style="text-align: right;">0.017</td>
 </tr>
 </tbody>
 </table>
@@ -1359,7 +1342,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div class="cell" data-hash="esiintyvyys_cache/html/tbl-esiintyvyys-ulko-kollega_e7933cb84c8513cc8ad659a47b7f7318">
+<div class="cell" data-hash="esiintyvyys_cache/html/tbl-esiintyvyys-ulko-kollega_3b4bf7f3ad6e001eaffab1d809fb26e7">
 <details>
 <summary>Koodi</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
@@ -1393,14 +1376,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>      value,</span>
 <span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_match</span>(</span>
 <span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>        .x,</span>
-<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span> <span class="sc">~</span> <span class="st">"En kertaakaan"</span>,</span>
-<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="sc">~</span> <span class="st">"Harvemmin kuin kerran kuukaudessa"</span>,</span>
-<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>        <span class="dv">3</span> <span class="sc">~</span> <span class="st">"Kerran kuukaudessa"</span>,</span>
-<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>        <span class="dv">4</span> <span class="sc">~</span> <span class="st">"Useita kertoja kuukaudessa"</span>,</span>
-<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>        <span class="dv">5</span> <span class="sc">~</span> <span class="st">"Kerran viikossa"</span>,</span>
-<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>        <span class="dv">6</span> <span class="sc">~</span> <span class="st">"Useita kertoja viikossa"</span>,</span>
-<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>        <span class="dv">7</span> <span class="sc">~</span> <span class="st">"Kerran päivässä"</span>,</span>
-<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>        <span class="dv">8</span> <span class="sc">~</span> <span class="st">"Useita kertoja päivässä"</span></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>        <span class="dv">0</span> <span class="sc">~</span> <span class="st">"En kertaakaan"</span>,</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span> <span class="sc">~</span> <span class="st">"Harvemmin kuin kerran kuukaudessa"</span>,</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="sc">~</span> <span class="st">"Kerran kuukaudessa"</span>,</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>        <span class="dv">3</span> <span class="sc">~</span> <span class="st">"Useita kertoja kuukaudessa"</span>,</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>        <span class="dv">4</span> <span class="sc">~</span> <span class="st">"Kerran viikossa"</span>,</span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>        <span class="dv">5</span> <span class="sc">~</span> <span class="st">"Useita kertoja viikossa"</span>,</span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>        <span class="dv">6</span> <span class="sc">~</span> <span class="st">"Kerran päivässä"</span>,</span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>        <span class="dv">7</span> <span class="sc">~</span> <span class="st">"Useita kertoja päivässä"</span></span>
 <span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>      )</span>
 <span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
@@ -1412,20 +1395,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <table class="table table-sm table-striped small">
 <caption>Taulukko&nbsp;21.4: Kollegan kohtaama organisaation ulkopuolelta tuleva epäasiallinen ja väkivaltainen kohtelu, osuus kaikista vastaajista (muuttujakohtaisesti)</caption>
 <colgroup>
-<col style="width: 20%">
-<col style="width: 6%">
-<col style="width: 15%">
-<col style="width: 8%">
+<col style="width: 22%">
+<col style="width: 16%">
+<col style="width: 9%">
 <col style="width: 7%">
 <col style="width: 7%">
-<col style="width: 12%">
-<col style="width: 10%">
-<col style="width: 10%">
+<col style="width: 13%">
+<col style="width: 11%">
+<col style="width: 11%">
 </colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;"></th>
-<th style="text-align: right;">En kertaakaan</th>
 <th style="text-align: right;">Harvemmin kuin kerran kuukaudessa</th>
 <th style="text-align: right;">Kerran kuukaudessa</th>
 <th style="text-align: right;">Kerran päivässä</th>
@@ -1440,10 +1421,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">Fyysinen väkivalta</td>
 <td style="text-align: right;">0.791</td>
 <td style="text-align: right;">0.144</td>
-<td style="text-align: right;">0.032</td>
-<td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.005</td>
+<td style="text-align: right;">0.032</td>
 <td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.000</td>
 </tr>
@@ -1451,10 +1431,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">Omaisuuden vahingoittaminen tai varastaminen</td>
 <td style="text-align: right;">0.873</td>
 <td style="text-align: right;">0.089</td>
-<td style="text-align: right;">0.011</td>
-<td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.003</td>
+<td style="text-align: right;">0.011</td>
 <td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.000</td>
 </tr>
@@ -1462,10 +1441,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">Seksuaalinen häirintä tai väkivalta</td>
 <td style="text-align: right;">0.758</td>
 <td style="text-align: right;">0.130</td>
-<td style="text-align: right;">0.053</td>
-<td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.002</td>
 <td style="text-align: right;">0.028</td>
+<td style="text-align: right;">0.053</td>
 <td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.002</td>
 </tr>
@@ -1473,45 +1451,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">Syrjintä</td>
 <td style="text-align: right;">0.817</td>
 <td style="text-align: right;">0.114</td>
+<td style="text-align: right;">0.003</td>
+<td style="text-align: right;">0.013</td>
 <td style="text-align: right;">0.021</td>
 <td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.002</td>
-<td style="text-align: right;">0.013</td>
-<td style="text-align: right;">0.000</td>
-<td style="text-align: right;">0.003</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Uhkailu</td>
 <td style="text-align: right;">0.667</td>
 <td style="text-align: right;">0.180</td>
+<td style="text-align: right;">0.011</td>
+<td style="text-align: right;">0.042</td>
 <td style="text-align: right;">0.074</td>
 <td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.005</td>
-<td style="text-align: right;">0.042</td>
-<td style="text-align: right;">0.000</td>
-<td style="text-align: right;">0.011</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Verbaalinen väkivalta</td>
 <td style="text-align: right;">0.593</td>
 <td style="text-align: right;">0.214</td>
+<td style="text-align: right;">0.012</td>
+<td style="text-align: right;">0.060</td>
 <td style="text-align: right;">0.092</td>
 <td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.011</td>
-<td style="text-align: right;">0.060</td>
-<td style="text-align: right;">0.000</td>
-<td style="text-align: right;">0.012</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Vihamielisyys tai epäkohtelias käyttäytyminen</td>
 <td style="text-align: right;">0.556</td>
 <td style="text-align: right;">0.231</td>
+<td style="text-align: right;">0.017</td>
+<td style="text-align: right;">0.076</td>
 <td style="text-align: right;">0.088</td>
 <td style="text-align: right;">0.001</td>
 <td style="text-align: right;">0.013</td>
-<td style="text-align: right;">0.076</td>
-<td style="text-align: right;">0.001</td>
-<td style="text-align: right;">0.017</td>
 </tr>
 </tbody>
 </table>
@@ -1999,14 +1973,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb11-183"><a href="#cb11-183" aria-hidden="true" tabindex="-1"></a>      value,</span>
 <span id="cb11-184"><a href="#cb11-184" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_match</span>(</span>
 <span id="cb11-185"><a href="#cb11-185" aria-hidden="true" tabindex="-1"></a>        .x,</span>
-<span id="cb11-186"><a href="#cb11-186" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span> <span class="sc">~</span> <span class="st">"En kertaakaan"</span>,</span>
-<span id="cb11-187"><a href="#cb11-187" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="sc">~</span> <span class="st">"Harvemmin kuin kerran kuukaudessa"</span>,</span>
-<span id="cb11-188"><a href="#cb11-188" aria-hidden="true" tabindex="-1"></a>        <span class="dv">3</span> <span class="sc">~</span> <span class="st">"Kerran kuukaudessa"</span>,</span>
-<span id="cb11-189"><a href="#cb11-189" aria-hidden="true" tabindex="-1"></a>        <span class="dv">4</span> <span class="sc">~</span> <span class="st">"Useita kertoja kuukaudessa"</span>,</span>
-<span id="cb11-190"><a href="#cb11-190" aria-hidden="true" tabindex="-1"></a>        <span class="dv">5</span> <span class="sc">~</span> <span class="st">"Kerran viikossa"</span>,</span>
-<span id="cb11-191"><a href="#cb11-191" aria-hidden="true" tabindex="-1"></a>        <span class="dv">6</span> <span class="sc">~</span> <span class="st">"Useita kertoja viikossa"</span>,</span>
-<span id="cb11-192"><a href="#cb11-192" aria-hidden="true" tabindex="-1"></a>        <span class="dv">7</span> <span class="sc">~</span> <span class="st">"Kerran päivässä"</span>,</span>
-<span id="cb11-193"><a href="#cb11-193" aria-hidden="true" tabindex="-1"></a>        <span class="dv">8</span> <span class="sc">~</span> <span class="st">"Useita kertoja päivässä"</span></span>
+<span id="cb11-186"><a href="#cb11-186" aria-hidden="true" tabindex="-1"></a>        <span class="dv">0</span> <span class="sc">~</span> <span class="st">"En kertaakaan"</span>,</span>
+<span id="cb11-187"><a href="#cb11-187" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span> <span class="sc">~</span> <span class="st">"Harvemmin kuin kerran kuukaudessa"</span>,</span>
+<span id="cb11-188"><a href="#cb11-188" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="sc">~</span> <span class="st">"Kerran kuukaudessa"</span>,</span>
+<span id="cb11-189"><a href="#cb11-189" aria-hidden="true" tabindex="-1"></a>        <span class="dv">3</span> <span class="sc">~</span> <span class="st">"Useita kertoja kuukaudessa"</span>,</span>
+<span id="cb11-190"><a href="#cb11-190" aria-hidden="true" tabindex="-1"></a>        <span class="dv">4</span> <span class="sc">~</span> <span class="st">"Kerran viikossa"</span>,</span>
+<span id="cb11-191"><a href="#cb11-191" aria-hidden="true" tabindex="-1"></a>        <span class="dv">5</span> <span class="sc">~</span> <span class="st">"Useita kertoja viikossa"</span>,</span>
+<span id="cb11-192"><a href="#cb11-192" aria-hidden="true" tabindex="-1"></a>        <span class="dv">6</span> <span class="sc">~</span> <span class="st">"Kerran päivässä"</span>,</span>
+<span id="cb11-193"><a href="#cb11-193" aria-hidden="true" tabindex="-1"></a>        <span class="dv">7</span> <span class="sc">~</span> <span class="st">"Useita kertoja päivässä"</span></span>
 <span id="cb11-194"><a href="#cb11-194" aria-hidden="true" tabindex="-1"></a>      )</span>
 <span id="cb11-195"><a href="#cb11-195" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb11-196"><a href="#cb11-196" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
@@ -2164,14 +2138,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb11-352"><a href="#cb11-352" aria-hidden="true" tabindex="-1"></a>      value,</span>
 <span id="cb11-353"><a href="#cb11-353" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_match</span>(</span>
 <span id="cb11-354"><a href="#cb11-354" aria-hidden="true" tabindex="-1"></a>        .x,</span>
-<span id="cb11-355"><a href="#cb11-355" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span> <span class="sc">~</span> <span class="st">"En kertaakaan"</span>,</span>
-<span id="cb11-356"><a href="#cb11-356" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="sc">~</span> <span class="st">"Harvemmin kuin kerran kuukaudessa"</span>,</span>
-<span id="cb11-357"><a href="#cb11-357" aria-hidden="true" tabindex="-1"></a>        <span class="dv">3</span> <span class="sc">~</span> <span class="st">"Kerran kuukaudessa"</span>,</span>
-<span id="cb11-358"><a href="#cb11-358" aria-hidden="true" tabindex="-1"></a>        <span class="dv">4</span> <span class="sc">~</span> <span class="st">"Useita kertoja kuukaudessa"</span>,</span>
-<span id="cb11-359"><a href="#cb11-359" aria-hidden="true" tabindex="-1"></a>        <span class="dv">5</span> <span class="sc">~</span> <span class="st">"Kerran viikossa"</span>,</span>
-<span id="cb11-360"><a href="#cb11-360" aria-hidden="true" tabindex="-1"></a>        <span class="dv">6</span> <span class="sc">~</span> <span class="st">"Useita kertoja viikossa"</span>,</span>
-<span id="cb11-361"><a href="#cb11-361" aria-hidden="true" tabindex="-1"></a>        <span class="dv">7</span> <span class="sc">~</span> <span class="st">"Kerran päivässä"</span>,</span>
-<span id="cb11-362"><a href="#cb11-362" aria-hidden="true" tabindex="-1"></a>        <span class="dv">8</span> <span class="sc">~</span> <span class="st">"Useita kertoja päivässä"</span></span>
+<span id="cb11-355"><a href="#cb11-355" aria-hidden="true" tabindex="-1"></a>        <span class="dv">0</span> <span class="sc">~</span> <span class="st">"En kertaakaan"</span>,</span>
+<span id="cb11-356"><a href="#cb11-356" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span> <span class="sc">~</span> <span class="st">"Harvemmin kuin kerran kuukaudessa"</span>,</span>
+<span id="cb11-357"><a href="#cb11-357" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="sc">~</span> <span class="st">"Kerran kuukaudessa"</span>,</span>
+<span id="cb11-358"><a href="#cb11-358" aria-hidden="true" tabindex="-1"></a>        <span class="dv">3</span> <span class="sc">~</span> <span class="st">"Useita kertoja kuukaudessa"</span>,</span>
+<span id="cb11-359"><a href="#cb11-359" aria-hidden="true" tabindex="-1"></a>        <span class="dv">4</span> <span class="sc">~</span> <span class="st">"Kerran viikossa"</span>,</span>
+<span id="cb11-360"><a href="#cb11-360" aria-hidden="true" tabindex="-1"></a>        <span class="dv">5</span> <span class="sc">~</span> <span class="st">"Useita kertoja viikossa"</span>,</span>
+<span id="cb11-361"><a href="#cb11-361" aria-hidden="true" tabindex="-1"></a>        <span class="dv">6</span> <span class="sc">~</span> <span class="st">"Kerran päivässä"</span>,</span>
+<span id="cb11-362"><a href="#cb11-362" aria-hidden="true" tabindex="-1"></a>        <span class="dv">7</span> <span class="sc">~</span> <span class="st">"Useita kertoja päivässä"</span></span>
 <span id="cb11-363"><a href="#cb11-363" aria-hidden="true" tabindex="-1"></a>      )</span>
 <span id="cb11-364"><a href="#cb11-364" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb11-365"><a href="#cb11-365" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
@@ -2329,14 +2303,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb11-521"><a href="#cb11-521" aria-hidden="true" tabindex="-1"></a>      value,</span>
 <span id="cb11-522"><a href="#cb11-522" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_match</span>(</span>
 <span id="cb11-523"><a href="#cb11-523" aria-hidden="true" tabindex="-1"></a>        .x,</span>
-<span id="cb11-524"><a href="#cb11-524" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span> <span class="sc">~</span> <span class="st">"En kertaakaan"</span>,</span>
-<span id="cb11-525"><a href="#cb11-525" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="sc">~</span> <span class="st">"Harvemmin kuin kerran kuukaudessa"</span>,</span>
-<span id="cb11-526"><a href="#cb11-526" aria-hidden="true" tabindex="-1"></a>        <span class="dv">3</span> <span class="sc">~</span> <span class="st">"Kerran kuukaudessa"</span>,</span>
-<span id="cb11-527"><a href="#cb11-527" aria-hidden="true" tabindex="-1"></a>        <span class="dv">4</span> <span class="sc">~</span> <span class="st">"Useita kertoja kuukaudessa"</span>,</span>
-<span id="cb11-528"><a href="#cb11-528" aria-hidden="true" tabindex="-1"></a>        <span class="dv">5</span> <span class="sc">~</span> <span class="st">"Kerran viikossa"</span>,</span>
-<span id="cb11-529"><a href="#cb11-529" aria-hidden="true" tabindex="-1"></a>        <span class="dv">6</span> <span class="sc">~</span> <span class="st">"Useita kertoja viikossa"</span>,</span>
-<span id="cb11-530"><a href="#cb11-530" aria-hidden="true" tabindex="-1"></a>        <span class="dv">7</span> <span class="sc">~</span> <span class="st">"Kerran päivässä"</span>,</span>
-<span id="cb11-531"><a href="#cb11-531" aria-hidden="true" tabindex="-1"></a>        <span class="dv">8</span> <span class="sc">~</span> <span class="st">"Useita kertoja päivässä"</span></span>
+<span id="cb11-524"><a href="#cb11-524" aria-hidden="true" tabindex="-1"></a>        <span class="dv">0</span> <span class="sc">~</span> <span class="st">"En kertaakaan"</span>,</span>
+<span id="cb11-525"><a href="#cb11-525" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span> <span class="sc">~</span> <span class="st">"Harvemmin kuin kerran kuukaudessa"</span>,</span>
+<span id="cb11-526"><a href="#cb11-526" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="sc">~</span> <span class="st">"Kerran kuukaudessa"</span>,</span>
+<span id="cb11-527"><a href="#cb11-527" aria-hidden="true" tabindex="-1"></a>        <span class="dv">3</span> <span class="sc">~</span> <span class="st">"Useita kertoja kuukaudessa"</span>,</span>
+<span id="cb11-528"><a href="#cb11-528" aria-hidden="true" tabindex="-1"></a>        <span class="dv">4</span> <span class="sc">~</span> <span class="st">"Kerran viikossa"</span>,</span>
+<span id="cb11-529"><a href="#cb11-529" aria-hidden="true" tabindex="-1"></a>        <span class="dv">5</span> <span class="sc">~</span> <span class="st">"Useita kertoja viikossa"</span>,</span>
+<span id="cb11-530"><a href="#cb11-530" aria-hidden="true" tabindex="-1"></a>        <span class="dv">6</span> <span class="sc">~</span> <span class="st">"Kerran päivässä"</span>,</span>
+<span id="cb11-531"><a href="#cb11-531" aria-hidden="true" tabindex="-1"></a>        <span class="dv">7</span> <span class="sc">~</span> <span class="st">"Useita kertoja päivässä"</span></span>
 <span id="cb11-532"><a href="#cb11-532" aria-hidden="true" tabindex="-1"></a>      )</span>
 <span id="cb11-533"><a href="#cb11-533" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb11-534"><a href="#cb11-534" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
@@ -2492,14 +2466,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb11-688"><a href="#cb11-688" aria-hidden="true" tabindex="-1"></a>      value,</span>
 <span id="cb11-689"><a href="#cb11-689" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_match</span>(</span>
 <span id="cb11-690"><a href="#cb11-690" aria-hidden="true" tabindex="-1"></a>        .x,</span>
-<span id="cb11-691"><a href="#cb11-691" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span> <span class="sc">~</span> <span class="st">"En kertaakaan"</span>,</span>
-<span id="cb11-692"><a href="#cb11-692" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="sc">~</span> <span class="st">"Harvemmin kuin kerran kuukaudessa"</span>,</span>
-<span id="cb11-693"><a href="#cb11-693" aria-hidden="true" tabindex="-1"></a>        <span class="dv">3</span> <span class="sc">~</span> <span class="st">"Kerran kuukaudessa"</span>,</span>
-<span id="cb11-694"><a href="#cb11-694" aria-hidden="true" tabindex="-1"></a>        <span class="dv">4</span> <span class="sc">~</span> <span class="st">"Useita kertoja kuukaudessa"</span>,</span>
-<span id="cb11-695"><a href="#cb11-695" aria-hidden="true" tabindex="-1"></a>        <span class="dv">5</span> <span class="sc">~</span> <span class="st">"Kerran viikossa"</span>,</span>
-<span id="cb11-696"><a href="#cb11-696" aria-hidden="true" tabindex="-1"></a>        <span class="dv">6</span> <span class="sc">~</span> <span class="st">"Useita kertoja viikossa"</span>,</span>
-<span id="cb11-697"><a href="#cb11-697" aria-hidden="true" tabindex="-1"></a>        <span class="dv">7</span> <span class="sc">~</span> <span class="st">"Kerran päivässä"</span>,</span>
-<span id="cb11-698"><a href="#cb11-698" aria-hidden="true" tabindex="-1"></a>        <span class="dv">8</span> <span class="sc">~</span> <span class="st">"Useita kertoja päivässä"</span></span>
+<span id="cb11-691"><a href="#cb11-691" aria-hidden="true" tabindex="-1"></a>        <span class="dv">0</span> <span class="sc">~</span> <span class="st">"En kertaakaan"</span>,</span>
+<span id="cb11-692"><a href="#cb11-692" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span> <span class="sc">~</span> <span class="st">"Harvemmin kuin kerran kuukaudessa"</span>,</span>
+<span id="cb11-693"><a href="#cb11-693" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="sc">~</span> <span class="st">"Kerran kuukaudessa"</span>,</span>
+<span id="cb11-694"><a href="#cb11-694" aria-hidden="true" tabindex="-1"></a>        <span class="dv">3</span> <span class="sc">~</span> <span class="st">"Useita kertoja kuukaudessa"</span>,</span>
+<span id="cb11-695"><a href="#cb11-695" aria-hidden="true" tabindex="-1"></a>        <span class="dv">4</span> <span class="sc">~</span> <span class="st">"Kerran viikossa"</span>,</span>
+<span id="cb11-696"><a href="#cb11-696" aria-hidden="true" tabindex="-1"></a>        <span class="dv">5</span> <span class="sc">~</span> <span class="st">"Useita kertoja viikossa"</span>,</span>
+<span id="cb11-697"><a href="#cb11-697" aria-hidden="true" tabindex="-1"></a>        <span class="dv">6</span> <span class="sc">~</span> <span class="st">"Kerran päivässä"</span>,</span>
+<span id="cb11-698"><a href="#cb11-698" aria-hidden="true" tabindex="-1"></a>        <span class="dv">7</span> <span class="sc">~</span> <span class="st">"Useita kertoja päivässä"</span></span>
 <span id="cb11-699"><a href="#cb11-699" aria-hidden="true" tabindex="-1"></a>      )</span>
 <span id="cb11-700"><a href="#cb11-700" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb11-701"><a href="#cb11-701" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
