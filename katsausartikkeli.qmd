@@ -528,7 +528,9 @@ tulokset <- tibble(
 )
 ```
 
-Muunsimme ensin kaikki prosenttiluvut logit-luvuiksi ja laskimme niiden keskivirheet. Tämä muunnos tehdään, jotta voimme suorittaa monitasoisen meta-analyysin myöhemmin.
+Muunsimme ensin kaikki prosenttiluvut logit-luvuiksi ja laskimme niiden keskivirheet. Tämä muunnos tehdään, jotta voimme suorittaa monitasoisen meta-analyysin myöhemmin. Jätimme myös pois kymmenen mittaa, joiden arvioksi oli annettu nolla prosenttia, sillä niiden sisällyttäminen aiheutti ongelmia meta-analyyttisen mallin asettamiselle.
+
+Koska kemiallisen väkivallan estimointiin jäi jäljelle vain yksi mitta, jätimme kemiallisen väkivallan estimoinnin pois.
 
 ```{r}
 #| label: art-04-esiintyvyys-logitmuunnos
@@ -551,7 +553,8 @@ metadata <- metadata %>%
     y = .,
     by = "ID",
     copy = TRUE
-  )
+  ) %>%
+  dplyr::filter(pros != 0)
 ```
 
 ### Mallien estimointi {#sec-katsausartikkeli-esiintyvyys-estimointi}
@@ -639,27 +642,6 @@ tulokset <- tulokset %>%
     arvo = as.double(exp(malli_välineellinen$b) / (1 + exp(malli_välineellinen$b))),
     ci_ala = as.double(exp(malli_välineellinen$ci.lb) / (1 + exp(malli_välineellinen$ci.lb))),
     ci_ylä = as.double(exp(malli_välineellinen$ci.ub) / (1 + exp(malli_välineellinen$ci.ub)))
-  )
-```
-
-```{r}
-#| label: art-09-malli_kemiallinen
-malli_kemiallinen <- metafor::rma.mv(
-  yi = pros_log,
-  V = pros_sqrtse,
-  slab = artikkeli,
-  data = dplyr::filter(metadata, väkivaltamuoto == "Kemiallinen"),
-  random = ~ 1 | artikkeli/ID,
-  test = "t",
-  method = "REML"
-)
-
-tulokset <- tulokset %>%
-  add_case(
-    muoto = "Kemiallinen",
-    arvo = as.double(exp(malli_kemiallinen$b) / (1 + exp(malli_kemiallinen$b))),
-    ci_ala = as.double(exp(malli_kemiallinen$ci.lb) / (1 + exp(malli_kemiallinen$ci.lb))),
-    ci_ylä = as.double(exp(malli_kemiallinen$ci.ub) / (1 + exp(malli_kemiallinen$ci.ub)))
   )
 ```
 
