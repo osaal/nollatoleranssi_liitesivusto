@@ -17,6 +17,7 @@ library(EFAtools)
 library(lavaan)
 library(dynamic)
 library(semTools)
+library(moments)
 library(tidyverse) # Tidyverse viimeiseksi, sillä HH:ssa useat dplyrin funktiot peittyvät
 
 ```
@@ -216,8 +217,9 @@ kohtelu <- data |>
       everything(),
       list(
         mean = ~ round(mean(.x, na.rm = TRUE), digits = 2),
-        median = ~ median(.x, na.rm = TRUE),
         sd = ~ round(sd(.x, na.rm = TRUE), digits = 2),
+        skew = ~ round(skewness(.x, na.rm = TRUE), digits = 2),
+        kurtosis = ~ round(kurtosis(.x, na.rm = TRUE), digits = 2),
         n = ~ sum(!is.na(.x))
       )
     )
@@ -235,7 +237,7 @@ kohtelu <- data |>
     factor(variable, levels = jarjestys)
   )
 
-colnames(kohtelu) <- c("Muuttuja", "Keskiarvo", "Mediaani", "Keskihajonta", "Validi N")
+colnames(kohtelu) <- c("Muuttuja", "Keskiarvo", "Keskihajonta", "Vinous", "Huipukkuus", "Validi N")
 
 kohtelu |>
   knitr::kable()
@@ -284,8 +286,9 @@ uupumus <- data |>
       everything(),
       list(
         mean = ~ round(mean(.x, na.rm = TRUE), digits = 2),
-        median = ~ median(.x, na.rm = TRUE),
         sd = ~ round(sd(.x, na.rm = TRUE), digits = 2),
+        skew = ~ round(skewness(.x, na.rm = TRUE), digits = 2),
+        kurtosis = ~ round(kurtosis(.x, na.rm = TRUE), digits = 2),
         n = ~ sum(!is.na(.x))
       )
     )
@@ -303,7 +306,7 @@ uupumus <- data |>
     factor(variable, levels = jarjestys)
   )
 
-colnames(uupumus) <- c("Muuttuja", "Keskiarvo", "Mediaani", "Keskihajonta", "Validi N")
+colnames(uupumus) <- c("Muuttuja", "Keskiarvo", "Keskihajonta", "Vinous", "Huipukkuus", "Validi N")
 
 uupumus |>
   knitr::kable()
@@ -345,6 +348,44 @@ puuttuvat_valitut <- data |>
       )
     )
   )
+
+```
+
+```{r}
+#| label: kohtelu_validointi-XX-kuvailevattallennus
+#| code-summary: "Kuvailevien tulosten tallennus omiin tiedostoihin"
+
+# Kuvailevat mitat esiintyvyys- ja työuupumusmittareille
+write.csv2(
+  x = bind_rows(kohtelu, uupumus),
+  file = "output/validointiartikkeli_kuvailevatmitat.csv"
+)
+
+# Kovarianssi- ja keskiarvomatriisi
+matriisi <- data |>
+  select(k3_1:k4_7, k12_1:k13_7, k27_1:k27_4) |>
+  cov(
+    use = "pairwise.complete.obs",
+    method = "pearson"
+  )
+
+matriisi[upper.tri(matriisi, diag = TRUE)] <- NA
+ka <- data |>
+  select(k3_1:k4_7, k12_1:k13_7, k27_1:k27_4) |>
+  summarise(
+    across(
+      everything(),
+      ~ mean(.x, na.rm = TRUE)
+    )
+  ) |>
+  as.numeric()
+matriisi <- rbind(matriisi, ka)
+
+write.csv2(
+  x = matriisi,
+  file = "output/validointiartikkeli_matriisi.csv"
+)
+
 
 ```
 
@@ -939,9 +980,8 @@ cfa.malli.1 <- '# latentit muuttujat
 malli.1 <- cfa(
   cfa.malli.1,
   data = data.cfa |> select(k3_1:k3_7, k12_1:k12_7),
-  estimator = "WLSMV", # Robusti ML aiheuttaa ongelmia, kokeillaan siirtyä robustiin DLWS-estimaattoriin
-  missing = "pairwise", # Robusti DLWS hyväksyy listwise, pairwise tai imputoidut datasetit
-  ordered = TRUE
+  estimator = "MLR", # Robusti ML aiheuttaa ongelmia, kokeillaan siirtyä robustiin DLWS-estimaattoriin
+  missing = "fiml" # Robusti DLWS hyväksyy listwise, pairwise tai imputoidut datasetit
 )
 
 summary(malli.1, fit.measures = TRUE, standardized = TRUE, ci = TRUE)
@@ -964,19 +1004,13 @@ Jatkamme tällä mallilla, mutta huomautamme, että muuttujan `k12_6` suhdetta f
 likertHB(
   model = malli.1,
   data = data.cfa |> select(k3_1:k3_7, k12_1:k12_7),
-  estimator = "WLSMV",
+  estimator = "MLR",
   reps = 100
 )
 
 ```
 
-**Uusi teksti:**
-
 Emme pysty simuloimaan raja-arvoja, sillä sisäisesti koetun fyysisen väkivallan muuttujalla on liian pieni varianssi. Simulaation tekemissä bootstrap-otoksissa syntyy tilanteita, joissa muuttujan varianssi on nolla, jolloin estimaattia ei voida laskea.
-
-**Vanha teksti:**
-
-Simulaatio osoittaa, että sopivuusindeksien dynaamiset raja-arvot ovat SRMR \< ,04, RMSEA \< ,029 ja CFI \> ,983. Mallimme sopivuusindeksit ovat SRMR = ,076, RMSEA = ,097 ja CFI = ,869. Toisin sanoen, mallimme ei täytä indeksien raja-arvoja.
 
 ### Paikallisen istuvuuden tarkastus
 
@@ -988,35 +1022,28 @@ lavResiduals(malli.1)
 
 ```
 
-Seuraavat standardisoimattomat residuaalikovarianssit ovat yli absoluuttisen 0,1:
+```{r}
+#| label: kohtelu_validointi-XX-residuaalit-tallennus
+#| code-summary: "Standardisoitujen residuaalikovarianssin tallentaminen"
 
--   `k3_4 ~~ k3_2`
--   `k3_5 ~~ k3_1`
--   `k3_5 ~~ k3_3`
--   `k12_1 ~~ k3_5`
--   `k12_2 ~~ k3_2`
--   `k12_4 ~~ k3_1`
--   `k12_4 ~~ k3_7`
--   `k12_4 ~~ k12_2`
--   `k12_5 ~~ k3_5`
--   `k12_7 ~~ k3_1`
--   `k12_7 ~~ k3_3`
--   `k12_7 ~~ k3_5`
--   `k12_7 ~~ k3_6`
--   `k12_7 ~~ k3_7`
+write.csv2(
+  x = lavResiduals(malli.1)$cov.z,
+  file = "output/validointiartikkeli_malli2b_stdresid.csv"
+)
 
-Residuaalikovariansseja esiintyy eniten organisaatioulkoisten ja organisaatiosisäisten muuttujien välillä. Kuitenkaan nämä virheet eivät yleensä kohdistu sisällöllisiin muuttujapareihin: vain muuttujaparit `_2`, `_5` ja `_7` (omaisuusväkivalta, seksuaalinen väkivalta sekä syrjintä) osoittavat absoluuttisia residuaalikovariansseja yli 0.1. Muuttuja `k12_7` (organisaatioulkoinen syrjintä) on erityisen ongelmallinen: sen residuaalikovarianssit ovat merkittäviä viiden organisaatiosisäisen muuttujan kanssa.
+```
 
 Seuraavat standardisoidut residuaalikovarianssit ovat yli absoluuttisen kahden keskihajonnan (z \> \|1,96\|):
 
 -   `k12_1 ~~ k3_5`
 -   `k12_2 ~~ k3_2`
+-   `k12_2 ~~ k12_4`
 -   `k12_3 ~~ k3_1`
 -   `k12_4 ~~ k3_1`
 -   `k12_4 ~~ k3_3`
 -   `k12_4 ~~ k3_6`
 -   `k12_4 ~~ k3_7`
--   `k12_4 ~~ k12_2`
+-   `k12_4 ~~ k12_6`
 -   `k12_5 ~~ k3_5`
 -   `k12_6 ~~ k3_6`
 -   `k12_7 ~~ k3_1`
@@ -1025,8 +1052,6 @@ Seuraavat standardisoidut residuaalikovarianssit ovat yli absoluuttisen kahden k
 -   `k12_7 ~~ k3_7`
 
 Melkein kaikki ongelmalliset standardisoidut residuaalikovarianssit kohdistuvat faktorivälisiin muuttujakovariansseihin. Näistä ongelmallisimmat ovat muuttujille `k12_4` ja `k12_7`, joilla on viisi ja neljä ongelmallista residuaalikovarianssia. Muuttujaparit `_2`, `_5`, `_6` ja `_7` (omaisuusväkivalta, seksuaalinen väkivalta, vihamielisyys sekä syrjintä) osoittavat ongelmallisia residuaalikovariansseja. Muissa tapauksissa residuaalit ovat sisällöllisesti eroavien muuttujien välillä.
-
-Tiivistäen voidaan todeta, että ongelmat johtuvat pitkälti organisaatioulkoisista muuttujista. Useimmiten näiden residuaalikorrelaatiot ovat suuria organisaatiosisäisten muuttujien kanssa. Kuitenkin standardisoimattomat ja standardisoidut tarkistukset antavat hieman eri kuvia.
 
 ### Modifikaatioindeksit
 
@@ -1040,9 +1065,7 @@ modificationIndices(malli.1) |>
 
 ```
 
-Tarkistimme ensin modifikaatioindeksit kaikille faktorilatausrajauksille. Ainoa merkittävä muutos on muuttuja `k12_7` vapauttaminen lataamaan faktorille `f1`, mikä aiheuttaisi suunnilleen 121 pisteen pudotuksen khii neliö -suureessa ja faktorilatauksen 0,3. Kaikki muut indeksit ovat pieniä khii neliö -suureen pudotuksia (toiseksi suurin on 14,3) sekä pieniä odotettuja faktorilatauksia (suurin absoluuttinen lataus on 0,077).
-
-Faktorilatauksen vapauttaminen voi olla teoreettisesti motivoitua. Muuttuja `k12_7` edustaa organisaation ulkopuolelta tullutta syrjintää. Koska syrjintä kumpuaa usein yhteiskunnallisista, jaetuista asenteista, on hyvinkin mahdollista, että henkilö kokee samanaikaisesti organisaation sisällä ja ulkopuolelta tullutta syrjintää. On myös mahdollista, että syrjintää kokeva henkilö herkistyy kohtelun tunnistamiselle kautta tekokontekstin.
+Tarkistimme ensin modifikaatioindeksit kaikille faktorilatausrajauksille. Ainoa merkittävä muutos on muuttuja `k12_7` vapauttaminen lataamaan faktorille `f1`, mikä aiheuttaisi suunnilleen 122 pisteen pudotuksen khii neliö -suureessa ja faktorilatauksen 0,3. Kaikki muut indeksit ovat pieniä khii neliö -suureen pudotuksia (toiseksi suurin on 14,3) sekä pieniä odotettuja faktorilatauksia (suurin absoluuttinen lataus on 0,077).
 
 ```{r}
 #| label: kohtelu_validointi-19-modifikaatioindeksit2
@@ -1054,13 +1077,7 @@ modificationIndices(malli.1) |>
 
 ```
 
-Tarkistimme seuraavaksi virhekorrelaatiot. Kaksi suurinta pudotusta khii neliö-testin suureessa tulisi muuttujaparien `k3_5 ~~ k12_5` ja `k3_7 ~~ k12_7` vapaasta virhekorrelaatiosta. Näiden odotetut virhekorrelaatiot ovat 0,076 ja 0,108. Muuttujaparin `k3_6 ~~ k3_7` virhekorrelaation vapauttaminen johtaisi vielä suurempaan korrelaatioon, 0,147, mutta sen khii neliö -suureen pienennys on hieman pienempi, 39,3.
-
-Virheiden vapauttaminen on haasteellisempaa kuin faktorilatauksen vapauttaminen. Toisaalta muuttujien tekokontekstit läpäisevät yhteiskorrelaatiot olivat teoreettisesti motivoituja, jolloin kahden faktorin rakenteessa korreloivat virheet voivat edustaa yhteistä vaihtelua, joka ei täyty yksittäisten faktoreiden rakenteessa. Toisaalta taas tämä yhteiskorrelaatio olisi pitänyt näkyä jo EFA-vaiheessa, jolloin olisimme valinneet yhden faktorin rakenteen kahden faktorin sijaan.
-
-Kolmantena mahdollisuutena on bifaktorirakenne: tekokontekstit määrittelevät osan kunkin epäasiallisen ja väkivaltaisen kohtelun esiintyvyydestä (eri tavoin), mutta kohtelut osoittavat *myös* yhteisen kausaalisen aiheuttajan.
-
-Kysymykseksi nousee kuitenkin, miksi vain kaksi muuttujaparia osoittavat merkittäviä hypoteettisia parannuksia modifikaatioindeksitarkastuksessa. Jos joko yhden faktorin tai bifaktorimalli olisi populaatiossa todellinen malli, muuttujapareja pitäisi olla useampia modifikaatioindekseissä. Näiden lisäksi virhekorrelaatioita tekokonteksteissa eri muuttujien välillä ei pitäisi esiintyä laajasti.
+Tarkistimme seuraavaksi virhekorrelaatiot. Kaksi suurinta pudotusta khii neliö-testin suureessa tulisi muuttujaparien `k3_5 ~~ k12_5` ja `k3_7 ~~ k12_7` vapaasta virhekorrelaatiosta. Näiden odotetut virhekorrelaatiot ovat 0,076 ja 0,108.
 
 ### Erotteluvaliditeetti
 
@@ -1115,15 +1132,17 @@ cfa.malli.ulkval <- '# kohtelumuuttujat
 malli.ulkval <- cfa(
   cfa.malli.ulkval,
   data = data.cfa |> select(k3_1:k3_7, k12_1:k12_7, k27_1:k27_4),
-  estimator = "WLSMV",
-  missing = "pairwise",
-  ordered = TRUE
+  estimator = "MLR",
+  missing = "fiml"
 )
 
 summary(malli.ulkval, fit.measures = TRUE, standardized = TRUE, ci = TRUE)
 
 ```
-Työuupumuksen latentti muuttuja korreloi organisaatiosisäisen epäasiallisen ja väkivaltaisen kohtelun faktorin kanssa tasolla $r = 0,409$. Organisaatioulkoisen kohtelun faktorin kanssa korrelaatio on pienempi, $r = 0,265$.
+
+Malli sopii rajallisesti hyväksyttävästi aineistoon ($\text{RMSEA} = .053, \text{CFI} = .900, \text{SRMR} = .076$).
+
+Työuupumuksen latentti muuttuja korreloi organisaatiosisäisen epäasiallisen ja väkivaltaisen kohtelun faktorin kanssa tasolla $r = 0,482$. Organisaatioulkoisen kohtelun faktorin kanssa korrelaatio on pienempi, $r = 0,208$.
 
 ### Eksploratiivinen analyysi: Ulkoisen syrjintämuuttujan latauksen vapauttaminen molemmille faktoreille
 
@@ -1145,9 +1164,8 @@ cfa.malli.1b <- '# latentit muuttujat
 malli.1b <- cfa(
   cfa.malli.1b,
   data = data.cfa |> select(k3_1:k3_7, k12_1:k12_7),
-  estimator = "WLSMV",
-  missing = "pairwise",
-  ordered = TRUE
+  estimator = "MLR",
+  missing = "fiml"
 )
 
 summary(malli.1b, fit.measures = TRUE, standardized = TRUE, ci = TRUE)
@@ -1162,9 +1180,7 @@ summary(vrt.1b)
 
 ```
 
-Muuttujan `k12_7` vapauttaminen pienentää khii neliö -suuretta 41 pistettä. Pienennys on merkitsevä (p \< .0001). Robusti RMSEA tippuu tasolle RMSEA = .072, CFI-nousee tasolle CF = .943 ja SRMR tippuu tasolle .051. AIC- ja BIC-arvot laskevat molemmat hieman.
-
-Vaikka malli sopii paremmin, se ei kuitenkaan täytä dynaamisesti simuloituja raja-arvoja hyväksyttävälle mallisopivuudelle. Jatkoimme analyysia mallilla 1, jossa muuttuja `k12_7` on rajattu lataamaan vain faktorille `f1`.
+Muuttujan `k12_7` vapauttaminen pienentää khii neliö -suuretta 41 pistettä. Pienennys on merkitsevä (p \< .0001). Kaikki sopivuusindeksit parantuvat uudessa mallissa ($\text{RMSEA} = .072, \text{CFI} = .943, \text{SRMR} = .051, \text{AIC} = 14096, \text{BIC} = 14298$), mutta eivät vielä täysin täytä yleisiä raja-arvoja hyväksyttävälle mallille.
 
 ### Eksploratiivinen analyysi: Muuttujaparien `_2`, `_5`, `_6` ja `_7` virheiden korrelaatioiden salliminen
 
@@ -1192,9 +1208,8 @@ cfa.malli.1c <- '# latentit muuttujat
 malli.1c <- cfa(
   cfa.malli.1c,
   data = data.cfa |> select(k3_1:k3_7, k12_1:k12_7),
-  estimator = "WLSMV",
-  missing = "pairwise",
-  ordered = TRUE
+  estimator = "MLR",
+  missing = "fiml"
 )
 
 summary(malli.1c, fit.measures = TRUE, standardized = TRUE, ci = TRUE)
@@ -1207,52 +1222,9 @@ vrt.1c <- compareFit(
 
 summary(vrt.1c)
 
-lavResiduals(malli.1c)
-
 ```
 
-Virheresiduaalien vapauttaminen tuottaa selkeästi paremmin istuvan mallin. Khii neliö -suure laskee melkein puolet koostaan ja muutos on merkitsevä. RMSEA tippuu lähemmäksi hyväksyttävää tasoa (RMSEA = ,066), CFI ja SRMR ovat myös hyväksyttävissä tasoissa (CFI = ,953, SRMR = ,066). AIC- ja BIC-suureet paranevat, joskin vain hieman.
-
-Virheiden kovarianssit ovat standardisoidulta kooltaan $0.193-0.309$, eli kohtuullisen suuria. Standardisoidut faktorilataukset muuttuvat vain lievästi, suurimmillaan muutos on +0,046 keskihajontaa (lataus `k3_7 ~~ f1`). Faktorikorrelaatio pysyy samalla tasolla kuin aikaisemmin. Interseptit pysyvät kuta kuinkin samoilla tasoilla. Myös residuaalit näyttävät pysyvän samoissa tasoissa.
-
-Ongelmallisia absoluuttisia residuaalikovariansseja ovat:
-
--   `k3_4 ~~ k3_2`
--   `k3_5 ~~ k3_3`
--   `k3_7 ~~ k3_6` (Uusi)
--   `k12_1 ~~ k3_5`
--   `k12_4 ~~ k3_1`
--   `k12_4 ~~ k12_2`
--   `k12_7 ~~ k3_1`
--   `k12_7 ~~ k3_3`
--   `k12_7 ~~ k3_5`
--   `k12_7 ~~ k3_6`
--   `k12_7 ~~ k3_7`
-
-Virhekovarianssien vapauttaminen ratkaisi neljä aikaisemmin ongelmallista residuaalikovarianssia (`k3_5 ~~ k3_1`, `k12_2 ~~ k3_2`, `k12_4 ~~ k3_7`, `k12_5 ~~ k3_5`), mutta aiheutti yhden uuden ongelman (`k3_7 ~~ k3_6`). On huomattava, että virhekovarianssin `k12_7 ~~ k3_7` vapauttaminen ei ratkaissut sen ongelmaa, eli malli ei kuitenkaan pysty ottamaan kovarianssia huomioon.
-
-Ongelmallisia standardisoituja residuaalikovariansseja ovat:
-
--   `k3_7 ~~ k3_3` (Uusi)
--   `k3_7 ~~ k3_6` (Uusi)
--   `k3_7 ~~ k3_7` (Uusi)
--   `k12_1 ~~ k3_5`
--   `k12_3 ~~ k3_1`
--   `k12_4 ~~ k3_1`
--   `k12_4 ~~ k3_3`
--   `k12_4 ~~ k3_6`
--   `k12_4 ~~ k3_7`
--   `k12_4 ~~ k12_2`
--   `k12_5 ~~ k12_1`
--   `k12_5 ~~ k12_4`
--   `k12_5 ~~ k12_5` (Uusi)
--   `k12_6 ~~ k12_4` (Uusi)
--   `k12_7 ~~ k3_1`
--   `k12_7 ~~ k3_3`
--   `k12_7 ~~ k3_6`
--   `k12_7 ~~ k3_7`
-
-Vapauttaminen ratkaisi kolme ongelmallista standardisoitua residuaalikovarianssia (`k12_2 ~~ k3_2`, `k12_5 ~~ k3_5`, `k12_6 ~~ k3_6`) mutta aiheutti viisi uutta ongelmaa (`k3_7 ~~ k3_3`, `k3_7 ~~ k3_6`, `k3_7 ~~ k3_7`, `k12_5 ~~ k12_5`, `k12_6 ~~ k12_4`). On huomattava, että virhekovarianssin `k12_7 ~~ k3_7` vapauttaminen ei ratkaissut sen ongelmaa, eli malli ei kuitenkaan pysty ottamaan kovarianssia huomioon.
+Virheresiduaalien vapauttaminen tuottaa selkeästi paremmin istuvan mallin. Khii neliö -suure laskee noin 80 pistettä, ja ero on erittäin merkitsevä (p \< ,0001). Kaikki globaalit sopivuusindeksit parantuvat alkuperäisestä mallista ($\text{RMSEA} = .066, \text{CFI} = .953, \text{SRMR} = .066, \text{AIC} = 14053, \text{BIC} = 14268$), ja kaksi kolmesta sopivuusindeksistä täyttävät nyt raja-arvot.
 
 ### Eksploratiivinen analyysi: Syrjintämuuttujien poisjättäminen mallista
 
@@ -1274,9 +1246,8 @@ cfa.malli.1d <- '# latentit muuttujat
 malli.1d <- cfa(
   cfa.malli.1d,
   data = data.cfa |> select(k3_1:k3_6, k12_1:k12_6),
-  estimator = "WLSMV",
-  missing = "pairwise",
-  ordered = TRUE
+  estimator = "MLR",
+  missing = "fiml"
 )
 
 summary(malli.1d, fit.measures = TRUE, standardized = TRUE, ci = TRUE)
@@ -1290,42 +1261,9 @@ vrt.1d <- compareFit(
 
 summary(vrt.1d)
 
-lavResiduals(malli.1d)
-
 ```
 
-Syrjintämuuttujien (`k3_7`, `k12_7`) poisjättäminen mallista tuottaa selkeästi paremmin istuvan mallin. Khii neliö-suure tippuu melkein puolella. RMSEA on lievästi parempi (RMSEA = ,072), CFI- ja SRMR-indeksit jo selkeästi parempia (CFI = ,949, SRMR = ,052). AIC- ja BIC-arvot paranevat myös selkeästi.
-
-Faktorilataukset pysyvät kuta kuinkin samoissa kokoluokissa. Suurin absoluuttinen muutos on 0,068 keskihajontaa (`k3_6 ~~ f1`). Faktorikorrelaatio pysyy myös samassa kokoluokassa, vaikkakin laskee 0,02 keskihajontaa. Interseptit pysyvät melkein identtisinä, suurimmat muutokset ovat `k3_6` ja `k12_6` muuttujilla. Virhevarianssit pysyvät myös melkein samoina.
-
-Ongelmallisia absoluuttisia residuaalikovariansseja ovat:
-
--   `k3_1 ~~ k12_4`
--   `k3_2 ~~ k3_4`
--   `k3_2 ~~ k12_2`
--   `k3_3 ~~ k3_5`
--   `k3_5 ~~ k12_1`
--   `k3_5 ~~ k12_5`
--   `k12_2 ~~ k12_4`
-
-Ongelmallisia standardisoituja residuaalikovariansseja ovat:
-
--   `k3_1 ~~ k12_3`
--   `k3_1 ~~ k12_4`
--   `k3_2 ~~ k12_2`
--   `k3_3 ~~ k3_5`
--   `k3_3 ~~ k12_4`
--   `k3_4 ~~ k3_6`
--   `k3_5 ~~ k12_1`
--   `k3_5 ~~ k12_5`
--   `k3_6 ~~ k12_1`
--   `k3_6 ~~ k12_4`
--   `k3_6 ~~ k12_6`
--   `k12_1 ~~ k12_2`
--   `k12_2 ~~ k12_4`
--   `k12_4 ~~ k12_6`
-
-Tässä mallissa emme näe yhtä suuria sisällöllistesti samankaltaisten muuttujien virhekovariansseja. Poikkeuksina ovat `_2` (absoluuttinen ja standardisoitu), `_5` (absoluuttinen ja standardisoitu) sekä `_6` (standardisoitu).
+Syrjintämuuttujien (`k3_7`, `k12_7`) poisjättäminen mallista tuottaa selkeästi paremmin istuvan mallin. Kaikki globaalit sopivuusindeksit parantuvat lievästi tai pysyvät samoina ($\text{RMSEA} = .072, \text{CFI} = .949, \text{SRMR} = .052$). Koska malli ei ole alkuperäisen mallin alamuoto (muuttujat eivät täsmää määrässään), AIC- ja BIC-arvoja ei voida verrata keskenään.
 
 ### Eksploratiivinen analyysi: Bifaktorimalli
 
@@ -1359,27 +1297,13 @@ malli.2 <- cfa(
 
 summary(malli.2, fit.measures = TRUE, standardized = TRUE, ci = TRUE)
 
-vrt.2 <- compareFit(
-  malli.1,
-  malli.2,
-  moreIndices = TRUE
-)
-
-summary(vrt.2)
-
 ```
 
-**Uusi teksti:**
+Bifaktorimallia ei saada sovitettua ML-menetelmällä Heywood-tapauksen takia: muuttujan `k3_1` residuaalivarianssi on negatiivinen. Malli voidaan kuitenkin sovittaa DLWS-menetelmällä käyttäen parittaista puuttuvien vastausten poistomenetelmää.
 
-**\[Malli asettuu hyvin DWLS-menetelmällä, analysoi!\]**
-
-**Vanha teksti:**
-
-Bifaktorimallia ei saada sovitettua oikein. Suurimpana ongelmana on Heywood-tapaus, jossa muuttujan `k3_1` residuaalivarianssi on negatiivinen. Jätämme selvityksen tähän.
+Mallin globaalit istuvuusindeksit parantuvat perusmalliin verrattuna ($\text{RMSEA} = .055 [90 \% \text{ CI } .047, .064], \text{CFI} = .991, \text{SRMR} = .071$)
 
 ### Eksploratiivinen analyysi: Bifaktori ilman syrjintää
-
-**HUOM: Heywood-case, joka korjaantuu rajaamalla muuttujan `k12_4` latauksen arvoon `0.4`, eli lähellä alkuperäistä estimaattia.**
 
 ```{r}
 #| label: kohtelu_validointi-XX-bifaktorieisyrj-mallimaaritelma
@@ -1411,20 +1335,13 @@ malli.2b <- cfa(
 
 summary(malli.2b, fit.measures = TRUE, standardized = TRUE, ci = TRUE)
 
-vrt.2b <- compareFit(
-  malli.1,
-  malli.2b,
-  moreIndices = TRUE,
-  nested = FALSE
-)
-
-summary(vrt.2b)
-
 ```
 
-### Mittausinvarianssi
+Malli synnyttää toisen Heywood-tilanteen, joka ratkaistiin rajaamalla muuttujan `k12_4` lataus EFA-analyysissa todettuun arvoon `0.4`.
 
-**HUOM: Mittausinvarianssia ei voida testata robustilla DWLS-estimaattorilla, sillä data ei riitä siihen.**
+Mallin globaalit sopivuusindeksit ovat perusmallia selkeästi parempia ($\text{RMSEA} = .053 [90 \% \text{ CI } .043, .064], \text{CFI} = .994, \text{SRMR} = .066$), ja osittain myös ensimmäistä bifaktorimallia parempia. Erot ensimmäiseen bifaktorimalliin ovat kuitenkin pienet.
+
+### Mittausinvarianssi
 
 ```{r}
 #| label: kohtelu_validointi-22-datavalmistelu
@@ -1436,7 +1353,7 @@ data.cfa2 <- data.cfa |>
 
 #### Kohderyhmät
 
-Vertasimme kahden faktorin mallin invarianssia kohderyhmien välillä (kolme kategoriaa).
+Koetimme verrata kahden faktorin mallin invarianssia kohderyhmien välillä (kolme kategoriaa). Mallia ei kuitenkaan voitu asettaa vähäisen invarianssin takia.
 
 ```{r}
 #| label: kohtelu_validointi-23-invarianssi-kohderyhmat
@@ -1492,8 +1409,6 @@ vrt.kohderyhma <- compareFit(
 summary(vrt.kohderyhma)
 
 ```
-
-**\[Tätä ei voida tällä hetkellä tehdä, sillä malli väittää, ettei pelastajien ryhmässä ole varianssia kolmella muuttujalla, vaikka varianssia todellisuudessa on.\]**
 
 #### Ammattiasemat
 
@@ -1717,7 +1632,3 @@ Vahvan invarianssin malli istuu merkitsevästi heikon invarianssin mallia huonom
 Tiukan invarianssin malli istuu merkitsevästi huonommin kuin vahvan invarianssin malli (p = 0,0000002). Kaikki indeksiarvot muuttuvat enemmän kuin hyväksyttävän muutoksen rajat sallivat ($\Delta\text{RMSEA} = 0.021, \Delta\text{CFI} = -0.073, \Delta\text{SRMR} = 0.066$). AIC- ja BIC-arvot nousevat reilusti.
 
 Malli näyttää vahvasti invariantilta, eli faktorilataukset ja interseptit ovat samoja. Tiukkaa invarianssia malli ei kuitenkaan täytä, eli virhemittaukset eroavat ryhmien välillä.
-
-#### Yhteenveto
-
-Kohderyhmien välistä invarianssitestausta ei voitu suorittaa vähäisen varianssin takia. Muut invarianssitestaukset osoittavat kuitenkin, että mittarit ovat vahvasti invariantteja ammattiasemien, kielten ja yhteydenottomenetelmien välillä. Tiukka invarianssi ei täyty missään vertailussa.
