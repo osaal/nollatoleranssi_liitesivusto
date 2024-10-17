@@ -14,6 +14,7 @@ Tässä osiossa käsitellään omakohtaisesti koetun kohtelun vaikutuksia:
 
 ```{r}
 #| label: vaikutukset-00-paketit
+#| code-summary: "Paketit"
 
 library(tidyverse)
 
@@ -21,6 +22,7 @@ library(tidyverse)
 
 ```{r}
 #| label: vaikutukset-01-avaaminen
+#| code-summary: "Datan avaaminen"
 
 data <- read.csv2("output/anonymisoitudata.csv", tryLogical = FALSE)
 
@@ -31,6 +33,7 @@ data <- read.csv2("output/anonymisoitudata.csv", tryLogical = FALSE)
 ```{r}
 #| label: fig-vaikutukset-vakavuus
 #| fig-cap: "Omakohtaisesti koetun kohtelun vaikutusten vakavuus"
+#| code-summary: "Kuvion piirtäminen"
 
 data |>
   select(k21_1:k21_3) |>
@@ -42,22 +45,39 @@ data |>
   ) |>
   group_by(variable, value) |>
   summarise(count = n()) |>
-  mutate(prop = count/sum(count)) |>
+  mutate(
+    prop = count/sum(count),
+    value_label = factor(
+      value,
+      levels = c(1:4),
+      labels = c(
+        "Ei vaikutusta",
+        "Lievät",
+        "Kohtalaiset",
+        "Vakavat"
+      )
+    )
+  ) |>
   ggplot(aes(
     y = variable,
     x = prop,
-    fill = factor(
-      value,
-      levels = rev(sort(unique(value))),
-      labels = sapply(c(
-        "Vakavat",
-        "Kohtalaiset",
-        "Lievät",
-        "Ei vaikutusta"
-      ), str_wrap, width = 18, USE.NAMES = FALSE
-    ))
+    fill = value_label
   )) +
   geom_bar(stat = "identity") +
+  geom_label(
+    aes(label = scales::percent(prop, accuracy = 0.1)),
+    position = position_stack(vjust = 0.5),
+    vjust = c(
+      # Lue alhaalta ylös, oikealta vasemmalle
+      # 0.5 = Keskitetty
+      # -0.75 = Yllä (huom. käänteinen)
+      # 1.75 = Alla (huom. käänteinen)
+      0.5, -0.75, 0.5, 1.75, 
+      0.5, 0.5, 0.5, 1.75, -0.75,
+      0.5, 0.5, 0.5, 1.75, -0.75
+    ),
+    show.legend = FALSE # Poistaa "a"-kirjaimen selityksestä
+  ) +
   scale_x_continuous(labels = scales::label_percent(
     suffix = " %",
     decimal.mark = ","
@@ -73,74 +93,8 @@ data |>
     x = "Suhde omakohtaisesti kohtelun kohdanneista vastaajista (%)",
     fill = "Vastaukset"
   ) +
-  theme(axis.title.y = element_blank()) + 
-  geom_text(
-    aes(
-      y = 3,
-      x = 0.496,
-      hjust = 1,
-      label = "49,6 %"
-    )
-  ) + 
-  geom_text(
-    aes(
-      y = 2,
-      x = 0.382,
-      hjust = 1,
-      label = "38,2 %"
-    )
-  ) + 
-  geom_text(
-    aes(
-      y = 1,
-      x = 0.860,
-      hjust = 1,
-      label = "86,0 %"
-    )
-  )
-```
+  theme(axis.title.y = element_blank())
 
-```{r}
-#| label: tbl-vaikutukset-vakavuus
-#| tbl-cap: "Omakohtaisesti koetun kohtelun vaikutusten vakavuus, muuttujakohtaiset osuudet"
-
-data |>
-  select(k21_1:k21_3) |>
-  filter(!(k21_1 == -1)) |>
-  pivot_longer(
-    cols = k21_1:k21_3,
-    names_to = "variable",
-    values_to = "value"
-  ) |>
-  group_by(variable, value) |>
-  summarise(count = n()) |>
-  mutate(prop = count/sum(count)) |>
-  ungroup() |>
-  mutate(
-    across(
-      variable,
-      ~ case_match(
-        .x,
-        "k21_1" ~ "Fyysiset vaikutukset",
-        "k21_2" ~ "Psyykkiset vaikutukset",
-        "k21_3" ~ "Ammatilliset vaikutukset"
-      )
-    )
-  ) |>
-  mutate(
-    across(
-      value,
-      ~ case_match(
-        .x,
-        1 ~ "Ei vaikutusta",
-        2 ~ "Lievät",
-        3 ~ "Kohtalaiset",
-        4 ~ "Vakavat"
-      )
-    )
-  ) |>
-  xtabs(prop ~ variable + value, data = _) |>
-  knitr::kable(digits = 3)
 ```
 
 ## Vaikutusten pitkäkestoisuus {#sec-vaikutukset-pitkakestoisuus}
@@ -148,31 +102,70 @@ data |>
 ```{r}
 #| label: fig-vaikutukset-pitkakestoisuus
 #| fig-cap: "Omakohtaisesti koetun kohtelun vaikutusten kesto"
+#| code-summary: "Kuvion piirtäminen"
 
-data |>
-  filter(between(k21_1, 2, 4) | between(k21_2, 2, 4) | between(k21_3, 2, 4)) |>
-  select(k22_1:k22_3) |>
+### Käytetty data
+# Fyysiset
+data_fyys <- data |> filter(!is.na(k21_1) & between(k21_1, 2, 4)) |>
+  select(k22_1) |>
   pivot_longer(
-    cols = k22_1:k22_3,
+    cols = k22_1,
     names_to = "variable",
     values_to = "value"
   ) |>
   group_by(variable, value) |>
   summarise(count = n()) |>
-  mutate(prop = count/sum(count)) |>
-  ggplot(aes(
+  mutate(prop = count/sum(count))
+
+# Psyykkiset
+data_psyy <- data |> filter(!is.na(k21_2) & between(k21_2, 2, 4)) |>
+  select(k22_2) |>
+  pivot_longer(
+    cols = k22_2,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count))
+
+# Ammatilliset
+data_amma <- data |> filter(!is.na(k21_3) & between(k21_3, 2, 4)) |>
+  select(k22_3) |>
+  pivot_longer(
+    cols = k22_3,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count))
+
+# Kaikki yhdessä
+data_vaikutukset <- rbind(data_fyys, data_psyy, data_amma) |>
+  mutate(
+    value_label = factor(
+      value,
+      labels = c(
+        "Päivän verran",
+        "Viikon verran",
+        "Kuukauden verran",
+        "Useamman\nkuukauden verran"
+      )
+    )
+  )
+n_vaikutukset <- c(
+  data_vaikutukset |> filter(variable == "k22_1") |> pull(count) |> sum(),
+  data_vaikutukset |> filter(variable == "k22_2") |> pull(count) |> sum(),
+  data_vaikutukset |> filter(variable == "k22_3") |> pull(count) |> sum()
+)
+
+# Kuvio
+data_vaikutukset |> ggplot(
+  aes(
     y = variable,
     x = prop,
-    fill = factor(
-      value,
-      levels = rev(sort(unique(value))),
-      labels = sapply(c(
-        "Useamman kuukauden verran",
-        "Kuukauden verran",
-        "Viikon verran",
-        "Päivän verran"
-      ), str_wrap, width = 18, USE.NAMES = FALSE
-    ))
+    fill = value_label
   )) +
   geom_bar(stat = "identity") +
   scale_x_continuous(labels = scales::label_percent(
@@ -180,60 +173,33 @@ data |>
     decimal.mark = ","
   )) +
   scale_y_discrete(
-    labels = sapply(c(
-      "Fyysiset vaikutukset",
-      "Psyykkiset vaikutukset",
-      "Ammatilliset vaikutukset"
-    ), str_wrap, width = 18, USE.NAMES = FALSE)
+    labels = c(
+      paste0("Fyysiset\nvaikutukset", "\n", "n = ", n_vaikutukset[[1]]),
+      paste0("Psyykkiset\nvaikutukset", "\n", "n = ", n_vaikutukset[[2]]),
+      paste0("Ammatilliset\nvaikutukset", "\n", "n = ", n_vaikutukset[[3]])
+    )
   ) +
   labs(
-    x = "Suhde vähintään yhden vaikutuksen kokeneista vastaajista (%)",
+    x = "Suhde vaikutuksen kokeneista vastaajista (%)",
     fill = "Vastaukset"
   ) +
-  theme(axis.title.y = element_blank())
-```
+  theme(axis.title.y = element_blank()) +
+  geom_label(
+    aes(label = scales::percent(prop, accuracy = 0.1)),
+    position = position_stack(vjust = 0.5),
+    vjust = c(
+      # Lue alhaalta ylös, oikealta vasemmalle
+      # 0.5 = Keskitetty
+      # -0.75 = Yllä (huom. käänteinen)
+      0.5, 0.5, 0.5, -0.75, 0.5,
+      0.5, 0.5, 0.5, 0.5, 0.5,
+      0.5, 0.5, -0.75, 0.5, 0.5
+    ),
+    show.legend = FALSE # Poistaa "a"-kirjaimen selityksestä
+  )
+  
 
-```{r}
-#| label: tbl-vaikutukset-pitkakestoisuus
-#| tbl-cap: "Omakohtaisesti koetun kohtelun vaikutusten kesto, muuttujakohtaiset osuudet"
 
-data |>
-  filter(between(k21_1, 2, 4) | between(k21_2, 2, 4) | between(k21_3, 2, 4)) |>
-  select(k22_1:k22_3) |>
-  pivot_longer(
-    cols = k22_1:k22_3,
-    names_to = "variable",
-    values_to = "value"
-  ) |>
-  group_by(variable, value) |>
-  summarise(count = n()) |>
-  mutate(prop = count/sum(count)) |>
-  ungroup() |>
-  mutate(
-    across(
-      variable,
-      ~ case_match(
-        .x,
-        "k22_1" ~ "Fyysiset vaikutukset",
-        "k22_2" ~ "Psyykkiset vaikutukset",
-        "k22_3" ~ "Ammatilliset vaikutukset"
-      )
-    )
-  ) |>
-  mutate(
-    across(
-      value,
-      ~ case_match(
-        .x,
-        1 ~ "Päivän verran",
-        2 ~ "Viikon verran",
-        3 ~ "Kuukauden verran",
-        4 ~ "Useamman kuukauden verran"
-      )
-    )
-  ) |>
-  xtabs(prop ~ variable + value, data = _, addNA = TRUE) |>
-  knitr::kable(digits = 3)
 ```
 
 ## Vaikutukset jatkuvat yhä {#sec-vaikutukset-jatkuvat}
@@ -242,27 +208,64 @@ data |>
 #| label: fig-vaikutukset-jatkuvat
 #| fig-cap: "Omakohtaisesti koetun kohtelun vaikutukset jatkuvat yhä"
 
-data |>
-  filter(between(k21_1, 2, 4) | between(k21_2, 2, 4) | between(k21_3, 2, 4)) |>
-  select(k22_1_1:k22_3_1) |>
+### Käytetty data
+# Fyysiset
+data_fyys <- data |> filter(!is.na(k21_1) & between(k21_1, 2, 4)) |>
+  select(k22_1_1) |>
   pivot_longer(
-    cols = k22_1_1:k22_3_1,
+    cols = k22_1_1,
     names_to = "variable",
     values_to = "value"
   ) |>
   group_by(variable, value) |>
   summarise(count = n()) |>
-  mutate(prop = count/sum(count)) |>
-  ggplot(aes(
+  mutate(prop = count/sum(count))
+
+# Psyykkiset
+data_psyy <- data |> filter(!is.na(k21_2) & between(k21_2, 2, 4)) |>
+  select(k22_2_1) |>
+  pivot_longer(
+    cols = k22_2_1,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count))
+
+# Ammatilliset
+data_amma <- data |> filter(!is.na(k21_3) & between(k21_3, 2, 4)) |>
+  select(k22_3_1) |>
+  pivot_longer(
+    cols = k22_3_1,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count))
+
+# Kaikki yhdessä
+data_vaikutukset <- rbind(data_fyys, data_psyy, data_amma) |>
+  mutate(
+    value_label = factor(
+      value,
+      levels = 1,
+      labels = "Kyllä"
+    )
+  )
+n_vaikutukset <- c(
+  data_vaikutukset |> filter(variable == "k22_1_1") |> pull(count) |> sum(),
+  data_vaikutukset |> filter(variable == "k22_2_1") |> pull(count) |> sum(),
+  data_vaikutukset |> filter(variable == "k22_3_1") |> pull(count) |> sum()
+)
+
+# Kuvio
+data_vaikutukset |> ggplot(
+  aes(
     y = variable,
     x = prop,
-    fill = factor(
-      value,
-      levels = rev(sort(unique(value))),
-      labels = sapply(c(
-        "Kyllä"
-      ), str_wrap, width = 18, USE.NAMES = FALSE
-    ))
+    fill = value_label
   )) +
   geom_bar(stat = "identity") +
   scale_x_continuous(labels = scales::label_percent(
@@ -270,58 +273,24 @@ data |>
     decimal.mark = ","
   )) +
   scale_y_discrete(
-    labels = sapply(c(
-      "Fyysiset vaikutukset",
-      "Psyykkiset vaikutukset",
-      "Ammatilliset vaikutukset"
-    ), str_wrap, width = 18, USE.NAMES = FALSE)
+    labels = c(
+      paste0("Fyysiset\nvaikutukset", "\n", "n = ", n_vaikutukset[[1]]),
+      paste0("Psyykkiset\nvaikutukset", "\n", "n = ", n_vaikutukset[[2]]),
+      paste0("Ammatilliset\nvaikutukset", "\n", "n = ", n_vaikutukset[[3]])
+    )
   ) +
   labs(
-    x = "Suhde vähintään yhden vaikutuksen kokeneista vastaajista (%)",
+    x = "Suhde vaikutuksen kokeneista vastaajista (%)",
     fill = "Vastaukset"
   ) +
-  theme(axis.title.y = element_blank())
-```
+  theme(axis.title.y = element_blank()) +
+  geom_label(
+    aes(label = scales::percent(prop, accuracy = 0.1)),
+    position = position_stack(vjust = 0.5),
+    vjust = rep(0.5, 6),
+    show.legend = FALSE # Poistaa "a"-kirjaimen selityksestä
+  )
 
-```{r}
-#| label: tbl-vaikutukset-jatkuvat
-#| tbl-cap: "Omakohtaisesti koetun kohtelun vaikutukset jatkuvat yhä, muuttujakohtaiset osuudet"
-
-data |>
-  filter(between(k21_1, 2, 4) | between(k21_2, 2, 4) | between(k21_3, 2, 4)) |>
-  select(k22_1_1:k22_3_1) |>
-  pivot_longer(
-    cols = k22_1_1:k22_3_1,
-    names_to = "variable",
-    values_to = "value"
-  ) |>
-  group_by(variable, value) |>
-  summarise(count = n()) |>
-  mutate(prop = count/sum(count)) |>
-  ungroup() |>
-  mutate(
-    across(
-      variable,
-      ~ case_match(
-        .x,
-        "k22_1_1" ~ "Fyysiset vaikutukset",
-        "k22_2_1" ~ "Psyykkiset vaikutukset",
-        "k22_3_1" ~ "Ammatilliset vaikutukset"
-      )
-    )
-  ) |>
-  mutate(
-    across(
-      value,
-      ~ case_match(
-        .x,
-        1 ~ "Kyllä",
-        NA ~ "Ei"
-      )
-    )
-  ) |>
-  xtabs(prop ~ variable + value, data = _, addNA = TRUE) |>
-  knitr::kable(digits = 3)
 ```
 
 ## Vastaajan reaktiot kohteluun {#sec-vaikutukset-reaktiot}
@@ -330,7 +299,23 @@ data |>
 #| label: fig-vaikutukset-reaktiot
 #| fig-cap: "Reaktiot omakohtaisesti koettuun kohteluun"
 
-data |>
+### Järjestyksen rakentaminen
+nimet <- sapply(c(
+    "Ilmoitin kohtelusta esihenkilölleni",
+    "Hain lääketieteellistä hoitoa",
+    "Hain psykososiaalista hoitoa",
+    "Hain oikeudellista apua",
+    "Tein ilmoituksen organisaation käyttämässä järjestelmässä",
+    "Hälytin turvallisuusviranomaiset",
+    "Muutin suojavarustekäytäntöjäni",
+    "Kerroin kollegoilleni kohtelusta",
+    "Jäin pois toiminnasta, jätin menemättä tehtäviin",
+    "Ilmoitin asiasta luottamushenkilölle tai työsuojeluun",
+    "Ilmoitin asiasta johtohenkilölle, ohittaen esihenkilöni"
+  ), str_wrap, width = 38, USE.NAMES = FALSE
+)
+
+reaktiot.kaikki <- data |>
   filter(!(k22_1 == -1)) |>
   select(k23_1:k23_11) |>
   pivot_longer(
@@ -340,99 +325,58 @@ data |>
   ) |>
   group_by(variable, value) |>
   summarise(count = n()) |>
-  mutate(prop = count/sum(count)) |>
-  ggplot(aes(
-    y = variable,
-    x = prop,
-    fill = factor(
+  mutate(prop = count/sum(count))
+
+jarjestys.reaktiot <- reaktiot.kaikki |> pull(variable)
+
+vanhat_nimet <- data |>
+  select(k23_1:k23_11) |>
+  colnames()
+
+nimet <- setNames(
+  as.list(nimet),
+  vanhat_nimet
+)[jarjestys.reaktiot]
+
+reaktiot.jarj <- reaktiot.kaikki |>
+  arrange(desc(prop)) |>
+  mutate(
+    variable = map_chr(
+      variable,
+      ~ nimet[[.x]]
+    ),
+    value = factor(
       value,
-      levels = rev(sort(unique(value))),
-      labels = c("Kyllä")
+      labels = "Kyllä"
     )
+  ) |>
+  filter(!is.na(value))
+
+### Kuvio
+reaktiot.jarj |>
+  ggplot(aes(
+    x = prop,
+    y = reorder(variable, prop),
+    fill = value
   )) +
   geom_bar(stat = "identity") +
   scale_x_continuous(labels = scales::label_percent(
     suffix = " %",
     decimal.mark = ","
   )) +
-  scale_y_discrete(
-    labels = sapply(c(
-      "Ilmoitin kohtelusta esihenkilölleni",
-      "Hain lääketieteellistä hoitoa",
-      "Hain psykososiaalista hoitoa",
-      "Hain oikeudellista apua",
-      "Tein ilmoituksen organisaation käyttämässä järjestelmässä",
-      "Hälytin turvallisuusviranomaiset",
-      "Muutin suojavarustekäytäntöjäni",
-      "Kerroin kollegoilleni kohtelusta",
-      "Jäin pois toiminnasta, jätin menemättä tehtäviin",
-      "Ilmoitin asiasta luottamushenkilölle tai työsuojeluun",
-      "Ilmoitin asiasta johtohenkilölle, ohittaen esihenkilöni"
-    ), str_wrap, width = 38, USE.NAMES = FALSE)
-  ) +
   labs(
     x = "Suhde omakohtaisen kohtelun kohdanneista vastaajista (%)",
     fill = "Vastaukset"
   ) +
-  theme(axis.title.y = element_blank()) +
-  geom_text(
+  theme(axis.title.y = element_blank(), legend.position = "none") +
+  geom_label(
     aes(
-      label = ifelse(factor(value, labels = c("Kyllä")) == "Kyllä", 
-                     scales::percent(prop, accuracy = 0.1, decimal.mark = ","), 
-                     "")
+      label = scales::percent(prop, accuracy = 0.1, decimal.mark = ",")
     ),
     position = position_stack(vjust = 0.5),
-    color = "white"
+    show.legend = FALSE,
+    fill = "#ffffff"
   )
-```
-
-```{r}
-#| label: tbl-vaikutukset-reaktiot
-#| tbl-cap: "Reaktiot omakohtaisesti koettuun kohteluun, muuttujakohtaiset osuudet"
-
-data |>
-  filter(!(k22_1 == -1)) |>
-  select(k23_1:k23_11) |>
-  pivot_longer(
-    cols = k23_1:k23_11,
-    names_to = "variable",
-    values_to = "value"
-  ) |>
-  group_by(variable, value) |>
-  summarise(count = n()) |>
-  mutate(prop = count/sum(count)) |>
-  ungroup() |>
-  mutate(
-    across(
-      variable,
-      ~ case_match(
-        .x,
-        "k23_1" ~ "Ilmoitin kohtelusta esihenkilölleni",
-        "k23_2" ~ "Hain lääketieteellistä hoitoa",
-        "k23_3" ~ "Hain psykososiaalista hoitoa",
-        "k23_4" ~ "Hain oikeudellista apua",
-        "k23_5" ~ "Tein ilmoituksen organisaation käyttämässä järjestelmässä",
-        "k23_6" ~ "Hälytin turvallisuusviranomaiset",
-        "k23_7" ~ "Muutin suojavarustekäytäntöjäni",
-        "k23_8" ~ "Kerroin kollegoilleni kohtelusta",
-        "k23_9" ~ "Jäin pois toiminnasta, jätin menemättä tehtäviin",
-        "k23_10" ~ "Ilmoitin asiasta luottamushenkilölle tai työsuojeluun",
-        "k23_11" ~ "Ilmoitin asiasta johtohenkilölle, ohittaen esihenkilöni",
-      )
-    )
-  ) |>
-  mutate(
-    across(
-      value,
-      ~ case_match(
-        .x,
-        1 ~ "Kyllä",
-        NA ~ "Ei"
-      )
-    )
-  ) |>
-  xtabs(prop ~ variable + value, data = _, addNA = TRUE) |>
-  knitr::kable(digits = 3)
 ```
 
 ## Työuupumus {#sec-vaikutukset-tyouupumus}
@@ -450,21 +394,17 @@ data |>
   ) |>
   group_by(variable, value) |>
   summarise(count = n()) |>
-  mutate(prop = count/sum(count)) |>
+  mutate(
+    prop = count/sum(count),
+    value_label = factor(
+      value,
+      labels = c("Ei koskaan", "Harvoin", "Joskus", "Usein", "Aina")
+    )
+  ) |>
   ggplot(aes(
     y = variable,
     x = prop,
-    fill = factor(
-      value,
-      levels = rev(sort(unique(value))),
-      labels = sapply(c(
-        "Aina",
-        "Usein",
-        "Joskus",
-        "Harvoin",
-        "Ei koskaan"
-      ), str_wrap, width = 18, USE.NAMES = FALSE
-    ))
+    fill = value_label
   )) +
   geom_bar(stat = "identity") +
   scale_x_continuous(labels = scales::label_percent(
@@ -483,52 +423,23 @@ data |>
     x = "Suhde kaikista vastaajista (%)",
     fill = "Vastaukset"
   ) +
-  theme(axis.title.y = element_blank())
+  theme(axis.title.y = element_blank()) +
+  geom_label(
+    aes(label = scales::percent(prop, accuracy = 0.1)),
+    position = position_stack(vjust = 0.5),
+    vjust = c(
+      # Lue alhaalta ylös, oikealta vasemmalle
+      # 0.5 = Keskitetty
+      # -0.75 = Yllä (huom. käänteinen)
+      # 1.75 = Alla (huom. käänteinen)
+      0.5, 0.5, 0.5, 1.75, 0.5, -0.75,
+      0.5, 0.5, 0.5, 1.75, 0.5, -0.75,
+      0.5, 0.5, 0.5, 1.75, 0.5, -0.75,
+      0.5, 0.5, 2, 1, 0, -1
+    ),
+    show.legend = FALSE # Poistaa "a"-kirjaimen selityksestä
+  )
 
-```
-
-```{r}
-#| label: tbl-vaikutukset-tyouupumus
-#| tbl-cap: "Työuupumuksen arvio (BAT 4-työkalu), muuttujakohtaiset osuudet"
-
-data |>
-  select(k27_1:k27_4) |>
-  pivot_longer(
-    cols = k27_1:k27_4,
-    names_to = "variable",
-    values_to = "value"
-  ) |>
-  group_by(variable, value) |>
-  summarise(count = n()) |>
-  mutate(prop = count/sum(count)) |>
-  ungroup() |>
-  mutate(
-    across(
-      variable,
-      ~ case_match(
-        .x,
-        "k27_1" ~ "Tunnen itseni henkisesti uupuneeksi työssäni",
-        "k27_2" ~ "En ole kiinnostunut enkä innostunut työstäni",
-        "k27_3" ~ "Minun on vaikea pysyä tarkkaavaisena työssäni",
-        "k27_4" ~ "En pysty hallitsemaan tunteitani työssäni"
-      )
-    )
-  ) |>
-  mutate(
-    across(
-      value,
-      ~ case_match(
-        .x,
-        1 ~ "Ei koskaan",
-        2 ~ "Harvoin",
-        3 ~ "Joskus",
-        4 ~ "Usein",
-        5 ~ "Aina"
-      )
-    )
-  ) |>
-  xtabs(prop ~ variable + value, data = _, addNA = TRUE) |>
-  knitr::kable(digits = 3)
 ```
 
 ```{r}
@@ -587,5 +498,3 @@ Todennäköisesti työuupuneita on `r uupuneet` vastaajaa, mikä vastaa `r uupun
 $$
 \text{t} = `r round(t.suure, digits = 2)`, \text{df} = `r n - 1`, \text{p} = `r round(p, digits = 3)`, \hat{\text{d}} = `r round(d, digits = 3)`
 $$
-
-Tuloksen todennäköisyysarvo on kuitenkin hieman korkeampi kuin vakiintunut 5 prosentin väärän positiivin raja, joten tulos on epävarma.
