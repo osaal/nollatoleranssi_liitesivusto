@@ -41,9 +41,13 @@ book:
         - ilmoitusjarjestelmat.qmd
         - organisaatiotoimet.qmd
         - ryhmavertailut.qmd
+        - korrelaatiosuhteet.qmd
     - part: "Mittaristojen validoinnit"
       chapters:
         - kohtelu_validointi.qmd
+        - ilmoasenteet_validointi.qmd
+        - tayvkayttoonotto_validointi.qmd
+        - tayvasenteet_validointi.qmd
     - part: "Esitykset ja kirjoitukset"
       chapters:
         - deibseminaari.qmd
@@ -110,11 +114,15 @@ book:
         - ilmoitusjarjestelmat.qmd
         - organisaatiotoimet.qmd
         - ryhmavertailut.qmd
+        - korrelaatiosuhteet.qmd
     
     - id: validointi
       title: "Mittaristojen validoinnit"
       contents:
         - kohtelu_validointi.qmd
+        - ilmoasenteet_validointi.qmd
+        - tayvkayttoonotto_validointi.qmd
+        - tayvasenteet_validointi.qmd
     
     - id: esitykset
       title: "Esitykset ja kirjoitukset"

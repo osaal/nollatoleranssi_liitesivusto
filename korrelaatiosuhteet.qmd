@@ -1,0 +1,603 @@
+# Korrelaatiosuhteet {#sec-korrelaatiosuhteet}
+
+---
+eval: true
+---
+
+Tässä osiossa suoritetaan kaikki raportissa mainitut korrelaatiosuhteet epäasiallisen ja väkivaltaisen kohtelun esiintyvyyden kanssa.
+
+```{r}
+#| label: korrelaatiosuhteet-00-paketit
+#| code-summary: "Osiossa käytetyt paketit"
+
+library(tidyverse)
+library(ggstatsplot)
+library(patchwork)
+
+```
+
+```{r}
+#| label: korrelaatiosuhteet-01-avaaminen
+#| code-summary: "Datan avaaminen"
+
+data <- read.csv2("output/anonymisoitudata.csv", tryLogical = FALSE)
+
+```
+
+```{r}
+#| label: korrelaatiosuhteet-02-summamuuttuja
+#| code-summary: "Summamuuttujien rakentaminen"
+
+### Epäasiallisen ja väkivaltaisen kohtelun mittarit
+# Koodataan uudelleen mittarit, jotta NA == 0 ja muut arvot pysyvät samoina.
+data <- data |>
+  mutate(
+    across(
+      c(k3_1:k4_7, k12_1:k13_7),
+      ~ case_match(
+        .x,
+        NA ~ 0,
+        .default = .x
+      )
+    )
+  ) |>
+  mutate(
+    EVK_sisä_koettu = k3_1 + k3_2 + k3_3 + k3_4 + k3_5 + k3_6 + k3_7,
+    EVK_ulko_koettu = k12_1 + k12_2 + k12_3 + k12_4 + k12_5 + k12_6 + k12_7,
+    EVK_sisä_havaittu = k4_1 + k4_2 + k4_3 + k4_4 + k4_5 + k4_6 + k4_7,
+    EVK_ulko_havaittu = k13_1 + k13_2 + k13_3 + k13_4 + k13_5 + k13_6 + k13_7
+  )
+
+### Työuupumusmittari
+data <- data |>
+  rowwise() |>
+  mutate(
+    uupumus = mean(c_across(starts_with("k27")), na.rm = TRUE)
+  ) |>
+  ungroup()
+
+### Muutosaikeiden summamittari
+data <- data |>
+  rowwise() |>
+  mutate(
+    muutos = sum(c_across(starts_with("k42")), na.rm = TRUE)
+  ) |>
+  ungroup()
+
+### Ilmoitusjärjestelmien asenteiden kaksi faktoria
+# TODO: k26_12 pitää kääntää ennen summaamista!
+data <- data |>
+  rowwise() |>
+  mutate(
+    k26_12_inv = case_when(
+      k26_12 == 1 ~ 7,
+      k26_12 == 2 ~ 6,
+      k26_12 == 3 ~ 5,
+      k26_12 == 4 ~ 4,
+      k26_12 == 5 ~ 3,
+      k26_12 == 6 ~ 2,
+      k26_12 == 7 ~ 1,
+      is.na(k26_12) ~ NA
+    ),
+    ilmo_1 = sum(
+      c_across(
+        c(k26_1, k26_2, k26_7:k26_9, k26_11, k26_12_inv)
+      ),
+      na.rm = TRUE
+    ),
+    ilmo_2 = sum(
+      c_across(
+        c(k26_3, k26_10, k26_13, k26_15, k26_17:k26_18)
+      ),
+      na.rm = TRUE
+    )
+  ) |>
+  ungroup() |>
+  select(!k26_12_inv)
+
+```
+
+## Vaikutusten vakavuuden suhde kohteluun {#sec-korrelaatiosuhteet-vaikutukset-vakavuus}
+
+```{r}
+#| label: fig-korrelaatiosuhteet-vaikutukset-vakavuus
+#| fig-cap: "Epäasiallisen ja väkivaltaisen kohtelun esiintyvyyden korrelaatio vaikutusten vakavuuden kanssa"
+#| layout-nrow: 1
+#| fig-subcap: 
+#| -  "Sisäinen"
+#| -  "Ulkoinen"
+#| code-summary: "Kuvioiden rakentaminen"
+
+vakavuus.sisa <- lm(
+  EVK_sisä_koettu ~ k21_1 + k21_2 + k21_3,
+  data = data
+)
+
+vakavuus.ulko <- lm(
+  EVK_ulko_koettu ~ k21_1 + k21_2 + k21_3,
+  data = data
+)
+
+ggcoefstats(
+  vakavuus.sisa,
+  xlab = "Estimaatti",
+  ylab = "Muuttuja"
+)
+ggcoefstats(
+  vakavuus.ulko,
+  xlab = "Estimaatti",
+  ylab = "Muuttuja"
+)
+
+```
+
+```{r}
+#| label: korrelaatiosuhteet-03-vaikutukset-vakavuus-mallit
+#| code-summary: "Mallien kuvailut"
+
+summary(vakavuus.sisa)
+
+summary(vakavuus.ulko)
+
+```
+
+## Vaikutusten pitkäkestoisuuden suhde kohteluun {#sec-korrelaatiosuhteet-vaikutukset-pitkakestoisuus}
+
+```{r}
+#| label: fig-korrelaatiosuhteet-vaikutukset-pitkakestoisuus
+#| fig-cap: "Epäasiallisen ja väkivaltaisen kohtelun esiintyvyyden korrelaatio vaikutusten pitkäkestoisuuden kanssa"
+#| layout-nrow: 1
+#| fig-subcap: 
+#| -  "Sisäinen"
+#| -  "Ulkoinen"
+#| code-summary: "Kuvioiden rakentaminen"
+
+kesto.sisa <- lm(
+  EVK_sisä_koettu ~ k22_1 + k22_2 + k22_3,
+  data = data
+)
+
+kesto.ulko <- lm(
+  EVK_ulko_koettu ~ k22_1 + k22_2 + k22_3,
+  data = data
+)
+
+ggcoefstats(
+  kesto.sisa,
+  xlab = "Estimaatti",
+  ylab = "Muuttuja"
+)
+ggcoefstats(
+  kesto.ulko,
+  xlab = "Estimaatti",
+  ylab = "Muuttuja"
+)
+
+```
+
+```{r}
+#| label: korrelaatiosuhteet-04-vaikutukset-pitkakestoisuus-mallit
+#| code-summary: "Mallien kuvailut"
+
+summary(kesto.sisa)
+
+summary(kesto.ulko)
+```
+
+## Työuupumuksen suhde kohteluun {#sec-korrelaatiosuhteet-tyouupumus}
+
+```{r}
+#| label: fig-korrelaatiosuhteet-tyouupumus
+#| fig-cap: "Epäasiallisen ja väkivaltaisen kohtelun esiintyvyyden korrelaatio työuupumusmittariston kanssa"
+#| layout-nrow: 1
+#| fig-subcap: 
+#| -  "Sisäinen"
+#| -  "Ulkoinen"
+#| code-summary: "Kuvioiden rakentaminen"
+
+uupumus.sisa <- lm(
+  EVK_sisä_koettu ~ uupumus,
+  data = data
+)
+
+uupumus.ulko <- lm(
+  EVK_ulko_koettu ~ uupumus,
+  data = data
+)
+
+ggcoefstats(
+  uupumus.sisa,
+  xlab = "Estimaatti",
+  ylab = "Muuttuja"
+)
+ggcoefstats(
+  uupumus.ulko,
+  xlab = "Estimaatti",
+  ylab = "Muuttuja"
+)
+
+```
+
+```{r}
+#| label: korrelaatiosuhteet-05-tyouupumus-mallit
+#| code-summary: "Mallien kuvailut"
+
+summary(uupumus.sisa)
+anova(uupumus.sisa)
+
+summary(uupumus.ulko)
+anova(uupumus.ulko)
+```
+
+## Muutosaikeiden suhde kohteluun {#sec-korrelaatiosuhteet-muutosaikeet}
+
+```{r}
+#| label: tbl-korrelaatiosuhteet-muutosaikeet
+#| tbl-cap: "Logististen regressiomallien vetokertoimet (odds). Jokaiselle muuttujalle on asetettu logistinen regressiomalli, jonka ennustavina muuttujina ovat sisäisen ja ulkoisen omakohtaisesti koettujen kohtelujen summamuuttujat."
+#| code-summary: "Logistiset mallit ja taulukon piirtäminen"
+
+# Ajetaan yhdeksän logistista regressiomallia.
+# Riippuvaisina muuttujina erikseen jokainen muutosaie
+# Riippumattomina muuttujina sisäisesti ja ulkoisesti koettu kohtelu
+
+mallit <- data |>
+  mutate( # Muutetaan ensin NA nollaksi, jotta vastaamatta jättäneet lasketaan "ei-aikeita"-ryhmään
+    across(
+      k42_1_1:k42_3_3,
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        NA ~ 0
+      )
+    )
+  ) |>
+  select(EVK_sisä_koettu, EVK_ulko_koettu, k42_1_1:k42_3_3) |>
+  pivot_longer(
+    cols = c(k42_1_1:k42_3_3),
+    names_to = "response_var",
+    values_to = "response"
+  ) |>
+  group_by(response_var) |>
+  nest() |>
+  mutate(
+    model = map(
+      data,
+      ~ glm(
+        response ~ EVK_sisä_koettu + EVK_ulko_koettu,
+        data = .x,
+        family = binomial(link = "logit")
+      )
+    ),
+    summary = map(model, summary),
+    coefs = map(model, coefficients),
+    p = map(
+      model,
+      ~ summary(.x)$coefficients[c("(Intercept)", "EVK_sisä_koettu", "EVK_ulko_koettu"), 4]
+    )
+  ) |>
+  ungroup()
+
+# Lopputuloksessa jokainen rivi on muutosaiemuuttuja
+# Sarakkeessa "model" on muuttujakohtaiset mallit lm-objekteina
+# Sarakkeet "summary" ja "coefs" sisältävät summary- ja coefficients-funktioiden tulokset
+# Sarake "p" sisältää kertoimien p-arvot
+
+# Tämä piirtää taulukon, eli ei tarvita mallien asettamiseksi
+mallit |>
+  unnest_wider(coefs) |>
+  unnest_wider(p, names_sep = "_") |>
+  rename(
+    Muuttuja = response_var,
+    Vakio = "(Intercept)",
+    Sisäinen = EVK_sisä_koettu,
+    Ulkoinen = EVK_ulko_koettu,
+    p.1 = "p_(Intercept)",
+    p.2 = p_EVK_sisä_koettu,
+    p.3 = p_EVK_ulko_koettu
+  ) |>
+  mutate(
+    Vakio = exp(Vakio)/(1+exp(Vakio)), # Todennäköisyys
+    Sisäinen = exp(Sisäinen), # Vetosuhde (OR)
+    Ulkoinen = exp(Ulkoinen) # Vetosuhde (OR)
+  ) |>
+  relocate(p.1, .after = Vakio) |>
+  relocate(p.2, .after = Sisäinen) |>
+  relocate(p.3, .after = Ulkoinen) |>
+  select(!c(data, model, summary)) |>
+  knitr::kable(
+    digits = 3,
+    col.names = c("Muuttuja", "Vakio (tod.)", "p(Vakio)", "Sisäinen (OR)", "p(Sisäinen)", "Ulkoinen (OR)", "p(Ulkoinen)")
+  )
+
+```
+
+## Ilmoitusjärjestelmäasenteiden suhde järjestelmien olemassaoloon {#sec-korrelaatiosuhteet-ilmoasenteet-jarjestelmat}
+
+```{r}
+#| label: fig-korrelaatiosuhteet-06-jarjolemassaolo
+#| layout-nrow: 2
+#| fig-subcap: 
+#| -  "Ilmoituksiin liittyvän koetun agenssin puute"
+#| -  "Ilmoituksista syntyvien negatiiviset vaikutukset"
+#| code-summary: "Järjestelmien olemassaolon muuttujan rakentaminen"
+#| fig-height: 12
+
+ilmo_1_sisa <- data |>
+  mutate(
+    k24_1 = factor(
+      k24_1,
+      labels = c("Kyllä", "En osaa sanoa", "Ei")
+    )
+  ) |>
+  ggbetweenstats(
+    x = "k24_1",
+    y = "ilmo_1",
+    bf.message = FALSE,
+    xlab = "Organisaation sisäiset järjestelmät",
+    ylab = "Ilmoituksiin liittyvän agenssin koettu puute",
+    type = "robust",
+    pairwise.display = "none"
+  )
+
+ilmo_2_sisa <- data |>
+  mutate(
+    k24_1 = factor(
+      k24_1,
+      labels = c("Kyllä", "En osaa sanoa", "Ei")
+    )
+  ) |>
+  ggbetweenstats(
+    x = "k24_1",
+    y = "ilmo_2",
+    bf.message = FALSE,
+    xlab = "Organisaation sisäiset järjestelmät",
+    ylab = "Ilmoituksista syntyvien negatiivisten vaikutukset",
+    type = "robust",
+    pairwise.display = "none"
+  )
+
+ilmo_1_ulko <- data |>
+  mutate(
+    k24_2 = factor(
+      k24_2,
+      labels = c("Kyllä", "En osaa sanoa", "Ei")
+    )
+  ) |>
+  ggbetweenstats(
+    x = "k24_2",
+    y = "ilmo_1",
+    bf.message = FALSE,
+    xlab = "Organisaation ulkoiset järjestelmät",
+    ylab = "Ilmoituksiin liittyvän agenssin koettu puute",
+    type = "robust",
+    pairwise.display = "none"
+  )
+
+ilmo_2_ulko <- data |>
+  mutate(
+    k24_2 = factor(
+      k24_2,
+      labels = c("Kyllä", "En osaa sanoa", "Ei")
+    )
+  ) |>
+  ggbetweenstats(
+    x = "k24_2",
+    y = "ilmo_2",
+    bf.message = FALSE,
+    xlab = "Organisaation ulkoiset järjestelmät",
+    ylab = "Ilmoituksista syntyvien negatiivisten vaikutukset",
+    type = "robust",
+    pairwise.display = "none"
+  )
+
+ilmo_1_molem <- data |>
+  mutate(
+    k24_3 = factor(
+      k24_3,
+      labels = c("Kyllä", "En osaa sanoa", "Ei")
+    )
+  ) |>
+  ggbetweenstats(
+    x = "k24_3",
+    y = "ilmo_1",
+    bf.message = FALSE,
+    xlab = "Molempien kattavat järjestelmät",
+    ylab = "Ilmoituksiin liittyvän agenssin koettu puute",
+    type = "robust",
+    pairwise.display = "none"
+  )
+
+ilmo_2_molem <- data |>
+  mutate(
+    k24_3 = factor(
+      k24_3,
+      labels = c("Kyllä", "En osaa sanoa", "Ei")
+    )
+  ) |>
+  ggbetweenstats(
+    x = "k24_3",
+    y = "ilmo_2",
+    bf.message = FALSE,
+    xlab = "Molempien kattavat järjestelmät",
+    ylab = "Ilmoituksista syntyvien negatiivisten vaikutukset",
+    type = "robust",
+    pairwise.display = "none"
+  )
+
+ilmo_1_sisa + ilmo_1_ulko + ilmo_1_molem + plot_layout(ncol = 1, axes = "collect")
+
+ilmo_2_sisa + ilmo_2_ulko + ilmo_2_molem + plot_layout(ncol = 1, axes = "collect")
+
+```
+
+## Ilmoitusjärjestelmäasenteiden suhde epäasiallisen ja väkivaltaisten kohtelun kokemusmäärään {#sec-korrelaatiosuhteet-ilmoasenteet-kohtelu}
+
+```{r}
+#| label: fig-korrelaatiosuhteet-07-ilmoasenteetEVK
+#| fig-cap: "Ilmoitusjärjestelmäasenteiden korrelaatio epäasiallisen ja väkivaltaisen kohtelun kokemusmäärän kanssa (Spearmanin korrelaatio)"
+#| code-summary: "Korrelaatiokuvion rakentaminen"
+
+ggcorrmat(
+  data = data,
+  cor.vars = c("EVK_sisä_koettu", "EVK_ulko_koettu", "ilmo_1", "ilmo_2"),
+  cor.vars.names = c(
+    "Sisäinen",
+    "Ulkoinen",
+    "Agenssin puute",
+    "Negatiiviset vaikutukset"
+  ),
+  type = "nonparametric"
+)
+
+```
+
+```{r}
+#| label: tbl-korrelaatiosuhteet-08-ilmoasenteetEVK
+#| tbl-cap: "Ilmoitusjärjestelmäasenteiden korrelaatio epäasiallisen ja väkivaltaisen kohtelun kokemusmäärän kanssa (Spearmanin korrelaatio)"
+#| code-summary: "Taulukon rakentaminen"
+
+correlation::correlation(
+  data = data,
+  select = c("EVK_sisä_koettu", "EVK_ulko_koettu", "ilmo_1", "ilmo_2"),
+  rename = c(
+    "Sisäinen",
+    "Ulkoinen",
+    "Agenssin puute",
+    "Negatiiviset vaikutukset"
+  ),
+  method = "spearman",
+  p_adjust = "holm"
+) |>
+  select(Parameter1, Parameter2, rho, CI_low, CI_high, p) |>
+  mutate(
+    p = signif(p, 3) |> as.character(),
+    CI_low = signif(CI_low, 3),
+    CI_high = signif(CI_high, 3),
+  ) |>
+  mutate(
+    CI = paste0("[", CI_low, "-", CI_high, "]"),
+    .after = "rho"
+  ) |>
+  select(Parameter1, Parameter2, rho, CI, p) |>
+  knitr::kable(digits = 3)
+
+```
+
+## Ilmoitusjärjestelmäasenteiden suhde koulutuksen olemassaoloon
+
+```{r}
+#| label: fig-korrelaatiosuhteet-09-ilmoasenteetKoulutus
+#| layout-nrow: 2
+#| fig-subcap: 
+#| -  "Ilmoituksiin liittyvän koetun agenssin puute"
+#| -  "Ilmoituksista syntyvien negatiiviset vaikutukset"
+#| code-summary: "Ilmoitusjärjestelmiin liittyvien asenteiden suhde järjestelmäkoulutuksen olemassaoloon"
+#| fig-height: 16
+
+ilmo_1_sisakoul <- data |>
+  filter(k25_1 != -1) |>
+  mutate(
+    k25_1 = factor(
+      k25_1,
+      labels = c("Käynyt koulutuksen", "Ei käynyt koulutusta", "Ei koulutusta", "En osaa sanoa")
+    )
+  ) |>
+  ggbetweenstats(
+    x = "k25_1",
+    y = "ilmo_1",
+    bf.message = FALSE,
+    xlab = "Sisäisten järjestelmien koulutus",
+    ylab = "Ilmoituksiin liittyvän agenssin koettu puute",
+    type = "robust"
+  )
+
+ilmo_2_sisakoul <- data |>
+  filter(k25_1 != -1) |>
+  mutate(
+    k25_1 = factor(
+      k25_1,
+      labels = c("Käynyt koulutuksen", "Ei käynyt koulutusta", "Ei koulutusta", "En osaa sanoa")
+    )
+  ) |>
+  ggbetweenstats(
+    x = "k25_1",
+    y = "ilmo_2",
+    bf.message = FALSE,
+    xlab = "Sisäisten järjestelmien koulutus",
+    ylab = "Ilmoituksista syntyvien negatiivisten vaikutukset",
+    type = "robust"
+  )
+
+ilmo_1_ulkokoul <- data |>
+  filter(k25_2 != -1) |>
+  mutate(
+    k25_2 = factor(
+      k25_2,
+      labels = c("Käynyt koulutuksen", "Ei käynyt koulutusta", "Ei koulutusta", "En osaa sanoa")
+    )
+  ) |>
+  ggbetweenstats(
+    x = "k25_2",
+    y = "ilmo_1",
+    bf.message = FALSE,
+    xlab = "Ulkoisten järjestelmien koulutus",
+    ylab = "Ilmoituksiin liittyvän agenssin koettu puute",
+    type = "robust"
+  )
+
+ilmo_2_ulkokoul <- data |>
+  filter(k25_2 != -1) |>
+  mutate(
+    k25_2 = factor(
+      k25_2,
+      labels = c("Käynyt koulutuksen", "Ei käynyt koulutusta", "Ei koulutusta", "En osaa sanoa")
+    )
+  ) |>
+  ggbetweenstats(
+    x = "k25_2",
+    y = "ilmo_2",
+    bf.message = FALSE,
+    xlab = "Ulkoisten järjestelmien koulutus",
+    ylab = "Ilmoituksista syntyvien negatiivisten vaikutukset",
+    type = "robust"
+  )
+
+ilmo_1_molemkoul <- data |>
+  filter(k25_3 != -1) |>
+  mutate(
+    k25_3 = factor(
+      k25_3,
+      labels = c("Käynyt koulutuksen", "Ei käynyt koulutusta", "Ei koulutusta", "En osaa sanoa")
+    )
+  ) |>
+  ggbetweenstats(
+    x = "k25_3",
+    y = "ilmo_1",
+    bf.message = FALSE,
+    xlab = "Molempien järjestelmien koulutus",
+    ylab = "Ilmoituksiin liittyvän agenssin koettu puute",
+    type = "robust"
+  )
+
+ilmo_2_molemkoul <- data |>
+  filter(k25_3 != -1) |>
+  mutate(
+    k25_3 = factor(
+      k25_3,
+      labels = c("Käynyt koulutuksen", "Ei käynyt koulutusta", "Ei koulutusta", "En osaa sanoa")
+    )
+  ) |>
+  ggbetweenstats(
+    x = "k25_3",
+    y = "ilmo_2",
+    bf.message = FALSE,
+    xlab = "Molempien järjestelmien koulutus",
+    ylab = "Ilmoituksista syntyvien negatiivisten vaikutukset",
+    type = "robust"
+  )
+
+ilmo_1_sisakoul + ilmo_1_ulkokoul + ilmo_1_molemkoul + plot_layout(ncol = 1, axes = "collect")
+
+ilmo_2_sisakoul + ilmo_2_ulkokoul + ilmo_2_molemkoul + plot_layout(ncol = 1, axes = "collect")
+
+```

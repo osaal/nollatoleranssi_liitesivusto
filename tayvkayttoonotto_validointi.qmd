@@ -1,0 +1,8 @@
+# Toimintaohjelman käyttöönoton mittareiden faktorianalyysi {#sec-tayvkayttoonotto_validointi}
+
+---
+eval: true
+---
+
+Tässä osiossa tarkistamme toimintaohjelman käyttöönottoon liittyvien mittareiden faktorirakenteen.
+

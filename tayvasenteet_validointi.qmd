@@ -1,0 +1,7 @@
+# Toimintaohjelmaan kohdistuvien asenteiden faktorianalyysi {#sec-tayvasenteet_validointi}
+
+---
+eval: true
+---
+
+Tässä osiossa tarkistamme toimintaohjelmaan kohdistuvien asenteiden faktorirakenteen.
