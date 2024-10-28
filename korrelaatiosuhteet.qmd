@@ -65,7 +65,6 @@ data <- data |>
   ungroup()
 
 ### Ilmoitusjärjestelmien asenteiden kaksi faktoria
-# TODO: k26_12 pitää kääntää ennen summaamista!
 data <- data |>
   rowwise() |>
   mutate(
@@ -94,6 +93,35 @@ data <- data |>
   ) |>
   ungroup() |>
   select(!k26_12_inv)
+
+### Toimintaohjelman käyttöönoton summamuuttuja
+data <- data |>
+  mutate(
+    across(
+      k28_1:k28_12,
+      ~ case_match(
+        .x,
+        1 ~ -3,
+        2 ~ -2,
+        3 ~ -1,
+        4 ~ 0,
+        5 ~ 1,
+        6 ~ 2,
+        7 ~ 3,
+        NA ~ NA
+      )
+    )
+  ) |>
+  rowwise() |>
+  mutate(
+    tayv_käytössä = sum(
+      c_across(
+        k28_1:k28_12
+      ),
+      na.rm = TRUE
+    )
+  ) |>
+  ungroup()
 
 ```
 
@@ -599,5 +627,74 @@ ilmo_2_molemkoul <- data |>
 ilmo_1_sisakoul + ilmo_1_ulkokoul + ilmo_1_molemkoul + plot_layout(ncol = 1, axes = "collect")
 
 ilmo_2_sisakoul + ilmo_2_ulkokoul + ilmo_2_molemkoul + plot_layout(ncol = 1, axes = "collect")
+
+```
+
+## Toimintaohjelman käyttöönoton suhde kohteluun
+
+```{r}
+#| label: fig-korrelaatiosuhteet-tayvkayttoonottoEVK
+#| fig-cap: "Toimintaohjelman käyttöönottoasteen suhde epäasialliseen ja väkivaltaiseen kohteluun"
+#| fig-ncol: 2
+#| fig-subcap:
+#| -  "Sisäinen, omakohtaisesti koettu"
+#| -  "Sisäinen, havaittu"
+#| -  "Ulkoinen, omakohtaisesti koettu"
+#| -  "Ulkoinen, havaittu"
+#| code-summary: "Kuvion piirtäminen"
+
+ggscatterstats(
+  data = data,
+  x = "tayv_käytössä",
+  y = "EVK_sisä_koettu",
+  type = "robust"
+)
+
+ggscatterstats(
+  data = data,
+  x = "tayv_käytössä",
+  y = "EVK_sisä_havaittu",
+  type = "robust"
+)
+
+ggscatterstats(
+  data = data,
+  x = "tayv_käytössä",
+  y = "EVK_ulko_koettu",
+  type = "robust"
+)
+
+ggscatterstats(
+  data = data,
+  x = "tayv_käytössä",
+  y = "EVK_ulko_havaittu",
+  type = "robust"
+)
+
+```
+
+## Toimintaohjelman käyttöönoton suhde kohtelun vakavuuteen
+
+```{r}
+#| label: fig-korrelaatiosuhteet-tayvkayttoonottovakavuus
+#| fig-cap: "Toimintaohjelman käyttöönoton korrelaatio vaikutusten pitkäkestoisuuden kanssa"
+#| layout-nrow: 1
+#| fig-subcap: 
+#| -  "Sisäinen"
+#| -  "Ulkoinen"
+#| code-summary: "Kuvioiden rakentaminen"
+
+vakavuus.tayv <- lm(
+  tayv_käytössä ~ k22_1 + k22_2 + k22_3,
+  data = data
+)
+
+ggcoefstats(
+  vakavuus.tayv,
+  xlab = "Estimaatti",
+  ylab = "Muuttuja"
+)
+
+summary(vakavuus.tayv)
 
 ```

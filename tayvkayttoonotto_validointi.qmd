@@ -1,8 +1,174 @@
-# Toimintaohjelman käyttöönoton mittareiden faktorianalyysi {#sec-tayvkayttoonotto_validointi}
+# Toimintaohjelman käyttöönoton ryhmittelyanalyysi {#sec-tayvkayttoonotto_validointi}
 
 ---
 eval: true
+cache: true
 ---
 
-Tässä osiossa tarkistamme toimintaohjelman käyttöönottoon liittyvien mittareiden faktorirakenteen.
+Tässä osiossa tarkistamme toimintaohjelman käyttöönottoon liittyvien mittareiden tuottamat ryppäät. Ryhmittelyanalyysissa (engl. *cluster analysis*) ryhmitämme vastaajat ryhmiin, jotka maksimoivat ryhmien sisäisen samankaltaisuuden ja minimoivat ryhmien välisen samankaltaisuuden.
 
+```{r}
+#| label: tayvkayttoonotto_validointi-00-paketit
+#| code-summary: "Osiossa käytetyt paketit"
+
+library(hopkins) # Ryvästyspiirteisyyden arviointi 
+library(factoextra) # Ryhmittelyanalyysien visualisoinnit
+library(NbClust) # Ryppäiden määrän estimoinnin työkaluja
+library(tidyverse)
+
+```
+
+```{r}
+#| label: tayvkayttoonotto_validointi-01-avaaminen
+#| code-summary: "Datan avaaminen"
+
+data <- read.csv2("output/anonymisoitudata.csv", tryLogical = FALSE)
+
+```
+
+## Muuttujien valitseminen analyysiin
+
+Valitsimme kaikki 12 pelastustoimen tasa-arvon ja yhdenvertaisuuden toimintaohjelman toimenpiteiden käyttöönottomuuttujat mukaan analyysiin:
+
+-   `k28_1`: Tasa-arvo- tai yhdenvertaisuussuunnitelma
+-   `k28_2`: Toimintaohjeet epäasialliseen käytökseen, häirintään tai seksuaaliseen häirintään reagointiin
+-   `k28_3`: Henkilöstön turvallisuusselvitykset
+-   `k28_4`: Ohjeet alaikäisten koskemattomuuden turvaamiselle
+-   `k28_5`: Nuorten kanssa toimivien rikostaustojen tarkastaminen
+-   `k28_6`: Ohjeet ahdistelutilanteen käsittelyyn
+-   `k28_7`: Ohjeet uhka- ja väkivaltatilanteen käsittelyyn
+-   `k28_8`: Ilmoitusjärjestelmä epäasiallisen kohtelun raportoimiseksi
+-   `k28_9`: Koulutus uhka- ja väkivaltatilanteiden kohtaamiseen
+-   `k28_10`: Koulutus epäasiallisen kohtelun tunnistamiseen
+-   `k28_11`: Keskustelutilaisuuksia tasa-arvo- ja yhdenvertaisuusaiheista
+-   `k28_12`: Henkilöstön infotilaisuudet organisaation yhdenvertaisuustilanteesta
+
+```{r}
+#| label: tayvkayttoonotto_validointi-02-datavalmistelu
+#| code-summary: "Datan valmistelu ryhmittelyanalyysia varten"
+
+data.valmis <- data |>
+  select(k28_1:k28_12) |>
+  na.omit() |>
+  scale()
+
+```
+
+## Ryvästyspiirteisyyden arviointi
+
+Hopkinsin arvo on `r set.seed(1234); hopkins::hopkins(X = data.valmis)`, mikä osoittaisi erittäin ryvästynyttä dataa.
+
+```{r}
+#| label: fig-tayvkayttoonotto_validointi-03-ryvastysvis
+#| fig-cap: "Muuttujien erilaisuusmatriisi"
+#| code-summary: "Erilaisuusmatriisin piirtäminen"
+
+fviz_dist(
+  dist(data.valmis),
+  show_labels = FALSE
+)
+
+```
+
+Erilaisuusmatriisin väriarvot osoittavat vastaajien erilaisuutta: punainen tarkoittaa täydellistä samanlaisuutta ja sininen täydellistä erilaisuutta. Vastaajat ovat järjestettyjä ryvästyksen mukaisesti.
+
+Matriisissa näkyy jonkin verran ryvästystä. Alkupäässä on ryhmä hyvin samanlaisia vastaajia, kuten myös loppupäässä. Keskellä näkyy joitain ryhmiä, mutta heidän samankaltaisuus on heikompaa.
+
+## Ryppäiden määrän arviointi
+
+```{r}
+#| label: fig-tayvkayttoonotto_validointi-04-ryvasmaara
+#| fig-cap: "Ryppäiden määrän arviointi"
+#| fig-subcap:
+#| -  "Siluettimenetelmä"
+#| -  "Gap-menetelmä"
+#| layout-ncol: 2
+#| warning: false
+#| code-summary: "Klusterien määrän arviointi siluetti- ja gap-menetelmillä"
+
+# Siluettimenetelmä
+fviz_nbclust(
+  x = data.valmis,
+  kmeans,
+  method = "silhouette"
+)
+
+# Gap-tilastomenetelmä
+# Prosessi kestää noin 3 minuuttia Intel Core i5-1335U -prosessorilla
+fviz_nbclust(
+  x = data.valmis,
+  kmeans,
+  nstart = 25,
+  method = "gap_stat",
+  nboot = 500
+)
+
+```
+
+Siluettimenetelmä ehdottaa kahta ryvästä, gap-menetelmä ehdottaa jopa kymmentä ryvästä.
+
+Testasimme myös useamman eri indeksin menetelmiä `NbClust`-paketilla.
+
+```{r}
+#| label: fig-tayvkayttoonotto_validointi-05-ryvasmaara2
+#| fig-cap: "Ehdotettujen ryppäiden määrät eri indekseillä"
+#| code-summary: "Useamman indeksin testaus samanaikaisesti"
+#| error: true
+
+nb <- NbClust(
+  data = data.valmis,
+  distance = "euclidean",
+  method = "kmeans"
+)
+fviz_nbclust(nb)
+
+```
+
+Useimmat indeksit ehdottavat kahta ryvästä.
+
+Päätimme soveltaa kahden klusterin k:n keskiarvon ryvästystä.
+
+## K:n keskiarvon ryvästys
+
+```{r}
+#| label: tayvkayttoonotto_validointi-06-kmeansryvastys
+#| code-summary: "K:n keskiarvon ryvästyksen laskenta"
+
+ryvastys <- kmeans(
+  x = data.valmis,
+  centers = 2,
+  nstart = 25
+)
+
+aggregate(
+  data.valmis,
+  by = list(cluster = ryvastys$cluster),
+  mean
+) |>
+  t() |>
+  as.data.frame() |>
+  rename(
+    "Ryväs 1" = "V1",
+    "Ryväs 2" = "V2"
+  ) |>
+  slice(2:n())
+
+data.ryvastetty <- cbind(data.valmis, ryväs = ryvastys$cluster)
+
+```
+
+```{r}
+#| label: fig-tayvkayttoonotto_validointi-07-ryvastysvis
+#| fig-cap: "K:n keskiarvon ryvästyksen visualisointi PCA-menetelmällä (k = 2, kaksi PCA-ulottuvuutta)"
+#| code-summary: "Ryvästyksen visualisointi"
+
+fviz_cluster(
+  ryvastys,
+  data = data.valmis
+)
+
+```
+
+Ryppäät jakaantuvat kahteen selkeään ryhmää: vastaajat, joiden mielestä organisaatioissa on keskiarvoa harvemmin käytössä kaikki toimenpiteet, ja vastaajat, joiden mielestä organisaatioissa on keskiarvoa useammin käytössä toimenpiteet.
+
+Koska ryppäät jakaantuvat näin selkeästi, voimme suorittaa jatkoanalyyseja yksinkertaisilla summamuuttujilla. Jos vastaajan mielestä hänen organisaatiossaan on jokin toimenpide käytössä, useasti myös muut toimenpiteet ovat hänen mielestään käytössä. Emme siis näe eroavaisuuksia toimenpiteiden käyttöönotossa vastaajien välillä muulla tasolla kuin korkeasti ja vähäisesti käyttöönottavien organisaatioiden vastaajien välillä.
