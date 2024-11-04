@@ -10,18 +10,22 @@ Tässä osiossa käsitellään epäasiallisen ja väkivaltaisen kohtelun ilmoitu
 -   Koulutuksen olemassaolo ilmoitusjärjestelmille (`k25_1:k25_3`)
 -   Asenteet ilmoitusjärjestelmiä kohtaan (`k26_1:k26_18`)
 
+Tiedot pohjautuvat anonymisoituun datatiedostoon, josta on poistettu epäilyttävät vastaajat. Osion voi toistaa lataamalla Tietoarkistossa oleva datakopio ja ensin suorittamalla [luvun -@sec-datatarkistus] koodit.
+
 ```{r}
 #| label: ilmoitusjarjestelmat-00-paketit
+#| code-summary: "Osiossa käytetyt paketit"
 
 library(tidyverse)
-library(ggpubr)
+library(patchwork)
 
 ```
 
 ```{r}
 #| label: ilmoitusjarjestelmat-01-avaaminen
+#| code-summary: "Datan avaaminen"
 
-data <- read.csv2("output/anonymisoitudata.csv", tryLogical = FALSE)
+data <- read.csv2("output/valmisdata.csv", tryLogical = FALSE)
 
 ```
 
@@ -30,6 +34,7 @@ data <- read.csv2("output/anonymisoitudata.csv", tryLogical = FALSE)
 ```{r}
 #| label: fig-ilmoitusjarjestelmat-olemassaolo
 #| fig-cap: "Eri ilmoitusjärjestelmien raportoitu olemassaolo"
+#| code-summary: "Kuvion piirtäminen"
 
 data |>
   select(k24_1:k24_3) |>
@@ -71,15 +76,18 @@ data |>
     fill = "Vastaukset"
   ) +
   theme(axis.title.y = element_blank()) +
-  geom_text(
+  geom_label(
     aes(
-      label = ifelse(
-        test = is.na(value), 
-        yes = "",
-        no = scales::percent(prop, accuracy = 0.1, decimal.mark = ","))
+      label = scales::percent(prop, accuracy = 0.1, decimal.mark = ",")
     ),
     position = position_stack(vjust = 0.5),
-    color = "white"
+    show.legend = FALSE,
+    vjust = c(
+      #K----Ei----EOS---NA--#
+      0.50, -.25, 0.50, 1.25,
+      0.50, -.25, 0.50, 1.25,
+      0.50, -.25, 0.50, 1.25
+    )
   )
 
 ```
@@ -89,6 +97,7 @@ data |>
 ```{r}
 #| label: fig-ilmoitusjarjestelmat-koulutus
 #| fig-cap: "Olemassa olevien ilmoitusjärjestelmien koulutukset"
+#| code-summary: "Kuvion piirtäminen"
 
 sisa <- data |>
   filter(between(k25_1, 0, 3)) |>
@@ -126,18 +135,16 @@ sisa <- data |>
     ), str_wrap, width = 18, USE.NAMES = FALSE)
   ) +
   labs(
+    x = "Suhde vastaajista, joiden mielestä organisaatiolla on kyseinen järjestelmä käytössä (%)",
     fill = "Vastaukset"
   ) +
-  theme(axis.title.y = element_blank()) +
-  geom_text(
+  theme(axis.title.y = element_blank(), legend.position = "bottom") +
+  geom_label(
     aes(
-      label = ifelse(
-        test = is.na(value), 
-        yes = "",
-        no = scales::percent(prop, accuracy = 0.1, decimal.mark = ","))
+      label = scales::percent(prop, accuracy = 0.1, decimal.mark = ",")
     ),
     position = position_stack(vjust = 0.5),
-    color = "white"
+    show.legend = FALSE
   )
 
 ulko <- data |>
@@ -176,18 +183,16 @@ ulko <- data |>
     ), str_wrap, width = 18, USE.NAMES = FALSE)
   ) +
   labs(
+    x = "Suhde vastaajista, joiden mielestä organisaatiolla on kyseinen järjestelmä käytössä (%)",
     fill = "Vastaukset"
   ) +
-  theme(axis.title.y = element_blank()) +
-  geom_text(
+  theme(axis.title.y = element_blank(), legend.position = "bottom") +
+  geom_label(
     aes(
-      label = ifelse(
-        test = is.na(value), 
-        yes = "",
-        no = scales::percent(prop, accuracy = 0.1, decimal.mark = ","))
+      label = scales::percent(prop, accuracy = 0.1, decimal.mark = ",")
     ),
     position = position_stack(vjust = 0.5),
-    color = "white"
+    show.legend = FALSE
   )
 
 molemmat <- data |>
@@ -226,34 +231,24 @@ molemmat <- data |>
     ), str_wrap, width = 18, USE.NAMES = FALSE)
   ) +
   labs(
+    x = "Suhde vastaajista, joiden mielestä organisaatiolla on kyseinen järjestelmä käytössä (%)",
     fill = "Vastaukset"
   ) +
-  theme(axis.title.y = element_blank(), axis.title.x = element_blank()) +
-  geom_text(
+  theme(axis.title.y = element_blank(), legend.position = "bottom") +
+  geom_label(
     aes(
-      label = ifelse(
-        test = is.na(value), 
-        yes = "",
-        no = scales::percent(prop, accuracy = 0.1, decimal.mark = ","))
+      label = scales::percent(prop, accuracy = 0.1, decimal.mark = ",")
     ),
     position = position_stack(vjust = 0.5),
-    color = "white"
+    show.legend = FALSE
   )
 
-fig <- ggarrange(
-  sisa + rremove("legend") + rremove("xlab"),
-  ulko + rremove("legend") + rremove("xlab"),
-  molemmat + rremove("legend") + rremove("xlab"),
-  ncol = 1,
-  nrow = 3,
-  legend = "bottom",
-  common.legend = TRUE
-)
-
-annotate_figure(
-  fig,
-  bottom = text_grob("Suhde vastaajista, joiden mielestä organisaatiolla on kyseinen järjestelmä käytössä (%)")
-)
+sisa / ulko / molemmat +
+  plot_layout(
+    guides = "collect",
+    axes = "collect"
+  ) &
+  theme(legend.position = "bottom")
 
 ```
 
@@ -262,6 +257,7 @@ annotate_figure(
 ```{r}
 #| label: fig-ilmoitusjarjestelmat-asenteet
 #| fig-cap: "Asenteet ilmoitusjärjestelmiä kohtaan"
+#| code-summary: "Kuvion piirtäminen"
 
 # Muutetaan data pitkään formaattiin
 data_long <- data |>

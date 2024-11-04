@@ -34,6 +34,7 @@ book:
         - anonymisointi.qmd
     - part: "Kyselyn tulokset"
       chapters:
+        - datatarkistus.qmd
         - metatiedot.qmd
         - taustamuuttujat.qmd
         - esiintyvyys.qmd
@@ -107,6 +108,7 @@ book:
     - id: kyselyntulokset
       title: "Kyselyn tulokset"
       contents:
+        - datatarkistus.qmd
         - metatiedot.qmd
         - taustamuuttujat.qmd
         - esiintyvyys.qmd

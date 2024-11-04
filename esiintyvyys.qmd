@@ -2,7 +2,6 @@
 
 ---
 eval: true
-cache: true
 ---
 
 Tässä osiossa käsitellään kyselytuloksia liittyen epäasiallisen ja väkivaltaisen kohtelun esiintyvyyteen:
@@ -10,8 +9,11 @@ Tässä osiossa käsitellään kyselytuloksia liittyen epäasiallisen ja väkiva
 -   Kohtelun yleisyysmittarit (`k3_1:k4_7`, `k12_1:k13_7`)
 -   Kohtelua selventävät mittarit (`k5_1_1:k11_16_2`, `k14_1_1:k20_7_2`)
 
+Tiedot pohjautuvat anonymisoituun datatiedostoon, josta on poistettu epäilyttävät vastaajat. Osion voi toistaa lataamalla Tietoarkistossa oleva datakopio ja ensin suorittamalla [luvun -@sec-datatarkistus] koodit.
+
 ```{r}
 #| label: esiintyvyys-00-paketit
+#| code-summary: "Osiossa käytetyt paketit"
 
 library(tidyverse)
 
@@ -19,8 +21,9 @@ library(tidyverse)
 
 ```{r}
 #| label: esiintyvyys-01-avaaminen
+#| code-summary: "Datan avaaminen"
 
-data <- read.csv2("output/anonymisoitudata.csv", tryLogical = FALSE)
+data <- read.csv2("output/valmisdata.csv", tryLogical = FALSE)
 
 ```
 
@@ -31,6 +34,7 @@ data <- read.csv2("output/anonymisoitudata.csv", tryLogical = FALSE)
 ```{r}
 #| label: fig-esiintyvyys-sisa-itse
 #| fig-cap: "Omakohtaisesti kohdattu organisaation sisäinen epäasiallinen ja väkivaltainen kohtelu"
+#| code-summary: "Kuvion piirtäminen"
 
 data |>
   select(k3_1:k3_7) |>
@@ -84,57 +88,57 @@ data |>
   geom_text(
     aes(
       y = 7,
-      x = 0.729,
+      x = 0.727,
       hjust = 1,
-      label = "72,9 %"
+      label = "72,7 %"
     )
   ) + 
   geom_text(
     aes(
       y = 6,
-      x = 0.574,
+      x = 0.565,
       hjust = 1,
-      label = "57,4 %"
+      label = "56,5 %"
     )
   ) + 
   geom_text(
     aes(
       y = 5,
-      x = 0.876,
+      x = 0.873,
       hjust = 1,
-      label = "87,6 %"
+      label = "87,3 %"
     )
   ) + 
   geom_text(
     aes(
       y = 4,
-      x = 0.969,
+      x = 0.968,
       hjust = 1,
-      label = "96,9 %"
+      label = "96,8 %"
     )
   ) + 
   geom_text(
     aes(
       y = 3,
-      x = 0.879,
+      x = 0.877,
       hjust = 1,
-      label = "87,9 %"
+      label = "87,7 %"
     )
   ) + 
   geom_text(
     aes(
       y = 2,
-      x = 0.922,
+      x = 0.920,
       hjust = 1,
-      label = "92,2 %"
+      label = "92,0 %"
     )
   ) + 
   geom_text(
     aes(
       y = 1,
-      x = 0.726,
+      x = 0.725,
       hjust = 1,
-      label = "72,6 %"
+      label = "72,5 %"
     )
   )
 
@@ -143,6 +147,7 @@ data |>
 ```{r}
 #| label: tbl-esiintyvyys-sisa-itse
 #| tbl-cap: "Omakohtaisesti kohdattu organisaation sisäinen epäasiallinen ja väkivaltainen kohtelu, osuus kaikista vastaajista (muuttujakohtaisesti)"
+#| code-summary: "Taulukon rakentaminen"
 
 data |>
   select(k3_1:k3_7) |>
@@ -196,6 +201,7 @@ data |>
 ```{r}
 #| label: fig-esiintyvyys-sisa-kollega
 #| fig-cap: "Kollegan kohtaama organisaation sisäinen epäasiallinen ja väkivaltainen kohtelu"
+#| code-summary: "Kuvion piirtäminen"
 
 data |>
   select(k4_1:k4_7) |>
@@ -249,33 +255,33 @@ data |>
   geom_text(
     aes(
       y = 7,
-      x = 0.687,
+      x = 0.681,
       hjust = 1,
-      label = "68,7 %"
+      label = "68,1 %"
     )
   ) + 
   geom_text(
     aes(
       y = 6,
-      x = 0.555,
+      x = 0.544,
       hjust = 1,
-      label = "55,5 %"
+      label = "54,4 %"
     )
   ) + 
   geom_text(
     aes(
       y = 5,
-      x = 0.810,
+      x = 0.806,
       hjust = 1,
-      label = "81,0 %"
+      label = "80,6 %"
     )
   ) + 
   geom_text(
     aes(
       y = 4,
-      x = 0.956,
+      x = 0.955,
       hjust = 1,
-      label = "95,6 %"
+      label = "95,5 %"
     )
   ) + 
   geom_text(
@@ -289,17 +295,17 @@ data |>
   geom_text(
     aes(
       y = 2,
-      x = 0.920,
+      x = 0.919,
       hjust = 1,
-      label = "92,0 %"
+      label = "91,9 %"
     )
   ) + 
   geom_text(
     aes(
       y = 1,
-      x = 0.676,
+      x = 0.672,
       hjust = 1,
-      label = "67,6 %"
+      label = "67,2 %"
     )
   )
 
@@ -308,6 +314,7 @@ data |>
 ```{r}
 #| label: tbl-esiintyvyys-sisa-kollega
 #| tbl-cap: "Kollegan kohtaama organisaation sisäinen epäasiallinen ja väkivaltainen kohtelu, osuus kaikista vastaajista (muuttujakohtaisesti)"
+#| code-summary: "Taulukon rakentaminen"
 
 data |>
   select(k4_1:k4_7) |>
@@ -362,6 +369,7 @@ data |>
 ```{r}
 #| label: fig-esiintyvyys-ulko-itse
 #| fig-cap: "Omakohtaisesti kohdattu organisaation ulkopuolelta tuleva epäasiallinen ja väkivaltainen kohtelu"
+#| code-summary: "Kuvion piirtäminen"
 
 data |>
   select(k12_1:k12_7) |>
@@ -415,25 +423,25 @@ data |>
   geom_text(
     aes(
       y = 7,
-      x = 0.830,
+      x = 0.829,
       hjust = 1,
-      label = "83,0 %"
+      label = "82,9 %"
     )
   ) + 
   geom_text(
     aes(
       y = 6,
-      x = 0.554,
+      x = 0.547,
       hjust = 1,
-      label = "55,4 %"
+      label = "54,7 %"
     )
   ) + 
   geom_text(
     aes(
       y = 5,
-      x = 0.792,
+      x = 0.790,
       hjust = 1,
-      label = "79,2 %"
+      label = "79,0 %"
     )
   ) + 
   geom_text(
@@ -447,9 +455,9 @@ data |>
   geom_text(
     aes(
       y = 3,
-      x = 0.678,
+      x = 0.677,
       hjust = 1,
-      label = "67,8 %"
+      label = "67,7 %"
     )
   ) + 
   geom_text(
@@ -463,9 +471,9 @@ data |>
   geom_text(
     aes(
       y = 1,
-      x = 0.597,
+      x = 0.595,
       hjust = 1,
-      label = "59,7 %"
+      label = "59,5 %"
     )
   )
 ```
@@ -473,6 +481,7 @@ data |>
 ```{r}
 #| label: tbl-esiintyvyys-ulko-itse
 #| tbl-cap: "Omakohtaisesti kohdattu organisaation ulkopuolelta tuleva epäasiallinen ja väkivaltainen kohtelu, osuus kaikista vastaajista (muuttujakohtaisesti)"
+#| code-summary: "Taulukon rakentaminen"
 
 data |>
   select(k12_1:k12_7) |>
@@ -525,6 +534,7 @@ data |>
 ```{r}
 #| label: fig-esiintyvyys-ulko-kollega
 #| fig-cap: "Kollegan kohtaama organisaation ulkopuolelta tuleva epäasiallinen ja väkivaltainen kohtelu"
+#| code-summary: "Kuvion piirtäminen"
 
 data |>
   select(k13_1:k13_7) |>
@@ -541,7 +551,7 @@ data |>
     x = prop,
     fill = factor(
       value,
-      levels = rev(sort(unique(value))),
+      levels = c(7:0), # "Useita kertoja päivässä" ei esiinny ollenkaan.
       labels = sapply(c(
         "Useita kertoja päivässä",
         "Kerran päivässä",
@@ -578,25 +588,25 @@ data |>
   geom_text(
     aes(
       y = 7,
-      x = 0.817,
+      x = 0.820,
       hjust = 1,
-      label = "81,7 %"
+      label = "82,0 %"
     )
   ) + 
   geom_text(
     aes(
       y = 6,
-      x = 0.556,
+      x = 0.546,
       hjust = 1,
-      label = "55,6 %"
+      label = "54,6 %"
     )
   ) + 
   geom_text(
     aes(
       y = 5,
-      x = 0.758,
+      x = 0.755,
       hjust = 1,
-      label = "75,8 %"
+      label = "75,5 %"
     )
   ) + 
   geom_text(
@@ -610,9 +620,9 @@ data |>
   geom_text(
     aes(
       y = 3,
-      x = 0.667,
+      x = 0.665,
       hjust = 1,
-      label = "66,7 %"
+      label = "66,5 %"
     )
   ) + 
   geom_text(
@@ -626,9 +636,9 @@ data |>
   geom_text(
     aes(
       y = 1,
-      x = 0.593,
+      x = 0.589,
       hjust = 1,
-      label = "59,3 %"
+      label = "58,9 %"
     )
   )
 ```
@@ -636,6 +646,7 @@ data |>
 ```{r}
 #| label: tbl-esiintyvyys-ulko-kollega
 #| tbl-cap: "Kollegan kohtaama organisaation ulkopuolelta tuleva epäasiallinen ja väkivaltainen kohtelu, osuus kaikista vastaajista (muuttujakohtaisesti)"
+#| code-summary: "Taulukon rakentaminen"
 
 data |>
   select(k13_1:k13_7) |>

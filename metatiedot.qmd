@@ -4,7 +4,7 @@
 eval: true
 ---
 
-Tässä osiossa käymme läpi kyselytutkimuksen meta- ja taustatietojen tulokset. Tiedot pohjautuvat anonymisoituun datatiedostoon, jolloin ne ovat tarkistettavissa Tietoarkistoon sijoitetusta arkistokopiosta. Datatiedostoa ei ole saatavilla verkkosivun lähdekoodista. Suomalaisessa korkeakoulussa affilioitunut tutkija tai pro gradu -tutkielman tekijä voi ladata datatiedoston Tietoarkistosta kirjautumalla sisään HAKA-tunnistautumisella.
+Tässä osiossa käymme läpi kyselytutkimuksen meta- ja taustatietojen tulokset. Tiedot pohjautuvat anonymisoituun datatiedostoon, josta on poistettu epäilyttävät vastaajat. Osion voi toistaa lataamalla Tietoarkistossa oleva datakopio ja ensin suorittamalla [luvun -@sec-datatarkistus] koodit.
 
 ## Metatietoja Webropolista {#sec-metatiedot-webropol}
 
@@ -42,10 +42,15 @@ Virheen takia Webropol-järjestelmässä tallentui tiedot myös niistä vastaaji
 
 Ennen puhdistamista vastaajia oli yhteensä 1 048 kappaletta. Kieltävän suostumuksen antaneita oli yhteensä 23 kappaletta. Jäljelle jäi siten 1 025 vastaajaa.
 
+## Epäilyttävät vastaukset {#sec-metatiedot-epailyttavat}
+
+Anonymisoinnin jälkeen tarkistimme kaikilta vastaajilta epäilyttävät tiedot neljältä muuttujaryhmältä (ks. @sec-datatarkistus). Tarkistuksen pohjalta poistimme 65 vastaajaa. Jäljelle jäi siten 960 vastaajaa.
+
 ## Datatiedoston metatietojen kuvailu {#sec-metatiedot-metatiedot}
 
 ```{r}
 #| label: metatiedot-00-paketit
+#| code-summary: "Osiossa käytetyt paketit"
 
 library(tidyverse)
 
@@ -53,8 +58,9 @@ library(tidyverse)
 
 ```{r}
 #| label: metatiedot-01-avaaminen
+#| code-summary: "Datan avaaminen"
 
-data <- read.csv2("output/anonymisoitudata.csv", tryLogical = FALSE)
+data <- read.csv2("output/valmisdata.csv", tryLogical = FALSE)
 
 ```
 
@@ -65,6 +71,7 @@ Lopullisessa otoksessa on yhteensä `r nrow(data)` vastaajaa.
 ```{r}
 #| label: fig-metatiedot-yhteydenottomenetelmat
 #| fig-cap: "Tutkimuksen vastaajat yhteydenottomenetelmittäin"
+#| code-summary: "Kuvion rakentaminen"
 
 data |>
   mutate(
@@ -90,6 +97,7 @@ data |>
 ```{r}
 #| label: fig-metatiedot-kieliversio
 #| fig-cap: "Tutkimuksen vastaajat kyselyn kielen mukaan"
+#| code-summary: "Kuvion rakentaminen"
 
 data |>
   mutate(

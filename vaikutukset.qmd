@@ -12,9 +12,11 @@ Tässä osiossa käsitellään omakohtaisesti koetun kohtelun vaikutuksia:
 -   Vastaajan reagointi kohteluun (`k23_1:k23_11`)
 -   Työuupumus (`k27_1:k27_4`)
 
+Tiedot pohjautuvat anonymisoituun datatiedostoon, josta on poistettu epäilyttävät vastaajat. Osion voi toistaa lataamalla Tietoarkistossa oleva datakopio ja ensin suorittamalla [luvun -@sec-datatarkistus] koodit.
+
 ```{r}
 #| label: vaikutukset-00-paketit
-#| code-summary: "Paketit"
+#| code-summary: "Osiossa käytetyt paketit"
 
 library(tidyverse)
 
@@ -24,7 +26,7 @@ library(tidyverse)
 #| label: vaikutukset-01-avaaminen
 #| code-summary: "Datan avaaminen"
 
-data <- read.csv2("output/anonymisoitudata.csv", tryLogical = FALSE)
+data <- read.csv2("output/valmisdata.csv", tryLogical = FALSE)
 
 ```
 
@@ -207,6 +209,7 @@ data_vaikutukset |> ggplot(
 ```{r}
 #| label: fig-vaikutukset-jatkuvat
 #| fig-cap: "Omakohtaisesti koetun kohtelun vaikutukset jatkuvat yhä"
+#| code-summary: "Kuvion piirtäminen"
 
 ### Käytetty data
 # Fyysiset
@@ -298,6 +301,7 @@ data_vaikutukset |> ggplot(
 ```{r}
 #| label: fig-vaikutukset-reaktiot
 #| fig-cap: "Reaktiot omakohtaisesti koettuun kohteluun"
+#| code-summary: "Kuvion piirtäminen"
 
 ### Järjestyksen rakentaminen
 nimet <- sapply(c(
@@ -384,6 +388,7 @@ reaktiot.jarj |>
 ```{r}
 #| label: fig-vaikutukset-tyouupumus
 #| fig-cap: "Työuupumuksen arvio (BAT 4-työkalu)"
+#| code-summary: "Kuvion piirtäminen"
 
 data |>
   select(k27_1:k27_4) |>
@@ -445,6 +450,7 @@ data |>
 ```{r}
 #| label: fig-vaikutukset-uupumuksentaso
 #| fig-cap: "Työuupumusmittarin keskiarvot vastaajittain"
+#| code-summary: "Kuvion piirtäminen"
 
 # Lasketaan tiedot ensin, jotta RMarkdown saa muuttujat käyttöönsä
 uupumus <- data |>
@@ -477,6 +483,7 @@ uupumus |>
 
 ```{r}
 #| label: vaikutukset-02-tyouupumustesti
+#| code-summary: "Yksisuuntaisen t-testin laskeminen"
 
 n <- uupumus |> filter(!is.na(mean)) |> nrow()
 
@@ -493,7 +500,7 @@ d = (0.092 - (uupuneet_pros/100)) / var(uupumus$mean, na.rm = TRUE)
 
 ```
 
-Todennäköisesti työuupuneita on `r uupuneet` vastaajaa, mikä vastaa `r uupuneet_pros` prosenttia kaikista vastaajista. BAT-4-työkalun väestötason arvio ositti joulukuussa 2019 noin 9,2 prosenttia koko väestöstä kärsivän todennäköisestä työuupumuksesta [@hakanen2022, pp. 53]. Yksisuuntainen t-testi osoittaa, että otospopulaation työuupumusaste voi mahdollisesti olla pienempi kuin koko väestön aste:
+Todennäköisesti työuupuneita on `r uupuneet` vastaajaa, mikä vastaa `r uupuneet_pros` prosenttia kaikista vastaajista. BAT-4-työkalun väestötason arvio ositti joulukuussa 2019 noin 9,2 prosenttia koko väestöstä kärsivän todennäköisestä työuupumuksesta [@hakanen2022, pp. 53]. Yksisuuntainen t-testi osoittaa, että otospopulaation työuupumusaste ei eroa merkitsevästi väestötason asteesta:
 
 $$
 \text{t} = `r round(t.suure, digits = 2)`, \text{df} = `r n - 1`, \text{p} = `r round(p, digits = 3)`, \hat{\text{d}} = `r round(d, digits = 3)`

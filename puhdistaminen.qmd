@@ -65,7 +65,7 @@ Muut yhdistelmät tippuvat alle 10 vastaajan. Emme näe tarpeen käsitellä näi
 Viimeiseksi data tallennettiin tilapäiseksi tiedostoksi anonymisointia varten. Tallennusta ei ole saatavilla verkkosivun lähdekoodista tietosuojan takia.
 
 ```{r}
-#| label: puhdistaminen-XX-tallennus
+#| label: puhdistaminen-04-tallennus
 
 write.csv2(data, file = "output/puhdistettudata.csv", row.names = FALSE)
 

@@ -1206,6 +1206,16 @@
       ],
       "Hash": "ac6cdb8552c61bd36b0e54d07cf2aab7"
     },
+    "careless": {
+      "Package": "careless",
+      "Version": "1.2.2",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "psych"
+      ],
+      "Hash": "aaa592cfaa936e887b5c33f6b653b742"
+    },
     "cellranger": {
       "Package": "cellranger",
       "Version": "1.1.0",

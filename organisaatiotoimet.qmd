@@ -10,8 +10,11 @@ Tässä osiossa käsitellään organisaatioon liittyviä toimenpidekysymyksiä:
 -   Toimen koettu vaikutus (`k29_1:k29_12`)
 -   Erilaisten ehdotettujen toimenpiteiden koettu hyödyllisyys (`k30_1:k30_13`)
 
+Tiedot pohjautuvat anonymisoituun datatiedostoon, josta on poistettu epäilyttävät vastaajat. Osion voi toistaa lataamalla Tietoarkistossa oleva datakopio ja ensin suorittamalla [luvun -@sec-datatarkistus] koodit.
+
 ```{r}
 #| label: organisaatiotoimet-00-paketit
+#| code-summary: "Osiossa käytetyt paketit"
 
 library(tidyverse)
 library(ggridges)
@@ -20,8 +23,9 @@ library(ggridges)
 
 ```{r}
 #| label: organisaatiotoimet-01-avaaminen
+#| code-summary: "Datan avaaminen"
 
-data <- read.csv2("output/anonymisoitudata.csv", tryLogical = FALSE)
+data <- read.csv2("output/valmisdata.csv", tryLogical = FALSE)
 
 ```
 
@@ -30,6 +34,7 @@ data <- read.csv2("output/anonymisoitudata.csv", tryLogical = FALSE)
 ```{r}
 #| label: fig-organisaatiotoimet-kaytetyt
 #| fig-cap: "Organisaatioiden käyttämät toimet vastaajien käsityksen mukaan"
+#| code-summary: "Kuvion piirtäminen"
 
 # Muutetaan data pitkään formaattiin
 data_long <- data |>
@@ -116,11 +121,67 @@ data_long |>
 
 ```
 
+```{r}
+#| label: tbl-organisaatiotoimet-kaytetyt
+#| tbl-cap: Organisaatioiden käyttämät toimet vastaajien käsityksen mukaan"
+#| code-summary: "Taulukon rakentaminen"
+
+data |>
+  select(k28_1:k28_12) |>
+  pivot_longer(
+    cols = k28_1:k28_12,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ungroup() |>
+  mutate(
+    across(
+      variable,
+      ~ case_match(
+        .x,
+        "k28_1" ~ "Tasa-arvo- tai yhdenvertaisuussuunnitelma",
+        "k28_2" ~ "Toimintaohjeet epäasialliseen käytökseen, häirintään tai seksuaaliseen häirintään reagointiin",
+        "k28_3" ~ "Henkilöstön turvallisuusselvitykset",
+        "k28_4" ~ "Ohjeet alaikäisten koskemattomuuden turvaamiselle",
+        "k28_5" ~ "Nuorten kanssa toimivien rikostaustojen tarkastaminen",
+        "k28_6" ~ "Ohjeet ahdistelutilanteen käsittelyyn",
+        "k28_7" ~ "Ohjeet uhka- ja väkivaltatilanteen käsittelyyn",
+        "k28_8" ~ "Ilmoitusjärjestelmä epäasiallisen kohtelun raportoimiseksi",
+        "k28_9" ~ "Koulutus uhka- ja väkivaltatilanteiden kohtaamiseen",
+        "k28_10" ~ "Koulutus epäasiallisen kohtelun tunnistamiseen",
+        "k28_11" ~ "Keskustelutilaisuuksia tasa-arvo- ja yhdenvertaisuusaiheista",
+        "k28_12" ~ "Henkilöstön infotilaisuudet organisaation yhdenvertaisuustilanteesta"
+      )
+    )
+  ) |>
+  mutate(
+    across(
+      value,
+      ~ case_match(
+        .x,
+        1 ~ "Tiedän, että ei ole käytössä",
+        2 ~ "Luulen, että ei ole käytössä",
+        3 ~ "En osaa sanoa",
+        4 ~ "Luulen, että on käytössä",
+        5 ~ "Tiedän, että on käytössä"
+      )
+    )
+  ) |>
+  xtabs(prop ~ variable + value, data = _) |>
+  knitr::kable(digits = 3)
+
+```
+
+
 ## Toimien koettu vaikutus {#sec-organisaatiotoimet-vaikutus}
 
 ```{r}
 #| label: fig-organisaatiotoimet-vaikutus
 #| fig-cap: "Organisaatiotoimien koettu vaikutus"
+#| code-summary: "Kuvion piirtäminen"
 
 # Muutetaan data pitkään formaattiin
 data_long <- data |>
@@ -170,14 +231,16 @@ data_long |>
   )) +
   geom_density_ridges_gradient(
     scale = 2,
-    rel_min_height = 0.01
+    rel_min_height = 0.01,
+    quantile_lines = TRUE,
+    quantiles = 2
   ) +
   scale_fill_viridis_c(option = "C") +
   scale_x_continuous(breaks = 0:10) +
   labs(
     x = "Arvot (0-10)",
     y = NULL,
-    caption = "Järjestetty laskevassa järjestyksessä keskiarvon mukaan",
+    caption = "Järjestetty laskevassa järjestyksessä keskiarvon mukaan\nMusta viiva esittää kunkin muuttujan mediaaniarvoa",
     fill = "Arvo"
   ) +
   theme_ridges() +
@@ -197,6 +260,7 @@ data_long |>
 ```{r}
 #| label: fig-organisaatiotoimet-ehdotushyoty
 #| fig-cap: "Ehdotettujen toimenpiteiden koettu hyödyllisyys"
+#| code-summary: "Kuvion piirtäminen"
 
 # Muutetaan data pitkään formaattiin
 data_long <- data |>
@@ -284,3 +348,61 @@ data_long |>
     xintercept = 0.75
   )
 ```
+
+```{r}
+#| label: tbl-organisaatiotoimet-ehdotushyoty
+#| tbl-cap: "Ehdotettujen toimenpiteiden koettu hyödyllisyys"
+#| code-summary: "Taulukon rakentaminen"
+
+data |>
+  select(k30_1:k30_13) |>
+  pivot_longer(
+    cols = k30_1:k30_13,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ungroup() |>
+  mutate(
+    across(
+      variable,
+      ~ case_match(
+        .x,
+        "k30_1" ~ "Voimankäyttökoulutus tai -välineiden käyttöönotto",
+        "k30_2" ~ "Puuttuminen epäasialliseen kohteluun",
+        "k30_3" ~ "Ohjeet epäasiallisen kohtelun jälkeisistä menettelyistä",
+        "k30_4" ~ "Yhdenvertaisuuden koulutukset",
+        "k30_5" ~ "Avoimet keskustelut epäasiallisesta kohtelusta yleisellä tasolla",
+        "k30_6" ~ "Turvallisuusviranomaisten yhteistyön parantaminen",
+        "k30_7" ~ "Lainsäädännön tai seuraamuksien tiukentaminen",
+        "k30_8" ~ "Johdon selkeä nollatoleranssin ilmaisu",
+        "k30_9" ~ "Organisaation nimetty yhdenvertaisuusvastaava",
+        "k30_10" ~ "Monimuotoiset työyhteisöt",
+        "k30_11" ~ "Automaattiset rikosilmoitukset",
+        "k30_12" ~ "Nimettömän palautteen tai ilmoituskanavan käyttö",
+        "k30_13" ~ "Työterveydenhuollon tuen laajentaminen"
+      )
+    )
+  ) |>
+  mutate(
+    across(
+      value,
+      ~ case_match(
+        .x,
+        1 ~ "Erittäin hyödytön",
+        2 ~ "Hyödytön",
+        3 ~ "Jokseenkin hyödytön",
+        4 ~ "Ei hyödyllinen eikä hyödytön",
+        5 ~ "Jokseenkin hyödyllinen",
+        6 ~ "Hyödyllinen",
+        7 ~ "Erittäin hyödyllinen"
+      )
+    )
+  ) |>
+  xtabs(prop ~ variable + value, data = _) |>
+  knitr::kable(digits = 3)
+
+```
+

@@ -4,16 +4,23 @@
 eval: true
 ---
 
+Tässä osiossa käymme läpi kyselytutkimuksen taustamuuttujat. Tiedot pohjautuvat anonymisoituun datatiedostoon, josta on poistettu epäilyttävät vastaajat. Osion voi toistaa lataamalla Tietoarkistossa oleva datakopio ja ensin suorittamalla [luvun -@sec-datatarkistus] koodit.
+
 ```{r}
 #| label: taustamuuttujat-00-paketit
+#| code-summary: "Osiossa käytetyt paketit"
 
 library(tidyverse)
+library(patchwork)
+
 ```
 
 ```{r}
 #| label: taustamuuttujat-01-avaaminen
+#| code-summary: "Datan avaaminen"
 
-data <- read.csv2("output/anonymisoitudata.csv", tryLogical = FALSE)
+data <- read.csv2("output/valmisdata.csv", tryLogical = FALSE)
+
 ```
 
 ## Sukupuoli {#sec-taustamuuttujat-sukupuoli}
@@ -21,6 +28,7 @@ data <- read.csv2("output/anonymisoitudata.csv", tryLogical = FALSE)
 ```{r}
 #| label: fig-taustamuuttujat-sukupuoli
 #| fig-cap: "Tutkimuksen vastaajat sukupuolen mukaan"
+#| code-summary: "Kuvion piirtäminen"
 
 data |>
   mutate(
@@ -52,6 +60,7 @@ data |>
 ```{r}
 #| label: fig-taustamuuttujat-organisaatio
 #| fig-cap: "Tutkimuksen vastaajat organisaatioryhmän mukaan"
+#| code-summary: "Kuvion piirtäminen"
 
 data |>
   mutate(
@@ -84,6 +93,7 @@ data |>
 
 ```{r}
 #| label: fig-taustamuuttujat-tyorytmi
+#| code-summary: "Kuvion piirtäminen"
 #| layout-nrow: 2
 #| fig-cap: "Tutkimuksen vastaajat työrytmityksen mukaan"
 #| fig-subcap:
@@ -92,7 +102,7 @@ data |>
 #|   - "Sopimuspalokunta tai palokuntayhdistys"
 #|   - "Hälytysvalmiudessa olevat sopimuspalokuntalaiset"
 
-data |>
+k1 <- data |>
   filter(k2 == 1) |>
   mutate(
     k32 = factor(
@@ -108,8 +118,7 @@ data |>
   geom_bar(stat = "count", fill = "#c20e1a") +
   labs(
     y = "Määrä (n)",
-    x = "Työrytmitys",
-    caption = "Vain pelastuslaitoksella tai ensihoidossa työskentelevät (n = 603)"
+    x = "Pelastuslaitos ja ensihoito (n = 568)"
   ) + 
   geom_text(
     aes(label = after_stat(count)),
@@ -124,7 +133,7 @@ data |>
     labels = function(x) str_wrap(x, width = 18)
   )
 
-data |>
+k2 <- data |>
   filter(k2 == 3) |>
   mutate(
     k37 = factor(
@@ -142,8 +151,7 @@ data |>
   geom_bar(stat = "count", fill = "#c20e1a") +
   labs(
     y = "Määrä (n)",
-    x = "Työrytmitys",
-    caption = "Vain järjestöissä, pelastusliitoissa ja kouluissa toimivat (n = 81)"
+    x = "Järjestöt, liitot ja koulut (n = 74)"
   ) + 
   geom_text(
     aes(label = after_stat(count)),
@@ -158,7 +166,7 @@ data |>
     labels = function(x) str_wrap(x, width = 18)
   )
 
-data |>
+k3 <- data |>
   filter(k2 == 2) |>
   mutate(
     k33 = factor(
@@ -175,8 +183,7 @@ data |>
   geom_bar(stat = "count", fill = "#c20e1a") +
   labs(
     y = "Määrä (n)",
-    x = "Työrytmitys",
-    caption = "Vain sopimuspalokunnissa tai palokuntayhdistyksissä toimivat (n = 341)"
+    x = "Sopimuspalokunnat (n = 318)\nOsallistuminen toimintaan"
   ) + 
   geom_text(
     aes(label = after_stat(count)),
@@ -191,7 +198,7 @@ data |>
     labels = function(x) str_wrap(x, width = 18)
   )
 
-data |>
+k4 <- data |>
   filter(k2 == 2 & k34 == 1) |>
   mutate(
     k35 = factor(
@@ -208,8 +215,7 @@ data |>
   geom_bar(stat = "count", fill = "#c20e1a") +
   labs(
     y = "Määrä (n)",
-    x = "Varallaolon kuukausittainen työaika-arvio",
-    caption = "Vain hälytysvalmiudessa tai varalla olevat sopimuspalokuntalaiset (n = 106)"
+    x = "Sopimuspalokunnat, hälytysvalmius (n = 99)\nKuukausittainen varallaolo"
   ) + 
   geom_text(
     aes(label = after_stat(count)),
@@ -224,6 +230,8 @@ data |>
     labels = function(x) str_wrap(x, width = 18)
   )
 
+k1 + k2 + k3 + k4 + plot_layout(axes = "collect_y")
+
 ```
 
 ## Organisaatioasema {#sec-taustamuuttujat-organisaatioasema}
@@ -231,6 +239,7 @@ data |>
 ```{r}
 #| label: fig-taustamuuttujat-asema
 #| fig-cap: "Tutkimuksen vastaajat organisaatioaseman mukaan"
+#| code-summary: "Kuvion piirtäminen"
 
 data |>
   mutate(
@@ -266,6 +275,7 @@ data |>
 ```{r}
 #| label: fig-taustamuuttujat-ammattiryhma
 #| fig-cap: "Tutkimuksen vastaajat ammattiryhmän mukaan"
+#| code-summary: "Kuvion piirtäminen"
 
 data |>
   filter(Organisaatioasema == 2) |>
@@ -286,10 +296,10 @@ data |>
   labs(
     y = "Määrä (n)",
     x = "Ammattiryhmä",
-    caption = "Vain suorittava henkilöstö (n = 548)*
-    † 190 sopimuspalokuntalaista koodattiin suorittavaksi henkilöstöksi,
+    caption = "Vain suorittava henkilöstö (n = 507)*
+    † 106 sopimuspalokuntalaista koodattiin suorittavaksi henkilöstöksi,
     mutta he eivät pääseet vastaamaan ammattiryhmäkysymykseen.
-    * 70 pelastuslaitosten alinta johtoa koodattiin suorittavaksi henkilöstöksi,
+    * 67 pelastuslaitosten alinta johtoa koodattiin suorittavaksi henkilöstöksi,
     mutta he eivät pääseet vastaamaan kysymykseen."
   ) + 
   geom_text(
@@ -311,6 +321,7 @@ data |>
 ```{r}
 #| label: fig-taustamuuttujat-uranpituus
 #| fig-cap: "Tutkimuksen vastaajat uran pituuden mukaan"
+#| code-summary: "Kuvion piirtäminen"
 
 data |>
   mutate(
@@ -350,8 +361,7 @@ data |>
 ```{r}
 #| label: fig-taustamuuttujat-muutosaikeet
 #| fig-cap: "Vastaajien muutosaikeet"
-
-# Tämä koodiosuus on rakennettu hyödyntäen ChatGPT:tä ideointiin ja koodirungon rakentamiseen. Tutkija on viimeistellyt koodin ja varmentanut sen toimivuuden.
+#| code-summary: "Kuvion piirtäminen"
 
 # Data tarvitaan ensin pitkään muotoon. Haetaan kaikki yhdeksän muutosaiemuuttujaa, ja jaetaan ne muuttujanimien mukaan eri ryhmiin ja alaryhmiin.
 df_long <- data %>%

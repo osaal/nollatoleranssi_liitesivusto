@@ -4,15 +4,15 @@
 eval: true
 ---
 
-Tässä osiossa suoritetaan kaikki raportissa mainitut korrelaatiosuhteet epäasiallisen ja väkivaltaisen kohtelun esiintyvyyden kanssa.
+Tässä osiossa suoritetaan kaikki raportissa mainitut korrelaatiosuhteet epäasiallisen ja väkivaltaisen kohtelun esiintyvyyden kanssa. Tiedot pohjautuvat anonymisoituun datatiedostoon, josta on poistettu epäilyttävät vastaajat. Osion voi toistaa lataamalla Tietoarkistossa oleva datakopio ja ensin suorittamalla [luvun -@sec-datatarkistus] koodit.
 
 ```{r}
 #| label: korrelaatiosuhteet-00-paketit
 #| code-summary: "Osiossa käytetyt paketit"
 
 library(tidyverse)
-library(ggstatsplot)
-library(patchwork)
+library(patchwork) # Useiden kuvioiden yhdistämiselle
+library(ggstatsplot) # Tilastokuvioiden rakentamiselle
 
 ```
 
@@ -20,7 +20,7 @@ library(patchwork)
 #| label: korrelaatiosuhteet-01-avaaminen
 #| code-summary: "Datan avaaminen"
 
-data <- read.csv2("output/anonymisoitudata.csv", tryLogical = FALSE)
+data <- read.csv2("output/valmisdata.csv", tryLogical = FALSE)
 
 ```
 

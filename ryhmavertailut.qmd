@@ -4,14 +4,15 @@
 eval: true
 ---
 
-Tässä osiossa suoritetaan kaikki raportissa mainitut ryhmien väliset vertailut.
+Tässä osiossa suoritetaan kaikki raportissa mainitut ryhmien väliset vertailut. Tiedot pohjautuvat anonymisoituun datatiedostoon, josta on poistettu epäilyttävät vastaajat. Osion voi toistaa lataamalla Tietoarkistossa oleva datakopio ja ensin suorittamalla [luvun -@sec-datatarkistus] koodit.
 
 ```{r}
 #| label: ryhmavertailut-00-paketit
 #| code-summary: "Osiossa käytetyt paketit"
 
 library(tidyverse)
-library(ggstatsplot)
+library(patchwork) # Useiden kuvioiden yhdistämiseen
+library(ggstatsplot) # Tilastokuvioiden rakentamiseen
 
 ```
 
@@ -19,7 +20,7 @@ library(ggstatsplot)
 #| label: ryhmavertailut-01-avaaminen
 #| code-summary: "Datan avaaminen"
 
-data <- read.csv2("output/anonymisoitudata.csv", tryLogical = FALSE)
+data <- read.csv2("output/valmisdata.csv", tryLogical = FALSE)
 
 ```
 

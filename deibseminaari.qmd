@@ -4,7 +4,7 @@
 eval: true
 ---
 
-Tässä osiossa tuotetaan kaikki kuviot ja analyysit [Pelastusalan DEIB-seminaarissa](https://sppl.fi/deib2024/) 1.10.2024 pidettävälle esitykselle.
+Tässä osiossa tuotetaan kaikki kuviot ja analyysit [Pelastusalan DEIB-seminaarissa](https://sppl.fi/deib2024/) 1.10.2024 pidettävälle esitykselle. Osion analyysit ovat toistettavissa Tietoarkistoon arkistoidulla aineistokopiolla. *Huom.*: Analyysit tehtiin ja esitettiin seminaarissa, ennen kuin tarkistimme aineiston epäilyttävät vastaukset (ks. [luku -@sec-datatarkistus]).
 
 ```{r}
 #| label: deibseminaari-00-paketit

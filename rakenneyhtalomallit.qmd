@@ -1,0 +1,456 @@
+# Rakenneyhtälömallit {#sec-rakenneyhtalomallit}
+
+---
+eval: true
+---
+
+Tässä osiossa esitämme kaikki raportissa käytetyt rakenneyhtälömallit. Poikkeuksena ovat kuitenkin mittaristojen psykometriset analyysit, jotka löytyvät validointiosiosta erikseen.
+
+```{r}
+#| label: rakenneyhtalomallit-00-paketit
+#| code-summary: "Osiossa käytetyt paketit"
+
+library(lavaan) # Mallien asettaminen
+library(lavaanPlot) # Mallien piirtäminen
+library(semTools) # Mallien vertailu
+library(tidyverse)
+```
+
+```{r}
+#| label: rakenneyhtalomallit-01-avaaminen
+#| code-summary: "Datan avaaminen"
+
+data <- read.csv2("output/anonymisoitudata.csv", tryLogical = FALSE)
+
+```
+
+## Validoidut muuttujaryhmät
+
+```{r}
+#| label: rakenneyhtalomallit-02-muuttujakoodaus
+#| code-summary: "Muuttujien koodaukset"
+
+### Muutosaikeiden summamittari
+
+data <- data |>
+  rowwise() |>
+  mutate(
+    muutos = sum(c_across(starts_with("k42")), na.rm = TRUE)
+  ) |>
+  ungroup()
+
+```
+
+### Epäasiallisen ja väkivaltaisen kohtelun kokemusmäärä
+
+Kokemusmäärää mitataan 14 omakohtaisesti koetun kohtelun määrällä. Mittariston on validoitu kaksiulotteiseksi (@sec-kohtelu_validointi). Mittaristossa käytetään seuraavia muuttujia:
+
+-   `k3_1`: Organisaatiosisäisesti koettu verbaalinen väkivalta
+-   `k3_2`: Organisaatiosisäisesti koettu omaisuusväkivalta
+-   `k3_3`: Organisaatiosisäisesti koettu uhkailu
+-   `k3_4`: Organisaatiosisäisesti koettu fyysinen väkivalta
+-   `k3_5`: Organisaatiosisäisesti koettu seksuaalinen väkivalta
+-   `k3_6`: Organisaatiosisäisesti koettu vihamielisyys
+-   `k3_7`: Organisaatiosisäisesti koettu syrjintä
+-   `k12_1`: Organisaatioulkoisesti koettu verbaalinen väkivalta
+-   `k12_2`: Organisaatioulkoisesti koettu omaisuusväkivalta
+-   `k12_3`: Organisaatioulkoisesti koettu uhkailu
+-   `k12_4`: Organisaatioulkoisesti koettu fyysinen väkivalta
+-   `k12_5`: Organisaatioulkoisesti koettu seksuaalinen väkivalta
+-   `k12_6`: Organisaatioulkoisesti koettu vihamielisyys
+-   `k12_7`: Organisaatioulkoisesti koettu syrjintä
+
+Muuttujat ovat mitattu 8-pisteisellä skaalalla. Muuttujien jakaumaa on kuvailtu [luvussa -@sec-esiintyvyys].
+
+### Vaikutusten vakavuus
+
+Vaikutusten vakavuutta mitataan kolmella muuttujalla. Mittaristoa ei olla validoitu.
+
+-   `k21_1`: Fyysisten vaikutusten vakavuus
+-   `k21_2`: Psyykkisten vaikutusten vakavuus
+-   `k21_3`: Ammatillisten vaikutusten vakavuus
+
+Muuttujat ovat mitattu 4-pisteisellä skaalalla. Muuttujien jakaumaa on kuvailtu [luvussa -@sec-vaikutukset-vakavuus].
+
+### Työuupumus
+
+Työuupumusta mitataan neljällä työuupumuskysymyksellä. Mittaristo on validoitu yksiulotteiseksi osana kohtelumittariston validointia (@sec-kohtelu_validointi) sekä aikaisemmassa tutkimuksessa. Mittaristossa käytetään seuraavia muuttujia (aikaisemman tutkimuksen faktorilatausrajaukset suluissa):
+
+-   `k27_1`: Tunnen itseni henkisesti uupuneeksi työssäni (0,67)
+-   `k27_2`: En ole kiinnostunut enkä innostunut työstäni (0,66)
+-   `k27_3`: Minun on vaikea pysyä tarkkaavaisena työssäni (0,70)
+-   `k27_4`: En pysty hallitsemaan tunteitani työssäni (0,54)
+
+Muuttujat ovat mitattu 5-pisteisellä skaalalla. Muuttujien jakaumaa on kuvailtu [luvussa -@sec-vaikutukset-tyouupumus].
+
+### Työkuvan muutosaikeet
+
+Työkuvan muutosaikeita mitataan yhdeksällä muutosaiekysymyksellä. Mittaristoa ei olla validoitu aikaisemmin. Mittaristossa käytetään seuraavia muuttujia:
+
+-   `k42_1_1`: Olen harkinnut muuttaa tehtävänkuvaani
+-   `k42_1_2`: Olen toteuttamassa tehtävänkuvani muutosta
+-   `k42_1_3`: Olen jo muuttanut tehtävänkuvaani
+-   `k42_2_1`: Olen harkinnut vaihtaa organisaatiotani
+-   `k42_2_2`: Olen toteuttamassa organisaation vaihdosta
+-   `k42_2_3`: Olen jo vaihtanut organisaatiota
+-   `k42_3_1`: Olen harkinnut lähteä alalta
+-   `k42_3_2`: Olen toteuttamassa alalta lähtöä
+-   `k42_3_3`: Olen jo lähtenyt alalta
+
+Muuttujat ovat binäärisiä monivalintamuuttujia. Muuttujien jakaumaa on kuvailtu [luvussa -@sec-taustamuuttujat-muutosaikeet].
+
+Rakennamme muuttujista summamuuttujan, joka edustaa muutosaikeiden määrää.
+
+### Toimintaohjelman toimenpiteiden käyttöönotto
+
+Pelastustoimen tasa-arvon ja yhdenvertaisuuden toimintaohjelman toimenpiteiden käyttöönottoa mitataan 12 muuttujalla. Mittaristo on validoitu ryhmittelyanalyysilla (@sec-tayvkayttoonotto_validointi) ja oletetaan sen pohjalta olevan yksiulotteinen. Mittaristossa käytetään seuraavia muuttujia:
+
+-   `k28_1`: Tasa-arvo- tai yhdenvertaisuussuunnitelma
+-   `k28_2`: Toimintaohjeet epäasialliseen käytökseen, häirintään tai seksuaaliseen häirintään reagointiin
+-   `k28_3`: Henkilöstön turvallisuusselvitykset
+-   `k28_4`: Ohjeet alaikäisten koskemattomuuden turvaamiselle
+-   `k28_5`: Nuorten kanssa toimivien rikostaustojen tarkastaminen
+-   `k28_6`: Ohjeet ahdistelutilanteen käsittelyyn
+-   `k28_7`: Ohjeet uhka- ja väkivaltatilanteen käsittelyyn
+-   `k28_8`: Ilmoitusjärjestelmä epäasiallisen kohtelun raportoimiseksi
+-   `k28_9`: Koulutus uhka- ja väkivaltatilanteiden kohtaamiseen
+-   `k28_10`: Koulutus epäasiallisen kohtelun tunnistamiseen
+-   `k28_11`: Keskustelutilaisuuksia tasa-arvo- ja yhdenvertaisuusaiheista
+-   `k28_12`: Henkilöstön infotilaisuudet organisaation yhdenvertaisuustilanteesta
+
+Muuttujat mitataan viiden pisteen skaalalla. Muuttujien jakaumaa on kuvailtu [luvussa @sec-organisaatiotoimet-kaytetyt].
+
+## Kohtelun vaikutukset -malli
+
+Tällä mallilla testaamme, miten kohtelumäärät vaikuttavat vaikutusten vakavuuteen, ja sen kautta työuupumukseen ja muutosaikeisiin. Samalla oletamme, että kohtelumääriä laskee toimenpideohjelmien käyttöönotto.
+
+### Oletettu rakenne
+
+Malli oletetaan noudattavan seuraavaa neljän askeleen kausaalirakennetta:
+
+1.  Toimenpiteiden käyttöönotto ennustaa sisäisen ja ulkoisen kohtelun tasoa negatiivisesti
+2.  Sisäinen ja ulkoinen kohtelu ennustavat vaikutusten vakavuutta
+3.  Kaikki kolme vaikutusten vakavuustasoa ennustavat työuupumusta positiivisesti
+4.  Työuupumus ennustaa muutosaikeiden määrää positiivisesti
+
+Näiden lisäksi tiedämme aikaisemmasta, että sisäisen ja ulkoisen kohtelun määrät korreloivat.
+
+```{r}
+#| label: rakenneyhtalomallit-03-M1-rakenne
+#| code-summary: "Mallin rakenne ja datavalinta"
+
+M1.rakenne <- '
+              # Latentit muuttujat
+              kayttoonotto =~ k28_1 + k28_2 + k28_3 + k28_4 + k28_5 + k28_6 + k28_7 + k28_8 + k28_9 + k28_10 + k28_11 + k28_12
+              sisa =~ k3_1 + k3_2 + k3_3 + k3_4 + k3_5 + k3_6 + k3_7
+              ulko =~ k12_1 + k12_2 + k12_3 + k12_4 + k12_5 + k12_6 + k12_7
+              uupumus =~ 0.67 * k27_1 + 0.66 * k27_2 + 0.70 * k27_3 + 0.54 * k27_4
+              # Faktoriregressiot
+              muutos ~ uupumus
+              uupumus ~ k21_1 + k21_2 + k21_3
+              k21_1 ~ sisa + ulko
+              k21_2 ~ sisa + ulko
+              k21_3 ~ sisa + ulko
+              sisa ~ kayttoonotto
+              ulko ~ kayttoonotto
+              
+              # Faktorikovarianssit
+              sisa ~~ ulko
+              '
+
+M1.data <- data |>
+  select(
+    k3_1:k3_7,
+    k12_1:k12_7,
+    k21_1:k21_3,
+    k27_1:k27_4,
+    k28_1:k28_12,
+    muutos
+  )
+
+```
+
+### Asettaminen
+
+```{r}
+#| label: rakenneyhtalomallit-04-M1-asettaminen
+#| code-summary: "Mallin asettaminen"
+
+M1.malli <- sem(
+  model = M1.rakenne,
+  data = M1.data,
+  estimator = "MLR",
+  missing = "fiml"
+)
+
+```
+
+```{r}
+#| label: rakenneyhtalomallit-05-M1-tulokset
+#| code-summary: "Mallin tulokset"
+
+summary(M1.malli, fit.measures = TRUE, standardized = TRUE, ci = TRUE)
+
+```
+
+Mallin globaali sopivuus eroaa merkitsevästi nollamallista: $\chi^2 = 3686.5, \text{df} = 521, p < .001$.
+
+Mallin globaalit sopivuusindeksit osoittavat heikkoa sopivuutta: $\text{RMSEA} = .091 [.088-.093], \text{CFI} = .780, \text{SRMR} = .086$.
+
+### Regressiolataukset
+
+```{r}
+#| label: fig-rakenneyhtalomallit-06-M1-piirtaminen
+#| fig-cap: "Mallin standardisoimattomat lataukset. Asteriskit edustavat merkitsevyystasoja kovariansseille sekä latenteille latauksille."
+#| code-summary: "Kuvion piirtäminen"
+
+lavaanPlot2(
+  model = M1.malli,
+  coef_labels = TRUE,
+  stars = c("covs", "latent")
+)
+
+```
+
+```{r}
+#| label: tbl-rakenneyhtalomallit-07-M1-lataukset
+#| tbl-cap: "Mallin kokonaisstandardisoidut lataukset latenteille muuttujille, regressioille ja residuaalivariansseille"
+#| code-summary: "Taulukon rakentaminen"
+
+standardizedSolution(
+  M1.malli,
+  type = "std.all"
+) |>
+  filter(op != "~1") |>
+  knitr::kable(digits = 4)
+
+```
+
+Kaikkien latenttien muuttujien lataukset ovat merkitseviä ja hyväksyttävissä rajoissa (ei Heywood-tapauksia).
+
+Toimenpiteiden käyttöönotto on merkitsevässä negatiivisessa suhteessa sisäisen kohtelun tasoon ($\beta = -0.24, p < .0001$), mutta ei merkitsevässä suhteessa ulkoisen kohtelun tasoon ($\beta = 0.04, p = .1637$).
+
+Sisäinen kohtelu on merkitsevässä positiivisessa suhteessa fyysisten ($\beta = 0.83, p < .0001$), psyykkisten ($\beta = 0.96, p < .0001$) ja ammatillisten ($\beta = 0.95, p < .0001$) vaikutusten vakavuuksiin.
+
+Ulkoinen kohtelu ei ole merkitsevässä suhteessa fyysisten ($\beta = 0.18, p = .0701$), psyykkisten ($\beta = 0.01, p = .9167$) tai ammatillisten ($\beta = 0.01, p = .9479$) vaikutusten vakavuuksiin.
+
+Työuupumus on merkitsevässä suhteessa kaikkiin mallissa määriteltyihin mittareihin:
+
+-   Fyysiset vaikutukset: $\beta = -0.44, p < .0001$
+-   Psyykkiset vaikutukset: $\beta = 0.39, p = .0001$
+-   Ammatilliset vaikutukset: $\beta = 0.54, p < .0001$
+
+Muutosaikeet ovat merkitsevässä suhteessa työuupumukseen ($\beta = 0.54, p < .0001$).
+
+### Paikallinen sopivuus
+
+```{r}
+#| label: tbl-rakenneyhtalomallit-08-M1-mod-faktorit
+#| tbl-cap: "Modifikaatioindeksit, vain faktorilataukset"
+#| code-summary: "MI-taulukko"
+
+modificationIndices(M1.malli) |>
+  arrange(desc(mi)) |>
+  filter(op == "=~") |>
+  knitr::kable(digits = 3)
+
+```
+
+Faktorilatauksissa nähdään useita suuria modifikaatioindeksejä. Suurimmat aiheuttavat yli 50 pisteen laskun globaalissa khii neliö -indeksissä.
+
+Muuttujan `k28_9` vapauttaminen faktorille `ulko` aihettausi 81,0 pistettä laskua ja odotetun täysin standardisoidun latauksen $0.240$.
+
+Emme tee faktoreiden rakenteisiin muutoksia, sillä ristilataukset eivät ole teoreettisesti motivoituja. Huomioimme kuitenkin työuupumusfaktorin rajattujen latauksien mahdollisen vapauttamisen, jos odotetut arvot poikkeavat laajasti aikaisemman tutkimuksen arvoista.
+
+Työuupumusfaktorin latausten vapauttaminen aiheuttaisi seuraavat muutokset:
+
+-   `k27_1`: 48,6 pistettä laskua, SEPC = $0.215$
+-   `k27_2`: 11,1 pistettä laskua, SEPC = $0.098$
+-   `k27_3`: 14,3 pistettä laskua, SEPC = $-0.106$
+-   `k27_4`: 55,5 pistettä laskua, SEPC = $-0.207$
+
+Latausrajaukset ovat selkeästi pienempiä (absoluuttiset arvot välillä .098-.215) kuin aikaisemman tutkimuksen arvot (.54-.70). Näiden lisäksi mittarit 3 ja 4 ennustaisivat negatiivista latausta, mitä alkuperäinen mittaristo ei ennusta.
+
+```{r}
+#| label: tbl-rakenneyhtalomallit-09-M1-mod-virheet
+#| tbl-cap: "Modifikaatioindeksit, vain virhekovarianssit"
+#| code-summary: "MI-taulukko"
+
+modificationIndices(M1.malli) |>
+  arrange(desc(mi)) |>
+  filter(op == "~~") |>
+  knitr::kable(digits = 3)
+
+```
+
+Useiden eri virhekorrelaatioiden vapauttaminen aiheuttaisi erittäin suuret laskut globaalissa khii neliö -indeksissä. Suurimmat ovat reilusti yli 100 pisteen laskuja.
+
+Suurimmat ongelmat esiintyvät faktoreiden sisällä, faktoreilla `kayttoonotto`, `sisa` sekä `uupumus`.
+
+Muuttujaparin `k28_11-k28_12` (faktori `kayttoonotto`) vapauttaminen aiheuttaisi 580,9 pisteen laskun ja odotetun täysin standardisoidun latauksen $0.831$.
+
+Faktorilla `sisa` seuraavat muuttujaparit osoittavat ongelmallisia virhekovariansseja:
+
+Ongelmallisina muuttujina näyttävät olevan varsinkin muuttujat `k3_6`, `k3_1`, `k3_3` ja `k3_7`, jotka haluavat virhekorreloida muiden muuttujien kanssa usein. Pistelaskut ovat kaikki yli 50, useat jopa useita satoja, ja odotetut täysin standardisoidut lataukset usein 0.3-0.5.
+
+Muuttujaparin `k28_4-k28_5` (faktori `uupumus`) vapauttaminen aiheuttaisi 247,4 pisteen laskun ja odotetun täysin standardisoidun latauksen $0.505$.
+
+```{r}
+#| label: tbl-rakenneyhtalomallit-10-M1-mod-regressiot
+#| tbl-cap: "Modifikaatioindeksit, vain regressiot"
+#| code-summary: "MI-taulukko"
+
+modificationIndices(M1.malli) |>
+  arrange(desc(mi)) |>
+  filter(op == "~") |>
+  knitr::kable(digits = 3)
+
+```
+
+Suurimmat muutokset regressiolatauksen suhteen aiheuttaisivat useiten satojen pisteen laskut globaalilla khii neliö -indeksillä.
+
+Vakavuusmittarit näyttävät haluavan korreloida toistensa kanssa suhteellisen usein, varsinkin muuttujat `k21_1` ja `k21_2`. Tämä voisi osoittaa yhteistä faktorirakennetta, mikä olisi myös teoreettisesti motivoitua.
+
+Työuupumuksen faktori haluaa korreloida psyykkisten vaikutusten vakavuudella, sisäisellä ja ulkoisella kohtelulla sekä muutosaikeilla.
+
+Muutosaikeet haluavat korreloida kaikkien vaikutusten vakavuuksien kanssa.
+
+### Uuden mallin rakenne ja asettaminen
+
+Uuteen malliin kokeilimme tehdä seuraavat muutokset:
+
+1.  Sallimme virhekorrelaatiot sisäisen kohtelun muuttujilla `k3_2`, `k3_3`, `k3_6` ja `k3_7`.
+2.  Sallimme virhekorrelaatiot käyttöönoton muuttujilla `k28_10`, `k28_11` ja `k28_12`.
+3.  Estimoimme yhteisen faktorin kaikille vaikutusten vakavuuksille, ja käytämme sitä regressiomallissa yksittäisten mittareiden sijaan.
+4.  Poistimme muutosaikeiden ja työuupumuksen välisen regression, jotta molemmat muuttujat olisivat täysin eksogeenisiä muuttujia.
+5.  Poistimme työuupumuksen muuttujien latausrajaukset.
+
+```{r}
+#| label: rakenneyhtalomallit-11-M2-rakenne
+#| code-summary: "Mallin rakenne"
+
+M2.rakenne <- '
+              # Latentit muuttujat
+              kayttoonotto =~ k28_1 + k28_2 + k28_3 + k28_4 + k28_5 + k28_6 + k28_7 + k28_8 + k28_9 + k28_10 + k28_11 + k28_12
+              sisa =~ k3_1 + k3_2 + k3_3 + k3_4 + k3_5 + k3_6 + k3_7
+              ulko =~ k12_1 + k12_2 + k12_3 + k12_4 + k12_5 + k12_6 + k12_7
+              uupumus =~ k27_1 + k27_2 + k27_3 + k27_4
+              vakavuus =~ k21_1 + k21_2 + k21_3
+              
+              # Faktoriregressiot
+              muutos ~ vakavuus
+              uupumus ~ vakavuus
+              vakavuus ~ sisa + ulko
+              sisa ~ kayttoonotto
+              ulko ~ kayttoonotto
+              
+              # Faktorikovarianssit
+              sisa ~~ ulko
+              
+              # Virhekovarianssit
+              k3_2 ~~ k3_3
+              k3_2 ~~ k3_6
+              k3_2 ~~ k3_7
+              k3_3 ~~ k3_6
+              k3_3 ~~ k3_7
+              k3_6 ~~ k3_7
+              k28_10 ~~ k28_11
+              k28_10 ~~ k28_12
+              k28_11 ~~ k28_12
+              '
+```
+
+```{r}
+#| label: rakenneyhtalomallit-12-M2-asettaminen
+#| code-summary: "Mallin asettaminen"
+
+M2.malli <- sem(
+  model = M2.rakenne,
+  data = M1.data,
+  estimator = "MLR",
+  missing = "fiml"
+)
+
+```
+
+```{r}
+#| label: rakenneyhtalomallit-13-M2-tulokset
+#| code-summary: "Mallin tulokset"
+
+summary(M2.malli, fit.measures = TRUE, standardized = TRUE, ci = TRUE)
+
+```
+
+Mallin globaali sopivuus eroaa merkitsevästi nollamallista: $\chi^2 = 2009.1, \text{df} = 511, p < .001$. Khii neliö -indeksi tippui $????$ pistettä verrattuna ensimmäiseen malliin.
+
+Mallin globaalit sopivuusindeksit osoittavat heikkoa sopivuutta: $\text{RMSEA} = .062 [.060-.065], \text{CFI} = .898, \text{SRMR} = .068$. Kaikki indeksit kuitenkin parantuivat verrattuna ensimmäiseen malliin: RMSEA tippui $????$ pistettä ja ero on merkitsevä (luottamusvälit eivät ole päällekkäisiä), CFI nousi $????$ pistettä ja SRMR tippui $.018$ pistettä.
+
+### Uuden mallin regressiolataukset
+
+```{r}
+#| label: fig-rakenneyhtalomallit-14-M2-piirtaminen
+#| fig-cap: "Mallin standardisoimattomat lataukset. Asteriskit edustavat merkitsevyystasoja kovariansseille sekä latenteille latauksille."
+#| code-summary: "Kuvion piirtäminen"
+
+lavaanPlot2(
+  model = M2.malli,
+  coef_labels = TRUE,
+  stars = c("covs", "latent", "regress")
+)
+
+```
+
+```{r}
+#| label: tbl-rakenneyhtalomallit-15-M2-lataukset
+#| tbl-cap: "Mallin kokonaisstandardisoidut lataukset latenteille muuttujille, regressioille ja residuaalivariansseille"
+#| code-summary: "Taulukon rakentaminen"
+
+standardizedSolution(
+  M2.malli,
+  type = "std.all"
+) |>
+  filter(op != "~1") |>
+  knitr::kable(digits = 4)
+```
+
+Kaikki latenttien muuttujien lataukset ovat vieläkin merkitseviä ja hyväksyttävissä rajoissa.
+
+Toimenpiteiden käyttöönotto on merkitsevässä negatiivisessa suhteessa sisäisen kohtelun tasoon ($\beta = -0.28, p < .0001$), mutta merkitsevässä positiivisessa suhteessa ulkoisen kohtelun tasoon ($\beta = 0.06, p = .0416$). Positiivinen suhde ulkoisen kohtelun tasoon on uusi, mutta sen merkitsevyys ja koko voivat yhdessä osoittaa mahdollista virhemittausta.
+
+Sisäinen kohtelu on merkitsevässä positiivisessa suhteessa vaikutusten vakavuuden faktorin kanssa ($\beta = 0.53, p < .0001$). Verrattuna aikaisempaan malliin faktorilataus on $0.30-0.43$ keskihajontapistettä heikompi, mutta rakenteen muutos on voinut aiheuttaa tämän latausmuutoksen
+
+Ulkoinen kohtelu on merkitsevässä positiivisessa suhteessa vaikutusten vakavuuden faktorin kanssa ($\beta = 0.32, p < .0001$). Aikaisemmassa mallissa kaikki vakavuusmittarit olivat ei-merkitsevässä suhteessa ulkoiseen kohteluun, eli tältä osin mallissa on tapahtunut selkeää muutosta.
+
+Työuupumus on merkitsevässä positiivisessa suhteessa vaikutusten vakavuuden faktorin kanssa ($\beta = 0.50, p < .0001$). Aikaisemmassa mallissa uupumus oli merkitsevissä suhteissa kaikkiin vakavuusmuuttujiin, mutta suhde uupumuksen ja fyysisten vaikutusten vakavuuden välillä oli negatiivinen. Absoluuttiset erot aikaisempiin suhteisiin ovat pienet, suurimmillaan $0.11$ keskihajontapistettä.
+
+Muutosaikeet ovat merkitsevässä positiivisessa suhteessa vaikutusten vakavuuden faktorin kanssa ($\beta = 0.41, p < .0001$). Tätä suhdetta ei mallinnettu aikaisemmassa mallissa.
+
+### Uuden mallin paikallinen sopivuus
+
+```{r}
+#| label: tbl-rakenneyhtalomallit-16-M2-mod-regressiot
+#| tbl-cap: "Modifikaatioindeksit, vain regressiot"
+#| code-summary: "MI-taulukko"
+
+modificationIndices(M2.malli) |>
+  arrange(desc(mi)) |>
+  filter(op == "~") |>
+  knitr::kable(digits = 3)
+
+```
+
+Suurimmat modifikaatioindeksit regressioiden osalta ovat selkeästi ensimmäisen mallin indeksejä pienempiä.
+
+Vakavuuden ennustaminen muutosaikeilla sekä työuupumuksella voidaan jättää huomioimatta, sillä polut ovat edustettuna toisinpäin mallissa eikä ehdotetut polut ole kausaalisesti mahdollisia.
+
+Sisäisen kohtelun ennustaminen muutosaikeilla tai työuupumuksella ei myöskään ole kausaalisesti motivoitua.
+
+Uupumuksen sekä muutosaikeiden ennustaminen sisäisen kohtelun tasolla johtaisi molemmissa tilanteissa noin 20 pisteen laskuun ja $0.18-0.20$ pisteen odotettuihin standardisoituihin latauksiin.
+
+Muut muutokset ovat jo suhteellisen pieniä.
+
+Uupumuksen sekä muutosaikeiden ennustaminen ulkoisen kohtelun tasolla johtaisi vain noin 3-4 pisteen laskuun ja $0.06$ sekä $-0.07$ pisteen odotettuihin standardisoituihin latauksiin. Nämä ovat hyvin pieniä eivätkä oletettavasti muuta mallia suuremmin.
+
+### TEHTÄVÄNÄ
+
+**Kolmas malli, jossa uupumusta ja muutosaikeita ennustetaan myös suoraan kohtelumäärillä**

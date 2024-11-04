@@ -1,0 +1,353 @@
+# Datatarkistus {#sec-datatarkistus}
+
+---
+eval: true
+---
+
+Tässä osiossa tarkistamme anonymisoidun aineiston epäilyttäviltä vastauksilta.
+
+## Esivalmistelu {#sec-datatarkistus-esivalmistelu}
+
+```{r}
+#| label: datatarkistus-00-paketit
+#| code-summary: "Osiossa käytetyt paketit"
+
+library(tidyverse)
+library(careless)
+
+```
+
+```{r}
+#| label: datatarkistus-01-importointi
+#| code-summary: "Datan avaaminen"
+
+data <- read.csv2("output/anonymisoitudata.csv", tryLogical = FALSE)
+
+```
+
+## Sattumanvaraisten vastausten tunnistus {#sec-datatarkistus-tunnistus}
+
+Käytimme `careless`-pakettia tunnistaaksemme vastaajia, jotka ovat antaneet samanlaisia vastauksia usealle kysymykselle samoissa kysymysmittaristoissa. Samanlaiset vastaukset (esim. kaikki "Ei samaa eikä eri mieltä") voivat osoittaa ei-tarkoituksellista vastaamista, jolloin vastaus ei edusta henkilön mielipiteitä.
+
+Tarkistettavat kysymyspatteristot olivat:
+
+1.  `k26_[1-18]`: Asenneväitteet ilmoitusjärjestelmistä
+2.  `k28_[1-12]`: Organisaation olemassaolevat toimenpiteet
+3.  `k29_[1-12]`: Toimenpiteiden koettu vaikutus
+4.  `k30_[1-13]`: Ehdotettujen toimenpiteiden koettu hyödyllisyys
+
+Nämä mittaristot sisälsivät isoja määriä kysymyksiä ja vastausvaihtoehtoja, mikä on voinut laskea vastaajan halua vastata tarkasti ja harkiten jokaista kysymystä erikseen. Koska mittaristoja käytettiin monessa muuttujamallissa, näimme tärkeäksi tarkistaa vastausten luotettavuuden erikseen.
+
+Emme tarkistaneet epäasiallisen ja väkivaltaisen kohtelun esiintyvyysmittareita (`k[3-4]_[1-7]` tai `k[12-13]_[1-7]`), sillä niillä odotetaan suuria määriä samanlaisia vastauksia. Useimmat vastaajat luultavasti eivät ole kohdanneet ollenkaan määriteltyjä kohteluja, jolloin he vastaisivat "En ollenkaan" jokaiselle muuttujalle. Tämä näyttäytyisi analyysissa virheellisinä vastauksina, vaikka ne ovat päteviä vastauksia.
+
+```{r}
+#| label: datatarkistus-02-careless-maarittelyt
+#| code-summary: "Muuttujien ja funktioiden määrittely"
+
+muuttujaryhmat <- c("k26", "k28", "k29", "k30")
+
+funktio_kolumnien_yli <- function(df, func, groups, append_to = FALSE, ...) {
+  # Käytetään funktion nimeä kolumniprefiksinä
+  function_name <- deparse(substitute(func))
+  dots <- list(...)
+  
+  # Määritelty funktio ajetaan ryhmitettyjen muuttujien yli
+  result <- groups %>%
+    map(~ {
+      group_cols <- select(df, starts_with(.x))
+      if(length(dots) == 0) {
+        result_column <- func(group_cols)
+      } else { # Määritetylle funktiolle voidaan syöttää parametrejä ellipsin avulla
+        result_column <- func(group_cols, dots)
+      }
+      tibble(!!paste0(function_name, "_", .x) := result_column)
+    }) %>%
+    bind_cols()
+  
+  # Lisätään tulokset määriteltyyn data frameen tai alkuperäiseen dataan
+  if(!is.logical(append_to)) {
+    result <- bind_cols(append_to, result)
+  } else if (append_to == TRUE) {
+    result <- bind_cols(df, result)
+  }
+  
+  return(result)
+}
+
+```
+
+### Longstring-indeksi {#sec-datatarkistus-longstring}
+
+Longstring-indeksi tarkastaa, mikä on vastaajan pisin putki samanlaisia vastauksia (esim. vastausarvo 3 peräkkäin). Maksimiarvo on jokaisen muuttujaryhmän muuttujien määrä, jolloin vastaaja on antanut saman arvon kaikille vastauksilleen. Mitä suurempi arvo on, sitä pidempiä samojen vastausten putkia vastaaja on antanut kysymysmittaristossa.
+
+```{r}
+#| label: datatarkistus-03-careless-longstring
+#| code-summary: "Longstring-indeksin laskeminen"
+
+data <- funktio_kolumnien_yli(
+  df = data,
+  func = longstring,
+  groups = muuttujaryhmat,
+  append_to = data
+) %>%
+  mutate(
+    samat_k26 = case_match(longstring_k26, 18 ~ TRUE, .default = FALSE),
+    samat_k28 = case_match(longstring_k28, 12 ~ TRUE, .default = FALSE),
+    samat_k29 = case_match(longstring_k29, 12 ~ TRUE, .default = FALSE),
+    samat_k30 = case_match(longstring_k30, 13 ~ TRUE, .default = FALSE)
+  )
+
+```
+
+```{r}
+#| label: fig-datatarkistus-04-caseless-longstring-kuviot
+#| code-summary: "Kuvioiden piirtäminen"
+#| fig-cap: "Longstring-indeksien histogramit (muuttujien määrät suluissa)"
+#| layout-nrow: 2
+#| fig-subcap: 
+#| -  "Asenneväitteet ilmoitusjärjestelmistä (k = 18)"
+#| -  "Organisaation olemassaolevat toimenpiteet (k = 12)"
+#| -  "Toimenpiteiden koettu vaikutus (k = 12)"
+#| -  "Ehdotettujen toimenpiteiden koettu hyödyllisyys (k = 13)"
+
+ggplot(data, aes(x = longstring_k26)) +
+  geom_bar() +
+  geom_text(aes(label = after_stat(count)), stat = "count", vjust = 1.5, colour = "white")
+
+ggplot(data, aes(x = longstring_k28)) +
+  geom_bar() +
+  geom_text(aes(label = after_stat(count)), stat = "count", vjust = 1.5, colour = "white")
+
+ggplot(data, aes(x = longstring_k29)) +
+  geom_bar() +
+  geom_text(aes(label = after_stat(count)), stat = "count", vjust = 1.5, colour = "white")
+
+ggplot(data, aes(x = longstring_k30)) +
+  geom_bar() +
+  geom_text(aes(label = after_stat(count)), stat = "count", vjust = 1.5, colour = "white")
+
+```
+
+**Ilmoitusjärjestelmäasennemuuttujilla** tunnistetaan 20 vastaajaa, jotka ovat vastanneet  samat arvot kaikille muuttujille. Näistä vastaajista 14 henkilöä olivat vastanneet "Ei samaa eikä eri mieltä" jokaiselle kysymykselle, 4 vastaajaa valitsivat "Erittäin eri mieltä", ja 2 vastaajaa valitsivat "Eri mieltä". Päätimme merkitä poistettavaksi ne 14 henkilöä, jotka olivat vastanneet neutraalisti jokaiseen väitteeseen, ja jätimme aineistoon mielensä osoittaneet vastaajat.
+
+```{r}
+#| label: datatarkistus-05-careless-longstring-k26
+#| code-summary: "Muuttujaryhmän k26 poistomerkintä"
+
+data <- data |>
+  mutate(
+    poisto_k26 = case_when(
+      samat_k26 == TRUE & k26_1 == 4 ~ TRUE,
+      .default = FALSE
+    )
+  )
+
+```
+
+**Olemassaolevien toimenpiteiden muuttujilla** tunnistamme jopa 72 vastaajaa, jotka ovat vastanneet samat arvot kaikille muuttujile. Emme kuitenkaan merkinneet yhtään vastaajaa poistettavaksi, sillä kaikki vastauspiirteet ovat mahdollisia ja jossain määrin todennäköisiä.
+
+**Toimenpiteiden koetun vaikutusten muuttujilla** tunnistamme 65 samojen arvojen antanutta vastaajaa. Vastaajat jakaantuivat seuraaviin piirteisiin:
+
+-  Kaikki arvot 0: 1 vastaaja
+-  Kaikki arvot 1: 3 vastaajaa
+-  Kaikki arvot 5: 27 vastaajaa
+-  Kaikki arvot 6: 2 vastaajaa
+-  Kaikki arvot 8: 4 vastaajaa
+-  Kaikki arvot 9: 2 vastaajaa
+-  Kaikki arvot 10: 26 vastaajaa
+
+Päätimme merkitä alustavaksi poistettavaksi kaikki vastaajat, jotka vastasivat arvot 5 tai 10 kaikille muuttujille (yhteensä 53 vastaajaa). Tarkistamme kuitenkin heidän muut vääristymille herkät vastaukset ennen poistoa, sillä heidän vastauksensa voivat myös olla valideja vastauspiirteitä.
+
+```{r}
+#| label: datatarkistus-06-careless-longstring-k29
+#| code-summary: "Muuttujaryhmän k29 poistomerkintä"
+
+data <- data |>
+  mutate(
+    poisto_k29 = case_when(
+      samat_k29 == TRUE & k29_1 == 5 ~ TRUE,
+      samat_k29 == TRUE & k29_1 == 10 ~ TRUE,
+      .default = FALSE
+    )
+  )
+
+```
+
+**Ehdotettujen toimenpiteiden koetun hyödyllisyyden muuttujilla** tunnistamme 37 samojen arvojen antanutta vastaajaa. Vastaajat jakaantuivat seuraaviin piirteisiin:
+
+-  Kaikki arvot 1: 1 vastaaja
+-  Kaikki arvot 3: 1 vastaaja
+-  Kaikki arvot 4: 8 vastaajaa
+-  Kaikki arvot 5: 2 vastaajaa
+-  Kaikki arvot 6: 4 vastaajaa
+-  Kaikki arvot 7: 21 vastaajaa
+
+Näimme, että kaikki vastaukset ovat päteviä vastauksia, emmekä merkinneet yhtään vastaajaa poistettavaksi.
+
+### Vastaajasisäinen vastausvaihtelu {#sec-datatarkistus-irv}
+
+Vastaajasisäinen vastausvaihtelu (engl. *intra-individual response variability*) on muuttujaryhmäkohtaisten vastausten keskihajonta. Mitä enemmän vastaukset vaihtelevat, sitä suurempi keskihajonta. Jos vastaaja on ilmoittanut hyvin samanlaiset vastaukset kaikkiin muuttujiin, keskihajonta on pieni tai jopa nolla, jolloin vastaajan vastausrehellisyyttä voidaan kyseenalaistaa.
+
+Keskihajontojen tarkastuksessa seuloimme ensin pois vastaajat, jotka vastasivat samat arvot kyseisessä kysymysmittaristossa. Samojen arvojen vastaaminen antaisi myös nollakeskihajonnan, mutta koska olimme jo tarkastaneet vastaajat aikaisemmin, emme tehneet tarkastusta uudelleen.
+
+```{r}
+#| label: datatarkistus-06-careless-irv
+#| code-summary: "IRV-indeksin laskeminen"
+
+data <- funktio_kolumnien_yli(
+  df = data,
+  func = irv,
+  groups = muuttujaryhmat,
+  append_to = TRUE
+) %>%
+  mutate(
+    eivaiht_k26 = case_when(
+      irv_k26 == 0 & poisto_k26 == FALSE & poisto_k29 == FALSE ~ TRUE,
+      .default = FALSE
+    ),
+    eivaiht_k28 = case_when(
+      irv_k28 == 0 & poisto_k26 == FALSE & poisto_k29 == FALSE ~ TRUE,
+      .default = FALSE
+    ),
+    eivaiht_k29 = case_when(
+      irv_k29 == 0 & poisto_k26 == FALSE & poisto_k29 == FALSE ~ TRUE,
+      .default = FALSE
+    ),
+    eivaiht_k30 = case_when(
+      irv_k30 == 0 & poisto_k26 == FALSE & poisto_k29 == FALSE ~ TRUE,
+      .default = FALSE
+    )
+  )
+
+```
+
+
+```{r}
+#| label: fig-datatarkistus-07-caseless-irv-kuviot
+#| code-summary: "Kuvioiden piirtäminen"
+#| fig-cap: "IRV-indeksien histogrammit (muuttujien määrät suluissa)"
+#| layout-nrow: 2
+#| fig-subcap: 
+#| -  "Asenneväitteet ilmoitusjärjestelmistä (k = 18)"
+#| -  "Organisaation olemassaolevat toimenpiteet (k = 12)"
+#| -  "Toimenpiteiden koettu vaikutus (k = 12)"
+#| -  "Ehdotettujen toimenpiteiden koettu hyödyllisyys (k = 13)"
+
+ggplot(data |> filter(!poisto_k26 & !poisto_k29 & !samat_k26), aes(x = irv_k26)) +
+  geom_histogram() +
+  geom_text(aes(label = after_stat(count)), stat = "bin", vjust = 1.5, colour = "white")
+
+ggplot(data |> filter(!poisto_k26 & !poisto_k29 & !samat_k28), aes(x = irv_k28)) +
+  geom_histogram() +
+  geom_text(aes(label = after_stat(count)), stat = "bin", vjust = 1.5, colour = "white")
+
+ggplot(data |> filter(!poisto_k26 & !poisto_k29 & !samat_k29), aes(x = irv_k29)) +
+  geom_histogram() +
+  geom_text(aes(label = after_stat(count)), stat = "bin", vjust = 1.5, colour = "white")
+
+ggplot(data |> filter(!poisto_k26 & !poisto_k29 & !samat_k30), aes(x = irv_k30)) +
+  geom_histogram() +
+  geom_text(aes(label = after_stat(count)), stat = "bin", vjust = 1.5, colour = "white")
+```
+
+Keskihajontojen jakaumat näyttävät pääasiassa hyväksyttäviltä. Usealla vastaajalla on kuitenkin nolla keskihajonta muuttujaryhmissä, mikä tarkoittaa, että heidän vastauksensa ovat joko samoja vastausryhmän sisällä (esim. kaikki arvot 3), tai vaihtelevat tavalla, joka tasapainottuu nollaksi (esim. vastaukset symmetrisesti arvojen 1-2-3 ympärillä). Tällaiset vastaukset voivat osoittaa, että vastaaja on piirtänyt "muodon" kyselylomakkeen vastauskenttiin, esimerkiksi antanut vastauksensa vuorotellen keskipisteen oikealla ja vasemmalla puolella.
+
+**Ilmoitusjärjestelmäasennemuuttujilla** tunnistetaan 3 vastaajaa, joiden vastausten keskihajonta on nolla. Kaikki kolme vastaajaa olivat joko jättäneet vastaamatta kysymyksiin, tai antaneet kysymyksille toistuvasti saman arvon (2, 6 tai 7). Vastaukset voivat olla päteviä vastauksia, joten emme poistaneet vastaajia aineistosta.
+
+**Olemassaolevien toimenpiteiden muuttujilla** tunnistamme 4 vastaajaa, joiden vastausten keskihajonta on nolla. Myös näillä muuttujilla näimme, että vastaajien vastaukset olivat joko samanarvoisia (3 tai 5) tai puuttuvia. Jätimme vastaajat aineistoon.
+
+**Toimenpiteiden koetun vaikutusten muuttujilla** tunnistamme 21 vastaajaa, joiden
+vastausten keskihajonta on nolla. Näissäkin vastaajista korostuu joko puuttuvat
+vastaukset tai samanarvoiset vastaukset (0, 2, 3, 5 tai 10). Jätimme vastaajat
+aineistoon.
+
+**Ehdotettujen toimenpiteiden koetun hyödyllisyyden muuttujilla** tunnistamme 4 vastaajaa, joiden vastausten keskihajonta on nolla. Vastaajien vastausarvot ovat vaihtelevasti tyhjiä tai samoja arvoja (6 tai 7). Jätimme vastaajat aineistoon.
+
+Keskihajontojen pohjalta emme merkinneet yhtään vastaajaa poistettavaksi.
+
+### Merkittyjen vastaajien yhteistarkistelu {#sec-datatarkistus-yhteistarkistelu}
+
+Ennen poistopäätöstä päätimme vielä tarkistaa kaikkien poistettavaksi merkittyjen vastaajien piirteet yhteisesti. Tarkistimme viisi piirrettä: kaikki vastaukset vasemmalla, keskellä sekä oikealla, ja kaikki vastaukset joko negatiivisia tai positiivisia.
+
+```{r}
+#| label: datatarkistus-08-yhteispiirteet
+#| code-summary: "Yhteispiirteiden tarkistus"
+
+data <- data |>
+  mutate(
+    vasen = case_when(
+      if_all(k26_1:k26_18, ~.x == 7) &
+        if_all(k28_1:k28_12, ~.x == 1) &
+        if_all(k29_1:k29_12, ~.x == 0) &
+        if_all(k30_1:k30_13, ~.x == 7)
+      ~ TRUE,
+      .default = FALSE
+    ),
+    keski = case_when(
+      if_all(k26_1:k26_18, ~.x == 4) &
+        if_all(k28_1:k28_12, ~.x == 3) &
+        if_all(k29_1:k29_12, ~.x == 5) &
+        if_all(k30_1:k30_13, ~.x == 4)
+      ~ TRUE,
+      .default = FALSE
+    ),
+    oikea = case_when(
+      if_all(k26_1:k26_18, ~.x == 1) &
+        if_all(k28_1:k28_12, ~.x == 5) &
+        if_all(k29_1:k29_12, ~.x == 10) &
+        if_all(k30_1:k30_13, ~.x == 1)
+      ~ TRUE,
+      .default = FALSE
+    ),
+    pos = case_when(
+      if_all(k26_1:k26_18, ~.x == 7) &
+        if_all(k28_1:k28_12, ~.x == 5) &
+        if_all(k29_1:k29_12, ~.x == 10) &
+        if_all(k30_1:k30_13, ~.x == 7)
+      ~ TRUE,
+      .default = FALSE
+    ),
+    neg = case_when(
+      if_all(k26_1:k26_18, ~.x == 1) &
+        if_all(k28_1:k28_12, ~.x == 1) &
+        if_all(k29_1:k29_12, ~.x == 0) &
+        if_all(k30_1:k30_13, ~.x == 1)
+      ~ TRUE,
+      .default = FALSE
+    )
+  )
+
+data |>
+  select(vasen:neg) |>
+  summary()
+
+```
+
+Emme tunnistaneet yhtään vastaajaa, joka täyttäisi jonkun viidestä mainitusta piirteestä.
+
+## Vastaajien poisto {#sec-datatarkistus-poisto}
+
+Päätimme poistaa aikaisemmin merkityt vastaajat aineistosta. Poistimme yhteensä `r nrow(data |> filter(poisto_k26 == TRUE | poisto_k29 == TRUE))` vastaajaa aineistosta.
+
+```{r}
+#| label: datatarkistus-09-poisto
+#| code-summary: "Vastaajien poisto aineistosta"
+
+data <- data |>
+  filter(poisto_k26 == FALSE & poisto_k29 == FALSE) |>
+  select(!longstring_k26:neg)
+
+```
+
+Aineistoon jäi yhteensä `r nrow(data)` vastaajaa.
+
+## Datan tallennus {#sec-datatarkistus-tallennus}
+
+```{r}
+#| label: datatarkistus-10-tallennus
+#| code-summary: "Datan tallennus"
+
+write.csv2(data, file = "output/valmisdata.csv", row.names = FALSE)
+
+```
+
