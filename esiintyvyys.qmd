@@ -32,6 +32,25 @@ data <- read.csv2("output/valmisdata.csv", tryLogical = FALSE)
 ### Omakohtaisesti kohdattu {#sec-esiintyvyys-sisa-itse}
 
 ```{r}
+#| label: esiintyvyys-sisa-itse-kokonaismaara
+#| code-summary: "Ei ollenkaan kohtelua kohdanneiden laskeminen"
+
+# Lasketaan kaikki, jotka eivät ole kokeneet mitään sisäistä kohtelua. NA lasketaan mukaan tähän määrään.
+
+eikokemusta.sisa.itse <- data |>
+  filter(
+    if_all(
+      k3_1:k3_7,
+      ~ .x == 0 | is.na(.x)
+    )
+  ) |>
+  nrow()
+
+```
+
+Yhteensä `r eikokemusta.sisa.itse` eivät olleet kohdanneet yhtään sisäistä kohtelua viimeisen 12 kuukauden aikana, tai eivät vastanneet yhteen tai useampaan kysymykseen. Tällöin yhteensä `r nrow(data)-eikokemusta.sisa.itse` vastaajaa (`r round(((nrow(data)-eikokemusta.sisa.itse)/nrow(data))*100, digits = 0)` \%) oli kokenut vähintään yhden epäasiallisen tai väkivaltaisen kohtelun muodon organisaationsa sisällä viimeisen 12 kuukauden aikana.
+
+```{r}
 #| label: fig-esiintyvyys-sisa-itse
 #| fig-cap: "Omakohtaisesti kohdattu organisaation sisäinen epäasiallinen ja väkivaltainen kohtelu"
 #| code-summary: "Kuvion piirtäminen"
@@ -365,6 +384,25 @@ data |>
 ## Organisaation ulkopuolelta tullut epäasiallinen ja väkivaltainen kohtelu {#sec-esiintyvyys-ulko}
 
 ### Omakohtaisesti kohdattu {#sec-esiintyvyys-ulko-itse}
+
+```{r}
+#| label: esiintyvyys-ulko-itse-kokonaismaara
+#| code-summary: "Ei ollenkaan kohtelua kohdanneiden laskeminen"
+
+# Lasketaan kaikki, jotka eivät ole kokeneet mitään ulkoista kohtelua. NA lasketaan mukaan tähän määrään.
+
+eikokemusta.ulko.itse <- data |>
+  filter(
+    if_all(
+      k12_1:k12_7,
+      ~ .x == 0 | is.na(.x)
+    )
+  ) |>
+  nrow()
+
+```
+
+Yhteensä `r eikokemusta.ulko.itse` eivät olleet kohdanneet yhtään ulkoista kohtelua viimeisen 12 kuukauden aikana, tai eivät vastanneet yhteen tai useampaan kysymykseen. Tällöin yhteensä `r nrow(data)-eikokemusta.ulko.itse` vastaajaa (`r round(((nrow(data)-eikokemusta.ulko.itse)/nrow(data))*100, digits = 0)` \%) oli kokenut vähintään yhden epäasiallisen tai väkivaltaisen kohtelun muodon organisaationsa ulkopuolelta viimeisen 12 kuukauden aikana.
 
 ```{r}
 #| label: fig-esiintyvyys-ulko-itse
