@@ -1,0 +1,446 @@
+# Blogi: Työyhteisön epäasiallisuudet ja väkivalta heikentävät alan pitovoimaa
+
+---
+eval: true
+---
+
+```{r}
+#| label: blogi2-00-valmistelu
+#| code-smmary: "Osiossa käytetyt paketit ja datan avaaminen"
+
+library(tidyverse) # Yleinen datatyöstäminen
+library(scales) # Prosenttilukujen esittämiselle
+library(ggstatsplot) # Tilastollisten kuvioiden rakentamiselle
+library(patchwork) # Usean kuvion yhdistämiselle
+data <- read.csv2("output/valmisdata.csv", tryLogical = FALSE)
+
+```
+
+*Tämä blogikirjoitus julkaistaan Pelastusopiston blogissa 13.11.2024.* *Osion analyysit ovat toistettavissa Tietoarkistoon arkistoidulla aineistokopiolla. Ennen toistoa tulee suorittaa [luvussa -@sec-datatarkistus] esitetyt aineistopoistot.*
+
+------------------------------------------------------------------------
+
+*Pelastusopiston toteuttama ja Palosuojelurahaston rahoittama Nollatoleranssi-hanke on selvittänyt epäasiallisen ja väkivaltaisen kohtelun esiintyvyyttä, vaikutuksia ja toimenpiteitä pelastusalalla. Tämä blogi on osa neljän julkaisun blogisarjaa, jossa käsitellään valtakunnallisen kyselytutkimuksen tuloksia. Seuraava blogi julkaistaan 16. joulukuuta 2024.*
+
+Nollatoleranssi-hankkeen tulosten toisessa blogissa käsittelemme epäasiallisen ja väkivaltaisen kohtelun vaikutuksia. Millaisia vaikutuksia kohtelulla on henkilölle sekä organisaatiolle? Miten kohtelu vaikuttaa vastaajien haluun pysyä alalla?
+
+Muistutamme, että kyselyn aihe voi aiheuttaa valikoitumisharhaa. Tuloksia tulee tulkita varovaisesti ja välttää yleistämistä koko alaan.
+
+```{r}
+#| label: blogi2-01-muuttujat
+#| code-summary: "Muuttujien rakentaminen"
+
+### Epäasiallisen ja väkivaltaisen kohtelun mittarit
+# Koodataan uudelleen mittarit, jotta NA == 0 ja muut arvot pysyvät samoina.
+data <- data |>
+  mutate(
+    across(
+      c(k3_1:k4_7, k12_1:k13_7),
+      ~ case_match(
+        .x,
+        NA ~ 0,
+        .default = .x
+      )
+    )
+  ) |>
+  mutate(
+    EVK_sisä_koettu = k3_1 + k3_2 + k3_3 + k3_4 + k3_5 + k3_6 + k3_7,
+    EVK_ulko_koettu = k12_1 + k12_2 + k12_3 + k12_4 + k12_5 + k12_6 + k12_7,
+    EVK_sisä_havaittu = k4_1 + k4_2 + k4_3 + k4_4 + k4_5 + k4_6 + k4_7,
+    EVK_ulko_havaittu = k13_1 + k13_2 + k13_3 + k13_4 + k13_5 + k13_6 + k13_7
+  )
+
+### Työuupumusmittari
+data <- data |>
+  rowwise() |>
+  mutate(
+    uupumus = mean(c_across(starts_with("k27")), na.rm = TRUE)
+  ) |>
+  ungroup()
+
+## Todennäköisesti työuupunut?
+data <- data |>
+  rowwise() |>
+  mutate(
+    tod.uup = case_when(
+      uupumus >= 3.13 ~ TRUE,
+      .default = FALSE
+    )
+  ) |>
+  ungroup()
+
+### Muutosaikeiden summamittari
+data <- data |>
+  rowwise() |>
+  mutate(
+    muutos = sum(c_across(starts_with("k42")), na.rm = TRUE)
+  ) |>
+  ungroup()
+
+```
+
+
+## Henkilövaikutukset riippuvat kohtelun tekoympäristöstä
+
+Kaikki vastaajat, jotka olivat kokeneet vähintään yhden epäasiallisen tai väkivaltaisen kohtelutilanteen viimeisen 12 kuukauden aikana, saivat vastata kysymyksiin kokemansa kohtelun vaikutuksista. Jaoimme vaikutukset kolmeen ryhmään: fyysiset, psyykkiset ja ammatilliset. Jokaiselle vaikutukselle esitimme tutkimuksen ja asiantuntijatyöpajan pohjalta työstetyt esimerkit lievälle, kohtalaiselle ja vakavalle vaikutukselle.
+
+Fyysisiä vaikutuksia koettiin selkeästi muita vaikutuksia harvemmin ja vähäisemmin (@fig-blogi2-02-vakavuus). Noin puolet vastaajista kokivat ammatillisia vaikutuksia, kuten motivaation heikkenemistä, sairaslomat tai jopa tehtävien vaihdot ja eroamiset. Jopa 60 prosenttia koki psyykkisiä vaikutuksia, vaihdellen epäluottamuksesta ja ahdistuksesta masennukseen ja itsetuhoisiin ajatuksiin.
+
+```{r}
+#| label: fig-blogi2-02-vakavuus
+#| fig-cap: "Omakohtaisesti koetun kohtelun vaikutusten vakavuus"
+#| code-summary: "Kuvion piirtäminen"
+
+data |>
+  select(k21_1:k21_3) |>
+  filter(!(k21_1 == -1)) |>
+  pivot_longer(
+    cols = k21_1:k21_3,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(
+    prop = count/sum(count),
+    value_label = factor(
+      value,
+      levels = rev(c(1:4)),
+      labels = rev(c(
+        "Ei vaikutusta",
+        "Lievät",
+        "Kohtalaiset",
+        "Vakavat"
+      ))
+    )
+  ) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = value_label
+  )) +
+  geom_bar(stat = "identity") +
+  geom_label(
+    aes(label = scales::percent(prop, accuracy = 0.1)),
+    position = position_stack(vjust = 0.5),
+    vjust = c(
+      # Lue alhaalta ylös, oikealta vasemmalle
+      # 0.5 = Keskitetty
+      # -0.75 = Yllä (huom. käänteinen)
+      # 1.75 = Alla (huom. käänteinen)
+      0.5, -0.75, 0.5, 1.75, 
+      0.5, 0.5, 0.5, 1.75, -0.75,
+      0.5, 0.5, 0.5, 1.75, -0.75
+    ),
+    show.legend = FALSE, # Poistaa "a"-kirjaimen selityksestä
+    fill = "#ffffff"
+  ) +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Fyysiset vaikutukset",
+      "Psyykkiset vaikutukset",
+      "Ammatilliset vaikutukset"
+    ), str_wrap, width = 18, USE.NAMES = FALSE)
+  ) +
+  scale_fill_manual(
+    values = c("#893deb", "#29d8fd", "#fe79ec", "#873073")
+  ) +
+  labs(
+    x = "Suhde omakohtaisesti kohtelun kohdanneista vastaajista (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(axis.title.y = element_blank())
+```
+
+```{r}
+#| label: blogi2-03-vakavuusXkohtelu
+#| code-summary: "Lineaaristen mallien laskenta"
+
+vakavuus.sisa <- lm(
+  EVK_sisä_koettu ~ k21_1 + k21_2 + k21_3,
+  data = data
+)
+
+vakavuus.ulko <- lm(
+  EVK_ulko_koettu ~ k21_1 + k21_2 + k21_3,
+  data = data
+)
+
+summary(vakavuus.sisa)
+summary(vakavuus.ulko)
+
+```
+
+Koetun epäasiallisen ja väkivaltaisen kohtelun määrä on yhteydessä vaikutusten vakavuuteen, mutta yhteydet eroavat tekoympäristön mukaan. Organisaatiosisäisen kohtelun osalta jokainen lisäpiste 50 pisteen kohtelumittarilla laskee fyysisiä vaikutuksia -0,9 pistettä mutta nostaa psyykkisiä vaikutuksia 0,8 pistettä ja ammatillisia vaikutuksia jopa 1,1 pistettä. Fyysisten vaikutusten lasku voi johtua sairaslomista, jolloin henkilö ei yksinkertaisesti voi kokea enempiä vaikutuksia työpaikkaväkivallan takia. Organisaation ulkopuolinen, asiakkailta tai sidosryhmiltä tuleva väkivalta on yhteydessä vain fyysisiin vaikutuksiin: jokainen lisäpiste nostaa fyysisiä vaikutuksia jopa 2,8 pistettä.
+
+Yhteydet ovat suhteellisen vahvoja. Tilastolliset mallit selittävät yli 30 prosenttia kaikesta vaihtelusta kohtelumittarilla ja vaikutuksissa, eli iso osa koetuista vaikutuksista voi johtua vain koetun kohtelun määrästä, eikä muista tekijöistä.
+
+## Työuupumus seuraa koetun kohtelun määrää
+
+Epäasiallisen ja väkivaltaisen kohtelun määrät korreloivat positiivisesti työuupumusmittariston pisteiden kanssa riippumatta tekokontekstista (@fig-blogi2-04-uupumusXkohtelu). Korrelaatio on kuitenkin vahvempi organisaatiosisäisen kohtelun osalta (r = 0,34) kuin ulkoisen kohtelun osalta (r = 0,19). Sisäisen sekä ulkoisen kohtelun määrät selittävät 11 ja 4 prosenttia työuupumusmittarin vaihtelusta. Vaikka asteet eivät itsessään ole suuria, ihmistieteissä yleisesti ei löydy yksittäisiä selittäviä tekijöitä ilmiöille, jolloin kaltaiset määrät voidaan nähdä merkittävinä.
+
+```{r}
+#| label: fig-blogi2-04-uupumusXkohtelu
+#| fig-cap: "Työuupumuksen korrelaatio epäasiallisen ja väkivaltaisen kohtelun kanssa"
+#| code-summary: "Kuvion rakentaminen"
+
+uupumus.sisa <- ggscatterstats(
+  data = data,
+  x = uupumus,
+  y = EVK_sisä_koettu,
+  bf.message = FALSE,
+  xlab = "Työuupumus",
+  ylab = "Epäasiallinen ja väkivaltainen kohtelu",
+  type = "robust",
+  title = "Sisäinen",
+  marginal = FALSE,
+  smooth.line.args = list(color = "#C20E1A", method = "lm")
+) +
+  ylim(0, 49) +
+  theme(plot.subtitle = element_text(size = 6))
+
+uupumus.ulko <- ggscatterstats(
+  data = data,
+  x = uupumus,
+  y = EVK_ulko_koettu,
+  bf.message = FALSE,
+  xlab = "Työuupumus",
+  ylab = "Epäasiallinen ja väkivaltainen kohtelu",
+  type = "robust",
+  title = "Ulkoinen",
+  marginal = FALSE,
+  smooth.line.args = list(color = "#C20E1A", method = "lm")
+) +
+  ylim(0, 49) +
+  theme(plot.subtitle = element_text(size = 6))
+
+uupumus.sisa + uupumus.ulko + plot_layout(
+  axes = "collect_x",
+  axis_titles = "collect"
+)
+
+```
+
+```{r}
+#| label: blogi2-05-uupumuslogreg
+#| code-summary: "Logistisen regression laskenta"
+
+uupumus.log.sisa <- glm(
+  tod.uup ~ EVK_sisä_koettu,
+  data = data,
+  family = binomial(link = "logit")
+)
+
+uupumus.log.ulko <- glm(
+  tod.uup ~ EVK_ulko_koettu,
+  data = data,
+  family = binomial(link = "logit")
+)
+
+summary(uupumus.log.sisa)
+summary(uupumus.log.ulko)
+
+```
+
+Jokainen lisäpiste organisaatiosisäistä kohtelumäärää nostaa vastaajan todennäköisyyttä olla työuupunut `r round(exp(summary(uupumus.log.sisa)$coefficients["EVK_sisä_koettu",1]), digits = 2)`-kertaisesti. Organisaatioulkoinen kohtelumäärä ei kuitenkaan ole yhteydessä työuupumuksen todennäköisyyteen.
+
+Todennäköisesti työuupunut vastaaja on kohdannut jopa kuusi kertaa enemmän organisaatiosisäistä epäasiallista ja väkivaltaista kohtelua (@fig-blogi2-06-toduup). Organisaatioulkoisen kohtelun kohdalla ero ei ole merkitsevä uupumustilan mukaan.
+
+```{r}
+#| label: fig-blogi2-06-toduup
+#| fig-cap: "Epäasiallisen ja väkivaltaisen kohtelun määrät työuupumuksen todennäköisyyden mukaan"
+#| code-summary: "Kuvion rakentaminen"
+
+uupumus.tod.sisa <- ggbetweenstats(
+  data = data,
+  x = tod.uup,
+  y = EVK_sisä_koettu,
+  bf.message = FALSE,
+  type = "robust",
+  xlab = "Todennäköisesti työuupunut",
+  ylab = "Epäasiallinen ja väkivaltainen kohtelu",
+  title = "Sisäinen"
+)  +
+  ylim(0, 49) +
+  theme(plot.subtitle = element_text(size = 6)) +
+  scale_color_manual(
+    values = c("#C20E1A", "#C5B568")
+  ) +
+  scale_x_discrete(
+    labels = c("Ei", "Kyllä")
+  )
+
+uupumus.tod.ulko <- ggbetweenstats(
+  data = data,
+  x = tod.uup,
+  y = EVK_ulko_koettu,
+  bf.message = FALSE,
+  type = "robust",
+  xlab = "Todennäköisesti työuupunut",
+  ylab = "Epäasiallinen ja väkivaltainen kohtelu",
+  title = "Ulkoinen"
+)  +
+  ylim(0, 49) +
+  theme(plot.subtitle = element_text(size = 6))  +
+  scale_color_manual(
+    values = c("#C20E1A", "#C5B568")
+  ) +
+  scale_x_discrete(
+    labels = c("Ei", "Kyllä")
+  )
+
+uupumus.tod.sisa + uupumus.tod.ulko + plot_layout(
+  axes = "collect_x",
+  axis_titles = "collect"
+)
+  
+```
+
+## Organisaatiosisäistä kohtelua kohdanneet haluavat useammin muutoksia työkuvaansa
+
+Kysyimme kaikilta vastaajilta, onko heillä ollut työ- tai harrastuskuvansa muutosaikeita viimeisen 12 kuukauden ajan. Aikeet kohdistuivat kolmeen eri ryhmään: tehtävien muutokset, organisaation vaihtaminen sekä alalta lähtö. Jokaisessa ryhmässä vastaajat saivat valita, jos he ovat harkinneet asiaa, ovat toteuttamassa tai ovat jo toteuttaneet. Kysymys oli monivalinta, eli vastaajat saivat valita kaikki yhdeksän mahdollista vaihtoehtoa.
+
+Kaikista vastaajista noin 20 prosenttia on harkinneet jotain muutosta. Joka kymmenes on muuttanut tai muuttamassa tehtävänkuvaansa. 2-4 prosenttia on vaihtamassa organisaatiotaan tai lähtemässä alalta.
+
+Mitä enemmän vastaaja oli kohdannut epäasiallista tai väkivaltaista kohtelua, sitä useamman muutosaikeen hän oli ilmoittanut kyselyssä (@fig-blogi2-07-muutosaieXkohtelu). Yhteys on keskivahva organisaatiosisäisen kohtelumäärän ja muutosaikeiden välillä (r = 0,41), mutta pieni organisaatioulkoisen kohtelun osalta (r = 0,24). Sisäisen sekä ulkoisen kohtelun määrät selittävät 17 ja 6 prosenttia muutosaikeiden vaihtelusta, eli hieman enemmän kuin työuupumuksen osalta.
+
+```{r}
+#| label: fig-blogi2-07-muutosaieXkohtelu
+#| fig-cap: "Muutosaikeiden korrelaatio epäasiallisen ja väkivaltaisen kohtelun kanssa"
+#| code-summary: "Kuvion rakentaminen"
+
+muutosaie.sisa <- ggscatterstats(
+  data = data,
+  x = muutos,
+  y = EVK_sisä_koettu,
+  bf.message = FALSE,
+  xlab = "Muutosaikeet",
+  ylab = "Epäasiallinen ja väkivaltainen kohtelu",
+  type = "robust",
+  title = "Sisäinen",
+  marginal = FALSE,
+  smooth.line.args = list(color = "#C20E1A", method = "lm")
+) +
+  ylim(0, 49) +
+  theme(plot.subtitle = element_text(size = 6))
+
+muutosaie.ulko <- ggscatterstats(
+  data = data,
+  x = muutos,
+  y = EVK_ulko_koettu,
+  bf.message = FALSE,
+  xlab = "Muutosaikeet",
+  ylab = "Epäasiallinen ja väkivaltainen kohtelu",
+  type = "robust",
+  title = "Ulkoinen",
+  marginal = FALSE,
+  smooth.line.args = list(color = "#C20E1A", method = "lm")
+) +
+  ylim(0, 49) +
+  theme(plot.subtitle = element_text(size = 6))
+
+muutosaie.sisa + muutosaie.ulko + plot_layout(
+  axes = "collect_x",
+  axis_titles = "collect"
+)
+
+```
+
+```{r}
+#| label: blogi2-08-muutosaikeet
+#| code-summary: "Logististen regressioiden laskenta"
+
+# Ajetaan yhdeksän logistista regressiomallia.
+# Riippuvaisina muuttujina erikseen jokainen muutosaie
+# Riippumattomina muuttujina sisäisesti ja ulkoisesti koettu kohtelu
+
+muutosaikeet.mallit <- data |>
+  mutate( # Muutetaan ensin NA nollaksi, jotta vastaamatta jättäneet lasketaan "ei-aikeita"-ryhmään
+    across(
+      k42_1_1:k42_3_3,
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        NA ~ 0
+      )
+    )
+  ) |>
+  select(EVK_sisä_koettu, EVK_ulko_koettu, k42_1_1:k42_3_3) |>
+  pivot_longer(
+    cols = c(k42_1_1:k42_3_3),
+    names_to = "response_var",
+    values_to = "response"
+  ) |>
+  group_by(response_var) |>
+  nest() |>
+  mutate(
+    model = map(
+      data,
+      ~ glm(
+        response ~ EVK_sisä_koettu + EVK_ulko_koettu,
+        data = .x,
+        family = binomial(link = "logit")
+      )
+    ),
+    summary = map(model, summary),
+    coefs = map(model, coefficients),
+    p = map(
+      model,
+      ~ summary(.x)$coefficients[c("(Intercept)", "EVK_sisä_koettu", "EVK_ulko_koettu"), 4]
+    )
+  ) |>
+  ungroup()
+
+# Lopputuloksessa jokainen rivi on muutosaiemuuttuja
+# Sarakkeessa "model" on muuttujakohtaiset mallit lm-objekteina
+# Sarakkeet "summary" ja "coefs" sisältävät summary- ja coefficients-funktioiden tulokset
+# Sarake "p" sisältää kertoimien p-arvot
+
+# Tämä piirtää taulukon, eli ei tarvita mallien asettamiseksi
+muutosaikeet.tulokset <- muutosaikeet.mallit |>
+  unnest_wider(coefs) |>
+  unnest_wider(p, names_sep = "_") |>
+  rename(
+    Muuttuja = response_var,
+    Vakio = "(Intercept)",
+    Sisäinen = EVK_sisä_koettu,
+    Ulkoinen = EVK_ulko_koettu,
+    p.1 = "p_(Intercept)",
+    p.2 = p_EVK_sisä_koettu,
+    p.3 = p_EVK_ulko_koettu
+  ) |>
+  mutate(
+    Vakio = exp(Vakio)/(1+exp(Vakio)), # Todennäköisyys
+    Sisäinen = exp(Sisäinen), # Vetosuhde (OR)
+    Ulkoinen = exp(Ulkoinen) # Vetosuhde (OR)
+  ) |>
+  relocate(p.1, .after = Vakio) |>
+  relocate(p.2, .after = Sisäinen) |>
+  relocate(p.3, .after = Ulkoinen) |>
+  select(!c(data, model, summary))
+
+```
+
+Jokainen lisäpiste organisaatiosisäistä kohtelun määrää nostaa vastaajan todennäköisyyttä valita melkein minkä tahansa muutosaikeen. Tehtävänkuvan muutosten toteuttaminen ei ole tilastollisessa yhteydessä kohtelun määrään. Todennäköisyydet nousevat noin 1,1-1,2-kertaisesti jokaisella lisäpisteellä.
+
+Organisaatioulkoinen kohtelu ei ole yhtä selkeässä yhteydessä muutosaikeiden todennäköisyydelle. Mitä enemmän vastaaja oli kohdannut epäasiallista ja väkivaltaista kohtelua organisaation ulkopuolelta, sitä enemmän hän oli harkinnut jotain muutoksista, mutta toteuttamisen ja kohtelun välillä ei nähty tilastollista yhteyttä. Todennäköisyyksien nousut ovat myös organisaatiosisäisen kohtelun yhteyksiä puolet pienempiä, vain noin 1,05-kertaisia.
+
+## Yhteenveto
+
+Jo vuosikymmenten ajan tutkimukset ovat osoittaneet, miten työpaikalla tapahtuva epäasiallinen ja väkivaltainen kohtelu on yhteydessä moniin eri negatiivisiin yksilö- ja organisaatiotason vaikutuksiin. Nollatoleranssi-hanke vahvistaa näitä tuloksia, mutta vaikutuksissa on myös eroja kohtelun tekoympäristön mukaan.
+
+Kyselyn vastanneiden kesken organisaatiosisäinen kohtelu on tilastollisessa yhteydessä kaikkiin vaikutusmuotoihin, mutta organisaatioulkoinen kohtelu on yhteydessä vain fyysisiin vaikutuksiin. Selityksenä voi olla kenttäväkivallan odotukset: jos alan toimijat odottavat väkivallan kokemuksia asiakkailta ja potilailta, he voivat olla enemmän vastustuskykyisiä sen aiheuttamille psyykkisille ja ammatillisille vaikutuksille. Työpaikkasisäistä epäasiallisuutta ja väkivaltaa ei ehkä odoteta samoissa määrin, jolloin vaikutukset ovat myös vakavammat.
+
+Todennäköisesti työuupuneet vastaajat kohtaavat jopa kuusi kertaa enemmän epäasiallisuutta ja väkivaltaa organisaationsa sisällä kuin muut. Todellisuudessa kausaalisuhde on luultavasti toisinpäin, eli mitä enemmän työpaikkaväkivaltaa pelastusalan toimijat kohtaavat, sitä todennäköisemmin he ovat työuupuneita. Työuupumus on vakava terveydellinen tila, jonka korjaaminen voi vaatia jopa kuukausi- tai vuosikausia kuntoutusta.
+
+Jos kohtelua kohtaava vastaaja kuitenkin säilyy työkykyisenä, hänen halunsa pysyä tehtävissään nykyisessä organisaatiossa näyttää laskevan kohtelun myötä. Mitä useammin vastaajat olivat kohdanneet epäasiallista ja väkivaltaista kohtelua työyhteisössään, sitä useammin he myös olivat harkinneet tehtävänmuutoksia tai jopa alalta lähtöä viimeisen vuoden aikana. Huomattavaa on, että yhteys koskee enimmäkseen työyhteisön sisällä tapahtuvaa kohtelua, eikä asiakasväkivaltaa: pelastusalan pitovoima voi heiketä oman työyhteisökulttuurinsa takia.
+
+Epäasiallisen ja väkivaltaisen kohtelun vaikutukset ovat vakavia, ja aiheuttavat niin inhimillistä kärsimystä kuin taloudellisia vahinkoja. Jotta organisaatiot voivat tehokkaasti puuttua työyhteisön ongelmiin, tarvitaan kuitenkin tietoa ongelmien olemassaolosta. Seuraavassa blogissa käsittelemme epäasiallisen ja väkivaltaisen kohtelun ilmoituskanavien käyttöä ja niihin kohdistuvia asenteita.
+
+*Nollatoleranssi-hanke jatkuu helmikuun 2025 loppuun asti. Hankkeen tuloksia työstetään pelastusalaa osallistavissa asiantuntijatyöpajoissa, ja tuloksista vedostetaan toimenpide- ja jatkotutkimusehdotukset. Lue lisää hankkeesta osoitteessa <https://www.pelastusopisto.fi/nollatoleranssi>. Hankkeesta viestitään sosiaalisessa mediassa aihetunnisteella #PTNollatoleranssi.*
+
+

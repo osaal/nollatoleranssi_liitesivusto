@@ -28,7 +28,7 @@ library(tidyverse) # Tidyverse viimeiseksi, sillä HH:ssa useat dplyrin funktiot
 #| label: kohtelu_validointi-01-avaaminen
 #| code-summary: "Datan avaaminen"
 
-data <- read.csv2("output/anonymisoitudata.csv", tryLogical = FALSE)
+data <- read.csv2("output/valmisdata.csv", tryLogical = FALSE)
 
 ```
 
@@ -145,7 +145,7 @@ ammattiasema <- data |>
 
 Operatiivista toimintaa suorittavasta pelastuslaitosten ja ensihoidon henkilöstöstä (n = `r ophenk_n`[^kohtelu_validointi-1]) `r round(ammattiasema[1, "Pros"], digits = 1)` prosenttia (n = `r ammattiasema[1, "Freq"]`) olivat pelastajia, `r round(ammattiasema[2, "Pros"], digits = 1)` prosenttia (n = `r ammattiasema[2, "Freq"]`) olivat ensihoitajia ja `r round(ammattiasema[3, "Pros"], digits = 1)` prosenttia (n = `r ammattiasema[3, "Freq"]`) ilmoittivat muun ammattiryhmän.
 
-[^kohtelu_validointi-1]: Operatiiviseen henkilöstöön kuuluvat sekä suorittava henkilöstö (pelastajat, ensihoitajat) että alin johto (ryhmänjohtajat). Alin johto ei kuitenkaan kyselyvirheen takia vastanneet kysymykseen suorittavalle henkilöstölle. Tämän takia määrät ja prosenttiosuudet eivät vastaa todellisia. Prosenttiosuudet on laskettu käsin jakamalla kunkin ryhmän osiot oikealla otoskoolla (n = 428 operatiivista henkilöstöä - 70 alinta johtoa = 358 suorittavaa henkilöstöä).
+[^kohtelu_validointi-1]: Operatiiviseen henkilöstöön kuuluvat sekä suorittava henkilöstö (pelastajat, ensihoitajat) että alin johto (ryhmänjohtajat). Alin johto ei kuitenkaan kyselyvirheen takia vastanneet kysymykseen suorittavalle henkilöstölle. Tämän takia määrät ja prosenttiosuudet eivät vastaa todellisia. Prosenttiosuudet on laskettu käsin jakamalla kunkin ryhmän osiot oikealla otoskoolla (n = 428 operatiivista henkilöstöä - 70 alinta johtoa = 358 suorittavaa henkilöstöä **KORJAA**).
 
 Kohderyhmätaulukon mukaisesti pelastajien osuus pelastuslaitosten henkilöstöstä on noin 49,4 prosenttia, ensihoitajien osuus noin 42,0 prosenttia ja muun henkilöstön osuus noin 8,6 prosenttia. Otoksessamme ensihoitajat ovat lievästi yliedustettuna ja pelastajat vastaavasti aliedustettuna, muun henkilöstön osuus vastaa käytännössä populaation osuutta.
 
@@ -483,7 +483,7 @@ knitr::kable(vrt.kohderyhmat)
 
 ```
 
-[Taulukon -@tbl-kohtelu_validointi-16-khii-kohderyhmat] mukaan useimpien muuttujien puuttuvien arvojen määrät eivät eroa kohderyhmien välillä merkitsevästi. Poikkeuksena ovat muuttujat `k12_1`, `k13_7` ja `k4_7`, eli organisaatioulkoisen omakohtaisesti koetun verbaalisen väkivallan, organisaatioulkoisen kollegahavaitun syrjinnän sekä organisaatiosisäisen kollegahavaitun syrjinnän muuttujat. On kuitenkin huomattava, että määrät ovat hyvin pieniä, ja käytännössä jokainen testi sisältää odotettuja soluja, joiden koot ovat alle 5 havaintoa, jolloin khii neliö -testi ei ole luotettava riippuvuustesti. Poikkeuksena voidaan nähdä organisaatioulkoisen kollegahavaitun syrjinnän muuttuja, jossa on moninkertaisesti enemmän puuttuvia arvoja pelastuslaitosten ja ensihoidon kohderyhmässä kuin muissa.
+[Taulukon -@tbl-kohtelu_validointi-16-khii-kohderyhmat] mukaan useimpien muuttujien puuttuvien arvojen määrät eivät eroa kohderyhmien välillä merkitsevästi. Poikkeuksena ovat muuttujat `k12_1` ja `k4_7`, eli organisaatioulkoisen omakohtaisesti koetun verbaalisen väkivallan sekä organisaatiosisäisen kollegahavaitun syrjinnän muuttujat. On kuitenkin huomattava, että määrät ovat hyvin pieniä, ja käytännössä jokainen testi sisältää odotettuja soluja, joiden koot ovat alle 5 havaintoa, jolloin khii neliö -testi ei ole luotettava riippuvuustesti.
 
 ```{r}
 #| label: tbl-kohtelu_validointi-17-khii-ammattiryhma
@@ -622,7 +622,7 @@ knitr::kable(vrt.yhteydenotto)
 
 ```
 
-[Taulukon -@tbl-kohtelu_validointi-19-khii-yhteydenotto] mukaan mikään muuttuja ei eroa merkitsevästi puuttuvien vastausten määrässä yhteydenottomenetelmien välillä. Poikkeuksena voi olla muuttuja `k4_7`, eli organisaatiosisäisesti kollegahavaittu syrjintä, joka mahdollisesti eroaa menetelmien välillä. P-arvo on kuitenkin yli vakiintuneen raja-arvon (p = .078), ja datan vähyys heikentää testin luotettavuutta.
+[Taulukon -@tbl-kohtelu_validointi-19-khii-yhteydenotto] mukaan mikään muuttuja ei eroa merkitsevästi puuttuvien vastausten määrässä yhteydenottomenetelmien välillä.
 
 ## Osatutkimus 1: Mittariston faktorirakenne {#sec-kohtelu_validointi-osatutkimus1}
 
@@ -713,13 +713,13 @@ Bartlettin testi on merkitsevä ($\chi^2 = `r tulokset.efa.sopivuus$bart$chisq`,
 
 Korrelaatiomatriisin determinantti on `r tulokset.efa.sopivuus$determinantti`.
 
-Kolmella muutujalla on VIF-suureet yli 10: `k12_1`, `k13_1` ja `k13_3`. Näiden lisäksi muuttujat `k12_3` ja `k13_6` ovat yli 9, eli lähellä raja-arvoa.
+Kolmella muutujalla on VIF-suureet yli 10: `k12_1`, `k13_1` ja `k13_6`. Näiden lisäksi muuttuja `k12_3` on yli 9, eli lähellä raja-arvoa.
 
 Hullin menetelmän tulokset riippuvat käytetystä sopivuusindeksistä. CAF-indeksi ehdottaa `r tulokset.efa.sopivuus$hull$n_fac_CAF` faktoria, CFI ehdottaa `r tulokset.efa.sopivuus$hull$n_fac_CFI` faktoria ja RMSEA ehdottaa `r tulokset.efa.sopivuus$hull$n_fac_RMSEA` faktoria.
 
 Tulokset osoittavat kolmea suurempaa ongelmaa: Mahalanobiksen etäisyyden mukaan noin kolmannes vastaajista pitäisi poistaa mallista, Hullin menetelmän tulokset ovat osittain ristiriitaisia ja ehdottavat joko yhtä tai kahta faktoria, ja korrelaatiomatriisin determinantti on koko aineistolle liian pieni ja osoittaa multikollineariteettia.
 
-Jos vertaamme determinanttiongelmaa aikaisemmin tarkistettuun korrelaatiomatriisiin (@fig-kohtelu_validointi-08-kohtelukorrelaatio), ongelmallisia korrelaatioita (r \> 0.8) esiintyy vain organisaatioulkoisten muuttujien ryhmässä. Suurimpana ongelmana on omakohtaisesti koettujen ja kollegan kautta havaittujen kohtelujen korrelaatioissa, jossa suurin korrelaatio on jopa r = 0.87.
+Jos vertaamme determinanttiongelmaa aikaisemmin tarkistettuun korrelaatiomatriisiin (@fig-kohtelu_validointi-08-kohtelukorrelaatio), ongelmallisia korrelaatioita (r \> 0.8) esiintyy vain organisaatioulkoisten muuttujien ryhmässä. Suurimpana ongelmana on omakohtaisesti koettujen ja kollegan kautta havaittujen kohtelujen korrelaatioissa, jossa suurin korrelaatio on jopa r = 0.84.
 
 Tarkistimme, jos ongelma johtuu ensisijaisesti organisaatioulkoisten muuttujien tekokontekstiryhmien välisistä korrelaatioista poistamalla kollegan kautta havaitut muuttujat analyysista.
 
@@ -915,13 +915,13 @@ yhteenveto.efa.2B
 
 Seliteasteet yhden faktorin malleilla ovat noin kolmannes kaikesta varianssista, kahden faktorin malleilla noin 50 prosenttia.
 
-Kahden faktorin malleissa faktorien välinen korrelaatio on noin 0,3 (merkitsevä 1 % alfatasolla).
+Kahden faktorin malleissa faktorien välinen korrelaatio on noin 0,37-0,38 (merkitsevä 1 % alfatasolla).
 
-Useimmissa malleissa muuttuja `k3_5` (organisaatiosisäisesti koettu seksuaalinen häirintä tai väkivalta) ei tahdo asettua faktoreille kunnolla. Malli 1B:ssä muuttuja lataa merkitsevästi molemmille faktoreille, mutta latauskoko on alle 0,3 molemmissa tapauksissa. Malli 2A:ssa muuttuja on ainoa organisaatiosisäisten muuttujien ryhmästä, jonka lataus yhden faktorin mallissa on yli 0,3 (lataus = 0,411, merkitsevä 1 % alfa-tasolla). Malli 2B:ssä muuttuja samoin kuin Malli 1B:ssä, eli merkitsevästi mutta alle 0,3 tason molemmille faktoreille.
+Muuttuja `k3_5` (organisaatiosisäisesti koettu seksuaalinen häirintä tai väkivalta) ei tahdo asettua kahden faktorin malleissa selkeästi. Malli 1B:ssä muuttuja lataa merkitsevästi molemmille faktoreille, mutta latauskoko on alle 0,3 molemmissa tapauksissa. Malli 2B:ssä muuttuja lataa molemmille faktoreille, mutta vain ensimmäiselle faktorille yli 0,3.
 
-Kokonaisuudessaan parhaiten sopiva malli on Malli 2B (14 omakohtaisen kokemuksen muuttujaa, kaksi faktoria). Teoreettisista syistä näemme, että muuttujat `k3_4` ja `k3_5` (organisaatiosisäisesti koettu fyysinen väkivalta sekä seksuaalinen häirintä tai väkivalta) asettuvat ensimmäiseen faktoriin, vaikka lataukset ovat matalampia. Heikot lataukset voivat osittain johtua pienestä varianssista, sillä varsinkin fyysisen väkivallan kohdalla kokemuksia on aineistossa erittäin vähän.
+Kokonaisuudessaan parhaiten sopiva malli on Malli 2B (14 omakohtaisen kokemuksen muuttujaa, kaksi faktoria). Teoreettisista syistä näemme, että muuttuja `k3_5` (organisaatiosisäisesti koettu seksuaalinen häirintä tai väkivalta) asettuu ensimmäiseen faktoriin, vaikka lataus ovat epäselvä. Heikot lataukset voivat osittain johtua pienestä varianssista. Muuttuja `k12_7` tulisi myös asettua faktorille `f2`, vaikka sen lataus on kuta kuinkin sama molemmille faktoreilla.
 
-On kuitenkin huomattava, että sopivuusindeksit eivät ole varsin hyviä. Mallin CFI-suure on 0.906 (alle yleisen raja-arvon 0.95) ja RMSEA on 0.108 (yli yleisen raja-arvon 0.05).
+On kuitenkin huomattava, että sopivuusindeksit eivät ole varsin hyviä. Mallin CFI-suure on 0,887 (alle yleisen raja-arvon 0,95) ja RMSEA on 0,119 (yli yleisen raja-arvon 0,05).
 
 Jatkamme toiseen osatutkimukseen seuraavalla mallilla:
 
@@ -930,7 +930,7 @@ Jatkamme toiseen osatutkimukseen seuraavalla mallilla:
 3.  Muuttujat lataavat kahdelle faktorille: Organisaatiosisäiset kokemukset ja organisaatioulkoiset kokemukset.
 4.  Muuttujat eivät ristilataa faktoreiden välillä ollenkaan.
 5.  Latausten kokoja ei ennalta määritellä.
-6.  Faktorit korreloivat arvolla r = 0,3.
+6.  Faktorit korreloivat toistensa kanssa vapaasti.
 7.  Muuttujien välisiä residuaalikorrelaatioita rajataan nollaan.
 8.  Molempien faktorien mittatasot asetetaan ensimmäisen muuttujan mukaan (verbaalinen väkivalta).
 
@@ -955,8 +955,7 @@ summary(
   fit.measures = TRUE,
   ci = TRUE,
   efa = TRUE,
-  cutoff = 0.4,
-  dot.cutoff = 0
+  cutoff = 0
 )
 
 ```
@@ -965,11 +964,40 @@ Robustisuuden vuoksi kokeilimme jättää pois Mahalanobiksen etäisyystestin ri
 
 Mallin sopivuus on käytännössä sama. AIC- ja BIC-arvot tippuvat reilusti, mutta CFI- ja RMSEA-indeksit pysyvät samoissa tasoissa.
 
-Faktorilataukset pysyvät kuta kuinkin samoilla tasoilla. Suurin muutos on muuttujan `k3_7` faktorilatauksen pienentyminen 0,061 pisteellä. Faktorilla `f2` kaikkien muuttujien lataukset laskevat noin 0,02-0,03 pisteellä, faktorilla `f1` useimmat muuttujat laskevat hieman enemmän, mutta muuttuja `k3_3` nousee 0,042 pistettä.
+Faktorilataukset pysyvät kuta kuinkin samoilla tasoilla. Faktorilla `f1` muutokset vaihtelevat välillä $-0.049, 0.125$. Faktorilla `f2` muutokset vaihtelevat välillä $-0.059, 0.040$. Keskivertomuutokset ovat kuitenkin hyvin pieniä, $< .001 \text{( F1)}, -0.017 \text{ (F2)}$. Muuttujien latausten merkitsevyys pysyy samana.
 
-Muuttuja `k3_1` lataa nyt myös merkitsevästi faktorille `f2`, mitä se ei tehnyt aikaisemmassa mallissa. Muutoin faktorilatausten merkitsevyydet pysyvät samoina kuin mallissa 2B.
+Varianssiseliteaste laskee lievästi (aikaisempi $50.7\%$, nykyinen $46.5\%$). Suurin muutos on kuitenkin faktorikorrelaatioissa: aikaisempi korrelaatio oli $r = .369$ (merkitsevä 1 % alfatasolla), mutta vastaajien poisjättämisen myötä korrelaatio laskee tasolle $r = .175$ (ei merkitsevä).
 
-Varianssiseliteaste laskee lievästi (aikaisempi 51,4 %, nykyinen 47,9 %). Suurin muutos on kuitenkin faktorikorrelaatioissa: aikaisempi korrelaatio oli r = ,295 (merkitsevä 1 % alfatasolla), mutta vastaajien poisjättämisen myötä korrelaatio laskee tasolle r = ,1 (ei merkitsevä).
+## Eksploratiivinen analyysi: Syrjinnän poisjättö malli 2B:stä
+
+Ulkoinen syrjintämuuttuja `k12_7` osoitti ongelmallisia latauksia molemmilla faktoreilla. Kokeilimme jättää muuttujan, sekä sen organisaatiosisäisen vastaavan parin `k3_7`, pois mallista.
+
+```{r}
+efa.malli.3 <- data.efa2 |>
+  filter(mahalanobis.p > 0.001) |>
+  select(k3_1:k3_6, k12_1:k12_6) |>
+  efa(
+    nfactors = 2,
+    rotation = "oblimin",
+    estimator = "ML",
+    missing = "fiml"
+  )
+
+summary(
+  efa.malli.3,
+  fit.measures = TRUE,
+  ci = TRUE,
+  efa = TRUE,
+  cutoff = 0,
+  dot.cutoff = 0
+)
+```
+
+Malli sopii paremmin, mutta ei vielä hyväksyttävästi ($\text{RMSEA} = .120, \text{CFI} = .893, \text{AIC} = 3462.5$).
+
+Faktorin `f1` latausmuutokset vaihtelevat välillä $-.107, .147$. Faktorin `f2` latausmuutokset vaihtelevat välillä $-.070, .006$. Keskiarvomuutokset ovat kuitenkin matalia: $.022 \text{ (F1)}, -.026 \text{ (F2)}$. Toisin sanoen, muutokset vaihtelevat enemmän sisäisellä kuin ulkoisella faktorilla. Muuttujien latausten merkitsevyys ei muutu, eli muuttuja `k3_5` lataa vieläkin merkitsevästi molemmille muuttujille.
+
+Kumulatiivinen varianssiaste laskee lievästi (aikaisempi $50.7\%$, nykyinen $48.4\%$). Faktorikorrelaatio laskee huomattavasti: aikaisemmin $r = .369$ (merkitsevä 1 % alfatasolla), nykyinen $r = .185$ (ei merkitsevä).
 
 ## Osatutkimus 2: Faktorirakenteen validiteetti ja invarianssi {#sec-kohtelu_validointi-osatutkimus2}
 
@@ -1027,20 +1055,20 @@ Dynaamisten raja-arvojen sijaan käytimme yleisesti hyväksyttyjä raja-arvoja: 
 
 Mallin robustit sopivuusindeksit ovat:
 
--   $\chi^2 = 250.7, \text{df} = 76, p < .001$
--   $\text{RMSEA} = .086 [90\% \text{ CI } .074, .099]$
--   $\text{CFI} = .917$
--   $\text{SRMR} = .076$
+-   $\chi^2 = 244.4, \text{df} = 76, p < .001$
+-   $\text{RMSEA} = .088 [90\% \text{ CI } .074, .102]$
+-   $\text{CFI} = .913$
+-   $\text{SRMR} = .073$
 
 RMSEA- ja CFI-indeksit osoittavat, ettei malli sovi aineistoon. SRMR-indeksi täyttää hyväksyttävän sopivuuden rajan.
 
 Kaikki mallissa määritetyt faktorilataukset ovat merkitseviä ($p < .001$).
 
-Täysin standardisoitujen latauksien mukaan faktorilla `f1` pienin lataus on $b = .055 [.018, .091], \text{SD} = .019, \beta = .285$ (`k3_4`) ja suurin lataus on $b = 1.040 [.849, 1.232], \text{SD} = .098, \beta = .850$ (`k3_6`).
+Täysin standardisoitujen latauksien mukaan faktorilla `f1` pienin lataus on $b = .039 [.010, .069], \text{SD} = .015, \beta = .258$ (`k3_4`) ja suurin lataus on $b = 1.036 [.875, 1.197], \text{SD} = .095, \beta = .878$ (`k3_6`).
 
-Samalla tavalla faktorilla `f2` pienin lataus on $b = .308 [.215, .402], \text{SD} = .048, \beta = .507$ (`k12_7`) ja suurin lataus on $b = .900 [\text{n/a}], \text{SD} = \text{n/a}, \beta = .924$ (`k12_1`).
+Samalla tavalla faktorilla `f2` pienin lataus on $b = .274 [.186, .362], \text{SD} = .045, \beta = .505$ (`k12_7`) ja suurin lataus on $b = .900 [\text{n/a}], \text{SD} = \text{n/a}, \beta = .921$ (`k12_1`).
 
-Faktorien välinen estimoitu kovarianssi on $r = .262 [.129, .395], \text{SD} = .086$.
+Faktorien välinen estimoitu kovarianssi on $r = .246 [.115, .376], \text{SD} = .066$.
 
 ### Modifikaatioindeksit
 
@@ -1064,7 +1092,7 @@ modificationIndices(malli.1) |>
 
 Tarkistimme ensin modifikaatioindeksit kaikille faktorilatausrajauksille. Laskimme Holm-korjatut p-arvot jokaiselle modifikaatioindeksille ja tarkastimme ne indeksit, jotka eroavat merkitsevästi nollasta.
 
-Neljä latausta aiheuttaisivat khii neliö -suureen merkitsevän laskun: muuttujien `k12_3`, `k12_4` ja `k12_7` vapauttaminen faktorille `f1`, sekä muuttujan `k3_5` vapauttaminen faktorile `f2`.
+Kuusi latausta aiheuttaisivat khii neliö -suureen merkitsevän laskun: muuttujien `k12_3`, `k12_4`, `k12_6` ja `k12_7` vapauttaminen faktorille `f1`, sekä muuttujien `k3_5` ja `k3_7` vapauttaminen faktorille `f2`.
 
 ```{r}
 #| label: kohtelu_validointi-33-modifikaatioindeksit2
@@ -1084,7 +1112,7 @@ modificationIndices(malli.1) |>
 
 ```
 
-Jopa 40 virhekorrelaatiota (44 prosenttia kaikista 91 virhekorrelaatiosta) aiheuttaisivat merkitsevän muutoksen globaalissa khii neliö -indeksissä.
+Jopa 37 virhekorrelaatiota (41 prosenttia kaikista 91 virhekorrelaatiosta) aiheuttaisivat merkitsevän muutoksen globaalissa khii neliö -indeksissä.
 
 Virhekorrelaatioiden suuri määrä johti meidät ajattelemaan, että faktorit eivät edusta aineistoa varsin hyvin. Suurimmat modifikaatioindeksit löytyvät usein samojen faktorien muuttujien väliltä (esim. `k12_4 ~~ k12_5`), mikä osoittaisi, ettei faktori onnistu kaappaamaan kaikkea muuttujien yhteiskorrelaatiota. Samanaikaisesti usea virhekorrelaatio kuitenkin myös esiintyy faktoreiden välillä (esim. `k3_1 ~~ k12_6`), eli myöskään faktorien välinen korrelaatio ei onnistu kaappaamaan muuttujien välistä korrelaatiota hyvin.
 
@@ -1129,20 +1157,20 @@ Bifaktorimallin asettaminen tavallisin menetelmin aiheuttaa Heywood-tapauksen (m
 
 Mallin robustit globaalit sopivuusindeksit ovat:
 
--   $\chi^2 = 159.3, \text{df} = 64, p < .001$
--   $\text{RMSEA} = .067 [90\% \text{ CI } .053, .082]$
--   $\text{CFI} = .957$
--   $\text{SRMR} = .050$
+-   $\chi^2 = 202.9, \text{df} = 64, p < .001$
+-   $\text{RMSEA} = .083 [90\% \text{ CI } .068, .097]$
+-   $\text{CFI} = .935$
+-   $\text{SRMR} = .055$
 
-Khii neliö- ja RMSEA-indeksit osoittavat mallin epäsopivuutta aineistoon. CFI- ja SRMR-indeksit osoittavat mallin sopivan aineistoon.
+Khii neliö-, RMSEA- ja CFI-indeksit osoittavat mallin epäsopivuutta aineistoon. SRMR-indeksi osoittaa mallin sopivan aineistoon.
 
-Mallisa faktorin `f2` kaikki muuttujat ovat merkitseviä ($p < .001$). Faktorilla `f1` kaikki muuttujat paitsi `k3_2` ja `k3_7` ovat merkitseviä ($p < .036$). Yleisfaktorilla kaikki muuttujat paitsi `k12_4` ovat merkitseviä ($p < .028$).
+Mallissa faktorin `f2` kaikki muuttujat ovat merkitseviä ($p < .001$). Faktorilla `f1` vain muuttuja `k3_5` on merkitsevä ($p = .020$). Yleisfaktorilla kaikki muuttujat paitsi `k12_4` ja `k12_5` ovat merkitseviä ($p < .028$).
 
-Täysin standardisoitujen latauksien mukaan faktorilla `f1` pienin lataus on $b = .064 [-.018, .146], \text{SD} = .042, \beta = .126$ (`k3_2`) ja suurin lataus on $b = 1 [\text{n/a}], \text{SD} = \text{n/a}, \beta = .724$ (`k3_1`).
+Täysin standardisoitujen latauksien mukaan faktorilla `f1` pienin lataus on $b = -.086 [-.701, .529], \text{SD} = .314, \beta = -.053$ (`k3_7`) ja suurin lataus on $b = 1 [\text{n/a}], \text{SD} = \text{n/a}, \beta = .676$ (`k3_1`).
 
-Samalla tavalla faktorilla `f2` pienin lataus on $b = .262 [.172, .352], \text{SD} = .046, \beta = .372$ (`k12_7`) ja suurin lataus on $b = 1 [\text{n/a}], \text{SD} = \text{n/a}, \beta = .889$ (`k12_1`).
+Samalla tavalla faktorilla `f2` pienin lataus on $b = .256 [.164, .348], \text{SD} = .052, \beta = .411$ (`k12_7`) ja suurin lataus on $b = 1 [\text{n/a}], \text{SD} = \text{n/a}, \beta = .893$ (`k12_1`).
 
-Yleisellä faktorilla `gen` pienin lataus on $b = .043 [-.018, .103], \text{SD} = .031, \beta = .049$ (`k12_4`) ja suurin lataus on $b = 1.582 [1.133, 2.032], \text{SD} = .229, \beta = .889$ (`k3_7`).
+Yleisellä faktorilla `gen` pienin lataus on $b = .037 [-.022, .096], \text{SD} = .030, \beta = .047$ (`k12_4`) ja suurin lataus on $b = 1.289 [.655, 1.923], \text{SD} = .324, \beta = .863$ (`k3_7`).
 
 ### Mallien vertailu
 
@@ -1183,7 +1211,7 @@ modificationIndices(malli.2) |>
 
 ```
 
-Neljä latausta aiheuttaisivat khii neliö -suureen merkitsevän laskun: muuttujien `k3_5` ja `k3_7` vapauttaminen faktorille `f2`, sekä muuttujien `k12_1` ja `k12_6` vapauttaminen faktorille `f1`.
+Neljä latausta aiheuttaisivat khii neliö -suureen merkitsevän laskun: muuttujien `k3_5`, `k3_6` ja `k3_7` vapauttaminen faktorille `f2`, sekä muuttujan `k12_1` vapauttaminen faktorille `f1`.
 
 Verrattuna ensimmäiseen malliin, muuttuja `k3_5` aiheuttaa vieläkin ison muutoksen, eli yleisfaktorin lisääminen ei ole korjannut muutostarvetta. Muuttujat `k3_7`, `k12_1` ja `k12_6` ovat uusia muutoksen tarpeen olevia muuttujia.
 
@@ -1205,7 +1233,7 @@ modificationIndices(malli.2) |>
 
 ```
 
-Yhteensä 32 virhekorrelaatiota (35 prosenttia kaikista 91 virhekorrelaatiosta) aiheuttaisivat merkitsevän muutoksen globaalissa khii neliö -indeksissä. Aikaisemmassa mallissa oli 40 merkitsevää virhekorrelaatiota, joten määrä on lievästi vähentynyt.
+Yhteensä 35 virhekorrelaatiota (38 prosenttia kaikista 91 virhekorrelaatiosta) aiheuttaisivat merkitsevän muutoksen globaalissa khii neliö -indeksissä. Aikaisemmassa mallissa oli 37 merkitsevää virhekorrelaatiota, joten määrä on lievästi vähentynyt.
 
 Useat suurimmista modifikaatioindekseistä ovat muotokohtaisten muuttujaparien välillä (esim. `k3_5 ~~ k12_5`). Kuitenkin mallissa esiintyy myös niin faktoreiden välisiä kuin sisäisiä merkitseviä virhekorrelaatioiden modifikaatioindeksejä.
 
@@ -1234,9 +1262,9 @@ data.cfa |>
 
 ```
 
-Organisaatiosisäiset muuttujat korreloivat useimmiten merkitsevästi työuupumusmittareiden kanssa, paitsi mittari `k3_4`, joka ei korreloi ollenkaan työuupumuksen kanssa. Muuttuja `k3_2` ei korreloi kolmannen työuupumusmittarin kanssa, ja muuttuja `k3_5` ei korreloi neljännen työuupumusmittarin kanssa.
+Organisaatiosisäiset muuttujat korreloivat useimmiten merkitsevästi työuupumusmittareiden kanssa, paitsi mittari `k3_4`, joka ei korreloi ollenkaan työuupumuksen kanssa. Muuttuja `k3_5` ei korreloi neljännen työuupumusmittarin kanssa.
 
-Organisaatioulkoiset muuttujat korreloivat yleensä vain ensimmäisen työuupumusmittarin kanssa, ja muut korrelaatiot ovat yleensä ei-merkitsevä. Muuttujat `k12_6` ja `k12_7` korreloivat myös toisen ja kolmannen työuupumusmittarin kanssa, ja muuttuja `k12_2` toisen työuupumusmittarin kanssa.
+Organisaatioulkoiset muuttujat korreloivat yleensä vain ensimmäisen työuupumusmittarin kanssa, ja muut korrelaatiot ovat yleensä ei-merkitsevä. Muuttujat `k12_6` ja `k12_7` korreloivat myös toisen ja kolmannen työuupumusmittarin kanssa, ja muuttuja `k12_2` toisen työuupumusmittarin kanssa. Muuttuja `k12_4` ei korreloi minkään työuupumusmittarin kanssa merkitsevästi.
 
 Korrelaatiot eivät ole liian suuria, eli mittarit näyttävät mittaavan eri asioita.
 
@@ -1273,9 +1301,9 @@ summary(malli.1.ulkval, fit.measures = TRUE, standardized = TRUE, ci = TRUE)
 
 ```
 
-Malli ei sovi hyväksyttävästi aineistoon ($\text{RMSEA} = .053, \text{CFI} = .900, \text{SRMR} = .076$).
+Malli ei sovi hyväksyttävästi aineistoon ($\text{RMSEA} = .072 [90\% \text{ CI } .063, .081], \text{CFI} = .914, \text{SRMR} = .073$).
 
-Työuupumuksen latentti muuttuja korreloi organisaatiosisäisen epäasiallisen ja väkivaltaisen kohtelun faktorin kanssa tasolla $r = 0,482$. Organisaatioulkoisen kohtelun faktorin kanssa korrelaatio on pienempi, $r = 0,208$.
+Työuupumuksen latentti muuttuja korreloi organisaatiosisäisen epäasiallisen ja väkivaltaisen kohtelun faktorin kanssa tasolla $r = 0,569$. Organisaatioulkoisen kohtelun faktorin kanssa korrelaatio on pienempi, $r = 0,202$. Molemmat korrelaatiot ovat merkitseviä.
 
 #### Malli 2
 
@@ -1308,9 +1336,10 @@ summary(malli.2.ulkval, fit.measures = TRUE, standardized = TRUE, ci = TRUE)
 
 ```
 
-Malli sopii rajallisesti hyväksyttävästi aineistoon ($\text{RMSEA} = .049 [90\% \text{ CI } .044, .054], \text{CFI} = .924, \text{SRMR} = .055$).
+Malli ei sovi hyväksyttävästi aineistoon ($\text{RMSEA} = .072 [90\% \text{ CI } .066, .078], \text{CFI} = .834, \text{SRMR} = .058$).
 
-Työuupumuksen latentti muuttuja korreloi merkitsevästi vain yleismuuttujan kanssa ($r = .502, p < .001$). Korrelaatiot epäasiallisen ja väkivaltaisen kohtelun kanssa ovat ei-merkitseviä sekä organisaatiosisäisellä ($r = -.010, = .933$) että organisaatioulkoisella ($r = .075, p = .286$) faktorilla.
+Työuupumuksen latentti muuttuja ei korreloi merkitsevästi minkään latentin muuttujan kanssa. Korrelaatio organisaatiosisäisen kohtelun kanssa on pieni ($r = .130, p = .824$), kuten myös ulkoisen kohtelun kanssa ($r = .072, p = .914$). Yleisfaktorin kanssa korrelaatio on suuri mutta ei-merkitsevä ($r = .545, p = .148$).
+
 :::
 
 ### Mittausinvarianssi
@@ -1512,15 +1541,15 @@ summary(vrt.M1.ammattiasema)
 
 ```
 
-Rakenneinvariantti malli sopivat suurin piirtein yhtä heikosti kuin yleismalli. Globaalit sopivuusindeksit eivät täytä raja-arvoja ($\text{RMSEA} = .068, \text{CFI} = .940, \text{SRMR} = .082)$.
+Rakenneinvariantti malli sopivat suurin piirtein yhtä heikosti kuin yleismalli. Globaalit sopivuusindeksit eivät täytä raja-arvoja ($\text{RMSEA} = .120, \text{CFI} = .825, \text{SRMR} = .093)$.
 
-Heikon invarianssin malli sopii merkitsevästi huonommin kuin rakenneinvariantti malli ($p = .003$). CFI-mitan muutos on $\Delta\text{CFI} = -0.021$, mikä on juuri hyväksyttävän CFI-muutoksen rajalla (\<= 0.02). AIC- ja BIC-indeksit nousevat molemmat, osoittaen huonompaa sopivuutta.
+Heikon invarianssin malli sopii samoin kuin kuin rakenneinvariantti malli ($p = .240$). CFI-mitan muutos on $\Delta\text{CFI} = -0.011$, mikä on hyväksyttävä (\<= 0.02). AIC-indeksi nousee hieman, BIC vastaavasti laskee erittäin vähän. RMSEA-indeksiin ei tule juurikaan muutosta, mutta SRMR nousee jonkin verran.
 
-Vahvan invarianssin malli sopii samoin kuin heikon invarianssin malli ($p = .129$). CFI-mitan muutos on $\Delta\text{CFI} = -0.007$, mikä hyväksyttävän muutoksen rajan sisällä. AIC nousee erittäin vähän ja BIC laskee hieman.
+Vahvan invarianssin malli sopii samoin kuin heikon invarianssin malli ($p = .092$). CFI-mitan muutos on $\Delta\text{CFI} = -0.007¨6$, eli hyväksyttävä. AIC nousee erittäin vähän ja BIC laskee jonkin verran. RMSEA laskee hieman, mutta SRMR nousee lievästi.
 
-Tiukan invarianssin malli sopii merkitsevästi huonommin kuin heikon invarianssin malli ($p = .0004$). CFI-mitan muutos on $\Delta\text{CFI} = -0.134$, mikä on selkeästi suurempi kuin hyväksyttävä muutos. AIC- ja BIC-arvot nousevat molemmat.
+Tiukan invarianssin malli sopii merkitsevästi huonommin kuin heikon invarianssin malli ($p = .003$). CFI-mitan muutos on $\Delta\text{CFI} = -0.070$, mikä on suurempi kuin hyväksyttävä muutos. AIC- ja BIC-arvot nousevat molemmat. RMSEA ja SRMR nousevat molemmat huomattavasti.
 
-Khii neliö -suureen testit eivät suosi invarianssia. Muutos vahvasta tiukkaan invarianssiin ei kuitenkaan ole merkitsevä. RMSEA-, CFI-, SRMR- sekä AIC-suureet suosivat rakenneinvarianttia mallia, mutta BIC-suure suosii vahvan invarianssin mallia.
+Khii neliö -suureen testit sekä CFI-indeksin enimmäismuutokset suosivat vahvaa invarianssia. CFI-, SRMR- ja AIC-arvot suosivat epäinvarianttia mallia. Khii neliö -suure itsessään suosii heikkoa invarianssia. BIC-arvo suosii vahvaa invarianssia.
 
 ##### Malli 2
 
@@ -1586,15 +1615,16 @@ summary(vrt.M2.ammattiasema)
 
 ```
 
-Rakenneinvariantin mallin globaalit sopivuusindeksit ovat heikot ($\text{RMSEA} = .090, \text{CFI} = .903, \text{SRMR} = .080$).
+Rakenneinvariantin mallin globaalit sopivuusindeksit ovat heikot ($\text{RMSEA} = .118, \text{CFI} = .846, \text{SRMR} = .080$).
 
-Heikko invarianssimalli sopii merkitsevästi rakenneinvarianttia mallia huonommin ($p = .003$). CFI-mitan muutos on suurempi kuin suurin hyväksyttävä muutos ($\Delta\text{CFI} = -.028$). RMSEA-suureen muutos on hyvin pieni ($\Delta\text{RMSEA} = .003$). AIC-suure nousee hieman, kun taas BIC-suure laskee.
+Heikko invarianssimalli sopii merkitsevästi rakenneinvarianttia mallia huonommin ($p = .037$). CFI-mitan muutos on hyväksyttävä ($\Delta\text{CFI} = .015$). RMSEA paranee huomattavasti, mutta SRMR vastaavasti heikkenee huomattavasti. AIC nousee ja BIC laskee.
 
-Vahvan invarianssin malli sopii merkitsevästi heikkoa invarianssimallia huonommin ($p = .031$). CFI-mitan muutos on hyväksyttävän pieni ($\Delta\text{CFI} = -.008$), ja RMSEA ei muutu ollenkaan. AIC nousee lievästi ja BIC laskee vastaavasti, mutta molemmat muutokset ovat heikon invarianssin mallia pienemmät.
+Vahvan invarianssin malli sopii yhtä hyvin kuin heikon invarianssin malli ($p = .991$). CFI-mitan muutos on hyväksyttävän pieni ($\Delta\text{CFI} = .015$), ja sekä RMSEA että SRMR paranee hyvin lievästi. AIC- ja BIC-arvot laskevat molemmat, joskin vain vähän.
 
-Tiukan invarianssin malli sopii merkitsevästi vahvaa invarianssimallia huonommin ($p = 2*10^{-15}$). Heikkeneminen on suurta kaikilla mittareilla, ja sekä AIC- että BIC-arvot nousevat reilusti.
+Tiukan invarianssin malli sopii merkitsevästi vahvaa invarianssimallia huonommin ($p = 1.6*10^{-8}$). CFI-suureen muutos ei ole hyväksyttävissä rajoissa ($\Delta\text{CFI} = -.074$). RMSEA ja SRMR huonontuvat molemmat huomattavasti, ja sekä AIC että BIC noussee suuresti.
 
-Khii neliö -testien mukaan malli ei ole invariantti. RMSEA-, CFI-, SRMR- ja AIC-suureet suosivat rakenneinvarianttia mallia, mutta BIC-suure on pienimmillään vahvan invarianssin mallilla.
+Khii neliö -testien mukaan malli on epäinvariantti. SRMR- ja AIC-suureet suosivat epäinvarianttia mallia. Khii neliö-, RMSEA-, CFI- ja BIC-suureet suosivat vahvaa invarianssia.
+
 :::
 
 #### Kyselyn kieliversio
@@ -1662,15 +1692,15 @@ summary(vrt.M1.kieliversio)
 
 ```
 
-Rakenneinvariantti mallii sopii heikohkosti aineistoon ($\text{RMSEA} = .090, \text{CFI} = .909, \text{SRMR} = .080$).
+Rakenneinvariantti mallii sopii heikohkosti aineistoon ($\text{RMSEA} = .092, \text{CFI} = .906, \text{SRMR} = .076$). Indekseistä SRMR täyttää hyväksyttävän sopivuuden rajan.
 
-Heikon invarianssin malli sopii yhtä hyvin kuin rakenneinvariantti malli ($p = .757$). Muutokset mallin globaaleihin istuuvuusindekseihin ovat hyväksyttävissä rajoissa ($\Delta\text{RMSEA} < 0.001, \Delta\text{CFI} = -0.008, \Delta\text{SRMR} = 0.005$). AIC-arvo nousee lievästi mutta BIC-arvo laskee lievästi.
+Heikon invarianssin malli sopii merkitsevästi huonommin kuin rakenneinvariantti malli ($p = 3.9*10^{-5}$). Muutokset mallin globaaleihin istuuvuusindekseihin ovat hyväksyttävissä rajoissa ($\Delta\text{RMSEA} = 0.005, \Delta\text{CFI} = -0.018, \Delta\text{SRMR} = 0.009$). Sekä AIC- että BIC-arvot nousevat.
 
-Vahvan invarianssin malli istuu merkitsevästi huonommin kuin heikon invarianssin malli ($p = .047$). Muutokset ovat kuitenkin hyväksyttävissä rajoissa globaaleilla istuvuusindekseillä ($\Delta\text{RMSEA} = -0.003, \Delta\text{CFI} = -0.001, \Delta\text{SRMR} = 0$). AIC- ja BIC-arvot laskevat molemmat, BIC reilusti AIC:tä enemmän.
+Vahvan invarianssin malli sopii yhtä hyvin kuin heikon invarianssin malli ($p = .101$). Muutokset ovat hyväksyttävissä rajoissa ($\Delta\text{RMSEA} = -0.003, \Delta\text{CFI} = 0, \Delta\text{SRMR} = 0$). AIC- ja BIC-arvot laskevat molemmat, BIC reilusti AIC:tä enemmän.
 
-Tiukan invarianssin malli istuu merkitsevästi huonommin kuin vahvan invarianssin malli ($p = .0007$). Muutokset ylittävät myös hyväksyttävien muutosten rajat jokseenkin selkeästi ($\Delta\text{RMSEA} = 0.004, \Delta\text{CFI} = -0.018, \Delta\text{SRMR} = 0.038$). Sekä AIC- että BIC-arvot nousevat selkeästi.
+Tiukan invarianssin malli istuu merkitsevästi huonommin kuin vahvan invarianssin malli ($p = .018$). Muutokset ovat kuitenkin osittain hyväksyttävissä rajoissa, paitsi SRMR-indeksin heikentyminen ($\Delta\text{RMSEA} = 0.001, \Delta\text{CFI} = -0.011, \Delta\text{SRMR} = 0.023$). Sekä AIC- että BIC-arvot nousevat selkeästi.
 
-Khii neliö -testit ehdottavat heikkoa invarianssia. CFI-, SRMR- ja AIC-suureet suosivat rakenneinvarianssia, mutta RMSEA- ja BIC-suureet suosivat vahvaa invarianssia.
+Khii neliö -testit suosivat epäinvarianttia mallia. Kaikki indeksit paitsi BIC-arvo suosivat epäinvarianttia mallia. BIC-arvo suosii vahvan invarianssin mallia.
 
 ##### Malli 2
 
@@ -1732,15 +1762,16 @@ summary(vrt.M2.kieliversio)
 
 ```
 
-Rakenneinvariantti malli sopii rajallisesti aineistoon ($\text{RMSEA} = .060, \text{CFI} = .936, \text{SRMR} = .052$).
+Rakenneinvariantti malli sopii heikohkosti aineistoon ($\text{RMSEA} = .070, \text{CFI} = .914, \text{SRMR} = .059$). Vain SRMR-suure täyttää hyväksyttävän rajan.
 
-Heikon invarianssin malli sopii merkitsevästi rakenneinvarianttia mallia huonommin ($p = .002$). CFI-suureen muutos on hyväksyttävissä rajoissa ($\Delta\text{CFI} = -.010$). RMSEA ei muutu juuri ollenkaan. AIC-suure nousee ja BIC-suure vastaavasti laskee.
+Heikon invarianssin malli sopii merkitsevästi rakenneinvarianttia mallia huonommin ($p = 7.9 * 10^{-12}$). CFI-suureen muutos ei ole hyväksyttävä ($\Delta\text{CFI} = -.034$). RMSEA ja SRMR nousevat lievästi. AIC-suure nousee selkeästi, BIC-suure nousee lievästi.
 
-Vahvan invarianssin malli sopii merkitsevästi heikkoa invarianssimallia huonommin ($p = .014$). CFI-suureen muutos on tässäkin hyväksyttävä ($\Delta\text{CFI} = -.005$). RMSEA ei muutu ollenkaan, ja sekä AIC- että BIC-suureet laskevat, joskin AIC-suure vain vajaa kahden pisteen verran.
+Vahvan invarianssin malli sopii yhtä hyvin kuin heikko invarianssimalli ($p = .062$). CFI-suureen muutos on hyväksyttävä ($\Delta\text{CFI} = -.006$). RMSEA laskee erittäin lievästi ja SRMR ei muutu ollenkaan. Sekä AIC- että BIC-arvot laskevat jonkin verran, joskin AIC selkeästi BIC-arvoa vähemmän.
 
-Tiukan invarianssin malli sopii merkitsevästi vahvaa invarianssimallia huonommin ($p = .0003$). CFI-suureen muutos on vieläkin hyväksyttävä ($\Delta\text{CFI} = -.016$). RMSEA nousee lievästi, ja sekä AIC- että BIC-suureet nousevat selkeästi.
+Tiukan invarianssin malli sopii merkitsevästi vahvaa invarianssimallia huonommin ($p = .022$). CFI-suureen muutos on vieläkin hyväksyttävä ($\Delta\text{CFI} = .004$). RMSEA laskee lievästi mutta SRMR nousee jo huomattavasti. Sekä AIC- että BIC-arvot nousevat huomattavasti.
 
-Khii neliö -testi suosii rakenneinvarianttia mallia. CFI-, SRMR- ja AIC-suureet suosivat myös rakenneinvarianssia, mutta RMSEA- ja BIC-suureet suosisivat vahvaa invarianssia.
+Khii neliö -testi suosii epäinvarianttia mallia. Khii neliö-, RMSEA-, CFI- ja AIC-suureet suosivat epäinvarianttia mallia. BIC-suure suosii vahvan invarianssin mallia.
+
 :::
 
 #### Yhteydenottomenetelmät
@@ -1808,15 +1839,15 @@ summary(vrt.M1.yhteydenotto)
 
 ```
 
-Rakenneinvariantti malli ei sovi aineistoon ($\text{RMSEA} = .094, \text{CFI} = .901, \text{SRMR} = .085$).
+Rakenneinvariantti malli sopii huonosti aineistoon ($\text{RMSEA} = .098, \text{CFI} = .894, \text{SRMR} = .087$).
 
-Heikon invarianssin malli ei eroa merkitsevästi rakenneinvariantista mallista ($p = .180$). Muutokset mallin globaaleihin istuvuusindekseihin ovat hyväksyttävissä rajoissa, joskin SRMR-arvon nousu on suurempi kuin muut ($\Delta\text{RMSEA} = -0.002, \Delta\text{CFI} = -0.006, \Delta\text{SRMR} = 0.023$). BIC-arvo tippuu hieman, mutta AIC-arvo nousee vastaavasti.
+Heikon invarianssin malli ei eroa merkitsevästi rakenneinvariantista mallista ($p = .255$). Muutokset mallin globaaleihin istuvuusindekseihin ovat hyväksyttävissä rajoissa, joskin SRMR-arvon nousu on suurempi kuin muut ($\Delta\text{RMSEA} = -0.001, \Delta\text{CFI} = -0.008, \Delta\text{SRMR} = 0.021$). AIC-arvo nousee jonkin verran mutta BIC-arvo laskee hieman.
 
-Vahvan invarianssin malli istuu merkitsevästi heikon invarianssin mallia huonommin ($p = .025$). Muutokset ovat kuitenkin hyväksyttävissä rajoissa ($\Delta\text{RMSEA} = -0.003, \Delta\text{CFI} = -0.003, \Delta\text{SRMR} = 0.001$). AIC- ja BIC-arvot laskevat molemmat, BIC selkesti enemmän.
+Vahvan invarianssin malli istuu yhtä hyvin kuin heikon invarianssin malli ($p = .750$). Muutokset ovat hyväksyttävissä rajoissa ($\Delta\text{RMSEA} = -0.005, \Delta\text{CFI} = 0.001, \Delta\text{SRMR} = 0.001$). AIC- ja BIC-arvot laskevat molemmat, BIC selkesti enemmän.
 
-Tiukan invarianssin malli istuu merkitsevästi huonommin kuin vahvan invarianssin malli ($p = .0000002$). Kaikki indeksiarvot muuttuvat enemmän kuin hyväksyttävän muutoksen rajat sallivat ($\Delta\text{RMSEA} = 0.021, \Delta\text{CFI} = -0.073, \Delta\text{SRMR} = 0.066$). AIC- ja BIC-arvot nousevat reilusti.
+Tiukan invarianssin malli istuu merkitsevästi huonommin kuin vahvan invarianssin malli ($p = .007$). Muutokset eivät ole hyväksyttävissä rajoissa ($\Delta\text{RMSEA} = 0.005, \Delta\text{CFI} = -0.025, \Delta\text{SRMR} = 0.035$). AIC- ja BIC-arvot nousevat reilusti.
 
-Khii neliö -testi suosii heikkoa invarianssia. CFI-, SRMR- ja AIC-suureet suosivat rakenneinvarianssia, mutta RMSEA- ja BIC-suureet suosivat vahvaa invarianssia.
+Khii neliö -testi suosii vahvaa invarianssia. CFI-, SRMR- ja AIC-suureet suosivat epäinvarianttia mallia. Khii neliö -suure suosii heikkoa invarianssia. RMSEA- ja BIC-arvot suosivat vahvan invarianssin mallia.
 
 ##### Malli 2
 
@@ -1878,15 +1909,15 @@ summary(vrt.M2.yhteydenotto)
 
 ```
 
-Rakenneinvariantti malli ei sovi aineistoon ($\text{RMSEA} = .075, \text{CFI} = .901, \text{SRMR} = .063$).
+Rakenneinvariantti malli ei sovi aineistoon ($\text{RMSEA} = .086, \text{CFI} = .865, \text{SRMR} = .069$). SRMR-indeksi täyttää kuitenkin hyväksyttävän mallin rajan.
 
-Heikon invarianssin malli sopii yhtä hyvin kuin rakenneinvariantti malli ($p = .212$). CFI-suureen muutos on hyväksyttävä ja jopa positiivinen ($\Delta\text{CFI} = .012$). RMSEA- ja BIC-suureet paranevat, mutta SRMR- ja AIC-suureet heikkenevät.
+Heikon invarianssin malli sopii yhtä hyvin kuin rakenneinvariantti malli ($p = .564$). CFI-suureen muutos ei ole hyväksyttävissä rajoissa, mutta osoittaa parempaa sopivuutta ($\Delta\text{CFI} = .027$). RMSEA paranee mutta SRMR heikkenee. AIC-arvo nousee ja BIC-arvo laskee.
 
-Vahvan invarianssin malli sopii merkitsevästi heikkoa invarianssia huonommin ($p = .047$). CFI-suureen muutos on hyväksyttävä ($\Delta\text{CFI} = -.006$). RMSEA- ja SRMR-suureet eivät juurikaan muutu. AIC- ja BIC-suureet pienenevät.
+Vahvan invarianssin malli sopii yhtä hyvin kuin heikon invarianssin malli ($p = .777$). CFI-suureen muutos on hyväksyttävä ($\Delta\text{CFI} = -.005$). RMSEA paranee lievästi ja SRMR huononee erittäin lievästi. AIC- ja BIC-arvot laskevat molemmat.
 
-Tiukan invarianssin malli sopii merkitsevästi vahvaa invarianssia huonommin ($p < 2*10^{-16}$). CFI-suureen muutos ei enää ole hyväksyttävissä rajoissa ($\Delta\text{CFI} = -.087$). RMSEA- ja SRMR-suureet heikkenevät molemmat, ja AIC- ja BIC-suureet nousevat reilusti.
+Tiukan invarianssin malli sopii merkitsevästi vahvaa invarianssia huonommin ($p = .015$). CFI-suureen muutos on hyväksyttävä ($\Delta\text{CFI} = -.002$). RMSEA laskee lievästi ja SRMR nousee selkeästi. AIC- ja BIC-arvot nousevat molemmat selkeästi.
 
-Khii neliö -testi suosii heikkoa invarianssia. CFI-suure suosii samoin heikkoa invarianssia. SRMR- ja AIC-suureet suosivat rakenneinvarianssia, mutta RMSEA- ja BIC-suureet suosivat vahvaa invarianssia.
+Khii neliö -testi suosii vahvaa invarianssia. SRMR- ja AIC-arvot suosivat epäinvarianttia mallia. Khii neliö- ja CFI-suureet suosivat heikon invarianssin mallia. BIC suosii vahvan invarianssin mallia. RMSEA suosii tiukan invarianssin mallia.
 
 :::
 

@@ -53,6 +53,7 @@ book:
       chapters:
         - deibseminaari.qmd
         - blogi1.qmd
+        - blogi2.qmd
 
     - lahteet.qmd
   
@@ -131,6 +132,7 @@ book:
       contents:
         - deibseminaari.qmd
         - blogi1.qmd
+        - blogi2.qmd
 
 format:
   html:
