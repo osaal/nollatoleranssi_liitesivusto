@@ -1,7 +1,3 @@
----
-bibliography: references.bib
----
-
 # Kriteeristö {#sec-kriteeristo}
 
 Kirjallisuuskatsauksessa sovellettiin kahta sisäänottokriteeristöä: kaikille osahauille yleiset kriteerit sekä hakukohtaiset kriteerit.

@@ -33,9 +33,9 @@ book:
         - puhdistaminen.qmd
         - anonymisointi.qmd
         - koodikirja.qmd
+        - datatarkistus.qmd
     - part: "Kyselyn tulokset"
       chapters:
-        - datatarkistus.qmd
         - metatiedot.qmd
         - taustamuuttujat.qmd
         - esiintyvyys.qmd
@@ -107,11 +107,11 @@ book:
         - puhdistaminen.qmd
         - anonymisointi.qmd
         - koodikirja.qmd
+        - datatarkistus.qmd
     
     - id: kyselyntulokset
       title: "Kyselyn tulokset"
       contents:
-        - datatarkistus.qmd
         - metatiedot.qmd
         - taustamuuttujat.qmd
         - esiintyvyys.qmd
