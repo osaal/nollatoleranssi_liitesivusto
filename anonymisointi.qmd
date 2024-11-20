@@ -77,36 +77,15 @@ data <- read.csv2("output/puhdistettudata.csv")
 
 ```
 
-## UUSI RATKAISU, vie tekstiin
-
-Järjestykseen muutoksia:
-
--   Tehdään ensin taustamuuttujien kategoriatarkastus yksitellen kuten aikaisemmin. Muutokset tehdään kuten aikaisemmin. (Kohta 1 säilyy)
-
--   Sitten tehdään harvinaisten ilmiöiden kategoriatarkastus yksitellen kuten aikaisemmin. Muutokset tehdään kuten aikaisemmin. (Kohta 2 säilyy)
-
--   Sitten tehdään taustamuuttujien k-anonymisointi kolmen muuttujan yhdistelmissä (ei tehdä kahden muuttujan tarkistusta). (Kohta 3 muuttuu)
-
-    -   Lasketaan tässä k tasoon 4, eli 4-anonymisointi
-
-    -   Muutostarpeita: Yhdistetään organisaatiokuuluvuuksissa järjestöt ja koulutusorganisaatiot, yhdistetään organisaatioasemassa johto ja hallinto sekä asiantuntijat ja opetushenkilöstö kahdeksi kategoriaksi.
-
-    -   Näiden lisäksi muutetaan neljän vastaajan vastauksia:
-
-        -   Vastaaja (asema == 3 & k2 == 1 & k32 == 2) vaihdetaan asema == 1
-
-        -   Vastaajat (asema == 6 & k2 == 3 & k31 == 1) vaihdetaan satunnaisesti k31 == 2 tai 3
-
--   Sitten tehdään harvinaiset ilmiöt kuten aikaisemmin. (Kohta 4 säilyy)
-
 ## Järjestys {#sec-anonymisointi-jarjestys}
 
 1.  Tarkistetaan taustamuuttujien kategoriat harvinaisten vastausten osalta yksitellen, ja yhdistetään kategorioita tarpeen mukaan.
 2.  Tarkistetaan harvinaisten ilmiöiden muuttujien kategoriat harvinaisten vastausten osalta yksitellen, ja yhdistetään tai poistetaan kategorioita/muuttujia tarpeen mukaan.
 3.  Taustamuuttujat 4-anonymisoidaan kolmen muuttujan yhdistelmissä, ja yhdistetään kategorioita tarpeen mukaan[^anonymisointi-1].
-4.  Harvinaiset ilmiöt 5-anonymisoidaan taustamuuttujia vastaan kahden muuttujan yhdistelmissä, ja yhdistetään tai poistetaan kategorioita/muuttujia tarpeen mukaan.
 
 [^anonymisointi-1]: Alkuperäisessä suunnitelmassa tarkoituksena oli 5-anonymisoida muuttujat kahden ja kolmen muuttujan yhdistelmissä. Tarkastaessamme anonymisointia huomasimme kuitenkin, ettei 5-anonymiteettiä voitu toteuttaa ilman suuria, vahingollisia kategoriayhdistämisiä. Tämä olisi vähentänyt datan jatkokäytettävyyttä niin paljon, ettei sitä voitu motivoida. Laskemalla k-arvon neljään voimme suorittaa anonymisoinnin sopivalla määrällä kategoriayhdistelmiä, jotta jatkokäytettävyys säilyy. Jätimme myös pois kahden muuttujan tarkistuksen, sillä kolmen muuttujan tarkistus automaattisesti takaa kahden muuttujan välisen anonymiteetin.
+
+Näiden lisäksi luokittelimme muuttujan `k43` avovastaukset luokkiin aikaisemmin, taataksemme vastaajien anonymiteetin (ks. @sec-valmistelu-avovastaukset).
 
 **Kohta 1: Käsiteltävät taustamuuttujat:**
 
@@ -487,10 +466,6 @@ data <- data |>
   )
 
 ```
-
-## Kohta 4: Harvinaisten ilmiöiden k-anonymisointi taustamuuttujia vastaan {#sec-anonymisointi-kohta4}
-
-**Tässä on ongelmia käytännössä kaikilla muuttujilla. Tämän toteuttaminen johtaisi melkein kaikkien sensitiivisten muuttujien poistamiseen. Konsultoidaan Tietoarkistoa asiasta ennen toteuttamista, ja tehdään väliaikaiset tulokset anonymisoituna käsin (alle 5 ei ilmaista numerona).**
 
 ## Kooste muutoksista {#sec-anonymisointi-kooste}
 

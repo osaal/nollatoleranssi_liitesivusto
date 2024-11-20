@@ -128,7 +128,7 @@ ggplot(data, aes(x = longstring_k30)) +
 
 ```
 
-**Ilmoitusjärjestelmäasennemuuttujilla** tunnistetaan 20 vastaajaa, jotka ovat vastanneet  samat arvot kaikille muuttujille. Näistä vastaajista 14 henkilöä olivat vastanneet "Ei samaa eikä eri mieltä" jokaiselle kysymykselle, 4 vastaajaa valitsivat "Erittäin eri mieltä", ja 2 vastaajaa valitsivat "Eri mieltä". Päätimme merkitä poistettavaksi ne 14 henkilöä, jotka olivat vastanneet neutraalisti jokaiseen väitteeseen, ja jätimme aineistoon mielensä osoittaneet vastaajat.
+**Ilmoitusjärjestelmäasennemuuttujilla** tunnistetaan 20 vastaajaa, jotka ovat vastanneet samat arvot kaikille muuttujille. Näistä vastaajista 14 henkilöä olivat vastanneet "Ei samaa eikä eri mieltä" jokaiselle kysymykselle, 4 vastaajaa valitsivat "Erittäin eri mieltä", ja 2 vastaajaa valitsivat "Eri mieltä". Päätimme merkitä poistettavaksi ne 14 henkilöä, jotka olivat vastanneet neutraalisti jokaiseen väitteeseen, ja jätimme aineistoon mielensä osoittaneet vastaajat.
 
 ```{r}
 #| label: datatarkistus-05-careless-longstring-k26
@@ -148,13 +148,13 @@ data <- data |>
 
 **Toimenpiteiden koetun vaikutusten muuttujilla** tunnistamme 65 samojen arvojen antanutta vastaajaa. Vastaajat jakaantuivat seuraaviin piirteisiin:
 
--  Kaikki arvot 0: 1 vastaaja
--  Kaikki arvot 1: 3 vastaajaa
--  Kaikki arvot 5: 27 vastaajaa
--  Kaikki arvot 6: 2 vastaajaa
--  Kaikki arvot 8: 4 vastaajaa
--  Kaikki arvot 9: 2 vastaajaa
--  Kaikki arvot 10: 26 vastaajaa
+-   Kaikki arvot 0: 1 vastaaja
+-   Kaikki arvot 1: 3 vastaajaa
+-   Kaikki arvot 5: 27 vastaajaa
+-   Kaikki arvot 6: 2 vastaajaa
+-   Kaikki arvot 8: 4 vastaajaa
+-   Kaikki arvot 9: 2 vastaajaa
+-   Kaikki arvot 10: 26 vastaajaa
 
 Päätimme merkitä alustavaksi poistettavaksi kaikki vastaajat, jotka vastasivat arvot 5 tai 10 kaikille muuttujille (yhteensä 53 vastaajaa). Tarkistamme kuitenkin heidän muut vääristymille herkät vastaukset ennen poistoa, sillä heidän vastauksensa voivat myös olla valideja vastauspiirteitä.
 
@@ -175,12 +175,12 @@ data <- data |>
 
 **Ehdotettujen toimenpiteiden koetun hyödyllisyyden muuttujilla** tunnistamme 37 samojen arvojen antanutta vastaajaa. Vastaajat jakaantuivat seuraaviin piirteisiin:
 
--  Kaikki arvot 1: 1 vastaaja
--  Kaikki arvot 3: 1 vastaaja
--  Kaikki arvot 4: 8 vastaajaa
--  Kaikki arvot 5: 2 vastaajaa
--  Kaikki arvot 6: 4 vastaajaa
--  Kaikki arvot 7: 21 vastaajaa
+-   Kaikki arvot 1: 1 vastaaja
+-   Kaikki arvot 3: 1 vastaaja
+-   Kaikki arvot 4: 8 vastaajaa
+-   Kaikki arvot 5: 2 vastaajaa
+-   Kaikki arvot 6: 4 vastaajaa
+-   Kaikki arvot 7: 21 vastaajaa
 
 Näimme, että kaikki vastaukset ovat päteviä vastauksia, emmekä merkinneet yhtään vastaajaa poistettavaksi.
 
@@ -221,7 +221,6 @@ data <- funktio_kolumnien_yli(
 
 ```
 
-
 ```{r}
 #| label: fig-datatarkistus-07-caseless-irv-kuviot
 #| code-summary: "Kuvioiden piirtäminen"
@@ -256,10 +255,7 @@ Keskihajontojen jakaumat näyttävät pääasiassa hyväksyttäviltä. Usealla v
 
 **Olemassaolevien toimenpiteiden muuttujilla** tunnistamme 4 vastaajaa, joiden vastausten keskihajonta on nolla. Myös näillä muuttujilla näimme, että vastaajien vastaukset olivat joko samanarvoisia (3 tai 5) tai puuttuvia. Jätimme vastaajat aineistoon.
 
-**Toimenpiteiden koetun vaikutusten muuttujilla** tunnistamme 21 vastaajaa, joiden
-vastausten keskihajonta on nolla. Näissäkin vastaajista korostuu joko puuttuvat
-vastaukset tai samanarvoiset vastaukset (0, 2, 3, 5 tai 10). Jätimme vastaajat
-aineistoon.
+**Toimenpiteiden koetun vaikutusten muuttujilla** tunnistamme 21 vastaajaa, joiden vastausten keskihajonta on nolla. Näissäkin vastaajista korostuu joko puuttuvat vastaukset tai samanarvoiset vastaukset (0, 2, 3, 5 tai 10). Jätimme vastaajat aineistoon.
 
 **Ehdotettujen toimenpiteiden koetun hyödyllisyyden muuttujilla** tunnistamme 4 vastaajaa, joiden vastausten keskihajonta on nolla. Vastaajien vastausarvot ovat vaihtelevasti tyhjiä tai samoja arvoja (6 tai 7). Jätimme vastaajat aineistoon.
 
@@ -350,4 +346,3 @@ Aineistoon jäi yhteensä `r nrow(data)` vastaajaa.
 write.csv2(data, file = "output/valmisdata.csv", row.names = FALSE)
 
 ```
-

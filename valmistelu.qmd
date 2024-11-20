@@ -594,7 +594,7 @@ data <- data %>%
   relocate(Organisaatioasema, .before = k40)
 ```
 
-## Avovastauksen laadullinen koodaus
+## Avovastauksen laadullinen koodaus {#sec-valmistelu-avovastaukset}
 
 Tallensimme kaikki ei-tyhjät avovastaukset ID-numeron kanssa `csv`-muotoon laadullista koodausta varten.
 
@@ -608,14 +608,340 @@ data |>
 
 ```
 
-Korjasimme ääkköset Excelin "Korvaa"-työkalulla.
+Luokittelu toteutettiin seuraavalla tavalla:
+
+1.  Kolme tutkijaa (projektipäällikkö, hankkeen ulkopuolinen ihmistieteiden tutkija sekä hankkeen ulkopuolinen luonnontieteiden tutkija) kirjasivat jokaiselle avovastaukselle pelkistetyt lauseet. Tutkijat tekivät työn itsenäisesti eivätkä konsultoineet toisiaan kirjauksen aikana.
+2.  Projektipäällikkö yhdisti luokittelut vertaamalla niitä toisiinsa ja kirjaamalla lopulliseksi pelkistetyksi lauseeksi kaikkia kolmea luokittelua vastaavat lauseet.
+3.  Tutkijat kävivät läpi eroavat pelkistetyt lauseet ja merkitsi ne konsensuksen mukaan.
+4.  Projektipäällikkö yhtenäisti sitten pelkistetyt lauseet alaluokiksi. Esimerkiksi luokkaan `epäasiallinen tai väkivaltainen kohtelu` sisältyi esimerkkilauseet `syrjintä`, `johdon epäasiallinen kohtelu`, `uhka- ja väkivaltatilanteet`, jne.
+5.  Projektipäällikkö haki jokaisen lauseen esiintymismäärät aineistosta. Luokkia yhdistettiin kunnes jokaisessa luokassa oli vähintään 10 vastausta.
+6.  Jokaisesta uniikista luokasta tehtiin oma muuttuja arvoilla `1` (vastaaja ilmaisi luokan vastauksessaan) tai `0` (vastaaja ei ilmaissut luokkaa vastauksessaan).
+
+Alla olevissa listauksissa esitetään jokaisen luokan alaluokat aakkosjärjestyksessä. Useat syyt ovat samoja, mutta kirjoitusmuodoltaan eriävät: tämä johtuu osittain usean tutkijan koodauksesta, osittain myös vastaajien antamien vastausten muotoilusta.
+
+::: panel-tabset
+### Epäasiallinen tai väkivaltainen kohtelu
+
+-   epäasiallinen kohtelu
+-   epäasiallinen käytös
+-   epäasialliseen kohteluun ei puututa
+-   epäasialliseen kohteluun ei reagoida
+-   epäasiallista kohtelua ei käsitellä
+-   epätasa-arvoinen kohtelu
+-   epätasa-arvoinen palkkaus
+-   epätasapuolinen kohtelu
+-   kollegoiden epäasiallinen kohtelu
+-   kursseille pääsemättömyys
+-   seksuaalinen häirintä
+-   sosiaalinen eristäminen
+-   sukupuolisyrjintä
+-   syrjintä
+-   syrjintä estää etenemisen
+-   syrjintää rekrytoinnissa
+-   tiedon pimittäminen
+-   työnantajan epäoikeudenmukainen kohtelu
+-   ulkopuolisten epäasiallinen kohtelu
+-   valtakunnallinen johto välttää asioiden käsittelyä
+-   esihenkilön epäasiallinen kohtelu
+-   esihenkilön epätasapuolinen kohtelu
+-   johdon epäasiallinen kohtelu
+-   johdon epätasa-arvoinen kohtelu
+-   lisääntynyt väkivalta
+-   uhka- ja väkivaltatilanteet
+-   väkivallan uhka
+-   väkivalta
+-   sidosryhmien epäasiallinen kohtelu
+
+### Heikko johtaminen
+
+-   heikko johtaminen
+-   heikko johtamisosaaminen
+-   huono johtaminen
+-   huono johtamiskulttuuri
+-   huonoa muutosjohtamista
+-   ideologinen johtaminen
+-   kehityksen suunnitelmallisuuden puute
+-   vanhanaikainen johtamiskulttuuri
+-   vanhentunut organisaatiokulttuuri
+
+### Heikot työehdot
+
+-   ei mahdollisuutta etätyöhön
+-   epäsuhde palkan ja vaativuuden välillä
+-   heikentyneet työsuhde-edut
+-   heikentyneet työterveyspalvelut
+-   heikko palkkaus
+-   huono palkkaus
+-   huonot työehdot
+-   huonot työterveyspalvelut
+-   liian korkea eläkeikä
+-   liian vähän kollegoita
+-   palkkaus
+-   työn yksinäisyys
+-   halu uudistaa tehtäväkenttää
+-   heikot vaikutusmahdollisuudet
+-   kehittämishalu
+-   puuttumismahdollisuuksien puute
+-   vaikuttamismahdollisuudet
+-   vaikutusmahdollisuuksien lisääminen
+-   vaikutusmahdollisuuksien puute
+-   vähäiset vaikuttamismahdollisuudet
+
+### Henkilökohtaiset syyt
+
+-   elämäntilanteen muutos
+-   haaveet yrittämisestä
+-   henkilökohtaiset syyt
+-   muutto
+-   paikkakunnan vaihto
+-   paluu toiselle alalle
+-   perhesyyt
+-   taloudelliset syyt
+-   terveydelliset syyt
+-   terveyden heikkeneminen
+-   terveysriskit
+-   terveyssyyt
+-   työn ja perheen yhteensovittaminen
+-   varusmiespalvelu
+-   väsyminen
+-   eläke
+-   ikä
+-   ikääntyminen
+-   liian kauan samassa paikassa
+-   pitkä työkokemus
+-   pitkä työura
+-   uran pituus
+-   stressi
+-   työuupumus
+
+### Jatkuvuuden epävarmuus
+
+-   jatkuvuuden epävarmuus
+-   määräaikaisuudet
+-   määräaikaisuudet eivät jatku
+-   määräaikaisuus
+-   pelko töiden loppumisesta
+-   tehtävien liiallinen vaihtelevuus
+-   työn jatkuva muutos
+-   työnkuvan muutokset lyhyessä ajassa
+-   työntekijöiden vaihtelevuus
+-   työntekijöiden vaihtuvuus
+-   työsuhteen epävarmuus
+
+### Liikaa vaatimuksia
+
+-   kasvaneet työvaatimukset
+-   liialliset odotukset
+-   liialliset vaatimukset
+-   liika työtaakka
+-   liikaa työtehtäviä
+-   liikaa vaatimuksia
+-   liikaa vastuuta
+-   oman aseman pienentämisen halu
+-   työn vaatimukset
+-   työn vaativuus
+-   vaatimukset lisääntyneet
+-   vastuun vähentäminen
+-   vastuuta ei jaeta
+
+### Ongelmat työnteossa
+
+-   ajan puute
+-   epäselvä työnkuva
+-   työkuvien epäselvyys
+-   peruutetut hälytykset
+-   pikkutarkkuus
+-   päättämättömyys työpaikalla
+-   työn tekemättä jättäminen
+-   työnteon välttämistä
+-   vastemäärittelyt
+-   vähentyneet työtehtävät
+-   vähäinen harjoittelu
+-   yhdenmukaisuuden puute
+-   yksitoikkoinen työ
+
+### Ongelmat työyhteisössä
+
+-   kuppikunnat
+-   huono ilmapiiri
+-   huono työilmapiiri
+-   pelon ilmapiiri
+-   työilmapiiri
+-   epävarmuus työyhteisöön sopimisesta
+-   henkilökemian ongelmat
+-   ongelmia esihenkilön kanssa
+-   sopeutumisvaikeudet
+-   toisten kyvyttömyys itsereflektioon
+-   ärsyyntyminen kollegoihin
+-   alalla puutetta osaamisesta
+-   muutosvastarinta
+-   keskustelukulttuurin yksiäänisyys
+-   ei tule toimeen toisten kanssa
+
+### Organisaation rakenneongelmat
+
+-   asiat eivät etene
+-   byrokratia
+-   byrokratian lisääntyminen
+-   hva-uudistus
+-   hva-uudistus johtanut päätöksenteon ja palkanmaksun ongelmiin
+-   lisääntynyt byrokratia
+-   organisaatiomuutokset
+-   organisaation haasteet
+-   organisaation jäykkyys
+-   organisaatiota ei kehitetä
+-   pelastustoimen ja ensihoidon työn erkaantuminen
+-   rekrytointi haasteellista
+-   hva-uudistuksesta johtuva paisunut byrokratia
+-   yhteistoimintamenettely
+-   YT-neuvottelut
+-   organisaation kehittäminen muutoksien kautta
+-   hva-uudistuksen tuoma resurssien puute[^valmistelu-1]
+
+### Osaamisen kehittäminen
+
+-   koulutus mahdollistaa muita työtehtäviä
+-   opinnot
+-   osaamisen kehittäminen
+-   valmistuminen oppilaitoksesta
+-   itsensä kehittäminen
+
+### Puutteet arvostuksessa tai tuessa
+
+-   koulutusta ei arvosteta
+-   osaamisen arvostuksen puute
+-   osaamisen väheksyminen
+-   osaamisen väheksymistä
+-   arvostuksen puute
+-   organisaatioluottamuksen puute
+-   työn arvostuksen puute
+-   työstä ei anneta kiitosta
+-   työtä ei arvosteta
+-   valtion arvostuksen puute
+-   vähäinen arvostus
+-   organisaation välinpitämättömyys sopimuspalokuntia kohtaan
+-   pelastuslaitos ei arvosta sopimuspalokuntalaisia
+-   pelastuslaitos ei välitä sopimuspalokunnan tarpeista
+-   sopimuspalokuntaa ei arvosteta pelastuslaitoksella
+-   sopimuspalokuntien arvostuksen puute
+-   esihenkilön olematon tuki
+-   esihenkilöt eivät tue väkivaltatilanteissa
+-   johdon tuen puute vähäinen
+-   organisaatiotuki
+-   alan maineen vääristyminen
+
+### Puutteet etenemismahdollisuuksissa
+
+-   etenemismahdollisuuksien lisääminen
+-   etenemismahdollisuuksien puute
+-   heikot etenemismahdollisuudet
+
+### Puutteet motivaatiossa
+
+-   epämielekäs työ
+-   heikko mielenkiinto alaa kohtaan
+-   heikko motivaatio
+-   kiinnostuksen kohteet
+-   kiinnostuksen muutokset
+-   kiinnostuksen puute
+-   kiinnostus muita tehtäviä kohtaan
+-   kiinnostus toista organisaatiota kohtaan
+-   kyllästyminen
+-   mielekkyyden ylläpitäminen
+-   mielenkiinto muihin tehtäviin
+-   motivaation heikkeneminen
+-   motivaation puute
+-   motivaation ylläpito
+-   organisaation vaihto
+-   tehtävien yksitoikkoisuus
+-   turhautuminen työtehtäviin
+-   työ ei miellytä
+-   työ ei vastaa odotuksia
+-   työnkuva ei vastaa odotuksia
+-   työtehtävien vähäisyys
+-   vähentynyt kiinnostus
+-   väärä ala
+
+### Resurssipula
+
+-   liian vähän resursseja
+-   resurssien puute
+-   resurssipula
+-   hva-uudistuksen tuoma resurssien puute[^valmistelu-2]
+
+### Työkuormitus
+
+-   henkinen kuormitus
+-   henkinen väsymys työhön
+-   kaksi työtä kuormittavat liikaa
+-   lisääntynyt työkuorma
+-   pelko jaksamisesta eläkeikään asti
+-   työ ottaa enemmän kuin antaa
+-   työ vie liikaa aikaa
+-   työkuormitus
+
+### Työnkuvan muutos
+
+-   eteneminen johtotehtäviin
+-   siirtyminen esihenkilötehtäviin
+-   siirtyminen johtotehtäviin
+-   tehtävien vaihto
+-   tehtävänkuvan muutos
+-   työnkuvan kehittäminen
+-   työnkuvan laajentaminen
+-   työnkuvan muutokset
+-   työnkuvan muutos
+-   työnkuvan muuttaminen
+-   työnkuvan tarkentaminen
+-   työpaikan vaihtaminen
+-   työtehtävien vaihto
+-   työympäristön muutoksen halu
+-   ulkomaille töihin
+-   uudet haasteet
+-   uusia haasteita
+-   vaihtelu
+-   vaihtelua työhön
+
+### Urakehitys
+
+-   ammatillinen kehitys
+-   urakehityksen puute
+-   urakehitys
+-   etenemishalu/urakehitys
+
+### Vuorotyö
+
+-   siirtyminen pois vuorotyöstä
+-   vuorotyö
+-   yö- ja viikonlopputyöt
+:::
+
+[^valmistelu-1]: Koodattu koodeihin "Organisaation rakenneongelmat" ja "Resurssipula".
+
+[^valmistelu-2]: Koodattu koodeihin "Organisaation rakenneongelmat" ja "Resurssipula".
+
+```{r}
+#| label: valmistelu-11-laadullinenluokitus
+
+# Haetaan luokat csv-taulukosta takaisin aineistoon.
+
+laadulliset <- read.csv2("output/05-laadullisetkoodaukset.csv", tryLogical = FALSE) %>% as_tibble()
+
+data <- data |>
+  left_join(
+    y = laadulliset,
+    by = "ID"
+  ) |>
+  select(!k43)
+
+```
 
 ## Datan tallennus {#sec-valmistelu-datatallennus}
 
 Koodausten jälkeen tallensimme lopullisen datatiedoston `csv`-muotoon. Tallennusta ei ole saatavilla verkkosivun lähdekoodista tietosuojan takia.
 
 ```{r}
-#| label: valmistelu-10-datatallennus
+#| label: valmistelu-12-datatallennus
 
 write.csv2(data, file = "output/koodattudata.csv", row.names = FALSE)
 

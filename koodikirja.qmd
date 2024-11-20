@@ -1,0 +1,1745 @@
+# Koodikirjan rakentaminen {#sec-koodikirja}
+
+---
+eval: true
+---
+
+Tässä osiossa rakennamme koodikirjan anonymisoidulle aineistolle. Koodikirja tallennetaan `output`-kansioon `csv`-muodossa.
+
+Osio on toistettavissa käyttäen Tietoarkistoon arkistoitua anonymisoitua aineistoa.
+
+```{r}
+#| label: koodikirja-00-paketit
+#| code-summary: "Osiossa käytetyt paketit"
+
+library(tidyverse)
+
+```
+
+```{r}
+#| label: koodikirja-01-avaaminen
+#| code-summary: "Datan avaaminen"
+
+data <- read.csv2("output/anonymisoitudata.csv", tryLogical = FALSE)
+
+```
+
+Valmistelemme ensin kaksiulotteisen datarakenteen, johon tallennetaan kaikki muuttujakohtaiset tiedot. Jokaiselle muuttujalle tulee oma rivi. Ensimmäiseen sarakkeeseen lisätään muuttujien aineistossa esiintyvät nimet.
+
+```{r}
+#| label: koodikirja-02-datarakenne
+#| code-summary: "Datarakenteen teko"
+
+koodikirja <- data |>
+  colnames() |>
+  data.frame(id = _) |>
+  add_column(Nimi = "", Arvot = "")
+
+```
+
+## Metadatatiedot
+
+```{r}
+#| label: koodikirja-03-metadata
+#| code-summary: "Metadatamuuttujien dokumentointi"
+
+# Muuttuja "ID"
+koodikirja <- koodikirja |>
+  mutate(
+    Nimi = if_else(
+      id == "ID",
+      "Juokseva ID-numerointi",
+      Nimi
+    )
+  )
+
+# Muuttuja "Linkkiversio"
+koodikirja <- koodikirja |>
+  mutate(
+    Nimi = if_else(
+      id == "Linkkiversio",
+      "Vastaajan käyttämä kyselylinkki",
+      Nimi
+    ),
+    Arvot = ifelse(
+      id == "Linkkiversio",
+      list(c(
+        "1" = "Johdon kautta",
+        "2" = "Yhteyshenkilöiden tai viestinnän kautta",
+        "3" = "Median kautta"
+      )),
+      Arvot
+    )
+  )
+
+# Muuttuja "Kieliversio"
+koodikirja <- koodikirja |>
+  mutate(
+    Nimi = if_else(
+      id == "Kieliversio",
+      "Vastaajan käyttämä vastauskieli",
+      Nimi
+    ),
+    Arvot = ifelse(
+      id == "Kieliversio",
+      list(c(
+        "1" = "Suomi",
+        "2" = "Ruotsi"
+      )),
+      Arvot
+    )
+  )
+
+# Muuttuja "k1"
+koodikirja <- koodikirja |>
+  mutate(
+    Nimi = if_else(
+      id == "k1",
+      "Olen tietoinen minusta kerättävistä tiedoista sekä niiden käsittelystä, ja annan suostumukseni tietojen keruuseen ja arkistointiin:",
+      Nimi
+    ),
+    Arvot = ifelse(
+      id == "k1",
+      list(c(
+        "1" = "Kyllä",
+        "2" = "Ei"
+      )),
+      Arvot
+    )
+  )
+
+```
+
+## Organisaatioryhmä
+
+```{r}
+#| label: koodikirja-04-organisaatioryhma
+#| code-summary: "Organisaatioryhmän dokumentointi"
+
+# Muuttuja "k2"
+koodikirja <- koodikirja |>
+  mutate(
+    Nimi = if_else(
+      id == "k2",
+      "Mihin organisaatioon/toimialaan kuulut?",
+      Nimi
+    ),
+    Arvot = ifelse(
+      id == "k2",
+      list(c(
+        "1" = "Pelastuslaitos tai ensihoito (hyvinvointi- tai itsehallintoalueella)",
+        "2" = "Sopimuspalokunta tai palokuntayhdistys",
+        "3" = "Pelastusalan valtakunnallinen järjestö (SPEK, SPPL, SSPL, pelastusliitot), koulutusorganisaatio"
+      )),
+      Arvot
+    )
+  )
+
+```
+
+## Epäasiallisen ja väkivaltaisen kohtelun esiintyvyys
+
+```{r}
+#| label: koodikirja-05-esiintyvyys
+#| code-summary: "Esiintyvyysmuuttujien dokumentointi"
+
+k3_nimet <- c(
+  "Verbaalinen väkivalta",
+  "Omaisuuden vahingoittaminen tai varastaminen",
+  "Uhkailu",
+  "Fyysinen väkivalta",
+  "Seksuaalinen häirintä tai väkivalta",
+  "Vihamielisyys tai epäkohtelias käyttäytyminen",
+  "Syrjintä"
+) %>% paste0("Kuinka usein olet itse kohdannut seuraavia epäasiallisen tai väkivaltaisen kohtelun muotoja organisaatiosi sisällä viimeisen 12 kuukauden aikana?: ", .)
+
+k4_nimet <- c(
+  "Verbaalinen väkivalta",
+  "Omaisuuden vahingoittaminen tai varastaminen",
+  "Uhkailu",
+  "Fyysinen väkivalta",
+  "Seksuaalinen häirintä tai väkivalta",
+  "Vihamielisyys tai epäkohtelias käyttäytyminen",
+  "Syrjintä"
+) %>% paste0("Kuinka usein olet havainnut kollegan kohdanneen seuraavia epäasiallisen tai väkivaltaisen kohtelun muotoja organisaatiosi sisällä viimeisen 12 kuukauden aikana?: ", .)
+
+k12_nimet <- c(
+  "Verbaalinen väkivalta",
+  "Omaisuuden vahingoittaminen tai varastaminen",
+  "Uhkailu",
+  "Fyysinen väkivalta",
+  "Seksuaalinen häirintä tai väkivalta",
+  "Vihamielisyys tai epäkohtelias käyttäytyminen",
+  "Syrjintä"
+) %>% paste0("Kuinka usein olet itse kohdannut seuraavia epäasiallisen tai väkivaltaisen kohtelun muotoja organisaatiosi ulkopuoliselta henkilöltä viimeisen 12 kuukauden aikana?: ", .)
+
+k13_nimet <- c(
+  "Verbaalinen väkivalta",
+  "Omaisuuden vahingoittaminen tai varastaminen",
+  "Uhkailu",
+  "Fyysinen väkivalta",
+  "Seksuaalinen häirintä tai väkivalta",
+  "Vihamielisyys tai epäkohtelias käyttäytyminen",
+  "Syrjintä"
+) %>% paste0("Kuinka usein olet havainnut kollegan kohdanneen seuraavia epäasiallisen tai väkivaltaisen kohtelun muotoja organisaatiosi ulkopuoliselta henkilöltä viimeisen 12 kuukauden aikana?: ", .)
+
+# Muuttujaryhmä "k3_"
+koodikirja <- koodikirja |>
+  mutate(
+    tempindex = if_else(
+      str_starts(id, "k3_"), cumsum(str_starts(id, "k3_")), NA_integer_
+    ),
+    Nimi = if_else(
+      str_starts(id, "k3_") & tempindex <= length(k3_nimet),
+      k3_nimet[tempindex],
+      Nimi
+    ),
+    Arvot = ifelse(
+      str_starts(id, "k3_"),
+      list(c(
+        "0" = "En kertaakaan",
+        "1" = "Harvemmin kuin kerran kuukaudessa",
+        "2" = "Kerran kuukaudessa",
+        "3" = "Useita kertoja kuukaudessa",
+        "4" = "Kerran viikossa",
+        "5" = "Useita kertoja viikossa",
+        "6" = "Kerran päivässä",
+        "7" = "Useita kertoja päivässä",
+        "NA" = "(ei vastannut)"
+      )),
+      Arvot
+    )
+  ) |>
+  select(-tempindex)
+
+# Muuttujaryhmä "k4_"
+koodikirja <- koodikirja |>
+  mutate(
+    tempindex = if_else(
+      str_starts(id, "k4_"), cumsum(str_starts(id, "k4_")), NA_integer_
+    ),
+    Nimi = if_else(
+      str_starts(id, "k4_") & tempindex <= length(k4_nimet),
+      k4_nimet[tempindex],
+      Nimi
+    ),
+    Arvot = ifelse(
+      str_starts(id, "k4_"),
+      list(c(
+        "0" = "En kertaakaan",
+        "1" = "Harvemmin kuin kerran kuukaudessa",
+        "2" = "Kerran kuukaudessa",
+        "3" = "Useita kertoja kuukaudessa",
+        "4" = "Kerran viikossa",
+        "5" = "Useita kertoja viikossa",
+        "6" = "Kerran päivässä",
+        "7" = "Useita kertoja päivässä",
+        "NA" = "(ei vastannut)"
+      )),
+      Arvot
+    )
+  ) |>
+  select(-tempindex)
+
+# Muuttujaryhmä "k12_"
+koodikirja <- koodikirja |>
+  mutate(
+    tempindex = if_else(
+      str_starts(id, "k12_"), cumsum(str_starts(id, "k12_")), NA_integer_
+    ),
+    Nimi = if_else(
+      str_starts(id, "k12_") & tempindex <= length(k12_nimet),
+      k12_nimet[tempindex],
+      Nimi
+    ),
+    Arvot = ifelse(
+      str_starts(id, "k12_"),
+      list(c(
+        "0" = "En kertaakaan",
+        "1" = "Harvemmin kuin kerran kuukaudessa",
+        "2" = "Kerran kuukaudessa",
+        "3" = "Useita kertoja kuukaudessa",
+        "4" = "Kerran viikossa",
+        "5" = "Useita kertoja viikossa",
+        "6" = "Kerran päivässä",
+        "7" = "Useita kertoja päivässä",
+        "NA" = "(ei vastannut)"
+      )),
+      Arvot
+    )
+  ) |>
+  select(-tempindex)
+
+# Muuttujaryhmä "k13_"
+koodikirja <- koodikirja |>
+  mutate(
+    tempindex = if_else(
+      str_starts(id, "k13_"), cumsum(str_starts(id, "k13_")), NA_integer_
+    ),
+    Nimi = if_else(
+      str_starts(id, "k13_") & tempindex <= length(k13_nimet),
+      k13_nimet[tempindex],
+      Nimi
+    ),
+    Arvot = ifelse(
+      str_starts(id, "k13_"),
+      list(c(
+        "0" = "En kertaakaan",
+        "1" = "Harvemmin kuin kerran kuukaudessa",
+        "2" = "Kerran kuukaudessa",
+        "3" = "Useita kertoja kuukaudessa",
+        "4" = "Kerran viikossa",
+        "5" = "Useita kertoja viikossa",
+        "6" = "Kerran päivässä",
+        "7" = "Useita kertoja päivässä",
+        "NA" = "(ei vastannut)"
+      )),
+      Arvot
+    )
+  ) |>
+  select(-tempindex)
+
+```
+
+## Epäasiallisen ja väkivaltaisen kohtelun tarkennusmittarit
+
+```{r}
+#| label: koodikirja-06-tarkennus-nimet
+#| code-summary: "Tarkennusmittareiden nimien dokumentointi"
+
+### Kuvaus:
+# Kaikki nimet tallennetaan kahdesti: ensimmäinen edustaa itse koettua kokemusta (merkillä "_1" loppuvat muuttujat) ja toinen edustaa kollegahavaintoa (merkillä "_2" loppuvat muuttujat).
+# Nimet yhdistetään yläkysymykseen ja alatarkennukseen map-funktion ja jakojäänteen avulla: jos muuttujan vektorissa olevan indeksin jakojäänne kahdella on nolla, muuttuja on parittainen ja siten kollegahavainto, sillä ne tulevat aina toiseksi järjestyksessä. Vastaavasti, jos jakojäänne ei ole nolla, muuttuja on pariton ja siten itse koettu kokemus.
+
+### Mittareiden nimet
+# Muuttujaryhmä "k5_"
+k5_nimet <- c(
+  "Nöyryyttäminen, häpäiseminen",
+  "Nolaaminen: vähättely, alentaminen, holhoava käyttäytyminen",
+  "Nuhtelu toisten edessä",
+  "Työn arvostelu epäoikeudenmukaisella tai loukkaavalla tavalla",
+  "Huutaminen",
+  "Kiroilu tai henkilöön kohdistuva kiroaminen",
+  "Loukkaava nimittely",
+  "Valheellinen syyttäminen",
+  "Ärsyttämismielessä sanotut asiat"
+) |>
+  rep(each = 2) |>
+  imap(
+    \(el, idx)
+      ifelse(
+        idx %% 2 == 0,
+        paste0("Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä verbaalisesta väkivallasta: ", el, ": Kollegani koki"),
+        paste0("Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä verbaalisesta väkivallasta: ", el, ": Minä koin")
+      )
+  ) |>
+  as.character()
+
+# Muuttujaryhmä "k6_"
+k6_nimet <- c(
+  "Työvälineiden varastaminen",
+  "Työvälineiden piilottaminen tai kätkeminen",
+  "Työvälineiden rikkominen",
+  "Työvälineiden likaaminen tai niihin töhertäminen",
+  "Työvälineiden luvaton käyttö",
+  "Henkilökohtaisen omaisuuden varastaminen",
+  "Henkilökohtaisen omaisuuden piilottaminen tai kätkeminen",
+  "Henkilökohtaisen omaisuuden rikkominen",
+  "Henkilökohtaisen omaisuuden likaaminen tai niihin töhertäminen",
+  "Henkilökohtaisen omaisuuden luvaton käyttö"
+) |>
+  rep(each = 2) |>
+  imap(
+    \(el, idx)
+      ifelse(
+        idx %% 2 == 0,
+        paste0("Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä omaisuuden vahingoittamisesta tai varastamisesta: ", el, ": Kollegani koki"),
+        paste0("Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä omaisuuden vahingoittamisesta tai varastamisesta: ", el, ": Minä koin")
+      )
+  ) |>
+  as.character()
+
+# Muuttujaryhmä "k7_"
+k7_nimet <- c(
+  "Pelottelu",
+  "Työn tai liikkumisen estäminen",
+  "Äänen korottaminen",
+  "Vuorovaikutustilanteessa liian lähelle tuleminen",
+  "Törkeiden eleiden näyttäminen",
+  "Muu törkeä käyttäytyminen",
+  "Mulkoilu tai tuijottaminen",
+  "Fyysisellä väkivallalla uhkaaminen",
+  "Esineellä heittämisellä uhkaaminen",
+  "Aseella tai voimankäyttövälineellä uhkaaminen",
+  "Tappamisella uhkaaminen",
+  "Seuraaminen",
+  "Tarkkailu",
+  "Läheisiin kohdistuvalla väkivallalla uhkaaminen"
+) |>
+  rep(each = 2) |>
+  imap(
+    \(el, idx)
+      ifelse(
+        idx %% 2 == 0,
+        paste0("Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta: ", el, ": Kollegani koki"),
+        paste0("Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä uhkailusta: ", el, ": Minä koin")
+      )
+  ) |>
+  as.character()
+
+# Muuttujaryhmä "k8_"
+k8_nimet <- c(
+  "Lyöminen",
+  "Tuuppaaminen tai tönäiseminen",
+  "Tarkoituksella henkilöön törmääminen liiallisella voimalla",
+  "Päälle sylkäiseminen",
+  "Esineellä heittäminen",
+  "Kiinni tarttuminen",
+  "Potkaiseminen",
+  "Kuristaminen",
+  "Raapiminen",
+  "Hiuksista tarttuminen",
+  "Voimankäyttövälineillä tai aseella vahingoittaminen"
+) |>
+  rep(each = 2) |>
+  imap(
+    \(el, idx)
+      ifelse(
+        idx %% 2 == 0,
+        paste0("Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta: ", el, ": Kollegani koki"),
+        paste0("Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä fyysisestä väkivallasta: ", el, ": Minä koin")
+      )
+  ) |>
+  as.character()
+
+# Muuttujaryhmä "k9_"
+k9_nimet <- c(
+  "Seksuaaliset vitsit tai nöyryyttävät seksuaaliset kommentit",
+  "Seksuaaliset keholliset eleet",
+  "Toistuvat tapaamisen tai puhelinnumeron vaatiminen",
+  "Seksuaalinen tai seksuaalissävytteinen vihjailu",
+  "Pakotettu seksuaalinen teko tai raiskaus, tai näiden yritys",
+  "Sukuelinten, rintojen tai pakaroiden koskettelu tai tämän yritys",
+  "Seksualisoiva tai epäasiallinen koskettelu muiden kuin sukuelinten, rintojen tai pakaroiden alueella",
+  "Ei-toivottujen lahjojen tai muiden huomionosoituksien antaminen",
+  "Ei-toivottujen kuvien lähettäminen tai kuvaaminen",
+  "Seksuaalissävytteisen materiaalin levittäminen tai esilläpito"
+) |>
+  rep(each = 2) |>
+  imap(
+    \(el, idx)
+      ifelse(
+        idx %% 2 == 0,
+        paste0("Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä seksuaalisesta häirinnästä tai väkivallasta: ", el, ": Kollegani koki"),
+        paste0("Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä seksuaalisesta häirinnästä tai väkivallasta: ", el, ": Minä koin")
+      )
+  ) |>
+  as.character()
+
+# Muuttujaryhmä "k10_"
+k10_nimet <- c(
+  "Henkilön toiminnasta muille valittaminen ennen keskustelua kohteen kanssa",
+  "Henkilökohtaisen, luottamuksellisen tiedon jakaminen",
+  "Välinpitämättömyys tai tiedon pimittäminen",
+  "Useat tai jatkuva kritiikki, vähättely, virheiden hakeminen",
+  "Juoruilu, valheellisen tiedon levittäminen",
+  "Ehdotuksen tai ideoiden huomioimatta jättäminen tai vähättely",
+  "Työstä ei anneta tunnustusta",
+  "Aikaisemmista lupauksista luopuminen",
+  "Huumoriin kiedottu loukkaus",
+  "Sosiaalinen tai ammatillinen eristäminen, toiminnasta tai keskustelusta poisjättäminen",
+  "Maalittaminen (yhden henkilön kehotuksesta tapahtuva suuren joukon hyökkäys viesteillä, esim. sähköposteilla tai sosiaalisessa mediassa)"
+) |>
+  rep(each = 2) |>
+  imap(
+    \(el, idx)
+      ifelse(
+        idx %% 2 == 0,
+        paste0("Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäkohteliaasta käyttäytymisestä: ", el, ": Kollegani koki"),
+        paste0("Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä vihamielisyydestä tai epäkohteliaasta käyttäytymisestä: ", el, ": Minä koin")
+      )
+  ) |>
+  as.character()
+
+# Muuttujaryhmä "k11_"
+k11_nimet <- c(
+  "Virkaan tai tehtävään nimittäminen tai vastuunjako muuten kuin osaamiseen tai pätevyyteen perustuen",
+  "Epätasapuolinen johtamis- ja esihenkilötoiminta",
+  "Loukkaava kielenkäyttö, herjaaminen",
+  "Ryhmiin liittyvät yleistykset (esim. vähemmistövitsit)",
+  "Työhaastattelun yhteydessä kysymykset perhesuunnitelmista",
+  "Työvarusteiden epäsopivuus (esimerkiksi vääränkokoiset varusteet)",
+  "Työkollegoiden erilaiset odotukset henkilökohtaisten ominaisuuksien perusteella",
+  "Pätevyyden vähättely henkilökohtaisten ominaisuuksien perusteella",
+  "Muuhun kuin osaamiseen ja tehtävien vaativuuteen liittyvät palkitsemiserot",
+  "Kohtuullisten mukautusten epääminen vammaiselta henkilöltä",
+  "Käskyt tai ohjeet syrjiä toista henkilöä (asiakasta, potilasta tai työkollegaa)",
+  "Vastatoimiin ryhtyminen yhdenvertaisuusrikkomusten ilmoituksen takia",
+  "Syrjivä kohtelu ammattiyhdistystoimintaan osallistumisen takia",
+  "Irtisanominen tai sillä uhkaaminen henkilökohtaisten ominaisuuksien takia",
+  "Tehtävien jakaminen muun kuin osaamisen tai pätevyyteen perusteella",
+  "Muuhun kuin osaamiseen tai pätevyyteen perustuvat palkkaerot (esim. henkilökohtaisen lisän osalta)"
+) |>
+  rep(each = 2) |>
+  imap(
+    \(el, idx)
+      ifelse(
+        idx %% 2 == 0,
+        paste0("Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä: ", el, ": Kollegani koki"),
+        paste0("Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation sisäisestä syrjinnästä: ", el, ": Minä koin")
+      )
+  ) |>
+  as.character()
+
+# Muuttujaryhmä "k14_"
+k14_nimet <- c(
+  "Nöyryyttäminen, häpäiseminen",
+  "Nolaaminen: vähättely, alentaminen, holhoava käyttäytyminen", 
+  "Nuhtelu toisten edessä",
+  "Työn arvostelu epäoikeudenmukaisella tai loukkaavalla tavalla",
+  "Huutaminen",
+  "Kiroilu tai henkilöön kohdistuva kiroaminen",
+  "Loukkaaminen tai nimittely",
+  "Valheellinen syyttäminen",
+  "Ärsyttämismielessä sanotut asiat"
+) |>
+  rep(each = 2) |>
+  imap(
+    \(el, idx)
+      ifelse(
+        idx %% 2 == 0,
+        paste0("Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta verbaalisesta väkivallasta: ", el, ": Kollegani koki"),
+        paste0("Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta verbaalisesta väkivallasta: ", el, ": Minä koin")
+      )
+  ) |>
+  as.character()
+
+# Muuttujaryhmä "k15_"
+k15_nimet <- c(
+  "Työvälineiden varastaminen",
+  "Työvälineiden piilottaminen tai kätkeminen",
+  "Työvälineiden rikkominen",
+  "Työvälineiden likaaminen tai niihin töhertäminen",
+  "Työvälineiden luvaton käyttö",
+  "Henkilökohtaisen omaisuuden varastaminen",
+  "Henkilökohtaisen omaisuuden piilottaminen tai kätkeminen",
+  "Henkilökohtaisen omaisuuden rikkominen",
+  "Henkilökohtaisen omaisuuden likaaminen tai niihin töhertäminen",
+  "Henkilökohtaisen omaisuuden luvaton käyttö"
+) |>
+  rep(each = 2) |>
+  imap(
+    \(el, idx)
+      ifelse(
+        idx %% 2 == 0,
+        paste0("Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta omaisuuden vahingoittamisesta tai varastamisesta:", el, ": Kollegani koki"),
+        paste0("Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta omaisuuden vahingoittamisesta tai varastamisesta:", el, ": Minä koin")
+      )
+  ) |>
+  as.character()
+
+# Muuttujaryhmä "k16_"
+k16_nimet <- c(
+  "Pelottelu",
+  "Työn tai liikkumisen estäminen",
+  "Äänen korottaminen",
+  "Vuorovaikutustilanteessa liian lähelle tuleminen",
+  "Törkeiden eleiden näyttäminen",
+  "Muu törkeä käyttäytyminen",
+  "Mulkoilu tai tuijottaminen",
+  "Fyysisellä väkivallalla uhkaaminen",
+  "Esineellä heittämisellä uhkaaminen",
+  "Aseella tai voimankäyttövälineellä uhkaaminen",
+  "Tappamisella uhkaaminen",
+  "Seuraaminen",
+  "Tarkkailu",
+  "Läheisiin kohdistuvalla väkivallalla uhkaaminen"
+) |>
+  rep(each = 2) |>
+  imap(
+    \(el, idx)
+      ifelse(
+        idx %% 2 == 0,
+        paste0("Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta: ", el, ": Kollegani koki"),
+        paste0("Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta uhkailusta: ", el, ": Minä koin")
+      )
+  ) |>
+  as.character()
+
+# Muuttujaryhmä "k17_"
+k17_nimet <- c(
+  "Lyöminen",
+  "Tuuppaaminen tai tönäiseminen",
+  "Tarkoituksella henkilöön törmääminen liiallisella voimalla",
+  "Päälle sylkäiseminen",
+  "Esineellä heittäminen",
+  "Kiinni tarttuminen",
+  "Potkaiseminen",
+  "Kuristaminen",
+  "Raapiminen",
+  "Hiuksista tarttuminen",
+  "Voimankäyttövälineillä tai aseella vahingoittaminen"
+) |>
+  rep(each = 2) |>
+  imap(
+    \(el, idx)
+      ifelse(
+        idx %% 2 == 0,
+        paste0("Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta: ", el, ": Kollegani koki"),
+        paste0("Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta fyysisestä väkivallasta: ", el, ": Minä koin")
+      )
+  ) |>
+  as.character()
+
+# Muuttujaryhmä "k18_"
+k18_nimet <- c(
+  "Seksuaaliset vitsit tai nöyryyttävät seksuaaliset kommentit",
+  "Seksuaaliset keholliset eleet",
+  "Toistuvat tapaamisen tai puhelinnumeron vaatiminen",
+  "Seksuaalinen tai seksuaalissävytteinen vihjailu",
+  "Pakotettu seksuaalinen teko tai raiskaus, tai näiden yritys",
+  "Sukuelinten, rintojen tai pakaroiden koskettelu tai tämän yritys",
+  "Hyväileminen tai epäasiallinen koskettelu muiden kuin sukuelinten, rintojen tai pakaroiden alueella",
+  "Ei-toivottujen lahjojen tai muiden huomionosoituksien antaminen",
+  "Ei-toivottujen kuvien lähettäminen tai kuvaaminen",
+  "Seksuaalissävytteisen materiaalin levittäminen tai esilläpito"
+) |>
+  rep(each = 2) |>
+  imap(
+    \(el, idx)
+      ifelse(
+        idx %% 2 == 0,
+        paste0("Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta seksuaalisesta häirinnästä tai väkivallasta: ", el, ": Kollegani koki"),
+        paste0("Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta seksuaalisesta häirinnästä tai väkivallasta: ", el, ": Minä koin")
+      )
+  ) |>
+  as.character()
+
+# Muuttujaryhmä "k19_"
+k19_nimet <- c(
+  "Henkilön toiminnasta muille valittaminen ennen keskustelua kohteen kanssa",
+  "Henkilökohtaisen, luottamuksellisen tiedon jakaminen",
+  "Välinpitämättömyys tai tiedon pimittäminen",
+  "Useat tai jatkuva kritiikki, vähättely, virheiden hakeminen",
+  "Juoruilu, valheellisen tiedon levittäminen",
+  "Ehdotuksen tai ideoiden huomioimatta jättäminen tai vähättely",
+  "Työstä ei anneta tunnustusta",
+  "Aikaisemmista lupauksista luopuminen",
+  "Huumoriin kiedottu loukkaus",
+  "Sosiaalinen tai ammatillinen eristäminen, toiminnasta tai keskustelusta poisjättäminen",
+  "Maalittaminen (yhden henkilön kehotuksesta tapahtuva suuren joukon hyökkäys viesteillä, esim. sähköposteilla tai sosiaalisessa mediassa)"
+) |>
+  rep(each = 2) |>
+  imap(
+    \(el, idx)
+      ifelse(
+        idx %% 2 == 0,
+        paste0("Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäkohteliaasta käyttäytymisestä: ", el, ": Kollegani koki"),
+        paste0("Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta vihamielisyydestä tai epäkohteliaasta käyttäytymisestä: ", el, ": Minä koin")
+      )
+  ) |>
+  as.character()
+
+# Muuttujaryhmä "k20_"
+k20_nimet <- c(
+  "Loukkaava kielenkäyttö, herjaaminen",
+  "Ryhmiin liittyvät yleistykset (esim. vähemmistövitsit)",
+  "Organisaation ulkopuolisten henkilöiden erilaiset odotukset henkilökohtaisten ominaisuuksien perusteella",
+  "Pätevyyden vähättely henkilökohtaisten ominaisuuksien perusteella",
+  "Kohtuullisten mukautusten epääminen vammaiselta henkilöltä",
+  "Käskyt tai ohjeet syrjiä toista henkilöä (asiakasta, potilasta tai työkollegaa)",
+  "Syrjivä kohtelu ammattiyhdistystoimintaan osallistumisen takia"
+) |>
+  rep(each = 2) |>
+  imap(
+    \(el, idx)
+      ifelse(
+        idx %% 2 == 0,
+        paste0("Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta syrjinnästä: ", el, ": Kollegani koki"),
+        paste0("Voitko tarkentaa kokemuksiasi tai havaintojasi organisaation ulkopuolelta tulleesta syrjinnästä: ", el, ": Minä koin")
+      )
+  ) |>
+  as.character()
+
+### Poistetaan anonymisoinnissa poistetut muuttujanimet
+k7_nimet <- k7_nimet[-19] # k7_10_1
+k8_nimet <- k8_nimet[-22] # k8_11_2
+k9_nimet <- k9_nimet[-9] # k9_5_1
+k18_nimet <- k18_nimet[-c(9, 10)] # k18_5_1 ja k18_5_2
+
+```
+
+```{r}
+#| label: koodikirja-07-tarkennus-arvot
+#| code-summary: "Tarkennusmittareiden nimien ja arvojen yhdistäminen dokumentointiin"
+
+# Muuttujaryhmä "k5_"
+koodikirja <- koodikirja |>
+  mutate(
+    tempindex = if_else(
+      str_starts(id, "k5_"), cumsum(str_starts(id, "k5_")), NA_integer_
+    ),
+    Nimi = if_else(
+      str_starts(id, "k5_") & tempindex <= length(k5_nimet),
+      k5_nimet[tempindex],
+      Nimi
+    ),
+    Arvot = ifelse(
+      str_starts(id, "k5_"),
+      list(c(
+        "1" = "(valittu)",
+        "NA" = "(ei valittu)",
+        "-1" = "(ei nähnyt kysymystä)"
+      )),
+      Arvot
+    )
+  ) |>
+  select(-tempindex)
+
+# Muuttujaryhmä "k6_"
+koodikirja <- koodikirja |>
+  mutate(
+    tempindex = if_else(
+      str_starts(id, "k6_"), cumsum(str_starts(id, "k6_")), NA_integer_
+    ),
+    Nimi = if_else(
+      str_starts(id, "k6_") & tempindex <= length(k6_nimet),
+      k6_nimet[tempindex],
+      Nimi
+    ),
+    Arvot = ifelse(
+      str_starts(id, "k6_"),
+      list(c(
+        "1" = "(valittu)",
+        "NA" = "(ei valittu)",
+        "-1" = "(ei nähnyt kysymystä)"
+      )),
+      Arvot
+    )
+  ) |>
+  select(-tempindex)
+
+# Muuttujaryhmä "k7_"
+koodikirja <- koodikirja |>
+  mutate(
+    tempindex = if_else(
+      str_starts(id, "k7_"), cumsum(str_starts(id, "k7_")), NA_integer_
+    ),
+    Nimi = if_else(
+      str_starts(id, "k7_") & tempindex <= length(k7_nimet),
+      k7_nimet[tempindex],
+      Nimi
+    ),
+    Arvot = ifelse(
+      str_starts(id, "k7_"),
+      list(c(
+        "1" = "(valittu)",
+        "NA" = "(ei valittu)",
+        "-1" = "(ei nähnyt kysymystä)"
+      )),
+      Arvot
+    )
+  ) |>
+  select(-tempindex)
+
+# Muuttujaryhmä "k8_"
+koodikirja <- koodikirja |>
+  mutate(
+    tempindex = if_else(
+      str_starts(id, "k8_"), cumsum(str_starts(id, "k8_")), NA_integer_
+    ),
+    Nimi = if_else(
+      str_starts(id, "k8_") & tempindex <= length(k8_nimet),
+      k8_nimet[tempindex],
+      Nimi
+    ),
+    Arvot = ifelse(
+      str_starts(id, "k8_"),
+      list(c(
+        "1" = "(valittu)",
+        "NA" = "(ei valittu)",
+        "-1" = "(ei nähnyt kysymystä)"
+      )),
+      Arvot
+    )
+  ) |>
+  select(-tempindex)
+
+# Muuttujaryhmä "k9_"
+koodikirja <- koodikirja |>
+  mutate(
+    tempindex = if_else(
+      str_starts(id, "k9_"), cumsum(str_starts(id, "k9_")), NA_integer_
+    ),
+    Nimi = if_else(
+      str_starts(id, "k9_") & tempindex <= length(k9_nimet),
+      k9_nimet[tempindex],
+      Nimi
+    ),
+    Arvot = ifelse(
+      str_starts(id, "k9_"),
+      list(c(
+        "1" = "(valittu)",
+        "NA" = "(ei valittu)",
+        "-1" = "(ei nähnyt kysymystä)"
+      )),
+      Arvot
+    )
+  ) |>
+  select(-tempindex)
+
+# Muuttujaryhmä "k10_"
+koodikirja <- koodikirja |>
+  mutate(
+    tempindex = if_else(
+      str_starts(id, "k10_"), cumsum(str_starts(id, "k10_")), NA_integer_
+    ),
+    Nimi = if_else(
+      str_starts(id, "k10_") & tempindex <= length(k10_nimet),
+      k10_nimet[tempindex],
+      Nimi
+    ),
+    Arvot = ifelse(
+      str_starts(id, "k10_"),
+      list(c(
+        "1" = "(valittu)",
+        "NA" = "(ei valittu)",
+        "-1" = "(ei nähnyt kysymystä)"
+      )),
+      Arvot
+    )
+  ) |>
+  select(-tempindex)
+
+# Muuttujaryhmä "k11_"
+koodikirja <- koodikirja |>
+  mutate(
+    tempindex = if_else(
+      str_starts(id, "k11_"), cumsum(str_starts(id, "k11_")), NA_integer_
+    ),
+    Nimi = if_else(
+      str_starts(id, "k11_") & tempindex <= length(k11_nimet),
+      k11_nimet[tempindex],
+      Nimi
+    ),
+    Arvot = ifelse(
+      str_starts(id, "k11_"),
+      list(c(
+        "1" = "(valittu)",
+        "NA" = "(ei valittu)",
+        "-1" = "(ei nähnyt kysymystä)"
+      )),
+      Arvot
+    )
+  ) |>
+  select(-tempindex)
+
+# Muuttujaryhmä "k14_"
+koodikirja <- koodikirja |>
+  mutate(
+    tempindex = if_else(
+      str_starts(id, "k14_"), cumsum(str_starts(id, "k14_")), NA_integer_
+    ),
+    Nimi = if_else(
+      str_starts(id, "k14_") & tempindex <= length(k14_nimet),
+      k14_nimet[tempindex],
+      Nimi
+    ),
+    Arvot = ifelse(
+      str_starts(id, "k14_"),
+      list(c(
+        "1" = "(valittu)",
+        "NA" = "(ei valittu)",
+        "-1" = "(ei nähnyt kysymystä)"
+      )),
+      Arvot
+    )
+  ) |>
+  select(-tempindex)
+
+# Muuttujaryhmä "k15_"
+koodikirja <- koodikirja |>
+  mutate(
+    tempindex = if_else(
+      str_starts(id, "k15_"), cumsum(str_starts(id, "k15_")), NA_integer_
+    ),
+    Nimi = if_else(
+      str_starts(id, "k15_") & tempindex <= length(k15_nimet),
+      k15_nimet[tempindex],
+      Nimi
+    ),
+    Arvot = ifelse(
+      str_starts(id, "k15_"),
+      list(c(
+        "1" = "(valittu)",
+        "NA" = "(ei valittu)",
+        "-1" = "(ei nähnyt kysymystä)"
+      )),
+      Arvot
+    )
+  ) |>
+  select(-tempindex)
+
+# Muuttujaryhmä "k16_"
+koodikirja <- koodikirja |>
+  mutate(
+    tempindex = if_else(
+      str_starts(id, "k16_"), cumsum(str_starts(id, "k16_")), NA_integer_
+    ),
+    Nimi = if_else(
+      str_starts(id, "k16_") & tempindex <= length(k16_nimet),
+      k16_nimet[tempindex],
+      Nimi
+    ),
+    Arvot = ifelse(
+      str_starts(id, "k16_"),
+      list(c(
+        "1" = "(valittu)",
+        "NA" = "(ei valittu)",
+        "-1" = "(ei nähnyt kysymystä)"
+      )),
+      Arvot
+    )
+  ) |>
+  select(-tempindex)
+
+# Muuttujaryhmä "k17_"
+koodikirja <- koodikirja |>
+  mutate(
+    tempindex = if_else(
+      str_starts(id, "k17_"), cumsum(str_starts(id, "k17_")), NA_integer_
+    ),
+    Nimi = if_else(
+      str_starts(id, "k17_") & tempindex <= length(k17_nimet),
+      k17_nimet[tempindex],
+      Nimi
+    ),
+    Arvot = ifelse(
+      str_starts(id, "k17_"),
+      list(c(
+        "1" = "(valittu)",
+        "NA" = "(ei valittu)",
+        "-1" = "(ei nähnyt kysymystä)"
+      )),
+      Arvot
+    )
+  ) |>
+  select(-tempindex)
+
+# Muuttujaryhmä "k18_"
+koodikirja <- koodikirja |>
+  mutate(
+    tempindex = if_else(
+      str_starts(id, "k18_"), cumsum(str_starts(id, "k18_")), NA_integer_
+    ),
+    Nimi = if_else(
+      str_starts(id, "k18_") & tempindex <= length(k18_nimet),
+      k18_nimet[tempindex],
+      Nimi
+    ),
+    Arvot = ifelse(
+      str_starts(id, "k18_"),
+      list(c(
+        "1" = "(valittu)",
+        "NA" = "(ei valittu)",
+        "-1" = "(ei nähnyt kysymystä)"
+      )),
+      Arvot
+    )
+  ) |>
+  select(-tempindex)
+
+# Muuttujaryhmä "k19_"
+koodikirja <- koodikirja |>
+  mutate(
+    tempindex = if_else(
+      str_starts(id, "k19_"), cumsum(str_starts(id, "k19_")), NA_integer_
+    ),
+    Nimi = if_else(
+      str_starts(id, "k19_") & tempindex <= length(k19_nimet),
+      k19_nimet[tempindex],
+      Nimi
+    ),
+    Arvot = ifelse(
+      str_starts(id, "k19_"),
+      list(c(
+        "1" = "(valittu)",
+        "NA" = "(ei valittu)",
+        "-1" = "(ei nähnyt kysymystä)"
+      )),
+      Arvot
+    )
+  ) |>
+  select(-tempindex)
+
+# Muuttujaryhmä "k20_"
+koodikirja <- koodikirja |>
+  mutate(
+    tempindex = if_else(
+      str_starts(id, "k20_"), cumsum(str_starts(id, "k20_")), NA_integer_
+    ),
+    Nimi = if_else(
+      str_starts(id, "k20_") & tempindex <= length(k20_nimet),
+      k20_nimet[tempindex],
+      Nimi
+    ),
+    Arvot = ifelse(
+      str_starts(id, "k20_"),
+      list(c(
+        "1" = "(valittu)",
+        "NA" = "(ei valittu)",
+        "-1" = "(ei nähnyt kysymystä)"
+      )),
+      Arvot
+    )
+  ) |>
+  select(-tempindex)
+
+```
+
+## Koetun kohtelun vaikutukset
+
+```{r}
+#| label: koodikirja-08-vaikutukset
+#| code-summary: "Vaikutusmittareiden dokumentointi"
+
+k21_nimet <- c(
+  "Fyysiset vaikutukset",
+  "Psyykkiset vaikutukset",
+  "Ammatilliset vaikutukset"
+) %>% paste0("Miten vakavia sinuun kohdistuneen epäasiallisen tai väkivaltaisen käytöksen vaikutukset olivat?: ", .)
+
+k22_nimet <- c(
+  "Fyysiset vaikutukset",
+  "Psyykkiset vaikutukset",
+  "Ammatilliset vaikutukset"
+) %>% paste0("Miten pitkäkestoisia sinuun kohdistuneen epäasiallisen tai väkivaltaisen kohtelun vaikutukset olivat?: ", .)
+
+k22_1_nimet <- k22_nimet %>%
+  paste0(., ": Jatkuu tällä hetkellä")
+
+# Muuttujaryhmä "k21_"
+koodikirja <- koodikirja |>
+  mutate(
+    tempindex = if_else(
+      str_starts(id, "k21_"), cumsum(str_starts(id, "k21_")), NA_integer_
+    ),
+    Nimi = if_else(
+      str_starts(id, "k21_") & tempindex <= length(k21_nimet),
+      k21_nimet[tempindex],
+      Nimi
+    ),
+    Arvot = ifelse(
+      str_starts(id, "k21_"),
+      list(c(
+        "1" = "Ei vaikutusta",
+        "2" = "Lievät",
+        "3" = "Kohtalaiset",
+        "4" = "Vakavat",
+        "NA" = "(ei vastannut)",
+        "-1" = "(ei nähnyt kysymystä)"
+      )),
+      Arvot
+    )
+  ) |>
+  select(-tempindex)
+
+# Muuttujaryhmä "k22_". HUOM: Regex-merkinnällä $ varmistetaan, että vain muuttujat, joiden nimi loppuu määriteltyyn lukuun lasketaan mukaan; muuten muuttujat k22_[1-3]_1 tulisivat mukaan.
+koodikirja <- koodikirja |>
+  mutate(
+    tempindex = if_else(
+      str_starts(id, "k22_[1-3]$"), cumsum(str_starts(id, "k22_[1-3]$")), NA_integer_
+    ),
+    Nimi = if_else(
+      str_starts(id, "k22_[1-3]$") & tempindex <= length(k22_nimet),
+      k22_nimet[tempindex],
+      Nimi
+    ),
+    Arvot = ifelse(
+      str_starts(id, "k22_[1-3]$"),
+      list(c(
+        "1" = "Päivän ajan",
+        "2" = "Viikon ajan",
+        "3" = "Kuukauden ajan",
+        "4" = "Useamman kuukauden ajan",
+        "NA" = "(ei vastannut)",
+        "-1" = "(ei nähnyt kysymystä)"
+      )),
+      Arvot
+    )
+  ) |>
+  select(-tempindex)
+
+# Muuttujaryhmä "k22_[1-3]_"
+koodikirja <- koodikirja |>
+  mutate(
+    tempindex = if_else(
+      str_starts(id, "k22_[1-3]_"), cumsum(str_starts(id, "k22_[1-3]_")), NA_integer_
+    ),
+    Nimi = if_else(
+      str_starts(id, "k22_[1-3]_") & tempindex <= length(k22_1_nimet),
+      k22_1_nimet[tempindex],
+      Nimi
+    ),
+    Arvot = ifelse(
+      str_starts(id, "k22_[1-3]_"),
+      list(c(
+        "1" = "(valittu)",
+        "NA" = "(ei valittu)",
+        "-1" = "(ei nähnyt kysymystä)"
+      )),
+      Arvot
+    )
+  ) |>
+  select(-tempindex)
+
+```
+
+## Reaktiot kohteluun
+
+```{r}
+#| label: koodikirja-09-reaktiot
+#| code-summary: "Kohtelun reaktiomittareiden dokumentointi"
+
+k23_nimet <- c(
+  "Ilmoitin kohtelusta esihenkilölleni",
+  "Hain lääketieteellistä hoitoa",
+  "Hain psykososiaalista hoitoa (esimerkiksi defusing- tai debriefing-menettely, työpsykologin tapaaminen)",
+  "Hain oikeudellista apua",
+  "Tein ilmoituksen organisaation käyttämässä järjestelmässä (esimerkiksi työtapaturma-, uhka- ja väkivaltatilanne-, vaaratapahtuma- tai muu työsuojeluilmoitus)",
+  "Hälytin turvallisuusviranomaiset (esim. hätäpuhelu, Virven käyttö)",
+  "Muutin suojavarustekäytäntöjäni",
+  "Kerroin kollegoilleni kohtelusta",
+  "Jäin pois toiminnasta, jätin menemättä tehtäviin",
+  "Ilmoitin asiasta luottamushenkilölle tai työsuojeluun",
+  "Ilmoitin asiasta johtohenkilölle, ohittaen esihenkilöni"
+) %>% paste0("Miten reagoit epäasiallisen tai väkivaltaisen kohtelun kokemukseesi?: ", .)
+
+# Muuttujaryhmä "k23"
+koodikirja <- koodikirja |>
+  mutate(
+    tempindex = if_else(
+      str_starts(id, "k23"), cumsum(str_starts(id, "k23")), NA_integer_
+    ),
+    Nimi = if_else(
+      str_starts(id, "k23") & tempindex <= length(k23_nimet),
+      k23_nimet[tempindex],
+      Nimi
+    ),
+    Arvot = ifelse(
+      str_starts(id, "k23"),
+      list(c(
+        "1" = "(valittu)",
+        "NA" = "(ei valittu)",
+        "-1" = "(ei nähnyt kysymystä)"
+      )),
+      Arvot
+    )
+  ) |>
+  select(-tempindex)
+
+```
+
+## Ilmoitusjärjestelmien olemassaolo ja koulutus
+
+```{r}
+#| label: koodikirja-10-ilmojarjestelmat
+#| code-summary: "Ilmoitusjärjestelmien muuttujien dokumentointi"
+
+k24_nimet <- c(
+  "Organisaation sisällä tapahtuneille tilanteille",
+  "Organisaation ulkopuolelta tulleelle kohtelulle",
+  "Sekä sisäiset että ulkoiset tilanteet yhdessä järjestelmässä"
+) %>% paste0("Onko organisaatiollasi käytössä ilmoitusjärjestelmä, jossa voit ilmoittaa epäasiallisen tai väkivaltaisen kohtelun tilanteista?: ", .)
+
+k25_nimet <- c(
+  "Organisaation sisällä tapahtuneille tilanteille",
+  "Organisaation ulkopuolelta tulleelle kohtelulle",
+  "Sekä sisäiset että ulkoiset tilanteet yhdessä järjestelmässä"
+) %>% paste0("Onko organisaatiollasi tarjolla koulutusta ilmoitusjärjestelmän käyttöön?: ", .)
+
+# Muuttujaryhmä "k24"
+koodikirja <- koodikirja |>
+  mutate(
+    tempindex = if_else(
+      str_starts(id, "k24"), cumsum(str_starts(id, "k24")), NA_integer_
+    ),
+    Nimi = if_else(
+      str_starts(id, "k24") & tempindex <= length(k24_nimet),
+      k24_nimet[tempindex],
+      Nimi
+    ),
+    Arvot = ifelse(
+      str_starts(id, "k24"),
+      list(c(
+        "1" = "Kyllä",
+        "2" = "Ei",
+        "3" = "En osaa sanoa",
+        "NA" = "(ei vastannut)"
+      )),
+      Arvot
+    )
+  ) |>
+  select(-tempindex)
+
+# Muuttujaryhmä "k25"
+koodikirja <- koodikirja |>
+  mutate(
+    tempindex = if_else(
+      str_starts(id, "k25"), cumsum(str_starts(id, "k25")), NA_integer_
+    ),
+    Nimi = if_else(
+      str_starts(id, "k25") & tempindex <= length(k25_nimet),
+      k25_nimet[tempindex],
+      Nimi
+    ),
+    Arvot = ifelse(
+      str_starts(id, "k25"),
+      list(c(
+        "0" = "En osaa sanoa",
+        "1" = "Ei ole koulutusta",
+        "2" = "On koulutusta, mutta en ole käynyt sitä",
+        "3" = "On koulutusta, ja olen käynyt sen",
+        "NA" = "(ei vastannut)"
+      )),
+      Arvot
+    )
+  ) |>
+  select(-tempindex)
+
+```
+
+## Ilmoitusjärjestelmäasenteet
+
+```{r}
+#| label: koodikirja-11-ilmoasenteet
+#| code-summary: "Ilmoitusjärjestelmäasennemuuttujien dokumentointi"
+
+k26_nimet <- c(
+  "Ilmoitusjärjestelmät ovat liian työläitä tai raskaita",
+  "Ilmoituksen tekeminen ei johda toimenpiteisiin",
+  "Pelkään vastatoimia esihenkilöiltäni tai johdolta, jos tekisin ilmoituksen",
+  "Jos epäasiallisen tai väkivaltaisen kohtelun tekijä on alentuneessa toimintatilassa, häntä ei voi syyttää toiminnastaan",
+  "Teen ilmoituksen jokaisesta kokemastani epäasiallisesta tai väkivaltaisesta kohtelusta",
+  "Konfliktitilanteet ovat osa työtäni",
+  "Minulla ei ole tilaisuutta tai mahdollisuutta tehdä ilmoituksia",
+  "Minulle on epäselvää, milloin ilmoitus pitäisi täyttää",
+  "Unohdan tehdä ilmoituksen kokemastani epäasiallisesta tai väkivaltaisesta kohtelusta",
+  "Pelkään ilmoituksen johtavan oman ammattitaitoni kyseenalaistamiseen",
+  "Oletan, että joku muu hoitaa ilmoituksen puolestani",
+  "Valtakunnallisesti yhtenäisestä ilmoitusprosessista olisi hyötyä",
+  "En ilmoita epäasiallisesta tai väkivaltaisesta kohtelusta, koska en halua pahaa tekijälle",
+  "Epäasiallisen tai väkivaltaisen kohtelun kokemukset ovat yksittäistapahtumia",
+  "En tee ilmoituksia, koska tekijä saa tietää niistä",
+  "Kollegani näkisivät minut ongelmallisena tai vaikeana jos tekisin ilmoituksen",
+  "Pelkään menettäväni työpaikkani ilmoituksen myötä",
+  "Pelkään kollegoideni ryhtyvän vastatoimiin, jos tekisin ilmoituksen"
+) %>% paste0("Ota kantaa seuraaviin väitteisiin ilmoitusjärjestelmistä ja niiden käytöstä: ", .)
+
+# Muuttujaryhmä "k26"
+koodikirja <- koodikirja |>
+  mutate(
+    tempindex = if_else(
+      str_starts(id, "k26"), cumsum(str_starts(id, "k26")), NA_integer_
+    ),
+    Nimi = if_else(
+      str_starts(id, "k26") & tempindex <= length(k26_nimet),
+      k26_nimet[tempindex],
+      Nimi
+    ),
+    Arvot = ifelse(
+      str_starts(id, "k26"),
+      list(c(
+        "1" = "Erittäin eri mieltä",
+        "2" = "Eri mieltä",
+        "3" = "Jokseenkin eri mieltä",
+        "4" = "Ei samaa eikä eri mieltä",
+        "5" = "Jokseenkin samaa mieltä",
+        "6" = "Samaa mieltä",
+        "7" = "Erittäin samaa mieltä",
+        "NA" = "(ei vastannut)"
+      )),
+      Arvot
+    )
+  ) |>
+  select(-tempindex)
+
+```
+
+## Työuupumusväittämät
+
+```{r}
+#| label: koodikirja-12-tyouupumus
+#| code-summary: "Työuupumusmuuttujien dokumentointi"
+
+k27_nimet <- c(
+  "Tunnen itseni henkisesti uupuneeksi työssäni",
+  "En ole kiinnostunut enkä innostunut työstäni",
+  "Minun on vaikea pysyä tarkkaavaisena työssäni",
+  "En pysty hallitsemaan tunteitani työssäni"
+) %>% paste0("Seuraavat väittämät koskevat työtilannettasi ja sitä koskevia tuntemuksiasi. Miten usein seuraavat väittämät kuvaavat tilannettasi?: ", .)
+
+# Muuttujaryhmä "k27"
+koodikirja <- koodikirja |>
+  mutate(
+    tempindex = if_else(
+      str_starts(id, "k27"), cumsum(str_starts(id, "k27")), NA_integer_
+    ),
+    Nimi = if_else(
+      str_starts(id, "k27") & tempindex <= length(k27_nimet),
+      k27_nimet[tempindex],
+      Nimi
+    ),
+    Arvot = ifelse(
+      str_starts(id, "k27"),
+      list(c(
+        "1" = "Ei koskaan",
+        "2" = "Harvoin",
+        "3" = "Joskus",
+        "4" = "Usein",
+        "5" = "Aina",
+        "NA" = "(ei vastannut)"
+      )),
+      Arvot
+    )
+  ) |>
+  select(-tempindex)
+
+```
+
+## Toimenpiteiden käyttöönotto ja vaikutuskokemus
+
+```{r}
+#| label: koodikirja-13-toimenpiteet
+#| code-summary: "Toimintaohjelman toimenpidemuuttujien dokumentointi"
+
+k28_nimet <- c(
+  "Tasa-arvo- tai yhdenvertaisuussuunnitelma",
+  "Toimintaohjeet epäasialliseen käytökseen, häirintään tai seksuaaliseen häirintään reagointiin",
+  "Henkilöstön turvallisuusselvitykset",
+  "Ohjeet alaikäisten koskemattomuuden turvaamiselle",
+  "Nuorten kanssa toimivien rikostaustojen tarkastaminen",
+  "Ohjeet ahdistelutilanteen käsittelyyn",
+  "Ohjeet uhka- ja väkivaltatilanteen käsittelyyn",
+  "Ilmoitusjärjestelmä epäasiallisen kohtelun raportoimiseksi",
+  "Koulutus uhka- ja väkivaltatilanteiden kohtaamiseen",
+  "Koulutus epäasiallisen kohtelun tunnistamiseen",
+  "Keskustelutilaisuuksia tasa-arvo- ja yhdenvertaisuusaiheista",
+  "Henkilöstön infotilaisuudet organisaation yhdenvertaisuustilanteesta"
+) %>% paste0("Onko organisaatiossasi käytössä seuraavia epäasialliseen tai väkivaltaiseen kohteluun liittyviä toimenpiteitä tai ohjeita?: ", .)
+
+k29_nimet <- c(
+  "Tasa-arvo- tai yhdenvertaisuussuunnitelma",
+  "Toimintaohjeet epäasialliseen käytökseen, häirintään tai seksuaaliseen häirintään reagointiin",
+  "Henkilöstön turvallisuusselvitykset",
+  "Ohjeet alaikäisten koskemattomuuden turvaamiselle",
+  "Nuorten kanssa toimivien rikostaustojen tarkastaminen",
+  "Ohjeet ahdistelutilanteen käsittelyyn",
+  "Ohjeet uhka- ja väkivaltatilanteen käsittelyyn",
+  "Ilmoitusjärjestelmä epäasiallisen kohtelun raportoimiseksi",
+  "Koulutus uhka- ja väkivaltatilanteiden kohtaamiseen",
+  "Koulutus epäasiallisen kohtelun tunnistamiseen",
+  "Keskustelutilaisuuksia tasa-arvo- ja yhdenvertaisuusaiheista",
+  "Henkilöstön infotilaisuudet organisaation yhdenvertaisuustilanteesta"
+) %>% paste0("Miten edellä olevat toimet mielestäsi vaikuttavat epäasiallisen tai väkivaltaisen kohtelun esiintyvyyteen?: ", .)
+
+# Muuttujaryhmä "k28"
+koodikirja <- koodikirja |>
+  mutate(
+    tempindex = if_else(
+      str_starts(id, "k28"), cumsum(str_starts(id, "k28")), NA_integer_
+    ),
+    Nimi = if_else(
+      str_starts(id, "k28") & tempindex <= length(k28_nimet),
+      k28_nimet[tempindex],
+      Nimi
+    ),
+    Arvot = ifelse(
+      str_starts(id, "k28"),
+      list(c(
+        "1" = "Tiedän, että ei ole käytössä",
+        "2" = "Luulen, että ei ole käytössä",
+        "3" = "En osaa sanoa",
+        "4" = "Luulen, että on käytössä",
+        "5" = "Tiedän, että on käytössä", 
+        "NA" = "(ei vastannut)"
+      )),
+      Arvot
+    )
+  ) |>
+  select(-tempindex)
+
+# Muuttujaryhmä "k29"
+koodikirja <- koodikirja |>
+  mutate(
+    tempindex = if_else(
+      str_starts(id, "k29"), cumsum(str_starts(id, "k29")), NA_integer_
+    ),
+    Nimi = if_else(
+      str_starts(id, "k29") & tempindex <= length(k29_nimet),
+      k29_nimet[tempindex],
+      Nimi
+    ),
+    Arvot = ifelse(
+      str_starts(id, "k29"),
+      "0-10",
+      Arvot
+    )
+  ) |>
+  select(-tempindex)
+
+```
+
+## Ehdotettujen toimenpiteiden koettu hyödyllisyys
+
+```{r}
+#| label: koodikirja-14-muuttoimenpiteet
+#| code-summary: "Muiden toimenpidemuuttujien dokumentointi"
+
+k30_nimet <- c(
+  "Voimankäyttökoulutus tai -välineiden käyttöönotto",
+  "Toimintaan osallistuvat puuttuvat havaitsemaansa epäasialliseen kohteluun",
+  "Ohjeet epäasiallisen kohtelun jälkeisistä menettelyistä, esimerkiksi puuttumisprosessista tai jatkoavun saamisesta",
+  "Yhdenvertaisuuden koulutukset",
+  "Avoimet keskustelut organisaatiossa epäasiallisesta kohtelusta yleisellä tasolla (ei yksittäisistä tapahtumista)",
+  "Turvallisuusviranomaisten yhteistyön parantaminen",
+  "Lainsäädännön tiukentaminen tai rikosoikeudellisten seuraamuksien jyrkentäminen",
+  "Johdon selkeä ilmaisu epäasiallisen kohtelun nollatoleranssille",
+  "Organisaation nimetty yhdenvertaisuusvastaava",
+  "Monimuotoiset työyhteisöt",
+  "Rikosilmoituksen tekeminen automaattisesti epäasiallisen kohtelun tilanteissa",
+  "Nimettömän palautteen tai ilmoituskanavan käyttö",
+  "Työterveydenhuollon tuen laajentaminen"
+) %>% paste0("Miten hyödyllisinä koet seuraavat ehdotetut toimenpiteet epäasiallisen tai väkivaltaisen kohtelun estämiseksi tai vähentämiseksi?: ", .)
+
+# Muuttujaryhmä "k30"
+koodikirja <- koodikirja |>
+  mutate(
+    tempindex = if_else(
+      str_starts(id, "k30"), cumsum(str_starts(id, "k30")), NA_integer_
+    ),
+    Nimi = if_else(
+      str_starts(id, "k30") & tempindex <= length(k30_nimet),
+      k30_nimet[tempindex],
+      Nimi
+    ),
+    Arvot = ifelse(
+      str_starts(id, "k30"),
+      list(c(
+        "1" = "Erittäin hyödytön",
+        "2" = "Hyödytön",
+        "3" = "Jokseenkin hyödytön",
+        "4" = "Ei hyödyllinen eikä hyödytön",
+        "5" = "Jokseenkin hyödyllinen",
+        "6" = "Hyödyllinen",
+        "7" = "Erittäin hyödyllinen",
+        "NA" = "(ei vastannut)"
+      )),
+      Arvot
+    )
+  ) |>
+  select(-tempindex)
+
+```
+
+## Taustatiedot
+
+```{r}
+#| label: koodikirja-15-taustamuuttujat
+#| code-summary: "Taustamuuttujien dokumentointi"
+
+# Muuttuja k31
+koodikirja <- koodikirja |>
+  mutate(
+    Nimi = if_else(
+      id == "k31",
+      "Mikä sukupuolesi on?",
+      Nimi
+    ),
+    Arvot = ifelse(
+      id == "k31",
+      list(c(
+        "1" = "Nainen",
+        "2" = "Mies",
+        "3" = "Muu/En halua vastata"
+      )),
+      Arvot
+    )
+  )
+
+# Muuttuja k32
+koodikirja <- koodikirja |>
+  mutate(
+    Nimi = if_else(
+      id == "k32",
+      "Millaisella työrytmityksellä olet töissä pelastuslaitoksella tai ensihoidossa?",
+      Nimi
+    ),
+    Arvot = ifelse(
+      id == "k32",
+      list(c(
+        "1" = "24h työvuorot",
+        "2" = "12h työvuorot",
+        "3" = "Virasto- tai toimistotyöaika/Työ- tai virkavapaalla",
+        "-1" = "(ei nähnyt kysymystä)"
+      )),
+      Arvot
+    )
+  )
+
+# Muuttuja k33
+koodikirja <- koodikirja |>
+  mutate(
+    Nimi = if_else(
+      id == "k33",
+      "Kuinka monta tuntia käytät keskimäärin aikaa palokuntatoimintaan viikossa, poisluettuna varallaolo?",
+      Nimi
+    ),
+    Arvot = ifelse(
+      id == "k33",
+      list(c(
+        "1" = "Alle 2 tuntia viikossa",
+        "2" = "2-5 tuntia viikossa",
+        "3" = "6-10 tuntia viikossa",
+        "4" = "Yli 10 tuntia viikossa",
+        "-1" = "(ei nähnyt kysymystä)"
+      )),
+      Arvot
+    )
+  )
+
+# Muuttuja k34
+koodikirja <- koodikirja |>
+  mutate(
+    Nimi = if_else(
+      id == "k34",
+      "Teetkö varallaoloa tai oletko sopimuksenvaraisessa hälytysvalmiudessa?",
+      Nimi
+    ),
+    Arvot = ifelse(
+      id == "k34",
+      list(c(
+        "0" = "Ei",
+        "1" = "Kyllä",
+        "-1" = "(ei nähnyt kysymystä)"
+      )),
+      Arvot
+    )
+  )
+
+# Muuttuja k35
+koodikirja <- koodikirja |>
+  mutate(
+    Nimi = if_else(
+      id == "k35",
+      "Kuinka monta tuntia teet varallaoloa keskimäärin kuukaudessa?",
+      Nimi
+    ),
+    Arvot = ifelse(
+      id == "k35",
+      list(c(
+        "1" = "En ollenkaan",
+        "2" = "1-60 tuntia",
+        "3" = "61-120 tuntia",
+        "4" = "Yli 120 tuntia",
+        "-1" = "(ei nähnyt kysymystä)"
+      )),
+      Arvot
+    )
+  )
+
+# Muuttuja k37
+koodikirja <- koodikirja |>
+  mutate(
+    Nimi = if_else(
+      id == "k37",
+      "Millaisella rytmityksellä toimit organisaatiossasi?",
+      Nimi
+    ),
+    Arvot = ifelse(
+      id == "k37",
+      list(c(
+        "1" = "Virasto- tai toimistotyöaika",
+        "2" = "Opiskelija",
+        "3" = "Kokonaistyöaika",
+        "4" = "Työ- tai virkavapaalla, muuten poissa organisaatiosta",
+        "-1" = "(ei nähnyt kysymystä)"
+      )),
+      Arvot
+    )
+  )
+
+# Muuttuja Organisaatioasema
+koodikirja <- koodikirja |>
+  mutate(
+    Nimi = if_else(
+      id == "Organisaatioasema",
+      "Vastaajan asema organisaatiossaan",
+      Nimi
+    ),
+    Arvot = ifelse(
+      id == "Organisaatioasema",
+      list(c(
+        "1" = "Johto- tai esihenkilötaso/Hallinnollinen tai tukipalveluhenkilöstö",
+        "2" = "Suorittava henkilöstö",
+        "3" = "Asiantuntijatehtävät (esim. suunnittelija, tutkija)/Opetushenkilöstö",
+        "4" = "Opiskelija"
+      )),
+      Arvot
+    )
+  )
+
+# Muuttuja k40
+koodikirja <- koodikirja |>
+  mutate(
+    Nimi = if_else(
+      id == "k40",
+      "Mihin ammattiryhmään kuulut?",
+      Nimi
+    ),
+    Arvot = ifelse(
+      id == "k40",
+      list(c(
+        "1" = "Pelastaja",
+        "2" = "Ensihoitaja",
+        "3" = "Muu ammattiryhmä",
+        "-1" = "(ei nähnyt kysymystä)"
+      )),
+      Arvot
+    )
+  )
+
+# Muuttuja k41
+koodikirja <- koodikirja |>
+  mutate(
+    Nimi = if_else(
+      id == "k41",
+      "Kuinka kauan olet toiminut pelastusalalla tai ensihoidossa?",
+      Nimi
+    ),
+    Arvot = ifelse(
+      id == "k41",
+      list(c(
+        "1" = "Alle 6 vuotta",
+        "2" = "6-13 vuotta",
+        "3" = "14-24 vuotta",
+        "4" = "25 vuotta tai yli"
+      )),
+      Arvot
+    )
+  )
+
+```
+
+## Muutosaikeet
+
+```{r}
+#| label: koodikirja-16-muutosaikeet
+#| code-summary: "Muutosaiemuuttujien dokumentointi"
+
+### Mittareiden nimet
+# Muuttujaryhmä "k42_"
+k42_nimet <- c(
+  "Muuttaa tehtävänkuvaani",
+  "Vaihtaa organisaatiotani",
+  "Lähteä alalta"
+) |>
+  rep(each = 3) |>
+  imap(
+    \(el, idx)
+      case_match(
+        idx,
+        c(1, 4, 7) ~ paste0("Onko sinulla ollut viimeisen 12 kuukauden aikana aikeita tai suunnitelmia muuttaa tilannettasi seuraavilla tavoilla, tai oletko jo muuttanut tilannettasi?: ", el, ": Olen harkinnut"),
+        c(2, 5, 8) ~ paste0("Onko sinulla ollut viimeisen 12 kuukauden aikana aikeita tai suunnitelmia muuttaa tilannettasi seuraavilla tavoilla, tai oletko jo muuttanut tilannettasi?: ", el, ": Olen toteuttamassa"),
+        c(3, 6, 9) ~ paste0("Onko sinulla ollut viimeisen 12 kuukauden aikana aikeita tai suunnitelmia muuttaa tilannettasi seuraavilla tavoilla, tai oletko jo muuttanut tilannettasi?: ", el, ": Olen jo tehnyt")
+      )
+  ) |>
+  as.character()
+
+# Muuttujaryhmä "k42_"
+koodikirja <- koodikirja |>
+  mutate(
+    tempindex = if_else(
+      str_starts(id, "k42_"), cumsum(str_starts(id, "k42_")), NA_integer_
+    ),
+    Nimi = if_else(
+      str_starts(id, "k42_") & tempindex <= length(k42_nimet),
+      k42_nimet[tempindex],
+      Nimi
+    ),
+    Arvot = ifelse(
+      str_starts(id, "k42_"),
+      list(c(
+        "1" = "(valittu)",
+        "NA" = "(ei valittu)"
+      )),
+      Arvot
+    )
+  ) |>
+  select(-tempindex)
+
+```
+
+## Muutosaikeiden syyt
+
+Huomautamme, että muutosaikeiden syymuuttujat ovat rakennettu luokittelemalla avovastauksia (ks. @sec-valmistelu-avovastaukset). 
+
+```{r}
+#| label: koodikirja-17-muutosaikeidensyyt
+#| code-summary: "Muutosaikeiden syiden dokumentointi"
+
+k43_nimet <- c(
+  "Epäasiallinen tai väkivaltainen kohtelu",
+  "Heikko johtaminen",
+  "Heikot työehdot",
+  "Henkilökohtaiset syyt",
+  "Jatkuvuuden epävarmuus",
+  "Liikaa vaatimuksia",
+  "Ongelmat työnteossa",
+  "Ongelmat työyhteisössä",
+  "Organisaation rakenneongelmat",
+  "Osaamisen kehittäminen",
+  "Puutteet arvostuksessa tai tuessa",
+  "Puutteet etenemismahdollisuuksissa",
+  "Puutteet motivaatiossa",
+  "Resurssipula",
+  "Työkuormitus",
+  "Työnkuvan muutos",
+  "Urakehitys",
+  "Vuorotyö"
+) %>% paste0("Voitko kertoa syitä muutoksellesi tai sen aikeille?: ", .)
+
+# Muuttujaryhmä "k43"
+koodikirja <- koodikirja |>
+  mutate(
+    tempindex = if_else(
+      str_starts(id, "k43"), cumsum(str_starts(id, "k43")), NA_integer_
+    ),
+    Nimi = if_else(
+      str_starts(id, "k43") & tempindex <= length(k43_nimet),
+      k43_nimet[tempindex],
+      Nimi
+    ),
+    Arvot = ifelse(
+      str_starts(id, "k43"),
+      list(c(
+        "1" = "(ilmoitti)",
+        "0" = "(ei ilmoittanut)",
+        "NA" = "(ei vastannut avokysymykseen)"
+      )),
+      Arvot
+    )
+  ) |>
+  select(-tempindex)
+
+```
+
+## Koodikirjan eksportointi
+
+```{r}
+#| label: koodikirja-18-eksportointi
+#| code-summary: "Eksportointi csv-tiedostoon"
+
+write.csv2(apply(koodikirja, 2, as.character), file = "output/koodikirja.csv", row.names = FALSE, fileEncoding = "latin1")
+
+```
