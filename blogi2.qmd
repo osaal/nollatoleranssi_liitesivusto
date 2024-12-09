@@ -16,11 +16,11 @@ data <- read.csv2("output/valmisdata.csv", tryLogical = FALSE)
 
 ```
 
-*Tämä blogikirjoitus julkaistaan Pelastusopiston blogissa 13.11.2024.* *Osion analyysit ovat toistettavissa Tietoarkistoon arkistoidulla aineistokopiolla. Ennen toistoa tulee suorittaa [luvussa -@sec-datatarkistus] esitetyt aineistopoistot.*
+*Tämä blogikirjoitus julkaistiin Pelastusopiston blogissa 13.11.2024.* *Osion analyysit ovat toistettavissa Tietoarkistoon arkistoidulla aineistokopiolla. Ennen toistoa tulee suorittaa [luvussa -@sec-datatarkistus] esitetyt aineistopoistot.*
 
 ------------------------------------------------------------------------
 
-*Pelastusopiston toteuttama ja Palosuojelurahaston rahoittama Nollatoleranssi-hanke on selvittänyt epäasiallisen ja väkivaltaisen kohtelun esiintyvyyttä, vaikutuksia ja toimenpiteitä pelastusalalla. Tämä blogi on osa neljän julkaisun blogisarjaa, jossa käsitellään valtakunnallisen kyselytutkimuksen tuloksia. Seuraava blogi julkaistaan 16. joulukuuta 2024.*
+*Pelastusopiston toteuttama ja Palosuojelurahaston rahoittama Nollatoleranssi-hanke on selvittänyt epäasiallisen ja väkivaltaisen kohtelun esiintyvyyttä, vaikutuksia ja toimenpiteitä pelastusalalla. Tämä blogi on osa neljän julkaisun blogisarjaa, jossa käsitellään valtakunnallisen kyselytutkimuksen tuloksia. Seuraava blogi julkaistaan 16. joulukuuta 2024. [Lue aikaisempi blogi täältä](https://www.pelastusopisto.fi/blogi/epaasiallisuutta-ja-vakivaltaa-esiintyy-pelastusalalla-ja-ensihoidossa-laajasti/)*.
 
 Nollatoleranssi-hankkeen tulosten toisessa blogissa käsittelemme epäasiallisen ja väkivaltaisen kohtelun vaikutuksia. Millaisia vaikutuksia kohtelulla on henkilölle sekä organisaatiolle? Miten kohtelu vaikuttaa vastaajien haluun pysyä alalla?
 
@@ -79,12 +79,11 @@ data <- data |>
 
 ```
 
-
 ## Henkilövaikutukset riippuvat kohtelun tekoympäristöstä
 
 Kaikki vastaajat, jotka olivat kokeneet vähintään yhden epäasiallisen tai väkivaltaisen kohtelutilanteen viimeisen 12 kuukauden aikana, saivat vastata kysymyksiin kokemansa kohtelun vaikutuksista. Jaoimme vaikutukset kolmeen ryhmään: fyysiset, psyykkiset ja ammatilliset. Jokaiselle vaikutukselle esitimme tutkimuksen ja asiantuntijatyöpajan pohjalta työstetyt esimerkit lievälle, kohtalaiselle ja vakavalle vaikutukselle.
 
-Fyysisiä vaikutuksia koettiin selkeästi muita vaikutuksia harvemmin ja vähäisemmin (@fig-blogi2-02-vakavuus). Noin puolet vastaajista kokivat ammatillisia vaikutuksia, kuten motivaation heikkenemistä, sairaslomat tai jopa tehtävien vaihdot ja eroamiset. Jopa 60 prosenttia koki psyykkisiä vaikutuksia, vaihdellen epäluottamuksesta ja ahdistuksesta masennukseen ja itsetuhoisiin ajatuksiin.
+Fyysisiä vaikutuksia koettiin selkeästi muita vaikutuksia harvemmin ja vähäisemmin (@fig-blogi2-02-vakavuus). Noin puolet vastaajista kokivat ammatillisia vaikutuksia, kuten motivaation heikkenemistä, sairaslomia tai jopa tehtävien vaihtoja ja eroamisia. Jopa 60 prosenttia koki psyykkisiä vaikutuksia, vaihdellen epäluottamuksesta ja ahdistuksesta masennukseen ja itsetuhoisiin ajatuksiin.
 
 ```{r}
 #| label: fig-blogi2-02-vakavuus
@@ -175,13 +174,11 @@ summary(vakavuus.ulko)
 
 ```
 
-Koetun epäasiallisen ja väkivaltaisen kohtelun määrä on yhteydessä vaikutusten vakavuuteen, mutta yhteydet eroavat tekoympäristön mukaan. Organisaatiosisäisen kohtelun osalta jokainen lisäpiste 50 pisteen kohtelumittarilla laskee fyysisiä vaikutuksia -0,9 pistettä mutta nostaa psyykkisiä vaikutuksia 0,8 pistettä ja ammatillisia vaikutuksia jopa 1,1 pistettä. Fyysisten vaikutusten lasku voi johtua sairaslomista, jolloin henkilö ei yksinkertaisesti voi kokea enempiä vaikutuksia työpaikkaväkivallan takia. Organisaation ulkopuolinen, asiakkailta tai sidosryhmiltä tuleva väkivalta on yhteydessä vain fyysisiin vaikutuksiin: jokainen lisäpiste nostaa fyysisiä vaikutuksia jopa 2,8 pistettä.
-
-Yhteydet ovat suhteellisen vahvoja. Tilastolliset mallit selittävät yli 30 prosenttia kaikesta vaihtelusta kohtelumittarilla ja vaikutuksissa, eli iso osa koetuista vaikutuksista voi johtua vain koetun kohtelun määrästä, eikä muista tekijöistä.
+Koetun epäasiallisen ja väkivaltaisen kohtelun määrä on yhteydessä vaikutusten vakavuuteen, mutta yhteydet eroavat tekoympäristön mukaan. Organisaation sisäisen kohtelun määrä on yhteydessä nousseisiin psyykkisiin ja ammatillisiin vaikutuksiin, mutta laskeneisiin fyysisiin vaikutuksiin. Fyysisten vaikutusten lasku voi johtua sairaslomista, jolloin henkilö ei yksinkertaisesti voi kokea enempiä vaikutuksia työpaikkaväkivallan takia. Organisaation ulkopuolinen, asiakkailta tai sidosryhmiltä tuleva väkivalta on yhteydessä vain fyysisiin vaikutuksiin, mutta yhteys on kolme kertaa vahvempi kuin organisaation sisäiset yhteydet.
 
 ## Työuupumus seuraa koetun kohtelun määrää
 
-Epäasiallisen ja väkivaltaisen kohtelun määrät korreloivat positiivisesti työuupumusmittariston pisteiden kanssa riippumatta tekokontekstista (@fig-blogi2-04-uupumusXkohtelu). Korrelaatio on kuitenkin vahvempi organisaatiosisäisen kohtelun osalta (r = 0,34) kuin ulkoisen kohtelun osalta (r = 0,19). Sisäisen sekä ulkoisen kohtelun määrät selittävät 11 ja 4 prosenttia työuupumusmittarin vaihtelusta. Vaikka asteet eivät itsessään ole suuria, ihmistieteissä yleisesti ei löydy yksittäisiä selittäviä tekijöitä ilmiöille, jolloin kaltaiset määrät voidaan nähdä merkittävinä.
+Epäasiallisen ja väkivaltaisen kohtelun määrät ovat yhteydessä työuupumusmittariston pisteiden kanssa riippumatta ympäristöstä (@fig-blogi2-04-uupumusXkohtelu). Yhteys on kuitenkin vahvempi organisaation sisäisen kohtelun osalta (r = 0,34) kuin ulkoisen kohtelun osalta (r = 0,19).
 
 ```{r}
 #| label: fig-blogi2-04-uupumusXkohtelu
@@ -246,9 +243,9 @@ summary(uupumus.log.ulko)
 
 ```
 
-Jokainen lisäpiste organisaatiosisäistä kohtelumäärää nostaa vastaajan todennäköisyyttä olla työuupunut `r round(exp(summary(uupumus.log.sisa)$coefficients["EVK_sisä_koettu",1]), digits = 2)`-kertaisesti. Organisaatioulkoinen kohtelumäärä ei kuitenkaan ole yhteydessä työuupumuksen todennäköisyyteen.
+Jokainen lisäpiste organisaation sisäistä kohtelumäärää nostaa vastaajan todennäköisyyttä olla työuupunut `r round(exp(summary(uupumus.log.sisa)$coefficients["EVK_sisä_koettu",1]), digits = 2)`-kertaisesti. Organisaation ulkopuolinen kohtelumäärä ei kuitenkaan ole yhteydessä työuupumuksen todennäköisyyteen.
 
-Todennäköisesti työuupunut vastaaja on kohdannut jopa kuusi kertaa enemmän organisaatiosisäistä epäasiallista ja väkivaltaista kohtelua (@fig-blogi2-06-toduup). Organisaatioulkoisen kohtelun kohdalla ero ei ole merkitsevä uupumustilan mukaan.
+Todennäköisesti työuupunut vastaaja on kohdannut jopa kuusi kertaa enemmän organisaation sisäistä epäasiallista ja väkivaltaista kohtelua (@fig-blogi2-06-toduup). Organisaation ulkoisen kohtelun kohdalla ero ei ole merkitsevä uupumustilan mukaan
 
 ```{r}
 #| label: fig-blogi2-06-toduup
@@ -304,9 +301,9 @@ uupumus.tod.sisa + uupumus.tod.ulko + plot_layout(
 
 Kysyimme kaikilta vastaajilta, onko heillä ollut työ- tai harrastuskuvansa muutosaikeita viimeisen 12 kuukauden ajan. Aikeet kohdistuivat kolmeen eri ryhmään: tehtävien muutokset, organisaation vaihtaminen sekä alalta lähtö. Jokaisessa ryhmässä vastaajat saivat valita, jos he ovat harkinneet asiaa, ovat toteuttamassa tai ovat jo toteuttaneet. Kysymys oli monivalinta, eli vastaajat saivat valita kaikki yhdeksän mahdollista vaihtoehtoa.
 
-Kaikista vastaajista noin 20 prosenttia on harkinneet jotain muutosta. Joka kymmenes on muuttanut tai muuttamassa tehtävänkuvaansa. 2-4 prosenttia on vaihtamassa organisaatiotaan tai lähtemässä alalta.
+Kaikista vastaajista noin 20 prosenttia on harkinnut jotain muutosta. Joka kymmenes on muuttanut tai muuttamassa tehtävänkuvaansa. 2–4 prosenttia on vaihtamassa organisaatiotaan tai lähtemässä alalta.
 
-Mitä enemmän vastaaja oli kohdannut epäasiallista tai väkivaltaista kohtelua, sitä useamman muutosaikeen hän oli ilmoittanut kyselyssä (@fig-blogi2-07-muutosaieXkohtelu). Yhteys on keskivahva organisaatiosisäisen kohtelumäärän ja muutosaikeiden välillä (r = 0,41), mutta pieni organisaatioulkoisen kohtelun osalta (r = 0,24). Sisäisen sekä ulkoisen kohtelun määrät selittävät 17 ja 6 prosenttia muutosaikeiden vaihtelusta, eli hieman enemmän kuin työuupumuksen osalta.
+Mitä enemmän vastaaja oli kohdannut epäasiallista tai väkivaltaista kohtelua, sitä useamman muutosaikeen hän oli ilmoittanut kyselyssä (@fig-blogi2-07-muutosaieXkohtelu). Yhteys on keskivahva organisaation sisäisen kohtelumäärän ja muutosaikeiden välillä (r = 0,41), mutta pieni organisaation ulkoisen kohtelun osalta (r = 0,24).
 
 ```{r}
 #| label: fig-blogi2-07-muutosaieXkohtelu
@@ -425,15 +422,15 @@ muutosaikeet.tulokset <- muutosaikeet.mallit |>
 
 ```
 
-Jokainen lisäpiste organisaatiosisäistä kohtelun määrää nostaa vastaajan todennäköisyyttä valita melkein minkä tahansa muutosaikeen. Tehtävänkuvan muutosten toteuttaminen ei ole tilastollisessa yhteydessä kohtelun määrään. Todennäköisyydet nousevat noin 1,1-1,2-kertaisesti jokaisella lisäpisteellä.
+Jokainen lisäpiste organisaation sisäistä kohtelun määrää nostaa vastaajan todennäköisyyttä valita melkein minkä tahansa muutosaikeen. Tehtävänkuvan muutosten toteuttaminen ei ole tilastollisessa yhteydessä kohtelun määrään. Todennäköisyydet nousevat noin 1,1–1,2-kertaisesti jokaisella lisäpisteellä.
 
-Organisaatioulkoinen kohtelu ei ole yhtä selkeässä yhteydessä muutosaikeiden todennäköisyydelle. Mitä enemmän vastaaja oli kohdannut epäasiallista ja väkivaltaista kohtelua organisaation ulkopuolelta, sitä enemmän hän oli harkinnut jotain muutoksista, mutta toteuttamisen ja kohtelun välillä ei nähty tilastollista yhteyttä. Todennäköisyyksien nousut ovat myös organisaatiosisäisen kohtelun yhteyksiä puolet pienempiä, vain noin 1,05-kertaisia.
+Organisaation ulkoinen kohtelu ei ole yhtä selkeässä yhteydessä muutosaikeiden todennäköisyydelle. Mitä enemmän vastaaja oli kohdannut epäasiallista ja väkivaltaista kohtelua organisaation ulkopuolelta, sitä enemmän hän oli harkinnut jotain muutoksista, mutta toteuttamisen ja kohtelun välillä ei nähty tilastollista yhteyttä. Todennäköisyyksien nousut ovat myös organisaatiosisäisen kohtelun yhteyksiä puolet pienempiä, vain noin 1,05-kertaisia.
 
 ## Yhteenveto
 
 Jo vuosikymmenten ajan tutkimukset ovat osoittaneet, miten työpaikalla tapahtuva epäasiallinen ja väkivaltainen kohtelu on yhteydessä moniin eri negatiivisiin yksilö- ja organisaatiotason vaikutuksiin. Nollatoleranssi-hanke vahvistaa näitä tuloksia, mutta vaikutuksissa on myös eroja kohtelun tekoympäristön mukaan.
 
-Kyselyn vastanneiden kesken organisaatiosisäinen kohtelu on tilastollisessa yhteydessä kaikkiin vaikutusmuotoihin, mutta organisaatioulkoinen kohtelu on yhteydessä vain fyysisiin vaikutuksiin. Selityksenä voi olla kenttäväkivallan odotukset: jos alan toimijat odottavat väkivallan kokemuksia asiakkailta ja potilailta, he voivat olla enemmän vastustuskykyisiä sen aiheuttamille psyykkisille ja ammatillisille vaikutuksille. Työpaikkasisäistä epäasiallisuutta ja väkivaltaa ei ehkä odoteta samoissa määrin, jolloin vaikutukset ovat myös vakavammat.
+Kyselyn vastanneiden kesken organisaation sisäinen kohtelu on tilastollisessa yhteydessä kaikkiin vaikutusmuotoihin, mutta organisaatioulkoinen kohtelu on yhteydessä vain fyysisiin vaikutuksiin. Selityksenä voi olla kenttäväkivallan odotukset: jos alan toimijat odottavat väkivallan kokemuksia asiakkailta ja potilailta, he voivat olla enemmän vastustuskykyisiä sen aiheuttamille psyykkisille ja ammatillisille vaikutuksille. Työpaikkasisäistä epäasiallisuutta ja väkivaltaa ei ehkä odoteta samoissa määrin, jolloin vaikutukset ovat myös vakavammat.
 
 Todennäköisesti työuupuneet vastaajat kohtaavat jopa kuusi kertaa enemmän epäasiallisuutta ja väkivaltaa organisaationsa sisällä kuin muut. Todellisuudessa kausaalisuhde on luultavasti toisinpäin, eli mitä enemmän työpaikkaväkivaltaa pelastusalan toimijat kohtaavat, sitä todennäköisemmin he ovat työuupuneita. Työuupumus on vakava terveydellinen tila, jonka korjaaminen voi vaatia jopa kuukausi- tai vuosikausia kuntoutusta.
 
@@ -442,5 +439,3 @@ Jos kohtelua kohtaava vastaaja kuitenkin säilyy työkykyisenä, hänen halunsa 
 Epäasiallisen ja väkivaltaisen kohtelun vaikutukset ovat vakavia, ja aiheuttavat niin inhimillistä kärsimystä kuin taloudellisia vahinkoja. Jotta organisaatiot voivat tehokkaasti puuttua työyhteisön ongelmiin, tarvitaan kuitenkin tietoa ongelmien olemassaolosta. Seuraavassa blogissa käsittelemme epäasiallisen ja väkivaltaisen kohtelun ilmoituskanavien käyttöä ja niihin kohdistuvia asenteita.
 
 *Nollatoleranssi-hanke jatkuu helmikuun 2025 loppuun asti. Hankkeen tuloksia työstetään pelastusalaa osallistavissa asiantuntijatyöpajoissa, ja tuloksista vedostetaan toimenpide- ja jatkotutkimusehdotukset. Lue lisää hankkeesta osoitteessa <https://www.pelastusopisto.fi/nollatoleranssi>. Hankkeesta viestitään sosiaalisessa mediassa aihetunnisteella #PTNollatoleranssi.*
-
-

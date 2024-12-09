@@ -1,0 +1,547 @@
+# Blogi: Epäasiallisuuksia ja väkivaltaa ei raportoida, jos ilmoitusjärjestelmää ei ole olemassa
+
+---
+eval: true
+---
+
+```{r}
+#| label: blogi3-00-valmistelu
+#| code-smmary: "Osiossa käytetyt paketit ja datan avaaminen"
+
+library(tidyverse) # Yleinen datatyöstäminen
+library(scales) # Prosenttilukujen esittämiselle
+library(ggstatsplot) # Tilastollisten kuvioiden rakentamiselle
+library(patchwork) # Usean kuvion yhdistämiselle
+data <- read.csv2("output/valmisdata.csv", tryLogical = FALSE)
+
+```
+
+*Tämä blogikirjoitus julkaistaan Pelastusopiston blogissa 18.12.2024.* *Osion analyysit ovat toistettavissa Tietoarkistoon arkistoidulla aineistokopiolla. Ennen toistoa tulee suorittaa [luvussa -@sec-datatarkistus] esitetyt aineistopoistot.*
+
+------------------------------------------------------------------------
+
+*Pelastusopiston toteuttama ja Palosuojelurahaston rahoittama Nollatoleranssi-hanke on selvittänyt epäasiallisen ja väkivaltaisen kohtelun esiintyvyyttä, vaikutuksia ja toimenpiteitä pelastusalalla. Tämä blogi on osa neljän julkaisun blogisarjaa, jossa käsitellään valtakunnallisen kyselytutkimuksen tuloksia. Seuraava blogi julkaistaan 9. tammikuuta 2025. [Lue aikaisempi blogi täältä](https://www.pelastusopisto.fi/blogi/tyoyhteison-epaasiallisuudet-ja-vakivalta-heikentavat-alan-pitovoimaa/).*
+
+Nollatoleranssi-hankkeen tulosten kolmannessa blogissa käsittelemme epäasiallisen ja väkivaltaisen kohtelun estämiseen tähtääviä ilmoitus- ja raportointijärjestelmiä. Missä määrin järjestelmät ovat käytössä, ja onko niihin saatavissa koulutusta? Millaiseksi järjestelmät mielletään?
+
+Muistutamme, että kyselyn aihe voi aiheuttaa valikoitumisharhaa. Tuloksia tulee tulkita varovaisesti ja välttää yleistämistä koko alaan.
+
+```{r}
+#| label: blogi3-01-muuttujat
+#| code-summary: "Muuttujien rakentaminen"
+
+### Epäasiallisen ja väkivaltaisen kohtelun mittarit
+# Koodataan uudelleen mittarit, jotta NA == 0 ja muut arvot pysyvät samoina.
+data <- data |>
+  mutate(
+    across(
+      c(k3_1:k4_7, k12_1:k13_7),
+      ~ case_match(
+        .x,
+        NA ~ 0,
+        .default = .x
+      )
+    )
+  ) |>
+  mutate(
+    EVK_sisä_koettu = k3_1 + k3_2 + k3_3 + k3_4 + k3_5 + k3_6 + k3_7,
+    EVK_ulko_koettu = k12_1 + k12_2 + k12_3 + k12_4 + k12_5 + k12_6 + k12_7,
+    EVK_sisä_havaittu = k4_1 + k4_2 + k4_3 + k4_4 + k4_5 + k4_6 + k4_7,
+    EVK_ulko_havaittu = k13_1 + k13_2 + k13_3 + k13_4 + k13_5 + k13_6 + k13_7
+  )
+
+### Asennemittarit
+# Yksi mittari käännetään ennen analysia
+data <- data |>
+  mutate(
+    across(
+      k26_13,
+      ~ case_match(
+        .x,
+        1 ~ 7,
+        2 ~ 6,
+        3 ~ 5,
+        4 ~ 4,
+        5 ~ 3,
+        6 ~ 2,
+        7 ~ 1,
+        NA ~ NA
+      )
+    )
+  ) |>
+  mutate(
+    asenne1 = k26_1 + k26_2 + k26_7 + k26_8 + k26_9 + k26_11 + k26_12,
+    asenne2 = k26_2 + k26_3 + k26_10 + k26_13 + k26_15 + k26_17 + k26_18
+  )
+
+```
+
+## Järjestelmiä on vaihtelevasti käytössä, mutta niistä ei usein tiedetä
+
+Kysyimme vastaajilta, onko heidän organisaatiossaan käytössä ilmoitusjärjestelmiä epäasiallisen ja väkivaltaisen kohtelun kohtaamisille. Ilmoitusjärjestelmät jaettiin kolmeen ryhmään: työpaikan sisällä tapahtuvaan kohteluun, työpaikan ulkopuolelta tulleelle kohtelulle, sekä järjestelmiin, joissa voidaan ilmoittaa molempien tekoympäristöjen kohtelusta.
+
+Noin 60 prosenttia vastaajista ilmoittavat, että organisaation sisäisille tai ulkoisille tapahtumille on olemassa järjestelmä (@fig-blogi3-02-jarjestelmat). Molempia tekoympäristöjä yhdistäviä järjestelmiä näyttäisi olevan hieman harvemmin käytössä. Epävarmuutta on kuitenkin paljon, 20-40 prosenttia riippuen järjestelmästä. Vastaajat eivät toisin sanoen usein tiedä, onko järjestelmää olemassa vai ei.
+
+```{r}
+#| label: fig-blogi3-02-jarjestelmat
+#| fig-cap: "Ilmoitusjärjestelmien rapoirtoitu olemassaolo"
+#| code-summary: "Kuvion piirtäminen"
+
+data |>
+  select(k24_1:k24_3) |>
+  pivot_longer(
+    cols = k24_1:k24_3,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = c(1, 3, 2),
+      labels = sapply(c(
+        "Kyllä",
+        "En osaa sanoa",
+        "Ei"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Organisaation sisällä tapahtuneille tilanteille",
+      "Organisaation ulkopuolelta tulleelle kohtelulle",
+      "Sekä sisäiset että ulkoiset tilanteet yhdessä järjestelmässä"
+    ), str_wrap, width = 18, USE.NAMES = FALSE)
+  ) +
+  scale_fill_manual(
+    values = c("#873073", "#fe79ec", "#29d8fd")
+  ) +
+  labs(
+    x = "Suhde kaikista vastaajista (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(axis.title.y = element_blank()) +
+  geom_label(
+    aes(
+      label = scales::percent(prop, accuracy = 0.1, decimal.mark = ",")
+    ),
+    position = position_stack(vjust = 0.5),
+    show.legend = FALSE,
+    vjust = c(
+      #K----Ei----EOS---NA--#
+      0.50, -.25, 0.50, 1.25,
+      0.50, -.25, 0.50, 1.25,
+      0.50, -.25, 0.50, 1.25
+    )
+  )
+
+```
+
+Ulkoisesti koettu epäasiallinen ja väkivaltainen kohtelu on yhteydessä järjestelmien olemassaoloon, mutta sisäinen ei ole (@fig-blogi3-03-jarjestelmaXevk). On oletettavaa, että yksilö, joka kokee epäasiallista ja väkivaltaista kohtelua, on myös tietoisempi organisaationsa tarjoamista työkaluista. Siksi onkin huomattava, ettei yhteyttä nähdä sisäisen kohtelun kokemusten osalta: vastaajat ovat yhtä tietoisia tai epätietoisia järjestelmän olemassaolosta riippumatta siitä, miten paljon työpaikkasisäistä epäasiallisuutta ja väkivaltaa he ovat kohdanneet. On mahdollista, että järjestelmiä sisäisten ongelmien raportoimiselle ei käytännössä ole käytössä, tai ettei niistä tiedetä tarpeeksi käyttääkseen järjestelmiä tarpeen vaatiessa.
+
+```{r}
+#| label: fig-blogi3-03-jarjestelmaXevk
+#| fig-cap: "Järjestelmien olemassaolon suhde epäasiallisen ja väkivaltaisen kohtelun tasoon"
+#| code-summary: "Kuvioiden piirtäminen"
+
+sisa.sisa <- ggbetweenstats(
+  data = data,
+  x = k24_1,
+  y = EVK_sisä_koettu,
+  bf.message = FALSE,
+  type = "robust",
+  xlab = "Organisaation sisäinen järjestelmä",
+  ylab = "Sisäinen kohtelu",
+  title = "Sisäinen\njärjestelmä"
+) +
+  ylim(0, 49) + 
+  theme(plot.subtitle = element_text(size = 6)) +
+  scale_color_manual(
+    values = c("#873073", "#29d8fd", "#fe79ec")
+  ) +
+  scale_x_discrete(
+    labels = c("Kyllä", "Ei", "En osaa sanoa")
+  )
+
+sisa.ulko <- ggbetweenstats(
+  data = data,
+  x = k24_2,
+  y = EVK_sisä_koettu,
+  bf.message = FALSE,
+  type = "robust",
+  xlab = "Organisaation ulkoinen järjestelmä",
+  ylab = "Sisäinen kohtelu",
+  title = "Ulkoinen\njärjestelmä"
+) +
+  ylim(0, 49) + 
+  theme(plot.subtitle = element_text(size = 6)) +
+  scale_color_manual(
+    values = c("#873073", "#29d8fd", "#fe79ec")
+  ) +
+  scale_x_discrete(
+    labels = c("Kyllä", "Ei", "En osaa sanoa")
+  )
+
+sisa.yhdist <- ggbetweenstats(
+  data = data,
+  x = k24_3,
+  y = EVK_sisä_koettu,
+  bf.message = FALSE,
+  type = "robust",
+  xlab = "Yhdistelmäjärjestelmä",
+  ylab = "Sisäinen kohtelu",
+  title = "Yhdistelmä-\njärjestelmä"
+) +
+  ylim(0, 49) + 
+  theme(plot.subtitle = element_text(size = 6)) +
+  scale_color_manual(
+    values = c("#873073", "#29d8fd", "#fe79ec")
+  ) +
+  scale_x_discrete(
+    labels = c("Kyllä", "Ei", "En osaa sanoa")
+  )
+
+ulko.sisa <- ggbetweenstats(
+  data = data,
+  x = k24_1,
+  y = EVK_ulko_koettu,
+  bf.message = FALSE,
+  type = "robust",
+  xlab = "Organisaation sisäinen järjestelmä",
+  ylab = "Ulkoinen kohtelu"
+) +
+  ylim(0, 49) + 
+  theme(plot.subtitle = element_text(size = 6)) +
+  scale_color_manual(
+    values = c("#873073", "#29d8fd", "#fe79ec")
+  ) +
+  scale_x_discrete(
+    labels = c("Kyllä", "Ei", "En osaa sanoa")
+  )
+
+ulko.ulko <- ggbetweenstats(
+  data = data,
+  x = k24_2,
+  y = EVK_ulko_koettu,
+  bf.message = FALSE,
+  type = "robust",
+  xlab = "Organisaation ulkoinen järjestelmä",
+  ylab = "Ulkoinen kohtelu"
+) +
+  ylim(0, 49) + 
+  theme(plot.subtitle = element_text(size = 6)) +
+  scale_color_manual(
+    values = c("#873073", "#29d8fd", "#fe79ec")
+  ) +
+  scale_x_discrete(
+    labels = c("Kyllä", "Ei", "En osaa sanoa")
+  )
+
+ulko.yhdist <- ggbetweenstats(
+  data = data,
+  x = k24_3,
+  y = EVK_ulko_koettu,
+  bf.message = FALSE,
+  type = "robust",
+  xlab = "Yhdistelmäjärjestelmä",
+  ylab = "Ulkoinen kohtelu"
+) +
+  ylim(0, 49) + 
+  theme(plot.subtitle = element_text(size = 6)) +
+  scale_color_manual(
+    values = c("#873073", "#29d8fd", "#fe79ec")
+  ) +
+  scale_x_discrete(
+    labels = c("Kyllä", "Ei", "En osaa sanoa")
+  )
+
+sisa.sisa + sisa.ulko + sisa.yhdist + ulko.sisa + ulko.ulko + ulko.yhdist +
+  plot_layout(
+    ncol = 3,
+    axes = "collect",
+    axis_titles = "collect"
+  )
+
+```
+
+## Vaikka järjestelmiä olisi, koulutuksia ei usein ole tai niitä ei käydä
+
+Niiltä vastaajilta, jotka ilmoittivat raportointijärjestelmän olemassaolon, kysyimme myös järjestelmän käyttöön liittyvästä koulutuksesta. Eri järjestelmien koulutusten välillä ei nähdä eroja: noin kolmannes vastaajista, jotka ilmoittavat järjestelmän olevan olemassa, ilmoittaa myös käyneensä koulutuksen järjestelmän käyttöön (@fig-blogi3-04-koulutus). Toisaalta yhtä suuri osa ei tiedä, onko koulutusta olemassa, ja viidennes ilmoittaa, ettei koulutusta ole käytössä.
+
+```{r}
+#| label: fig-blogi3-04-koulutus
+#| fig-cap: "Olemassa olevien ilmoitusjärjestelmien koulutukset"
+#| code-summary: "Kuvion piirtäminen"
+
+sisa <- data |>
+  filter(between(k25_1, 0, 3)) |>
+  select(k25_1) |>
+  pivot_longer(
+    cols = k25_1,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = c(3, 2, 1, 0),
+      labels = sapply(c(
+        "On koulutusta, ja olen käynyt sen",
+        "On koulutusta, mutta en ole käynyt sitä",
+        "Ei ole koulutusta",
+        "En osaa sanoa"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Organisaation sisällä tapahtuneille tilanteille"
+    ), str_wrap, width = 18, USE.NAMES = FALSE)
+  ) +
+  scale_fill_manual(
+    values = c("#893deb", "#29d8fd", "#fe79ec", "#873073")
+  ) +
+  labs(
+    x = "Suhde vastaajista, joiden mielestä organisaatiolla on kyseinen järjestelmä käytössä (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(axis.title.y = element_blank(), legend.position = "bottom") +
+  geom_label(
+    aes(
+      label = scales::percent(prop, accuracy = 0.1, decimal.mark = ",")
+    ),
+    position = position_stack(vjust = 0.5),
+    show.legend = FALSE,
+    fill = "#ffffff"
+  )
+
+ulko <- data |>
+  filter(between(k25_2, 0, 3)) |>
+  select(k25_2) |>
+  pivot_longer(
+    cols = k25_2,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = c(3, 2, 1, 0),
+      labels = sapply(c(
+        "On koulutusta, ja olen käynyt sen",
+        "On koulutusta, mutta en ole käynyt sitä",
+        "Ei ole koulutusta",
+        "En osaa sanoa"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Organisaation ulkopuolelta tulleelle kohtelulle"
+    ), str_wrap, width = 18, USE.NAMES = FALSE)
+  ) +
+  scale_fill_manual(
+    values = c("#893deb", "#29d8fd", "#fe79ec", "#873073")
+  ) +
+  labs(
+    x = "Suhde vastaajista, joiden mielestä organisaatiolla on kyseinen järjestelmä käytössä (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(axis.title.y = element_blank(), legend.position = "bottom") +
+  geom_label(
+    aes(
+      label = scales::percent(prop, accuracy = 0.1, decimal.mark = ",")
+    ),
+    position = position_stack(vjust = 0.5),
+    show.legend = FALSE,
+    fill = "#ffffff"
+  )
+
+molemmat <- data |>
+  filter(between(k25_3, 0, 3)) |>
+  select(k25_3) |>
+  pivot_longer(
+    cols = k25_3,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = c(3, 2, 1, 0),
+      labels = sapply(c(
+        "On koulutusta, ja olen käynyt sen",
+        "On koulutusta, mutta en ole käynyt sitä",
+        "Ei ole koulutusta",
+        "En osaa sanoa"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Sekä sisäiset että ulkoiset tilanteet yhdessä järjestelmässä"
+    ), str_wrap, width = 18, USE.NAMES = FALSE)
+  ) +
+  scale_fill_manual(
+    values = c("#893deb", "#29d8fd", "#fe79ec", "#873073")
+  ) +
+  labs(
+    x = "Suhde vastaajista, joiden mielestä organisaatiolla on kyseinen järjestelmä käytössä (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(axis.title.y = element_blank(), legend.position = "bottom") +
+  geom_label(
+    aes(
+      label = scales::percent(prop, accuracy = 0.1, decimal.mark = ",")
+    ),
+    position = position_stack(vjust = 0.5),
+    show.legend = FALSE,
+    fill = "#ffffff"
+  )
+
+sisa / ulko / molemmat +
+  plot_layout(
+    guides = "collect",
+    axes = "collect"
+  ) &
+  theme(legend.position = "bottom")
+
+```
+
+Aikaisemmassa tutkimuksessa on havaittu yleiseksi raportoimatta jättämisen syyksi eri osaamisen puutteet ilmoitusjärjestelmien käytössä: jos järjestelmää ei osata käyttää tai ei löydetä organisaation tiedoista, epäasiallisia ja väkivaltaisia kokemuksia ei myöskään raportoida. Siksi onkin huolestuttavaa, että vastaajamme eivät usein näytä käyneensä koulutusta tai tietävänsä sellaisen olemassaolosta. Raportointiasteen nostamisen kannalta organisaatioiden tärkeä tuoda järjestelmiä ja niiden käyttösyitä selkeästi esille. Jos koulutusta ei ole olemassa, sellaisen tuottaminen tai hankkiminen on suotavaa. Koulutuksen kautta voidaan pyrkiä parantamaan asenteita, ja siten myös raportointiastetta.
+
+## Ilmoitusjärjestelmiin kohdistuvat asenteet huononevat, mitä enemmän kohtelua vastaaja kohtaa
+
+Kysyimme kaikilta vastaajilta heidän mielipidettään kahdeksaantoista eri väittämään ilmoitusjärjestelmistä ja raportoinnista. Näistä 14 väittämää koskivat raportointiprosesseja tarkemmin, ja ne todettiin tilastollisesti mittaavan kahta eri asennerakennetta: vastaajan kokemaa suhdetta ilmoittamisen hyödyn ja resurssien välillä, sekä vastaajan pelko negatiivisista seuraamuksista (@tbl-blogi3-asenteet). Muuttujista tehtiin mittarit, joilla suurempi arvo tarkoittaa enemmän negatiivisuutta (heikompi koettu hyöty-panos-suhde tai suurempi pelko negatiivisista seuraamuksista).
+
+| Koettu hyöty-panos-suhde                                                | Pelko negatiivisista seuraamuksista                 |
+|-------------------------------------------------------------------------|-----------------------------------------------------|
+| Ilmoitusprosessit ovat liian raskaita tai työläitä                      | Pelko esihenkilön vastatoimista ilmoittajaa kohtaan |
+| Prosessit eivät johda toimenpiteisiin                                   | Pelko ammattitaidon kyseenalaistamisesta            |
+| Vastaajalla ei ole tilaisuutta tai mahdollisuutta tehdä ilmoituksia     | Vastaaja ei halua pahaa kohtelun tekijälle          |
+| Vastaajalle on epäselvää, milloin tulisi tehdä ilmoitus                 | Pelko, että tekijä saa tietää ilmoituksesta         |
+| Vastaaja unohtaa ilmoittaa                                              | Pelko työpaikan menettämisestä                      |
+| Vastaaja ajattelee, että joku muu hoitaisi ilmoituksen hänen puolestaan | Pelko kollegoiden vastatoimista ilmoittajaa kohtaan |
+| Valtakunnallisesta ilmoitusprosessista olisi hyötyä†                    |                                                     |
+
+: Ilmoitusjärjestelmäasenteiden kaksi rakennetta. † Analysoitu käänteisellä vastausskaalalla. {#tbl-blogi3-asenteet}
+
+Molemmat asennemuuttujat korreloivat molempien tekoympäristöjen kohtelun kohtaamismäärien kanssa (@fig-blogi3-05-asenteetXevk). Toisin sanoen: mitä enemmän vastaaja on kohdannut epäasiallista ja väkivaltaista kohtelua, sitä negatiivisempi hän on ilmoitusjärjestelmiä kohtaan. Yhteydet ovat vahvempia sisäisen kohtelun kuin ulkoisen kohtelun osalta, mikä osoittaisi, että organisaatiosisäisiä ongelmia koetaan tulevan huonommin käsitellyksi kuin työpaikkaulkoiset epäasialliset ja väkivaltaiset kohtelut.
+
+```{r}
+#| label: fig-blogi3-05-asenteetXevk
+#| fig-cap: "Asennemittareiden korrelaatio epäasiallisen ja väkivaltaisen kohtelun kokemusmäärän kanssa"
+#| code-summary: "Kuvion rakentaminen"
+
+asenne1.sisa <- ggscatterstats(
+  data = data,
+  x = asenne1,
+  y = EVK_sisä_koettu,
+  bf.message = FALSE,
+  xlab = "Koettu hyöty-panos-suhde",
+  ylab = "Sisäinen kohtelu",
+  type = "robust",
+  marginal = FALSE,
+  smooth.line.args = list(color = "#C20E1A", method = "lm")
+) +
+  ylim(0, 49) +
+  theme(plot.subtitle = element_text(size = 6))
+
+asenne1.ulko <- ggscatterstats(
+  data = data,
+  x = asenne1,
+  y = EVK_ulko_koettu,
+  bf.message = FALSE,
+  xlab = "Koettu hyöty-panos-suhde",
+  ylab = "Ulkoinen kohtelu",
+  type = "robust",
+  marginal = FALSE,
+  smooth.line.args = list(color = "#C20E1A", method = "lm")
+) +
+  ylim(0, 49) +
+  theme(plot.subtitle = element_text(size = 6))
+
+asenne2.sisa <- ggscatterstats(
+  data = data,
+  x = asenne2,
+  y = EVK_sisä_koettu,
+  bf.message = FALSE,
+  xlab = "Seuraamusten pelko",
+  ylab = "Sisäinen kohtelu",
+  type = "robust",
+  marginal = FALSE,
+  smooth.line.args = list(color = "#C20E1A", method = "lm")
+) +
+  ylim(0, 49) +
+  theme(plot.subtitle = element_text(size = 6))
+
+asenne2.ulko <- ggscatterstats(
+  data = data,
+  x = asenne2,
+  y = EVK_ulko_koettu,
+  bf.message = FALSE,
+  xlab = "Seuraamusten pelko",
+  ylab = "Ulkoinen kohtelu",
+  type = "robust",
+  marginal = FALSE,
+  smooth.line.args = list(color = "#C20E1A", method = "lm")
+) +
+  ylim(0, 49) +
+  theme(plot.subtitle = element_text(size = 6))
+
+asenne1.sisa + asenne2.sisa + asenne1.ulko + asenne2.ulko +
+  plot_layout(
+    ncol = 2,
+    axes = "collect"
+  )
+
+```
+
+## Yhteenveto
+
+Kukaan ei halua tulla kohdatuksi epäasiallisesta tai väkivaltaisesti. Kun kohtaaminen tapahtuu, yksilö hakee turvaa ja tukea lähiympäristöstään. Tämän turvan kehittäminen on laillisesti ja moraalisesti organisaation vastuulla, mutta sekä kehittämistä että jatkotoimenpiteiden kohdentamista varten organisaatio tarvitsee saada tietoa tapahtuneesta kohtelusta. Kyselymme vastanneet eivät kuitenkaan riittävästi usein pääse ilmoittamaan kohtelusta sille sopivassa järjestelmässä, joko osaamisvajeen takia tai järjestelmän kokonaisen puutteen takia. Pelastusalan ja ensihoidon organisaatioiden tulisi ottaa käyttöön laajoja, mutta helppokäyttöisiä ja ymmärrettäviä ilmoituskanavia, joiden kautta organisaatiotoimijat voivat saada tarvitsevansa avun ja tuen.
+
+Näemme kuitenkin, että myös nykyisiä järjestelmiä tulisi kehittää. Vastaajat kokevat usein järjestelmät heikoiksi, toimimattomiksi ja omia resurssejaan haaskaaviksi, kuten on myös havaittu eurooppalaisessa tutkimuksessa laajemmin. Tämä negatiivinen asenne näyttää vahvistuvan kokemuksen myötä: epäasiallisuuksia tai väkivaltaisuuksia kokeva henkilö voi koettaa käyttää järjestelmää, mutta lopputulos ei tyydytä häntä ja työntää häntä pois tulevaisuudessa ilmoittamisesta. Siksi on erittäin tärkeää, että organisaatiot tarkastelevat ilmoitusjärjestelmiensä käytettävyyttä ja prosesseja. Organisaatioiden tulisi varmistaa, että ilmoitukset todellisuudessa johtavat tukitoimiin kohtelua kokeville ilmoittajille, ja että nämä tukitoimet tiedostetaan organisaation kaikilla tasoilla.
+
+Ilmoitusjärjestelmien käyttöönotto ei kuitenkaan itsessään riitä estämään epäasiallisen ja väkivaltaisen kohtelun. Blogisarjan viimeisessä osiossa tarkistelemme Sisäministeriön pelastustoimen tasa-arvon ja yhdenvertaisuuden toimintaohjelman toimenpiteiden käyttöönottoa ja mahdollisia vaikutuksia kohtelun määrään.
+
+*Nollatoleranssi-hanke jatkuu helmikuun 2025 loppuun asti. Hankkeen tuloksia työstetään pelastusalaa osallistavissa asiantuntijatyöpajoissa, ja tuloksista vedostetaan toimenpide- ja jatkotutkimusehdotukset. Lue lisää hankkeesta osoitteessa <https://www.pelastusopisto.fi/nollatoleranssi>. Hankkeesta viestitään sosiaalisessa mediassa aihetunnisteella #PTNollatoleranssi.*

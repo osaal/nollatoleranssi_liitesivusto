@@ -1339,7 +1339,6 @@ summary(malli.2.ulkval, fit.measures = TRUE, standardized = TRUE, ci = TRUE)
 Malli ei sovi hyväksyttävästi aineistoon ($\text{RMSEA} = .072 [90\% \text{ CI } .066, .078], \text{CFI} = .834, \text{SRMR} = .058$).
 
 Työuupumuksen latentti muuttuja ei korreloi merkitsevästi minkään latentin muuttujan kanssa. Korrelaatio organisaatiosisäisen kohtelun kanssa on pieni ($r = .130, p = .824$), kuten myös ulkoisen kohtelun kanssa ($r = .072, p = .914$). Yleisfaktorin kanssa korrelaatio on suuri mutta ei-merkitsevä ($r = .545, p = .148$).
-
 :::
 
 ### Mittausinvarianssi
@@ -1624,7 +1623,6 @@ Vahvan invarianssin malli sopii yhtä hyvin kuin heikon invarianssin malli ($p =
 Tiukan invarianssin malli sopii merkitsevästi vahvaa invarianssimallia huonommin ($p = 1.6*10^{-8}$). CFI-suureen muutos ei ole hyväksyttävissä rajoissa ($\Delta\text{CFI} = -.074$). RMSEA ja SRMR huonontuvat molemmat huomattavasti, ja sekä AIC että BIC noussee suuresti.
 
 Khii neliö -testien mukaan malli on epäinvariantti. SRMR- ja AIC-suureet suosivat epäinvarianttia mallia. Khii neliö-, RMSEA-, CFI- ja BIC-suureet suosivat vahvaa invarianssia.
-
 :::
 
 #### Kyselyn kieliversio
@@ -1771,7 +1769,6 @@ Vahvan invarianssin malli sopii yhtä hyvin kuin heikko invarianssimalli ($p = .
 Tiukan invarianssin malli sopii merkitsevästi vahvaa invarianssimallia huonommin ($p = .022$). CFI-suureen muutos on vieläkin hyväksyttävä ($\Delta\text{CFI} = .004$). RMSEA laskee lievästi mutta SRMR nousee jo huomattavasti. Sekä AIC- että BIC-arvot nousevat huomattavasti.
 
 Khii neliö -testi suosii epäinvarianttia mallia. Khii neliö-, RMSEA-, CFI- ja AIC-suureet suosivat epäinvarianttia mallia. BIC-suure suosii vahvan invarianssin mallia.
-
 :::
 
 #### Yhteydenottomenetelmät
@@ -1918,7 +1915,6 @@ Vahvan invarianssin malli sopii yhtä hyvin kuin heikon invarianssin malli ($p =
 Tiukan invarianssin malli sopii merkitsevästi vahvaa invarianssia huonommin ($p = .015$). CFI-suureen muutos on hyväksyttävä ($\Delta\text{CFI} = -.002$). RMSEA laskee lievästi ja SRMR nousee selkeästi. AIC- ja BIC-arvot nousevat molemmat selkeästi.
 
 Khii neliö -testi suosii vahvaa invarianssia. SRMR- ja AIC-arvot suosivat epäinvarianttia mallia. Khii neliö- ja CFI-suureet suosivat heikon invarianssin mallia. BIC suosii vahvan invarianssin mallia. RMSEA suosii tiukan invarianssin mallia.
-
 :::
 
 ### Kovarianssi- ja keskiarvomatriisien tallennus

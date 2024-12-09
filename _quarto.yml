@@ -44,7 +44,7 @@ book:
         - organisaatiotoimet.qmd
         - ryhmavertailut.qmd
         - korrelaatiosuhteet.qmd
-    - part: "Mittaristojen validoinnit"
+    - part: "Monimuuttujamallit"
       chapters:
         - kohtelu_validointi.qmd
         - ilmoasenteet_validointi.qmd
@@ -55,6 +55,7 @@ book:
         - deibseminaari.qmd
         - blogi1.qmd
         - blogi2.qmd
+        - blogi3.qmd
 
     - lahteet.qmd
   
@@ -68,7 +69,7 @@ book:
       - sidebar:katsauksenhaut
       - sidebar:kyselyprosessi
       - sidebar:kyselyntulokset
-      - sidebar:validointi
+      - sidebar:monimuuttujamallit
       - sidebar:esitykset
       - text: "Lähteet"
         file: lahteet.qmd
@@ -121,8 +122,8 @@ book:
         - ryhmavertailut.qmd
         - korrelaatiosuhteet.qmd
     
-    - id: validointi
-      title: "Mittaristojen validoinnit"
+    - id: monimuuttujamallit
+      title: "Monimuuttujamallit"
       contents:
         - kohtelu_validointi.qmd
         - ilmoasenteet_validointi.qmd
@@ -135,6 +136,7 @@ book:
         - deibseminaari.qmd
         - blogi1.qmd
         - blogi2.qmd
+        - blogi3.qmd
 
 format:
   html:
