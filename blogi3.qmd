@@ -22,7 +22,7 @@ data <- read.csv2("output/valmisdata.csv", tryLogical = FALSE)
 
 *Pelastusopiston toteuttama ja Palosuojelurahaston rahoittama Nollatoleranssi-hanke on selvittänyt epäasiallisen ja väkivaltaisen kohtelun esiintyvyyttä, vaikutuksia ja toimenpiteitä pelastusalalla. Tämä blogi on osa neljän julkaisun blogisarjaa, jossa käsitellään valtakunnallisen kyselytutkimuksen tuloksia. Seuraava blogi julkaistaan 9. tammikuuta 2025. [Lue aikaisempi blogi täältä](https://www.pelastusopisto.fi/blogi/tyoyhteison-epaasiallisuudet-ja-vakivalta-heikentavat-alan-pitovoimaa/).*
 
-Nollatoleranssi-hankkeen tulosten kolmannessa blogissa käsittelemme epäasiallisen ja väkivaltaisen kohtelun estämiseen tähtääviä ilmoitus- ja raportointijärjestelmiä. Missä määrin järjestelmät ovat käytössä, ja onko niihin saatavissa koulutusta? Millaiseksi järjestelmät mielletään?
+Nollatoleranssi-hankkeen kolmannessa blogissa käsittelemme epäasiallisen ja väkivaltaisen kohteluun liittyviä ilmoitus- ja raportointijärjestelmiä. Missä määrin järjestelmiä on otettu käyttöön, ja onko niihin saatavilla koulutusta? Millaiseksi järjestelmät mielletään?
 
 Muistutamme, että kyselyn aihe voi aiheuttaa valikoitumisharhaa. Tuloksia tulee tulkita varovaisesti ja välttää yleistämistä koko alaan.
 
@@ -76,11 +76,11 @@ data <- data |>
 
 ```
 
-## Järjestelmiä on vaihtelevasti käytössä, mutta niistä ei usein tiedetä
+## Järjestelmiä on vaihtelevasti käytössä
 
-Kysyimme vastaajilta, onko heidän organisaatiossaan käytössä ilmoitusjärjestelmiä epäasiallisen ja väkivaltaisen kohtelun kohtaamisille. Ilmoitusjärjestelmät jaettiin kolmeen ryhmään: työpaikan sisällä tapahtuvaan kohteluun, työpaikan ulkopuolelta tulleelle kohtelulle, sekä järjestelmiin, joissa voidaan ilmoittaa molempien tekoympäristöjen kohtelusta.
+Kysyimme vastaajilta, onko heidän organisaatiossaan käytössä ilmoitusjärjestelmää epäasialliselle ja väkivaltaiselle kohtelulle. Järjestelmät jaettiin kolmeen ryhmään: työpaikan sisällä tapahtuvalle kohtelulle, työpaikan ulkopuolelta tulleelle kohtelulle, sekä molempien tekoympäristöjen kattaviin järjestelmiin.
 
-Noin 60 prosenttia vastaajista ilmoittavat, että organisaation sisäisille tai ulkoisille tapahtumille on olemassa järjestelmä (@fig-blogi3-02-jarjestelmat). Molempia tekoympäristöjä yhdistäviä järjestelmiä näyttäisi olevan hieman harvemmin käytössä. Epävarmuutta on kuitenkin paljon, 20-40 prosenttia riippuen järjestelmästä. Vastaajat eivät toisin sanoen usein tiedä, onko järjestelmää olemassa vai ei.
+Noin 60 prosenttia vastaajista ilmoittavat, että heidän organisaatiossaan on ilmoituskanava organisaation sisäisille tai ulkoisille tapahtumille (@fig-blogi3-02-jarjestelmat). Molempia tekoympäristöjä yhdistäviä järjestelmiä näyttäisi olevan hieman harvemmin käytössä. Epävarmuutta on kuitenkin paljon, 20-40 prosenttia riippuen järjestelmästä. Vastaajat eivät toisin sanoen usein tiedä, onko järjestelmää olemassa vai ei.
 
 ```{r}
 #| label: fig-blogi3-02-jarjestelmat
@@ -146,7 +146,7 @@ data |>
 
 ```
 
-Ulkoisesti koettu epäasiallinen ja väkivaltainen kohtelu on yhteydessä järjestelmien olemassaoloon, mutta sisäinen ei ole (@fig-blogi3-03-jarjestelmaXevk). On oletettavaa, että yksilö, joka kokee epäasiallista ja väkivaltaista kohtelua, on myös tietoisempi organisaationsa tarjoamista työkaluista. Siksi onkin huomattava, ettei yhteyttä nähdä sisäisen kohtelun kokemusten osalta: vastaajat ovat yhtä tietoisia tai epätietoisia järjestelmän olemassaolosta riippumatta siitä, miten paljon työpaikkasisäistä epäasiallisuutta ja väkivaltaa he ovat kohdanneet. On mahdollista, että järjestelmiä sisäisten ongelmien raportoimiselle ei käytännössä ole käytössä, tai ettei niistä tiedetä tarpeeksi käyttääkseen järjestelmiä tarpeen vaatiessa.
+Ulkoisesti koettu epäasiallinen ja väkivaltainen kohtelu on yhteydessä järjestelmien koettuun olemassaoloon, mutta sisäinen ei ole (@fig-blogi3-03-jarjestelmaXevk). On oletettavaa, että yksilö, joka kokee epäasiallista ja väkivaltaista kohtelua, on myös tietoisempi organisaationsa tarjoamista työkaluista. Siksi onkin yllättävää, ettei yhteyttä nähdä sisäisen kohtelun kokemusten osalta: vastaajat ovat yhtä (epä)tietoisia järjestelmän olemassaolosta riippumatta siitä, miten paljon työpaikkasisäistä epäasiallisuutta ja väkivaltaa he ovat kohdanneet. On mahdollista, että järjestelmiä sisäisten ongelmien raportoimiselle ei käytännössä ole käytössä, tai ettei henkilöstö tiedä järjestelmistä tarpeeksi käyttääkseen niitä.
 
 ```{r}
 #| label: fig-blogi3-03-jarjestelmaXevk
@@ -273,7 +273,7 @@ sisa.sisa + sisa.ulko + sisa.yhdist + ulko.sisa + ulko.ulko + ulko.yhdist +
 
 ```
 
-## Vaikka järjestelmiä olisi, koulutuksia ei usein ole tai niitä ei käydä
+## Koulutusten käytössä on suuria puutteita
 
 Niiltä vastaajilta, jotka ilmoittivat raportointijärjestelmän olemassaolon, kysyimme myös järjestelmän käyttöön liittyvästä koulutuksesta. Eri järjestelmien koulutusten välillä ei nähdä eroja: noin kolmannes vastaajista, jotka ilmoittavat järjestelmän olevan olemassa, ilmoittaa myös käyneensä koulutuksen järjestelmän käyttöön (@fig-blogi3-04-koulutus). Toisaalta yhtä suuri osa ei tiedä, onko koulutusta olemassa, ja viidennes ilmoittaa, ettei koulutusta ole käytössä.
 
@@ -447,11 +447,11 @@ sisa / ulko / molemmat +
 
 ```
 
-Aikaisemmassa tutkimuksessa on havaittu yleiseksi raportoimatta jättämisen syyksi eri osaamisen puutteet ilmoitusjärjestelmien käytössä: jos järjestelmää ei osata käyttää tai ei löydetä organisaation tiedoista, epäasiallisia ja väkivaltaisia kokemuksia ei myöskään raportoida. Siksi onkin huolestuttavaa, että vastaajamme eivät usein näytä käyneensä koulutusta tai tietävänsä sellaisen olemassaolosta. Raportointiasteen nostamisen kannalta organisaatioiden tärkeä tuoda järjestelmiä ja niiden käyttösyitä selkeästi esille. Jos koulutusta ei ole olemassa, sellaisen tuottaminen tai hankkiminen on suotavaa. Koulutuksen kautta voidaan pyrkiä parantamaan asenteita, ja siten myös raportointiastetta.
+Yleinen syy raportoimatta jättämiseksi on osaamisen puutteet ilmoitusjärjestelmien käytössä: jos järjestelmää ei osata käyttää tai ei löydetä organisaation tiedoista, epäasiallisia ja väkivaltaisia kokemuksia ei myöskään raportoida. Siksi onkin huolestuttavaa, että vastaajamme eivät usein näytä käyneensä koulutusta tai tietävänsä sellaisen olemassaolosta. Raportointiasteen nostamisen kannalta organisaatioiden olisi tärkeä tuoda järjestelmiä ja niiden käyttöä esille. Jos koulutusta ei ole olemassa, sellaisen järjestäminen on suotavaa.
 
-## Ilmoitusjärjestelmiin kohdistuvat asenteet huononevat, mitä enemmän kohtelua vastaaja kohtaa
+## Ilmoitusjärjestelmiin kohdistuvat asenteet huononevat, mitä enemmän kohtelua vastaaja on kohdannut
 
-Kysyimme kaikilta vastaajilta heidän mielipidettään kahdeksaantoista eri väittämään ilmoitusjärjestelmistä ja raportoinnista. Näistä 14 väittämää koskivat raportointiprosesseja tarkemmin, ja ne todettiin tilastollisesti mittaavan kahta eri asennerakennetta: vastaajan kokemaa suhdetta ilmoittamisen hyödyn ja resurssien välillä, sekä vastaajan pelko negatiivisista seuraamuksista (@tbl-blogi3-asenteet). Muuttujista tehtiin mittarit, joilla suurempi arvo tarkoittaa enemmän negatiivisuutta (heikompi koettu hyöty-panos-suhde tai suurempi pelko negatiivisista seuraamuksista).
+Kysyimme kaikilta vastaajilta heidän mielipidettään 18 eri väittämään ilmoitusjärjestelmistä ja raportoinnista. Näistä 14 väittämää koskivat raportointiprosesseja, ja ne mittasivat kahta eri asennerakennetta: vastaajan kokemaa suhdetta ilmoittamisen hyödyn ja henkilöllisten resurssien välillä, sekä vastaajan pelko negatiivisista seuraamuksista (@tbl-blogi3-asenteet). Rakensimme kahdet mittarit, joilla suurempi arvo tarkoittaa enemmän negatiivisuutta (heikompi koettu hyöty-panos-suhde tai suurempi pelko negatiivisista seuraamuksista).
 
 | Koettu hyöty-panos-suhde                                                | Pelko negatiivisista seuraamuksista                 |
 |-------------------------------------------------------------------------|-----------------------------------------------------|
@@ -465,7 +465,7 @@ Kysyimme kaikilta vastaajilta heidän mielipidettään kahdeksaantoista eri väi
 
 : Ilmoitusjärjestelmäasenteiden kaksi rakennetta. † Analysoitu käänteisellä vastausskaalalla. {#tbl-blogi3-asenteet}
 
-Molemmat asennemuuttujat korreloivat molempien tekoympäristöjen kohtelun kohtaamismäärien kanssa (@fig-blogi3-05-asenteetXevk). Toisin sanoen: mitä enemmän vastaaja on kohdannut epäasiallista ja väkivaltaista kohtelua, sitä negatiivisempi hän on ilmoitusjärjestelmiä kohtaan. Yhteydet ovat vahvempia sisäisen kohtelun kuin ulkoisen kohtelun osalta, mikä osoittaisi, että organisaatiosisäisiä ongelmia koetaan tulevan huonommin käsitellyksi kuin työpaikkaulkoiset epäasialliset ja väkivaltaiset kohtelut.
+Molemmat asennemuuttujat korreloivat molempien tekoympäristöjen kohtelun kohtaamismäärien kanssa (@fig-blogi3-05-asenteetXevk). Toisin sanoen: mitä enemmän vastaaja on kohdannut epäasiallista ja väkivaltaista kohtelua, sitä negatiivisempi hän on ilmoitusjärjestelmiä kohtaan. Yhteydet ovat vahvempia sisäisen kohtelun kuin ulkoisen kohtelun osalta, mikä voisi osoittaa, että organisaatiosisäisiä ongelmia koetaan tulevan huonommin käsitellyksi kuin työpaikkaulkoisia ongelmia.
 
 ```{r}
 #| label: fig-blogi3-05-asenteetXevk
@@ -538,10 +538,10 @@ asenne1.sisa + asenne2.sisa + asenne1.ulko + asenne2.ulko +
 
 ## Yhteenveto
 
-Kukaan ei halua tulla kohdatuksi epäasiallisesta tai väkivaltaisesti. Kun kohtaaminen tapahtuu, yksilö hakee turvaa ja tukea lähiympäristöstään. Tämän turvan kehittäminen on laillisesti ja moraalisesti organisaation vastuulla, mutta sekä kehittämistä että jatkotoimenpiteiden kohdentamista varten organisaatio tarvitsee saada tietoa tapahtuneesta kohtelusta. Kyselymme vastanneet eivät kuitenkaan riittävästi usein pääse ilmoittamaan kohtelusta sille sopivassa järjestelmässä, joko osaamisvajeen takia tai järjestelmän kokonaisen puutteen takia. Pelastusalan ja ensihoidon organisaatioiden tulisi ottaa käyttöön laajoja, mutta helppokäyttöisiä ja ymmärrettäviä ilmoituskanavia, joiden kautta organisaatiotoimijat voivat saada tarvitsevansa avun ja tuen.
+Kukaan ei halua tulla kohdatuksi epäasiallisesta tai väkivaltaisesti. Jos epäasiallisuutta kuitenkin tapahtuu, yksilö hakee turvaa ja tukea lähiympäristöstään. Tämän turvan kehittäminen on niin laillisesti kuin moraalisesti organisaation vastuulla, mutta sekä kehittämistä että jatkotoimenpiteiden kohdentamista varten organisaatio tarvitsee saada tietoa tapahtuneesta kohtelusta. Kyselymme vastanneet eivät kuitenkaan riittävästi usein pääse ilmoittamaan kohtelusta sille sopivassa järjestelmässä, joko osaamisvajeen takia tai järjestelmän kokonaisen puutteen takia. Pelastusalan ja ensihoidon organisaatioiden tulisi ottaa käyttöön laajoja, mutta helppokäyttöisiä ja ymmärrettäviä ilmoituskanavia, joiden kautta organisaatiotoimijat voivat saada tarvitsevansa avun ja tuen.
 
-Näemme kuitenkin, että myös nykyisiä järjestelmiä tulisi kehittää. Vastaajat kokevat usein järjestelmät heikoiksi, toimimattomiksi ja omia resurssejaan haaskaaviksi, kuten on myös havaittu eurooppalaisessa tutkimuksessa laajemmin. Tämä negatiivinen asenne näyttää vahvistuvan kokemuksen myötä: epäasiallisuuksia tai väkivaltaisuuksia kokeva henkilö voi koettaa käyttää järjestelmää, mutta lopputulos ei tyydytä häntä ja työntää häntä pois tulevaisuudessa ilmoittamisesta. Siksi on erittäin tärkeää, että organisaatiot tarkastelevat ilmoitusjärjestelmiensä käytettävyyttä ja prosesseja. Organisaatioiden tulisi varmistaa, että ilmoitukset todellisuudessa johtavat tukitoimiin kohtelua kokeville ilmoittajille, ja että nämä tukitoimet tiedostetaan organisaation kaikilla tasoilla.
+Näemme kuitenkin, että myös nykyisiä järjestelmiä tulisi kehittää. Vastaajat kokevat usein järjestelmät heikoiksi, toimimattomiksi ja omia resurssejaan haaskaaviksi, kuten on myös havaittu eurooppalaisessa tutkimuksessa laajemmin. Tämä negatiivinen asenne näyttää vahvistuvan kokemuksen myötä: epäasiallisuuksia tai väkivaltaisuuksia kokeva henkilö voi koettaa käyttää järjestelmää, mutta lopputulos ei tyydytä häntä ja työntää häntä pois tulevaisuudessa ilmoittamisesta. Siksi on erittäin tärkeää, että organisaatiot tarkastelevat ilmoitusjärjestelmiensä käytettävyyttä ja prosesseja. Organisaatioiden tulisi varmistaa, että ilmoitukset todellisuudessa johtavat tukitoimiin kohtelua kokeville ilmoittajille, ja että nämä tukitoimet tuodaan organisaation tietoon.
 
-Ilmoitusjärjestelmien käyttöönotto ei kuitenkaan itsessään riitä estämään epäasiallisen ja väkivaltaisen kohtelun. Blogisarjan viimeisessä osiossa tarkistelemme Sisäministeriön pelastustoimen tasa-arvon ja yhdenvertaisuuden toimintaohjelman toimenpiteiden käyttöönottoa ja mahdollisia vaikutuksia kohtelun määrään.
+Ilmoitusjärjestelmien käyttöönotto ei kuitenkaan itsessään riitä estämään epäasiallisen ja väkivaltaisen kohtelun. Blogisarjan viimeisessä osiossa tarkastamme Sisäministeriön pelastustoimen tasa-arvon ja yhdenvertaisuuden toimintaohjelman toimenpiteiden käyttöönottoa ja mahdollisia vaikutuksia epäasiallisuuksien ja väkivaltaisuuksien esiintyvyyteen.
 
 *Nollatoleranssi-hanke jatkuu helmikuun 2025 loppuun asti. Hankkeen tuloksia työstetään pelastusalaa osallistavissa asiantuntijatyöpajoissa, ja tuloksista vedostetaan toimenpide- ja jatkotutkimusehdotukset. Lue lisää hankkeesta osoitteessa <https://www.pelastusopisto.fi/nollatoleranssi>. Hankkeesta viestitään sosiaalisessa mediassa aihetunnisteella #PTNollatoleranssi.*
