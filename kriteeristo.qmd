@@ -2,7 +2,7 @@
 
 Kirjallisuuskatsauksessa sovellettiin kahta sisäänottokriteeristöä: kaikille osahauille yleiset kriteerit sekä hakukohtaiset kriteerit.
 
-Yleiset kriteerit ovat listattuna taulukossa [-@tbl-kriteeristo-yleinen].
+Yleiset kriteerit ovat taulukossa [-@tbl-kriteeristo-yleinen].
 
 +------------------+----------------------------------------------------------------------------+-------------------------------------------------+
 | Rajaus           | Sisäänottokriteeri                                                         | Rajauskriteeri                                  |
@@ -14,21 +14,16 @@ Yleiset kriteerit ovat listattuna taulukossa [-@tbl-kriteeristo-yleinen].
 | **Metodologia**  | Empiirinen tutkimus laajasti ymmärrettynä:                                 | Ei-empiirinen tutkimus tai metatutkimus, kuten: |
 |                  |                                                                            |                                                 |
 |                  | -   Kvalitatiiviset tutkimusasetelmat (mm. haastattelut, havainnot)        | -   Teoreettiset analyysit                      |
-|                  |                                                                            |                                                 |
 |                  | -   Kvantitatiiviset tutkimusasetelmat (mm. rekisterit, kyselytutkimukset) | -   Käsiteanalyysit                             |
-|                  |                                                                            |                                                 |
 |                  | -   Toimintatutkimukset                                                    | -   Keskustelunavaukset                         |
-|                  |                                                                            |                                                 |
 |                  |                                                                            | -   Historialliset selvitykset                  |
-|                  |                                                                            |                                                 |
 |                  |                                                                            | -   Kirjallisuuskatsaukset                      |
-|                  |                                                                            |                                                 |
 |                  |                                                                            | -   Meta-analyysit                              |
 +------------------+----------------------------------------------------------------------------+-------------------------------------------------+
 
 : Hakuprosessille yhteiset hakurajaukset {#tbl-kriteeristo-yleinen}
 
-Hakukohtaiset kriteerit ovat listattuna taulukossa [-@tbl-kriteeristo-hakukohtaiset].
+Hakukohtaiset kriteerit ovat taulukossa [-@tbl-kriteeristo-hakukohtaiset].
 
 +----------------+---------------------------------------+----------------------------------+---------------------------------------+----------------------------------+---------------------------------------+---------------------------------------+
 | Rajaus         | Haku 1                                | Haku 2                           | Haku 3                                | Haku 4                           | Haku 5                                | Haku 6                                |
@@ -40,27 +35,17 @@ Hakukohtaiset kriteerit ovat listattuna taulukossa [-@tbl-kriteeristo-hakukohtai
 | Tutkimuskieli  | Suomi, ruotsi, englanti               | Suomi, ruotsi, englanti          | Suomi, ruotsi, englanti               | Suomi, ruotsi, englanti          | Suomi, ruotsi, englanti               | Englanti                              |
 +----------------+---------------------------------------+----------------------------------+---------------------------------------+----------------------------------+---------------------------------------+---------------------------------------+
 | Aineistotyyppi | -   Vertaisarvioidut tutkimusraportit | -   Opinnäytteet                 | -   Vertaisarvioidut tutkimusraportit | -   Opinnäytteet                 | -   Vertaisarvioidut tutkimusraportit | -   Vertaisarvioidut tutkimusraportit |
-|                |                                       |                                  |                                       |                                  |                                       |                                       |
 |                | -   Viranomaisraportit                |                                  | -   Viranomaisraportit                |                                  | -   Viranomaisraportit                |                                       |
-|                |                                       |                                  |                                       |                                  |                                       |                                       |
 |                | -   Yhdistysten tutkimusraportit      |                                  | -   Yhdistysten tutkimusraportit      |                                  |                                       |                                       |
 +----------------+---------------------------------------+----------------------------------+---------------------------------------+----------------------------------+---------------------------------------+---------------------------------------+
 | Tietolähteet   | -   SPEK:in julkaisut                 | -   Theseus                      | -   SPEK:in julkaisut                 | -   Theseus                      | -   Polamk:in julkaisut               | -   Scopus                            |
-|                |                                       |                                  |                                       |                                  |                                       |                                       |
 |                | -   Pelastusopiston julkaisut         | -   Yliopistojen julkaisukanavat | -   Pelastusopiston julkaisut         | -   Yliopistojen julkaisukanavat | -   Valto                             | -   Web of Science                    |
-|                |                                       |                                  |                                       |                                  |                                       |                                       |
 |                | -   Valto                             |                                  | -   Valto                             |                                  | -   Julkari                           | -   ProQuest                          |
-|                |                                       |                                  |                                       |                                  |                                       |                                       |
 |                | -   Julkari                           |                                  | -   Julkari                           |                                  | -   Scopus                            | -   BASE                              |
-|                |                                       |                                  |                                       |                                  |                                       |                                       |
 |                | -   Scopus                            |                                  | -   Scopus                            |                                  | -   Web of Science                    | -   OpenAlex                          |
-|                |                                       |                                  |                                       |                                  |                                       |                                       |
 |                | -   Web of Science                    |                                  | -   Web of Science                    |                                  | -   ProQuest                          |                                       |
-|                |                                       |                                  |                                       |                                  |                                       |                                       |
 |                | -   ProQuest                          |                                  | -   ProQuest                          |                                  | -   BASE                              |                                       |
-|                |                                       |                                  |                                       |                                  |                                       |                                       |
 |                | -   BASE                              |                                  | -   BASE                              |                                  | -   OpenAlex                          |                                       |
-|                |                                       |                                  |                                       |                                  |                                       |                                       |
 |                | -   OpenAlex                          |                                  | -   OpenAlex                          |                                  |                                       |                                       |
 +----------------+---------------------------------------+----------------------------------+---------------------------------------+----------------------------------+---------------------------------------+---------------------------------------+
 
@@ -70,84 +55,58 @@ Tämän osion alaluvuissa käsitellään jokaista kriteeristöä tarkemmin.
 
 ## Julkaisuaika {#sec-kriteeristo-julkaisuaika}
 
-Tiedonhaussa käytettiin seuraavaa julkaisuaikahaarukkaa: **1.1.2010 - 30.9.2023**.
+Tiedonhaussa käytettiin seuraavaa julkaisuaikahaarukkaa tutkimusjulkaisun päiväykselle: **1.1.2010 - 30.9.2023**.
 
-Tämä koski tutkimusjulkaisun päiväystä, jolloin itse tutkimuksen toteutus voi olla tapahtunut myös ennen vuotta 2010.
-
-Jos hakukone salli päivämääräkohtaisen rajauksen, käytettiin tarkkaa julkaisuaikahaarukkaa.
-
-Jos hakukone salli vain vuositasoisen rajauksen, käytettiin vuosia 2010-2023, myös joskus vuosia 2010-2024. Tuolloin seulonnassa poistettiin tutkimukset, jotka ovat julkaistu aikavälillä 1.10.-31.12.2023 tai 1.1.2024 eteenpäin, sääntöjen samankaltaisuuden vuoksi.
+Jos hakukone salli päivämääräkohtaisen rajauksen, käytettiin tarkkaa julkaisuaikahaarukkaa. Jos hakukone salli vain vuositasoisen rajauksen, käytettiin vuosia 2010-2023, myös joskus vuosia 2010-2024. Tuolloin seulonnassa poistettiin tutkimukset, jotka ovat julkaistu aikavälillä 1.10.-31.12.2023 tai 1.1.2024 eteenpäin.
 
 ## Metodologia {#sec-kriteeristo-metodologia}
 
 Kirjallisuuskatsaus rajattiin vain empiirisiin tutkimuksiin.
 
-Emme täten tarkistaneet esimerkiksi:
-
--   Teoreettisia analyyseja
-
--   Käsiteanalyyseja
-
--   Keskustelunavaukset
-
--   Historiallisia selvityksiä
-
--   Kirjallisuuskatsauksia
-
--   Meta-analyyseja
-
-Empiiriseksi tutkimukseksi miellettiin sekä laadulliset että määrälliset asetelmat. Myös toimintatutkimukselliset asetelmat määriteltiin empiiriseksi, jos niihin sisältyi jonkin tapainen empiirinen tiedonkeruu. Laadunarvioinnin osalta arvioimme vain empiirisen osuuden jokaisesta tutkimuksesta.
+Empiiriseksi tutkimukseksi miellettiin sekä laadulliset että määrälliset asetelmat. Myös toimintatutkimukselliset asetelmat määriteltiin empiiriseksi, jos niihin sisältyi jonkin tapainen empiirinen tiedonkeruu. Laadunarvioinnin osalta arvioimme vain empiirisen osuuden jokaisesta tutkimuksesta. Meta-analyyseja ja muita metatutkimuksia ei sisällytetty metodologiseen rajaukseen.
 
 ## Kohderyhmä {#sec-kriteeristo-kohderyhma}
 
 Kirjallisuuskatsauksen kohderyhmät jaettiin kolmeen kategoriaan:
 
 -   Pelastustoimi
-
 -   Ensihoito
-
 -   Muut turvallisuustoimijat
 
 ### Pelastustoimi {#sec-kriteeristo-kohderyhma-pelastustoimi}
 
-Pelastustoimella tarkoitetaan kaikkia pelastusalalla toimivia henkilöitä. Tämä koskettaa mm. operatiivista henkilökuntaa (esim. pelastajia ja hätäkeskusoperaattoreita), hallintohenkilökuntaa (esihenkilöitä, viestintää, talouspuolta), sopimuspalokunnissa toimivia henkilöitä, yhdistystoimijoita, pelastusalan opettajia ja opiskelijoita.
+Pelastustoimella tarkoitettiin kaikkia pelastusalalla toimivia henkilöitä. Tämä kosketti mm. operatiivista henkilökuntaa (esim. pelastajia ja hätäkeskusoperaattoreita), hallintohenkilökuntaa (esihenkilöitä, viestintää, talouspuolta), sopimuspalokunnissa toimivia henkilöitä, yhdistystoimijoita, pelastusalan opettajia sekä opiskelijoita.
 
-Kriteeri rajasi ulos ensihoidon operatiivinen henkilökunta käytännön syistä. Ensihoidon suomalaisen kontekstin haut toteutettiin erikseen, koska hakutyö katsottiin suunnitteluvaiheessa voivan olevan jopa laajempi kuin pelastusalan toimijoiden tiedonhaut.
+Kriteeri rajasi ulos ensihoidon operatiivinen henkilökunta käytännön syistä. Ensihoidon suomalaisen kontekstin haut toteutettiin erikseen hakutyön laajuuden takia.
 
-Kriteeri rajasi myös ulos kaikki muut turvallisuustoimijat. Muita turvallisuustoimijoita tarkasteltiin erillisellä haulla. Heidän haunsa on kirjallisuuskatsauksen näkökulmasta vain vertaileva, koska katsaus ei kokonaisuudessaan käsitellyt yhtä laajasti muita turvallisuustoimijoita.
+Kriteeri rajasi myös ulos kaikki muut turvallisuustoimijat. Muita turvallisuustoimijoita tarkasteltiin erillisellä haulla. Heidän haunsa on kirjallisuuskatsauksen näkökulmasta vain vertaileva, koska katsaus ei käsitellyt muita turvallisuustoimijoita yhtä laajasti.
 
 Rajaus toteutettiin käyttämällä hakulausekesanoja:
 
 -   Suomeksi: `pelast* OR palo* OR sammut* OR hätäkesku*`
-
 -   Ruotsiksi: `räddning* OR brand* OR släckning* OR nödcentral*`
-
 -   Englanniksi: `"fire rescue*" OR "fire*fighter*" OR "rescue service*" OR "emergency respon*" OR "emergency personnel" AND NOT "medic"`
 
 ### Ensihoito {#sec-kriteeristo-kohderyhma-ensihoito}
 
-Ensihoidolla tarkoitetaan ensihoidon operatiivista henkilökuntaa (mm. ambulanssikuljettajia ja ensihoitajia). Nämä ovat rajattuna omaksi kohderyhmäksi koska oletimme katsauksen suunnitteluvaiheessa, että kohderyhmää on tutkittu verrannollisesti enemmän kuin pelastustoimen kohderyhmää.
+Ensihoidolla tarkoitettiin ensihoidon operatiivista henkilökuntaa (mm. ambulanssikuljettajia ja ensihoitajia). Nämä rajattiin omaksi kohderyhmäksi koska oletimme katsauksen suunnitteluvaiheessa, että kohderyhmää on tutkittu verrannollisesti enemmän kuin pelastustoimen kohderyhmää.
 
 Kansainvälisen kontekstissa kohderyhmärajaus muodostui haasteelliseksi. Useissa maissa ensihoidon ja akuuttihoidon rajanveto ei ole hyvin selkeä, eikä englannin kielellä ensihoitajia tai ambulanssikuljettajia aina eroteta muusta akuuttihoidon henkilökunnasta (esim. "emergency medic" voi tarkoittaa sairaanhoitajaa sairaalan päivystyksessä). Ensisijaisesti seuloimme tuloksista pois selkeästi lääkäreitä ja sairaalassa tapahtuvien akuuttilääketieteellisten toimenpiteiden toteuttajia koskevat tutkimukset. Rajaus on kuitenkin voinut heikentää kirjallisuuskatsauksen saantia ja tarkkuutta.
 
 Rajaus toteutettiin käyttämällä hakulausekesanoja:
 
 -   Suomeksi: `ensihoit* OR sairaankuljet* OR ambulanssi*`
-
 -   Ruotsiksi: `"första hjälp*" OR nödhjälp* OR ambulans* OR sjuktransport* OR förstavårdar*`
-
 -   Englanniksi: `"medic" OR "emergency medic*" OR ambulance`
 
 ### Muut turvallisuustoimijat {#sec-kriteeristo-kohderyhma-muut}
 
-Muut turvallisuustoimijat määriteltiin kirjallisuuskatsauksessa seuraaviksi: poliisi, rajavartiosto, puolustusvoimat ja yksityiset järjestyksenvalvojat. Koska muiden turvallisuustoimijoiden tiedonhaku tehtiin vertailevassa mielessä, emme keskittyneet yhtä paljon kohderyhmän saannin ja tarkkuuden kannalta tarkkaan rajaukseen kuin pelastustoimeen ja ensihoitoon kohdistuvissa hauissa.
+Muut turvallisuustoimijat määriteltiin kirjallisuuskatsauksessa seuraaviksi: poliisi, rajavartiosto, puolustusvoimat sekä yksityiset järjestyksenvalvojat. Koska muiden turvallisuustoimijoiden tiedonhaku tehtiin vertailevassa mielessä, emme keskittyneet yhtä paljon saantiin ja tarkkuuteen kuin pelastustoimeen ja ensihoitoon kohdistuvissa hauissa.
 
 Rajaus toteutettiin käyttämällä hakulausekesanoja:
 
 -   Suomeksi: `poliisi* OR varti* OR puolustusvoim* OR sotila*`
-
 -   Ruotsiksi: `polis* OR ordningsv?kt* OR försvars* OR soldat* OR gränsbevak* OR gränskontroll*`
-
 -   Englanniksi: `police OR guard* OR defen?e contractor* OR steward OR soldier OR military personnel`
 
 ## Maantiede {#sec-kriteeristo-maantiede}
@@ -155,10 +114,9 @@ Rajaus toteutettiin käyttämällä hakulausekesanoja:
 Maantieteellisesti haut rajattiin kahteen eri ryhmään:
 
 -   Suomalaiset tutkimukset
-
 -   Eurooppalaiset, ei-suomalaiset tutkimukset
 
-Rajaus kohdistui tutkimuskontekstiin, eli missä maantieteellisessä ympäristössä empiirinen selvitys oli tehty.
+Rajaus kohdistui tutkimuskontekstiin, eli missä maantieteellisessä ympäristössä empiirinen selvitys oli suoritettu.
 
 ### Suomalaiset tutkimukset {#sec-kriteeristo-maantiede-suomi}
 
@@ -166,8 +124,7 @@ Rajaus kohdistui Suomeen ja Ahvenanmaahan.
 
 Rajaukset toteutettiin kahdella tavalla:
 
--   Suomeen ja Ahvenanmaahan kohdistuvat haut toteutettiin mm. suomeksi ja ruotsiksi (ks. @sec-kriteeristo-tutkimuskieli). Tällöin voitiin olettaa, että suomeksi toteutettu tutkimus oli myös toteutettu Suomessa. Ruotsinkielisen tutkimuksen kohdalla tarkistimme erikseen seulonnan yhteydessä, että tutkimus kohdistui Suomeen eikä Ruotsiin tai muihin maihin.
-
+-   Suomeen ja Ahvenanmaahan kohdistuvat haut toteutettiin suomeksi ja ruotsiksi (ks. @sec-kriteeristo-tutkimuskieli). Tällöin voitiin olettaa, että suomeksi toteutettu tutkimus oli myös toteutettu Suomessa. Ruotsinkielisen tutkimuksen kohdalla tarkistimme erikseen seulonnan yhteydessä, että tutkimus kohdistui Suomeen eikä Ruotsiin tai muihin maihin.
 -   Englanninkielisten hakujen kohdalla hakulausekkeeseen tai hakukonerajauksiin lisättiin maantieteellinen rajaus, riippuen hakukoneen tai tietokannan ominaisuuksista.
 
 ### Eurooppalaiset tutkimukset {#sec-kriteeristo-maantiede-eurooppa}
@@ -234,7 +191,7 @@ Rajaukset toteutettiin joko hakulausekkeessa tai hakukonerajauksissa, riippuen t
 
 ## Tutkimuskieli {#sec-kriteeristo-tutkimuskieli}
 
-Tutkimusraportteja haettiin kolmella kielellä: **suomi, ruotsi** ja **englanti**.
+Tutkimusraportteja haettiin kolmella kielellä: suomi, ruotsi ja englanti.
 
 Hauissa 1-5 käytettiin kaikkia kolmea kieltä, jolloin määrittelimme jokaiselle kielelle oman hakulausekkeen. Haussa 6 käytettiin vain englannin kieltä.
 
@@ -245,50 +202,49 @@ Seulonnassa karsittiin pois kaikki tutkimukset, jotka olivat julkaistuja muilla 
 Kirjallisuuskatsauksessa haettiin neljää aineistotyyppiä:
 
 -   Vertaisarvioidut tutkimusartikkelit
-
 -   Viranomaisraportit
-
 -   Yhdistysten tutkimusraportit
-
 -   Opinnäytetyöt
 
 ### Vertaisarvioidut tutkimusraportit {#sec-kriteeristo-aineistotyyppi-vertaisarvioidut}
 
-Tutkimus laskettiin vertaisarvioiduksi tutkimusraportiksi, jos jokin tai kaikki seuraavista kriteereistä täyttyi:
+Tutkimus laskettiin vertaisarvioiduksi tutkimusraportiksi, jos jokin seuraavista kriteereistä täyttyi:
 
 -   Tutkimus oli julkaistu tieteellisestä aikakauslehdestä, jonka kuvaus selkeästi osoitti vertaisarviointiprosessin käytön
-
 -   Tutkimuksella oli vertaisarviointitunnus tai muu maininta vertaisarvioinnista kokotekstissä
-
 -   Tutkimus oli julkaistu julkaisijalla, jonka tiedetään harjoittavan vertaisarviointia (koski lähinnä kirjateoksia)
 
-Opinnäytetyöt ja konferenssijulkaisut eivät laskettu vertaisarvioiduiksi tässä kirjallisuuskatsauksessa. Opinnäytetöiden osalta seurasimme toista menettelyä (ks. alla). Konferenssijulkaisujen mukaanotto olisi voinut tuottaa suuria määriä kaksoiskappaleita. Tämän lisäksi konferenssiesitelmistä voidaan yleensä odottaa vertaisarvioitua tutkimusjulkaisua, jolloin kyseinen tutkimus läpäisisi seulan joka tapauksessa. On kuitenkin mahdollisuus, että rajaus tuotti pienen määrän virheellisiä negatiiveja, jos jokin esitelmä olisi ollut julkaisut vastikään, eikä tutkimus vielä olisi ehtinyt julkaistavaksi aikakauslehdessä tai kirjassa.
+Opinnäytetyöt ja konferenssijulkaisut ei laskettu vertaisarvioiduiksi tässä kirjallisuuskatsauksessa. Opinnäytetöiden osalta seurasimme toista menettelyä (@sec-kriteeristo-aineistotyyppi-opinnaytteet). Konferenssijulkaisujen mukaanotto olisi voinut tuottaa suuria määriä kaksoiskappaleita. Tämän lisäksi konferenssiesitelmistä voidaan yleensä odottaa vertaisarvioitua tutkimusjulkaisua, jolloin kyseinen tutkimus läpäisisi seulan joka tapauksessa. On kuitenkin mahdollisuus, että rajaus tuotti pienen määrän virheellisiä negatiiveja, jos jokin esitelmä olisi ollut julkaisut vastikään, eikä tutkimus vielä olisi ehtinyt julkaistavaksi aikakauslehdessä tai kirjassa.
 
 Rajaus toteutettiin hakukoneesta riippuen hakuvalinnoilla tai seulonnassa.
 
 ### Viranomaisraportit {#sec-kriteeristo-aineistotyyppi-viranomaisraportit}
 
-Viranomaisraportilla tarkoitetaan Suomen viranomaisten julkaisemia tutkimusraportteja ja katsauksia. "Viranomainen" on tässä kontekstissa määritelty valtionhallintoon, ministeriöihin ja niiden hallinnonalalla toimiviin virastoihin. Täten tarkistimme seuraavat viranomaiset:
+Viranomaisraportilla tarkoitettiin Suomen viranomaisten julkaisemia tutkimusraportteja ja katsauksia. Viranomainen oli määritelty valtionhallintoon, ministeriöihin ja niiden hallinnonalalla toimiviin virastoihin. Täten tarkistimme seuraavat viranomaiset:
 
 -   Poliisiammattikorkeakoulu ja Pelastusopisto
-
 -   Sisäministeriö ja Puolustusministeriö
-
 -   Työterveyslaitos, Terveyden ja hyvinvoinnin laitos
+
+Viranomaisraportit eivät koskeneet pelastuslaitoksia tai ensihoitopalveluja. Tietääksemme nämä eivät harjoita omaa julkaisutoimintaa Suomessa, vaan mahdolliset kehittämis- tai tutkimustyöt julkaistaan muissa kanavissa.
 
 Rajaus toteutettiin hakemalla raportteja niitä julkaisevista palveluista. Joissain hakukoneissa rajausta toteutettiin myös tulosmuotojen hakuvalinnoissa. Jokaisen haun tietokantakohtaiset rajaukset ovat esitelty osahaun omalla sivulla tällä liitesivustolla.
 
 ### Yhdistysten tutkimusraportit {#sec-kriteeristo-aineistotyyppi-yhdistysraportit}
 
-Yhdistysten tutkimusraporteilla tarkoitetaan Suomen pelastusalan järjestöjen itse julkaisemia tutkimusraportteja ja katsauksia. Julkaisevia järjestöjä on yksi: Suomen Pelastusalan Keskusjärjestö, SPEK. Haimme SPEK:n tuottamia tutkimusjulkaisuja suoraan heidän verkkosivuiltaan, [Tutkimukset - SPEK](https://www.spek.fi/vaikuttaminen/tutkimukset/) (haettu 30.1.2024).
+Yhdistysten tutkimusraporteilla tarkoitettiin Suomen pelastusalan järjestöjen itse julkaisemia tutkimusraportteja ja katsauksia. Julkaisevia järjestöjä on yksi: Suomen Pelastusalan Keskusjärjestö, SPEK. Haimme SPEK:n tuottamia tutkimusjulkaisuja suoraan heidän verkkosivuiltaan, [Tutkimukset - SPEK](#0) (haettu 30.1.2024).
+
+Suomen Palopäällystöliitto SPPL harjoittaa myös tutkimustyötä. Heidän raporttejaan ei kuitenkaan ole helposti saatavilla verkossa, josta syystä jätimme heidän julkaisunsa pois. Jälkitarkastuksessa emme tunnistaneet yhtään SPPL:n julkaisua, joka olisi kuulunut kirjallisuuskatsaukseen.
+
+Suomen Sopimuspalokuntien Liitto SSPL harjoittaa myös tutkimustyötä. Heidän raporttinsa jäivät pois inhimillisen virheen takia. Jälkitarkastuksessa huomasimme, että SSPL:n raporteissa olisi voinut olla aiheeseen liittyviä tutkimuksia.
 
 ### Opinnäytetyöt {#sec-kriteeristo-aineistotyyppi-opinnaytteet}
 
-Opinnäytteillä tarkoitetaan Suomen korkeakouluissa tuotettuja opintojen opinnäytetöitä, jotka liittyvät kolmannen syklin tai tutkimuksellisen opetuksen tutkintoihin. Näitä ovat kandidaatti-, maisteri-, lisensiaatti-, tohtori-, AMK- ja ylempään AMK-tutkintoihin liittyvät opinnäytteet.
+Opinnäytteillä tarkoitettiin Suomen korkeakouluissa tuotettuja opintojen opinnäytetöitä, jotka liittyvät kolmannen syklin tai tutkimuksellisen opetuksen tutkintoihin. Näitä ovat kandidaatti-, maisteri-, lisensiaatti-, tohtori-, AMK- ja ylempään AMK-tutkintoihin liittyvät opinnäytteet.
 
 Ulkopuolelle rajattiin mahdolliset seminaarityöt, jotka eivät liity suoraan korkeakoulujen tutkintoihin (esim. toisen asteen tutkintojen työt).
 
-Myös toisen koulutussyklin opinnäytetyöt (esimerkiksi lähihoitajien töitä) rajattiin pois. Rajaus tehtiin ensisijaisesti käytännön syistä, koska meidän tietääksemme näitä töitä ei yleensä julkaista avoimesti eikä Suomessa ole tietokantoja niiden hakemiselle.
+Myös toisen koulutussyklin opinnäytetyöt (esim. lähihoitajien töitä) rajattiin pois. Rajaus tehtiin ensisijaisesti käytännön syistä, koska meidän tietääksemme näitä töitä ei yleensä julkaista avoimesti eikä Suomessa ole tietokantoja niiden hakemiselle.
 
 Rajaus toteutettiin hakemalla opinnäytetöitä korkeakoulujen julkaisupalveluista. Seulonnassa poistettiin mahdollisia tuloksia, jotka eivät olleet opinnäytteitä (esim. rinnakkaistallennettuja tutkimusartikkeleita).
 
@@ -314,7 +270,7 @@ Käytimme kirjallisuuskatsauksessa seuraavia tietolähteitä:
 
 ### Yhdistysten ja yhteisöjen julkaisukanavat {#sec-kriteeristo-tietolahteet-yhdistykset}
 
-Tarkistimme **Suomen Pelastusalan Keskusjärjestön julkaisut** [heidän omilta sivuiltaan](https://www.spek.fi/vaikuttaminen/tutkimukset/) (haettu 30.1.2024). Koska näitä ei voitu hakea hakukoneesta, tulokset sisällytettiin muina tuloksina.
+Tarkistimme **Suomen Pelastusalan Keskusjärjestön julkaisut** [heidän omilta sivuiltaan](https://www.spek.fi/vaikuttaminen/tutkimukset/) (haettu 30.1.2024). Koska näitä ei voitu hakea hakukoneella, tulokset sisällytettiin muina tuloksina.
 
 Samoin **Pelastusopiston julkaisut** tarkistettiin käsin [heidän omilta sivuiltaan](https://www.pelastusopisto.fi/kirjasto-ja-tietopalvelut/julkaisut-ja-aineistot/) (haettu 30.1.2024) ja sisällytettiin muina tuloksina.
 
@@ -324,7 +280,7 @@ Muiden valtiollisten tutkimusorganisaatioiden julkaisut haettiin **Julkari**-[ha
 
 ### Korkeakoulujen opinnäytteiden julkaisukanavat {#sec-kriteeristo-tietolahteet-opinnaytteet}
 
-Kaikki Suomen ammattikorkeakoulujen opinnäytteet julkaistaan yhteisesti **Theseus**-[hakupalvelussa](https://www.theseus.fi/) (haettu 30.1.2024). Haimme ammattikorkeakoulujen osalta kootusti opinnäytteet täältä. On kuitenkin huomattava, että palvelun käyttöönottoa edeltäviä opinnäytetöitä on viety vaihtelevasti palveluun, riippuen ammattikorkeakoulusta. Tietoa on myös huonosti saatavilla vanhemmista opinnäytteistä.
+Kaikki Suomen ammattikorkeakoulujen opinnäytteet julkaistaan yhteisesti **Theseus**-[hakupalvelussa](https://www.theseus.fi/) (haettu 30.1.2024). Haimme ammattikorkeakoulujen osalta kootusti opinnäytteet Theseus-palvelusta. On kuitenkin huomattava, että palvelun käyttöönottoa edeltäviä opinnäytetöitä on viety vaihtelevasti palveluun, riippuen ammattikorkeakoulusta. Tietoa on myös heikosti saatavilla vanhemmista opinnäytteistä.
 
 Huomasimme kirjallisuuskatsauksen aikana, ettei **Pelastusopiston ammattikorkeakoulutasoisia opinnäytetöitä** olla viety vuotta 2013 aiemmin Theseukseen. Suoritimme siksi erikseen haut [Pelastusopiston verkkokirjaston](https://peo.verkkokirjasto.fi/) hakukoneen kautta (haettu 30.1.2024).
 
@@ -368,16 +324,12 @@ Huomasimme kirjallisuuskatsauksen aikana, ettei **Pelastusopiston ammattikorkeak
 
 ### Tieteelliset hakukoneet ja tietokannat {#sec-kriteeristo-tietolahteet-tietokannat}
 
-Haimme seuraavista hakupalveluista kirjallisuutta (käytetyt tietokannat suluissa):
+Haimme seuraavista tieteellisistä hakupalveluista (käytetyt tietokannat suluissa):
 
 -   Scopus
-
 -   Web of Science (Web of Science Core Collection, MEDLINE)[^kriteeristo-2]
-
 -   ProQuest (Ebook Central, Social Science Premium Collection)
-
 -   Bielefeld Academic Search Engine BASE
-
 -   OpenAlex
 
 [^kriteeristo-2]: Haku 5:ssä haettiin inhimillisen virheen takia kaikista Web of Science-palvelun hakukoneista. Ks. @sec-haku5.
