@@ -50,12 +50,14 @@ book:
         - ilmoasenteet_validointi.qmd
         - tayvkayttoonotto_validointi.qmd
         - tayvasenteet_validointi.qmd
+        - muutosaie_sem.qmd
     - part: "Esitykset ja kirjoitukset"
       chapters:
         - deibseminaari.qmd
         - blogi1.qmd
         - blogi2.qmd
         - blogi3.qmd
+        - blogi4.qmd
 
     - lahteet.qmd
   
@@ -129,6 +131,7 @@ book:
         - ilmoasenteet_validointi.qmd
         - tayvkayttoonotto_validointi.qmd
         - tayvasenteet_validointi.qmd
+        - muutosaie_sem.qmd
     
     - id: esitykset
       title: "Esitykset ja kirjoitukset"
@@ -137,6 +140,7 @@ book:
         - blogi1.qmd
         - blogi2.qmd
         - blogi3.qmd
+        - blogi4.qmd
 
 format:
   html:

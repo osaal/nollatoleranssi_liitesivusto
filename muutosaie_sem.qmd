@@ -1,0 +1,387 @@
+# Muutosaikeiden ennustaminen työuupumuksen ja kohtelun avulla {#sec-muutosaiesem}
+
+---
+eval: true
+---
+
+Tämä osio käsittelee artikkelin "The Relation of Internal and External Experiences of Violence, Burnout, and Work Change Intentions in Finnish Fire-fighters and Paramedics: A Structural Equation Model of Mediation" analyyseja. Osio on kirjoitettu englanniksi.
+
+This section concerns the analyses of the article "The Relation of Internal and External Experiences of Violence, Burnout, and Work Change Intentions in Finnish Fire-fighters and Paramedics: A Structural Equation Model of Mediation".
+
+All analyses are reproducible using the data archived in the Finnish Social Science Data Archive (FSD). Data are available upon registration to the archive.
+
+## Data Preparation {#sec-muutosaiesem-preparation}
+
+```{r}
+#| label: muutosaiesem-00-prep
+#| code-summary: "Packages and data"
+
+library(tidyverse) # General data wrangling tools
+library(lavaan) # SEM estimation
+library(moments) # Skewness and kurtosis
+library(psych) # Alpha coefficient
+library(tidySEM) # SEM plotting
+
+data <- read.csv2("output/anonymisoitudata.csv", tryLogical = FALSE) |>
+  # Select only fire-fighters and paramedics
+  filter(k40 == 1 | k40 == 2) |>
+  select(
+    k3_1:k3_7, # Internal WPV, 7 instruments
+    k12_1:k12_7, # External WPV, 7 instruments
+    k27_1:k27_4, # Burnout, 4 instruments
+    k42_1_1:k42_3_3 # Intention to change, 9 instruments
+  )
+
+```
+
+```{r}
+#| label: muutosaiesem-01-recoding
+#| code-summary: "Variable recoding"
+
+data <- data |>
+  mutate(
+    k42_1 = case_when(
+      k42_1_3 == 1 ~ 3,
+      k42_1_2 == 1 ~ 2,
+      k42_1_1 == 1 ~ 1,
+      .default = 0 # No plans or did not respond
+    ),
+    k42_2 = case_when(
+      k42_2_3 == 1 ~ 3,
+      k42_2_2 == 1 ~ 2,
+      k42_2_1 == 1 ~ 1,
+      .default = 0 # No plans or did not respond
+    ),
+    k42_3 = case_when(
+      k42_3_3 == 1 ~ 3,
+      k42_3_2 == 1 ~ 2,
+      k42_3_1 == 1 ~ 1,
+      .default = 0 # No plans or did not respond
+    ),
+  )
+
+```
+
+## Descriptive Statistics
+
+```{r}
+#| label: tbl-muutosaiesem-descriptives
+#| tbl-cap: "Descriptive statistics"
+#| code-summary: "Table construction"
+
+# Reorder variables later in pipeline
+order <- c(
+  "k3_1", "k3_2", "k3_3", "k3_4", "k3_5", "k3_6", "k3_7",
+  "k12_1", "k12_2", "k12_3", "k12_4", "k12_5", "k12_6", "k12_7",
+  "k27_1", "k27_2", "k27_3", "k27_4",
+  "k42_1", "k42_2", "k42_3"
+)
+
+descriptives <- data |>
+  select(k3_1:k3_7, k12_1:k12_7, k27_1:k27_4, k42_1:k42_3) |>
+  summarise(
+    across(
+      everything(),
+      list(
+        mean = ~ round(mean(.x, na.rm = TRUE), digits = 2),
+        sd = ~ round(sd(.x, na.rm = TRUE), digits = 2),
+        skew = ~ round(skewness(.x, na.rm = TRUE), digits = 2),
+        kurtosis = ~ round(kurtosis(.x, na.rm = TRUE), digits = 2),
+        n = ~ sum(!is.na(.x))
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = everything(),
+    names_to = c("variable", "statistic"),
+    names_pattern = "^(.*_\\d+)_(.*)$"
+  ) |>
+  pivot_wider(
+    names_from = statistic,
+    values_from = value
+  ) |>
+  arrange(
+    factor(variable, levels = order)
+  )
+
+colnames(descriptives) <- c("Variable", "Mean", "SD", "Skewness", "Kurtosis", "Valid N")
+
+descriptives |>
+  knitr::kable()
+```
+
+```{r}
+#| label: tbl-muutosaiesem-alphas
+#| tbl-cap: "Cronbach's alphas of subscales"
+#| code-summary: "Table construction"
+
+alpha_wpv_int <- data |>
+  select(k3_1:k3_7) |>
+  alpha(n.iter = 1000)
+
+alpha_wpv_ext <- data |>
+  select(k12_1:k12_7) |>
+  alpha(n.iter = 1000)
+
+alpha_burnout <- data |>
+  select(k27_1:k27_4) |>
+  alpha(n.iter = 1000)
+
+alphatable <- rbind(
+  alpha_wpv_int$boot.ci,
+  alpha_wpv_ext$boot.ci,
+  alpha_burnout$boot.ci
+)
+
+alphatable <- cbind(
+  c("k3", "k12", "k27"),
+  alphatable
+)
+
+alphatable |>
+  knitr::kable()
+
+```
+
+## Model Estimation
+
+```{r}
+#| label: muutosaiesem-02-lavaanmodel
+#| code-summary: "Model syntax definition"
+
+model.syntax <- '
+                # Latent variables
+                wpv_int =~ k3_1 + k3_2 + k3_3 + k3_4 + k3_5 + k3_6 + k3_7
+                wpv_ext =~ k12_1 + k12_2 + k12_3 + k12_4 + k12_5 + k12_6 + k12_7
+                burnout =~ k27_1 + k27_2 + k27_3 + k27_4
+                
+                # Direct effects
+                k42_1 ~ a*wpv_int
+                k42_1 ~ b*wpv_ext
+                k42_2 ~ c*wpv_int
+                k42_2 ~ d*wpv_ext
+                k42_3 ~ e*wpv_int
+                k42_3 ~ f*wpv_ext
+                
+                # Mediators
+                burnout ~ g*wpv_int
+                burnout ~ h*wpv_ext
+                k42_1 ~ i*burnout
+                k42_2 ~ j*burnout
+                k42_3 ~ l*burnout
+                
+                # Indirect effects
+                gi := g*i
+                gj := g*j
+                gl := g*l
+                hi := h*i
+                hj := h*j
+                hl := h*l
+                
+                # Total effects
+                total_internal_1 := a + (g * i)
+                total_internal_2 := c + (g * j)
+                total_internal_3 := e + (g * l)
+                total_external_1 := b + (h * i)
+                total_external_2 := d + (h * j)
+                total_external_3 := f + (h * l)
+                '
+
+```
+
+```{r}
+#| label: muutosaiesem-03-modelestimation
+#| code-summary: "Model estimation"
+
+model <- sem(
+  model = model.syntax,
+  data = data,
+  estimator = "MLR",
+  missing = "fiml"
+)
+
+```
+
+::: panel-tabset
+### Summary
+
+```{r}
+#| label: muutosaiesem-04-modelsummary
+#| code-summary: "Model summary"
+
+summary(model, ci = TRUE)
+
+```
+
+### Fit indices
+
+```{r}
+#| label: muutosaiesem-05-modelfitindices
+#| code-summary: "Fit index table"
+
+table_fit(model) |> t() |> knitr::kable()
+
+```
+:::
+
+```{r}
+#| label: fig-muutosaiesem-model
+#| fig-cap: "Structural equation model"
+#| code-summary: "Model plotting"
+
+# Rename nodes for clarity
+nodes <- get_nodes(model)
+
+new_labels <- c(
+  "Burnout\n",
+  "Ext.\nverbal\n",
+  "Ext.\nproperty\n",
+  "Ext.\nthreats\n",
+  "Ext.\nphysical\n",
+  "Ext.\nsexual\n",
+  "Ext.\nhostility\n",
+  "Ext.\ndiscr.\n",
+  "Exhaustion\n",
+  "Mental\ndistance\n",
+  "Cognitive\nimp.\n",
+  "Emotional\nimp.\n",
+  "Int.\nverbal\n",
+  "Int.\nproperty\n",
+  "Int.\nthreats\n",
+  "Int.\nphysical\n",
+  "Int.\nsexual\n",
+  "Int.\nhostility\n",
+  "Int.\ndisc.\n",
+  "Tasks\n",
+  "Organisation\n",
+  "Field\n",
+  "Ext.\nWPV\n",
+  "Int.\nWPV\n"
+)
+
+for (idx in 1:length(nodes$label)) {
+  regex <- ".*\\n"
+  nodes$label[idx] <- sub(regex, new_labels[idx], nodes$label[idx])
+}
+
+# Prepare graph
+p <- prepare_graph(
+  model = model,
+  nodes = nodes,
+  rect_width = 1.8,
+  rect_height = 1.2,
+  layout = read.csv2("output/sem_layout.csv", header = FALSE)
+) |>
+  color_nonsig(color = "grey") |>
+  label_size_sig(label_size = 2) |>
+  label_size_nonsig(label_size = 2) |>
+  label_size_fixed(label_size = 2)
+
+# Modify edges to clean up graph
+p$edges <- p$edges |>
+  mutate(
+    connect_from = case_when(
+      str_detect(from, "k12") ~ "top", # Int. obs. resid. var.
+      str_detect(from, "k3") ~ "bottom", # Ext. obs. resid. var.
+      from == "wpv_int" & str_detect(to, "k3") ~ "bottom", # Int. loadings
+      from == "wpv_ext" & str_detect(to, "k12") ~ "top", # Ext. loadings
+      from == "wpv_int" & to == "wpv_ext" ~ "left", # Int.-ext. latent cov.
+      from == "burnout" & to == "k27_1" ~ "left", # Burnout loadings
+      from == "burnout" & to == "k27_2" ~ "right",
+      from == "burnout" & to == "k27_3" ~ "left",
+      from == "burnout" & to == "k27_4" ~ "right",
+      from == "k27_1" & to == "k27_1" ~ "top", # Burnout obs. resid. var.
+      from == "k27_2" & to == "k27_2" ~ "top",
+      from == "k27_3" & to == "k27_3" ~ "bottom",
+      from == "k27_4" & to == "k27_4" ~ "bottom",
+      from == "k42_1" & to == "k42_1" ~ "top", # Dep. resid. var.
+      from == "k42_3" & to == "k42_3" ~ "bottom",
+      TRUE ~ connect_from
+    ),
+    connect_to = case_when(
+      str_detect(from, "k12") ~ "top", # Int. obs. resid. var.
+      str_detect(from, "k3") ~ "bottom", # Ext. obs. resid. var.
+      from == "wpv_int" & str_detect(to, "k3") ~ "top", # Int. loadings
+      from == "wpv_ext" & str_detect(to, "k12") ~ "bottom", # Ext. loadings
+      from == "wpv_int" & to == "wpv_ext" ~ "left", # Int.-ext. latent cov.
+      from == "burnout" & to == "k27_1" ~ "bottom", # Burnout loadings
+      from == "burnout" & to == "k27_2" ~ "bottom",
+      from == "burnout" & to == "k27_3" ~ "top",
+      from == "burnout" & to == "k27_4" ~ "top",
+      from == "k27_1" & to == "k27_1" ~ "top", # Burnout obs. resid. var.
+      from == "k27_2" & to == "k27_2" ~ "top",
+      from == "k27_3" & to == "k27_3" ~ "bottom",
+      from == "k27_4" & to == "k27_4" ~ "bottom",
+      from == "k42_1" & to == "k42_1" ~ "top", # Dep. resid. var.
+      from == "k42_3" & to == "k42_3" ~ "bottom",
+      TRUE ~ connect_to
+    ),
+    curvature = case_when(
+      str_detect(from, "wpv_int") & str_detect(to, "wpv_ext") ~ 10, # Int.-ext. latent cov.
+      str_detect(from, "k42_1") & str_detect(to, "k42_3") ~ 20, # Outcome cov.
+      TRUE ~ curvature
+    )
+  )
+
+plot(p)
+
+```
+
+## Comparing Estimated Coefficients
+
+```{r}
+#| label: muutosaiesem-06-dataprep
+#| code-summary: "Data preparation for comparisons"
+
+labels <- c(
+  "a" = "Direct: Internal ~ Changing work tasks",
+  "b" = "Direct: External ~ Changing work tasks",
+  "c" = "Direct: Internal ~ Changing organisation",
+  "d" = "Direct: External ~ Changing organisation",
+  "e" = "Direct: Internal ~ Leaving field",
+  "f" = "Direct: External ~ Leaving field",
+  "total_internal_1" = "Indirect: Internal ~ Changing work tasks",
+  "total_internal_2" = "Indirect: Internal ~ Changing organisation",
+  "total_internal_3" = "Indirect: Internal ~ Leaving field",
+  "total_external_1" = "Indirect: External ~ Changing work tasks",
+  "total_external_2" = "Indirect: External ~ Changing organisation",
+  "total_external_3" = "Indirect: External ~ Leaving field"
+)
+params <- standardizedsolution(model, ci = TRUE)
+params <- params[params$label %in% names(labels), ]
+params$label <- labels[params$label]
+
+plot_data <- data.frame(
+  label = params$label,
+  estimate = params$est,
+  ci_lower = params$ci.lower,
+  ci_upper = params$ci.upper
+)
+
+# Reordering the data to direct-indirect pairs
+plot_data$pair <- sub("^Direct: |^Indirect: ", "", plot_data$label)
+plot_data$key <- with(
+  plot_data,
+  paste0(pair, ifelse(grepl("^Direct:", label), "a", "b"))
+)
+plot_data <- plot_data[order(plot_data$key), ]
+
+```
+
+```{r}
+#| label: fig-muutosaiesem-forestplot
+#| fig-cap: "Forest plot of direct and indirect effects in model"
+#| code-summary: "Plotting"
+
+ggplot(plot_data, aes(x = estimate, y = factor(label, levels = unique(label)))) +
+  geom_point() +
+  geom_errorbarh(aes(xmin = ci_lower, xmax = ci_upper), height = 0.2) +
+  theme_minimal() +
+  labs(
+    x = "Standardised coefficient (95% CI)",
+    y = ""
+  ) +
+  theme(axis.text.y = element_text(size = 10)) +
+  geom_vline(xintercept = 0, linetype = "dashed")
+
+```

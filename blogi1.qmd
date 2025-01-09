@@ -1,4 +1,4 @@
-# Blogi: Epäasiallisuutta ja väkivaltaa esiintyy pelastusalalla ja ensihoidossa laajasti
+# Blogi: Epäasiallisuutta ja väkivaltaa esiintyy pelastusalalla ja ensihoidossa laajasti {#sec-blogi1}
 
 ---
 eval: true
@@ -16,10 +16,9 @@ data <- read.csv2("output/anonymisoitudata.csv", tryLogical = FALSE)
 
 ```
 
-*Tämä blogikirjoitus julkaistiin [Pelastusopiston blogissa](https://www.pelastusopisto.fi/blogi/epaasiallisuutta-ja-vakivaltaa-esiintyy-pelastusalalla-ja-ensihoidossa-laajasti/) 16.10.2024.*
-*Osion analyysit ovat toistettavissa Tietoarkistoon arkistoidulla aineistokopiolla. Huom.: Analyysit tehtiin ja esitettiin seminaarissa, ennen kuin tarkistimme aineiston epäilyttävät vastaukset (ks. [luku -@sec-datatarkistus]).*
+*Tämä blogikirjoitus julkaistiin [Pelastusopiston blogissa](https://www.pelastusopisto.fi/blogi/epaasiallisuutta-ja-vakivaltaa-esiintyy-pelastusalalla-ja-ensihoidossa-laajasti/) 16.10.2024.* *Osion analyysit ovat toistettavissa Tietoarkistoon arkistoidulla aineistokopiolla. Huom.: Analyysit tehtiin ja esitettiin seminaarissa, ennen kuin tarkistimme aineiston epäilyttävät vastaukset (ks. [luku -@sec-datatarkistus]).*
 
-***
+------------------------------------------------------------------------
 
 *Pelastusopiston toteuttama ja Palosuojelurahaston rahoittama Nollatoleranssi-hanke on selvittänyt epäasiallisen ja väkivaltaisen kohtelun esiintyvyyttä, vaikutuksia ja toimenpiteitä pelastusalalla. Tämä blogi on osa neljän julkaisun blogisarjaa, jossa käsitellään valtakunnallisen kyselytutkimuksen tuloksia. Seuraava blogi julkaistaan 13. marraskuuta 2024.*
 
@@ -29,7 +28,7 @@ Tässä ensimmäisessä blogissa keskitymme epäasiallisen ja väkivaltaisen koh
 
 On tärkeää huomata, että kyselyn aihe voi aiheuttaa valikoitumisharhaa -- epäasiallista tai väkivaltaista kohtelua kokeneet henkilöt ovat luultavasti herkempiä vastaamaan kuin muut. Tuloksia tulee tulkita varovaisesti ja välttää yleistämistä koko alaan.
 
-## Väkivaltaa on moneksi
+## Väkivaltaa on moneksi {#sec-blogi1-kasitteet}
 
 Väkivalta on arkipäiväinen käsite, jonka me kaikki tunnistamme, mutta jonka määrittely on yllättävän haasteellista. Jotkut teot, kuten potkiminen tai aseella vahingoittaminen, tunnistetaan selkeästi väkivallaksi. Näiden fyysisten väkivallan muotojen lisäksi tunnistamme yleisesti myös verbaalisen sekä seksuaalisen väkivallan.
 
@@ -45,7 +44,7 @@ Syrjintä on laissa kiellettyä toisen henkilön epätasa-arvoista kohtelua henk
 
 Kaikkia näitä muotoja voi esiintyä niin organisaation sisällä, työkollegoiden kesken tai organisaation ulkopuolella, asiakkailta, potilailta tai sidosryhmiltä. Nollatoleranssi-hankkeessa epäasiallista ja väkivaltaista kohtelua mitattiin näissä molemmissa ympäristössä.
 
-## Puolet ovat kohdanneet epäasiallista tai väkivaltaista kohtelua
+## Puolet ovat kohdanneet epäasiallista tai väkivaltaista kohtelua {#sec-blogi1-esiintyvyys}
 
 ```{r}
 #| label: blogi1-01-laskentaa
@@ -73,7 +72,7 @@ eikokemusta.ulko <- data |>
 
 ```
 
-Epäasiallisen ja väkivaltaisen kohtelun kokemus oli yhtä yleistä organisaation sisällä ja ulkopuolella. Vastaajista `r nrow(data)-eikokemusta.sisa` (`r round(((nrow(data)-eikokemusta.sisa)/nrow(data))*100, digits = 0)` prosenttia) oli kokenut vähintään yhden epäasiallisen ja väkivaltaisen kohtelun muodon organisaationsa sisällä vähintään kerran viime 12 kuukauden aikana. Vastaavasti `r nrow(data)-eikokemusta.ulko` vastaajaa (`r round(((nrow(data)-eikokemusta.ulko)/nrow(data))*100, digits = 0)` prosenttia) oli kokenut vähintään yhden mainituista kohtelumuodoista organisaationsa ulkopuolella kuluneen vuoden aikana.
+Epäasiallisen ja väkivaltaisen kohtelun kokemus oli yhtä yleistä organisaation sisällä ja ulkopuolella. Vastaajista `r nrow(data)-eikokemusta.sisa` (`r round(((nrow(data)-eikokemusta.sisa)/nrow(data))*100, digits = 0)` prosenttia) oli kokenut vähintään yhden epäasiallisen tai väkivaltaisen kohtelun muodon organisaationsa sisällä vähintään kerran viime 12 kuukauden aikana. Vastaavasti `r nrow(data)-eikokemusta.ulko` vastaajaa (`r round(((nrow(data)-eikokemusta.ulko)/nrow(data))*100, digits = 0)` prosenttia) oli kokenut vähintään yhden mainituista kohtelumuodoista organisaationsa ulkopuolella kuluneen vuoden aikana.
 
 Yleisimmät epäasiallisen ja väkivaltaisen kohtelun muodot olivat vihamielisyys ja verbaalinen väkivalta (@fig-esiintyvyys). Neljännes vastaajista oli kohdannut syrjintää organisaation sisällä, kun taas organisaation ulkopuolella koettiin useimmin uhkailua.
 
@@ -633,7 +632,7 @@ yleisimmat.ulko |>
 
 ```
 
-## Ensihoitajat kokevat pelastajia enemmän työpaikkaulkoista epäasiallisuutta
+## Ensihoitajat kokevat pelastajia enemmän työpaikkaulkoista epäasiallisuutta {#sec-blogi1-ammatti}
 
 Rakensimme kaksi eri mittaria, jotka mittaavat epäasiallisen ja väkivaltaisen kohtelun kokemuksia eri ympäristöjen välillä. Mittarilla maksimimäärä (49 pistettä) tarkoittaa, että vastaaja oli kokenut jokaisen epäasiallisen ja väkivaltaisen kohtelun ylämuodon useita kertoja päivässä, ja minimimäärä, että vastaaja ei ollut kokenut ollenkaan epäasiallista tai väkivaltaista kohtelua, tai että hän ei vastannut kysymyksiin.
 
@@ -664,7 +663,7 @@ Sekä organisaation sisäisen että ulkoisen kohtelun mittareilla oli eroja pela
 
 Organisaatioiden ulkopuolelta tulleen epäasiallisen ja väkivaltaisen kohtelun kohdalla ero oli jo huomattavasti suurempi. Ensihoitajat kokivat keskimäärin 7,2 pistettä, mikä oli 5,6 pistettä enemmän epäasiallista ja väkivaltaista kohtelua kuin pelastajien 1,6 pistettä.
 
-## Sukupuolten välillä ei juurikaan eroja
+## Sukupuolten välillä ei juurikaan eroja {#sec-blogi1-sukupuoli}
 
 Epäasiallisen ja väkivaltaisen kohtelun kokemusmäärät erosivat hieman sukupuolten välillä (@fig-evkXsukupuoli). Naiset kokivat keskimäärin noin 1 pistettä enemmän epäasiallista ja väkivaltaista kohtelua kuin miehet. Muunsukupuoliset sekä sukupuolensa raportoimatta jättäneet eivät eronneet miehistä tai naisista tilastollisesti, mutta heidän määränsä vastaajista oli hyvin pieni eikä siitä voida luotettavasti vetää johtopäätöksiä.
 
@@ -723,7 +722,7 @@ kuvio5a + kuvio5b
 
 ```
 
-## Yhteenveto
+## Yhteenveto {#sec-blogi1-yhteenveto}
 
 Pelastusalalla ja ensihoidossa näyttää vastausten pohjalta esiintyvän paljonkin epäasiallista ja väkivaltaista kohtelua. Lievä enemmistö oli kokenut jotain epäasiallisuutta kuluneen vuoden aikana. Teon ympäristö näyttää vaikuttavan suuresti kohtelun muotoihin, mikä voi johtua ihmissuhteiden eroista työkollega- ja potilas- tai asiakasympäristöissä.
 
