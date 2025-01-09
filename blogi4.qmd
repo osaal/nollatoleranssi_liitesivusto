@@ -1,4 +1,4 @@
-# Tasa-arvon ja yhdenvertaisuuteen tähtäävät toimenpiteet purevat osittain {#sec-blogi4}
+# Blogi: Tasa-arvoon ja yhdenvertaisuuteen tähtäävät toimenpiteet purevat osittain {#sec-blogi4}
 
 ---
 eval: true
