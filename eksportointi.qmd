@@ -6,30 +6,19 @@ Kyselyt toteutettiin kolmella eri linkillä:
 2.  Toimistojen, kirjaamoiden ja viestintävastaavien kautta lähetettävä linkki
 3.  Pelastusalan medioissa jaettava linkki
 
-Jokainen linkki johti vastaajan linkkikohtaiseen kopioon lomakkeesta.
-
-Datakeräyksen jälkeen seurattiin seuraavaa menettelyä jokaiselle linkkiversiolle erikseen:
+Jokainen linkki johti vastaajan linkkikohtaiseen kopioon lomakkeesta. Datakeräyksen jälkeen seurattiin seuraavaa menettelyä jokaiselle linkkiversiolle erikseen:
 
 1.  Webropolin "Raportointi"-välilehdessä tehtiin kaksi raporttimallia "Suodata"-työkalulla. Raportit suodatettiin erikseen suomenkielisen ja ruotsinkielisen lomakkeen vastaajille. Raporttiin vietävä tekstitieto pidettiin suomenkielisenä, jotta yhdistäminen olisi helpompaa.
-    1.  Vie & Jaa \> CSV: Näytä vastaukset numeroina, Vie useita raportteja -\> Valitse molemmat kieliversiot \> Vie
-    2.  **HUOM:** Näillä asetuksilla vastausarvot monivalintamittaristoissa määräytyi mittarin järjestyksen mukaan (esim. ensimmäinen reaktiokysymys saa arvon `1` jos valittu, toinen saa arvon `2`, jne.). Tätä ei voi muuttaa Webropol-palvelussa. Vastausarvot muutettiin yhtenäisiksi (arvo `1`) uudelleenkoodauksessa, ks. @sec-valmistelu
+    1.  Näillä asetuksilla vastausarvot monivalintamittaristoissa määräytyi mittarin järjestyksen mukaan (esim. ensimmäinen reaktiokysymys sai arvon `1` jos valittu, toinen sai arvon `2`, jne.). Vastausarvot muutettiin yhtenäisiksi (arvo `1`) uudelleenkoodauksessa (ks. @sec-valmistelu).
 2.  Kaksi suodatettua raporttia vietiin `csv`-muotoon.
 3.  Varmistettiin, että molempien raporttien vastaajamäärät vastasivat Webropolin antamaa vastaajamäärää.
 4.  Tarkistettiin myös `k43` (Syyt muutosaikeille) `csv`-tiedostoista, ettei vienti ollut katkaissut vastauksia.
-    1.  **TARKISTA:** Jos katkaisu tapahtuu, viedään `k43` manuaalisesti `pdf`-muotoon Webropolin Raportointi-välilehdestä. Tämän jälkeen jokainen vastaus tunnistetaan käsin (vertailemalla `csv`- ja `pdf`-tiedostojen tekstiä) ja kopioidaan `pdf`-tiedostosta oikea vastaus vastaajan soluun `csv`-tiedostossa.
-5.  Molemmissa tiedostoissa tehtiin uusi sarake ensimmäisen muuttujan edelle nimeltä `Kieliversio`. Suomenkieliseen datavarantoon lisättiin jokaiselle vastaajalle arvo `1`, ja ruotsinkieliseen varantoon lisättiin arvo `2`.
+5.  Molemmissa tiedostoissa tehtiin uusi sarake ensimmäisen muuttujan edelle nimeltä `Kieliversio`. Arvot lisättiin seuraavasti:
+    1.  Suomenkielinen lomake = `1`
+    2.  Ruotsinkielinen lomake = `2`
 6.  Tiedostot yhdistettiin yhdeksi tiedostoksi.
 7.  Yhdistettyyn tiedostoon lisättiin uusi sarake `Kieliversio`-muuttujan edelle, nimeltä `Linkkiversio`. Arvot lisättiin seuraavasti:
     1.  Johdon kautta = `1`
     2.  Toimistojen kautta = `2`
     3.  Mediat = `3`
-
-Webropol-palvelusta vietiin yhteensä kuusi raporttia `csv`-muotoon. Kun kaikki raportit oli vietyjä ja yllä olevat askeleet suoritettuja, datavarannot yhdistettiin yhdeksi `csv`-tiedostoksi.
-
-Täten jokaisella vastaajalla on kaksi uutta muuttujaa:
-
--   `Kieliversio`: `1` (Suomi) tai `2` (Ruotsi), ei puuttuvia arvoja
-
--   `Linkkiversio`: `1` (Johdon kautta), `2` (Toimistojen kautta) tai `3` (Mediat), ei puuttuvia arvoja
-
-Tässä vaiheessa varmistettiin vielä kerran, että yhteenlaskettu vastaajamäärä vastasi Webropol-palvelun vastaajamäärää.
+8.  Kolme yhdistettyä linkkiversiotiedostoa yhdistettiin yhdeksi tiedostoksi.

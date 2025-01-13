@@ -4,7 +4,7 @@
 eval: true
 ---
 
-Tässä osiossa rakennamme koodikirjan anonymisoidulle aineistolle. Koodikirja tallennetaan `output`-kansioon `csv`-muodossa.
+Tässä osiossa rakennamme koodikirjan anonymisoidulle aineistolle. Koodikirja tallennetaan `csv`-muodossa.
 
 Osio on toistettavissa käyttäen Tietoarkistoon arkistoitua anonymisoitua aineistoa.
 
@@ -24,7 +24,7 @@ data <- read.csv2("output/anonymisoitudata.csv", tryLogical = FALSE)
 
 ```
 
-Valmistelemme ensin kaksiulotteisen datarakenteen, johon tallennetaan kaikki muuttujakohtaiset tiedot. Jokaiselle muuttujalle tulee oma rivi. Ensimmäiseen sarakkeeseen lisätään muuttujien aineistossa esiintyvät nimet.
+Valmistelimme ensin kaksiulotteisen datarakenteen, johon tallennetaan kaikki muuttujakohtaiset tiedot. Jokaiselle muuttujalle tuli oma rivi. Ensimmäiseen sarakkeeseen lisättiin muuttujien aineistossa esiintyvät nimet.
 
 ```{r}
 #| label: koodikirja-02-datarakenne
@@ -1682,7 +1682,7 @@ koodikirja <- koodikirja |>
 
 ## Muutosaikeiden syyt
 
-Huomautamme, että muutosaikeiden syymuuttujat ovat rakennettu luokittelemalla avovastauksia (ks. @sec-valmistelu-avovastaukset). 
+Huomautamme, että muutosaikeiden syymuuttujat ovat rakennettu luokittelemalla avovastauksia (ks. @sec-valmistelu-avovastaukset).
 
 ```{r}
 #| label: koodikirja-17-muutosaikeidensyyt

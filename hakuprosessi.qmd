@@ -4,6 +4,17 @@
 eval: true
 ---
 
+```{r}
+#| label: hakuprosessi-00-valmistelu
+#| code-summary: "Pakettien avaaminen"
+
+library(magrittr) # Putken käyttö (tulee Tidyverse-paketissa)
+library(PRISMA2020) # PRISMA-kaavion piirtäminen
+
+data <- read.csv2("data/kirjallisuuskatsaus/prismatiedot.csv")
+
+```
+
 ## Hakuprosessi {#sec-hakuprosessi-hakuprosessi}
 
 Suoritimme haut ositettuna kuuteen osahakuun (ks. @sec-kriteeristo). Jokaisen haun kohdalla suoritimme PRISMA-ohjeistuksen mukaisen seulonnan. Nämä ositetut haut ja seulontaprosessit ovat kuvailtuna "Katsauksen osahaut"-osiossa tällä liitesivustolla.
@@ -18,15 +29,12 @@ Hakujen yhdistäminen ja lopullinen seulonta dokumentointiin yhdeksi PRISMA-kulk
 #| label: fig-hakuprosessi-prismakaavio
 #| fig-cap: "Systemaattisen kirjallisuuskatsauksen PRISMA2020-protokollan mukainen kulkukaavio"
 #| warning: false
-
-library(magrittr)
-library(PRISMA2020)
+#| code-summary: "Kuvion piirtäminen"
 
 # Käytämme csv2-funktiota, koska Excel ei suostu exportoimaan csv-tiedostoa pilkkuerottimella puolipiste-erottimen sijaan, jostain syystä.
 
 PRISMA_flowdiagram(
-  tiedot <- read.csv2("data/kirjallisuuskatsaus/prismatiedot.csv") %>%
-    PRISMA_data(.),
+  data = PRISMA_data(data),
   previous = FALSE,
   other = TRUE,
   detail_databases = FALSE,
@@ -37,7 +45,7 @@ PRISMA_flowdiagram(
 
 Tunnistimme yhteensä 7900 tietuetta tietokannoista. Näistä 1617 tietuetta (20 %) poistettiin kaksoiskappaleina, jolloin seulottavaksi jäi 6283 tietuetta. Otsikko- ja abstraktitason seulonnan pohjalta poistimme 6009 tietuetta (96 % seulottavista tietueista), jolloin haettavaksi jäi 274 raporttia. Näistä 19 raporttia ei voitu hakea (7 % haettavista raporteista), jolloin tarkistettavaksi jäi 255 raporttia.
 
-Yleisin syy poissulkemiselle oli väärän kohderyhmän tutkiminen (51 raporttia). Toiseksi yleisin syy oli monien syiden yhdistelmä (44 raporttia), jonka jälkeen tuli väärä tutkimusaihe (39 raporttia). Aineistomuodon epäsopivuus sisäänottokriteerien kanssa oli hieman harvinaisempi (22 raporttia), kuten myös väärän maantieteellisen sijainnin (23 raporttia), ja väärän julkaisutyypin syy sitä harvinaisempi (6 raporttia). Vain kaksi raporttia oli julkaistu aikarajauksen ulkopuolella; yksi ennen määriteltyä ajanjaksoa ja yksi ajanjakson jälkeen.
+Yleisin syy poissulkemiselle oli väärän kohderyhmän tutkiminen (51 raporttia). Toiseksi yleisin syy oli monien syiden yhdistelmä (44 raporttia), jonka jälkeen tuli väärä tutkimusaihe (39 raporttia). Väärä maantieteellinen sijainti oli hieman harvinaisempi (23 raporttia), kuten myös aineistomuodon epäsopivuus (22 raporttia), ja väärän julkaisutyypin syy niitä harvinaisempia (6 raporttia). Kaksi raporttia oli julkaistu aikarajauksen ulkopuolella; yksi ennen määriteltyä ajanjaksoa ja yksi ajanjakson jälkeen.
 
 Tunnistimme myös 7 tietuetta organisaatioiden verkkosivuilta. Näistä voitiin hakea kaikki seitsemän kappaletta. Neljä raporttia jäivät pois väärän tutkimusaiheen takia, yksi väärän kohderyhmän takia, ja yksi sekä väärän tutkimusaiheen että väärän kohderyhmän takia.
 

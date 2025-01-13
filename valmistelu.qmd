@@ -6,32 +6,32 @@ eval: true
 
 ```{r}
 #| label: valmistelu-00-paketit
-#| echo: false
-#| warning: false
+#| code-summary: "Osiossa käytetyt paketit"
 
-# Avataan tarvittavat paketit. Jos niitä ei ole asennettuna, ladataan ne verkosta.
-
-paketit <- c("tidyverse")
-
-lapply(paketit, require, character.only = TRUE)
+library(tidyverse) # Datakäsittely
 
 ```
+
+Tämän osion aineistot eivät ole saatavilla tietosuojan takia.
 
 ## Datatiedoston importointi {#sec-valmistelu-importointi}
 
 ```{r}
 #| label: valmistelu-01-importointi
+#| code-summary: "Datan avaaminen"
 
+# Datatiedostoa ei ole saatavilla tietosuojan takia.
 data <- read.csv2("output/nimettydata.csv", tryLogical = FALSE) %>% as_tibble()
 
 ```
 
 ## ID-muuttujan koodaus {#sec-valmistelu-id}
 
-Tarvitsemme tunnistemuuttujan, jotta voimme myöhemmin uudelleenkoodata organisaatioasemamuuttujan.
+Teimme juoksevan ID-muuttujan vastaajille alkuperäisen aineiston järjestyksen mukaan.
 
 ```{r}
 #| label: valmistelu-03-idmuuttuja
+#| code-summary: "ID-muuttujan koodaus"
 
 data <- data %>%
   tibble::rowid_to_column("ID")
@@ -40,18 +40,19 @@ data <- data %>%
 
 ## Järjestelmä-puuttuvien arvojen uudelleenkoodaus {#sec-valmistelu-puuttuvatarvot}
 
-Tässä vaiheessa datatiedosto on täysin raaka. Ensimmäisenä pitää uudelleenkoodata muuttujat seuraavilla tavoilla:
+Uudelleenkoodasimme puuttuvat arvot, jotta aineistosta voitaisiin erotella vastaamatta jättäneet vastaajista, jotka eivät saaneet ketjutuksen takia vastausmahdollisuutta:
 
-1.  Jos vastaajalle ei tarjottu vastausmahdollisuutta tiettyyn kysymykseen (ketjutusten takia), hänelle merkitään arvo `-1` (SYSMIS, eli järjestelmä-puuttuva).
-2.  Jos vastaajalle tarjottiin vastausmahdollisuus, mutta hän ei vastannut, jätetään arvo `NA` (USRMIS, eli käyttäjä-puuttuva).
+1.  Jos vastaajalle ei tarjottu vastausmahdollisuutta tiettyyn kysymykseen (ketjutusten takia), hänelle merkittiin arvo `-1` (järjestelmä-puuttuva).
+2.  Jos vastaajalle tarjottiin vastausmahdollisuus, mutta hän ei vastannut, jätettiin arvo `NA` (käyttäjä-puuttuva).
 
 ### Esiintyvyysmittarit (k3-k4 + k5-k11, k12-k13 + k14-k20) {#sec-valmistelu-puuttuvatarvot-esiintyvyys}
 
-1.  **Tarkennusmittareille erikseen:** Kaikki arvot `1, 2` muutetaan arvoksi `1`, jotta voidaan tehdä summamuuttujia myöhemmin. Muutos tehdään ensin, jotta voidaan sitten tehdä `NA ~ -1` -muutos alla.
-2.  **Kaikki esiintyvyysmittarit** (7 + 7 settiä): Jos vastaaja ei ole kokenut kohtelun muotoa omakohtaisesti *eikä* havainnut sitä, hänen vastauksensa kohtelua vastaavilla lisätietomittareilla tulisi olla `-1`.
+1.  **Tarkennusmittareille erikseen:** Kaikki arvot `1, 2` muutettiin arvoksi `1`, jotta voitiin tehdä summamuuttujia myöhemmin. Muutos tehtiin ensin, jotta voitaisiin tehdä `NA ~ -1` -muutos alla.
+2.  **Kaikki esiintyvyysmittarit** (7 + 7 settiä): Jos vastaaja ei ollut kokenut kohtelun muotoa omakohtaisesti *eikä* havainnut sitä, hänen vastauksensa kohtelua vastaavilla lisätietomittareilla muutettiin arvoksi `-1`.
 
 ```{r}
 #| label: valmistelu-04-sysmis-esiintyvyydet
+#| code-summary: "Esiintyvyysmittareiden koodaukset"
 
 # Mutate-across -verbiyhdistelmällä voidaan muuttaa X määrä muuttujia
 # samaan aikaan, kopioiden kaikki muut muuttujat tulokseen
@@ -215,15 +216,17 @@ data <- data %>%
       ~ case_when(k12_7 == 1 & k13_7 == 1 ~ -1, .default = .x)
     )
   )
+
 ```
 
 ### Vaikutusmittarit (k21-k23) {#sec-valmistelu-puuttuvatarvot-vaikutus}
 
-2.  **Reaktiomittarit erikseen**: Kaikki olemassa olevat arvot (ei `NA`) muutetaan arvoksi `1`, jotta voidaan tehdä summamuuttujia myöhemmin. Muutos tehdään ensin, jotta voidaan sitten tehdä `NA ~ -1` -muutos alla.
-3.  **Kaikki vaikutusmittarit**: Jos vastaaja on ilmoittanut, ettei hän ole omakohtaisesti kokenut yhtään epäasiallista kohtelua organisaation sisällä tai ulkopuolella (eli jokaisella kokemuksen ylämittarilla \[7+7 mittaria\] vastausarvo on `1` \[En ollenkaan\]), hänelle ei näytetä näitä kysymyksiä ja asetetaan siksi arvo `-1`.
+2.  **Reaktiomittarit erikseen**: Kaikki olemassa olevat arvot (ei `NA`) muutettiin arvoksi `1`, jotta voitaisiin tehdä summamuuttujia myöhemmin. Muutos tehtiin ensin, jotta voitaisiin tehdä `NA ~ -1` -muutos alla.
+3.  **Kaikki vaikutusmittarit**: Jos vastaaja oli ilmoittanut, ettei hän ollut omakohtaisesti kokenut yhtään epäasiallista kohtelua organisaation sisällä tai ulkopuolella (eli jokaisella kokemuksen ylämittarilla \[7+7 mittaria\] vastausarvo oli `1` \[En ollenkaan\]), hänelle ei näytetty vaikutusmittareita ja arvoksi asetettiin siten `-1`.
 
 ```{r}
 #| label: valmistelu-05-sysmis-vaikutukset
+#| code-summary: "Vaikutusmittareiden koodaukset"
 
 # Koodin selitykselle, ks. koodiblokki 02_sysmis_esiintyvyydet
 
@@ -249,14 +252,16 @@ data <- data %>%
         .default = .x)
     )
   )
+
 ```
 
 ### Ilmoitusjärjestelmien koulutus (k25) {#sec-valmistelu-puuttuvatarvot-ilmokoulutus}
 
-3.  **Ilmoitusjärjestelmien koulutus**: Niistä järjestelmistä, joista vastaaja sanoi että organisaatiossa on olemassa, mutta hän jätti vastaamatta niiden koulutuksen olemassaolosta, koodataan `NA` (käyttäjä-puuttuva). Muille koodataan `-1` (järjestelmä-puuttuva), sillä muut eivät nähneet sen järjestelmän riviä.
+3.  **Ilmoitusjärjestelmien koulutus**: Niistä järjestelmistä, joista vastaaja sanoi että organisaatiossa on olemassa, mutta jätti vastaamatta niiden koulutuksen olemassaolosta, merkittiin arvo `NA` (käyttäjä-puuttuva). Muille merkittiin arvo `-1` (järjestelmä-puuttuva).
 
 ```{r}
 #| label: valmistelu-06-sysmis-jarjestelmakoulutus
+#| code-summary: "Ilmoitusjärjestelmämittareiden koodaukset"
 
 # Jokainen koulutusrivi erikseen
 data <- data %>%
@@ -287,19 +292,20 @@ data <- data %>%
 
 ### Taustakysymykset {#sec-valmistelu-puuttuvatarvot-taustakysymykset}
 
-4.  **Sopimuspalokuntien organisaatiotoimimuuttujat**: Kaikki olemassa olevat arvot (ei `NA`) muutetaan arvoksi `1`, jotta voidaan myöhemmin hyödyntää muuttujaa organisaatioasemamuuttujan rakentamisessa helpommin. Tämä tehdään ennen kaikkia muita muunnoksia.
-5.  **Työkuvan muutossuunnitelmat:** Kaikki olemassa olevat arvot (ei `NA`) muutetaan arvoksi `1`.
-6.  **Taustakysymykset:** Kysymykset verrataan vastaajan organisaatiokuuluvuuteen. Niihin kysymyksiin, joihin vastaaja ei voinut vastata, merkitään arvo `-1`. Koska kaikki taustakysymykset olivat pakollisia, `NA`-arvoja ei pitäisi esiintyä ollenkaan kysymyksillä `k31-k41`.
-    -   Pelastuslaitokset ja ensihoito näkevät kysymykset `k32, k39, k40` (eli ei näe kysymyksiä `k33, k34, k35, k36, k37, k38`)
-    -   Sopimuspalokunnat ja palokuntayhdistykset näkevät kysymykset `k33, k34, k35, k36` (eli ei näe kysymyksiä `k32, k37, k38, k39, k40`)
-    -   Valtakunnalliset järjestöt näkevät kysymykset `k37, k38` (eli ei näe kysymyksiä `k32, k33, k34, k35, k36, k39, k40`)
-    -   Koulutusorganisaatiot näkevät kysymykset `k37, k38` (eli ei näe kysymyksiä `k32, k33, k34, k35, k36, k39, k40`)
-    -   Kaikki näkevät kysymykset `k31, k41, k42, k43`
-    -   Jos vastaaja on suorittavaa henkilöstöä (`k39 == 4`), hän näkee kysymyksen `k40`
-    -   Jos vastaaja tekee varallaoloa (`k34 == 1`), hän näkee kysymyksen `k35`
+4.  **Sopimuspalokuntien organisaatiotoimimuuttujat**: Kaikki olemassa olevat arvot (ei `NA`) muutettiin arvoksi `1`, jotta voitaisiin hyödyntää muuttujaa organisaatioasemamuuttujan rakentamisessa helpommin. Tämä tehtiin ennen kaikkia muita muunnoksia.
+5.  **Työkuvan muutossuunnitelmat:** Kaikki olemassa olevat arvot (ei `NA`) muutettiin arvoksi `1`.
+6.  **Taustakysymykset:** Kysymykset verrattiin vastaajan organisaatiokuuluvuuteen. Niihin kysymyksiin, joihin vastaaja ei voinut vastata, merkittiin arvo `-1`. Koska kaikki taustakysymykset olivat pakollisia, `NA`-arvoja ei esiintynyt ollenkaan kysymyksillä `k31-k41`.
+    -   Pelastuslaitokset ja ensihoito näkivät kysymykset `k32, k39, k40` (eli eivät nähneet kysymyksiä `k33, k34, k35, k36, k37, k38`)
+    -   Sopimuspalokunnat ja palokuntayhdistykset näkivät kysymykset `k33, k34, k35, k36` (eli eivät nähneet kysymyksiä `k32, k37, k38, k39, k40`)
+    -   Valtakunnalliset järjestöt näkivät kysymykset `k37, k38` (eli eivät nähneet kysymyksiä `k32, k33, k34, k35, k36, k39, k40`)
+    -   Koulutusorganisaatiot näkivät kysymykset `k37, k38` (eli eivät nähneet kysymyksiä `k32, k33, k34, k35, k36, k39, k40`)
+    -   Kaikki vastaajat näkivät kysymykset `k31, k41, k42, k43`
+    -   Jos vastaaja oli suorittavaa henkilöstöä (`k39 == 4`), hän näki kysymyksen `k40`
+    -   Jos vastaaja teki varallaoloa (`k34 == 1`), hän näki kysymyksen `k35`
 
 ```{r}
 #| label: valmistelu-07-sysmis-taustakysymykset
+#| code-summary: "Taustamuuttujien puuttuvien arvojen koodaukset"
 
 # Sopimuspalokuntien organisaatiotoimimuuttujien korjaus ennen kaikkia muita koodauksia
 data <- data %>%
@@ -377,13 +383,14 @@ data <- data %>%
       ~ case_when(k34 == -1 | k34 == 2 ~ -1, .default = .x)
     )
   )
+
 ```
 
 ## Uudelleenkoodaukset {#sec-valmistelu-uudelleenkoodaukset}
 
-Loogisen tulkittavuuden vuoksi teemme seuraavat uudelleenkoodaukset:
+Loogisen tulkittavuuden vuoksi teimme seuraavat uudelleenkoodaukset:
 
-1.  k\[3-4, 12-13\]\_\[1-7\] (Epäasiallisen ja väkivaltaisen kohtelun esiintyvyys, neljä mittaristoa):
+1.  **k\[3-4, 12-13\]\_\[1-7\]** (Epäasiallisen ja väkivaltaisen kohtelun esiintyvyys, neljä mittaristoa):
     1.  \(1\) -\> (0)
     2.  \(2\) -\> (1)
     3.  \(3\) -\> (2)
@@ -392,12 +399,12 @@ Loogisen tulkittavuuden vuoksi teemme seuraavat uudelleenkoodaukset:
     6.  \(6\) -\> (5)
     7.  \(7\) -\> (6)
     8.  \(8\) -\> (7)
-2.  k25\_\[1-3\] (Raportointijärjestelmien koulutuksen olemassaolo):
+2.  **k25\_\[1-3\]** (Raportointijärjestelmien koulutuksen olemassaolo):
     1.  \(1\) -\> (3)
     2.  \(2\) = (2)
     3.  \(3\) -\> (1)
     4.  \(4\) -\> (0)
-3.  k26\_\[1-18\] (Asenteet ilmoitusjärjestelmiä kohtaan):
+3.  **k26\_\[1-18\]** (Asenteet ilmoitusjärjestelmiä kohtaan):
     1.  \(1\) -\> (7)
     2.  \(2\) -\> (6)
     3.  \(3\) -\> (5)
@@ -405,7 +412,7 @@ Loogisen tulkittavuuden vuoksi teemme seuraavat uudelleenkoodaukset:
     5.  \(5\) -\> (3)
     6.  \(6\) -\> (2)
     7.  \(7\) -\> (1)
-4.  k30\_\[1-13\] (Toimenpiteiden koettu hyödyllisyys):
+4.  **k30\_\[1-13\]** (Toimenpiteiden koettu hyödyllisyys):
     1.  \(1\) -\> (7)
     2.  \(2\) -\> (6)
     3.  \(3\) -\> (5)
@@ -413,12 +420,13 @@ Loogisen tulkittavuuden vuoksi teemme seuraavat uudelleenkoodaukset:
     5.  \(5\) -\> (3)
     6.  \(6\) -\> (2)
     7.  \(7\) -\> (1)
-5.  k34 (Tekee varallaoloa):
+5.  **k34** (Tekee varallaoloa):
     1.  \(1\) = (1)
     2.  \(2\) -\> (0)
 
 ```{r}
 #| label: valmistelu-08-uudelleenkoodaus
+#| code-summary: "Uudelleenkoodaukset"
 
 # Epäasiallisen ja väkivaltaisen kohtelun esiintyvyys, neljä mittaristoa
 data <- data %>%
@@ -511,16 +519,25 @@ data <- data %>%
       )
     )
   )
+
 ```
 
 ### Organisaatioaseman ryhmäkoodaus {#sec-valmistelu-uudelleenkoodaukset-organisaatioasema}
 
-Ennen anonymisointia kolmen organisaatioaseman muuttujat (`k36_[1-7], k38, k39`) tulee yhdistää yhdeksi muuttujaksi anonymisointisuunnitelman mukaisesti.
+Ennen anonymisointia kolmen organisaatioaseman muuttujat (`k36_[1-7], k38, k39`) yhdistettiin yhdeksi muuttujaksi.
 
-Lopullisessa muuttujassa on kuusi luokkaa: (1) Johto- tai esihenkilötaso, (2) Suorittava henkilöstö, (3) Asiantuntijat, (4) Hallinnollinen tai tukipalveluhenkilöstö, (5) Opetushenkilöstö, (6) Opiskelijat.
+Rakennetussa, ei-anonymisoidussa muuttujassa oli kuusi luokkaa:
+
+1.  Johto- tai esihenkilötaso
+2.  Suorittava henkilöstö
+3.  Asiantuntijat
+4.  Hallinnollinen tai tukipalveluhenkilöstö
+5.  Opetushenkilöstö
+6.  Opiskelijat
 
 ```{r}
 #| label: valmistelu-09-organisaatioasema
+#| code-summary: "Organisaatioasemamittarin rakentaminen"
 
 # Jokaisen organisaatioryhmän kohdalla tehdään seuraavasti:
 # 1. Valitse ryhmädata filter()-verbillä
@@ -592,6 +609,7 @@ data <- data %>%
 data <- data %>%
   select(-(k36_1:k36_7) & -(k38:k39)) %>%
   relocate(Organisaatioasema, .before = k40)
+
 ```
 
 ## Avovastauksen laadullinen koodaus {#sec-valmistelu-avovastaukset}
@@ -600,6 +618,7 @@ Tallensimme kaikki ei-tyhjät avovastaukset ID-numeron kanssa `csv`-muotoon laad
 
 ```{r}
 #| label: valmistelu-10-laadullinentallennus
+#| code-summary: "Avovastauksen tallentaminen koodausta varten"
 
 data |>
   filter(!(k43 == '')) |>
@@ -617,7 +636,7 @@ Luokittelu toteutettiin seuraavalla tavalla:
 5.  Projektipäällikkö haki jokaisen lauseen esiintymismäärät aineistosta. Luokkia yhdistettiin kunnes jokaisessa luokassa oli vähintään 10 vastausta.
 6.  Jokaisesta uniikista luokasta tehtiin oma muuttuja arvoilla `1` (vastaaja ilmaisi luokan vastauksessaan) tai `0` (vastaaja ei ilmaissut luokkaa vastauksessaan).
 
-Alla olevissa listauksissa esitetään jokaisen luokan alaluokat aakkosjärjestyksessä. Useat syyt ovat samoja, mutta kirjoitusmuodoltaan eriävät: tämä johtuu osittain usean tutkijan koodauksesta, osittain myös vastaajien antamien vastausten muotoilusta.
+Alla esitetään jokaisen luokan alaluokat aakkosjärjestyksessä. Useat syyt ovat samoja, mutta eriävät kirjoitusmuodoltaan. Osasyynä on usean tutkijan koodaus, mutta osittain myös vastaajien antamien vastausten muotoilu.
 
 ::: panel-tabset
 ### Epäasiallinen tai väkivaltainen kohtelu
@@ -922,6 +941,7 @@ Alla olevissa listauksissa esitetään jokaisen luokan alaluokat aakkosjärjesty
 
 ```{r}
 #| label: valmistelu-11-laadullinenluokitus
+#| code-summary: "Luokiteltujen avovastausten hakeminen aineistoon"
 
 # Haetaan luokat csv-taulukosta takaisin aineistoon.
 
@@ -938,10 +958,11 @@ data <- data |>
 
 ## Datan tallennus {#sec-valmistelu-datatallennus}
 
-Koodausten jälkeen tallensimme lopullisen datatiedoston `csv`-muotoon. Tallennusta ei ole saatavilla verkkosivun lähdekoodista tietosuojan takia.
+Koodausten jälkeen tallensimme lopullisen datatiedoston `csv`-muotoon.
 
 ```{r}
 #| label: valmistelu-12-datatallennus
+#| code-summary: "Datan tallennus"
 
 write.csv2(data, file = "output/koodattudata.csv", row.names = FALSE)
 

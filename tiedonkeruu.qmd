@@ -1,33 +1,35 @@
 # Tiedonkeruu {#sec-tiedonkeruu}
 
+Tässä osiossa selostamme kyselyn tiedonkeruumenetelmät, yhteydenottotavat sekä välitysajankohdat.
+
 ## Yhteydenottomenetelmät {#sec-tiedonkeruu-yhteydenottomenetelmat}
 
 **Tiedonkeruu suoritettiin ajanjaksolla 15.8.-15.9.2024.**
 
-Aineisto kerättiin käyttäen ei-satunnaista mukavuusotantaa. Kutsukirje ja linkki kyselyyn välitettiin seuraaville tahoille:
+Aineisto kerättiin ei-satunnaisena mukavuusotantana. Kutsukirje ja linkki kyselyyn välitettiin seuraaville tahoille:
 
--   Pelastuslaitokset: Pelastusjohtajat, tutkimusluvissa sovitut yhteyshenkilöt
--   Ensihoito: Ensihoitopäälliköt tai ylihoitajat, tutkimusluvissa sovitut yhteyshenkilöt (alueilla, joissa ensihoito ei ole osa pelastuslaitoksen palvelutuotantoa)
--   Pelastusliitot: Pelastusliittojen johto
--   Sopimuspalokunnat ja palokuntayhdistykset: Pelastusliittojen kautta, HAKA-järjestelmän kautta
--   Valtakunnalliset järjestöt: Järjestöjen johtajat, toimistosähköpostit
--   Koulutusorganisaatiot: Pelastusopiston johto sekä viestintä, Helsingin pelastuskoulun rehtori sekä kanslia
+-   **Pelastuslaitokset**: Pelastusjohtajat, tutkimusluvissa sovitut yhteyshenkilöt.
+-   **Ensihoito**: Ensihoitopäälliköt tai ylihoitajat, tutkimusluvissa sovitut yhteyshenkilöt (alueilla, joissa ensihoito ei ole osa pelastuslaitoksen palvelutuotantoa).
+-   **Pelastusliitot**: Pelastusliittojen johto.
+-   **Sopimuspalokunnat ja palokuntayhdistykset**: Pelastusliittojen kautta, HAKA-järjestelmän kautta.
+-   **Valtakunnalliset järjestöt**: Järjestöjen johtajat, toimistosähköpostit.
+-   **Koulutusorganisaatiot**: Pelastusopiston johto sekä viestintä, Helsingin pelastuskoulun rehtori sekä kanslia.
 
 Näiden lisäksi kyselyä levitettiin seuraavien media- ja uutiskirjepalvelujen kautta:
 
--   Pelastustieto-lehti: Mainos painetussa lehdessä, tiedote verkko- ja painetussa lehdessä
--   Palokuntalainen-lehti: Mainos painetussa lehdessä, tiedote verkko- ja painetussa lehdessä
--   Pelastusalan ammattilainen -lehti: Mainos verkkolehdessä, tiedote verkko- ja painetussa lehdessä
--   Palokuntaan.fi -palvelu: Tiedote verkkopalveluun, uutiskirje
--   Pelastuslaitokset.fi -palvelu: Tiedote verkkopalveluun
--   Spek.fi -palvelu: Tiedote verkkopalveluun
--   Suomen Pelastusalan Ammattilaisten (SPAL) uutiskirje
--   Suomen Sopimuspalokuntien Liiton (SSPL) jäsenkirje ja tiedote
--   Suomen Pelastusalan Keskusjärjestön (SPEK) Speksi-uutiskirje
+-   **Pelastustieto-lehti**: Mainos painetussa lehdessä, tiedote verkko- ja painetussa lehdessä.
+-   **Palokuntalainen-lehti**: Mainos painetussa lehdessä, tiedote verkko- ja painetussa lehdessä.
+-   **Pelastusalan ammattilainen -lehti**: Mainos verkkolehdessä, tiedote verkko- ja painetussa lehdessä.
+-   **Palokuntaan.fi -palvelu**: Tiedote verkkopalveluun, uutiskirje.
+-   **Pelastuslaitokset.fi -palvelu**: Tiedote verkkopalveluun.
+-   **Spek.fi -palvelu**: Tiedote verkkopalveluun.
+-   **Suomen Pelastusalan Ammattilaisten** (SPAL) uutiskirje.
+-   **Suomen Sopimuspalokuntien Liiton** (SSPL) jäsenkirje ja tiedote.
+-   **Suomen Pelastusalan Keskusjärjestön** (SPEK) Speksi-uutiskirje.
 
-Jokainen viesti lähetettin välikäsin, eli hankkeen toimijat eivät suoraan olleet yhteydessä kohdepopulaatioon. Kutsukirjeet ja viestit valmistettiin hankkeen sisällä. Välitysprosessiin osallistui yhteyshenkilöt sekä muuta henkilöstöä hyvinvointialueilta, Hyvinvointialueyhtiö Hyvil Oy:stä, SPEK:sta, SPAL:sta ja SSPL:sta.
+Jokainen viesti lähetettiin välikäsin, eli hankkeen toimijat eivät suoraan olleet yhteydessä kohdepopulaatioon. Kutsukirjeet ja -viestit valmistettiin hankkeen sisällä. Välitysprosessiin osallistui tutkimuksen yhteyshenkilöt sekä muuta henkilöstöä hyvinvointialueilta, Hyvinvointialueyhtiö Hyvil Oy:stä, SPEK:stä, SPAL:sta ja SSPL:sta.
 
-Välitettäviin viesteihin valmistetiin kolme erillistä kyselylinkkiä. Jokainen linkki ohjasi omaan mutta keskittäin identtiseen kyselylomakkeeseen. Näin keräsimme tiedot vastaajien valitsemasta kanavasta. Linkkejä oli kolme:
+Välitettäviin viesteihin valmistetiin kolme erillistä kyselylinkkiä. Jokainen linkki ohjasi omaan mutta keskittäin identtiseen kyselylomakkeeseen, jotta saisimme metatiedon vastaajan käyttämästä välityskanavasta. Linkkejä oli kolme:
 
 +-------------------------------------------------+--------------------------------------------------------------------------+----------------------------------------------------+
 | Johdon kautta välitettäväksi kohdepopulaatiolle | Yhteyshenkilöiden ja viestinnän kautta välitettäväksi kohdepopulaatiolle | Median kautta välitettäväksi kohdepopulaatiolle    |
@@ -50,7 +52,7 @@ Välitettäviin viesteihin valmistetiin kolme erillistä kyselylinkkiä. Jokaine
 
 ### Pelastusjohtajat ja ensihoitopäälliköt {#sec-tiedonkeruu-valityskanavat-pelastusjohtajatensihoitopaallikot}
 
-Teimme yhteistyötä Hyvinvointialueyhtiö Hyvil oy:n kanssa kyselyn välitysprosessissa. Hyvilin edustajat lähettivät johdon viestit pelastusjohtajille ja ensihoitopäälliköille. Välitimme Hyvilin edustajille listauksen kaikista osallistuvista hyvinvointialueista, eriteltynä pelastuslaitoksiin tai pelastuslaitoksiin ja ensihoitoon (alueen palvelujärjestyksen mukaisesti). Johdon viestissä oli pyyntö välittää liitteenä olevan osallistumiskirjeen edelleen johtohenkilön edustamalle henkilöstölle.
+Teimme yhteistyötä Hyvinvointialueyhtiö Hyvil Oy:n kanssa kyselyn välitysprosessissa. Hyvilin edustajat lähettivät viestit pelastusjohtajille ja ensihoitopäälliköille. Välitimme Hyvilin edustajille listauksen kaikista osallistuvista hyvinvointialueista, eriteltynä pelastuslaitoksiin tai pelastuslaitoksiin ja ensihoitoon (alueen palvelujärjestyksen mukaisesti). Johdon viestissä pyydettiin vastaanottajaa välittämään liitteenä olevan osallistumiskirjeen edelleen henkilöstölle.
 
 ### Pelastusliittojen johto {#sec-tiedonkeruu-valityskanavat-pelastusliittojenjohto}
 
@@ -58,19 +60,19 @@ Pelastusliittojen johdolle välitys- ja osallistumispyynnöt lähetettiin yhteis
 
 ### Järjestöjen johto {#sec-tiedonkeruu-valityskanavat-jarjestojenjohto}
 
-Lähetimme hankkeen toimesta viestin SPEK:n, SPPL:n ja SSPL:n johdolle. Viestissä johtoa pyydettiin välittämään edelleen liitteenä olevan kutsukirjeen heidän edustamalle henkilöstölleen.
+Lähetimme hankkeen toimesta viestin SPEK:n, SPPL:n ja SSPL:n johdoille. Viestissä johtoja pyydettiin välittämään edelleen liitteenä olevan kutsukirjeen henkilöstölleen.
 
 ### Pelastusopiston johto ja Helsingin pelastuskoulun rehtori {#sec-tiedonkeruu-valityskanavat-koulutusorganisaatioidenjohto}
 
-Lähetimme hankkeen toimesta myös viestin Pelastusopiston johdolle sekä Helsingin pelastuskoulun rehtorille. Pelastusopiston johtoon laskettiin rehtori, tutkimusjohtaja, koulutusjohtaja sekä hallintojohtaja. Viesteissä vastaanottajia pyydettiin välittämään edelleen liitteenä olevan kutsukirjeen henkilöstölleen.
+Lähetimme hankkeen toimesta viestin Pelastusopiston johdolle sekä Helsingin pelastuskoulun rehtorille. Pelastusopiston johtoon kuului rehtori, tutkimusjohtaja, koulutusjohtaja ja hallintojohtaja. Viesteissä vastaanottajia pyydettiin välittämään edelleen liitteenä olevan kutsukirjeen henkilöstölleen.
 
 ### Pelastuslaitosten ja ensihoidon yhteyshenkilöt {#sec-tiedonkeruu-valityskanavat-pelaehyhteyshenkilot}
 
-Osana tutkimuslupien hakemista hankkeelle osoitettiin hyvinvointialueilta yhteyshenkilöitä. Useimmat alueet osoittivat yhden henkilön, jotkut osoittivat kahdet tai kolmet henkilöt. Neljä hyvinvointialuetta eivät osoittaneet yhtään yhteyshenkilöä, jolloin heille ei lähetetty tätä kutsuviestiä.
+Osana tutkimuslupien hakemista hankkeelle osoitettiin hyvinvointialueilta yhteyshenkilöitä. Useimmat alueet osoittivat yhden henkilön, eräät osoittivat kahdet tai kolmet henkilöt. Neljä hyvinvointialuetta eivät osoittaneet yhtään yhteyshenkilöä, jolloin heille ei lähetetty kutsuviestiä tämän menetelmän kautta.
 
 Lähetimme hankkeen toimesta yhteyshenkilöille viestin, jossa heitä pyydettiin välittämään liitteenä olevan osallistumiskirjeen edelleen edustamansa organisaationsa henkilöstölle.
 
-Viestissä välitettiin myös A5-kokoinen digitaalinen käsiesite, jonka yhteyshenkilöt saivat vapaasti tulostaa tai asettaa esille organisaatiossaan sopivalla tavalla, esimerkiksi kahvihuoneessa tai intraverkossa.
+Viestissä välitettiin myös A5-kokoinen digitaalinen käsiesite, jonka yhteyshenkilöt saivat vapaasti tulostaa tai asettaa esille organisaatiossaan sopivalla tavalla, esimerkiksi kahvihuoneessa tai sisäisessä verkossa.
 
 ### Sopimuspalokuntalaisten HAKA-järjestelmä {#sec-tiedonkeruu-valityskanavat-haka}
 
@@ -86,7 +88,7 @@ Lähetimme hankkeen toimesta viestin SPEK:n, SPPL:n ja SSPL:n toimistosähköpos
 
 Teimme yhteistyötä SPEK:n, SSPL:n ja Suomen Pelastusalan Ammattilaiset SPAL:n kanssa kyselyn välittämisessä uutis- ja jäsenkirjeiden kautta. Lähetimme näiden järjestöjen viestintäedustajille A5-kokoisen digitaalisen käsiesitteen, joka pyydettiin liittämään järjestöjen hallinnoimiin uutis- ja jäsenkirjeisiin.
 
-Lähetimme myös kutsut Pelastusopiston omien uutiskirjeiden kautta. Uutiskirjeet koskevat seuraavia toimintoja: ensihoito, pelastustoimi, onnettomuuksien ehkäisy, pelastustoiminta.
+Lähetimme myös kutsut Pelastusopiston omien uutiskirjeiden kautta. Uutiskirjeet koskevat seuraavia toimintoja: ensihoito, pelastustoimi, onnettomuuksien ehkäisy ja pelastustoiminta.
 
 ### Mainokset {#sec-tiedonkeruu-valityskanavat-mainokset}
 
@@ -98,11 +100,11 @@ Lisäksi saimme ilmaiseksi käyttöön bannerimainoksen Pelastusalan ammattilain
 
 Lähetimme Pelastusopiston viestinnän kautta tiedotteet Pelastustieto-, Palokuntalainen- ja Pelastusalan ammattilainen -lehtiin. Tiedotteessa esiteltiin hankkeen etenemistä, kyselyn kehittämisprosessia ja avoimen tieteen toimintoja hankkeessa. Tiedote sisälsi osallistumiskutsun ja linkin kyselyyn.
 
-Lähetimme myös hankkeen toimesta tiedotteen edelleen Hyvil Oy:n, SPEK:n ja SSPL:n yhteistyökumppaneille. Heitä pyydettiin julkaisemaan tiedotteet joko sellaisinaan, tai muokattuna sopivaan muotoon, hallinnoimissaan verkkopalveluissa ja tiedotealustoissa.
+Lähetimme myös tiedotteen edelleen Hyvil Oy:n, SPEK:n ja SSPL:n yhteistyökumppaneille. Heitä pyydettiin julkaisemaan tiedotteet joko sellaisinaan, tai muokattuna sopivaan muotoon, hallinnoimissaan verkkopalveluissa ja tiedotealustoissa.
 
 ## Viestien julkaisuajankohdat {#sec-tiedonkeruu-julkaisuajankohdat}
 
-Alla oleva taulukko sisältää jokaisen viestin vahvistettu julkaisu- ja muistutuspäivä. Jos viesti on lähetetty eteenpäin välitystahon toimesta (esim. pelastusjohtajien sähköposti Hyvil Oy:n yhteyshenkilön kautta), päivämäärät viittaavat päiviin, jolloin viesti on lähtenyt lopullisille vastaanottajille (pelastusjohtajat). Mainosten, uutiskirjeiden ja tiedotteiden kohdalla päivämäärä viittaa ensimmäiseen julkaisu- tai esilläolopäivään.
+Alla oleva taulukko sisältää jokaisen viestin vahvistettu julkaisu- ja muistutuspäivä. Jos viesti on lähetetty eteenpäin välitystahon toimesta (esim. pelastusjohtajien sähköposti Hyvil Oy:n yhteyshenkilön kautta), päivämäärät viittaavat päiviin, jolloin viesti on lähtenyt lopullisille vastaanottajille (esim. pelastusjohtajat). Mainosten, uutiskirjeiden ja tiedotteiden kohdalla päivämäärä viittaa ensimmäiseen julkaisu- tai esilläolopäivään.
 
 +------------------------------------------------------+----------------------+----------------+
 | Viesti                                               | Julkaisupäivä        | Muistutuspäivä |
@@ -141,7 +143,7 @@ Alla oleva taulukko sisältää jokaisen viestin vahvistettu julkaisu- ja muistu
 +------------------------------------------------------+----------------------+----------------+
 | Palokuntaan.fi -uutiskirje                           | 16.8.                | \-             |
 +------------------------------------------------------+----------------------+----------------+
-| SSPL-tiedote                                         | **(tarkista)**       | \-             |
+| SSPL-tiedote                                         | 3.9.                 | \-             |
 +------------------------------------------------------+----------------------+----------------+
 | Speksi-uutiskirje                                    | 23.8.                | 10.9.          |
 +------------------------------------------------------+----------------------+----------------+

@@ -1,182 +1,168 @@
 # Kyselyn valmistelu {#sec-kyselynvalmistelu}
 
-## Ensimmäisen asiantuntijatyöpajan suunnittelutapaaminen 13.12.2023 {#sec-kyselynvalmistelu-tyopajasuunnittelu}
-
-Kyselyn valmistelu alkoi ensimmäisen asiantuntijatyöpajan suunnittelun yhteydessä tapaamisella 13.12.2023. Tapaamisessa olivat mukana kaikki hanketyöntekijät.
-
-Tapaamisessa suunniteltiin kartoituskyselyä kaikille Suomen pelastuslaitoksille. Kartoituskyselyn tarkoituksena oli kerätä taustatietoa tarvittavista epäasiallisen kohtelun tiedoista laitoksilta, joita olisimme voineet käyttää osana kyselyn kysymysten kehittämistä.
-
-Projektipäällikkö oli yhteydessä kaikkiin hyvinvointialueisiin (21 kappaletta) sekä Helsingin kaupunkiin ja Maarianhaminan pelastuslaitokseen 19.1.2024 sähköpostitse, kysellen hyvinvointialueen lupakäytännöistä kartoituskyselyn toteuttamisen kannalta. Vastauksia saatiin 16 kappaletta. Näistä 10 aluetta vaativat tutkimuslupaa ja 6 aluetta eivät vaatineet.
-
-Tutkimuslupaprosessin haasteellisuuden ja aikataulupuutteiden takia hanketyöryhmä kokoontui keskustelemaan kartoituskyselyn toteutusmahdollisuuksista. Totesimme tuolloin, ettemme ehdi toteuttamaan kartoituskyselyä aikataulun puitteissa. Luovuimme kartoituskyselyn tekemisestä, ja päätimme sisällyttää yhden sisällöllisen kysymyksen myöhemmin asiantuntijatyöpajojen ilmoittautumisen yhteydessä.
-
 ## Kyselylomakkeen suunnittelutyöpaja 16.1.2024 {#sec-kyselynvalmistelu-suunnittelutyopaja}
 
-Hanketiimi kokoontui 16.1.2024 suunnittelutyöpajaan, tehtävänä määritellä kyselylomakkeen yleismuoto sekä kohderyhmät ja yhteydenottomenetelmät.
+Hanketiimi kokoontui 16.1.2024 suunnittelutyöpajaan määritelläksemme kyselylomakkeen yleismuodon sekä kohderyhmät ja yhteydenottomenetelmät.
 
-Kyselylomakkeen kohdalla totesimme, että taustatietoihin tulee kiinnittää erityistä huomiota. Toisaalta tutkimusasetelma vaatii sensitiivisyyttä ja varovaisuutta henkilötietojen keräämisessä, mutta toisaalta tunnistimme sukupuolen, ammattiryhmän, työnkuvan ja työuran pituuden tärkeinä taustamuuttujina aikaisemmassa tutkimuksessa.
+Päädyimme seuraaviin toteamuksiin ja suunnitteluohjeisiin:
 
-Painoitimme kysymysasettelujen yksiselitteistä käsitteistöä, jotta kyselyyn vastaaminen olisi yksinkertaista. Totesimme myös, että epäasiallisen kohtelun kokemusten kohdalla meidän tulisi rajata mittausaika.
+-   Taustatietoja tulisi kerätä harkiten tutkimusasetelman sensitiivisyyden takia. Tunnistimme sukupuolen, ammattiryhmän, työnkuvan ja työuran pituuden tärkeinä taustamuuttujina aikaisemmasta tutkimuksesta.
 
-Pääaiheina kyselylle tunnistimme seuraavat kuusi kategoriaa: yleisyys, muodot, tekokonteksti, vaikutukset, tekijätaho sekä toimenpiteet.
+-   Kysymysasettelut tulisivat olla mahdollisimman yksiselitteisiä. Epäasiallisen kohtelun kokemusten kohdalla mittausaika tulisi rajata muistiharhan lieventämiseksi.
 
-Yhteydenottomenetelmien kohdalla totesimme nopeasti, että tarvitsemme selkeämmän kohderyhmärajauksen ensin. Jätimme siksi yhteydenottomenetelmien keskustelun hankkeen myöhempään vaiheeseen.
+-   Kyselyn pääaiheina olisi yleisyys, muodot, tekokonteksti, vaikutukset, tekijätaho sekä toimenpiteet.
+
+-   Yhteydenottomenetelmiä ei voitu määritellä ennen tarkempaa kohderyhmärajausta.
 
 ## Kyselylomakkeen ensimmäinen vedos {#sec-kyselynvalmistelu-ensimmainenvedos}
 
-Tutkimushankkeen varsinainen kyselylomakkeen työstäminen alkoi 20.2.2024. Projektipäällikkö vedosti ensimmäisen version lomakkeesta.
+Tutkimushankkeen kyselylomakkeen työstäminen alkoi 20.2.2024. Projektipäällikkö vedosti ensimmäisen version lomakkeesta.
 
-Lomakkeen kysymykset rakennettiin aikaisemman tutkimuksen validoitujen kysymysasetelmien perusteella, kuitenkin peilaten tutkimuskysymyksiä. Kaikki kirjallisuuskatsauksessa löydetyt validoidut mittaristot arvioitiin sopivuuden näkökulmasta - jos mittaristo oli kehitetty tapauskohtaisen epäasiallisen kohtelun mittaamiseen (esim. *SOAS-RE*-mittaristo), mittaristo jätettiin pois kyselylomakkeesta.
+Lomakkeen kysymykset rakennettiin aikaisemman tutkimuksen validoitujen kysymysasetelmien perusteella. Kaikki kirjallisuuskatsauksessa löydetyt validoidut mittaristot arvioitiin sopivuudeltaan tutkimushankkeeseen. Tapauskohtaisten epäasiallisen kohtelutilanteiden mittaamisen mittaristoja (esim. *SOAS-RE*-mittaristo) ei käytetty.
 
-Validoitujen mittaristojen jälkeen kehitimme uusia kysymyksiä tutkimuskirjallisuuteen pohjautuen. Hyvin harva kysymys tarvittiin kehittää täysin tyhjästä, mutta toisaalta harva kysymys sopi sellaisenaan tutkimushankkeen moninaiseen kohderyhmäkontekstiin. Useimmat tutkimukset kirjallisuuskatsauksessa keskittyivät asiakkaan aiheuttamiin uhka- ja väkivaltatilanteisiin ensihoitajien näkökulmasta, jolloin suurimpana tehtävänä oli sovittaa kysymykset myös sisäisen epäasiallisen kohtelun näkökulmaan.
+Validoitujen mittaristojen jälkeen kehitimme uusia kysymyksiä tutkimuskirjallisuuteen pohjautuen. Useimmat tutkimukset kirjallisuuskatsauksessa keskittyivät asiakkaan aiheuttamiin uhka- ja väkivaltatilanteisiin ensihoitajien näkökulmasta, jolloin kysymykset sovitettiin myös sisäisen epäasiallisen kohtelun näkökulmaan.
 
 Kehittämisen yhteydessä projektipäällikkö tutustui Jäntin ja Nordquistin [-@jäntti2022] kääntämään työpaikkaväkivallan mittaristoon. Tämä mittaristo otettiin epäasiallisen kohtelun määritelmäksi, mutta muutoksilla: lisäsimme vihamielisyyden määritelmän [@alspach2008] ja yhdistimme seksuaalisen häirinnän ja väkivallan yhdeksi mittariksi.
 
-Epäasiallisen kohtelun yleisyyden mittaaminen pohjautui tämän jälkeen tähän kehitettyyn, kuusiulotteiseen epäasiallisen kohtelun määritelmään. Kehitimme jokaiselle ulottuvuudelle binäärisen mittariston, ja laajensimme määritelmiä koskemaan erikseen organisaation sisällä tapahtuvaa ja ulkoa tulevaa epäasiallista kohtelua.
+Epäasiallisen kohtelun yleisyyden mittaaminen pohjautui tämän jälkeen tähän kehitettyyn, kuusiulotteiseen epäasiallisen kohtelun määritelmään. Kehitimme jokaiselle ulottuvuudelle tarkentavan mittariston ja määrittelimme mittarit koskemaan erikseen organisaation sisällä tapahtuvaa ja ulkoa tulevaa epäasiallista kohtelua. Tarkentavat mittarit haettiin ensisijaisesti aikaisemmista tutkimuksista.
 
-## Lomakevedoksen läpikäynti 6.3.-7.3.2024 {#sec-kyselynvalmistelu-vedoksenlapikaynti}
+## Lomakevedoksen läpikäynti {#sec-kyselynvalmistelu-vedoksenlapikaynti}
 
-Hanketiimi kävi projektipäällikön tekemän lomakevedoksen läpi kahdessa etäkokouksessa 6.3. ja 7.3.2024. Keskusteluiden pohjalta tunnistettiin kehitystarpeita liki jokaisessa kysymysasettelussa.
+Hanketiimi kävi projektipäällikön lomakevedoksen läpi kahdessa etäkokouksessa 6.3.-7.3.2024.
 
-Päätimme tehdä seuraavat muutokset kyselylomakkeeseen:
+Keskustelujen pohjalta teimme seuraavat muutokset kyselylomakkeeseen:
 
-1.  Saatekirjeeseen lisättiin tietoa kyselyn jatkamisesta ja sulkemisesta sekä vastaamisen tärkeydestä
-2.  Esiintymismittareiden vastausvaihtoehdot muutettiin seuraten tutkimuskirjallisuuden suosituksia ([@tong2020; @decastellarnau2018]): En kertaakaan, Harvemmin kuin kerran kuukaudessa, Kerran kuukaudessa, Useita kertoja kuukaudessa, Kerran viikossa, Useita kertoja viikossa, Kerran päivässä, Useita kertoja päivässä.
-3.  Esiintymistarkennusmittareiden vastausvaihtoehdot muutettiin muotoon "Minä koin" ja "Kollegani koki" selventääksemme tekijän ja kokijan välistä eroa
-4.  Vaikutusmittarit ketjutettiin siten, että mittarit näkyvät vastaajalle vain, jos hän vastaa kokeneensa vähintään yhden epäasiallisen ja väkivaltaisen kohtelun muodon vähintään harvemmin kuin kerran kuukaudessa
-5.  Lisättiin uusi kysymys vaikutusten pitkäkestoisuudesta vaihtoehdoilla "Päivän verran", "Viikon verran", "Kuukauden verran", "Useamman kuukauden verran" sekä lisävaihtoehdolla "Jatkuu tällä hetkellä"
-6.  Muutettiin reaktiomittari virka-avusta muotoon "Hälytin turvallisuusviranomaiset (esim. hätäpuhelu, Virven käyttö)"
-7.  Lisättiin uusi kysymys ilmoitusjärjestelmien olemassaolosta vastausvaihtoehdoilla "Kyllä" ja "Ei"
-8.  Muutettiin ilmoitusjärjestelmien asennemittaristo muotoon "Ota kantaa seuraaviin väitteisiin oman organisaatiosi ilmoitusjärjestelmästä ja sen käytöstä"
-9.  Ketjutettiin ilmoitusjärjestelmien asennemittaristo siten, että mittaristo näkyy vain jos vastaaja valitsi vaihtoehdon "Kyllä" ilmoitusjärjestelmien olemassaolon kysymyksellä
-    1.  Tämä ketjutus poistettiin myöhemmin kyselyn kehittämisprosessissa
-10. Työuupumusmittaristo vaihdettiin BAT 12-mittarista BAT 4-mittariin keventääksemme kyselyä
-11. Henkilökohtaisten ominaisuuksien ja ennakkoluulojen mittaristo poistettiin, koska se todettiin huonoksi operationalisoinniksi
-12. Mittaristossa organisaation toimien tietoisuudesta muotoiltiin uusiksi joitain alakysymyksiä
-13. Organisaation toimien koettu hyöty muutettiin muotoon "Mitä vaikutuksia mielestäsi edellä mainituilla toimilla on epäasiallisen kohtelun esiintyvyyteen?"
-14. Organisaation toimien koetun hyödyn mittarin vastausvaihtoehdot vaihdettiin 11-pisteiseen *Visual Analogue Scale* -mittariin. Mittari asetettiin skaalalle `-5, 5`. Skaalan ääripäiden arvoiksi määriteltiin "Erittäin suuri estävä vaikutus" (`-5`), "Ei vaikutusta" (`0`) ja "Erittäin suuri lisäävä vaikutus" (`5`)
-    1.  Tämän mittarin vastausvaihtoehtoja muutettiin myöhemmin kyselyn kehittämisprosessissa
-15. Lisättiin uusi kysymys organisaation ohjeistusten kattavuudesta eri epäasiallisen kohtelun tilanteissa. Alakysymyksiä oli 12 kappaletta vastaten kuusiulotteisen epäasiallisen kohtelun mittaristoa organisaation sisällä sekä ulkopuolella esiintyvillä muuttujilla. Vastausvaihtoehdot olivat "Ohjeistus käsittelee tilannetta selkeästi ja esimerkeillä", "Ohjeistus käsittelee tilannetta jokseenkin selkeästi", "Ohjeistus käsittelee tilannetta ohimennen tai maininnalla", "Ohjeistus ei juurikaan ota huomioon tilannetta", "Ohjeistus ei tunnista tilannetta ollenkaan"
-    1.  Tämä kysymys poistettiin myöhemmin kyselyn kehittämisprosessissa
-16. Organisaatiokuuluvuusmittari muutettiin nelikategoriseksi: Pelastuslaitos, Sopimuspalokunta tai palokuntayhdistys, Pelastusalan valtakunnallinen järjestö (SPEK, SPPL, SSPL, SPAL, Pelastusalan naiset ry), Koulutusorganisaatio
-    1.  Tätä mittaria muutettiin myöhemmin kyselyn kehittämisprosessissa
-17. Lisättiin uusi kysymys työn rytmityksestä, "Mikä seuraavista kuvaa pelastusalaan osallistumistasi työrytmitystä parhaiten?". Vastausvaihtoehdot olivat: "Töissä virka-aikana kokoaikaisesti", "Kaksi- tai kolmevuorotyö", "Töissä virka-aikana osa-aikaisesti", "Sopimuksenvaraisessa hälytysvalmiudessa", "Virka- tai työvapaalla", "Harrastustoiminta (muu kuin työ- tai virkasuhde tai sopimusvarainen toimintavalmius)", "Opiskelija"
-18. Muokattiin vastausvaihtoehtoa ryhmäkohtaamismittarilla: "Yhteistyökumppanit tai sidosryhmät (esim. muut turvallisuusviranomaiset, koulutus- tai tutkimusorganisaatiot, media, kolmannen sektorin toimijat"
-    1.  Tämä mittari poistettiin myöhemmin kyselyn kehittämisprosessissa
+1.  Saatekirjeeseen lisättiin tietoa kyselyn jatkamisesta ja sulkemisesta sekä vastaamisen tärkeydestä.
+2.  Esiintymismittareiden vastausvaihtoehdot muutettiin seuraten tutkimuskirjallisuuden suosituksia [@tong2020; @decastellarnau2018]: En kertaakaan, Harvemmin kuin kerran kuukaudessa, Kerran kuukaudessa, Useita kertoja kuukaudessa, Kerran viikossa, Useita kertoja viikossa, Kerran päivässä, Useita kertoja päivässä.
+3.  Esiintymistarkennusmittareiden vastausvaihtoehdot muutettiin muotoon "Minä koin" ja "Kollegani koki" selventääksemme tekijän ja kokijan välistä eroa.
+4.  Vaikutusmittarit ketjutettiin siten, että mittarit näkyisivät vastaajalle vain, jos hän vastaa kokeneensa vähintään yhden epäasiallisen ja väkivaltaisen kohtelun muodon vähintään harvemmin kuin kerran kuukaudessa.
+5.  Lisättiin uusi kysymys vaikutusten pitkäkestoisuudesta vaihtoehdoilla "Päivän verran", "Viikon verran", "Kuukauden verran", "Useamman kuukauden verran" sekä lisävaihtoehdolla "Jatkuu tällä hetkellä".
+6.  Muutettiin reaktiomittari virka-avusta muotoon "Hälytin turvallisuusviranomaiset (esim. hätäpuhelu, Virven käyttö)".
+7.  Lisättiin uusi kysymys ilmoitusjärjestelmien olemassaolosta vastausvaihtoehdoilla "Kyllä" ja "Ei".
+8.  Muutettiin ilmoitusjärjestelmien asennemittaristo muotoon "Ota kantaa seuraaviin väitteisiin oman organisaatiosi ilmoitusjärjestelmästä ja sen käytöstä".
+9.  Ketjutettiin ilmoitusjärjestelmien asennemittaristo siten, että mittaristo näkyy vain, jos vastaaja valitsi vaihtoehdon "Kyllä" ilmoitusjärjestelmien olemassaolon kysymyksellä.
+    1.  Ketjutus poistettiin myöhemmin kehittämisprosessissa.
+10. Työuupumusmittaristo vaihdettiin BAT 12-mittarista BAT 4-mittariin keventääksemme kyselyä.
+11. Henkilökohtaisten ominaisuuksien ja ennakkoluulojen mittaristot poistettiin heikon operationalisoinnin takia.
+12. Mittaristossa organisaation toimien tietoisuudesta muokattiin eräitä alakysymyksiä.
+13. Organisaation toimien koettu hyöty muutettiin muotoon "Mitä vaikutuksia mielestäsi edellä mainituilla toimilla on epäasiallisen kohtelun esiintyvyyteen?".
+14. Organisaation toimien koetun hyödyn mittarin vastausvaihtoehdot vaihdettiin 11-pisteiseen liukumittariin. Mittari asetettiin skaalalle `-5, 5`. Skaalan ääripäiden arvoiksi määriteltiin "Erittäin suuri estävä vaikutus" (`-5`), "Ei vaikutusta" (`0`) ja "Erittäin suuri lisäävä vaikutus" (`5`).
+    1.  Mittarin vastausvaihtoehtoja muutettiin myöhemmin kehittämisprosessissa.
+15. Lisättiin uusi kysymys organisaation ohjeistusten kattavuudesta eri epäasiallisen kohtelun tilanteissa. Alakysymyksiä oli 12 kappaletta vastaten kuusiulotteisen epäasiallisen kohtelun mittaristoa organisaation sisällä sekä ulkopuolella esiintyvillä muuttujilla. Vastausvaihtoehdot olivat "Ohjeistus käsittelee tilannetta selkeästi ja esimerkeillä", "Ohjeistus käsittelee tilannetta jokseenkin selkeästi", "Ohjeistus käsittelee tilannetta ohimennen tai maininnalla", "Ohjeistus ei juurikaan ota huomioon tilannetta", "Ohjeistus ei tunnista tilannetta ollenkaan".
+    1.  Kysymys poistettiin myöhemmin kehittämisprosessissa.
+16. Organisaatiokuuluvuusmittari muutettiin nelikategoriseksi: Pelastuslaitos, Sopimuspalokunta tai palokuntayhdistys, Pelastusalan valtakunnallinen järjestö (SPEK, SPPL, SSPL, SPAL, Pelastusalan naiset ry), Koulutusorganisaatio.
+    1.  Mittaria muutettiin myöhemmin kehittämisprosessissa.
+17. Lisättiin uusi kysymys työn rytmityksestä, "Mikä seuraavista kuvaa pelastusalaan osallistumistasi työrytmitystä parhaiten?". Vastausvaihtoehdot olivat: "Töissä virka-aikana kokoaikaisesti", "Kaksi- tai kolmevuorotyö", "Töissä virka-aikana osa-aikaisesti", "Sopimuksenvaraisessa hälytysvalmiudessa", "Virka- tai työvapaalla", "Harrastustoiminta (muu kuin työ- tai virkasuhde tai sopimusvarainen toimintavalmius)", "Opiskelija".
+    1.  Kysymystä muokattiin kokonaisvaltaisesti myöhemmin kehittämisprosessissa.
+18. Muokattiin vastausvaihtoehtoa ryhmäkohtaamismittarilla: "Yhteistyökumppanit tai sidosryhmät (esim. muut turvallisuusviranomaiset, koulutus- tai tutkimusorganisaatiot, media, kolmannen sektorin toimijat".
+    1.  Mittari poistettiin myöhemmin kehittämisprosessissa.
 19. Työasemamittari erotettiin kahdeksi kysymykseksi.
     1.  Jos vastaaja valitsi organisaatiokseen "Pelastuslaitos" tai "Sopimuspalokunta tai palokuntayhdistys", kysymyksessä oli vastausvaihtoehdot "Ylin johto", "Keskijohto", "Alin johto", "Suorittava henkilöstö" ja "Hallinnollinen henkilöstö". Jokaiselle vastausvaihtoehdolle annettiin myös esimerkkejä.
     2.  Jos vastaaja valitsi organisaatiokseen "Pelastusalan valtakunnallinen järjestö" tai "Koulutusorganisaatio", kysymyksessä oli vastausvaihtoehdot "Johtoporras", "Asiantuntijat (suunnittelijat, tutkijat)", "Hallinnollinen henkilöstö", "Opetushenkilöstö" ja "Opiskelija".
-    3.  Tämä mittari muutettiin myöhemmin kyselyn kehittämisprosessissa
-20. Työuran pituusmittarista poistettiin määritelmä nykyisestä työpaikasta ja jätettiin mittaamaan koko työuran pituutta.
+    3.  Mittareita muutettiin myöhemmin kehittämisprosessissa.
+20. Työuran pituusmittarista poistettiin määritelmä nykyisestä työpaikasta, jotta mittari mittaisi koko työuran pituutta.
 21. Työuran pituusmittari ketjutettiin siten, että kysymys näkyi kaikille vastaajille paitsi opiskelijoille.
-    1.  Tämä ketjutus poistettiin myöhemmin kyselyn kehittämisprosessissa
-22. Lisättiin uusi kysymys työpaikan muutosaikeista. Mittarilla oli seitsemän vastausvaihtoehtoa: "En ole suunnitellut työkuvani muutosta", "Olen harkinnut työtehtävieni vaihtoa organisaation sisällä", "Olen vaihtamassa työtehtäviäni organisaation sisällä lähiaikoina", "Olen harkinnut työpaikan vaihtamista pelastusalan sisällä", "Olen vaihtamassa työpaikkaa pelastusalan sisällä lähiaikoina", "Olen harkinnut lähtemistä pelastusalalta kokonaan" ja "Olen lähtemässä pois pelastusalalta lähiaikoina"
-    1.  Tätä kysymystä muutettiin myöhemmin kyselyn kehittämisprosessissa
-23. Lisättiin uusi kysymys työpaikan muutosaikeiden syistä. Vastaus annettiin avovastauksena. Kysymys ketjutettiin siten, että kysymys näytettiin jos vastaaja oli ilmaissut jonkun muutosaikeen aikaisemmalla kysymyksellä.
-    1.  Ketjutus poistettiin osana muutosaikeiden mittarin muutoksia myöhemmin kyselyn kehittämisprosessissa.
-24. Muokattiin arkistointisuostumuksen tekstiä ja poistettiin avovastausten julkaisusuostumus, sillä totesimme, ettemme aio arkistoida avovastauksia sellaisinaan.
-25. Poistettiin kaikkien taustamuuttujien sekä tiedonkeruun suostumuksen satunnaistaminen
+    1.  Ketjutus poistettiin myöhemmin kehittämisprosessissa.
+22. Lisättiin uusi kysymys työpaikan muutosaikeista. Mittarilla oli seitsemän vastausvaihtoehtoa: "En ole suunnitellut työkuvani muutosta", "Olen harkinnut työtehtävieni vaihtoa organisaation sisällä", "Olen vaihtamassa työtehtäviäni organisaation sisällä lähiaikoina", "Olen harkinnut työpaikan vaihtamista pelastusalan sisällä", "Olen vaihtamassa työpaikkaa pelastusalan sisällä lähiaikoina", "Olen harkinnut lähtemistä pelastusalalta kokonaan" ja "Olen lähtemässä pois pelastusalalta lähiaikoina".
+    1.  Kysymystä muutettiin myöhemmin kehittämisprosessissa.
+23. Lisättiin uusi kysymys työpaikan muutosaikeiden syistä. Vastaus sallittiin avovastauksena. Kysymys ketjutettiin siten, että kysymys näytettiin jos vastaaja oli ilmaissut jonkun muutosaikeen aikaisemmalla kysymyksellä.
+    1.  Ketjutusta muutettiin vastaamaan muutosaiekysymyksen muutoksia myöhemmin kehittämisprosessissa.
+24. Muokattiin arkistointisuostumuksen tekstiä ja poistettiin avovastausten julkaisusuostumus, sillä päätimme, ettemme aio arkistoida avovastauksia sellaisinaan.
+25. Poistettiin kaikkien taustamuuttujien sekä tiedonkeruun suostumuksen satunnaistaminen.
 
-Lomakkeen läpikäynnin jälkeen projektipäällikkö teki tarpeellisiksi todetut muutokset kyselylomakkeeseen. Muutostenteon yhteydessä huomattiin, että syrjinnän mittaaminen oli jäänyt pois. Lisäsimme työpaikkaväkivallan mittaristoon syrjinnän määritelmän nojautuen yhdenvertaisuuslakiin, ja kehitimme kirjallisuuskatsausten tulosten pohjalta tarkat mittarit syrjinnälle. Huomasimme, että vain kaksi tutkimusta kirjallisuuskatsauksen tuloksista mittasi syrjinnän kokemuksia tarkemmalla kuin yleisellä tasolla, molemmat laadullisin menetelmin (avokysymys kyselyssä sekä teemahaastattelu). Lisäsimme myös Yhdenvertaisuusvaltuutetun verkkosivuilta löydettyjä esimerkkejä kyselyyn, jolloin saatiin yhteensä 15 mittaria organisaation sisäiselle syrjinnälle ja 8 mittaria organisaation ulkopuoliselle syrjinnälle.
+Muutostenteon yhteydessä huomattiin, että syrjinnän mittaaminen oli jäänyt pois. Lisäsimme työpaikkaväkivallan mittaristoon syrjinnän määritelmän nojautuen yhdenvertaisuuslakiin, ja kehitimme kirjallisuuskatsausten tulosten pohjalta tarkat mittarit syrjinnälle. Huomasimme, että vain kaksi tutkimusta kirjallisuuskatsauksen tuloksista mittasi syrjinnän kokemuksia tarkemmalla kuin yleisellä tasolla, molemmat laadullisin menetelmin (avokysymys kyselyssä sekä teemahaastattelu). Lisäsimme myös Yhdenvertaisuusvaltuutetun verkkosivuilta löydettyjä esimerkkejä kyselyyn, jolloin saatiin yhteensä 15 mittaria organisaation sisäiselle syrjinnälle ja 8 mittaria organisaation ulkopuoliselle syrjinnälle.
 
 ## Asiantuntijatyöpaja 25.3.2024 {#sec-kyselynvalmistelu-asiantuntijatyopaja}
 
-Asiantuntijatyöpajaa varten suunnittelimme ensin kartoituskyselyn toteuttamista, josta kuitenkin luovuttiin aikapaineiden takia (ks. yllä). Päätimme sen sijaan lähettää alustavan kutsusähköpostin kaikille pelastuslaitoksille, jossa pyysimme laitoksia nimeämään henkilön hankkeen asiantuntijatyöskentelyyn. Kutsu lähetettiin yhteistyössä Hyvinvointialueyhtiö Hyvil Oy:n kanssa pelastusjohtajien sähköpostiosoitteisiin sekä pelastuslaitosten virkasähköposteihin perjantaina 2.2.2024. Vastauksia pyydettiin 14.2.2024 mennessä.
+Lähetimme alustavan kutsusähköpostin kaikille pelastuslaitoksille, jossa pyysimme laitoksia nimeämään henkilön hankkeen työryhmätyöskentelyyn. Kutsu lähetettiin yhteistyössä Hyvinvointialueyhtiö Hyvil Oy:n kanssa pelastusjohtajien sähköpostiosoitteisiin sekä pelastuslaitosten virkasähköposteihin perjantaina 2.2.2024. Vastauksia pyydettiin 14.2.2024 mennessä. Saimme seitsemän ilmoittautumista määräaikaan mennessä.
 
-Ilmoittautumisia saatiin seitsemän kappaletta. Nämä yhdistettiin asiantuntijatyöpajakutsuja varten hankkeen ohjausryhmän sähköpostilistaan, jolloin henkilökohtaisia kutsuja oli lähetettävänä yhteensä 17 kappaletta.
+Lähetimme kutsut asiantuntijatyöpajaan 23.2.2024. Kutsut lähetettiin projektipäällikön toimesta henkilökohtaisiin sähköposteihin nimetyille henkilöille sekä ohjausryhmän jäsenille, ja kirjaamoihin tai virkaposteihin 15 henkilön ilmoittamatta jättäneille pelastuslaitoksille. Vastauksia pyydettiin perjantaihin 15.3.2024 mennessä. Muistutusviesti lähetettiin kaikille ei-ilmoittautuneille henkilöille 11.3.2024.
 
-Lähetimme kutsut asiantuntijatyöpajaan 23.2.2024. Kutsut lähetettiin projektipäällikön toimesta henkilökohtaisiin sähköposteihin 17 edellä tunnistetuille henkilöille, ja kirjaamoihin tai virkaposteihin 15 henkilön ilmoittamatta jättäneille pelastuslaitoksille. Vastauksia pyydettiin perjantaihin 15.3.2024 mennessä. Muistutusviesti lähetettiin kaikille ei-ilmoittautuneille henkilöille 11.3.2024.
-
-Kutsujen yhteydessä pyydettiin myös osallistujia kuvailemaan organisaationsa toimenpideprosessi epäasiallisen kohtelun yhteydessä. Tuloksia oli tarkoitus sisällyttää kyselylomakkeen toimenpide- ja raportointiosuuksien osaksi.
-
-**\[Tähän tulee tietoa työpajan osallistumismääristä ja järjestelyistä\]**
+Työpaja järjestettiin Kuopiossa Pelastusopistossa sekä etäyhteydellä 25.3.2024. Työpajaan osallistui yhteensä 20 henkilöä. Työpajan aikana projektipäällikkö esitteli hankkeen etenemisen ja lomakevedoksen rakenteen, jonka jälkeen osallistujat käsittelivät kyselyn eri osioita ohjatusti hankkeen toimijoiden toimesta. Osallistujat jaettiin kolmeen ryhmään, ja jokaiselle ryhmälle annettiin vastuu yhdestä kyselyn osa-alueesta, mutta ryhmät saivat ajan puitteissa myös käsitellä muita kyselyn osuuksia.
 
 Työpajassa nousi esille seuraavia huomioita ja muutosehdotuksia kyselylomakkeesta:
 
-1.  Esiintymismittareissa sanamuutoksia otsikossa
-2.  Tarkennusmittareissa useita sanamuutoksia, yhdistämisehdotuksia sekä lisäyksiä
-3.  Vaikutusmittarissa muutoksia vakavuuden esimerkkeihin, jotta vakavuuksien skaala olisi laajempi
-    1.  Muutimme kaikkien seuraamusten vakavuuden esimerkkejä osallistujien ehdotusten mukaisesti
-4.  Vaikutusten pitkäkestoisuusmittarille ehdotettiin selkeytyksiä sanamuotoihin
-5.  Reaktiomittari todettiin liian kohdennetuksi virkaa tekeville eikä siten ottanut huomioon muita kohderyhmiä, sanamuotoja ehdotettiin muutettavaksi
-6.  Ilmoitusjärjestelmien olemassaolon mittariin ehdotettiin vastausvaihtoehtoa jossa järjestelmä on olemassa, mutta vastaaja ei tunne järjestelmää
-7.  Ilmoitusjärjestelmien olemassaolon mittarin esimerkkeihin ehdotettiin PERA-järjestelmän lisäystä
-8.  Asennemittariin ehdotettiin useita muutoksia alakysymyksiin sanamuodoissa sekä uusia lisäyksiä
-9.  Työuupumuksen mittariin ehdotettiin muutoksia
-    1.  Näitä muutoksia emme tehneet, sillä työuupumuksen mittari on jo validoitu aikaisemmassa tutkimuksessa ja mittarin muuttaminen heikentäisi validiteetin inferenssiä tutkimusasetelmaamme
-10. Organisaatiotoimiin ehdotettiin henkilöstötilaisuuksien ja tilanteiden käsittelytilaisuuksien lisäämistä
-11. Organisaatiotoimien koettujen vaikutusten mittarin skaala nähtiin haasteellisena
-    1.  Muutimme tässä vaiheessa VAS-skaalan arvoiksi `0, 10`. Ääripäiksi määriteltiin "Ei vaikutusta" (`0`), "Erittäin paljon vaikutusta" (`10`).
+1.  Esiintymismittareissa sanamuutoksia otsikossa.
+2.  Tarkennusmittareissa useita sanamuutoksia, yhdistämisehdotuksia sekä lisäyksiä.
+3.  Vaikutusmittarissa muutoksia vakavuuden esimerkkeihin, jotta vakavuuksien skaala olisi laajempi.
+4.  Vaikutusten pitkäkestoisuusmittarille ehdotettiin selkeytyksiä sanamuotoihin.
+5.  Reaktiomittari todettiin liian kohdennetuksi virkaa tekeville eikä siten ottanut huomioon muita kohderyhmiä, sanamuotoja ehdotettiin muutettavaksi.
+6.  Ilmoitusjärjestelmien olemassaolon mittariin ehdotettiin vastausvaihtoehtoa jossa järjestelmä on olemassa, mutta vastaaja ei tunne järjestelmää.
+7.  Ilmoitusjärjestelmien olemassaolon mittarin esimerkkeihin ehdotettiin PERA-järjestelmän lisäystä.
+8.  Asennemittariin ehdotettiin useita muutoksia alakysymyksiin sanamuodoissa sekä uusia lisäyksiä.
+9.  Työuupumuksen mittariin ehdotettiin muutoksia.
+10. Organisaatiotoimiin ehdotettiin henkilöstötilaisuuksien ja tilanteiden käsittelytilaisuuksien lisäämistä.
+11. Organisaatiotoimien koettujen vaikutusten mittarin skaala nähtiin haasteellisena.
 12. Organisaatiotoimien koettujen vaikutusten mittarille ehdotettiin erillistä "En osaa sanoa"-vaihtoehtoa.
-    1.  Tätä ei toteutettu, sillä Webropol-järjestelmä ei salli vaihtoehdon lisäämistä.
-13. Ohjeistusten koetun riittävyyden mittari koettiin haasteelliseksi vastaajalle
-    1.  Tässä vaiheessa mittari päätettiin poistaa kyselystä kokonaan
+13. Ohjeistusten koetun riittävyyden mittari koettiin haasteelliseksi vastaajalle.
 14. Tärkeimpien puuttumiskeinojen mittari koettiin myös erittäin haasteelliseksi sekä liian pitkäksi. Osallistujat ehdottivat monia eri muutoksia, lisäyksiä ja poistoja.
-    1.  Tässä vaiheessa päätimme kuitenkin poistaa mittarin kokonaan kyselystä
 15. Organisaatiokuuluvuusmittariin ehdotettiin SPAL:n poistamista kohderyhmästä, sillä SPAL on vain yksi monista pelastusalaa edustavista ammattiliitoista.
-16. Työrytmitysmittarin vastausvaihtoehdot eivät koettu sopivan kohderyhmien todelliseen työkuvaan. Selkeytystarvetta koettiin eniten pelastuslaitosten sekä sopimuspalokuntien osalta, joiden työkuvat erosivat laajasti aikaisemmin kehitetyistä vastausvaihtoehdoista
-    1.  Päätimme erottaa työrytmitysmittarin organisaatioittain, jotta vastausvaihtoehdot ja muotoilut eroaisivat organisaatioiden välillä
-17. Ryhmäkohtaamismittarin vastausvaihtoehdot koettiin käyttävän ei-vakiintunutta sanastoa. Mittariin ehdotettiin useita muutoksia ja lisäyksiä
-    1.  Päätimme poistaa mittarin kyselystä
-18. Operatiivisen henkilöstön organisaatioasemamittariin ehdotettiin laajoja muutoksia esimerkkeihin
-    1.  Päätimme jättää esimerkit pois, mutta lisäsimme tarkennuksen esihenkilöasemasta alimman johdon osalta
-19. Ei-operatiivisen henkilöstön organisaatioasemamittariin ehdotettiin niinikään laajoja muutoksia vastausvaihtoehtoihin
-    1.  Erotimme organisaatioiden asemamittarit erillisiksi yllä mainitun työrytmitysmittarin muutoksen tapaan
-20. Työuran kestomittariin ehdotettiin muutoksia esimerkkitekstiin. Opiskelijoiden vastausmahdollisuutta kyseenalaistettiin
-    1.  Päätimme mahdollistaa opiskelijoiden vastauksen kysymykseen. Muokkasimme siten myös kysymystä kohdistumaan koko uraan, mukaan lukien opiskeluajan
-21. Muutosaikeiden mittari koettiin kohdistuvan liiallisesti ammattiuraa tekeviin, eikä muilla kohderyhmillä ollut yhtäläisiä mahdollisuuksia vastata
-    1.  Muutimme mittaria laajasti. Mittarille asetettiin kolme alakysymystä työkuvan muutoksesta, organisaatiovaihdoksesta tai alalta lähtemisestä. Jokaiselle alakysymykselle annettiin kolme vastausvaihtoehtoa harkitsemiselle, suunnittelemiselle sekä toteuttamiselle
-22. Muutosaikeiden syymittarille ehdotettiin, että tietojen poisjääminen arkistoinnista voitaisiin korostaa entiseltään
+16. Työrytmitysmittarin vastausvaihtoehdot eivät koettu sopivan kohderyhmien todelliseen työkuvaan. Selkeytystarvetta koettiin eniten pelastuslaitosten sekä sopimuspalokuntien osalta, joiden työkuvat erosivat laajasti aikaisemmin kehitetyistä vastausvaihtoehdoista.
+17. Ryhmäkohtaamismittarin vastausvaihtoehdot koettiin käyttävän ei-vakiintunutta sanastoa. Mittariin ehdotettiin useita muutoksia ja lisäyksiä.
+18. Operatiivisen henkilöstön organisaatioasemamittariin ehdotettiin laajoja muutoksia esimerkkeihin.
+19. Ei-operatiivisen henkilöstön organisaatioasemamittariin ehdotettiin niinikään laajoja muutoksia vastausvaihtoehtoihin.
+20. Työuran kestomittariin ehdotettiin muutoksia esimerkkitekstiin. Opiskelijoiden vastausmahdollisuutta kyseenalaistettiin.
+21. Muutosaikeiden mittari koettiin kohdistuvan liiallisesti ammattiuraa tekeviin, eikä muilla kohderyhmillä ollut yhtäläisiä mahdollisuuksia vastata.
+22. Muutosaikeiden syymittarille ehdotettiin, että tietojen poisjääminen arkistoinnista voitaisiin korostaa entiseltään.
 23. Osallistujat ehdottivat, että taustakysymykset siirrettäisiin kyselyn alkuun, jotta voitaisiin ketjuttaa vastausvaihtoehtoja taustakysymysten mukaisesti. Siirto koettiin myös helpottavan vastaajan kognitiivista rasitetta, koska vastaaja pystyisi helpommin arvioimaan vastaustensa organisaatiokontekstin.
-    1.  Päätimme siirtää organisaatioaseman kysymyksen kyselyn alkuun. Ketjutimme sitten muut taustakysymykset tämän avulla
-24. Osallistujat ehdottivat myös iän sekä vähemmistöryhmäkuuluvuuden kysymistä
-    1.  Emme toteuttaneet näitä ehdotuksia tietosuojan takia. Tutkimuskirjallisuus ei tukenut iän mittaamista osana epäasiallisen ja väkivaltaisen kohtelun esiintyvyyttä, ja vähemmistöryhmäkuuluvuuden mittaaminen tekisi tutkimuksesta eettisesti erittäin haasteellisen, sillä kyseinen tieto on erityinen henkilötieto.
+24. Osallistujat ehdottivat myös iän sekä vähemmistöryhmäkuuluvuuden kysymistä.
 
 Kävimme muutosehdotukset läpi hanketoimijoiden kanssa ja suoritimme useimmat niistä työpajaa seuraavina päivinä 25.3.-27.3.2024.
 
-## Esirekisteröidyn tutkimusartikkelin vertaisarviointiprosessi maalis-toukokuu 2024 {#sec-kyselynvalmistelu-esirekisteroityartikkeli}
+Emme tehneet seuraavia työpajan ehdottamia muutoksia:
 
-Samanaikaisesti asiantuntijatyöpajan kanssa kirjoitimme esirekisteröidyn tutkimusartikkelin vertaisarvioitavaksi [Rekisteröityjen tutkimusraporttien kansallisessa vertaisarviointikeskuksessa](https://openscience.jyu.fi/fi/avoin-julkaiseminen/rekisteroidyt-tutkimusraportit) (RR-keskus). Artikkelin vertaisarviointiprosessi seurasi seuraavia päivämääriä:
+-   Työuupumusmittariston muutoksia emme tehneet, sillä mittari oli jo validoitu aikaisemmassa tutkimuksessa, jolloin sen muuttaminen heikentäisi validiteetin inferenssiä tutkimusasetelmaamme.
 
-1.  Sovimme RR-keskuksen suosittelijan kanssa vertaisarvioinnin aikataulusta tammikuussa 2024
-2.  Lähetimme ensimmäisen vedoksen arviointiin 14.3.2024
-3.  Vastaanotimme ensimmäiset arviot 4.4.2024
-4.  Vastasimme arvioihin toisella vedoksella 6.5.2024
-5.  Vastaanotimme toiset arvioit 20.5.2024
-6.  Vastasimme arvioihin kolmannella vedoksella 18.6.2024
+-   Emme lisänneet "En osaa sanoa"-vaihtoehtoa organisaatiotoimien koettujen vaikutusten mittaristoon, sillä Webropol-järjestelmä ei salli vaihtoehdon lisäämistä.
 
-Arviointiprosessissa saimme kehitysehdotuksia kyselytyökaluun. Ehdotukset ja tekemämme muutokset tullaan julkaisemaan osana esirekisteröidyn tutkimusartikkeliprosessin koko dokumentaation julkaisua artikkelin valmistuttua.
+-   Päätimme mahdollistaa opiskelijoiden vastauksen työuran pituuden kysymykseen. Muokkasimme siten myös kysymystä kohdistumaan koko uraan, mukaan lukien opiskeluajan.
+
+-   Taustakysymyksistä päätimme siirtää vain organisaatioaseman kyselyn alkuun. Ketjutimme sitten muut taustakysymykset tämän avulla.
+
+-   Emme lisänneet iän tai vähemmistöryhmään kuuluvuuden kysymyksiä tietosuojan takia. Tutkimuskirjallisuus ei tukenut iän mittaamista osana epäasiallisen ja väkivaltaisen kohtelun esiintyvyyttä, ja vähemmistöryhmäkuuluvuuden mittaaminen tekisi tutkimuksesta eettisesti erittäin haasteellisen kuuluvuuden erityisen henkilötietotilan takia.
+
+## Rekisteröidyn tutkimusartikkelin vertaisarviointiprosessi maalis-toukokuu 2024 {#sec-kyselynvalmistelu-esirekisteroityartikkeli}
+
+Samanaikaisesti asiantuntijatyöpajan kanssa kirjoitimme rekisteröidyn tutkimusartikkelin vertaisarvioitavaksi Rekisteröityjen tutkimusraporttien kansallisessa vertaisarviointikeskuksessa (RR-keskus). Artikkelin vertaisarviointiprosessi noudatti seuraavia päivämääriä:
+
+1.  Sovimme RR-keskuksen suosittelijan kanssa vertaisarvioinnin aikataulusta tammikuussa 2024.
+2.  Lähetimme ensimmäisen vedoksen arviointiin 14.3.2024.
+3.  Vastaanotimme ensimmäiset arviot 4.4.2024.
+4.  Vastasimme arvioihin toisella vedoksella 6.5.2024.
+5.  Vastaanotimme toiset arvioit 20.5.2024.
+6.  Vastasimme arvioihin kolmannella vedoksella 18.6.2024.
+7.  Ensimmäisen kierroksen käsikirjoitus hyväksyttiin 1.8.2024.
+
+Arviointiprosessissa saimme kehitysehdotuksia kyselytyökaluun. Kirjoitusvaiheessa (tammikuu 2025) toisen kierroksen käsikirjoitus on vertaisarvioitavana. Ensimmäisen kierroksen käsikirjoitukseen voi tutustua verkossa: [Valmistuneet arviot](https://www.jyu.fi/fi/tutkimus/julkaiseminen-jyvaskylan-yliopistossa/rekisteroidyt-tutkimusraportit-valmistuneet-arviot).
 
 Vertaisarviointiprosessissa teimme seuraavat muutokset kyselylomakkeeseen:
 
-1.  Lisäsimme esiintyvyysmittarin selitteeseen tarkennuksen, että verbaalinen väkivalta voi myös esiintyä sosiaalisen median välityksellä
+1.  Lisäsimme esiintyvyysmittarin selitteeseen tarkennuksen, että verbaalinen väkivalta voi myös esiintyä sosiaalisen median välityksellä.
 2.  Määrittelimme keskeiseksi käsitteeksi "epäasiallinen ja väkivaltainen kohtelu" arviointikeskustelujen pohjalta. Arvioijat kiinnittivät huomiota eri kohtelun muotojen eroihin sekä esiintymismuotoihin organisaatioiden sisäisesti sekä ulkopuolelta tulleena kohteluna. Päivitimme käsitteen kyselyyn kautaaltaan.
-
-Kirjoitushetkellä odotamme kolmannen vedoksen vastausta. Jos vedos hyväksytään, arviointiprosessin ensimmäinen vaihe päättyy ja siirrymme keräämään kyselytiedon ja valmistelemaan toisen vaiheen valmista käsikirjoitusta.
 
 ## Eettinen arviointiprosessi {#sec-kyselynvalmistelu-eettinenarviointi}
 
-Samanaikaisesti työpajan ja esirekisteröidyn artikkelin kanssa toteutimme eettisen ennakkoarvioinnin kyselytutkimukselle. Arviointi suoritettiin Itä-Suomen yliopiston ihmistieteiden tutkimuseettisessä toimikunnassa. Arviointiprosessi seurasi seuraavia päivämääriä:
+Samanaikaisesti työpajan ja rekisteröidyn artikkelin kanssa suoritimme kyselytutkimuksen eettisen ennakkoarvioinnin Itä-Suomen yliopiston ihmistieteiden tutkimuseettisessä toimikunnassa. Arviointiprosessi noudatt seuraavia päivämääriä:
 
 1.  Sovimme toimikunnan kanssa joustosta materiaalinjättöpäivämäärään tammi-helmikuussa 2024.
 2.  Lähetimme ensimmäisen lausuntopyynnön 27.3.2024.
 3.  Vastaanotimme täydennyspyynnön samana päivänä.
 4.  Lähetimme täydennetyn lausuntopyynnön samana päivänä.
-5.  Vastaanotimme uuden täydennyspyynnön 12.4.2024.
+5.  Vastaanotimme täydennyspyynnön 12.4.2024.
 6.  Lähetimme toisen täydennetyn lausuntopyynnön 6.5.2024.
-7.  Vastaanotimme vielä yhden täydennyspyynnön 20.5.2024.
+7.  Vastaanotimme täydennyspyynnön 20.5.2024.
 8.  Lähetimme kolmannen täydennetyn lausuntopyynnön 21.5.2024.
 9.  Vastaanotimme puoltavan lausunnon 22.5.2024.
 
-Eettisessä arvioinnissa teimme ehdotettuja muutoksia kyselytyökaluun seuraavasti:
+Eettisessä arvioinnissa teimme muutoksia kyselytyökaluun seuraavasti:
 
-1.  Saatekirjettä päivitettiin tiedoilla tutkimuksen tarkoituksesta, vastaamisen hyödyistä ja tulosten julkaisusta ja viestinnästä. Toimikunnan nimi korjattiin myös saatekirjeessä
+1.  Saatekirjettä päivitettiin tiedoilla tutkimuksen tarkoituksesta, vastaamisen hyödyistä ja tulosten julkaisusta ja viestinnästä. Toimikunnan nimi korjattiin saatekirjeessä.
 
-2.  Tiedonkäsittelyn kestoaikaa pidennettiin päivämäärään 31.12.2029 suositusten mukaisesti, ja anonymisointiprosessin selitettä selvennettiin
+2.  Tiedonkäsittelyn kestoaikaa pidennettiin päivämäärään 31.12.2029 suositusten mukaisesti, ja anonymisointiprosessin selitettä selvennettiin.
 
-3.  Tutkimuksen nimi ja henkilötietojen käsittelyperusteet yhdenmukaistettiin kyselylomakkeen ja tutkimuksen suunnitelmadokumenttien välillä
+3.  Tutkimuksen nimi ja henkilötietojen käsittelyperusteet yhdenmukaistettiin kyselylomakkeen ja tutkimuksen suunnitelmadokumenttien välillä.
 
-4.  Suostumuskysymykset yhdistettiin yhdeksi kysymykseksi kyselyn alkuun
+4.  Suostumuskysymykset yhdistettiin yhdeksi kysymykseksi kyselyn alkuun.
 
 ## Tutkimuslupahakemukset {#sec-kyselynvalmistelu-tutkimuslupahakemukset}
 
@@ -184,6 +170,10 @@ Haimme tutkimuslupia jokaiselta hyvinvointi- ja itsehallintoalueelta Suomesta. L
 
 Lupahakemusten yhteydessä teimme pieniä muokkauksia kyselylomakkeeseen. Yleisesti muokkaukset koskivat määritelmiä ja kirjoitusmuotoja, kuten ensihoidon selkeämpi mukaanottaminen kyselyn kaikissa kysymyksissä. Muutokset eivät koskeneet mittareiden määrää, sijoittelua tai lisäämistä/poistamista.
 
+Lähetimme tai tiedustelimme tutkimuslupia kaikilta hyvinvointialueelta, Helsingin kaupungilta sekä Maarianhaminan pelastuslaitokselta. Maarianhaminan osalta emme tarvinneet tutkimuslupaa. Saimme luvan kaikkiin alueisiin, paitsi yhden alueen pelastuslaitokseen ja toisen alueen ensihoitoon.
+
+Yksi alue myönsi tutkimusluvan myöhässä, tiedonkeruun alkamisen jälkeen. Inhimillisen virheen vuoksi kyselylomake oli välitetty alueelle ennen myöntöä. Emme pysty erottelemaan aineistosta vastaajia, jotka vastasivat ennen tutkimusluvan myöntöä.
+
 ## Erinäiset muut muutokset {#sec-kyselynvalmistelu-muut}
 
--   Tapaamisessa 1.7.2024 Suomen Pelastusalan Keskusjärjestön edustajien kanssa sovittiin, että tutkimuksen kohderyhmiin lisätään pelastusliittojen henkilöstö. Nämä lisättiin kyselyyn osaksi pelastusalan valtakunnallisia järjestöjä, ja kyselyssä olevat tarkennetekstit korjattiin vastaamaan lisäystä. Muutos ei vaatinut muiden kysymysten muutosta.
+Tapaamisessa 1.7.2024 Suomen Pelastusalan Keskusjärjestön edustajien kanssa sovittiin, että tutkimuksen kohderyhmiin lisätään pelastusliittojen henkilöstö. Nämä lisättiin kyselyyn osaksi pelastusalan valtakunnallisia järjestöjä, ja kyselyssä olevat tarkennetekstit korjattiin vastaamaan lisäystä. Muutos ei vaatinut muiden kysymysten muutosta.

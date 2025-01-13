@@ -2,28 +2,28 @@
 
 Seuloimme hakutulokset seuraavin menetelmin:
 
-1.  Tunnistimme kaksoiskappaleet Microsoft Excelin *Solujen korostussäännöt* -työkalulla. Jokaisen kaksoiskappaleeksi tunnistetun tuloksen kohdalla varmistimme kaksoiskappaluuden, ja säilytimme yhden tuloksista. Muut tulokset merkittiin kaksoiskappaleiksi ja suodatettiin pois taulukosta *Suodata* -työkalulla.
-2.  Otsikkojen pohjalta toteutimme ensimmäisen seulonnan. Jos otsikko selkeästi vastasi inkluusiokriteerejä, merkitsimme tulokselle arvon 1. Jos otsikko mahdollisesti täytti inkluusiokriteerejä, mutta asiasta ei voinut saada varmuutta, merkitsimme tulokselle arvon 2. Jos otsikko selkeästi ei vastannut inkluusiokriteerejä (esim. rikkoi yhden tai useamman kriteerin), jätimme solun tyhjäksi. Tyhjät solut suodatettiin sitten pois taulukosta.
-3.  Jokaiselle tulokselle, jolla oli merkitty arvo 2 (epävarma) ensimmäisessä seulonnassa, tarkistimme tiivistelmän tuloksen verkko-osoitteesta. Jos tiivistelmä selkeästi vastasi inkluusiokriteerejä, merkitsimme tulokselle arvon 1. Jos tiivistelmä mahdollisesti täytti inkluusiokriteerit, mutta asiasta ei voinut saada varmuutta, merkitsimme tulokselle arvon 2. Jos tiivistelmä selkeästi ei vastannut inkluusiokriteerejä (esim. rikkoi yhden tai useamman kriteerin), jätimme solun tyhjäksi. Tyhjät solut suodatettiin sitten pois taulukosta.
-4.  Seuraavaksi haimme kaikki tulokset, jotka saivat arvon 1 ensimmäisessä seulonnassa tai arvot 1 tai 2 toisessa seulonnassa. Jos tuloksen sai haettua, merkitsimme arvon 1, ja jos tulosta ei saatu haettua, merkitsimme arvo x. Yksi tulos oli kirjaluku, jolloin haimme kirjan ja merkitsimme arvon \* selventävän kommentin kera.
-5.  Seuraavaksi tarkistimme kaikki ne tutkimukset, joille oli merkitty arvo 2 toisessa seulonnassa (epävarma tiivistelmän pohjalta). Yksi tutkija kävi läpi artikkelin menetelmäosiot ja tarkisti, täyttyivätkö inkluusiokriteerit. Jos kaikki kriteerit täyttyivät, merkitsimme arvon 1. Jos osa kriteereistä täyttyivät, merkitsimme arvon T; näitä tutkimuksia ei käytetty kirjallisuuskatsauksessa, mutta säilytettiin mahdollista taustamateriaalia varten. Jos kriteerit eivät täyttyneet, tai yksi tai useampi selkeästi rikkoontui, jätimme arvon tyhjäksi. Tyhjät solut suodatettiin sitten pois taulukosta.
-6.  Viimeiseksi tarkistimme vielä kaikki tulokset, jotka saivat arvon 1 ensimmäisessä tai toisessa seulonnassa. Yksi tutkija kävi läpi artikkelin menetelmäosiot ja tarkisti, täyttyivätkö inkluusiokriteerit. Jos kaikki kriteerit täyttyivät, merkitsimme arvon 1. Jos osa kriteereistä täyttyivät, merkittiin arvo T, eli käyttökelpoinen taustamateriaaliksi mutta ei kirjallisuuskatsauksen tuloksissa. Jos kriteerit eivät täyttyneet, tai yksi tai useampi selkeästi rikkoontui, jätimme solun tyhjäksi. Tyhjät solut suodatettiin sitten pois taulukosta.
-7.  Valintaprosessin jälkeen haimme jokaiselle tutkimukselle seuraavat tiedot:
-    1.  Kirjoittajien nimet
-    2.  Julkaisuvuosi
-    3.  Tutkimusjulkaisun otsikko
-    4.  Julkaisumuoto (vertaisarvioitu tutkimusartikkeli, organisaatioraportti, kirjateos, kirjan luku, muu)
-    5.  Verkko-osoite (ensisijaisesti DOI-numero)
-    6.  Tiedonkeruun muoto (kysely, haastattelu, rekisteri, havainnointi, audiovisuaalinen aineisto, muu \[kirjattu avotietona\], useampia muotoja \[kirjattu avotietoina\])
-    7.  Kohdepopulaatio (maantieteellinen ja ammatillinen luokittelu)
-    8.  Tutkimuksen tiedonkeruun ajankohta (kuukausitasolla, jos tiedossa)
-    9.  Otoskoko (yksi tai useampi otos)
-    10. Otantamenetelmä (ei tietoa, satunnaistettu otanta, ositettu otanta, ryväsotanta, paneelitutkimus, harkinnanvarainen otanta[^seulontamenetelma-1], kiintiöotanta, lumipallo-otanta, muu)
-    11. Vastaajien yhteydenottotapa (postitse, sähköpostitse, puhelimitse, sosiaalisen verkoston kautta \[esim. kollegat\], organisaatiojohdon kautta, muun organisaation kautta \[esim. liitto\], kasvokkain, muu[^seulontamenetelma-2])
-    12. Vastaajien vastausmuistutusten määrä (jos tiedossa)
+1.  **Tunnistimme kaksoiskappaleet** Microsoft Excelin *Solujen korostussäännöt* -työkalulla. Jokaisen kaksoiskappaleeksi tunnistetun tuloksen kohdalla varmistimme kaksoiskappaluuden, ja säilytimme yhden tuloksista. Muut tulokset merkittiin kaksoiskappaleiksi ja suodatettiin pois taulukosta *Suodata* -työkalulla.
+2.  **Otsikkojen pohjalta toteutimme ensimmäisen seulonnan**. Jos otsikko selkeästi vastasi inkluusiokriteerejä, merkitsimme tulokselle arvon `1`. Jos otsikko mahdollisesti täytti inkluusiokriteerit, mutta asiasta ei saatu varmuutta, merkitsimme tulokselle arvon `2`. Jos otsikko selkeästi ei vastannut kriteerejä (esim. rikkoi yhden tai useamman kriteerin), jätimme solun tyhjäksi. Tyhjät solut suodatettiin pois taulukosta.
+3.  Jokaiselle tulokselle, jolla oli merkitty arvo `2` (epävarma) ensimmäisessä seulonnassa, **tarkistimme tiivistelmän tuloksen verkko-osoitteesta**. Jos tiivistelmä selkeästi vastasi inkluusiokriteerejä, merkitsimme tulokselle arvon `1`. Jos tiivistelmä mahdollisesti täytti inkluusiokriteerit, mutta asiasta ei voinut saada varmuutta, merkitsimme tulokselle arvon `2`. Jos tiivistelmä selkeästi ei vastannut inkluusiokriteerejä (esim. rikkoi yhden tai useamman kriteerin), jätimme solun tyhjäksi. Tyhjät solut suodatettiin pois taulukosta.
+4.  **Seuraavaksi haimme kaikki tulokset**, jotka saivat arvon `1` ensimmäisessä seulonnassa tai arvot `1` tai `2` toisessa seulonnassa. Jos tuloksen sai haettua, merkitsimme arvon `1`, ja jos tulosta ei saatu haettua, merkitsimme arvon `x`. Yksi tulos oli kirjaluku, jolloin haimme kirjan ja merkitsimme arvon `*` selventävän kommentin kera.
+5.  **Seuraavaksi tarkistimme kaikki ne tutkimukset, joille oli merkitty arvo** `2` **toisessa seulonnassa** (epävarma tiivistelmän pohjalta). Yksi tutkija kävi läpi artikkelin menetelmäosiot ja tarkisti, täyttyivätkö inkluusiokriteerit. Jos kaikki kriteerit täyttyivät, merkitsimme arvon `1`. Jos osa kriteereistä täyttyivät, merkitsimme arvon `T`; näitä tutkimuksia ei käytetty kirjallisuuskatsauksessa, mutta säilytettiin mahdollista taustamateriaalia varten. Jos kriteerit eivät täyttyneet, tai yksi tai useampi selkeästi rikkoontui, jätimme arvon tyhjäksi. Tyhjät solut suodatettiin pois taulukosta.
+6.  **Viimeiseksi tarkistimme vielä kaikki tulokset, jotka saivat arvon** `1` **ensimmäisessä tai toisessa seulonnassa**. Yksi tutkija kävi läpi artikkelin menetelmäosiot ja tarkisti, täyttyivätkö inkluusiokriteerit. Jos kaikki kriteerit täyttyivät, merkitsimme arvon `1`. Jos osa kriteereistä täyttyivät, merkittiin arvo `T`, eli käyttökelpoinen taustamateriaaliksi mutta ei kirjallisuuskatsauksen tuloksissa. Jos kriteerit eivät täyttyneet, tai yksi tai useampi selkeästi rikkoontui, jätimme solun tyhjäksi. Tyhjät solut suodatettiin pois taulukosta.
+7.  **Valintaprosessin jälkeen haimme jokaiselle tutkimukselle seuraavat tiedot**:
+    -   Kirjoittajien nimet
+    -   Julkaisuvuosi
+    -   Otsikko
+    -   Julkaisumuoto (vertaisarvioitu tutkimusartikkeli, organisaatioraportti, kirjateos, kirjan luku, muu)
+    -   Verkko-osoite (ensisijaisesti DOI-numero)
+    -   Tiedonkeruun muoto (kysely, haastattelu, rekisteri, havainnointi, audiovisuaalinen aineisto, muu \[kirjattu avotietona\], useampia muotoja \[kirjattu avotietoina\])
+    -   Kohdepopulaatio (maantieteellinen ja ammatillinen luokittelu)
+    -   Tutkimuksen tiedonkeruun ajankohta (kuukausitasolla, jos tiedossa)
+    -   Otoskoko (yksi tai useampi otos)
+    -   Otantamenetelmä (ei tietoa, satunnaistettu otanta, ositettu otanta, ryväsotanta, paneelitutkimus, harkinnanvarainen otanta[^seulontamenetelma-1], kiintiöotanta, lumipallo-otanta, muu)
+    -   Vastaajien yhteydenottotapa (postitse, sähköpostitse, puhelimitse, sosiaalisen verkoston kautta \[esim. kollegat\], organisaatiojohdon kautta, muun organisaation kautta \[esim. liitto\], kasvokkain, muu[^seulontamenetelma-2])
+    -   Vastaajien vastausmuistutusten määrä (jos tiedossa)
 
 [^seulontamenetelma-1]: Jos tutkimus pyrki koko populaation tutkimiseen, kirjattiin "harkinnanvarainen otanta".
 
 [^seulontamenetelma-2]: Jos käytettiin useampia yhteydenottomuotoja, merkittiin "muu".
 
-Hakujen erillisen tuottamisen ja seulonnan jälkeen yhdistimme kaikki tulokset yhdeksi taulukoksi. Tällöin poistimme myös duplikaatteja, jotka saatiin tuloksina useammassa osahaussa. Tarkistimme myös, että duplikaattien kohdalla sisällyttämispäätökset vastasivat toisiaan.
+Osahaut seulottiin erikseen ja yhdistettiin seulonnan jälkeen. Poistimme tuolloin myös duplikaatteja, jotka saatiin tuloksina useammassa osahaussa. Tarkistimme myös, että duplikaattien kohdalla sisällyttämispäätökset vastasivat toisiaan.

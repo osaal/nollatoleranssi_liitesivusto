@@ -410,6 +410,7 @@ div.csl-indent {
   <li><a href="#sec-yleiskuvailu-tutkimusharha" id="toc-sec-yleiskuvailu-tutkimusharha" class="nav-link" data-scroll-target="#sec-yleiskuvailu-tutkimusharha"><span class="header-section-number">5</span> Tutkimusharhan riskiarvio</a>
   <ul class="collapse">
   <li><a href="#sec-yleiskuvailu-tutkimusharha-maaralliset" id="toc-sec-yleiskuvailu-tutkimusharha-maaralliset" class="nav-link" data-scroll-target="#sec-yleiskuvailu-tutkimusharha-maaralliset"><span class="header-section-number">5.1</span> Määrälliset kyselytutkimukset: Q-SSP-arvio</a></li>
+  <li><a href="#sec-yleiskuvailu-tutkimusharha-laadulliset" id="toc-sec-yleiskuvailu-tutkimusharha-laadulliset" class="nav-link" data-scroll-target="#sec-yleiskuvailu-tutkimusharha-laadulliset"><span class="header-section-number">5.2</span> Laadulliset tutkimukset: SRQR-arvio</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -434,22 +435,21 @@ div.csl-indent {
 
 </header>
 
-<p>Tässä osiossa esitellään kirjallisuuskatsauksen tuottamat tulokset yleistasolla.</p>
 <div class="cell">
 <details>
-<summary>Koodi</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Avataan tarpeelliset kirjastot hiljaisesti</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>({</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(dplyr)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(magrittr)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(tidyr)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(ggstatsplot)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Ladataan data csv-tiedostosta</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"data/kirjallisuuskatsaus/metatiedot.csv"</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>laatu_määrälliset <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"data/kirjallisuuskatsaus/laadunarviointi_määrällisetkyselyt.csv"</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<summary>Pakettien ja datan avaaminen</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2) <span class="co"># Kuvioiden piirtämiseen</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr) <span class="co"># Datamanipulointiin</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr) <span class="co"># Putken käyttö</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr) <span class="co"># Datamanipulointiin</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggstatsplot) <span class="co"># Tilastollisten testikuvioiden piirtämiseen</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>varit <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"#873073"</span>, <span class="st">"#893deb"</span>, <span class="st">"#fe79ec"</span>, <span class="st">"#29d8fd"</span>, <span class="st">"#25919d"</span>, <span class="st">"#96da31"</span>, <span class="st">"#598322"</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"data/kirjallisuuskatsaus/metatiedot.csv"</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>laatu_määrälliset <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"data/kirjallisuuskatsaus/laadunarviointi_määrällisetkyselyt.csv"</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>laatu_laadulliset <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"data/kirjallisuuskatsaus/laadunarviointi_laadullisettutkimukset.csv"</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <section id="sec-yleiskuvailu-julkaisuvuodet" class="level2 page-columns page-full" data-number="4.1">
@@ -460,7 +460,7 @@ div.csl-indent {
 <thead>
 <tr class="header">
 <th>Vuosi</th>
-<th>Määrä (prosenttimäärä suluissa)</th>
+<th>Määrä (%)</th>
 </tr>
 </thead>
 <tbody>
@@ -525,7 +525,7 @@ div.csl-indent {
 <div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Kirjallisuuskatsauksen haku rajattiin ajalle 1.1.2010 - 30.9.2023. Vuoden 2023 tulokset ovat siten osittaisia, ja tutkimuksia on voitu julkaista päätösajan jälkeen.</p></li></div></div>
 <div class="cell">
 <details>
-<summary>Koodi</summary>
+<summary>Kuvion piirtäminen</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> data, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Vuosi)) <span class="sc">+</span> </span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"count"</span>, <span class="at">fill =</span> <span class="st">"#c20e1a"</span>) <span class="sc">+</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Määrä (n)"</span>) <span class="sc">+</span> </span>
@@ -556,7 +556,7 @@ div.csl-indent {
 <thead>
 <tr class="header">
 <th>Asetelma</th>
-<th>Määrä (prosenttimäärät suluissa)</th>
+<th>Määrä (%)</th>
 </tr>
 </thead>
 <tbody>
@@ -577,7 +577,7 @@ div.csl-indent {
 </div>
 <div class="cell">
 <details>
-<summary>Koodi</summary>
+<summary>Kuvion piirtäminen</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> data, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Tutkimusasetelma)) <span class="sc">+</span> </span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"count"</span>, <span class="at">fill =</span> <span class="st">"#c20e1a"</span>) <span class="sc">+</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Määrä (n)"</span>, <span class="at">x =</span> <span class="st">"Tutkimusasetelmat"</span>) <span class="sc">+</span> </span>
@@ -598,13 +598,42 @@ div.csl-indent {
 </div>
 </div>
 </div>
-<p>Yleisin tutkimusasetelma on määrällinen, ylivoimaisesti toteutettu kyselyllä mutta joitain rekisteritutkimuksia myös. Laadullisissa tutkimuksissa hyödynnettiin kyselylomakkeita, yksilö- ja ryhmähaastatteluja sekä havainnointia ja etnografiaa. Monimenetelmälliset asetelmat yhdistivät useasti määrällisen, strukturoidun kyselyn ja haastattelututkimuksen, joko kehittäen kyselytyökalua laadullisin menetelmin tai rakentaen toimintasuunnitelmaa kyselytulosten pohjalta.</p>
+<p>Yleisin tutkimusasetelma on määrällinen, joko kysely- tai rekisteritutkimuksena. Laadullisissa tutkimuksissa hyödynnettiin kyselylomakkeita, yksilö- ja ryhmähaastatteluja sekä havainnointia ja etnografiaa. Monimenetelmälliset asetelmat yhdistivät useasti määrällisen strukturoidun kyselyn ja haastattelututkimuksen, joko kehittäen kyselytyökalua laadullisin menetelmin tai rakentaen toimintasuunnitelmaa kyselytulosten pohjalta.</p>
 </section>
 <section id="sec-yleiskuvailu-julkaisumuodot" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="sec-yleiskuvailu-julkaisumuodot"><span class="header-section-number">4.3</span> Julkaisumuodot</h2>
+<div id="tbl-yleiskuvailu-julkaisumuodot" class="anchored">
+<table class="table">
+<caption>Taulukko&nbsp;4.3: Kirjallisuuskatsauksen tulokset julkaisumuodottain. Prosenttiluvut eivät ynnää sataan prosenttiin pyöristysvirheen takia.</caption>
+<thead>
+<tr class="header">
+<th>Muoto</th>
+<th>Määrä (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Vertaisarvioitu tutkimusartikkeli</td>
+<td>40 (58 %)</td>
+</tr>
+<tr class="even">
+<td>Organisaatioraportti</td>
+<td>3 (4 %)</td>
+</tr>
+<tr class="odd">
+<td>Opinnäyte</td>
+<td>25 (36 %)</td>
+</tr>
+<tr class="even">
+<td>Kirjan luku</td>
+<td>1 (1 %)</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="cell">
 <details>
-<summary>Koodi</summary>
+<summary>Kuvion piirtäminen</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> data, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Muoto)) <span class="sc">+</span> </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"count"</span>, <span class="at">fill =</span> <span class="st">"#c20e1a"</span>) <span class="sc">+</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Määrä (n)"</span>, <span class="at">x =</span> <span class="st">"Julkaisumuodot"</span>) <span class="sc">+</span> </span>
@@ -625,17 +654,17 @@ div.csl-indent {
 </div>
 </div>
 </div>
-<p>Yleisin julkaisumuoto on vertaisarvioitu tutkimusartikkeli, ja sitä seuraavaksi opinnäyte. Organisaatioraportteja ei löytynyt suuresti, ja haku tuotti vain yhden sisällytetyn vertaisarvioidun kirjan luvun.</p>
+<p>Yleisin julkaisumuoto on vertaisarvioitu tutkimusartikkeli, jota seuraa opinnäytteet. Organisaatioraportteja ei löytynyt suuresti, ja haku tuotti vain yhden sisällytetyn vertaisarvioidun kirjan luvun.</p>
 </section>
 <section id="sec-yleiskuvailu-tutkimusmaat" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="sec-yleiskuvailu-tutkimusmaat"><span class="header-section-number">4.4</span> Tutkimusmaat</h2>
 <div id="tbl-yleiskuvailu-maat" class="anchored">
 <table class="table">
-<caption>Taulukko&nbsp;4.3: Kirjallisuuskatsauksen tulokset tutkimusmaittain</caption>
+<caption>Taulukko&nbsp;4.4: Kirjallisuuskatsauksen tulokset tutkimusmaittain</caption>
 <thead>
 <tr class="header">
 <th>Maa</th>
-<th>Määrä (prosenttimäärä suluissa)</th>
+<th>Määrä (%)</th>
 </tr>
 </thead>
 <tbody>
@@ -704,7 +733,7 @@ div.csl-indent {
 </div>
 <div class="cell">
 <details>
-<summary>Koodi</summary>
+<summary>Kuvion piirtäminen</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(Toteutusmaa <span class="sc">!=</span> <span class="st">"Suomi"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Toteutusmaa, <span class="at">fill =</span> Muoto)) <span class="sc">+</span> </span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"count"</span>) <span class="sc">+</span></span>
@@ -746,12 +775,12 @@ div.csl-indent {
 <p>Katsauksen käsittelemissä tutkimuksissa pätevien instrumenttien määrä oli 19 instrumenttia 48 tutkimuksille. Neljälle tutkimukselle pätevien instrumenttien määrä oli 18 instrumenttia <span class="citation" data-cites="maguire2018a pekurinen2017 savoy2021 schablon2022">(<a href="lahteet.html#ref-maguire2018a" role="doc-biblioref">Maguire ym. 2018</a>; <a href="lahteet.html#ref-pekurinen2017" role="doc-biblioref">Pekurinen ym. 2017</a>; <a href="lahteet.html#ref-savoy2021" role="doc-biblioref">Savoy ym. 2021</a>; <a href="lahteet.html#ref-schablon2022" role="doc-biblioref">Schablon ym. 2022</a>)</span>.</p>
 <p>Hyväksyttävän tutkimuslaadun raja-arvo riippuu pätevien instrumenttien määrästä <span class="citation" data-cites="protogerou2020">(<a href="lahteet.html#ref-protogerou2020" role="doc-biblioref">Protogerou ja Hagger 2020</a>)</span>:</p>
 <ul>
-<li><p>Jos <span class="math inline">\(T = 19\)</span>: rajana 73 %</p></li>
-<li><p>Jos <span class="math inline">\(T = 18\)</span>: rajana 72 %</p></li>
+<li>Jos <span class="math inline">\(T = 19\)</span>: rajana 73 %</li>
+<li>Jos <span class="math inline">\(T = 18\)</span>: rajana 72 %</li>
 </ul>
 <div class="cell">
 <details>
-<summary>Koodi</summary>
+<summary>Kuvion piirtäminen</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>laatu_määrälliset <span class="sc">%&gt;%</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Viite)) <span class="sc">+</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">y =</span> Score), <span class="at">fill =</span> <span class="st">"#c20e1a"</span>) <span class="sc">+</span></span>
@@ -770,10 +799,10 @@ div.csl-indent {
 </div>
 </div>
 </div>
-<p>Tutkimuksista vain kaksi yltävät laadukkaan tutkimuksen tasolle työkalun mukaan (<a href="#fig-yleiskuvailu-tutkimusharha-qssp-tutkimukset">Kuva&nbsp;<span>5.1</span></a>). Jos tutkimusharhan riskin raja-arvon laskee viiteenkymmeneen prosenttiin, 24 tutkimusta täyttävät kriteerin. Voidaan kuitenkin todeta, että tutkimusnäyttö on tämän vertailun mukaan heikkoa.</p>
+<p>Tutkimuksista vain kaksi yltävät laadukkaan tutkimuksen tasolle työkalun mukaan (<a href="#fig-yleiskuvailu-tutkimusharha-qssp-tutkimukset">Kuva&nbsp;<span>5.1</span></a>). Jos tutkimusharhan riskin raja-arvon laskee viiteenkymmeneen prosenttiin, 24 tutkimusta täyttävät kriteerin. Voidaan kuitenkin todeta, että tutkimusnäyttö on tämän tarkistuksen mukaan heikkoa.</p>
 <div class="cell">
 <details>
-<summary>Koodi</summary>
+<summary>Kuvion piirtäminen</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>laatu_määrälliset_pivot <span class="ot">&lt;-</span> laatu_määrälliset <span class="sc">%&gt;%</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    Johdanto_1<span class="sc">:</span>Etiikka_3,</span>
@@ -785,9 +814,13 @@ div.csl-indent {
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(</span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">after_stat</span>(count)),</span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">stat =</span> <span class="st">"count"</span>,</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"black"</span>,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"white"</span>,</span>
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>)</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Määrä"</span>, <span class="at">fill =</span> <span class="st">"Arvo"</span>) <span class="sc">+</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> varit[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">7</span>)]</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div id="fig-yleiskuvailu-tutkimusharha-qssp-osaalueet" class="quarto-figure quarto-figure-center anchored">
@@ -799,12 +832,12 @@ div.csl-indent {
 </div>
 </div>
 <p><a href="#fig-yleiskuvailu-tutkimusharha-qssp-tutkimukset">Kuva&nbsp;<span>5.1</span></a> näyttää tutkimusten tulokset instrumenteittain. Tutkimusten luotettavimmat tiedot löytyvät johdanto-osuuksista, joissa jopa 48 tutkimusta (92 %) kuvailevat ja motivoivat tutkimusongelman tekstissä.</p>
-<p>Data-osuus on arvion osa-alueista heikoin, joskin vaihtelua esiintyy paljon. Vain kuusi tutkimusta määrittelivät selkeästi puuttuvat vastaukset jokaiselle muuttujalle, ja näistä vain kolme kuvailivat puuttuvien vastausten käsittelymenetelmät selkeästi. Toisaalta 43 tutkimusta (83 %) kuvailivat otannan demografisia piirteitä selkeästi.</p>
-<p>Etiikan suhteen tutkimuksissa on myös parannettavaa. Noin puolet tutkimuksista ilmaisivat mahdolliset rahoituslähteet tai muut intressikonfliktit; on kuitenkin huomattava, että opinnäytteissä ei ole näiden intressien ilmaisemisen perinnettä, mikä voi vaikuttaa tuloksiin. 18 tutkimusta (38 %) ilmaisivat selkeästi saaneensa tietoisen suostumuksen vastaajilta, mutta yleisemmin emme pystyneet arvioimaan suostumuksen saantia.</p>
+<p>Data-osuus on arvion osa-alueista heikoin, mutta vaihtelua esiintyy paljon. Vain kuusi tutkimusta määrittelivät selkeästi puuttuvat vastaukset jokaiselle muuttujalle, ja näistä vain kolme kuvailivat puuttuvien vastausten käsittelymenetelmät selkeästi. Toisaalta 43 tutkimusta (83 %) kuvailivat otannan demografisia piirteitä selkeästi.</p>
+<p>Etiikan suhteen tutkimuksissa on myös parannettavaa. Noin puolet tutkimuksista ilmaisivat mahdolliset rahoituslähteet tai muut intressikonfliktit; on kuitenkin huomattava, että opinnäytteissä ei yleensä ilmaista intressejä, mikä vaikuttaa tuloksiin. 18 tutkimusta (38 %) ilmaisivat selkeästi saaneensa tietoisen suostumuksen vastaajilta.</p>
 <p>Tarkistimme myös, onko julkaisumuotojen välillä eroja tutkimusten kokonaisriskiarviossa (<a href="#fig-yleiskuvailu-tutkimusharha-qssp-vertailut">Kuva&nbsp;<span>5.3</span></a>).</p>
 <div class="cell">
 <details>
-<summary>Koodi</summary>
+<summary>Kuvion piirtäminen</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggbetweenstats</span>(</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  laatu_määrälliset,</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> Julkaisumuoto,</span>
@@ -826,6 +859,60 @@ div.csl-indent {
 </div>
 <p>Julkaisumuotojen välillä ei näytä olevan merkitseviä eroja <span class="math inline">\(F(2, 5.36) = 1.03, p = .42, \text{parittaiset }p &lt; .05\)</span>. Organisaatioraporttien pienen määrän vuoksi emme voi kuitenkaan olla varmoja eroista.</p>
 <p>Luotettavuusarviot näyttäisivät olevan vaihtelempia tutkimusartikkeleiden kohdalla kuin opinnäytteiden. Syyksi voidaan epäillä opinnäytteiden tarkempia muotovaatimuksia, jolloin opinnäytteet ovat samankaltaisempia (ja siten sisältävät samoja asioita) toistensa kanssa kuin tutkimusartikkelit.</p>
+</section>
+<section id="sec-yleiskuvailu-tutkimusharha-laadulliset" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="sec-yleiskuvailu-tutkimusharha-laadulliset"><span class="header-section-number">5.2</span> Laadulliset tutkimukset: SRQR-arvio</h2>
+<p>Laadullisten tutkimusten arvioinniksi käytimme <em>Standards for Reporting Qualitative Research</em> (SRQR)-työkalua <span class="citation" data-cites="obrien2014">(<a href="lahteet.html#ref-obrien2014" role="doc-biblioref">O’Brien ym. 2014</a>)</span>. Arviointikriteerejä on SRQR-menetelmässä 21 kappaletta jaettuna seitsemään osa-alueeseen: otsikko (1 mittari), tiivistelmä (1 mittari), johdanto (2 mittaria), metodologia (11 mittaria), tulokset (2 mittaria), johtopäätökset (2 mittaria) ja muut (2 mittaria). Mittaristolla voi laskea prosenttiluvun kaikista täyttyneistä kriteereistä, mutta luvulle ei ole vakiintuneita raja-arvoja.</p>
+<p>Arviointi suoritettiin vain hakujen 1-4 sekä 6 tuloksille, eli arviointeja ei tehty muiden turvallisuustoimijoiden tutkimuksille.</p>
+<div class="cell">
+<details>
+<summary>Kuvion piirtäminen</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>laatu_laadulliset <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Viite)) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">y =</span> Score), <span class="at">fill =</span> <span class="st">"#c20e1a"</span>) <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Luotettavuustaso (%)"</span>, <span class="at">x =</span> <span class="st">"Julkaisu"</span>) <span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span> </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">100</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-yleiskuvailu-tutkimusharha-srqr" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="yleiskuvailu_files/figure-html/fig-yleiskuvailu-tutkimusharha-srqr-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Kuva&nbsp;5.4: SRQR-laadunarvioinnin tulokset aakkosjärjestyksessä tutkimuksittain (n = 17). Sisältää haut 1-4 ja 6</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Laadulliset tutkimukset ovat hieman luotettavampia kuin määrälliset tutkimukset. Laatu vaihtelee kuitenkin suuresti: matalammillaan tutkimukset täyttävät alle puolet kaikista kriteereistä. Keskimääräinen kriteerien täyttöaste on 62 prosenttia.</p>
+<div class="cell">
+<details>
+<summary>Kuvion piirtäminen</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>laatu_laadulliset_pivot <span class="ot">&lt;-</span> laatu_laadulliset <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(Otsikko<span class="sc">:</span>Muu_2, <span class="at">names_to =</span> <span class="st">"Osaalue"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(laatu_laadulliset_pivot, <span class="fu">aes</span>(<span class="at">y =</span> Osaalue, <span class="at">fill =</span> value)) <span class="sc">+</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">orientation =</span> <span class="st">"y"</span>) <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">after_stat</span>(count)),</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">stat =</span> <span class="st">"count"</span>,</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"white"</span>,</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Määrä"</span>, <span class="at">fill =</span> <span class="st">"Arvo"</span>) <span class="sc">+</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> varit[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">7</span>)]</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-yleiskuvailu-tutkimusharha-srqr-osaalueet" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="yleiskuvailu_files/figure-html/fig-yleiskuvailu-tutkimusharha-srqr-osaalueet-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Kuva&nbsp;5.5: SRQR-laadunarvioinnin tulokset instrumenttain (n = 17). Sisältää haut 1-4 ja 6</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Osa-alueista vahvimmat olivat ongelman määrittely, tutkimustarkoitusten ja -kysymysten esittely sekä tulosten esittely, jotka kaikki tutkimukset täyttivät. Heikoimmat osa-alueet ovat tutkijan refleksiivisyys omasta asemastaan tutkimuksessa (2 tutkimusta täytti kriteerin), sidonnaisuuksien ja intressien ilmoittaminen (3 tutkimusta) ja otsikon muotoilu tutkimusta selkeästi kuvailevaksi (4 tutkimusta).</p>
 
 
 <!-- -->
@@ -833,6 +920,9 @@ div.csl-indent {
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
 <div id="ref-maguire2018a" class="csl-entry" role="listitem">
 Maguire, Brian J., Matthew Browne, Barbara J. O’Neill, Michael T. Dealy, Darryl Clare, ja Peter O’Meara. 2018. <span>”International Survey of Violence Against EMS Personnel: Physical Violence Report”</span>. <em>Prehospital and Disaster Medicine</em> 33 (5): 526–31. <a href="https://doi.org/10.1017/S1049023X18000870">https://doi.org/10.1017/S1049023X18000870</a>.
+</div>
+<div id="ref-obrien2014" class="csl-entry" role="listitem">
+O’Brien, Bridget C., Ilene B. Harris, Thomas J. Beckman, Darcy A. Reed, ja David A. Cook. 2014. <span>”Standards for Reporting Qualitative Research: A Synthesis of Recommendations”</span>. <em>Academic Medicine</em> 89 (9): 1245–51. <a href="https://doi.org/10.1097/ACM.0000000000000388">https://doi.org/10.1097/ACM.0000000000000388</a>.
 </div>
 <div id="ref-pekurinen2017" class="csl-entry" role="listitem">
 Pekurinen, Virve, Laura Willman, Marianna Virtanen, Mika Kivimäki, Jussi Vahtera, ja Maritta Välimäki. 2017. <span>”Patient Aggression and the Wellbeing of Nurses: A Cross-Sectional Survey Study in Psychiatric and Non-Psychiatric Settings”</span>. <em>International Journal of Environmental Research and Public Health</em> 14 (10): 1245. <a href="https://doi.org/10.3390/ijerph14101245">https://doi.org/10.3390/ijerph14101245</a>.
@@ -1148,259 +1238,326 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Lähdekoodi</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb9" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Tulosten yleiskuvaus {#sec-yleiskuvailu}</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>eval: true</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>Tässä osiossa esitellään kirjallisuuskatsauksen tuottamat tulokset yleistasolla.</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: yleiskuvailu-00-valmistelu</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Avataan tarpeelliset kirjastot hiljaisesti</span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>({</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(ggplot2)</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(dplyr)</span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(magrittr)</span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(tidyr)</span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(ggstatsplot)</span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Ladataan data csv-tiedostosta</span></span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"data/kirjallisuuskatsaus/metatiedot.csv"</span>)</span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>laatu_määrälliset <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"data/kirjallisuuskatsaus/laadunarviointi_määrällisetkyselyt.csv"</span>)</span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="fu">## Julkaisuvuodet {#sec-yleiskuvailu-julkaisuvuodet}</span></span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>| Vuosi                 | Määrä (prosenttimäärä suluissa) |</span>
-<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>|-----------------------|---------------------------------|</span>
-<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>| 2010                  | 1 (1,4 %)                       |</span>
-<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>| 2011                  | 6 (8,7 %)                       |</span>
-<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>| 2012                  | 0                               |</span>
-<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>| 2013                  | 3 (4,3 %)                       |</span>
-<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>| 2014                  | 3 (4,3 %)                       |</span>
-<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>| 2015                  | 1 (1,4 %)                       |</span>
-<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>| 2016                  | 6 (8,7 %)                       |</span>
-<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>| 2017                  | 5 (7,2 %)                       |</span>
-<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>| 2018                  | 5 (7,2 %)                       |</span>
-<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>| 2019                  | 9 (13,0 %)                      |</span>
-<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>| 2020                  | 5 (7,2 %)                       |</span>
-<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>| 2021                  | 9 (13,0 %)                      |</span>
-<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>| 2022                  | 10 (14,5 %)                     |</span>
-<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>| 2023<span class="ot">[^yleiskuvailu-1]</span> | 6 (8,7 %)                       |</span>
-<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>: Kirjallisuuskatsauksen tulokset julkaisuvuosittain. Prosenttiluvut eivät ynnää sataan prosenttiin pyöristysvirheen takia. {#tbl-yleiskuvailu-vuosi}</span>
-<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a><span class="ot">[^yleiskuvailu-1]: </span>Kirjallisuuskatsauksen haku rajattiin ajalle 1.1.2010 - 30.9.2023. Vuoden 2023 tulokset ovat siten osittaisia, ja tutkimuksia on voitu julkaista päätösajan jälkeen.</span>
-<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-yleiskuvailu-vuosi</span></span>
-<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Kirjallisuuskatsauksen tulokset julkaisuvuosittain"</span></span>
-<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> data, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Vuosi)) <span class="sc">+</span> </span>
-<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"count"</span>, <span class="at">fill =</span> <span class="st">"#c20e1a"</span>) <span class="sc">+</span></span>
-<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Määrä (n)"</span>) <span class="sc">+</span> </span>
-<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">2010</span>, <span class="at">to =</span> <span class="dv">2023</span>)) <span class="sc">+</span> </span>
-<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(</span>
-<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">after_stat</span>(count)),</span>
-<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a>    <span class="at">stat =</span> <span class="st">"count"</span>,</span>
-<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a>    <span class="at">vjust =</span> <span class="fl">1.5</span>,</span>
-<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"white"</span></span>
-<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a>Tutkimusten julkaisuvuodet painottuvat 2010-luvun loppupuolelle ja 2020-luvun alkuun. Julkaisuvuosien mediaani on <span class="in">`r median(data$Vuosi, na.rm = TRUE)`</span>.</span>
-<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tutkimusasetelmat {#sec-yleiskuvailu-tutkimusasetelmat}</span></span>
-<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a>| Asetelma            | Määrä (prosenttimäärät suluissa) |</span>
-<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a>|---------------------|----------------------------------|</span>
-<span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a>| Määrällinen         | 48 (69,6 %)                      |</span>
-<span id="cb9-78"><a href="#cb9-78" aria-hidden="true" tabindex="-1"></a>| Monimenetelmällinen | 6 (8,7 %)                        |</span>
-<span id="cb9-79"><a href="#cb9-79" aria-hidden="true" tabindex="-1"></a>| Laadullinen         | 15 (21,7 %)                      |</span>
-<span id="cb9-80"><a href="#cb9-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-81"><a href="#cb9-81" aria-hidden="true" tabindex="-1"></a>: Kirjallisuuskatsauksen tulokset tutkimusasetelmittain. Prosenttiluvut eivät ynnää sataan prosenttiin pyöristysvirheen takia. {#tbl-yleiskuvailu-asetelmat}</span>
-<span id="cb9-82"><a href="#cb9-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-85"><a href="#cb9-85" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-86"><a href="#cb9-86" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-yleiskuvailu-asetelmat</span></span>
-<span id="cb9-87"><a href="#cb9-87" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Kirjallisuuskatsauksen tulokset tutkimusasetelmittain"</span></span>
-<span id="cb9-88"><a href="#cb9-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-89"><a href="#cb9-89" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> data, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Tutkimusasetelma)) <span class="sc">+</span> </span>
-<span id="cb9-90"><a href="#cb9-90" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"count"</span>, <span class="at">fill =</span> <span class="st">"#c20e1a"</span>) <span class="sc">+</span></span>
-<span id="cb9-91"><a href="#cb9-91" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Määrä (n)"</span>, <span class="at">x =</span> <span class="st">"Tutkimusasetelmat"</span>) <span class="sc">+</span> </span>
-<span id="cb9-92"><a href="#cb9-92" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">breaks =</span> <span class="fu">unique</span>(data<span class="sc">$</span>Tutkimusasetelma)) <span class="sc">+</span></span>
-<span id="cb9-93"><a href="#cb9-93" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(</span>
-<span id="cb9-94"><a href="#cb9-94" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">after_stat</span>(count)),</span>
-<span id="cb9-95"><a href="#cb9-95" aria-hidden="true" tabindex="-1"></a>    <span class="at">stat =</span> <span class="st">"count"</span>,</span>
-<span id="cb9-96"><a href="#cb9-96" aria-hidden="true" tabindex="-1"></a>    <span class="at">vjust =</span> <span class="fl">1.5</span>,</span>
-<span id="cb9-97"><a href="#cb9-97" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"white"</span></span>
-<span id="cb9-98"><a href="#cb9-98" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb9-99"><a href="#cb9-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-100"><a href="#cb9-100" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-101"><a href="#cb9-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-102"><a href="#cb9-102" aria-hidden="true" tabindex="-1"></a>Yleisin tutkimusasetelma on määrällinen, ylivoimaisesti toteutettu kyselyllä mutta joitain rekisteritutkimuksia myös. Laadullisissa tutkimuksissa hyödynnettiin kyselylomakkeita, yksilö- ja ryhmähaastatteluja sekä havainnointia ja etnografiaa. Monimenetelmälliset asetelmat yhdistivät useasti määrällisen, strukturoidun kyselyn ja haastattelututkimuksen, joko kehittäen kyselytyökalua laadullisin menetelmin tai rakentaen toimintasuunnitelmaa kyselytulosten pohjalta.</span>
-<span id="cb9-103"><a href="#cb9-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-104"><a href="#cb9-104" aria-hidden="true" tabindex="-1"></a><span class="fu">## Julkaisumuodot {#sec-yleiskuvailu-julkaisumuodot}</span></span>
-<span id="cb9-105"><a href="#cb9-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-108"><a href="#cb9-108" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-109"><a href="#cb9-109" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-yleiskuvailu-julkaisumuodot</span></span>
-<span id="cb9-110"><a href="#cb9-110" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Kirjallisuuskatsauksen tulokset julkaisumuodottain"</span></span>
-<span id="cb9-111"><a href="#cb9-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-112"><a href="#cb9-112" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> data, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Muoto)) <span class="sc">+</span> </span>
-<span id="cb9-113"><a href="#cb9-113" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"count"</span>, <span class="at">fill =</span> <span class="st">"#c20e1a"</span>) <span class="sc">+</span></span>
-<span id="cb9-114"><a href="#cb9-114" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Määrä (n)"</span>, <span class="at">x =</span> <span class="st">"Julkaisumuodot"</span>) <span class="sc">+</span> </span>
-<span id="cb9-115"><a href="#cb9-115" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">breaks =</span> <span class="fu">unique</span>(data<span class="sc">$</span>Muoto)) <span class="sc">+</span></span>
-<span id="cb9-116"><a href="#cb9-116" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(</span>
-<span id="cb9-117"><a href="#cb9-117" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">after_stat</span>(count)),</span>
-<span id="cb9-118"><a href="#cb9-118" aria-hidden="true" tabindex="-1"></a>    <span class="at">stat =</span> <span class="st">"count"</span>,</span>
-<span id="cb9-119"><a href="#cb9-119" aria-hidden="true" tabindex="-1"></a>    <span class="at">vjust =</span> <span class="fl">1.5</span>,</span>
-<span id="cb9-120"><a href="#cb9-120" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"white"</span></span>
-<span id="cb9-121"><a href="#cb9-121" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb9-122"><a href="#cb9-122" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-123"><a href="#cb9-123" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-124"><a href="#cb9-124" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-125"><a href="#cb9-125" aria-hidden="true" tabindex="-1"></a>Yleisin julkaisumuoto on vertaisarvioitu tutkimusartikkeli, ja sitä seuraavaksi opinnäyte. Organisaatioraportteja ei löytynyt suuresti, ja haku tuotti vain yhden sisällytetyn vertaisarvioidun kirjan luvun.</span>
-<span id="cb9-126"><a href="#cb9-126" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-127"><a href="#cb9-127" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tutkimusmaat {#sec-yleiskuvailu-tutkimusmaat}</span></span>
-<span id="cb9-128"><a href="#cb9-128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-129"><a href="#cb9-129" aria-hidden="true" tabindex="-1"></a>| Maa                | Määrä (prosenttimäärä suluissa) |</span>
-<span id="cb9-130"><a href="#cb9-130" aria-hidden="true" tabindex="-1"></a>|--------------------|---------------------------------|</span>
-<span id="cb9-131"><a href="#cb9-131" aria-hidden="true" tabindex="-1"></a>| Alankomaat         | 3 (4 %)                         |</span>
-<span id="cb9-132"><a href="#cb9-132" aria-hidden="true" tabindex="-1"></a>| Englanti           | 2 (3 %)                         |</span>
-<span id="cb9-133"><a href="#cb9-133" aria-hidden="true" tabindex="-1"></a>| Espanja            | 1 (1 %)                         |</span>
-<span id="cb9-134"><a href="#cb9-134" aria-hidden="true" tabindex="-1"></a>| Italia             | 2 (3 %)                         |</span>
-<span id="cb9-135"><a href="#cb9-135" aria-hidden="true" tabindex="-1"></a>| Liettua            | 1 (1 %)                         |</span>
-<span id="cb9-136"><a href="#cb9-136" aria-hidden="true" tabindex="-1"></a>| Norja              | 1 (1 %)                         |</span>
-<span id="cb9-137"><a href="#cb9-137" aria-hidden="true" tabindex="-1"></a>| Puola              | 2 (3 %)                         |</span>
-<span id="cb9-138"><a href="#cb9-138" aria-hidden="true" tabindex="-1"></a>| Ruotsi             | 4 (6 %)                         |</span>
-<span id="cb9-139"><a href="#cb9-139" aria-hidden="true" tabindex="-1"></a>| Saksa              | 3 (4 %)                         |</span>
-<span id="cb9-140"><a href="#cb9-140" aria-hidden="true" tabindex="-1"></a>| Suomi              | 39 (57 %)                       |</span>
-<span id="cb9-141"><a href="#cb9-141" aria-hidden="true" tabindex="-1"></a>| Sveitsi            | 1 (1 %)                         |</span>
-<span id="cb9-142"><a href="#cb9-142" aria-hidden="true" tabindex="-1"></a>| Tsekki             | 1 (1 %)                         |</span>
-<span id="cb9-143"><a href="#cb9-143" aria-hidden="true" tabindex="-1"></a>| Turkki             | 6 (9 %)                         |</span>
-<span id="cb9-144"><a href="#cb9-144" aria-hidden="true" tabindex="-1"></a>| Ukraina            | 1 (1 %)                         |</span>
-<span id="cb9-145"><a href="#cb9-145" aria-hidden="true" tabindex="-1"></a>| Ei sovellettavissa | 2 (3 %)                         |</span>
-<span id="cb9-146"><a href="#cb9-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-147"><a href="#cb9-147" aria-hidden="true" tabindex="-1"></a>: Kirjallisuuskatsauksen tulokset tutkimusmaittain {#tbl-yleiskuvailu-maat}</span>
-<span id="cb9-148"><a href="#cb9-148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-151"><a href="#cb9-151" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-152"><a href="#cb9-152" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-yleiskuvailu-maat</span></span>
-<span id="cb9-153"><a href="#cb9-153" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: 'Kirjallisuuskatsauksen tulokset maittain ja julkaisumuodottain. Tuloksissa ei ole  suomalaisia tutkimuksia. N/A = Ei sovellettavissa.'</span></span>
-<span id="cb9-154"><a href="#cb9-154" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-155"><a href="#cb9-155" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(Toteutusmaa <span class="sc">!=</span> <span class="st">"Suomi"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb9-156"><a href="#cb9-156" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Toteutusmaa, <span class="at">fill =</span> Muoto)) <span class="sc">+</span> </span>
-<span id="cb9-157"><a href="#cb9-157" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"count"</span>) <span class="sc">+</span></span>
-<span id="cb9-158"><a href="#cb9-158" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Määrä (n)"</span>, <span class="at">x =</span> <span class="st">"Toteutusmaat"</span>) <span class="sc">+</span> </span>
-<span id="cb9-159"><a href="#cb9-159" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(</span>
-<span id="cb9-160"><a href="#cb9-160" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">unique</span>(data<span class="sc">$</span>Toteutusmaa),</span>
-<span id="cb9-161"><a href="#cb9-161" aria-hidden="true" tabindex="-1"></a>    <span class="at">guide =</span> <span class="fu">guide_axis</span>(<span class="at">angle =</span> <span class="dv">45</span>)</span>
-<span id="cb9-162"><a href="#cb9-162" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb9-163"><a href="#cb9-163" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(</span>
-<span id="cb9-164"><a href="#cb9-164" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">after_stat</span>(count)),</span>
-<span id="cb9-165"><a href="#cb9-165" aria-hidden="true" tabindex="-1"></a>    <span class="at">stat =</span> <span class="st">"count"</span>,</span>
-<span id="cb9-166"><a href="#cb9-166" aria-hidden="true" tabindex="-1"></a>    <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>,</span>
-<span id="cb9-167"><a href="#cb9-167" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"black"</span>,</span>
-<span id="cb9-168"><a href="#cb9-168" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>)</span>
-<span id="cb9-169"><a href="#cb9-169" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb9-170"><a href="#cb9-170" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-171"><a href="#cb9-171" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-172"><a href="#cb9-172" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-173"><a href="#cb9-173" aria-hidden="true" tabindex="-1"></a>Kuvasta on poistettu suomalaiset tutkimukset, koska tutkimuksia haettiin useammassa muodossa kuin eurooppalaisia tutkimuksia.</span>
-<span id="cb9-174"><a href="#cb9-174" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-175"><a href="#cb9-175" aria-hidden="true" tabindex="-1"></a>Suomalaiset tutkimukset edustivat yli puolia kaikista tuloksista. Tämä voi osittain kuitenkin selittyä laajemmalla hakumenettelyllä suomalaisten tutkimusten osalta.</span>
-<span id="cb9-176"><a href="#cb9-176" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-177"><a href="#cb9-177" aria-hidden="true" tabindex="-1"></a>Yleisimmät tutkimusmaat Suomen ulkopuolella olivat Turkki, Ruotsi, Alankomaat ja Saksa. Muissa maissa oli julkaistu vain yksi tai kaksi tutkimusartikkelia.</span>
-<span id="cb9-178"><a href="#cb9-178" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-179"><a href="#cb9-179" aria-hidden="true" tabindex="-1"></a><span class="fu"># Tutkimusharhan riskiarvio {#sec-yleiskuvailu-tutkimusharha}</span></span>
-<span id="cb9-180"><a href="#cb9-180" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-181"><a href="#cb9-181" aria-hidden="true" tabindex="-1"></a><span class="fu">## Määrälliset kyselytutkimukset: Q-SSP-arvio {#sec-yleiskuvailu-tutkimusharha-maaralliset}</span></span>
-<span id="cb9-182"><a href="#cb9-182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-183"><a href="#cb9-183" aria-hidden="true" tabindex="-1"></a>Määrällisten kyselytutkimusten osalta arvioimme tutkimusharhan riskin käyttäen *Quality of Survey Studies in Psychology* (Q-SSP) -työkalua <span class="co">[</span><span class="ot">@protogerou2020</span><span class="co">]</span>. Työkalulla on 20 instrumenttia neljässä eri kategoriassa: Johdanto ja tutkimuksen tarve (4 instrumenttia), osallistujien selosteet (3 instrumenttia), data (10 instrumenttia) ja etiikka (3 instrumenttia). Jokainen instrumentti on muotoiltu kysymykseksi (esim. "Was the problem or phenomenon under investigation defined, described, and justified?"), jolle tutkija koodaa vastauksen "Kyllä", "Ei", "Epäselvä" tai "N/A" (ei päde kyseiselle tutkimukselle). Vastausvaihtoehdot riippuvat kysymyksistä, jolloin kaikilla instrumenteilla ei ole mahdollista vastata "Epäselvä" tai "N/A".</span>
-<span id="cb9-184"><a href="#cb9-184" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-185"><a href="#cb9-185" aria-hidden="true" tabindex="-1"></a>Pisteytys voidaan suorittaa joko koko työkalulle tai erikseen kategorioille. Koko työkalun pisteytys $S$ lasketaan muuntamalla "Kyllä"-vastaukset $K$ arvoksi <span class="in">`1`</span>, summaamalla kaikki arvot <span class="in">`1`</span> yhteen, jakamalla summan pätevien instrumenttien määrällä $T$ ja kertomalla tulos sadalla:</span>
-<span id="cb9-186"><a href="#cb9-186" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-187"><a href="#cb9-187" aria-hidden="true" tabindex="-1"></a>$$ S = \frac{\sum{K}}{T}*100 $$ {#eq-yleiskuvailu-qssp}</span>
-<span id="cb9-188"><a href="#cb9-188" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-189"><a href="#cb9-189" aria-hidden="true" tabindex="-1"></a>Pätevien instrumenttien määrällä tarkoitetaan kaikkia instrumentteja, joille ei annettu arvoa "N/A". Tämä määrä voi vaihdella 17 ja 20 instrumenttien välillä.</span>
-<span id="cb9-190"><a href="#cb9-190" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-191"><a href="#cb9-191" aria-hidden="true" tabindex="-1"></a>Me määrittelimme kuitenkin kaikille tutkimuksille arvon "N/A" instrumentilla "Were participants debriefed at the end of data collection?", sillä emme tunnistaneet debriefing-menettelyn tarvetta katsauksemme tutkimuksissa.</span>
-<span id="cb9-192"><a href="#cb9-192" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-193"><a href="#cb9-193" aria-hidden="true" tabindex="-1"></a>Katsauksen käsittelemissä tutkimuksissa pätevien instrumenttien määrä oli 19 instrumenttia 48 tutkimuksille. Neljälle tutkimukselle pätevien instrumenttien määrä oli 18 instrumenttia <span class="co">[</span><span class="ot">@maguire2018a; @pekurinen2017; @savoy2021; @schablon2022</span><span class="co">]</span>.</span>
-<span id="cb9-194"><a href="#cb9-194" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-195"><a href="#cb9-195" aria-hidden="true" tabindex="-1"></a>Hyväksyttävän tutkimuslaadun raja-arvo riippuu pätevien instrumenttien määrästä <span class="co">[</span><span class="ot">@protogerou2020</span><span class="co">]</span>:</span>
-<span id="cb9-196"><a href="#cb9-196" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-197"><a href="#cb9-197" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Jos $T = 19$: rajana 73 %</span>
-<span id="cb9-198"><a href="#cb9-198" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-199"><a href="#cb9-199" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Jos $T = 18$: rajana 72 %</span>
-<span id="cb9-200"><a href="#cb9-200" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-203"><a href="#cb9-203" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-204"><a href="#cb9-204" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-yleiskuvailu-tutkimusharha-qssp-tutkimukset</span></span>
-<span id="cb9-205"><a href="#cb9-205" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Q-SSP-harha-arvion tulokset aakkosjärjestyksessä tutkimuksittain (n = 52)"</span></span>
-<span id="cb9-206"><a href="#cb9-206" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-207"><a href="#cb9-207" aria-hidden="true" tabindex="-1"></a>laatu_määrälliset <span class="sc">%&gt;%</span></span>
-<span id="cb9-208"><a href="#cb9-208" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Viite)) <span class="sc">+</span></span>
-<span id="cb9-209"><a href="#cb9-209" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">y =</span> Score), <span class="at">fill =</span> <span class="st">"#c20e1a"</span>) <span class="sc">+</span></span>
-<span id="cb9-210"><a href="#cb9-210" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">73</span>) <span class="sc">+</span></span>
-<span id="cb9-211"><a href="#cb9-211" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">72</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
-<span id="cb9-212"><a href="#cb9-212" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Luotettavuustaso (%)"</span>, <span class="at">x =</span> <span class="st">"Julkaisu"</span>) <span class="sc">+</span></span>
-<span id="cb9-213"><a href="#cb9-213" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span> </span>
-<span id="cb9-214"><a href="#cb9-214" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">100</span>)</span>
-<span id="cb9-215"><a href="#cb9-215" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-216"><a href="#cb9-216" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-217"><a href="#cb9-217" aria-hidden="true" tabindex="-1"></a>Tutkimuksista vain kaksi yltävät laadukkaan tutkimuksen tasolle työkalun mukaan (@fig-yleiskuvailu-tutkimusharha-qssp-tutkimukset). Jos tutkimusharhan riskin raja-arvon laskee viiteenkymmeneen prosenttiin, 24 tutkimusta täyttävät kriteerin. Voidaan kuitenkin todeta, että tutkimusnäyttö on tämän vertailun mukaan heikkoa.</span>
-<span id="cb9-218"><a href="#cb9-218" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-221"><a href="#cb9-221" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-222"><a href="#cb9-222" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-yleiskuvailu-tutkimusharha-qssp-osaalueet</span></span>
-<span id="cb9-223"><a href="#cb9-223" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Q-SSP-harha-arvion tulokset instrumenteittain (n = 52)"</span></span>
-<span id="cb9-224"><a href="#cb9-224" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-225"><a href="#cb9-225" aria-hidden="true" tabindex="-1"></a>laatu_määrälliset_pivot <span class="ot">&lt;-</span> laatu_määrälliset <span class="sc">%&gt;%</span></span>
-<span id="cb9-226"><a href="#cb9-226" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(</span>
-<span id="cb9-227"><a href="#cb9-227" aria-hidden="true" tabindex="-1"></a>    Johdanto_1<span class="sc">:</span>Etiikka_3,</span>
-<span id="cb9-228"><a href="#cb9-228" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"Osaalue"</span></span>
-<span id="cb9-229"><a href="#cb9-229" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb9-230"><a href="#cb9-230" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-231"><a href="#cb9-231" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(laatu_määrälliset_pivot, <span class="fu">aes</span>(<span class="at">y =</span> Osaalue, <span class="at">fill =</span> value)) <span class="sc">+</span></span>
-<span id="cb9-232"><a href="#cb9-232" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">orientation =</span> <span class="st">"y"</span>) <span class="sc">+</span></span>
-<span id="cb9-233"><a href="#cb9-233" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(</span>
-<span id="cb9-234"><a href="#cb9-234" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">after_stat</span>(count)),</span>
-<span id="cb9-235"><a href="#cb9-235" aria-hidden="true" tabindex="-1"></a>    <span class="at">stat =</span> <span class="st">"count"</span>,</span>
-<span id="cb9-236"><a href="#cb9-236" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"black"</span>,</span>
-<span id="cb9-237"><a href="#cb9-237" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>)</span>
-<span id="cb9-238"><a href="#cb9-238" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb9-239"><a href="#cb9-239" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-240"><a href="#cb9-240" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-241"><a href="#cb9-241" aria-hidden="true" tabindex="-1"></a>@fig-yleiskuvailu-tutkimusharha-qssp-tutkimukset näyttää tutkimusten tulokset instrumenteittain. Tutkimusten luotettavimmat tiedot löytyvät johdanto-osuuksista, joissa jopa 48 tutkimusta (92 %) kuvailevat ja motivoivat tutkimusongelman tekstissä.</span>
-<span id="cb9-242"><a href="#cb9-242" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-243"><a href="#cb9-243" aria-hidden="true" tabindex="-1"></a>Data-osuus on arvion osa-alueista heikoin, joskin vaihtelua esiintyy paljon. Vain kuusi tutkimusta määrittelivät selkeästi puuttuvat vastaukset jokaiselle muuttujalle, ja näistä vain kolme kuvailivat puuttuvien vastausten käsittelymenetelmät selkeästi. Toisaalta 43 tutkimusta (83 %) kuvailivat otannan demografisia piirteitä selkeästi.</span>
-<span id="cb9-244"><a href="#cb9-244" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-245"><a href="#cb9-245" aria-hidden="true" tabindex="-1"></a>Etiikan suhteen tutkimuksissa on myös parannettavaa. Noin puolet tutkimuksista ilmaisivat mahdolliset rahoituslähteet tai muut intressikonfliktit; on kuitenkin huomattava, että opinnäytteissä ei ole näiden intressien ilmaisemisen perinnettä, mikä voi vaikuttaa tuloksiin. 18 tutkimusta (38 %) ilmaisivat selkeästi saaneensa tietoisen suostumuksen vastaajilta, mutta yleisemmin emme pystyneet arvioimaan suostumuksen saantia.</span>
-<span id="cb9-246"><a href="#cb9-246" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-247"><a href="#cb9-247" aria-hidden="true" tabindex="-1"></a>Tarkistimme myös, onko julkaisumuotojen välillä eroja tutkimusten kokonaisriskiarviossa (@fig-yleiskuvailu-tutkimusharha-qssp-vertailut).</span>
-<span id="cb9-248"><a href="#cb9-248" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-251"><a href="#cb9-251" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-252"><a href="#cb9-252" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-yleiskuvailu-tutkimusharha-qssp-vertailut</span></span>
-<span id="cb9-253"><a href="#cb9-253" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Q-SSP-arvion tulokset julkaisumuodottain"</span></span>
-<span id="cb9-254"><a href="#cb9-254" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-255"><a href="#cb9-255" aria-hidden="true" tabindex="-1"></a><span class="fu">ggbetweenstats</span>(</span>
-<span id="cb9-256"><a href="#cb9-256" aria-hidden="true" tabindex="-1"></a>  laatu_määrälliset,</span>
-<span id="cb9-257"><a href="#cb9-257" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> Julkaisumuoto,</span>
-<span id="cb9-258"><a href="#cb9-258" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> Score,</span>
-<span id="cb9-259"><a href="#cb9-259" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"parametric"</span>,</span>
-<span id="cb9-260"><a href="#cb9-260" aria-hidden="true" tabindex="-1"></a>  <span class="at">pairwise.display =</span> <span class="st">"all"</span>,</span>
-<span id="cb9-261"><a href="#cb9-261" aria-hidden="true" tabindex="-1"></a>  <span class="at">bf.message =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb9-262"><a href="#cb9-262" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">"Luotettavuus (%)"</span></span>
-<span id="cb9-263"><a href="#cb9-263" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb9-264"><a href="#cb9-264" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-265"><a href="#cb9-265" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-266"><a href="#cb9-266" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-267"><a href="#cb9-267" aria-hidden="true" tabindex="-1"></a>Julkaisumuotojen välillä ei näytä olevan merkitseviä eroja $F(2, 5.36) = 1.03, p = .42, \text{parittaiset }p &lt; .05$. Organisaatioraporttien pienen määrän vuoksi emme voi kuitenkaan olla varmoja eroista.</span>
-<span id="cb9-268"><a href="#cb9-268" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-269"><a href="#cb9-269" aria-hidden="true" tabindex="-1"></a>Luotettavuusarviot näyttäisivät olevan vaihtelempia tutkimusartikkeleiden kohdalla kuin opinnäytteiden. Syyksi voidaan epäillä opinnäytteiden tarkempia muotovaatimuksia, jolloin opinnäytteet ovat samankaltaisempia (ja siten sisältävät samoja asioita) toistensa kanssa kuin tutkimusartikkelit.</span>
+<div class="sourceCode" id="cb11" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Tulosten yleiskuvaus {#sec-yleiskuvailu}</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>eval: true</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: yleiskuvailu-00-valmistelu</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Pakettien ja datan avaaminen"</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2) <span class="co"># Kuvioiden piirtämiseen</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr) <span class="co"># Datamanipulointiin</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr) <span class="co"># Putken käyttö</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr) <span class="co"># Datamanipulointiin</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggstatsplot) <span class="co"># Tilastollisten testikuvioiden piirtämiseen</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>varit <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"#873073"</span>, <span class="st">"#893deb"</span>, <span class="st">"#fe79ec"</span>, <span class="st">"#29d8fd"</span>, <span class="st">"#25919d"</span>, <span class="st">"#96da31"</span>, <span class="st">"#598322"</span>)</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"data/kirjallisuuskatsaus/metatiedot.csv"</span>)</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>laatu_määrälliset <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"data/kirjallisuuskatsaus/laadunarviointi_määrällisetkyselyt.csv"</span>)</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>laatu_laadulliset <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"data/kirjallisuuskatsaus/laadunarviointi_laadullisettutkimukset.csv"</span>)</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a><span class="fu">## Julkaisuvuodet {#sec-yleiskuvailu-julkaisuvuodet}</span></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>| Vuosi                 | Määrä (%)   |</span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>|-----------------------|-------------|</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>| 2010                  | 1 (1,4 %)   |</span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>| 2011                  | 6 (8,7 %)   |</span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>| 2012                  | 0           |</span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>| 2013                  | 3 (4,3 %)   |</span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>| 2014                  | 3 (4,3 %)   |</span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>| 2015                  | 1 (1,4 %)   |</span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>| 2016                  | 6 (8,7 %)   |</span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>| 2017                  | 5 (7,2 %)   |</span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>| 2018                  | 5 (7,2 %)   |</span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>| 2019                  | 9 (13,0 %)  |</span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>| 2020                  | 5 (7,2 %)   |</span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>| 2021                  | 9 (13,0 %)  |</span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>| 2022                  | 10 (14,5 %) |</span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a>| 2023<span class="ot">[^yleiskuvailu-1]</span> | 6 (8,7 %)   |</span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a>: Kirjallisuuskatsauksen tulokset julkaisuvuosittain. Prosenttiluvut eivät ynnää sataan prosenttiin pyöristysvirheen takia. {#tbl-yleiskuvailu-vuosi}</span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a><span class="ot">[^yleiskuvailu-1]: </span>Kirjallisuuskatsauksen haku rajattiin ajalle 1.1.2010 - 30.9.2023. Vuoden 2023 tulokset ovat siten osittaisia, ja tutkimuksia on voitu julkaista päätösajan jälkeen.</span>
+<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-yleiskuvailu-vuosi</span></span>
+<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Kirjallisuuskatsauksen tulokset julkaisuvuosittain"</span></span>
+<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Kuvion piirtäminen"</span></span>
+<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-58"><a href="#cb11-58" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> data, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Vuosi)) <span class="sc">+</span> </span>
+<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"count"</span>, <span class="at">fill =</span> <span class="st">"#c20e1a"</span>) <span class="sc">+</span></span>
+<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Määrä (n)"</span>) <span class="sc">+</span> </span>
+<span id="cb11-61"><a href="#cb11-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">2010</span>, <span class="at">to =</span> <span class="dv">2023</span>)) <span class="sc">+</span> </span>
+<span id="cb11-62"><a href="#cb11-62" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">after_stat</span>(count)),</span>
+<span id="cb11-64"><a href="#cb11-64" aria-hidden="true" tabindex="-1"></a>    <span class="at">stat =</span> <span class="st">"count"</span>,</span>
+<span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a>    <span class="at">vjust =</span> <span class="fl">1.5</span>,</span>
+<span id="cb11-66"><a href="#cb11-66" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"white"</span></span>
+<span id="cb11-67"><a href="#cb11-67" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb11-68"><a href="#cb11-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-69"><a href="#cb11-69" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-70"><a href="#cb11-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-71"><a href="#cb11-71" aria-hidden="true" tabindex="-1"></a>Tutkimusten julkaisuvuodet painottuvat 2010-luvun loppupuolelle ja 2020-luvun alkuun. Julkaisuvuosien mediaani on <span class="in">`r median(data$Vuosi, na.rm = TRUE)`</span>.</span>
+<span id="cb11-72"><a href="#cb11-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-73"><a href="#cb11-73" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tutkimusasetelmat {#sec-yleiskuvailu-tutkimusasetelmat}</span></span>
+<span id="cb11-74"><a href="#cb11-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-75"><a href="#cb11-75" aria-hidden="true" tabindex="-1"></a>| Asetelma            | Määrä (%)   |</span>
+<span id="cb11-76"><a href="#cb11-76" aria-hidden="true" tabindex="-1"></a>|---------------------|-------------|</span>
+<span id="cb11-77"><a href="#cb11-77" aria-hidden="true" tabindex="-1"></a>| Määrällinen         | 48 (69,6 %) |</span>
+<span id="cb11-78"><a href="#cb11-78" aria-hidden="true" tabindex="-1"></a>| Monimenetelmällinen | 6 (8,7 %)   |</span>
+<span id="cb11-79"><a href="#cb11-79" aria-hidden="true" tabindex="-1"></a>| Laadullinen         | 15 (21,7 %) |</span>
+<span id="cb11-80"><a href="#cb11-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-81"><a href="#cb11-81" aria-hidden="true" tabindex="-1"></a>: Kirjallisuuskatsauksen tulokset tutkimusasetelmittain. Prosenttiluvut eivät ynnää sataan prosenttiin pyöristysvirheen takia. {#tbl-yleiskuvailu-asetelmat}</span>
+<span id="cb11-82"><a href="#cb11-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-85"><a href="#cb11-85" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-86"><a href="#cb11-86" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-yleiskuvailu-asetelmat</span></span>
+<span id="cb11-87"><a href="#cb11-87" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Kirjallisuuskatsauksen tulokset tutkimusasetelmittain"</span></span>
+<span id="cb11-88"><a href="#cb11-88" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Kuvion piirtäminen"</span></span>
+<span id="cb11-89"><a href="#cb11-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-90"><a href="#cb11-90" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> data, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Tutkimusasetelma)) <span class="sc">+</span> </span>
+<span id="cb11-91"><a href="#cb11-91" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"count"</span>, <span class="at">fill =</span> <span class="st">"#c20e1a"</span>) <span class="sc">+</span></span>
+<span id="cb11-92"><a href="#cb11-92" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Määrä (n)"</span>, <span class="at">x =</span> <span class="st">"Tutkimusasetelmat"</span>) <span class="sc">+</span> </span>
+<span id="cb11-93"><a href="#cb11-93" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">breaks =</span> <span class="fu">unique</span>(data<span class="sc">$</span>Tutkimusasetelma)) <span class="sc">+</span></span>
+<span id="cb11-94"><a href="#cb11-94" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb11-95"><a href="#cb11-95" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">after_stat</span>(count)),</span>
+<span id="cb11-96"><a href="#cb11-96" aria-hidden="true" tabindex="-1"></a>    <span class="at">stat =</span> <span class="st">"count"</span>,</span>
+<span id="cb11-97"><a href="#cb11-97" aria-hidden="true" tabindex="-1"></a>    <span class="at">vjust =</span> <span class="fl">1.5</span>,</span>
+<span id="cb11-98"><a href="#cb11-98" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"white"</span></span>
+<span id="cb11-99"><a href="#cb11-99" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb11-100"><a href="#cb11-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-101"><a href="#cb11-101" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-102"><a href="#cb11-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-103"><a href="#cb11-103" aria-hidden="true" tabindex="-1"></a>Yleisin tutkimusasetelma on määrällinen, joko kysely- tai rekisteritutkimuksena. Laadullisissa tutkimuksissa hyödynnettiin kyselylomakkeita, yksilö- ja ryhmähaastatteluja sekä havainnointia ja etnografiaa. Monimenetelmälliset asetelmat yhdistivät useasti määrällisen strukturoidun kyselyn ja haastattelututkimuksen, joko kehittäen kyselytyökalua laadullisin menetelmin tai rakentaen toimintasuunnitelmaa kyselytulosten pohjalta.</span>
+<span id="cb11-104"><a href="#cb11-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-105"><a href="#cb11-105" aria-hidden="true" tabindex="-1"></a><span class="fu">## Julkaisumuodot {#sec-yleiskuvailu-julkaisumuodot}</span></span>
+<span id="cb11-106"><a href="#cb11-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-107"><a href="#cb11-107" aria-hidden="true" tabindex="-1"></a>| Muoto                             | Määrä (%) |</span>
+<span id="cb11-108"><a href="#cb11-108" aria-hidden="true" tabindex="-1"></a>|-----------------------------------|-----------|</span>
+<span id="cb11-109"><a href="#cb11-109" aria-hidden="true" tabindex="-1"></a>| Vertaisarvioitu tutkimusartikkeli | 40 (58 %) |</span>
+<span id="cb11-110"><a href="#cb11-110" aria-hidden="true" tabindex="-1"></a>| Organisaatioraportti              | 3 (4 %)   |</span>
+<span id="cb11-111"><a href="#cb11-111" aria-hidden="true" tabindex="-1"></a>| Opinnäyte                         | 25 (36 %) |</span>
+<span id="cb11-112"><a href="#cb11-112" aria-hidden="true" tabindex="-1"></a>| Kirjan luku                       | 1 (1 %)   |</span>
+<span id="cb11-113"><a href="#cb11-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-114"><a href="#cb11-114" aria-hidden="true" tabindex="-1"></a>: Kirjallisuuskatsauksen tulokset julkaisumuodottain. Prosenttiluvut eivät ynnää sataan prosenttiin pyöristysvirheen takia. {#tbl-yleiskuvailu-julkaisumuodot}</span>
+<span id="cb11-115"><a href="#cb11-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-118"><a href="#cb11-118" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-119"><a href="#cb11-119" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-yleiskuvailu-julkaisumuodot</span></span>
+<span id="cb11-120"><a href="#cb11-120" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Kirjallisuuskatsauksen tulokset julkaisumuodottain"</span></span>
+<span id="cb11-121"><a href="#cb11-121" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Kuvion piirtäminen"</span></span>
+<span id="cb11-122"><a href="#cb11-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-123"><a href="#cb11-123" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> data, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Muoto)) <span class="sc">+</span> </span>
+<span id="cb11-124"><a href="#cb11-124" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"count"</span>, <span class="at">fill =</span> <span class="st">"#c20e1a"</span>) <span class="sc">+</span></span>
+<span id="cb11-125"><a href="#cb11-125" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Määrä (n)"</span>, <span class="at">x =</span> <span class="st">"Julkaisumuodot"</span>) <span class="sc">+</span> </span>
+<span id="cb11-126"><a href="#cb11-126" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">breaks =</span> <span class="fu">unique</span>(data<span class="sc">$</span>Muoto)) <span class="sc">+</span></span>
+<span id="cb11-127"><a href="#cb11-127" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb11-128"><a href="#cb11-128" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">after_stat</span>(count)),</span>
+<span id="cb11-129"><a href="#cb11-129" aria-hidden="true" tabindex="-1"></a>    <span class="at">stat =</span> <span class="st">"count"</span>,</span>
+<span id="cb11-130"><a href="#cb11-130" aria-hidden="true" tabindex="-1"></a>    <span class="at">vjust =</span> <span class="fl">1.5</span>,</span>
+<span id="cb11-131"><a href="#cb11-131" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"white"</span></span>
+<span id="cb11-132"><a href="#cb11-132" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb11-133"><a href="#cb11-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-134"><a href="#cb11-134" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-135"><a href="#cb11-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-136"><a href="#cb11-136" aria-hidden="true" tabindex="-1"></a>Yleisin julkaisumuoto on vertaisarvioitu tutkimusartikkeli, jota seuraa opinnäytteet. Organisaatioraportteja ei löytynyt suuresti, ja haku tuotti vain yhden sisällytetyn vertaisarvioidun kirjan luvun.</span>
+<span id="cb11-137"><a href="#cb11-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-138"><a href="#cb11-138" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tutkimusmaat {#sec-yleiskuvailu-tutkimusmaat}</span></span>
+<span id="cb11-139"><a href="#cb11-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-140"><a href="#cb11-140" aria-hidden="true" tabindex="-1"></a>| Maa                | Määrä (%) |</span>
+<span id="cb11-141"><a href="#cb11-141" aria-hidden="true" tabindex="-1"></a>|--------------------|-----------|</span>
+<span id="cb11-142"><a href="#cb11-142" aria-hidden="true" tabindex="-1"></a>| Alankomaat         | 3 (4 %)   |</span>
+<span id="cb11-143"><a href="#cb11-143" aria-hidden="true" tabindex="-1"></a>| Englanti           | 2 (3 %)   |</span>
+<span id="cb11-144"><a href="#cb11-144" aria-hidden="true" tabindex="-1"></a>| Espanja            | 1 (1 %)   |</span>
+<span id="cb11-145"><a href="#cb11-145" aria-hidden="true" tabindex="-1"></a>| Italia             | 2 (3 %)   |</span>
+<span id="cb11-146"><a href="#cb11-146" aria-hidden="true" tabindex="-1"></a>| Liettua            | 1 (1 %)   |</span>
+<span id="cb11-147"><a href="#cb11-147" aria-hidden="true" tabindex="-1"></a>| Norja              | 1 (1 %)   |</span>
+<span id="cb11-148"><a href="#cb11-148" aria-hidden="true" tabindex="-1"></a>| Puola              | 2 (3 %)   |</span>
+<span id="cb11-149"><a href="#cb11-149" aria-hidden="true" tabindex="-1"></a>| Ruotsi             | 4 (6 %)   |</span>
+<span id="cb11-150"><a href="#cb11-150" aria-hidden="true" tabindex="-1"></a>| Saksa              | 3 (4 %)   |</span>
+<span id="cb11-151"><a href="#cb11-151" aria-hidden="true" tabindex="-1"></a>| Suomi              | 39 (57 %) |</span>
+<span id="cb11-152"><a href="#cb11-152" aria-hidden="true" tabindex="-1"></a>| Sveitsi            | 1 (1 %)   |</span>
+<span id="cb11-153"><a href="#cb11-153" aria-hidden="true" tabindex="-1"></a>| Tsekki             | 1 (1 %)   |</span>
+<span id="cb11-154"><a href="#cb11-154" aria-hidden="true" tabindex="-1"></a>| Turkki             | 6 (9 %)   |</span>
+<span id="cb11-155"><a href="#cb11-155" aria-hidden="true" tabindex="-1"></a>| Ukraina            | 1 (1 %)   |</span>
+<span id="cb11-156"><a href="#cb11-156" aria-hidden="true" tabindex="-1"></a>| Ei sovellettavissa | 2 (3 %)   |</span>
+<span id="cb11-157"><a href="#cb11-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-158"><a href="#cb11-158" aria-hidden="true" tabindex="-1"></a>: Kirjallisuuskatsauksen tulokset tutkimusmaittain {#tbl-yleiskuvailu-maat}</span>
+<span id="cb11-159"><a href="#cb11-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-162"><a href="#cb11-162" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-163"><a href="#cb11-163" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-yleiskuvailu-maat</span></span>
+<span id="cb11-164"><a href="#cb11-164" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: 'Kirjallisuuskatsauksen tulokset maittain ja julkaisumuodottain. Tuloksissa ei ole  suomalaisia tutkimuksia. N/A = Ei sovellettavissa.'</span></span>
+<span id="cb11-165"><a href="#cb11-165" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Kuvion piirtäminen"</span></span>
+<span id="cb11-166"><a href="#cb11-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-167"><a href="#cb11-167" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(Toteutusmaa <span class="sc">!=</span> <span class="st">"Suomi"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-168"><a href="#cb11-168" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Toteutusmaa, <span class="at">fill =</span> Muoto)) <span class="sc">+</span> </span>
+<span id="cb11-169"><a href="#cb11-169" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"count"</span>) <span class="sc">+</span></span>
+<span id="cb11-170"><a href="#cb11-170" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Määrä (n)"</span>, <span class="at">x =</span> <span class="st">"Toteutusmaat"</span>) <span class="sc">+</span> </span>
+<span id="cb11-171"><a href="#cb11-171" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(</span>
+<span id="cb11-172"><a href="#cb11-172" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">unique</span>(data<span class="sc">$</span>Toteutusmaa),</span>
+<span id="cb11-173"><a href="#cb11-173" aria-hidden="true" tabindex="-1"></a>    <span class="at">guide =</span> <span class="fu">guide_axis</span>(<span class="at">angle =</span> <span class="dv">45</span>)</span>
+<span id="cb11-174"><a href="#cb11-174" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb11-175"><a href="#cb11-175" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb11-176"><a href="#cb11-176" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">after_stat</span>(count)),</span>
+<span id="cb11-177"><a href="#cb11-177" aria-hidden="true" tabindex="-1"></a>    <span class="at">stat =</span> <span class="st">"count"</span>,</span>
+<span id="cb11-178"><a href="#cb11-178" aria-hidden="true" tabindex="-1"></a>    <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>,</span>
+<span id="cb11-179"><a href="#cb11-179" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"black"</span>,</span>
+<span id="cb11-180"><a href="#cb11-180" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>)</span>
+<span id="cb11-181"><a href="#cb11-181" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb11-182"><a href="#cb11-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-183"><a href="#cb11-183" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-184"><a href="#cb11-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-185"><a href="#cb11-185" aria-hidden="true" tabindex="-1"></a>Kuvasta on poistettu suomalaiset tutkimukset, koska tutkimuksia haettiin useammassa muodossa kuin eurooppalaisia tutkimuksia.</span>
+<span id="cb11-186"><a href="#cb11-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-187"><a href="#cb11-187" aria-hidden="true" tabindex="-1"></a>Suomalaiset tutkimukset edustivat yli puolia kaikista tuloksista. Tämä voi osittain kuitenkin selittyä laajemmalla hakumenettelyllä suomalaisten tutkimusten osalta.</span>
+<span id="cb11-188"><a href="#cb11-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-189"><a href="#cb11-189" aria-hidden="true" tabindex="-1"></a>Yleisimmät tutkimusmaat Suomen ulkopuolella olivat Turkki, Ruotsi, Alankomaat ja Saksa. Muissa maissa oli julkaistu vain yksi tai kaksi tutkimusartikkelia.</span>
+<span id="cb11-190"><a href="#cb11-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-191"><a href="#cb11-191" aria-hidden="true" tabindex="-1"></a><span class="fu"># Tutkimusharhan riskiarvio {#sec-yleiskuvailu-tutkimusharha}</span></span>
+<span id="cb11-192"><a href="#cb11-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-193"><a href="#cb11-193" aria-hidden="true" tabindex="-1"></a><span class="fu">## Määrälliset kyselytutkimukset: Q-SSP-arvio {#sec-yleiskuvailu-tutkimusharha-maaralliset}</span></span>
+<span id="cb11-194"><a href="#cb11-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-195"><a href="#cb11-195" aria-hidden="true" tabindex="-1"></a>Määrällisten kyselytutkimusten osalta arvioimme tutkimusharhan riskin käyttäen *Quality of Survey Studies in Psychology* (Q-SSP) -työkalua <span class="co">[</span><span class="ot">@protogerou2020</span><span class="co">]</span>. Työkalulla on 20 instrumenttia neljässä eri kategoriassa: Johdanto ja tutkimuksen tarve (4 instrumenttia), osallistujien selosteet (3 instrumenttia), data (10 instrumenttia) ja etiikka (3 instrumenttia). Jokainen instrumentti on muotoiltu kysymykseksi (esim. "Was the problem or phenomenon under investigation defined, described, and justified?"), jolle tutkija koodaa vastauksen "Kyllä", "Ei", "Epäselvä" tai "N/A" (ei päde kyseiselle tutkimukselle). Vastausvaihtoehdot riippuvat kysymyksistä, jolloin kaikilla instrumenteilla ei ole mahdollista vastata "Epäselvä" tai "N/A".</span>
+<span id="cb11-196"><a href="#cb11-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-197"><a href="#cb11-197" aria-hidden="true" tabindex="-1"></a>Pisteytys voidaan suorittaa joko koko työkalulle tai erikseen kategorioille. Koko työkalun pisteytys $S$ lasketaan muuntamalla "Kyllä"-vastaukset $K$ arvoksi <span class="in">`1`</span>, summaamalla kaikki arvot <span class="in">`1`</span> yhteen, jakamalla summan pätevien instrumenttien määrällä $T$ ja kertomalla tulos sadalla:</span>
+<span id="cb11-198"><a href="#cb11-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-199"><a href="#cb11-199" aria-hidden="true" tabindex="-1"></a>$$ S = \frac{\sum{K}}{T}*100 $$ {#eq-yleiskuvailu-qssp}</span>
+<span id="cb11-200"><a href="#cb11-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-201"><a href="#cb11-201" aria-hidden="true" tabindex="-1"></a>Pätevien instrumenttien määrällä tarkoitetaan kaikkia instrumentteja, joille ei annettu arvoa "N/A". Tämä määrä voi vaihdella 17 ja 20 instrumenttien välillä.</span>
+<span id="cb11-202"><a href="#cb11-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-203"><a href="#cb11-203" aria-hidden="true" tabindex="-1"></a>Me määrittelimme kuitenkin kaikille tutkimuksille arvon "N/A" instrumentilla "Were participants debriefed at the end of data collection?", sillä emme tunnistaneet debriefing-menettelyn tarvetta katsauksemme tutkimuksissa.</span>
+<span id="cb11-204"><a href="#cb11-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-205"><a href="#cb11-205" aria-hidden="true" tabindex="-1"></a>Katsauksen käsittelemissä tutkimuksissa pätevien instrumenttien määrä oli 19 instrumenttia 48 tutkimuksille. Neljälle tutkimukselle pätevien instrumenttien määrä oli 18 instrumenttia <span class="co">[</span><span class="ot">@maguire2018a; @pekurinen2017; @savoy2021; @schablon2022</span><span class="co">]</span>.</span>
+<span id="cb11-206"><a href="#cb11-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-207"><a href="#cb11-207" aria-hidden="true" tabindex="-1"></a>Hyväksyttävän tutkimuslaadun raja-arvo riippuu pätevien instrumenttien määrästä <span class="co">[</span><span class="ot">@protogerou2020</span><span class="co">]</span>:</span>
+<span id="cb11-208"><a href="#cb11-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-209"><a href="#cb11-209" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Jos $T = 19$: rajana 73 %</span>
+<span id="cb11-210"><a href="#cb11-210" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Jos $T = 18$: rajana 72 %</span>
+<span id="cb11-211"><a href="#cb11-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-214"><a href="#cb11-214" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-215"><a href="#cb11-215" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-yleiskuvailu-tutkimusharha-qssp-tutkimukset</span></span>
+<span id="cb11-216"><a href="#cb11-216" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Q-SSP-harha-arvion tulokset aakkosjärjestyksessä tutkimuksittain (n = 52)"</span></span>
+<span id="cb11-217"><a href="#cb11-217" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Kuvion piirtäminen"</span></span>
+<span id="cb11-218"><a href="#cb11-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-219"><a href="#cb11-219" aria-hidden="true" tabindex="-1"></a>laatu_määrälliset <span class="sc">%&gt;%</span></span>
+<span id="cb11-220"><a href="#cb11-220" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Viite)) <span class="sc">+</span></span>
+<span id="cb11-221"><a href="#cb11-221" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">y =</span> Score), <span class="at">fill =</span> <span class="st">"#c20e1a"</span>) <span class="sc">+</span></span>
+<span id="cb11-222"><a href="#cb11-222" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">73</span>) <span class="sc">+</span></span>
+<span id="cb11-223"><a href="#cb11-223" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">72</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb11-224"><a href="#cb11-224" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Luotettavuustaso (%)"</span>, <span class="at">x =</span> <span class="st">"Julkaisu"</span>) <span class="sc">+</span></span>
+<span id="cb11-225"><a href="#cb11-225" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span> </span>
+<span id="cb11-226"><a href="#cb11-226" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">100</span>)</span>
+<span id="cb11-227"><a href="#cb11-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-228"><a href="#cb11-228" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-229"><a href="#cb11-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-230"><a href="#cb11-230" aria-hidden="true" tabindex="-1"></a>Tutkimuksista vain kaksi yltävät laadukkaan tutkimuksen tasolle työkalun mukaan (@fig-yleiskuvailu-tutkimusharha-qssp-tutkimukset). Jos tutkimusharhan riskin raja-arvon laskee viiteenkymmeneen prosenttiin, 24 tutkimusta täyttävät kriteerin. Voidaan kuitenkin todeta, että tutkimusnäyttö on tämän tarkistuksen mukaan heikkoa.</span>
+<span id="cb11-231"><a href="#cb11-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-234"><a href="#cb11-234" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-235"><a href="#cb11-235" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-yleiskuvailu-tutkimusharha-qssp-osaalueet</span></span>
+<span id="cb11-236"><a href="#cb11-236" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Q-SSP-harha-arvion tulokset instrumenteittain (n = 52)"</span></span>
+<span id="cb11-237"><a href="#cb11-237" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Kuvion piirtäminen"</span></span>
+<span id="cb11-238"><a href="#cb11-238" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-239"><a href="#cb11-239" aria-hidden="true" tabindex="-1"></a>laatu_määrälliset_pivot <span class="ot">&lt;-</span> laatu_määrälliset <span class="sc">%&gt;%</span></span>
+<span id="cb11-240"><a href="#cb11-240" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(</span>
+<span id="cb11-241"><a href="#cb11-241" aria-hidden="true" tabindex="-1"></a>    Johdanto_1<span class="sc">:</span>Etiikka_3,</span>
+<span id="cb11-242"><a href="#cb11-242" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"Osaalue"</span></span>
+<span id="cb11-243"><a href="#cb11-243" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb11-244"><a href="#cb11-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-245"><a href="#cb11-245" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(laatu_määrälliset_pivot, <span class="fu">aes</span>(<span class="at">y =</span> Osaalue, <span class="at">fill =</span> value)) <span class="sc">+</span></span>
+<span id="cb11-246"><a href="#cb11-246" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">orientation =</span> <span class="st">"y"</span>) <span class="sc">+</span></span>
+<span id="cb11-247"><a href="#cb11-247" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb11-248"><a href="#cb11-248" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">after_stat</span>(count)),</span>
+<span id="cb11-249"><a href="#cb11-249" aria-hidden="true" tabindex="-1"></a>    <span class="at">stat =</span> <span class="st">"count"</span>,</span>
+<span id="cb11-250"><a href="#cb11-250" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"white"</span>,</span>
+<span id="cb11-251"><a href="#cb11-251" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>)</span>
+<span id="cb11-252"><a href="#cb11-252" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb11-253"><a href="#cb11-253" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Määrä"</span>, <span class="at">fill =</span> <span class="st">"Arvo"</span>) <span class="sc">+</span></span>
+<span id="cb11-254"><a href="#cb11-254" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(</span>
+<span id="cb11-255"><a href="#cb11-255" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> varit[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">7</span>)]</span>
+<span id="cb11-256"><a href="#cb11-256" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb11-257"><a href="#cb11-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-258"><a href="#cb11-258" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-259"><a href="#cb11-259" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-260"><a href="#cb11-260" aria-hidden="true" tabindex="-1"></a>@fig-yleiskuvailu-tutkimusharha-qssp-tutkimukset näyttää tutkimusten tulokset instrumenteittain. Tutkimusten luotettavimmat tiedot löytyvät johdanto-osuuksista, joissa jopa 48 tutkimusta (92 %) kuvailevat ja motivoivat tutkimusongelman tekstissä.</span>
+<span id="cb11-261"><a href="#cb11-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-262"><a href="#cb11-262" aria-hidden="true" tabindex="-1"></a>Data-osuus on arvion osa-alueista heikoin, mutta vaihtelua esiintyy paljon. Vain kuusi tutkimusta määrittelivät selkeästi puuttuvat vastaukset jokaiselle muuttujalle, ja näistä vain kolme kuvailivat puuttuvien vastausten käsittelymenetelmät selkeästi. Toisaalta 43 tutkimusta (83 %) kuvailivat otannan demografisia piirteitä selkeästi.</span>
+<span id="cb11-263"><a href="#cb11-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-264"><a href="#cb11-264" aria-hidden="true" tabindex="-1"></a>Etiikan suhteen tutkimuksissa on myös parannettavaa. Noin puolet tutkimuksista ilmaisivat mahdolliset rahoituslähteet tai muut intressikonfliktit; on kuitenkin huomattava, että opinnäytteissä ei yleensä ilmaista intressejä, mikä vaikuttaa tuloksiin. 18 tutkimusta (38 %) ilmaisivat selkeästi saaneensa tietoisen suostumuksen vastaajilta.</span>
+<span id="cb11-265"><a href="#cb11-265" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-266"><a href="#cb11-266" aria-hidden="true" tabindex="-1"></a>Tarkistimme myös, onko julkaisumuotojen välillä eroja tutkimusten kokonaisriskiarviossa (@fig-yleiskuvailu-tutkimusharha-qssp-vertailut).</span>
+<span id="cb11-267"><a href="#cb11-267" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-270"><a href="#cb11-270" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-271"><a href="#cb11-271" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-yleiskuvailu-tutkimusharha-qssp-vertailut</span></span>
+<span id="cb11-272"><a href="#cb11-272" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Q-SSP-arvion tulokset julkaisumuodottain"</span></span>
+<span id="cb11-273"><a href="#cb11-273" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Kuvion piirtäminen"</span></span>
+<span id="cb11-274"><a href="#cb11-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-275"><a href="#cb11-275" aria-hidden="true" tabindex="-1"></a><span class="fu">ggbetweenstats</span>(</span>
+<span id="cb11-276"><a href="#cb11-276" aria-hidden="true" tabindex="-1"></a>  laatu_määrälliset,</span>
+<span id="cb11-277"><a href="#cb11-277" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> Julkaisumuoto,</span>
+<span id="cb11-278"><a href="#cb11-278" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> Score,</span>
+<span id="cb11-279"><a href="#cb11-279" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"parametric"</span>,</span>
+<span id="cb11-280"><a href="#cb11-280" aria-hidden="true" tabindex="-1"></a>  <span class="at">pairwise.display =</span> <span class="st">"all"</span>,</span>
+<span id="cb11-281"><a href="#cb11-281" aria-hidden="true" tabindex="-1"></a>  <span class="at">bf.message =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb11-282"><a href="#cb11-282" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">"Luotettavuus (%)"</span></span>
+<span id="cb11-283"><a href="#cb11-283" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-284"><a href="#cb11-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-285"><a href="#cb11-285" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-286"><a href="#cb11-286" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-287"><a href="#cb11-287" aria-hidden="true" tabindex="-1"></a>Julkaisumuotojen välillä ei näytä olevan merkitseviä eroja $F(2, 5.36) = 1.03, p = .42, \text{parittaiset }p &lt; .05$. Organisaatioraporttien pienen määrän vuoksi emme voi kuitenkaan olla varmoja eroista.</span>
+<span id="cb11-288"><a href="#cb11-288" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-289"><a href="#cb11-289" aria-hidden="true" tabindex="-1"></a>Luotettavuusarviot näyttäisivät olevan vaihtelempia tutkimusartikkeleiden kohdalla kuin opinnäytteiden. Syyksi voidaan epäillä opinnäytteiden tarkempia muotovaatimuksia, jolloin opinnäytteet ovat samankaltaisempia (ja siten sisältävät samoja asioita) toistensa kanssa kuin tutkimusartikkelit.</span>
+<span id="cb11-290"><a href="#cb11-290" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-291"><a href="#cb11-291" aria-hidden="true" tabindex="-1"></a><span class="fu">## Laadulliset tutkimukset: SRQR-arvio {#sec-yleiskuvailu-tutkimusharha-laadulliset}</span></span>
+<span id="cb11-292"><a href="#cb11-292" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-293"><a href="#cb11-293" aria-hidden="true" tabindex="-1"></a>Laadullisten tutkimusten arvioinniksi käytimme *Standards for Reporting Qualitative Research* (SRQR)-työkalua <span class="co">[</span><span class="ot">@obrien2014</span><span class="co">]</span>. Arviointikriteerejä on SRQR-menetelmässä 21 kappaletta jaettuna seitsemään osa-alueeseen: otsikko (1 mittari), tiivistelmä (1 mittari), johdanto (2 mittaria), metodologia (11 mittaria), tulokset (2 mittaria), johtopäätökset (2 mittaria) ja muut (2 mittaria). Mittaristolla voi laskea prosenttiluvun kaikista täyttyneistä kriteereistä, mutta luvulle ei ole vakiintuneita raja-arvoja.</span>
+<span id="cb11-294"><a href="#cb11-294" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-295"><a href="#cb11-295" aria-hidden="true" tabindex="-1"></a>Arviointi suoritettiin vain hakujen 1-4 sekä 6 tuloksille, eli arviointeja ei tehty muiden turvallisuustoimijoiden tutkimuksille.</span>
+<span id="cb11-296"><a href="#cb11-296" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-299"><a href="#cb11-299" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-300"><a href="#cb11-300" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-yleiskuvailu-tutkimusharha-srqr</span></span>
+<span id="cb11-301"><a href="#cb11-301" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "SRQR-laadunarvioinnin tulokset aakkosjärjestyksessä tutkimuksittain (n = 17). Sisältää haut 1-4 ja 6"</span></span>
+<span id="cb11-302"><a href="#cb11-302" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Kuvion piirtäminen"</span></span>
+<span id="cb11-303"><a href="#cb11-303" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-304"><a href="#cb11-304" aria-hidden="true" tabindex="-1"></a>laatu_laadulliset <span class="sc">%&gt;%</span></span>
+<span id="cb11-305"><a href="#cb11-305" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Viite)) <span class="sc">+</span></span>
+<span id="cb11-306"><a href="#cb11-306" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">y =</span> Score), <span class="at">fill =</span> <span class="st">"#c20e1a"</span>) <span class="sc">+</span></span>
+<span id="cb11-307"><a href="#cb11-307" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Luotettavuustaso (%)"</span>, <span class="at">x =</span> <span class="st">"Julkaisu"</span>) <span class="sc">+</span></span>
+<span id="cb11-308"><a href="#cb11-308" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span> </span>
+<span id="cb11-309"><a href="#cb11-309" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">100</span>)</span>
+<span id="cb11-310"><a href="#cb11-310" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-311"><a href="#cb11-311" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-312"><a href="#cb11-312" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-313"><a href="#cb11-313" aria-hidden="true" tabindex="-1"></a>Laadulliset tutkimukset ovat hieman luotettavampia kuin määrälliset tutkimukset. Laatu vaihtelee kuitenkin suuresti: matalammillaan tutkimukset täyttävät alle puolet kaikista kriteereistä. Keskimääräinen kriteerien täyttöaste on 62 prosenttia.</span>
+<span id="cb11-314"><a href="#cb11-314" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-317"><a href="#cb11-317" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-318"><a href="#cb11-318" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-yleiskuvailu-tutkimusharha-srqr-osaalueet</span></span>
+<span id="cb11-319"><a href="#cb11-319" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "SRQR-laadunarvioinnin tulokset instrumenttain (n = 17). Sisältää haut 1-4 ja 6"</span></span>
+<span id="cb11-320"><a href="#cb11-320" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Kuvion piirtäminen"</span></span>
+<span id="cb11-321"><a href="#cb11-321" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-322"><a href="#cb11-322" aria-hidden="true" tabindex="-1"></a>laatu_laadulliset_pivot <span class="ot">&lt;-</span> laatu_laadulliset <span class="sc">%&gt;%</span></span>
+<span id="cb11-323"><a href="#cb11-323" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(Otsikko<span class="sc">:</span>Muu_2, <span class="at">names_to =</span> <span class="st">"Osaalue"</span>)</span>
+<span id="cb11-324"><a href="#cb11-324" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-325"><a href="#cb11-325" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(laatu_laadulliset_pivot, <span class="fu">aes</span>(<span class="at">y =</span> Osaalue, <span class="at">fill =</span> value)) <span class="sc">+</span></span>
+<span id="cb11-326"><a href="#cb11-326" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">orientation =</span> <span class="st">"y"</span>) <span class="sc">+</span></span>
+<span id="cb11-327"><a href="#cb11-327" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb11-328"><a href="#cb11-328" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">after_stat</span>(count)),</span>
+<span id="cb11-329"><a href="#cb11-329" aria-hidden="true" tabindex="-1"></a>    <span class="at">stat =</span> <span class="st">"count"</span>,</span>
+<span id="cb11-330"><a href="#cb11-330" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"white"</span>,</span>
+<span id="cb11-331"><a href="#cb11-331" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>)</span>
+<span id="cb11-332"><a href="#cb11-332" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb11-333"><a href="#cb11-333" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Määrä"</span>, <span class="at">fill =</span> <span class="st">"Arvo"</span>) <span class="sc">+</span></span>
+<span id="cb11-334"><a href="#cb11-334" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(</span>
+<span id="cb11-335"><a href="#cb11-335" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> varit[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">7</span>)]</span>
+<span id="cb11-336"><a href="#cb11-336" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb11-337"><a href="#cb11-337" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-338"><a href="#cb11-338" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-339"><a href="#cb11-339" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-340"><a href="#cb11-340" aria-hidden="true" tabindex="-1"></a>Osa-alueista vahvimmat olivat ongelman määrittely, tutkimustarkoitusten ja -kysymysten esittely sekä tulosten esittely, jotka kaikki tutkimukset täyttivät. Heikoimmat osa-alueet ovat tutkijan refleksiivisyys omasta asemastaan tutkimuksessa (2 tutkimusta täytti kriteerin), sidonnaisuuksien ja intressien ilmoittaminen (3 tutkimusta) ja otsikon muotoilu tutkimusta selkeästi kuvailevaksi (4 tutkimusta).</span>
 </code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

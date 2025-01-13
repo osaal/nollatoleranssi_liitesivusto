@@ -1,6 +1,15 @@
 # Haku 1 {#sec-haku1}
 
-Haku 1 seurasi seuraavia inkluusiokriteerejä:
+```{r}
+#| label: haku1-00-paketit
+#| code-summary: "Osiossa käytetyt paketit"
+#| eval: true
+
+library("PRISMAstatement")
+
+```
+
+Haku 1 noudatti seuraavia inkluusiokriteerejä:
 
 -   Julkaisuaika: 1.1.2010 - 30.9.2023
 
@@ -16,27 +25,17 @@ Haku 1 seurasi seuraavia inkluusiokriteerejä:
 
 Haku suoritettiin seuraavissa tietolähteissä:
 
-+-----------------------------------------+------------------------------------+
 | Tietokanta                              | Hakukone (jos eri kuin tietokanta) |
-+=========================================+====================================+
+|-----------------------------------------|------------------------------------|
 | Scopus                                  |                                    |
-+-----------------------------------------+------------------------------------+
 | Web of Science Core Collection          | Web of Science                     |
-+-----------------------------------------+------------------------------------+
 | MEDLINE                                 | Web of Science                     |
-+-----------------------------------------+------------------------------------+
 | Ebook Central                           | ProQuest                           |
-+-----------------------------------------+------------------------------------+
 | Social Science Premium Collection       | ProQuest                           |
-+-----------------------------------------+------------------------------------+
 | Bielefeld Academic Search Engine (BASE) |                                    |
-+-----------------------------------------+------------------------------------+
 | OpenAlex                                |                                    |
-+-----------------------------------------+------------------------------------+
 | Valto                                   |                                    |
-+-----------------------------------------+------------------------------------+
 | Julkari                                 |                                    |
-+-----------------------------------------+------------------------------------+
 
 : Haku 1:n tietolähteet {#tbl-haku1-tietolahteet}
 
@@ -152,131 +151,131 @@ Alla olevassa taulukossa esitetään hakujen suorituspäivämäärät, hakusanat
 
 : Haku 1:n toteutetut haut. Ei sisällä muista lähteistä ladatut tulokset. {#tbl-haku1-toteutetuthaut}
 
-Jokaisen haun hakulausekkeet ovat listattuna alla hakukoodeittain (ks. @tbl-haku1-toteutetuthaut). Paina osa-hakua vastaavaa koodia nähdäksesi kunkin haun hakulausekkeen. Voit kopioida lausekkeen sellaisenaan leikepöydällesi painamalla kopiointikuvaketta avatun hakulausekkeen yläoikeassa nurkassa.
+Jokaisen haun hakulausekkeet ovat listattuna alla hakukoodeittain (ks. @tbl-haku1-toteutetuthaut).
 
-```{r}
+```{default}
 #| code-summary: "Haku H1_1_fi"
 TITLE-ABS-KEY ( ( pelast* OR palo* OR sammut* OR h&#228;t&#228;kesku* ) AND ( syrji* OR h&#228;irin* OR h&#228;irit* OR painost* OR pahoinpi* OR ahdistel* OR ep&#228;asialli* OR yhdenvertai* OR tasa-arvo* OR tasapuoli* OR tasavertai* ) ) AND ( PUBYEAR < 2024 AND PUBYEAR > 2009 ) AND ( DOCTYPE ( ar ) OR DOCTYPE ( bk ) OR DOCTYPE ( ch ) ) AND NOT SRCTYPE ( p ) AND ( LIMIT-TO ( AFFILCOUNTRY , "Finland" ) ) AND ( LIMIT-TO ( LANGUAGE , "Finnish" ) )
 
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H1_1_sw"
 TITLE-ABS-KEY((räddning* OR brand* OR släckning* OR nödcentral*) AND (diskriminer* OR trakasse* OR påtryck* OR våld* OR osaklig* OR opasslig* OR jämlik* OR jämställd*)) AND (PUBYEAR < 2024 AND PUBYEAR > 2009) AND (DOCTYPE(ar) OR DOCTYPE(bk) OR DOCTYPE(ch)) AND NOT SRCTYPE(p) AND (LIMIT-TO(LANGUAGE, "Swedish")) AND (LIMIT-TO(AFFILCOUNTRY, "Finland"))
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H1_1_en"
 TITLE-ABS-KEY ( ( ( "fire rescue*" OR "fire*fighter*" OR "rescue service*" OR "emergency respon*" OR "emergency personnel" ) AND NOT ( "medic" ) ) AND ( discriminat* OR harass* OR pressur* OR violen* OR "improper behavior" OR equal* OR equit* ) ) AND ( PUBYEAR < 2024 AND PUBYEAR > 2009 ) AND ( DOCTYPE ( ar ) OR DOCTYPE ( bk ) OR DOCTYPE ( ch ) ) AND NOT SRCTYPE ( p ) AND ( LIMIT-TO ( AFFILCOUNTRY , "Finland" ) ) AND ( LIMIT-TO ( LANGUAGE , "English" ) )
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H1_2_fi"
 TS=((pelast* OR palo* OR sammut* OR hätäkesku*) AND (syrji* OR häirin* OR häirit* OR painost* OR pahoinpi* OR ahdistel* OR epäasialli* OR yhdenvertai* OR tasa-arvo* OR tasapuoli* OR tasavertai*)) AND DOP=(2010-01-01/2023-09-30) AND DT=(Article OR Book OR Book Chapter)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H1_2_sw"
 TS=((räddning* OR brand* OR släckning* OR nödcentral*) AND (diskriminer* OR trakasse* OR påtryck* OR våld* OR osaklig* OR opasslig* OR jämlik* OR jämställd*)) AND DOP=(2010-01-01/2023-09-30) AND DT=(Article OR Book OR Book Chapter)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H1_2_en"
 TS=((("fire rescue*" OR "fire$fighter*" OR "rescue service*" OR "emergency respon*" OR "emergency personnel") NOT ("medic")) AND (discriminat* OR harass* OR pressur* OR violen* OR "improper behavio$r" OR equal* OR equit*)) AND DOP=(2010-01-01/2023-09-30) AND DT=(Article OR Book OR Book Chapter)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H1_3_fi"
 TS=((pelast* OR palo* OR sammut* OR hätäkesku*) AND (syrji* OR häirin* OR häirit* OR painost* OR pahoinpi* OR ahdistel* OR epäasialli* OR yhdenvertai* OR tasa-arvo* OR tasapuoli* OR tasavertai*)) AND LA=(Finnish) AND DT=(Classical Article OR Clinical Study OR Comparative Study OR Controlled Clinical Trial OR Equivalence Trial OR Journal Article OR Observational Study OR Personal Narrative OR Personal Narratives OR Pragmatic Clinical Trial OR Twin Study OR Validation Studies OR Validation Study) AND PY=(2010-2023)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H1_3_sw"
 TS=((räddning* OR brand* OR släckning* OR nödcentral*) AND (diskriminer* OR trakasse* OR påtryck* OR våld* OR osaklig* OR opasslig* OR jämlik* OR jämställd*)) AND LA=(Swedish) AND DT=(Classical Article OR Clinical Study OR Comparative Study OR Controlled Clinical Trial OR Equivalence Trial OR Journal Article OR Observational Study OR Personal Narrative OR Personal Narratives OR Pragmatic Clinical Trial OR Twin Study OR Validation Studies OR Validation Study) AND PY=(2010-2023)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H1_3_en"
 TS=((("fire rescue*" OR "fire$fighter*" OR "rescue service*" OR "emergency respon*" OR "emergency personnel") NOT ("medic")) AND (discriminat* OR harass* OR pressur* OR violen* OR "improper behavio$r" OR equal* OR equit*) AND (finland OR finnish)) AND LA=(English) AND DT=(Classical Article OR Clinical Study OR Comparative Study OR Controlled Clinical Trial OR Equivalence Trial OR Journal Article OR Observational Study OR Personal Narrative OR Personal Narratives OR Pragmatic Clinical Trial OR Twin Study OR Validation Studies OR Validation Study) AND PY=(2010-2023)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H1_4_fi"
 noft((pelast* OR palo* OR sammut* OR hätäkesku*) AND (syrji* OR häirin* OR häirit* OR painost* OR pahoinpi* OR ahdistel* OR epäasialli* OR yhdenvertai* OR tasa-arvo* OR tasapuoli* OR tasavertai*))
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H1_4_sw"
 noft((räddning* OR brand* OR släckning* OR nödcentral*) AND (diskriminer* OR trakasse* OR påtryck* OR våld* OR osaklig* OR opasslig* OR jämlik* OR jämställd*))
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H1_4_en"
 noft((("fire rescue*" OR "fire?fighter*" OR "rescue service*" OR "emergency respon*" OR "emergency personnel") NOT ("medic")) AND (discriminat* OR harass* OR pressur* OR violen* OR "improper behavio?r" OR equal* OR equit*) AND (finland OR finnish))
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H1_5_fi"
 (pelast* OR palo* OR sammut* OR hätäkesku*) AND (syrji* OR häirin* OR häirit* OR painost* OR pahoinpi* OR ahdistel* OR epäasialli* OR yhdenvertai* OR tasa-arvo* OR tasapuoli* OR tasavertai*) country:fi doctype:(11* 121) year:[2010 TO 2023]
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H1_5_sw"
 (räddning* OR brand* OR släckning* OR nödcentral*) AND (diskriminer* OR trakasse* OR påtryck* OR våld* OR osaklig* OR opasslig* OR jämlik* OR jämställd*) country:fi doctype:(11* 121) year:[2010 TO 2023]
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H1_5_en"
 (("fire rescue*" OR "fire*fighter*" OR "rescue service*" OR "emergency respon*" OR "emergency personnel") NOT ("medic")) AND (discriminat* OR harass* OR pressur* OR violen* OR "improper behavio*r" OR equal* OR equit*) AND (finnish OR finland) country:fi doctype:(11* 121) year:[2010 TO 2023]
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H1_6_fi"
 https://api.openalex.org/works?search=(pelast OR palo OR sammut OR hätäkesku) AND (syrji OR häirin OR häirit OR painost OR pahoinpi OR ahdistel OR epäasialli OR yhdenvertai OR tasa-arvo OR tasapuoli OR tasavertai)&filter=from_publication_date:2010-01-01,to_publication_date:2023-09-30,type_crossref:journal-article|monograph|report&per_page=200&select=title,publication_year,doi&page=1
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H1_6_sw"
 https://api.openalex.org/works?search=(räddning OR brand OR släckning OR nödcentral) AND (diskriminer OR trakasse OR påtryck OR våld OR osaklig OR opasslig OR jämlik OR jämställd)&filter=from_publication_date:2010-01-01,to_publication_date:2023-09-30,type_crossref:journal-article|monograph|report&per_page=200&select=title,publication_year,doi&page=1
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H1_6_en"
 https://api.openalex.org/works?search=(("fire rescue" OR firefighter OR "rescue service" OR "emergency respon" OR "emergency personnel") NOT ("medic")) AND (discriminat OR harass OR pressur OR violen OR "improper behavior" OR equal OR equit) AND (finland OR finnish)
 &filter=from_publication_date:2010-01-01,to_publication_date:2023-09-30,type_crossref:journal-article|monograph|report&per_page=200&select=title,publication_year,doi&page=1
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H1_7_fi"
 dc.title:((pelast* OR palo* OR sammut* OR hätäkesku*) AND (syrji* OR häirin* OR häirit* OR painost* OR pahoinpi* OR ahdistel* OR epäasialli* OR yhdenvertai* OR tasa-arvo* OR tasapuoli* OR tasavertai*))
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H1_7_sw"
 dc.title:(räddning* OR brand* OR släckning* OR nödcentral*) AND dc.title:(diskriminer* OR trakasse* OR påtryck* OR våld* OR osaklig* OR opasslig* OR jämlik* OR jämställd*)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H1_7_en"
 dc.title:((fire rescue* OR fire*fighter* OR rescue service* OR emergency respon* OR emergency personnel) NOT ("medic")) AND dc.title:(discriminat* OR harass* OR pressur* OR violen* OR improper behavio*r OR equal* OR equit*)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H1_8_fi"
 dc.title:((pelast* OR palo* OR sammut* OR hätäkesku*) AND (syrji* OR häirin* OR häirit* OR painost* OR pahoinpi* OR ahdistel* OR epäasialli* OR yhdenvertai* OR tasa-arvo* OR tasapuoli* OR tasavertai*))
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H1_8_sw"
 dc.title:(räddning* OR brand* OR släckning* OR nödcentral*) AND dc.title:(diskriminer* OR trakasse* OR påtryck* OR våld* OR osaklig* OR opasslig* OR jämlik* OR jämställd*)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H1_8_en"
 dc.title:((fire rescue* OR fire*fighter* OR rescue service* OR emergency respon* OR emergency personnel) NOT ("medic")) AND dc.title:(discriminat* OR harass* OR pressur* OR violen* OR improper behavio*r OR equal* OR equit*)
 ```
 
-OpenAlex:in kohdalla tulokset haettiin API-menettelyllä. Maksimitulosten määrä per sivu oli 200 dokumentaation mukaan, joten haku toteutettiin kuusi kertaa nostaen `&page=X` -numeroa jokaisen kerran yhdellä.
+OpenAlex:in kohdalla tulokset haettiin API-menettelyllä. Maksimitulosten määrä oli 200 per sivu dokumentaation mukaan, joten haku toteutettiin kuusi kertaa nostaen `&page=X` -numeroa jokaisen kerran yhdellä.
 
 Tulokset ladattiin ensisijaisesti `.csv`- tai `.xlsx`-muotoon jos mahdollista (Scopus, Web of Science ja ProQuest). BASE:n kohdalla lataaminen suoritettiin 100 tulosta kerralla `.json`-muotoon. OpenAlex:in tulokset haettiin 200 tulosta kerralla `.json`-muotoon.
 
@@ -284,19 +283,13 @@ Tulokset ladattiin ensisijaisesti `.csv`- tai `.xlsx`-muotoon jos mahdollista (S
 
 Näiden lisäksi haimme käsin seuraavista organisaatiosivuista:
 
-+---------------------------------------------------+---------------+--------------------------------------------------------------------------------------------------------------------+------------+
 | Kohde                                             | Hakuajankohta | Osoite                                                                                                             | Tulosmäärä |
-+===================================================+===============+====================================================================================================================+============+
+|---------------------------------------------------|---------------|--------------------------------------------------------------------------------------------------------------------|------------|
 | Pelastusopiston julkaisusarja A: Oppimateriaalit  | 5.1.2023      | <https://www.pelastusopisto.fi/kirjasto-ja-tietopalvelut/julkaisut-ja-aineistot/a-julkaisusarja-oppimateriaalit/>  | 0          |
-+---------------------------------------------------+---------------+--------------------------------------------------------------------------------------------------------------------+------------+
 | Pelastusopiston julkaisusarja B: Tutkimusraportit | 5.1.2023      | <https://www.pelastusopisto.fi/kirjasto-ja-tietopalvelut/julkaisut-ja-aineistot/B-julkaisusarja-tutkimusraportit/> | 2          |
-+---------------------------------------------------+---------------+--------------------------------------------------------------------------------------------------------------------+------------+
 | Pelastusopiston julkaisusarja D: Muut julkaisut   | 5.1.2023      | <https://www.pelastusopisto.fi/kirjasto-ja-tietopalvelut/julkaisut-ja-aineistot/D-julkaisusarja-muut-julkaisut/>   | 1          |
-+---------------------------------------------------+---------------+--------------------------------------------------------------------------------------------------------------------+------------+
 | Pelastusopiston muut koulutusmateriaalit          | 5.1.2023      | <https://www.pelastusopisto.fi/kirjasto-ja-tietopalvelut/julkaisut-ja-aineistot/muut-koulutusmateriaalit/>         | 0          |
-+---------------------------------------------------+---------------+--------------------------------------------------------------------------------------------------------------------+------------+
 | SPEK:in julkaisut                                 | 8.1.2023      | <https://www.spek.fi/vaikuttaminen/tutkimukset/julkaisut/>                                                         | 2          |
-+---------------------------------------------------+---------------+--------------------------------------------------------------------------------------------------------------------+------------+
 
 : Haku 1:n suoritetut organisaatiosivuhaut {#tbl-haku1-organisaatiosivut}
 
@@ -311,7 +304,7 @@ Hakutulosten seulonta tuotti seuraavan PRISMA-protokollan mukaisen kulkukaavion:
 #| label: fig-haku1-prisma-tietokannat
 #| fig-cap: "PRISMA-kulkukaavio, tietokannat ja rekisterit, haku 1"
 #| eval: true
-library("PRISMAstatement")
+#| code-summary: "Kuvion piirtäminen"
 
 labels <- c(
   "Tunnistetut kohteet",
@@ -336,6 +329,7 @@ flow_exclusions(
   percent_of_prev = FALSE,
   show_count = TRUE,
   font_size = 14)
+
 ```
 
 ## Muut lähteet
@@ -344,7 +338,7 @@ flow_exclusions(
 #| label: fig-haku1-prisma-muut
 #| fig-cap: "PRISMA-kulkukaavio, muut lähteet, haku 1"
 #| eval: true
-library("PRISMAstatement")
+#| code-summary: "Kuvion piirtäminen"
 
 labels <- c(
   "Tunnistetut kohteet",
@@ -367,6 +361,7 @@ flow_exclusions(
   percent_of_prev = FALSE,
   show_count = TRUE,
   font_size = 14)
+
 ```
 :::
 
@@ -374,61 +369,34 @@ flow_exclusions(
 
 Seulonnan jälkeen poistettuja tutkimusjulkaisuja oli yhteensä 26 kappaletta. @tbl-haku1-poistetut sisältää jokaisen julkaisun poistosyyn. Syyt ovat listattuna ensisijaisen syyn mukaan. Teimme päätöksen poisjättämisestä, jos vähintään yksi inkluusiokriteeri ei täyttynyt.
 
-+-------------------+---------------------------------------------------------------------------+
 | Kohde             | Syy(t) poistoon                                                           |
-+===================+===========================================================================+
+|-------------------|---------------------------------------------------------------------------|
 | @ariza-montes2015 | Väärä maantieteellinen sijainti                                           |
-+-------------------+---------------------------------------------------------------------------+
 | @beck2023         | Väärä maantieteellinen sijainti, väärä kohderyhmä, ei-empiirinen tutkimus |
-+-------------------+---------------------------------------------------------------------------+
 | @blondin2014      | Väärä julkaisutyyppi                                                      |
-+-------------------+---------------------------------------------------------------------------+
 | @brown2021        | Väärä maantieteellinen sijainti                                           |
-+-------------------+---------------------------------------------------------------------------+
 | @caldwell2010     | Ei-empiirinen tutkimus                                                    |
-+-------------------+---------------------------------------------------------------------------+
 | @cohen2023        | Väärä tutkimusaihe, väärä maantieteellinen sijainti                       |
-+-------------------+---------------------------------------------------------------------------+
 | @eskelinen2020    | Väärä tutkimusaihe                                                        |
-+-------------------+---------------------------------------------------------------------------+
 | @haikonen2016     | Väärä tutkimusaihe                                                        |
-+-------------------+---------------------------------------------------------------------------+
 | @innstrand2010    | Väärä tutkimusaihe, väärä maantieteellinen sijainti, väärä kohderyhmä     |
-+-------------------+---------------------------------------------------------------------------+
 | @keiski2018       | Väärä julkaisutyyppi                                                      |
-+-------------------+---------------------------------------------------------------------------+
 | @khoshakhlagh2021 | Väärä tutkimusaihe, väärä maantieteellinen sijainti                       |
-+-------------------+---------------------------------------------------------------------------+
 | @koski2019        | Väärä tutkimusaihe                                                        |
-+-------------------+---------------------------------------------------------------------------+
 | @mamen2013        | Väärä tutkimusaihe, väärä maantieteellinen sijainti                       |
-+-------------------+---------------------------------------------------------------------------+
 | @menzel2015       | Ei-empiirinen tutkimus                                                    |
-+-------------------+---------------------------------------------------------------------------+
 | @ojala2016        | Väärä julkaisutyyppi                                                      |
-+-------------------+---------------------------------------------------------------------------+
 | @papazoglou2017   | Väärä tutkimusaihe, ei-empiirinen tutkimus                                |
-+-------------------+---------------------------------------------------------------------------+
 | @polavieja2012    | Väärä tutkimusaihe                                                        |
-+-------------------+---------------------------------------------------------------------------+
 | @punakallio2014   | Väärä tutkimusaihe                                                        |
-+-------------------+---------------------------------------------------------------------------+
 | @puustinen2019    | Väärä kohderyhmä                                                          |
-+-------------------+---------------------------------------------------------------------------+
 | @pelastus2021     | Väärä tutkimusaihe[^haku1-1]                                              |
-+-------------------+---------------------------------------------------------------------------+
 | @saal2021         | Väärä tutkimusaihe, väärä kohderyhmä                                      |
-+-------------------+---------------------------------------------------------------------------+
 | @salminen2019     | Väärä kohderyhmä                                                          |
-+-------------------+---------------------------------------------------------------------------+
 | @stefanowski2023  | Väärä tutkimusaihe, väärä maantieteellinen sijainti                       |
-+-------------------+---------------------------------------------------------------------------+
 | @tolonen2021      | Väärä tutkimusaihe                                                        |
-+-------------------+---------------------------------------------------------------------------+
 | @uusitalo2018     | Ei-empiirinen tutkimus                                                    |
-+-------------------+---------------------------------------------------------------------------+
 | @vähäsantanen2019 | Väärä tutkimusaihe                                                        |
-+-------------------+---------------------------------------------------------------------------+
 
 : Haku 1:n poistetut kohteet syineen {#tbl-haku1-poistetut}
 

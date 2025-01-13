@@ -1,5 +1,14 @@
 # Haku 6 {#sec-haku6}
 
+```{r}
+#| label: haku6-00-paketit
+#| code-summary: "Osiossa käytetyt paketit"
+#| eval: true
+
+library("PRISMAstatement")
+
+```
+
 Haku 6 seurasi seuraavia inkluusiokriteerejä:
 
 -   Julkaisuaika: 1.1.2010 - 30.9.2023
@@ -16,23 +25,15 @@ Haku 6 seurasi seuraavia inkluusiokriteerejä:
 
 Haku suoritettiin seuraavissa tietolähteissä:
 
-+-----------------------------------------+------------------------------------+
 | Tietokanta                              | Hakukone (jos eri kuin tietokanta) |
-+=========================================+====================================+
+|-----------------------------------------|------------------------------------|
 | Scopus                                  |                                    |
-+-----------------------------------------+------------------------------------+
 | Web of Science Core Collection          | Web of Science                     |
-+-----------------------------------------+------------------------------------+
 | MEDLINE                                 | Web of Science                     |
-+-----------------------------------------+------------------------------------+
 | Ebook Central                           | ProQuest                           |
-+-----------------------------------------+------------------------------------+
 | Social Science Premium Collection       | ProQuest                           |
-+-----------------------------------------+------------------------------------+
 | Bielefeld Academic Search Engine (BASE) |                                    |
-+-----------------------------------------+------------------------------------+
 | OpenAlex                                |                                    |
-+-----------------------------------------+------------------------------------+
 
 : Haku 6:n tietolähteet {#tbl-haku6-tietolahteet}
 
@@ -40,43 +41,43 @@ Haku suoritettiin seuraavissa tietolähteissä:
 
 Alla olevassa taulukossa esiintyy hakujen suorituspäivämäärät, hakusanat ja hakukonekohtaiset rajaukset sekä osumat.
 
-+---------+-------------------------------------------------------------+----------------+-----------------------------+-------------+----------------------------------------------------------------+
-| Koodi   | Hakukone (tietokannat suluissa)                             | Haku-ajankohta | Julkaisujen ajankohtarajaus | Tulos-määrä | Haun jälkeiset rajaukset                                       |
-+=========+=============================================================+================+=============================+=============+================================================================+
-| H6_1    | Scopus                                                      | 19.12.2023     | 2010-2023                   | 701         | Tyyppi: Article, Book, Book Chapter NOT Conference Proceedings |
-|         |                                                             |                |                             |             |                                                                |
-|         |                                                             |                |                             |             | Kieli: Englanti                                                |
-|         |                                                             |                |                             |             |                                                                |
-|         |                                                             |                |                             |             | Maat: Eurooppalaiset maat[^haku6-1]                            |
-+---------+-------------------------------------------------------------+----------------+-----------------------------+-------------+----------------------------------------------------------------+
-| H6_2    | Web of Science (WoS Core Collection)                        | 19.12.2023     | 1.1.2023 - 30.9.2023        | 403         | Tyyppi: Article, Book, Book Chapter                            |
-|         |                                                             |                |                             |             |                                                                |
-|         |                                                             |                |                             |             | Kieli: Englanti                                                |
-|         |                                                             |                |                             |             |                                                                |
-|         |                                                             |                |                             |             | Maat: Eurooppalaiset maat[^haku6-2]                            |
-+---------+-------------------------------------------------------------+----------------+-----------------------------+-------------+----------------------------------------------------------------+
-| H6_3    | Web of Science (MEDLINE)                                    | 19.12.2023     | 2010 - 2023                 | 1666        | Tyyppi: Journal Article                                        |
-|         |                                                             |                |                             |             |                                                                |
-|         |                                                             |                |                             |             | Kieli: Englanti                                                |
-+---------+-------------------------------------------------------------+----------------+-----------------------------+-------------+----------------------------------------------------------------+
-| H6_4    | ProQuest (Ebook Central, Social Science Premium Collection) | 20.12.2023     | 1.1.2010 - 30.9.2023        | 514         | Vertaisarvioitu: Kyllä                                         |
-|         |                                                             |                |                             |             |                                                                |
-|         |                                                             |                |                             |             | Lähdetyyppi: Scholarly Articles                                |
-|         |                                                             |                |                             |             |                                                                |
-|         |                                                             |                |                             |             | Tyyppi: Article, Case Study, Undefined                         |
-|         |                                                             |                |                             |             |                                                                |
-|         |                                                             |                |                             |             | Kieli: Englanti                                                |
-|         |                                                             |                |                             |             |                                                                |
-|         |                                                             |                |                             |             | Maat: Eurooppalaiset maat[^haku6-3]                            |
-+---------+-------------------------------------------------------------+----------------+-----------------------------+-------------+----------------------------------------------------------------+
-| H6_5    | BASE                                                        | 20.12.2023     | 2010 - 2023                 | 159         | Tyyppi: Book, Article contribution                             |
-|         |                                                             |                |                             |             |                                                                |
-|         |                                                             |                |                             |             | Kieli: Englanti                                                |
-|         |                                                             |                |                             |             |                                                                |
-|         |                                                             |                |                             |             | Maat: Eurooppa[^haku6-4]                                       |
-+---------+-------------------------------------------------------------+----------------+-----------------------------+-------------+----------------------------------------------------------------+
-| H6_6    | OpenAlex                                                    | 20.12.2023     | 1.1.2010 - 30.9.2023        | 1049        | Tyyppi: Journal Article, Monograph, Report                     |
-+---------+-------------------------------------------------------------+----------------+-----------------------------+-------------+----------------------------------------------------------------+
++-------+-------------------------------------------------------------+----------------+-----------------------------+-------------+----------------------------------------------------------------+
+| Koodi | Hakukone (tietokannat suluissa)                             | Haku-ajankohta | Julkaisujen ajankohtarajaus | Tulos-määrä | Haun jälkeiset rajaukset                                       |
++=======+=============================================================+================+=============================+=============+================================================================+
+| H6_1  | Scopus                                                      | 19.12.2023     | 2010-2023                   | 701         | Tyyppi: Article, Book, Book Chapter NOT Conference Proceedings |
+|       |                                                             |                |                             |             |                                                                |
+|       |                                                             |                |                             |             | Kieli: Englanti                                                |
+|       |                                                             |                |                             |             |                                                                |
+|       |                                                             |                |                             |             | Maat: Eurooppalaiset maat[^haku6-1]                            |
++-------+-------------------------------------------------------------+----------------+-----------------------------+-------------+----------------------------------------------------------------+
+| H6_2  | Web of Science (WoS Core Collection)                        | 19.12.2023     | 1.1.2023 - 30.9.2023        | 403         | Tyyppi: Article, Book, Book Chapter                            |
+|       |                                                             |                |                             |             |                                                                |
+|       |                                                             |                |                             |             | Kieli: Englanti                                                |
+|       |                                                             |                |                             |             |                                                                |
+|       |                                                             |                |                             |             | Maat: Eurooppalaiset maat[^haku6-2]                            |
++-------+-------------------------------------------------------------+----------------+-----------------------------+-------------+----------------------------------------------------------------+
+| H6_3  | Web of Science (MEDLINE)                                    | 19.12.2023     | 2010 - 2023                 | 1666        | Tyyppi: Journal Article                                        |
+|       |                                                             |                |                             |             |                                                                |
+|       |                                                             |                |                             |             | Kieli: Englanti                                                |
++-------+-------------------------------------------------------------+----------------+-----------------------------+-------------+----------------------------------------------------------------+
+| H6_4  | ProQuest (Ebook Central, Social Science Premium Collection) | 20.12.2023     | 1.1.2010 - 30.9.2023        | 514         | Vertaisarvioitu: Kyllä                                         |
+|       |                                                             |                |                             |             |                                                                |
+|       |                                                             |                |                             |             | Lähdetyyppi: Scholarly Articles                                |
+|       |                                                             |                |                             |             |                                                                |
+|       |                                                             |                |                             |             | Tyyppi: Article, Case Study, Undefined                         |
+|       |                                                             |                |                             |             |                                                                |
+|       |                                                             |                |                             |             | Kieli: Englanti                                                |
+|       |                                                             |                |                             |             |                                                                |
+|       |                                                             |                |                             |             | Maat: Eurooppalaiset maat[^haku6-3]                            |
++-------+-------------------------------------------------------------+----------------+-----------------------------+-------------+----------------------------------------------------------------+
+| H6_5  | BASE                                                        | 20.12.2023     | 2010 - 2023                 | 159         | Tyyppi: Book, Article contribution                             |
+|       |                                                             |                |                             |             |                                                                |
+|       |                                                             |                |                             |             | Kieli: Englanti                                                |
+|       |                                                             |                |                             |             |                                                                |
+|       |                                                             |                |                             |             | Maat: Eurooppa[^haku6-4]                                       |
++-------+-------------------------------------------------------------+----------------+-----------------------------+-------------+----------------------------------------------------------------+
+| H6_6  | OpenAlex                                                    | 20.12.2023     | 1.1.2010 - 30.9.2023        | 1049        | Tyyppi: Journal Article, Monograph, Report                     |
++-------+-------------------------------------------------------------+----------------+-----------------------------+-------------+----------------------------------------------------------------+
 
 : Haku 6:n toteutetut haut {#tbl-haku6-toteutetuthaut}
 
@@ -88,34 +89,34 @@ Alla olevassa taulukossa esiintyy hakujen suorituspäivämäärät, hakusanat ja
 
 [^haku6-4]: BASE:n oma rajaus.
 
-Jokaisen haun hakulausekkeet ovat listattuna alla hakukoodeittain (ks. @tbl-haku6-toteutetuthaut). Paina osa-hakua vastaavaa koodia nähdäksesi kunkin haun hakulausekkeen. Voit kopioida lausekkeen sellaisenaan leikepöydällesi painamalla kopiointikuvaketta avatun hakulausekkeen yläoikeassa nurkassa.
+Jokaisen haun hakulausekkeet ovat listattuna alla hakukoodeittain (ks. @tbl-haku6-toteutetuthaut).
 
-```{r}
+```{default}
 #| code-summary: "Haku H6_1"
 TITLE-ABS-KEY ( ( "fire rescue*" OR "fire*fighter*" OR "rescue service*" OR "emergency respon*" OR "emergency personnel" OR {medic} OR "emergency medic*" OR ambulance ) AND ( discriminat* OR harass* OR violen* OR "improper behavior" OR equali* OR equit* ) ) AND ( PUBYEAR < 2024 AND PUBYEAR > 2009 ) AND ( DOCTYPE ( ar ) OR DOCTYPE ( bk ) OR DOCTYPE ( ch ) ) AND NOT SRCTYPE ( p ) AND ( LIMIT-TO ( LANGUAGE , "English" ) ) AND ( LIMIT-TO ( AFFILCOUNTRY , "United Kingdom" ) OR LIMIT-TO ( AFFILCOUNTRY , "Undefined" ) OR LIMIT-TO ( AFFILCOUNTRY , "Netherlands" ) OR LIMIT-TO ( AFFILCOUNTRY , "Italy" ) OR LIMIT-TO ( AFFILCOUNTRY , "Spain" ) OR LIMIT-TO ( AFFILCOUNTRY , "Sweden" ) OR LIMIT-TO ( AFFILCOUNTRY , "France" ) OR LIMIT-TO ( AFFILCOUNTRY , "Turkey" ) OR LIMIT-TO ( AFFILCOUNTRY , "Germany" ) OR LIMIT-TO ( AFFILCOUNTRY , "Switzerland" ) OR LIMIT-TO ( AFFILCOUNTRY , "Belgium" ) OR LIMIT-TO ( AFFILCOUNTRY , "Norway" ) OR LIMIT-TO ( AFFILCOUNTRY , "Denmark" ) OR LIMIT-TO ( AFFILCOUNTRY , "Finland" ) OR LIMIT-TO ( AFFILCOUNTRY , "Portugal" ) OR LIMIT-TO ( AFFILCOUNTRY , "Ireland" ) OR LIMIT-TO ( AFFILCOUNTRY , "Greece" ) OR LIMIT-TO ( AFFILCOUNTRY , "Austria" ) OR LIMIT-TO ( AFFILCOUNTRY , "Poland" ) OR LIMIT-TO ( AFFILCOUNTRY , "Czech Republic" ) OR LIMIT-TO ( AFFILCOUNTRY , "Hungary" ) OR LIMIT-TO ( AFFILCOUNTRY , "Romania" ) OR LIMIT-TO ( AFFILCOUNTRY , "Luxembourg" ) OR LIMIT-TO ( AFFILCOUNTRY , "Latvia" ) OR LIMIT-TO ( AFFILCOUNTRY , "Georgia" ) OR LIMIT-TO ( AFFILCOUNTRY , "Slovenia" ) OR LIMIT-TO ( AFFILCOUNTRY , "Serbia" ) OR LIMIT-TO ( AFFILCOUNTRY , "Russian Federation" ) OR LIMIT-TO ( AFFILCOUNTRY , "Lithuania" ) OR LIMIT-TO ( AFFILCOUNTRY , "Iceland" ) OR LIMIT-TO ( AFFILCOUNTRY , "Greenland" ) OR LIMIT-TO ( AFFILCOUNTRY , "Estonia" ) OR LIMIT-TO ( AFFILCOUNTRY , "Cyprus" ) OR LIMIT-TO ( AFFILCOUNTRY , "Croatia" ) OR LIMIT-TO ( AFFILCOUNTRY , "Armenia" ) )
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H6_2"
 ((TS=(("fire rescue*" OR "fire$fighter*" OR "rescue service*" OR "emergency respon*" OR "emergency personnel" OR "medic" OR "emergency medic*" OR ambulance) AND (discriminat* OR harass* OR violen* OR "improper behavior" OR equali* OR equit*))) AND DOP=(2010-01-01/2023-09-30)) AND DT=(Article OR Book OR Book Chapter)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H6_3"
 (((((TS=(("fire rescue*" OR "fire$fighter*" OR "rescue service*" OR "emergency respon*" OR "emergency personnel" OR "medic" OR "emergency medic*" OR ambulance) AND (discriminat* OR harass* OR violen* OR "improper behavior" OR equali* OR equit*)))) AND LA=(English)) AND DT=(Classical Article OR Clinical Study OR Comparative Study OR Controlled Clinical Trial OR Equivalence Trial OR Journal Article OR Observational Study OR Personal Narrative OR Personal Narratives OR Pragmatic Clinical Trial OR Twin Study OR Validation Studies OR Validation Study))) AND PY=(2010-2023)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H6_4"
 (TIABSU(("fire rescue*" OR "fire?fighter*" OR "rescue service*" OR "emergency respon*" OR "emergency personnel" OR "medic" OR "emergency medic*" OR ambulance) AND (discriminat* OR harass* OR violen* OR "improper behavio?r" OR equali* OR equit*)) AND PEER(yes) AND PUBDATE(20100101-20230930)) AND (location.exact("United Kingdom UK" OR "England" OR "Europe" OR "Italy" OR "Netherlands" OR "Germany" OR "France" OR "Spain" OR "Sweden" OR "Switzerland" OR "Wales" OR "Denmark" OR "Finland" OR "Norway" OR "Portugal" OR "Belgium" OR "Ireland" OR "Scotland" OR "Georgia" OR "Greece" OR "Austria") AND at.exact("Article" OR "Case Study" OR "Undefined") AND la.exact("ENG") AND stype.exact("Scholarly Journals"))
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H6_5"
 ("fire rescue*" OR fire*fighter* OR "rescue service*" OR "emergency respon*" OR "emergency personnel" OR "medic" OR "emergency medic*" OR "ambulance") AND (discriminat* OR harass* OR violen* OR "improper behavio*r" OR "equali*" OR equit*)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H6_6"
 https://api.openalex.org/works?search=("fire rescue" OR firefighter OR "rescue service" OR "emergency respon" OR "emergency personnel" OR "emergency medic" OR "ambulance") AND (discriminat OR harass OR violen OR "improper behavior" OR equali OR "non-discriminat" OR equit)&filter=from_publication_date:2010-01-01,to_publication_date:2023-09-30,type_crossref:journal-article|monograph|report&per_page=200&select=title,publication_year,doi&page=1
 ```
@@ -137,7 +138,7 @@ Hakutulosten seulonta tuotti seuraavan PRISMA-protokollan mukaisen kulkukaavion:
 #| label: fig-haku6-prisma-tietokannat
 #| fig-cap: "PRISMA-kulkukaavio, tietokannat ja rekisterit, haku 6"
 #| eval: true
-library("PRISMAstatement")
+#| code-summary: "Kuvion piirtäminen"
 
 labels <- c(
   "Tunnistetut kohteet",
@@ -162,6 +163,7 @@ flow_exclusions(
   percent_of_prev = FALSE,
   show_count = TRUE,
   font_size = 14)
+
 ```
 :::
 
@@ -169,187 +171,97 @@ flow_exclusions(
 
 Seulonnan jälkeen poistettuja tutkimusjulkaisuja oli yhteensä 89 kappaletta. @tbl-haku6-poistetut sisältää jokaisen julkaisun poistosyyn. Syyt ovat listattuna ensisijaisen syyn mukaan. Teimme päätöksen poisjättämisestä, jos vähintään yksi inkluusiokriteeri ei täyttynyt.
 
-+-------------------------+-----------------------------------------------------------------------+
 | Kohde                   | Syy(t) poistoon                                                       |
-+=========================+=======================================================================+
+|-------------------------|-----------------------------------------------------------------------|
 | @abbott2023             | Ei-empiirinen tutkimus                                                |
-+-------------------------+-----------------------------------------------------------------------+
 | @allen2020              | Väärä maantieteellinen sijainti                                       |
-+-------------------------+-----------------------------------------------------------------------+
 | @ariza-montes2015       | Väärä kohderyhmä                                                      |
-+-------------------------+-----------------------------------------------------------------------+
 | @basting2023            | Väärä maantieteellinen sijainti                                       |
-+-------------------------+-----------------------------------------------------------------------+
 | @bentley2016            | Väärä maantieteellinen sijainti                                       |
-+-------------------------+-----------------------------------------------------------------------+
 | @bigham2014             | Väärä maantieteellinen sijainti                                       |
-+-------------------------+-----------------------------------------------------------------------+
 | @boyle2017              | Väärä maantieteellinen sijainti                                       |
-+-------------------------+-----------------------------------------------------------------------+
 | @byron2018              | Ei-empiirinen tutkimus                                                |
-+-------------------------+-----------------------------------------------------------------------+
 | @cetin2019              | Väärä kohderyhmä                                                      |
-+-------------------------+-----------------------------------------------------------------------+
 | @chazel2023             | Väärä kohderyhmä                                                      |
-+-------------------------+-----------------------------------------------------------------------+
 | @clevelandmanchanda2020 | Väärä kohderyhmä                                                      |
-+-------------------------+-----------------------------------------------------------------------+
 | @copeland2017           | Väärä kohderyhmä, väärä maantieteellinen sijainti                     |
-+-------------------------+-----------------------------------------------------------------------+
 | @dinhof2023             | Väärä tutkimusaihe                                                    |
-+-------------------------+-----------------------------------------------------------------------+
 | @donald2023             | Väärä kohderyhmä                                                      |
-+-------------------------+-----------------------------------------------------------------------+
 | @drew2018               | Ei-empiirinen tutkimus                                                |
-+-------------------------+-----------------------------------------------------------------------+
 | @dye2020                | Väärä kohderyhmä                                                      |
-+-------------------------+-----------------------------------------------------------------------+
 | @ericson2014            | Väärä tutkimusaihe                                                    |
-+-------------------------+-----------------------------------------------------------------------+
 | @foghammar2016          | Väärä kohderyhmä                                                      |
-+-------------------------+-----------------------------------------------------------------------+
 | @furin2015              | Väärä maantieteellinen sijainti                                       |
-+-------------------------+-----------------------------------------------------------------------+
 | @geoffrion2020          | Väärä kohderyhmä, ei-empiirinen tutkimus                              |
-+-------------------------+-----------------------------------------------------------------------+
 | @germain2023            | Väärä tutkimusaihe                                                    |
-+-------------------------+-----------------------------------------------------------------------+
 | @gómez-gutiérrez2014    | Väärä kohderyhmä                                                      |
-+-------------------------+-----------------------------------------------------------------------+
 | @gormley2016            | Väärä maantieteellinen sijainti                                       |
-+-------------------------+-----------------------------------------------------------------------+
 | @graham2021             | Väärä kohderyhmä, väärä maantieteellinen sijainti                     |
-+-------------------------+-----------------------------------------------------------------------+
 | @greenslade2020         | Väärä kohderyhmä                                                      |
-+-------------------------+-----------------------------------------------------------------------+
 | @grip2016               | Ei-empiirinen tutkimus                                                |
-+-------------------------+-----------------------------------------------------------------------+
 | @harrison2019           | Ei-empiirinen tutkimus                                                |
-+-------------------------+-----------------------------------------------------------------------+
 | @hassankhani2018        | Väärä maantieteellinen sijainti                                       |
-+-------------------------+-----------------------------------------------------------------------+
 | @hazell2021             | Väärä tutkimusaihe                                                    |
-+-------------------------+-----------------------------------------------------------------------+
 | @healy2011              | Väärä kohderyhmä                                                      |
-+-------------------------+-----------------------------------------------------------------------+
 | @hom2017                | Väärä maantieteellinen sijainti                                       |
-+-------------------------+-----------------------------------------------------------------------+
 | @hosseinikia2018        | Väärä maantieteellinen sijainti                                       |
-+-------------------------+-----------------------------------------------------------------------+
 | @jacobson2022           | Väärä kohderyhmä                                                      |
-+-------------------------+-----------------------------------------------------------------------+
 | @jakubowski2021         | Väärä tutkimusaihe                                                    |
-+-------------------------+-----------------------------------------------------------------------+
 | @jamieson2016           | Väärä tutkimusaihe, väärä kohderyhmä, väärä maantieteellinen sijainti |
-+-------------------------+-----------------------------------------------------------------------+
 | @jung2020               | Väärä kohderyhmä, ei-empiirinen tutkimus                              |
-+-------------------------+-----------------------------------------------------------------------+
 | @kaeser2018             | Väärä kohderyhmä                                                      |
-+-------------------------+-----------------------------------------------------------------------+
 | @kaltiso2021            | Väärä kohderyhmä, väärä maantieteellinen sijainti                     |
-+-------------------------+-----------------------------------------------------------------------+
 | @kang2022               | Väärä maantieteellinen sijainti                                       |
-+-------------------------+-----------------------------------------------------------------------+
 | @karaeminogullari2018   | Väärä kohderyhmä                                                      |
-+-------------------------+-----------------------------------------------------------------------+
 | @kline2019              | Väärä kohderyhmä                                                      |
-+-------------------------+-----------------------------------------------------------------------+
 | @koeppel2022            | Väärä maantieteellinen sijainti                                       |
-+-------------------------+-----------------------------------------------------------------------+
 | @lamesoo2013            | Väärä kohderyhmä                                                      |
-+-------------------------+-----------------------------------------------------------------------+
 | @lever2019              | Ei-empiirinen tutkimus                                                |
-+-------------------------+-----------------------------------------------------------------------+
 | @li2010                 | Väärä kohderyhmä                                                      |
-+-------------------------+-----------------------------------------------------------------------+
 | @lu2020                 | Väärä kohderyhmä                                                      |
-+-------------------------+-----------------------------------------------------------------------+
 | @lu2020a                | Väärä kohderyhmä, väärä maantieteellinen sijainti                     |
-+-------------------------+-----------------------------------------------------------------------+
 | @maake2021              | Väärä kohderyhmä, väärä maantieteellinen sijainti                     |
-+-------------------------+-----------------------------------------------------------------------+
 | @maguire2018            | Ei-empiirinen tutkimus                                                |
-+-------------------------+-----------------------------------------------------------------------+
 | @maguire2017            | Väärä maantieteellinen sijainti                                       |
-+-------------------------+-----------------------------------------------------------------------+
 | @marco2019              | Ei-empiirinen tutkimus, väärä maantieteellinen sijainti               |
-+-------------------------+-----------------------------------------------------------------------+
 | @martínez-garcía2021    | Väärä kohderyhmä                                                      |
-+-------------------------+-----------------------------------------------------------------------+
 | @mendes2015             | Ei-empiirinen tutkimus                                                |
-+-------------------------+-----------------------------------------------------------------------+
 | @miró2010               | Väärä tutkimusaihe                                                    |
-+-------------------------+-----------------------------------------------------------------------+
 | @morken2016             | Väärä kohderyhmä                                                      |
-+-------------------------+-----------------------------------------------------------------------+
 | @morken2013             | Väärä kohderyhmä                                                      |
-+-------------------------+-----------------------------------------------------------------------+
 | @morken2015             | Väärä kohderyhmä                                                      |
-+-------------------------+-----------------------------------------------------------------------+
 | @morokuma2019           | Väärä maantieteellinen sijainti                                       |
-+-------------------------+-----------------------------------------------------------------------+
 | @murphy2015             | Ei-empiirinen tutkimus                                                |
-+-------------------------+-----------------------------------------------------------------------+
 | @murray2020             | Ei-empiirinen tutkimus                                                |
-+-------------------------+-----------------------------------------------------------------------+
 | @nikathil2017           | Väärä kohderyhmä, ei-empiirinen tutkimus                              |
-+-------------------------+-----------------------------------------------------------------------+
 | @nikolic2020            | Väärä kohderyhmä                                                      |
-+-------------------------+-----------------------------------------------------------------------+
 | @owusu-ansah2023        | Ei-empiirinen tutkimus                                                |
-+-------------------------+-----------------------------------------------------------------------+
 | @oztermeli2023          | Väärä kohderyhmä                                                      |
-+-------------------------+-----------------------------------------------------------------------+
 | @oztok2018              | Väärä kohderyhmä                                                      |
-+-------------------------+-----------------------------------------------------------------------+
 | @péculo-carrasco2021    | Väärä kohderyhmä                                                      |
-+-------------------------+-----------------------------------------------------------------------+
 | @perina2018             | Väärä kohderyhmä, väärä maantieteellinen sijainti                     |
-+-------------------------+-----------------------------------------------------------------------+
 | @pourshaikhian2016      | Ei-empiirinen tutkimus                                                |
-+-------------------------+-----------------------------------------------------------------------+
 | @powell2023             | Väärä maantieteellinen sijainti                                       |
-+-------------------------+-----------------------------------------------------------------------+
 | @punches2023            | Väärä kohderyhmä, väärä maantieteellinen sijainti                     |
-+-------------------------+-----------------------------------------------------------------------+
 | @ramacciati2016         | Ei-empiirinen tutkimus                                                |
-+-------------------------+-----------------------------------------------------------------------+
 | @ramacciati2015         | Väärä kohderyhmä                                                      |
-+-------------------------+-----------------------------------------------------------------------+
 | @ramacciati2018         | Väärä kohderyhmä                                                      |
-+-------------------------+-----------------------------------------------------------------------+
 | @ramacciati2019         | Väärä kohderyhmä                                                      |
-+-------------------------+-----------------------------------------------------------------------+
 | @ramacciati2020         | Väärä kohderyhmä, ei-empiirinen tutkimus                              |
-+-------------------------+-----------------------------------------------------------------------+
 | @ravioli2022            | Väärä kohderyhmä                                                      |
-+-------------------------+-----------------------------------------------------------------------+
 | @reißmann2023           | Väärä kohderyhmä                                                      |
-+-------------------------+-----------------------------------------------------------------------+
 | @schneider2018          | Väärä kohderyhmä, ei-empiirinen tutkimus                              |
-+-------------------------+-----------------------------------------------------------------------+
 | @snavely2021            | Väärä kohderyhmä, väärä maantieteellinen sijainti                     |
-+-------------------------+-----------------------------------------------------------------------+
 | @somville2016           | Väärä kohderyhmä                                                      |
-+-------------------------+-----------------------------------------------------------------------+
 | @taylor2015             | Väärä maantieteellinen sijainti                                       |
-+-------------------------+-----------------------------------------------------------------------+
 | @taylor2016             | Väärä maantieteellinen sijainti                                       |
-+-------------------------+-----------------------------------------------------------------------+
 | @taylor2019             | Väärä maantieteellinen sijainti                                       |
-+-------------------------+-----------------------------------------------------------------------+
 | @touriel2021            | Väärä maantieteellinen sijainti                                       |
-+-------------------------+-----------------------------------------------------------------------+
 | @turkcuer2015           | Väärä kohderyhmä                                                      |
-+-------------------------+-----------------------------------------------------------------------+
 | @venesoja2020           | Väärä tutkimusaihe                                                    |
-+-------------------------+-----------------------------------------------------------------------+
 | @wankhade2016           | Väärä tutkimusaihe                                                    |
-+-------------------------+-----------------------------------------------------------------------+
 | @zeidan2022             | Väärä kohderyhmä, väärä maantieteellinen sijainti                     |
-+-------------------------+-----------------------------------------------------------------------+
 | @ziaei2018              | Väärä kohderyhmä, ei-empiirinen tutkimus                              |
-+-------------------------+-----------------------------------------------------------------------+
 
 : Haku 6:n poistetut kohteet syineen {#tbl-haku6-poistetut}
 

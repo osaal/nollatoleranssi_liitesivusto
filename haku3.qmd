@@ -1,5 +1,14 @@
 # Haku 3 {#sec-haku3}
 
+```{r}
+#| label: haku3-00-paketit
+#| code-summary: "Osiossa käytetyt paketit"
+#| eval: true
+
+library("PRISMAstatement")
+
+```
+
 Haku 3 seurasi seuraavia inkluusiokriteerejä:
 
 -   Julkaisuaika: 1.1.2010 - 30.9.2023
@@ -128,124 +137,124 @@ Alla olevassa taulukossa esiintyy hakujen suorituspäivämäärät, hakusanat ja
 
 [^haku3-1]: Hakujen seulontavaiheessa huomasimme, että alkuperäisestä hausta 8.1.2024 oli jäänyt pois 27 tietuetta. Suoritimme haun siksi uudelleen 19.1.2024 ja latasimme kaikki tietueet. Tarkistimme, että vanhat tiedot vastasivat uusia tietoja.
 
-Jokaisen haun hakulausekkeet ovat listattuna alla hakukoodeittain (ks. @tbl-haku3-toteutetuthaut). Paina osa-hakua vastaavaa koodia nähdäksesi kunkin haun hakulausekkeen. Voit kopioida lausekkeen sellaisenaan leikepöydällesi painamalla kopiointikuvaketta avatun hakulausekkeen yläoikeassa nurkassa.
+Jokaisen haun hakulausekkeet ovat listattuna alla hakukoodeittain (ks. @tbl-haku3-toteutetuthaut).
 
-```{r}
+```{default}
 #| code-summary: "Haku H3_1_fi"
 TITLE-ABS-KEY((ensihoit* OR sairaankuljet* OR ambulanssi*) AND (syrji* OR häirin* OR häirit* OR väkival* OR painost* OR pahoinpi* OR ahdistel* OR epäasialli* OR yhdenvertai* OR tasa-arvo* OR tasapuoli* OR tasavertai*)) AND (PUBYEAR BEF 2024 AND PUBYEAR AFT 2009) AND (DOCTYPE(ar) OR DOCTYPE(bk) OR DOCTYPE(ch)) AND NOT SRCTYPE(p)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H3_1_sw"
 TITLE-ABS-KEY(("första hjälp*" OR nödhjälp* OR ambulans* OR sjuktransport* OR förstavårdar*) AND (diskriminer* OR trakasse* OR påtryck* OR våld* OR osaklig* OR opasslig* OR jämlik* OR jämställd*)) AND (PUBYEAR BEF 2024 AND PUBYEAR AFT 2009) AND (DOCTYPE(ar) OR DOCTYPE(bk) OR DOCTYPE(ch)) AND NOT SRCTYPE(p)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H3_1_en"
-TITLE-ABS-KEY ( ( {medic} OR "emergency medic*" OR ambulance ) AND ( discriminat* OR harass* OR pressur* OR violen* OR "improper behavior" OR equal* OR equit* ) ) AND ( PUBYEAR < 2024 AND PUBYEAR > 2009 ) AND ( DOCTYPE ( ar ) OR DOCTYPE ( bk ) OR DOCTYPE ( ch ) ) AND NOT SRCTYPE ( p ) AND ( LIMIT-TO ( LANGUAGE , "English" ) ) AND ( LIMIT-TO ( AFFILCOUNTRY , "Finland" ) )
+TITLE-ABS-KEY ( ( {medic} OR "emergency medic*" OR ambulance ) AND ( discriminat* OR harass* OR pressur* OR violen* OR "improper behavior" OR equal* OR equit* ) ) AND ( PUBYEAR < 2024 AND PUBYEAR > 2009 ) AND ( DOCTYPE ( ar ) OR DOCTYPE ( bk ) OR DOCTYPE ( ch ) ) AND NOT SRCTYPE ( p ) AND ( LIMIT-TO ( LANGUAGE , "English" ) ) AND ( LIMIT-TO ( AFFILCOUNTRY , "Finland" ) )
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H3_2_fi"
 (TS=((ensihoit* OR sairaankuljet* OR ambulanssi*) AND (syrji* OR häirin* OR häirit* OR väkival* OR painost* OR pahoinpi* OR ahdistel* OR epäasialli* OR yhdenvertai* OR tasa$arvo* OR tasapuoli* OR tasavertai*))) AND DOP=(2010-01-01/2023-09-30) AND DT=(Article OR Book OR Book Chapter)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H3_2_sw"
 (TS=(("första hjälp*" OR nödhjälp* OR ambulans* OR sjuktransport* OR förstavårdar*) AND (diskriminer* OR trakasse* OR påtryck* OR våld* OR osaklig* OR opasslig* OR jämlik* OR jämställd*))) AND DOP=(2010-01-01/2023-09-30) AND DT=(Article OR Book OR Book Chapter)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H3_2_en"
 (TS=(("medic" OR "emergency medic*" OR ambulance) AND (discriminat* OR harass* OR pressur* OR violen* OR "improper behavior" OR equal* OR equit*))) AND DOP=(2010-01-01/2023-09-30) AND DT=(Article OR Book OR Book Chapter)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H3_3_fi"
 TS=((ensihoit* OR sairaankuljet* OR ambulanssi*) AND (syrji* OR häirin* OR häirit* OR väkival* OR painost* OR pahoinpi* OR ahdistel* OR epäasialli* OR yhdenvertai* OR tasa$arvo* OR tasapuoli* OR tasavertai*)) AND DT=(Classical Article OR Clinical Study OR Comparative Study OR Controlled Clinical Trial OR Equivalence Trial OR Journal Article OR Observational Study OR Personal Narrative OR Personal Narratives OR Pragmatic Clinical Trial OR Twin Study OR Validation Studies OR Validation Study) AND PY=(2010-2023)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H3_3_sw"
 TS=(("första hjälp*" OR nödhjälp* OR ambulans* OR sjuktransport* OR förstavårdar*) AND (diskriminer* OR trakasse* OR påtryck* OR våld* OR osaklig* OR opasslig* OR jämlik* OR jämställd*)) AND DT=(Classical Article OR Clinical Study OR Comparative Study OR Controlled Clinical Trial OR Equivalence Trial OR Journal Article OR Observational Study OR Personal Narrative OR Personal Narratives OR Pragmatic Clinical Trial OR Twin Study OR Validation Studies OR Validation Study) AND PY=(2010-2023)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H3_3_en"
 TS=(("medic" OR "emergency medic*" OR ambulance) AND (discriminat* OR harass* OR pressur* OR violen* OR "improper behavior" OR equal* OR equit*) AND (finland OR finnish)) AND LA=(English) AND DT=(Classical Article OR Clinical Study OR Comparative Study OR Controlled Clinical Trial OR Equivalence Trial OR Journal Article OR Observational Study OR Personal Narrative OR Personal Narratives OR Pragmatic Clinical Trial OR Twin Study OR Validation Studies OR Validation Study) AND PY=(2010-2023)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H3_4_fi"
 noft((ensihoit* OR sairaankuljet* OR ambulanssi*) AND (syrji* OR häirin* OR häirit* OR väkival* OR painost* OR pahoinpi* OR ahdistel* OR epäasialli* OR yhdenvertai* OR tasa-arvo* OR tasapuoli* OR tasavertai*))
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H3_4_sw"
 noft(("första hjälp*" OR nödhjälp* OR ambulans* OR sjuktransport* OR förstavårdar*) AND (diskriminer* OR trakasse* OR påtryck* OR våld* OR osaklig* OR opasslig* OR jämlik* OR jämställd*))
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H3_4_en"
 noft(("medic" OR "emergency medic*" OR ambulance) AND (discriminat* OR harass* OR pressur* OR violen* OR "improper behavio?r" OR equal* OR equit*) AND (finland OR finnish))
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H3_5_fi"
 (ensihoit* OR sairaankuljet* OR ambulanssi*) AND (syrji* OR häirin* OR häirit* OR väkival* OR painost* OR pahoinpi* OR ahdistel* OR epäasialli* OR yhdenvertai* OR tasa-arvo* OR tasapuoli* OR tasavertai*) doctype:(11* 121) year:[2010 TO 2023]
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H3_5_sw"
 ("första hjälp*" OR nödhjälp* OR ambulans* OR sjuktransport* OR förstavårdar*) AND (diskriminer* OR trakasse* OR påtryck* OR våld* OR osaklig* OR opasslig* OR jämlik* OR jämställd*)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H3_5_en"
 ("medic" OR "emergency medic*" OR ambulance) AND (discriminat* OR harass* OR pressur* OR violen* OR "improper behavio*r" OR equal* OR equit*) AND (finnish OR finland) doctype:(11* 121) year:[2010 TO 2023]
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H3_6_fi"
 https://api.openalex.org/works?search=(ensihoit OR sairaankuljet OR ambulanssi) AND (syrji OR häirin OR häirit OR väkival OR painost OR pahoinpi OR ahdistel OR epäasialli OR yhdenvertai OR tasa-arvo OR tasapuoli OR tasavertai)&filter=from_publication_date:2010-01-01,to_publication_date:2023-09-30,type_crossref:journal-article|monograph|report&per_page=200&select=title,publication_year,doi&page=1
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H3_6_sw"
 https://api.openalex.org/works?search=("första hjälp" OR nödhjälp OR ambulans OR sjuktransport OR förstavårdar) AND (diskriminer OR trakasse OR påtryck OR våld OR osaklig OR opasslig OR jämlik OR jämställd)&filter=from_publication_date:2010-01-01,to_publication_date:2023-09-30,type_crossref:journal-article|monograph|report&per_page=200&select=title,publication_year,doi&page=1
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H3_6_en"
 https://api.openalex.org/works?search=("medic" OR "emergency medic" OR ambulance) AND (discriminat OR harass OR pressur OR violen OR "improper behavior" OR equal OR equit) AND (finnish OR finland)&filter=from_publication_date:2010-01-01,to_publication_date:2023-09-30,type_crossref:journal-article|monograph|report&per_page=200&select=title,publication_year,doi&page=1
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H3_7_fi"
 dc.title:((ensihoit* OR sairaankuljet* OR ambulanssi*) AND (syrji* OR häirin* OR häirit* OR väkival* OR painost* OR pahoinpi* OR ahdistel* OR epäasialli* OR yhdenvertai* OR tasa-arvo* OR tasapuoli* OR tasavertai*))
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H3_7_sw"
 dc.title:("första hjälp*" OR nödhjälp* OR ambulans* OR sjuktransport* OR förstavårdar*) AND dc.title:(diskriminer* OR trakasse* OR påtryck* OR våld* OR osaklig* OR opasslig* OR jämlik* OR jämställd*)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H3_7_en"
 dc.title:("medic" OR "emergency medic*" OR ambulance) AND dc.title:(discriminat* OR harass* OR pressur* OR violen* OR "improper behavior" OR equal* OR equit*)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H3_8_fi"
 dc.title:((ensihoit* OR sairaankuljet* OR ambulanssi*) AND (syrji* OR häirin* OR häirit* OR väkival* OR painost* OR pahoinpi* OR ahdistel* OR epäasialli* OR yhdenvertai* OR tasa-arvo* OR tasapuoli* OR tasavertai*))
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H3_8_sw"
 dc.title:("första hjälp*" OR nödhjälp* OR ambulans* OR sjuktransport* OR förstavårdar*) AND dc.title:(diskriminer* OR trakasse* OR påtryck* OR våld* OR osaklig* OR opasslig* OR jämlik* OR jämställd*)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H3_8_en"
 dc.title:("medic" OR "emergency medic*" OR ambulance) AND dc.title:(discriminat* OR harass* OR pressur* OR violen* OR "improper behavior" OR equal* OR equit*)
 ```
@@ -279,7 +288,7 @@ Hakutulosten seulonta tuotti seuraavan PRISMA-protokollan mukaisen kulkukaavion:
 #| label: fig-haku3-prisma-tietokannat
 #| fig-cap: "PRISMA-kulkukaavio, tietokannat ja rekisterit, haku 3"
 #| eval: true
-library("PRISMAstatement")
+#| code-summary: "Kuvion piirtäminen"
 
 labels <- c(
   "Tunnistetut kohteet",
@@ -304,6 +313,7 @@ flow_exclusions(
   percent_of_prev = FALSE,
   show_count = TRUE,
   font_size = 14)
+
 ```
 
 ## Muut lähteet
@@ -312,7 +322,7 @@ flow_exclusions(
 #| label: fig-haku-prisma-muut
 #| fig-cap: "PRISMA-kulkukaavio, muut lähteet, haku 3"
 #| eval: true
-library("PRISMAstatement")
+#| code-summary: "Kuvion piirtäminen"
 
 labels <- c(
   "Tunnistetut kohteet",
@@ -335,6 +345,7 @@ flow_exclusions(
   percent_of_prev = FALSE,
   show_count = TRUE,
   font_size = 14)
+
 ```
 :::
 

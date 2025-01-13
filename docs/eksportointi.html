@@ -430,21 +430,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Toimistojen, kirjaamoiden ja viestintävastaavien kautta lähetettävä linkki</li>
 <li>Pelastusalan medioissa jaettava linkki</li>
 </ol>
-<p>Jokainen linkki johti vastaajan linkkikohtaiseen kopioon lomakkeesta.</p>
-<p>Datakeräyksen jälkeen seurattiin seuraavaa menettelyä jokaiselle linkkiversiolle erikseen:</p>
+<p>Jokainen linkki johti vastaajan linkkikohtaiseen kopioon lomakkeesta. Datakeräyksen jälkeen seurattiin seuraavaa menettelyä jokaiselle linkkiversiolle erikseen:</p>
 <ol type="1">
 <li>Webropolin “Raportointi”-välilehdessä tehtiin kaksi raporttimallia “Suodata”-työkalulla. Raportit suodatettiin erikseen suomenkielisen ja ruotsinkielisen lomakkeen vastaajille. Raporttiin vietävä tekstitieto pidettiin suomenkielisenä, jotta yhdistäminen olisi helpompaa.
 <ol type="1">
-<li>Vie &amp; Jaa &gt; CSV: Näytä vastaukset numeroina, Vie useita raportteja -&gt; Valitse molemmat kieliversiot &gt; Vie</li>
-<li><strong>HUOM:</strong> Näillä asetuksilla vastausarvot monivalintamittaristoissa määräytyi mittarin järjestyksen mukaan (esim. ensimmäinen reaktiokysymys saa arvon <code>1</code> jos valittu, toinen saa arvon <code>2</code>, jne.). Tätä ei voi muuttaa Webropol-palvelussa. Vastausarvot muutettiin yhtenäisiksi (arvo <code>1</code>) uudelleenkoodauksessa, ks. <a href="valmistelu.html"><span>Luku&nbsp;16</span></a></li>
+<li>Näillä asetuksilla vastausarvot monivalintamittaristoissa määräytyi mittarin järjestyksen mukaan (esim. ensimmäinen reaktiokysymys sai arvon <code>1</code> jos valittu, toinen sai arvon <code>2</code>, jne.). Vastausarvot muutettiin yhtenäisiksi (arvo <code>1</code>) uudelleenkoodauksessa (ks. <a href="valmistelu.html"><span>Luku&nbsp;16</span></a>).</li>
 </ol></li>
 <li>Kaksi suodatettua raporttia vietiin <code>csv</code>-muotoon.</li>
 <li>Varmistettiin, että molempien raporttien vastaajamäärät vastasivat Webropolin antamaa vastaajamäärää.</li>
-<li>Tarkistettiin myös <code>k43</code> (Syyt muutosaikeille) <code>csv</code>-tiedostoista, ettei vienti ollut katkaissut vastauksia.
+<li>Tarkistettiin myös <code>k43</code> (Syyt muutosaikeille) <code>csv</code>-tiedostoista, ettei vienti ollut katkaissut vastauksia.</li>
+<li>Molemmissa tiedostoissa tehtiin uusi sarake ensimmäisen muuttujan edelle nimeltä <code>Kieliversio</code>. Arvot lisättiin seuraavasti:
 <ol type="1">
-<li><strong>TARKISTA:</strong> Jos katkaisu tapahtuu, viedään <code>k43</code> manuaalisesti <code>pdf</code>-muotoon Webropolin Raportointi-välilehdestä. Tämän jälkeen jokainen vastaus tunnistetaan käsin (vertailemalla <code>csv</code>- ja <code>pdf</code>-tiedostojen tekstiä) ja kopioidaan <code>pdf</code>-tiedostosta oikea vastaus vastaajan soluun <code>csv</code>-tiedostossa.</li>
+<li>Suomenkielinen lomake = <code>1</code></li>
+<li>Ruotsinkielinen lomake = <code>2</code></li>
 </ol></li>
-<li>Molemmissa tiedostoissa tehtiin uusi sarake ensimmäisen muuttujan edelle nimeltä <code>Kieliversio</code>. Suomenkieliseen datavarantoon lisättiin jokaiselle vastaajalle arvo <code>1</code>, ja ruotsinkieliseen varantoon lisättiin arvo <code>2</code>.</li>
 <li>Tiedostot yhdistettiin yhdeksi tiedostoksi.</li>
 <li>Yhdistettyyn tiedostoon lisättiin uusi sarake <code>Kieliversio</code>-muuttujan edelle, nimeltä <code>Linkkiversio</code>. Arvot lisättiin seuraavasti:
 <ol type="1">
@@ -452,14 +451,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Toimistojen kautta = <code>2</code></li>
 <li>Mediat = <code>3</code></li>
 </ol></li>
+<li>Kolme yhdistettyä linkkiversiotiedostoa yhdistettiin yhdeksi tiedostoksi.</li>
 </ol>
-<p>Webropol-palvelusta vietiin yhteensä kuusi raporttia <code>csv</code>-muotoon. Kun kaikki raportit oli vietyjä ja yllä olevat askeleet suoritettuja, datavarannot yhdistettiin yhdeksi <code>csv</code>-tiedostoksi.</p>
-<p>Täten jokaisella vastaajalla on kaksi uutta muuttujaa:</p>
-<ul>
-<li><p><code>Kieliversio</code>: <code>1</code> (Suomi) tai <code>2</code> (Ruotsi), ei puuttuvia arvoja</p></li>
-<li><p><code>Linkkiversio</code>: <code>1</code> (Johdon kautta), <code>2</code> (Toimistojen kautta) tai <code>3</code> (Mediat), ei puuttuvia arvoja</p></li>
-</ul>
-<p>Tässä vaiheessa varmistettiin vielä kerran, että yhteenlaskettu vastaajamäärä vastasi Webropol-palvelun vastaajamäärää.</p>
 
 
 <!-- -->
@@ -770,33 +763,22 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Toimistojen, kirjaamoiden ja viestintävastaavien kautta lähetettävä linkki</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Pelastusalan medioissa jaettava linkki</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>Jokainen linkki johti vastaajan linkkikohtaiseen kopioon lomakkeesta.</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>Jokainen linkki johti vastaajan linkkikohtaiseen kopioon lomakkeesta. Datakeräyksen jälkeen seurattiin seuraavaa menettelyä jokaiselle linkkiversiolle erikseen:</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>Datakeräyksen jälkeen seurattiin seuraavaa menettelyä jokaiselle linkkiversiolle erikseen:</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Webropolin "Raportointi"-välilehdessä tehtiin kaksi raporttimallia "Suodata"-työkalulla. Raportit suodatettiin erikseen suomenkielisen ja ruotsinkielisen lomakkeen vastaajille. Raporttiin vietävä tekstitieto pidettiin suomenkielisenä, jotta yhdistäminen olisi helpompaa.</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Vie &amp; Jaa <span class="sc">\&gt;</span> CSV: Näytä vastaukset numeroina, Vie useita raportteja -<span class="sc">\&gt;</span> Valitse molemmat kieliversiot <span class="sc">\&gt;</span> Vie</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>**HUOM:** Näillä asetuksilla vastausarvot monivalintamittaristoissa määräytyi mittarin järjestyksen mukaan (esim. ensimmäinen reaktiokysymys saa arvon <span class="in">`1`</span> jos valittu, toinen saa arvon <span class="in">`2`</span>, jne.). Tätä ei voi muuttaa Webropol-palvelussa. Vastausarvot muutettiin yhtenäisiksi (arvo <span class="in">`1`</span>) uudelleenkoodauksessa, ks. @sec-valmistelu</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Kaksi suodatettua raporttia vietiin <span class="in">`csv`</span>-muotoon.</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Varmistettiin, että molempien raporttien vastaajamäärät vastasivat Webropolin antamaa vastaajamäärää.</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Tarkistettiin myös <span class="in">`k43`</span> (Syyt muutosaikeille) <span class="in">`csv`</span>-tiedostoista, ettei vienti ollut katkaissut vastauksia.</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>**TARKISTA:** Jos katkaisu tapahtuu, viedään <span class="in">`k43`</span> manuaalisesti <span class="in">`pdf`</span>-muotoon Webropolin Raportointi-välilehdestä. Tämän jälkeen jokainen vastaus tunnistetaan käsin (vertailemalla <span class="in">`csv`</span>- ja <span class="in">`pdf`</span>-tiedostojen tekstiä) ja kopioidaan <span class="in">`pdf`</span>-tiedostosta oikea vastaus vastaajan soluun <span class="in">`csv`</span>-tiedostossa.</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>Molemmissa tiedostoissa tehtiin uusi sarake ensimmäisen muuttujan edelle nimeltä <span class="in">`Kieliversio`</span>. Suomenkieliseen datavarantoon lisättiin jokaiselle vastaajalle arvo <span class="in">`1`</span>, ja ruotsinkieliseen varantoon lisättiin arvo <span class="in">`2`</span>.</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="ss">6.  </span>Tiedostot yhdistettiin yhdeksi tiedostoksi.</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="ss">7.  </span>Yhdistettyyn tiedostoon lisättiin uusi sarake <span class="in">`Kieliversio`</span>-muuttujan edelle, nimeltä <span class="in">`Linkkiversio`</span>. Arvot lisättiin seuraavasti:</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Johdon kautta = <span class="in">`1`</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>Toimistojen kautta = <span class="in">`2`</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="ss">    3.  </span>Mediat = <span class="in">`3`</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>Webropol-palvelusta vietiin yhteensä kuusi raporttia <span class="in">`csv`</span>-muotoon. Kun kaikki raportit oli vietyjä ja yllä olevat askeleet suoritettuja, datavarannot yhdistettiin yhdeksi <span class="in">`csv`</span>-tiedostoksi.</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>Täten jokaisella vastaajalla on kaksi uutta muuttujaa:</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`Kieliversio`</span>: <span class="in">`1`</span> (Suomi) tai <span class="in">`2`</span> (Ruotsi), ei puuttuvia arvoja</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`Linkkiversio`</span>: <span class="in">`1`</span> (Johdon kautta), <span class="in">`2`</span> (Toimistojen kautta) tai <span class="in">`3`</span> (Mediat), ei puuttuvia arvoja</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>Tässä vaiheessa varmistettiin vielä kerran, että yhteenlaskettu vastaajamäärä vastasi Webropol-palvelun vastaajamäärää.</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Webropolin "Raportointi"-välilehdessä tehtiin kaksi raporttimallia "Suodata"-työkalulla. Raportit suodatettiin erikseen suomenkielisen ja ruotsinkielisen lomakkeen vastaajille. Raporttiin vietävä tekstitieto pidettiin suomenkielisenä, jotta yhdistäminen olisi helpompaa.</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Näillä asetuksilla vastausarvot monivalintamittaristoissa määräytyi mittarin järjestyksen mukaan (esim. ensimmäinen reaktiokysymys sai arvon <span class="in">`1`</span> jos valittu, toinen sai arvon <span class="in">`2`</span>, jne.). Vastausarvot muutettiin yhtenäisiksi (arvo <span class="in">`1`</span>) uudelleenkoodauksessa (ks. @sec-valmistelu).</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Kaksi suodatettua raporttia vietiin <span class="in">`csv`</span>-muotoon.</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Varmistettiin, että molempien raporttien vastaajamäärät vastasivat Webropolin antamaa vastaajamäärää.</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Tarkistettiin myös <span class="in">`k43`</span> (Syyt muutosaikeille) <span class="in">`csv`</span>-tiedostoista, ettei vienti ollut katkaissut vastauksia.</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>Molemmissa tiedostoissa tehtiin uusi sarake ensimmäisen muuttujan edelle nimeltä <span class="in">`Kieliversio`</span>. Arvot lisättiin seuraavasti:</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Suomenkielinen lomake = <span class="in">`1`</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>Ruotsinkielinen lomake = <span class="in">`2`</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="ss">6.  </span>Tiedostot yhdistettiin yhdeksi tiedostoksi.</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="ss">7.  </span>Yhdistettyyn tiedostoon lisättiin uusi sarake <span class="in">`Kieliversio`</span>-muuttujan edelle, nimeltä <span class="in">`Linkkiversio`</span>. Arvot lisättiin seuraavasti:</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>Johdon kautta = <span class="in">`1`</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>Toimistojen kautta = <span class="in">`2`</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="ss">    3.  </span>Mediat = <span class="in">`3`</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="ss">8.  </span>Kolme yhdistettyä linkkiversiotiedostoa yhdistettiin yhdeksi tiedostoksi.</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

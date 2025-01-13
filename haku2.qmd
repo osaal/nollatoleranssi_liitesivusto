@@ -1,5 +1,14 @@
 # Haku 2 {#sec-haku2}
 
+```{r}
+#| label: haku2-00-paketit
+#| code-summary: "Osiossa käytetyt paketit"
+#| eval: true
+
+library("PRISMAstatement")
+
+```
+
 Haku 2 seurasi seuraavia inkluusiokriteerejä:
 
 -   Julkaisuaika: 1.1.2010 - 30.9.2023
@@ -17,7 +26,7 @@ Haku 2 seurasi seuraavia inkluusiokriteerejä:
 Haku suoritettiin seuraavissa tietolähteissä:
 
 | Tietokanta                     | Korkeakoulu                                    |
-|-----------------------------|-------------------------------------------|
+|--------------------------------|------------------------------------------------|
 | Theseus                        | Kaikki ammattikorkeakoulut                     |
 | Aaltodoc                       | Aalto-yliopisto                                |
 | E-thesis                       | Helsingin yliopisto                            |
@@ -43,7 +52,7 @@ Haku suoritettiin seuraavissa tietolähteissä:
 Alla oleva taulukko sisältää hakujen suorituspäivämäärät, hakusanat ja hakukonekohtaiset rajaukset sekä osumat.
 
 | Koodi    | Hakukone (tietokannat suluissa)  | Haku-ajankohta | Julkaisujen ajankohtarajaus | Tulos-määrä | Haun jälkeiset rajaukset                                        |
-|------------|------------|------------|------------|------------|-------------|
+|----------|----------------------------------|----------------|-----------------------------|-------------|-----------------------------------------------------------------|
 | H2_1_fi  | Theseus                          | 3.1.2024       | *Ei käytetty.*              | 3           | *Ei käytetty.*                                                  |
 | H2_1_sw  | Theseus                          | 9.1.2024       | 2010-2024                   | 30          | *Ei käytetty.*                                                  |
 | H2_1_en  | Theseus                          | 10.1.2024      | 2010-2024                   | 4           | *Ei käytetty.*                                                  |
@@ -93,240 +102,240 @@ Alla oleva taulukko sisältää hakujen suorituspäivämäärät, hakusanat ja h
 
 : Haku 2:n toteutetut haut {#tbl-haku2-toteutetuthaut}
 
-Jokaisen haun hakulausekkeet ovat listattuna alla hakukoodeittain (ks. @tbl-haku2-toteutetuthaut). Paina osa-hakua vastaavaa koodia nähdäksesi kunkin haun hakulausekkeen. Voit kopioida lausekkeen sellaisenaan leikepöydällesi painamalla kopiointikuvaketta avatun hakulausekkeen yläoikeassa nurkassa.
+Jokaisen haun hakulausekkeet ovat listattuna alla hakukoodeittain (ks. @tbl-haku2-toteutetuthaut).
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_1_fi"
 dc.title:((pelast* OR palo* OR sammut* OR hätäkesku*) AND (syrji* OR häirin* OR häirit* OR painost* OR pahoinpi* OR ahdistel* OR epäasialli* OR yhdenvertai* OR tasa-arvo* OR tasapuoli* OR tasavertai*))
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_1_sw"
 dc.title:("räddning*" OR "brand*" OR "släckning*" OR "nödcentral*") AND (diskriminer* OR trakasse* OR påtryck* OR våld* OR osaklig* OR opasslig* OR jämlik* OR jämställd*)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_1_en"
 dc.title:(("fire rescue*" OR "fire?fighter*" OR "rescue service*" OR "emergency respon*" OR "emergency personnel") NOT ("medic")) AND (discriminat* OR harass* OR pressur* OR violen* OR improper behavio?r OR equal* OR equit*)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_2_fi"
 dc.title:((pelast* OR palo* OR sammut* OR hätäkesku*) AND (syrji* OR häirin* OR häirit* OR painost* OR pahoinpi* OR ahdistel* OR epäasialli* OR yhdenvertai* OR tasa-arvo* OR tasapuoli* OR tasavertai*))
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_2_sw"
 dc.title:(räddning* OR brand* OR släckning* OR nödcentral*) AND (diskriminer* OR trakasse* OR påtryck* OR våld* OR osaklig* OR opasslig* OR jämlik* OR jämställd*)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_2_en"
 dc.title:(("fire rescue*" OR "fire?fighter*" OR "rescue service*" OR "emergency respon*" OR "emergency personnel") NOT ("medic")) AND (discriminat* OR harass* OR pressur* OR violen* OR improper behavio?r OR equal* OR equit*)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_3_fi"
 dc.title:((pelast* OR palo* OR sammut* OR hätäkesku*) AND (syrji* OR häirin* OR häirit* OR painost* OR pahoinpi* OR ahdistel* OR epäasialli* OR yhdenvertai* OR tasa-arvo* OR tasapuoli* OR tasavertai*))
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_3_sw"
 dc.title:("räddning*" OR "brand*" OR "släckning*" OR "nödcentral*") AND (diskriminer* OR trakasse* OR påtryck* OR våld* OR osaklig* OR opasslig* OR jämlik* OR jämställd*)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_3_en"
 dc.title:(("fire rescue*" OR "fire?fighter*" OR "rescue service*" OR "emergency respon*" OR "emergency personnel") NOT ("medic")) AND (discriminat* OR harass* OR pressur* OR violen* OR improper behavio?r OR equal* OR equit*)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_4_fi"
 dc.title:((pelast* OR palo* OR sammut* OR hätäkesku*) AND (syrji* OR häirin* OR häirit* OR painost* OR pahoinpi* OR ahdistel* OR epäasialli* OR yhdenvertai* OR tasa-arvo* OR tasapuoli* OR tasavertai*))
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_4_sw"
 dc.title:("räddning*" OR "brand*" OR "släckning*" OR "nödcentral*") AND (diskriminer* OR trakasse* OR påtryck* OR våld* OR osaklig* OR opasslig* OR jämlik* OR jämställd*)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_4_en"
 dc.title:(("fire rescue*" OR "fire?fighter*" OR "rescue service*" OR "emergency respon*" OR "emergency personnel") NOT ("medic")) AND (discriminat* OR harass* OR pressur* OR violen* OR improper behavio?r OR equal* OR equit*)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_5_fi"
 dc.title:((pelast* OR palo* OR sammut* OR hätäkesku*) AND (syrji* OR häirin* OR häirit* OR painost* OR pahoinpi* OR ahdistel* OR epäasialli* OR yhdenvertai* OR tasa-arvo* OR tasapuoli* OR tasavertai*))
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_5_sw"
 dc.title:(räddning* OR brand* OR släckning* OR nödcentral*) AND (diskriminer* OR trakasse* OR påtryck* OR våld* OR osaklig* OR opasslig* OR jämlik* OR jämställd*)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_5_en"
 dc.title:(("fire rescue*" OR "fire fighter*" OR "rescue service*" OR "emergency respon*" OR "emergency personnel") NOT ("medic")) AND (discriminat* OR harass* OR pressur* OR violen* OR improper behavio?r OR equal* OR equit*)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_6_fi"
 dc.title:((pelast* OR palo* OR sammut* OR hätäkesku*) AND (syrji* OR häirin* OR häirit* OR painost* OR pahoinpi* OR ahdistel* OR epäasialli* OR yhdenvertai* OR tasa-arvo* OR tasapuoli* OR tasavertai*))
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_6_sw"
 dc.title:(räddning* OR brand* OR släckning* OR nödcentral*) AND (diskriminer* OR trakasse* OR påtryck* OR våld* OR osaklig* OR opasslig* OR jämlik* OR jämställd*)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_6_en"
 dc.title:(("fire rescue*" OR "fire?fighter*" OR "rescue service*" OR "emergency respon*" OR "emergency personnel") NOT ("medic")) AND (discriminat* OR harass* OR pressur* OR violen* OR improper behavio?r OR equal* OR equit*)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_7_fi"
 dc.title:((pelast* OR palo* OR sammut* OR hätäkesku*) AND (syrji* OR häirin* OR häirit* OR painost* OR pahoinpi* OR ahdistel* OR epäasialli* OR yhdenvertai* OR tasa-arvo* OR tasapuoli* OR tasavertai*))
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_7_sw"
 dc.title:(räddning* OR brand* OR släckning* OR nödcentral*) AND (diskriminer* OR trakasse* OR påtryck* OR våld* OR osaklig* OR opasslig* OR jämlik* OR jämställd*)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_7_en"
 dc.title:(("fire rescue*" OR "fire?fighter*" OR "rescue service*" OR "emergency respon*" OR "emergency personnel") NOT ("medic")) AND (discriminat* OR harass* OR pressur* OR violen* OR improper behavio?r OR equal* OR equit*)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_8_fi"
 dc.title\:((pelast* OR palo* OR sammut* OR hätäkesku*) AND (syrji* OR häirin* OR häirit* OR painost* OR pahoinpi* OR ahdistel* OR epäasialli* OR yhdenvertai* OR tasa-arvo* OR tasapuoli* OR tasavertai*))
 
 # HUOM: Jultika lisää kenoviivan automaattisesti kohdan "dc.title" jälkeen. Kenoviivan poisto ei vaikuta tuloksiin, ja kenoviiva tulee takaisin itsestään.
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_8_sw"
 dc.title\:("räddning*" OR "brand*" OR "släckning*" OR "nödcentral*") AND (diskriminer* OR trakasse* OR påtryck* OR våld* OR osaklig* OR opasslig* OR jämlik* OR jämställd*)
 
 # HUOM: Jultika lisää kenoviivan automaattisesti kohdan "dc.title" jälkeen. Kenoviivan poisto ei vaikuta tuloksiin, ja kenoviiva tulee takaisin itsestään.
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_8_en"
 dc.title\:(("fire rescue*" OR "fire?fighter*" OR "rescue service*" OR "emergency respon*" OR "emergency personnel") NOT ("medic")) AND (discriminat* OR harass* OR pressur* OR violen* OR improper behavio?r OR equal* OR equit*)
 
 # HUOM: Jultika lisää kenoviivan automaattisesti kohdan "dc.title" jälkeen. Kenoviivan poisto ei vaikuta tuloksiin, ja kenoviiva tulee takaisin itsestään.
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_9_fi"
 dc.title:((pelast* OR palo* OR sammut* OR hätäkesku*) AND (syrji* OR häirin* OR häirit* OR painost* OR pahoinpi* OR ahdistel* OR epäasialli* OR yhdenvertai* OR tasa-arvo* OR tasapuoli* OR tasavertai*))
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_9_sw"
 dc.title:(räddning* OR brand* OR släckning* OR nödcentral*) AND (diskriminer* OR trakasse* OR påtryck* OR våld* OR osaklig* OR opasslig* OR jämlik* OR jämställd*)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_9_en"
 dc.title:(("fire rescue*" OR "fire?fighter*" OR "rescue service*" OR "emergency respon*" OR "emergency personnel") NOT ("medic")) AND (discriminat* OR harass* OR pressur* OR violen* OR improper behavio?r OR equal* OR equit*)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_10_fi"
 dc.title:((pelast* OR palo* OR sammut* OR hätäkesku*) AND (syrji* OR häirin* OR häirit* OR painost* OR pahoinpi* OR ahdistel* OR epäasialli* OR yhdenvertai* OR tasa-arvo* OR tasapuoli* OR tasavertai*))
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_10_sw"
 dc.title:(räddning* OR brand* OR släckning* OR nödcentral*) AND (diskriminer* OR trakasse* OR påtryck* OR våld* OR osaklig* OR opasslig* OR jämlik* OR jämställd*)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_10_en"
 dc.title:(("fire rescue*" OR "fire?fighter*" OR "rescue service*" OR "emergency respon*" OR "emergency personnel") NOT ("medic")) AND (discriminat* OR harass* OR pressur* OR violen* OR improper behavio?r OR equal* OR equit*)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_11_fi"
 dc.title:((pelast* OR palo* OR sammut* OR hätäkesku*) AND (syrji* OR häirin* OR häirit* OR painost* OR pahoinpi* OR ahdistel* OR epäasialli* OR yhdenvertai* OR tasa-arvo* OR tasapuoli* OR tasavertai*))
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_11_sw"
 dc.title:(räddning* OR brand* OR släckning* OR nödcentral*) AND (diskriminer* OR trakasse* OR påtryck* OR våld* OR osaklig* OR opasslig* OR jämlik* OR jämställd*)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_11_en"
 dc.title:(("fire rescue*" OR "fire?fighter*" OR "rescue service*" OR "emergency respon*" OR "emergency personnel") NOT ("medic")) AND (discriminat* OR harass* OR pressur* OR violen* OR improper behavio?r OR equal* OR equit*)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_12_fi"
 dc.title:((pelast* OR palo* OR sammut* OR hätäkesku*) AND (syrji* OR häirin* OR häirit* OR painost* OR pahoinpi* OR ahdistel* OR epäasialli* OR yhdenvertai* OR tasa-arvo* OR tasapuoli* OR tasavertai*))
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_12_sw"
 dc.title:(räddning* OR brand* OR släckning* OR nödcentral*) AND (diskriminer* OR trakasse* OR påtryck* OR våld* OR osaklig* OR opasslig* OR jämlik* OR jämställd*)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_12_en"
 dc.title:(("fire rescue*" OR "fire?fighter*" OR "rescue service*" OR "emergency respon*" OR "emergency personnel") NOT ("medic")) AND (discriminat* OR harass* OR pressur* OR violen* OR improper behavio?r OR equal* OR equit*)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_13_fi"
 dc.title:((pelast* OR palo* OR sammut* OR hätäkesku*) AND (syrji* OR häirin* OR häirit* OR painost* OR pahoinpi* OR ahdistel* OR epäasialli* OR yhdenvertai* OR tasa-arvo* OR tasapuoli* OR tasavertai*))
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_13_sw"
 dc.title:(räddning* OR brand* OR släckning* OR nödcentral*) AND (diskriminer* OR trakasse* OR påtryck* OR våld* OR osaklig* OR opasslig* OR jämlik* OR jämställd*)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_13_en"
 dc.title:(("fire rescue*" OR "fire?fighter*" OR "rescue service*" OR "emergency respon*" OR "emergency personnel") NOT ("medic")) AND (discriminat* OR harass* OR pressur* OR violen* OR improper behavio?r OR equal* OR equit*)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_14_fi"
 dc.title:((pelast* OR palo* OR sammut* OR hätäkesku*) AND (syrji* OR häirin* OR häirit* OR painost* OR pahoinpi* OR ahdistel* OR epäasialli* OR yhdenvertai* OR tasa-arvo* OR tasapuoli* OR tasavertai*))
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_14_sw"
 dc.title:(räddning* OR brand* OR släckning* OR nödcentral*) AND (diskriminer* OR trakasse* OR påtryck* OR våld* OR osaklig* OR opasslig* OR jämlik* OR jämställd*)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_14_en"
 dc.title:(("fire rescue*" OR "fire?fighter*" OR "rescue service*" OR "emergency respon*" OR "emergency personnel") NOT ("medic")) AND (discriminat* OR harass* OR pressur* OR violen* OR improper behavio?r OR equal* OR equit*)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_15_fi"
 dc.title:((pelast* OR palo* OR sammut* OR hätäkesku*) AND (syrji* OR häirin* OR häirit* OR painost* OR pahoinpi* OR ahdistel* OR epäasialli* OR yhdenvertai* OR tasa-arvo* OR tasapuoli* OR tasavertai*))
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_15_sw"
 dc.title:(räddning* OR brand* OR släckning* OR nödcentral*) AND (diskriminer* OR trakasse* OR påtryck* OR våld* OR osaklig* OR opasslig* OR jämlik* OR jämställd*)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_15_en"
 dc.title:(("fire rescue*" OR "fire?fighter*" OR "rescue service*" OR "emergency respon*" OR "emergency personnel") NOT ("medic")) AND (discriminat* OR harass* OR pressur* OR violen* OR improper behavio?r OR equal* OR equit*)
 ```
 
-```{r}
+```{default}
 #| code-summary: "Haku H2_16"
 (pelast* OR palo* OR sammut* OR hätäkesku*) AND (syrji* OR häirin* OR häirit* OR painost* OR pahoinpi* OR ahdistel* OR epäasialli* OR yhdenvertai* OR tasa-arvo* OR tasapuoli* OR tasavertai*)
 ```
@@ -346,7 +355,7 @@ Hakutulosten seulonta tuotti seuraavan PRISMA-protokollan mukaisen kulkukaavion:
 #| label: fig-haku2-prisma-tietokannat
 #| fig-cap: "PRISMA-kulkukaavio, tietokannat ja rekisterit, haku 2"
 #| eval: true
-library("PRISMAstatement")
+#| code-summary: "Kuvion piirtäminen"
 
 labels <- c(
   "Tunnistetut kohteet",
@@ -371,6 +380,7 @@ flow_exclusions(
   percent_of_prev = FALSE,
   show_count = TRUE,
   font_size = 14)
+
 ```
 :::
 
@@ -379,7 +389,7 @@ flow_exclusions(
 Seulonnan jälkeen poistettuja tutkimusjulkaisuja oli yhteensä 4 kappaletta. @tbl-haku2-poistetut sisältää jokaisen julkaisun poistosyyn. Syyt ovat listattuna ensisijaisen syyn mukaan. Teimme päätöksen poisjättämisestä, jos vähintään yksi inkluusiokriteeri ei täyttynyt.
 
 | Kohde          | Syy(t) poistoon                                               |
-|------------------|------------------------------------------------------|
+|----------------|---------------------------------------------------------------|
 | @harju2020     | Väärä tutkimusaihe                                            |
 | @lindström2020 | Ei-empiirinen tutkimus, väärä tutkimusaihe                    |
 | @markkola2021  | Ei-empiirinen tutkimus, väärä kohderyhmä, väärä julkaisumuoto |

@@ -6,24 +6,28 @@ eval: true
 
 Seuraavaksi muuttujat nimettiin hankkeessa vakiintuneiden lyhenteiden mukaisesti. Tässä listataan nimeämiset lomakkeen (ja täten datatiedoston) järjestyksessä.
 
-Alkuperäiset nimeämiset löytyvät `csv`-tiedostosta tämän verkkosivun lähdekoodissa, kansiossa `data > muuttujiennimet.csv`.
+Alkuperäiset nimet löytyvät `csv`-tiedostosta tämän verkkosivun lähdekoodissa, kansiossa `data > muuttujiennimet.csv`.
 
-Alkuperäiset data-arvot löytyvät niinikään `csv`-tiedostosta sijainnissa `data > alkuperaisetarvot.csv`.
+Alkuperäistä dataa ei ole saatavilla tietosuojan takia.
 
 ```{r}
 #| label: nimeaminen-00-paketit
+#| code-summary: "Osiossa käytetyt paketit"
 
-library(tidyverse)
+library(tidyverse) # Datakäsittely
 
 ```
 
 ```{r}
 #| label: nimeaminen-01-nimeaminen
+#| code-summary: "Aineiston avaaminen ja uudelleennimeäminen"
 
 # Avataan eksportoitu data sekä muuttujien nimet
 # HUOM: Nimet ovat tiedoston ensimmäisessä sarakkeessa, mutta ne haetaan tiedostosta merkkivektorina
 
+# Datatiedostoa ei ole saatavilla tietosuojan takia.
 data <- read.csv2("output/Nollatoleranssi_yhdistettydata.csv", tryLogical = FALSE)
+
 nimet <- read.csv2("data/muuttujiennimet.csv", encoding = "latin1", tryLogical = FALSE) %>%
   dplyr::select(Koodi) %>%
   as.vector() %>%
@@ -32,13 +36,6 @@ nimet <- read.csv2("data/muuttujiennimet.csv", encoding = "latin1", tryLogical =
 # Lisätään nimet "Linkkiversio" ja "Kieliversio", jotta datan uudelleennimeäminen olisi helpompaa
 nimet <- append(nimet, c("Linkkiversio", "Kieliversio"), after = 0)
 colnames(data) <- nimet
-
-```
-
-```{r}
-#| label: nimeaminen-02-tallennus
-
-write.csv2(data, "output/nimettydata.csv", row.names = FALSE)
 
 ```
 
@@ -154,3 +151,13 @@ write.csv2(data, "output/nimettydata.csv", row.names = FALSE)
     1.  Ensimmäinen luku: (1) Muuttaa tehtävänkuvaani, (2) Vaihtaa organisaatiotani, (3) Lähteä alalta
     2.  Toinen luku: (1) Olen harkinnut, (2) Olen toteuttamassa, (3) Olen jo tehnyt
 46. **k43**: Voitko kertoa syitä muutoksellesi tai sen aikeille?
+
+## Aineiston tallennus {#sec-nimeaminen-tallennus}
+
+```{r}
+#| label: nimeaminen-02-tallennus
+#| code-summary: "Uudelleennimetyn aineiston tallentaminen"
+
+write.csv2(data, "output/nimettydata.csv", row.names = FALSE)
+
+```

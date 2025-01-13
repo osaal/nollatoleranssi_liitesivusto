@@ -434,28 +434,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <p>Tässä osiossa puhdistamme datatiedostosta joitain virheellisiä kyselyvastauksia sekä tarkistamme puuttuvien vastausten piirteet.</p>
+<p>Osion käyttämä aineisto ei ole saatavilla tietosuojan takia.</p>
 <section id="sec-puhdistaminen-esivalmistelu" class="level2" data-number="17.1">
 <h2 data-number="17.1" class="anchored" data-anchor-id="sec-puhdistaminen-esivalmistelu"><span class="header-section-number">17.1</span> Esivalmistelu</h2>
 <div class="cell">
 <details>
-<summary>Koodi</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mice)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<summary>Osiossa käytetyt paketit</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># Datakäsittely</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mice) <span class="co"># Puuttuvien vastausten analyysi</span></span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
 <details>
-<summary>Koodi</summary>
+<summary>Datan avaaminen</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"output/koodattudata.csv"</span>, <span class="at">tryLogical =</span> <span class="cn">FALSE</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
 <section id="sec-puhdistaminen-suostumuskiellot" class="level2" data-number="17.2">
 <h2 data-number="17.2" class="anchored" data-anchor-id="sec-puhdistaminen-suostumuskiellot"><span class="header-section-number">17.2</span> Suostumuksensa kieltäneiden poistaminen</h2>
-<p>Ennen poistamista datatiedostossa oli 1048 vastaajaa. Webropolissa tapahtuneen virheen takia kuitenkin osa vastaajista onnistuivat palauttamaan kyselylomakkeen, vaikka he eivät antaneet suostumusta tietojen käsittelyyn. Näillä vastaajilla ei ole muuta tietoa, kuin <code>k1 == 2</code>, ja heidät pitää poistaa datatiedostosta.</p>
+<p>Ennen poistamista datatiedostossa oli 1048 vastaajaa. Webropolissa tapahtuneen virheen takia kuitenkin osa vastaajista onnistuivat palauttamaan kyselylomakkeen, vaikka he eivät antaneet suostumusta tietojen käsittelyyn. Näillä vastaajilla ei ollut muuta tietoa, kuin <code>k1 == 2</code>, ja heidät poistettiin datatiedostosta.</p>
 <div class="cell">
 <details>
-<summary>Koodi</summary>
+<summary>Suostumuksensa kieltäneiden poistaminen aineistosta</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Otetaan mukaan vain suostumuksensa antaneet vastaajat</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(k1 <span class="sc">==</span> <span class="dv">1</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -465,27 +466,157 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="sec-puhdistaminen-puuttuvat" class="level2" data-number="17.3">
 <h2 data-number="17.3" class="anchored" data-anchor-id="sec-puhdistaminen-puuttuvat"><span class="header-section-number">17.3</span> Puuttuvien vastausten piirreanalyysi</h2>
-<p>Tarkistimme puuttuvien vastausten piirteet <code>mice</code>-paketin <code>md.pattern</code>-toiminnolla. Piirteet luokitellaan eri yhdistelmiin olemassaolevista ja puuttuvista vastauksista, ja niiden esiintymismäärät lasketaan yhteen. Tarkastimme näistä eniten esiintyvät puuttuvat muuttujayhdistelmät.</p>
+<p>Tarkistimme puuttuvien vastausten piirteet <code>mice</code>-paketin <code>md.pattern</code>-toiminnolla. Piirteet luokiteltiin eri yhdistelmiin olemassaolevista ja puuttuvista vastauksista, ja niiden esiintymismäärät laskettiin yhteen. Tarkastimme näistä eniten esiintyvät puuttuvien muuttujien yhdistelmät.</p>
 <div class="cell">
 <details>
-<summary>Koodi</summary>
+<summary>Piirreanalyysi ja taulukon rakentaminen</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>puuttuvat <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  mice<span class="sc">::</span><span class="fu">md.pattern</span>(<span class="at">plot =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>(<span class="at">rownames =</span> <span class="st">"Määrä"</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>puuttuvat<span class="sc">$</span>Määrä <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(puuttuvat<span class="sc">$</span>Määrä)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>puuttuvat<span class="sc">$</span>Määrä <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(puuttuvat<span class="sc">$</span>Määrä)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>puuttuvat <span class="sc">|&gt;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Määrä <span class="sc">==</span> <span class="dv">91</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">t</span>() <span class="sc">|&gt;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>() <span class="sc">|&gt;</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(V1 <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output-display">
+<div id="tbl-puhdistaminen-puuttuvatpiirre" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Taulukko&nbsp;17.1: Yleisimmän puuttuvien vastausten piirteessä esiintyvät puuttuvat muuttujat</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">rowname</th>
+<th style="text-align: right;">V1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">k43_1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">k43_2</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">k43_3</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">k43_4</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">k43_5</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">k43_6</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">k43_7</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">k43_8</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">k43_9</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">k43_10</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">k43_11</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">k43_12</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">k43_13</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">k43_14</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">k43_15</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">k43_16</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">k43_17</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">k43_18</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">k42_3_1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">k42_1_1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">k42_2_1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">k42_1_2</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">k42_1_3</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">k42_3_2</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">k42_2_3</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">k42_2_2</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">k42_3_3</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
 </div>
-<p>Puuttuvien vastausten uniikkeja muuttujayhdistelmiä on yhteensä 889 kappaletta.</p>
-<p>Yleisimmällä puuttivien vastausten yhdistelmällä on 91 vastaajaa (yhdistelmä A). Tältä muuttujayhdistelmältä löytyy puuttuvia vastauksia kaikilta työuran muutossuunnitelmien muuttujilta. Toisin sanoen, nämä 91 vastaajaa eivät ole suunnitelleet mitään muutoksia toimintaan osallistumiseensa, mutta ovat vastanneet kaikkiin muihin kyselyn kysymyksiin.</p>
-<p>Toiseksi yleisimmällä puuttuvien vastausten yhdistelmällä on 10 vastajaa (yhdistelmä B). Tältä muuttujayhdistelmältä löytyy puuttuvia vastauksia vain työuran muutossuunnitelmien muuttujilla vastausvaihtoehdoilla “Olen toteuttamassa” ja “Olen jo tehnyt”. Toisin sanoen, nämä 10 vastaajaa ovat vastanneet kaikkiin muihin kysymyksiin, mutta eivät ole ilmaisseet olevansa toteuttamassa tai jo tehneensä mitään toimintaan osallistumisen muutoksia.</p>
-<p>Muut yhdistelmät tippuvat alle 10 vastaajan. Emme näe tarpeen käsitellä näitä muuttujayhdistelmiä, sillä määrät ovat jo alle promillen koko datatiedostosta.</p>
+</div>
+</div>
+<p>Puuttuvien vastausten uniikkeja muuttujayhdistelmiä oli yhteensä 895 kappaletta.</p>
+<p>Yleisimmällä puuttivien vastausten yhdistelmällä oli 91 vastaajaa (yhdistelmä A). Tältä muuttujayhdistelmältä puuttui vastaukset kaikilta työuran muutossuunnitelmien muuttujilta (<code>k42_X_X</code>), ja siten myös kaikilta muutosaiesyymuuttujilta (<code>k43_X</code>). Toisin sanoen, nämä 91 vastaajaa eivät olleet suunnitelleet mitään muutoksia toimintaan osallistumiseensa, mutta olivat vastanneet kaikkiin muihin kyselyn kysymyksiin. Puutteet ovat valideja puuttumisia, joten emme poistaneet vastaajia aineistosta.</p>
+<p>Muut yhdistelmät tippuvat alle 10 vastaajan. Emme käsitelleet näitä muuttujayhdistelmiä niiden harvinaisuuden takia.</p>
 </section>
 <section id="sec-puhdistaminen-tallennus" class="level2" data-number="17.4">
 <h2 data-number="17.4" class="anchored" data-anchor-id="sec-puhdistaminen-tallennus"><span class="header-section-number">17.4</span> Datan tallennus</h2>
-<p>Viimeiseksi data tallennettiin tilapäiseksi tiedostoksi anonymisointia varten. Tallennusta ei ole saatavilla verkkosivun lähdekoodista tietosuojan takia.</p>
+<p>Viimeiseksi data tallennettiin tilapäiseksi tiedostoksi anonymisointia varten.</p>
 <div class="cell">
 <details>
-<summary>Koodi</summary>
+<summary>Datan tallennus</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv2</span>(data, <span class="at">file =</span> <span class="st">"output/puhdistettudata.csv"</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
@@ -800,70 +931,84 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>Tässä osiossa puhdistamme datatiedostosta joitain virheellisiä kyselyvastauksia sekä tarkistamme puuttuvien vastausten piirteet.</span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## Esivalmistelu {#sec-puhdistaminen-esivalmistelu}</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>Osion käyttämä aineisto ei ole saatavilla tietosuojan takia.</span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: puhdistaminen-00-paketit</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mice)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Esivalmistelu {#sec-puhdistaminen-esivalmistelu}</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: puhdistaminen-00-paketit</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Osiossa käytetyt paketit"</span></span>
 <span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: puhdistaminen-01-importointi</span></span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"output/koodattudata.csv"</span>, <span class="at">tryLogical =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># Datakäsittely</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mice) <span class="co"># Puuttuvien vastausten analyysi</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: puhdistaminen-01-importointi</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Datan avaaminen"</span></span>
 <span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="fu">## Suostumuksensa kieltäneiden poistaminen {#sec-puhdistaminen-suostumuskiellot}</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"output/koodattudata.csv"</span>, <span class="at">tryLogical =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>Ennen poistamista datatiedostossa oli <span class="in">`r nrow(data)`</span> vastaajaa. Webropolissa tapahtuneen virheen takia kuitenkin osa vastaajista onnistuivat palauttamaan kyselylomakkeen, vaikka he eivät antaneet suostumusta tietojen käsittelyyn. Näillä vastaajilla ei ole muuta tietoa, kuin <span class="in">`k1 == 2`</span>, ja heidät pitää poistaa datatiedostosta.</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: puhdistaminen-02-suostumuskiellot</span></span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Otetaan mukaan vain suostumuksensa antaneet vastaajat</span></span>
-<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
-<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(k1 <span class="sc">==</span> <span class="dv">1</span>)</span>
-<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>Poistamisen jälkeen datatiedostossa oli <span class="in">`r nrow(data)`</span> vastaajaa.</span>
-<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a><span class="fu">## Puuttuvien vastausten piirreanalyysi {#sec-puhdistaminen-puuttuvat}</span></span>
-<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>Tarkistimme puuttuvien vastausten piirteet <span class="in">`mice`</span>-paketin <span class="in">`md.pattern`</span>-toiminnolla. Piirteet luokitellaan eri yhdistelmiin olemassaolevista ja puuttuvista vastauksista, ja niiden esiintymismäärät lasketaan yhteen. Tarkastimme näistä eniten esiintyvät puuttuvat muuttujayhdistelmät.</span>
-<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: puhdistaminen-03-puuttuvatpiirre</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a><span class="fu">## Suostumuksensa kieltäneiden poistaminen {#sec-puhdistaminen-suostumuskiellot}</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>Ennen poistamista datatiedostossa oli <span class="in">`r nrow(data)`</span> vastaajaa. Webropolissa tapahtuneen virheen takia kuitenkin osa vastaajista onnistuivat palauttamaan kyselylomakkeen, vaikka he eivät antaneet suostumusta tietojen käsittelyyn. Näillä vastaajilla ei ollut muuta tietoa, kuin <span class="in">`k1 == 2`</span>, ja heidät poistettiin datatiedostosta.</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: puhdistaminen-02-suostumuskiellot</span></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Suostumuksensa kieltäneiden poistaminen aineistosta"</span></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Otetaan mukaan vain suostumuksensa antaneet vastaajat</span></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(k1 <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>Poistamisen jälkeen datatiedostossa oli <span class="in">`r nrow(data)`</span> vastaajaa.</span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a><span class="fu">## Puuttuvien vastausten piirreanalyysi {#sec-puhdistaminen-puuttuvat}</span></span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>Tarkistimme puuttuvien vastausten piirteet <span class="in">`mice`</span>-paketin <span class="in">`md.pattern`</span>-toiminnolla. Piirteet luokiteltiin eri yhdistelmiin olemassaolevista ja puuttuvista vastauksista, ja niiden esiintymismäärät laskettiin yhteen. Tarkastimme näistä eniten esiintyvät puuttuvien muuttujien yhdistelmät.</span>
 <span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>puuttuvat <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
-<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>  mice<span class="sc">::</span><span class="fu">md.pattern</span>(<span class="at">plot =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>(<span class="at">rownames =</span> <span class="st">"Määrä"</span>)</span>
-<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a>puuttuvat<span class="sc">$</span>Määrä <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(puuttuvat<span class="sc">$</span>Määrä)</span>
-<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-puhdistaminen-puuttuvatpiirre</span></span>
+<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Yleisimmän puuttuvien vastausten piirteessä esiintyvät puuttuvat muuttujat"</span></span>
+<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Piirreanalyysi ja taulukon rakentaminen"</span></span>
 <span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a>Puuttuvien vastausten uniikkeja muuttujayhdistelmiä on yhteensä 889 kappaletta.</span>
-<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a>Yleisimmällä puuttivien vastausten yhdistelmällä on 91 vastaajaa (yhdistelmä A). Tältä muuttujayhdistelmältä löytyy puuttuvia vastauksia kaikilta työuran muutossuunnitelmien muuttujilta. Toisin sanoen, nämä 91 vastaajaa eivät ole suunnitelleet mitään muutoksia toimintaan osallistumiseensa, mutta ovat vastanneet kaikkiin muihin kyselyn kysymyksiin.</span>
-<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a>Toiseksi yleisimmällä puuttuvien vastausten yhdistelmällä on 10 vastajaa (yhdistelmä B). Tältä muuttujayhdistelmältä löytyy puuttuvia vastauksia vain työuran muutossuunnitelmien muuttujilla vastausvaihtoehdoilla "Olen toteuttamassa" ja "Olen jo tehnyt". Toisin sanoen, nämä 10 vastaajaa ovat vastanneet kaikkiin muihin kysymyksiin, mutta eivät ole ilmaisseet olevansa toteuttamassa tai jo tehneensä mitään toimintaan osallistumisen muutoksia.</span>
-<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a>Muut yhdistelmät tippuvat alle 10 vastaajan. Emme näe tarpeen käsitellä näitä muuttujayhdistelmiä, sillä määrät ovat jo alle promillen koko datatiedostosta.</span>
-<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a><span class="fu">## Datan tallennus {#sec-puhdistaminen-tallennus}</span></span>
-<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a>Viimeiseksi data tallennettiin tilapäiseksi tiedostoksi anonymisointia varten. Tallennusta ei ole saatavilla verkkosivun lähdekoodista tietosuojan takia.</span>
-<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: puhdistaminen-04-tallennus</span></span>
+<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a>puuttuvat <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a>  mice<span class="sc">::</span><span class="fu">md.pattern</span>(<span class="at">plot =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>(<span class="at">rownames =</span> <span class="st">"Määrä"</span>)</span>
+<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a>puuttuvat<span class="sc">$</span>Määrä <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(puuttuvat<span class="sc">$</span>Määrä)</span>
+<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a>puuttuvat <span class="sc">|&gt;</span></span>
+<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Määrä <span class="sc">==</span> <span class="dv">91</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a>  <span class="fu">t</span>() <span class="sc">|&gt;</span></span>
+<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span></span>
+<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>() <span class="sc">|&gt;</span></span>
+<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(V1 <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span>
+<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a>Puuttuvien vastausten uniikkeja muuttujayhdistelmiä oli yhteensä 895 kappaletta.</span>
 <span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv2</span>(data, <span class="at">file =</span> <span class="st">"output/puhdistettudata.csv"</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a>Yleisimmällä puuttivien vastausten yhdistelmällä oli 91 vastaajaa (yhdistelmä A). Tältä muuttujayhdistelmältä puuttui vastaukset kaikilta työuran muutossuunnitelmien muuttujilta (<span class="in">`k42_X_X`</span>), ja siten myös kaikilta muutosaiesyymuuttujilta (<span class="in">`k43_X`</span>). Toisin sanoen, nämä 91 vastaajaa eivät olleet suunnitelleet mitään muutoksia toimintaan osallistumiseensa, mutta olivat vastanneet kaikkiin muihin kyselyn kysymyksiin. Puutteet ovat valideja puuttumisia, joten emme poistaneet vastaajia aineistosta.</span>
 <span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a>Muut yhdistelmät tippuvat alle 10 vastaajan. Emme käsitelleet näitä muuttujayhdistelmiä niiden harvinaisuuden takia.</span>
+<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a><span class="fu">## Datan tallennus {#sec-puhdistaminen-tallennus}</span></span>
+<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a>Viimeiseksi data tallennettiin tilapäiseksi tiedostoksi anonymisointia varten.</span>
+<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: puhdistaminen-04-tallennus</span></span>
+<span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Datan tallennus"</span></span>
+<span id="cb6-93"><a href="#cb6-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-94"><a href="#cb6-94" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv2</span>(data, <span class="at">file =</span> <span class="st">"output/puhdistettudata.csv"</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb6-95"><a href="#cb6-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-96"><a href="#cb6-96" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
