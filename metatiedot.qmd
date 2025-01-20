@@ -4,49 +4,7 @@
 eval: true
 ---
 
-Tässä osiossa käymme läpi kyselytutkimuksen meta- ja taustatietojen tulokset. Tiedot pohjautuvat anonymisoituun datatiedostoon, josta on poistettu epäilyttävät vastaajat. Osion voi toistaa lataamalla Tietoarkistossa oleva datakopio ja ensin suorittamalla [luvun -@sec-datatarkistus] koodit.
-
-## Metatietoja Webropolista {#sec-metatiedot-webropol}
-
-### Webropolista haetut tiedot kyselyn avaus- ja täyttöasteista {#sec-metatiedot-webropol-asteet}
-
-Haimme Webropol-palvelusta suoraan tiedot kyselylinkkien avauksesta, täytön aloittamisesta sekä kyselyn lähettämisestä. Kyselyn lähettämisaste vastaa kyselytutkimuksen vastausmääriä ennen puhdistamista ja anonymisointia. Tietoja ei ole saatavilla datatiedostosta.
-
-@tbl-metatiedot-webropolasteet osoittaa kunkin kyselylinkin avaus-, aloittamis- ja lähettämismäärät, sekä niiden prosentuaaliset osuudet avausmäärästä.
-
-| Kyselylinkki                                        | Avattu vastaajan toimesta | Vastaaminen aloitettu | Vastaus lähetetty |
-|-----------------------------------------------------|---------------------------|-----------------------|-------------------|
-| Johdon kautta                                       | 560 (100 %)               | 376 (67 %)            | 249 (44 %)        |
-| Toimistojen, viestinnän ja yhteyshenkilöiden kautta | 1 068 (100 %)             | 622 (58 %)            | 422 (40 %)        |
-| Median kautta                                       | 1 223 (100 %)             | 643 (53 %)            | 377 (31 %)        |
-| **Yhteensä**                                        | **2 851 (100 %)**         | **1 641 (58 %)**      | **1 048 (37 %)**  |
-
-: Kyselylomakkeen avaus-, aloittamis- ja lähettämisasteet (n ja %) kyselylinkin mukaan {#tbl-metatiedot-webropolasteet}
-
-### Webropolista vietyjen raporttien vastausmäärät kieli- ja linkkiversioiden mukaan {#sec-metatiedot-webropol-linkkijakieli}
-
-Veimme Webropolista kaikki kyselytiedot eriteltynä suomen- ja ruotsinkielisten kyselyversioiden vastaajien välillä (ks. @sec-eksportointi). @tbl-metatiedot-linkkijakieli esittää vastausmäärät eriteltynä kyselylinkkien ja kieliversioiden välillä.
-
-| Kyselylinkki                                        | Suomenkielinen | Ruotsinkielinen | Yhteensä          |
-|-----------------------------------------------------|----------------|-----------------|-------------------|
-| Johdon kautta                                       | 242 (97 %)     | 7 (3 %)         | **249 (100 %)**   |
-| Toimistojen, viestinnän ja yhteyshenkilöiden kautta | 388 (92 %)     | 34 (8 %)        | **422 (100 %)**   |
-| Median kautta                                       | 352 (93 %)     | 25 (7 %)        | **377 (100 %)**   |
-| **Yhteensä**                                        | **982 (94 %)** | **66 (6 %)**    | **1 048 (100 %)** |
-
-: Kyselylomakkeen vastausmäärät kyselylinkin ja kieliversion mukaan (n ja %) ennen puhdistamista ja anonymisointia {#tbl-metatiedot-linkkijakieli}
-
-### Suostumuksensa kieltäneet vastaajat {#sec-metatiedot-webropol-kieltaytyneet}
-
-Virheen takia Webropol-järjestelmässä tallentui tiedot myös niistä vastaajista, jotka kieltäytyivät tietojensa käsittelystä ja arkistoinnista. Näiden tiedot poistettiin kyselyn käsittelyn yhteydessä (ks. @sec-puhdistaminen-suostumuskiellot).
-
-Ennen puhdistamista vastaajia oli yhteensä 1 048 kappaletta. Kieltävän suostumuksen antaneita oli yhteensä 23 kappaletta. Jäljelle jäi siten 1 025 vastaajaa.
-
-## Epäilyttävät vastaukset {#sec-metatiedot-epailyttavat}
-
-Anonymisoinnin jälkeen tarkistimme kaikilta vastaajilta epäilyttävät tiedot neljältä muuttujaryhmältä (ks. @sec-datatarkistus). Tarkistuksen pohjalta poistimme 65 vastaajaa. Jäljelle jäi siten 960 vastaajaa.
-
-## Datatiedoston metatietojen kuvailu {#sec-metatiedot-metatiedot}
+Tässä osiossa käymme läpi kyselytutkimuksen metatiedot. Tiedot pohjautuvat anonymisoituun datatiedostoon, josta on poistettu epäilyttävät vastaajat. Osion voi toistaa lataamalla Tietoarkistossa oleva datakopio ja suorittamalla [luvun -@sec-datatarkistus] koodit.
 
 ```{r}
 #| label: metatiedot-00-paketit
@@ -63,6 +21,36 @@ library(tidyverse)
 data <- read.csv2("output/valmisdata.csv", tryLogical = FALSE)
 
 ```
+
+## Metatietoja Webropolista {#sec-metatiedot-webropol}
+
+### Webropolista haetut tiedot kyselyn avaus- ja täyttöasteista {#sec-metatiedot-webropol-asteet}
+
+Haimme Webropol-palvelusta suoraan tiedot kyselylinkkien avauksesta, täytön aloittamisesta sekä kyselyn lähettämisestä. Kyselyn lähettämisaste vastaa kyselytutkimuksen vastausmääriä ennen puhdistamista ja anonymisointia. Tietoja ei ole saatavilla datatiedostosta.
+
+| Kyselylinkki                                        | Avattu vastaajan toimesta | Vastaaminen aloitettu | Vastaus lähetetty |
+|-----------------------------------------------------|---------------------------|-----------------------|-------------------|
+| Johdon kautta                                       | 560 (100 %)               | 376 (67 %)            | 249 (44 %)        |
+| Toimistojen, viestinnän ja yhteyshenkilöiden kautta | 1 068 (100 %)             | 622 (58 %)            | 422 (40 %)        |
+| Median kautta                                       | 1 223 (100 %)             | 643 (53 %)            | 377 (31 %)        |
+| **Yhteensä**                                        | **2 851 (100 %)**         | **1 641 (58 %)**      | **1 048 (37 %)**  |
+
+: Kyselylomakkeen avaus-, aloittamis- ja lähettämisasteet (n ja %) kyselylinkin mukaan {#tbl-metatiedot-webropolasteet}
+
+### Webropolista vietyjen raporttien vastausmäärät kieli- ja linkkiversioiden mukaan {#sec-metatiedot-webropol-linkkijakieli}
+
+Veimme Webropolista kaikki kyselytiedot eriteltynä suomen- ja ruotsinkielisten kyselyversioiden vastaajien välillä (ks. @sec-eksportointi). Tietoja ei ole saatavilla datatiedostosta.
+
+| Kyselylinkki                                        | Suomenkielinen | Ruotsinkielinen | Yhteensä          |
+|-----------------------------------------------------|----------------|-----------------|-------------------|
+| Johdon kautta                                       | 242 (97 %)     | 7 (3 %)         | **249 (100 %)**   |
+| Toimistojen, viestinnän ja yhteyshenkilöiden kautta | 388 (92 %)     | 34 (8 %)        | **422 (100 %)**   |
+| Median kautta                                       | 352 (93 %)     | 25 (7 %)        | **377 (100 %)**   |
+| **Yhteensä**                                        | **982 (94 %)** | **66 (6 %)**    | **1 048 (100 %)** |
+
+: Kyselylomakkeen vastausmäärät kyselylinkin ja kieliversion mukaan (n ja %) ennen puhdistamista ja anonymisointia {#tbl-metatiedot-linkkijakieli}
+
+## Datatiedoston metatietojen kuvailu {#sec-metatiedot-metatiedot}
 
 Lopullisessa otoksessa on yhteensä `r nrow(data)` vastaajaa.
 
@@ -83,11 +71,11 @@ data |>
   ggplot(data = _, mapping = aes(x = Linkkiversio)) + 
   geom_bar(stat = "count", fill = "#c20e1a") +
   labs(y = "Määrä (n)", x = "Yhteydenottomenetelmät") + 
-  geom_text(
+  geom_label(
     aes(label = after_stat(count)),
     stat = "count",
     vjust = 1.5,
-    colour = "white"
+    colour = "black"
   )
 
 ```
@@ -109,10 +97,11 @@ data |>
   ggplot(data = _, mapping = aes(x = Kieliversio)) + 
   geom_bar(stat = "count", fill = "#c20e1a") +
   labs(y = "Määrä (n)", x = "Kyselyn vastauskieli") + 
-  geom_text(
+  geom_label(
     aes(label = after_stat(count)),
     stat = "count",
     vjust = 1.5,
-    colour = "white"
+    colour = "black"
   )
+
 ```

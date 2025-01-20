@@ -403,13 +403,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#sec-metatiedot-webropol-asteet" id="toc-sec-metatiedot-webropol-asteet" class="nav-link" data-scroll-target="#sec-metatiedot-webropol-asteet"><span class="header-section-number">21.1.1</span> Webropolista haetut tiedot kyselyn avaus- ja täyttöasteista</a></li>
   <li><a href="#sec-metatiedot-webropol-linkkijakieli" id="toc-sec-metatiedot-webropol-linkkijakieli" class="nav-link" data-scroll-target="#sec-metatiedot-webropol-linkkijakieli"><span class="header-section-number">21.1.2</span> Webropolista vietyjen raporttien vastausmäärät kieli- ja linkkiversioiden mukaan</a></li>
-  <li><a href="#sec-metatiedot-webropol-kieltaytyneet" id="toc-sec-metatiedot-webropol-kieltaytyneet" class="nav-link" data-scroll-target="#sec-metatiedot-webropol-kieltaytyneet"><span class="header-section-number">21.1.3</span> Suostumuksensa kieltäneet vastaajat</a></li>
   </ul></li>
-  <li><a href="#sec-metatiedot-epailyttavat" id="toc-sec-metatiedot-epailyttavat" class="nav-link" data-scroll-target="#sec-metatiedot-epailyttavat"><span class="header-section-number">21.2</span> Epäilyttävät vastaukset</a></li>
-  <li><a href="#sec-metatiedot-metatiedot" id="toc-sec-metatiedot-metatiedot" class="nav-link" data-scroll-target="#sec-metatiedot-metatiedot"><span class="header-section-number">21.3</span> Datatiedoston metatietojen kuvailu</a>
+  <li><a href="#sec-metatiedot-metatiedot" id="toc-sec-metatiedot-metatiedot" class="nav-link" data-scroll-target="#sec-metatiedot-metatiedot"><span class="header-section-number">21.2</span> Datatiedoston metatietojen kuvailu</a>
   <ul class="collapse">
-  <li><a href="#sec-metatiedot-metatiedot-yhteydenottomenetelmat" id="toc-sec-metatiedot-metatiedot-yhteydenottomenetelmat" class="nav-link" data-scroll-target="#sec-metatiedot-metatiedot-yhteydenottomenetelmat"><span class="header-section-number">21.3.1</span> Yhteydenottomenetelmät</a></li>
-  <li><a href="#sec-metatiedot-metatiedot-kieliversio" id="toc-sec-metatiedot-metatiedot-kieliversio" class="nav-link" data-scroll-target="#sec-metatiedot-metatiedot-kieliversio"><span class="header-section-number">21.3.2</span> Kieliversio</a></li>
+  <li><a href="#sec-metatiedot-metatiedot-yhteydenottomenetelmat" id="toc-sec-metatiedot-metatiedot-yhteydenottomenetelmat" class="nav-link" data-scroll-target="#sec-metatiedot-metatiedot-yhteydenottomenetelmat"><span class="header-section-number">21.2.1</span> Yhteydenottomenetelmät</a></li>
+  <li><a href="#sec-metatiedot-metatiedot-kieliversio" id="toc-sec-metatiedot-metatiedot-kieliversio" class="nav-link" data-scroll-target="#sec-metatiedot-metatiedot-kieliversio"><span class="header-section-number">21.2.2</span> Kieliversio</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -434,13 +432,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>Tässä osiossa käymme läpi kyselytutkimuksen meta- ja taustatietojen tulokset. Tiedot pohjautuvat anonymisoituun datatiedostoon, josta on poistettu epäilyttävät vastaajat. Osion voi toistaa lataamalla Tietoarkistossa oleva datakopio ja ensin suorittamalla <a href="datatarkistus.html">luvun&nbsp;<span>20</span></a> koodit.</p>
+<p>Tässä osiossa käymme läpi kyselytutkimuksen metatiedot. Tiedot pohjautuvat anonymisoituun datatiedostoon, josta on poistettu epäilyttävät vastaajat. Osion voi toistaa lataamalla Tietoarkistossa oleva datakopio ja suorittamalla <a href="datatarkistus.html">luvun&nbsp;<span>20</span></a> koodit.</p>
+<div class="cell">
+<details>
+<summary>Osiossa käytetyt paketit</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Datan avaaminen</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"output/valmisdata.csv"</span>, <span class="at">tryLogical =</span> <span class="cn">FALSE</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 <section id="sec-metatiedot-webropol" class="level2" data-number="21.1">
 <h2 data-number="21.1" class="anchored" data-anchor-id="sec-metatiedot-webropol"><span class="header-section-number">21.1</span> Metatietoja Webropolista</h2>
 <section id="sec-metatiedot-webropol-asteet" class="level3" data-number="21.1.1">
 <h3 data-number="21.1.1" class="anchored" data-anchor-id="sec-metatiedot-webropol-asteet"><span class="header-section-number">21.1.1</span> Webropolista haetut tiedot kyselyn avaus- ja täyttöasteista</h3>
 <p>Haimme Webropol-palvelusta suoraan tiedot kyselylinkkien avauksesta, täytön aloittamisesta sekä kyselyn lähettämisestä. Kyselyn lähettämisaste vastaa kyselytutkimuksen vastausmääriä ennen puhdistamista ja anonymisointia. Tietoja ei ole saatavilla datatiedostosta.</p>
-<p><a href="#tbl-metatiedot-webropolasteet">Taulukko&nbsp;<span>21.1</span></a> osoittaa kunkin kyselylinkin avaus-, aloittamis- ja lähettämismäärät, sekä niiden prosentuaaliset osuudet avausmäärästä.</p>
 <div id="tbl-metatiedot-webropolasteet" class="anchored">
 <table class="table">
 <caption>Taulukko&nbsp;21.1: Kyselylomakkeen avaus-, aloittamis- ja lähettämisasteet (n ja %) kyselylinkin mukaan</caption>
@@ -489,7 +498,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="sec-metatiedot-webropol-linkkijakieli" class="level3" data-number="21.1.2">
 <h3 data-number="21.1.2" class="anchored" data-anchor-id="sec-metatiedot-webropol-linkkijakieli"><span class="header-section-number">21.1.2</span> Webropolista vietyjen raporttien vastausmäärät kieli- ja linkkiversioiden mukaan</h3>
-<p>Veimme Webropolista kaikki kyselytiedot eriteltynä suomen- ja ruotsinkielisten kyselyversioiden vastaajien välillä (ks. <a href="eksportointi.html"><span>Luku&nbsp;14</span></a>). <a href="#tbl-metatiedot-linkkijakieli">Taulukko&nbsp;<span>21.2</span></a> esittää vastausmäärät eriteltynä kyselylinkkien ja kieliversioiden välillä.</p>
+<p>Veimme Webropolista kaikki kyselytiedot eriteltynä suomen- ja ruotsinkielisten kyselyversioiden vastaajien välillä (ks. <a href="eksportointi.html"><span>Luku&nbsp;14</span></a>). Tietoja ei ole saatavilla datatiedostosta.</p>
 <div id="tbl-metatiedot-linkkijakieli" class="anchored">
 <table class="table">
 <caption>Taulukko&nbsp;21.2: Kyselylomakkeen vastausmäärät kyselylinkin ja kieliversion mukaan (n ja %) ennen puhdistamista ja anonymisointia</caption>
@@ -536,33 +545,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 </div>
 </section>
-<section id="sec-metatiedot-webropol-kieltaytyneet" class="level3" data-number="21.1.3">
-<h3 data-number="21.1.3" class="anchored" data-anchor-id="sec-metatiedot-webropol-kieltaytyneet"><span class="header-section-number">21.1.3</span> Suostumuksensa kieltäneet vastaajat</h3>
-<p>Virheen takia Webropol-järjestelmässä tallentui tiedot myös niistä vastaajista, jotka kieltäytyivät tietojensa käsittelystä ja arkistoinnista. Näiden tiedot poistettiin kyselyn käsittelyn yhteydessä (ks. <a href="puhdistaminen.html#sec-puhdistaminen-suostumuskiellot"><span>Alaluku&nbsp;17.2</span></a>).</p>
-<p>Ennen puhdistamista vastaajia oli yhteensä 1 048 kappaletta. Kieltävän suostumuksen antaneita oli yhteensä 23 kappaletta. Jäljelle jäi siten 1 025 vastaajaa.</p>
 </section>
-</section>
-<section id="sec-metatiedot-epailyttavat" class="level2" data-number="21.2">
-<h2 data-number="21.2" class="anchored" data-anchor-id="sec-metatiedot-epailyttavat"><span class="header-section-number">21.2</span> Epäilyttävät vastaukset</h2>
-<p>Anonymisoinnin jälkeen tarkistimme kaikilta vastaajilta epäilyttävät tiedot neljältä muuttujaryhmältä (ks. <a href="datatarkistus.html"><span>Luku&nbsp;20</span></a>). Tarkistuksen pohjalta poistimme 65 vastaajaa. Jäljelle jäi siten 960 vastaajaa.</p>
-</section>
-<section id="sec-metatiedot-metatiedot" class="level2" data-number="21.3">
-<h2 data-number="21.3" class="anchored" data-anchor-id="sec-metatiedot-metatiedot"><span class="header-section-number">21.3</span> Datatiedoston metatietojen kuvailu</h2>
-<div class="cell">
-<details>
-<summary>Osiossa käytetyt paketit</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div class="cell">
-<details>
-<summary>Datan avaaminen</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"output/valmisdata.csv"</span>, <span class="at">tryLogical =</span> <span class="cn">FALSE</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
+<section id="sec-metatiedot-metatiedot" class="level2" data-number="21.2">
+<h2 data-number="21.2" class="anchored" data-anchor-id="sec-metatiedot-metatiedot"><span class="header-section-number">21.2</span> Datatiedoston metatietojen kuvailu</h2>
 <p>Lopullisessa otoksessa on yhteensä 960 vastaajaa.</p>
-<section id="sec-metatiedot-metatiedot-yhteydenottomenetelmat" class="level3" data-number="21.3.1">
-<h3 data-number="21.3.1" class="anchored" data-anchor-id="sec-metatiedot-metatiedot-yhteydenottomenetelmat"><span class="header-section-number">21.3.1</span> Yhteydenottomenetelmät</h3>
+<section id="sec-metatiedot-metatiedot-yhteydenottomenetelmat" class="level3" data-number="21.2.1">
+<h3 data-number="21.2.1" class="anchored" data-anchor-id="sec-metatiedot-metatiedot-yhteydenottomenetelmat"><span class="header-section-number">21.2.1</span> Yhteydenottomenetelmät</h3>
 <div class="cell">
 <details>
 <summary>Kuvion rakentaminen</summary>
@@ -576,11 +564,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> _, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Linkkiversio)) <span class="sc">+</span> </span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"count"</span>, <span class="at">fill =</span> <span class="st">"#c20e1a"</span>) <span class="sc">+</span></span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Määrä (n)"</span>, <span class="at">x =</span> <span class="st">"Yhteydenottomenetelmät"</span>) <span class="sc">+</span> </span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(</span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">after_stat</span>(count)),</span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">stat =</span> <span class="st">"count"</span>,</span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">vjust =</span> <span class="fl">1.5</span>,</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"white"</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"black"</span></span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
@@ -593,8 +581,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="sec-metatiedot-metatiedot-kieliversio" class="level3" data-number="21.3.2">
-<h3 data-number="21.3.2" class="anchored" data-anchor-id="sec-metatiedot-metatiedot-kieliversio"><span class="header-section-number">21.3.2</span> Kieliversio</h3>
+<section id="sec-metatiedot-metatiedot-kieliversio" class="level3" data-number="21.2.2">
+<h3 data-number="21.2.2" class="anchored" data-anchor-id="sec-metatiedot-metatiedot-kieliversio"><span class="header-section-number">21.2.2</span> Kieliversio</h3>
 <div class="cell">
 <details>
 <summary>Kuvion rakentaminen</summary>
@@ -608,11 +596,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> _, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Kieliversio)) <span class="sc">+</span> </span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"count"</span>, <span class="at">fill =</span> <span class="st">"#c20e1a"</span>) <span class="sc">+</span></span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Määrä (n)"</span>, <span class="at">x =</span> <span class="st">"Kyselyn vastauskieli"</span>) <span class="sc">+</span> </span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(</span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">after_stat</span>(count)),</span>
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">stat =</span> <span class="st">"count"</span>,</span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">vjust =</span> <span class="fl">1.5</span>,</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"white"</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"black"</span></span>
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
@@ -931,118 +919,107 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>eval: true</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>---</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>Tässä osiossa käymme läpi kyselytutkimuksen meta- ja taustatietojen tulokset. Tiedot pohjautuvat anonymisoituun datatiedostoon, josta on poistettu epäilyttävät vastaajat. Osion voi toistaa lataamalla Tietoarkistossa oleva datakopio ja ensin suorittamalla <span class="co">[</span><span class="ot">luvun -@sec-datatarkistus</span><span class="co">]</span> koodit.</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>Tässä osiossa käymme läpi kyselytutkimuksen metatiedot. Tiedot pohjautuvat anonymisoituun datatiedostoon, josta on poistettu epäilyttävät vastaajat. Osion voi toistaa lataamalla Tietoarkistossa oleva datakopio ja suorittamalla <span class="co">[</span><span class="ot">luvun -@sec-datatarkistus</span><span class="co">]</span> koodit.</span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## Metatietoja Webropolista {#sec-metatiedot-webropol}</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">### Webropolista haetut tiedot kyselyn avaus- ja täyttöasteista {#sec-metatiedot-webropol-asteet}</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>Haimme Webropol-palvelusta suoraan tiedot kyselylinkkien avauksesta, täytön aloittamisesta sekä kyselyn lähettämisestä. Kyselyn lähettämisaste vastaa kyselytutkimuksen vastausmääriä ennen puhdistamista ja anonymisointia. Tietoja ei ole saatavilla datatiedostosta.</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: metatiedot-00-paketit</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Osiossa käytetyt paketit"</span></span>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>@tbl-metatiedot-webropolasteet osoittaa kunkin kyselylinkin avaus-, aloittamis- ja lähettämismäärät, sekä niiden prosentuaaliset osuudet avausmäärästä.</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>| Kyselylinkki                                        | Avattu vastaajan toimesta | Vastaaminen aloitettu | Vastaus lähetetty |</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>|-----------------------------------------------------|---------------------------|-----------------------|-------------------|</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>| Johdon kautta                                       | 560 (100 %)               | 376 (67 %)            | 249 (44 %)        |</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>| Toimistojen, viestinnän ja yhteyshenkilöiden kautta | 1 068 (100 %)             | 622 (58 %)            | 422 (40 %)        |</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>| Median kautta                                       | 1 223 (100 %)             | 643 (53 %)            | 377 (31 %)        |</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>| **Yhteensä**                                        | **2 851 (100 %)**         | **1 641 (58 %)**      | **1 048 (37 %)**  |</span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>: Kyselylomakkeen avaus-, aloittamis- ja lähettämisasteet (n ja %) kyselylinkin mukaan {#tbl-metatiedot-webropolasteet}</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="fu">### Webropolista vietyjen raporttien vastausmäärät kieli- ja linkkiversioiden mukaan {#sec-metatiedot-webropol-linkkijakieli}</span></span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>Veimme Webropolista kaikki kyselytiedot eriteltynä suomen- ja ruotsinkielisten kyselyversioiden vastaajien välillä (ks. @sec-eksportointi). @tbl-metatiedot-linkkijakieli esittää vastausmäärät eriteltynä kyselylinkkien ja kieliversioiden välillä.</span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>| Kyselylinkki                                        | Suomenkielinen | Ruotsinkielinen | Yhteensä          |</span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>|-----------------------------------------------------|----------------|-----------------|-------------------|</span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>| Johdon kautta                                       | 242 (97 %)     | 7 (3 %)         | **249 (100 %)**   |</span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>| Toimistojen, viestinnän ja yhteyshenkilöiden kautta | 388 (92 %)     | 34 (8 %)        | **422 (100 %)**   |</span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>| Median kautta                                       | 352 (93 %)     | 25 (7 %)        | **377 (100 %)**   |</span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>| **Yhteensä**                                        | **982 (94 %)** | **66 (6 %)**    | **1 048 (100 %)** |</span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>: Kyselylomakkeen vastausmäärät kyselylinkin ja kieliversion mukaan (n ja %) ennen puhdistamista ja anonymisointia {#tbl-metatiedot-linkkijakieli}</span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="fu">### Suostumuksensa kieltäneet vastaajat {#sec-metatiedot-webropol-kieltaytyneet}</span></span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>Virheen takia Webropol-järjestelmässä tallentui tiedot myös niistä vastaajista, jotka kieltäytyivät tietojensa käsittelystä ja arkistoinnista. Näiden tiedot poistettiin kyselyn käsittelyn yhteydessä (ks. @sec-puhdistaminen-suostumuskiellot).</span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>Ennen puhdistamista vastaajia oli yhteensä 1 048 kappaletta. Kieltävän suostumuksen antaneita oli yhteensä 23 kappaletta. Jäljelle jäi siten 1 025 vastaajaa.</span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a><span class="fu">## Epäilyttävät vastaukset {#sec-metatiedot-epailyttavat}</span></span>
-<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>Anonymisoinnin jälkeen tarkistimme kaikilta vastaajilta epäilyttävät tiedot neljältä muuttujaryhmältä (ks. @sec-datatarkistus). Tarkistuksen pohjalta poistimme 65 vastaajaa. Jäljelle jäi siten 960 vastaajaa.</span>
-<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a><span class="fu">## Datatiedoston metatietojen kuvailu {#sec-metatiedot-metatiedot}</span></span>
-<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: metatiedot-00-paketit</span></span>
-<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Osiossa käytetyt paketit"</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: metatiedot-01-avaaminen</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Datan avaaminen"</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"output/valmisdata.csv"</span>, <span class="at">tryLogical =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="fu">## Metatietoja Webropolista {#sec-metatiedot-webropol}</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="fu">### Webropolista haetut tiedot kyselyn avaus- ja täyttöasteista {#sec-metatiedot-webropol-asteet}</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>Haimme Webropol-palvelusta suoraan tiedot kyselylinkkien avauksesta, täytön aloittamisesta sekä kyselyn lähettämisestä. Kyselyn lähettämisaste vastaa kyselytutkimuksen vastausmääriä ennen puhdistamista ja anonymisointia. Tietoja ei ole saatavilla datatiedostosta.</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>| Kyselylinkki                                        | Avattu vastaajan toimesta | Vastaaminen aloitettu | Vastaus lähetetty |</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>|-----------------------------------------------------|---------------------------|-----------------------|-------------------|</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>| Johdon kautta                                       | 560 (100 %)               | 376 (67 %)            | 249 (44 %)        |</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>| Toimistojen, viestinnän ja yhteyshenkilöiden kautta | 1 068 (100 %)             | 622 (58 %)            | 422 (40 %)        |</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>| Median kautta                                       | 1 223 (100 %)             | 643 (53 %)            | 377 (31 %)        |</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>| **Yhteensä**                                        | **2 851 (100 %)**         | **1 641 (58 %)**      | **1 048 (37 %)**  |</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>: Kyselylomakkeen avaus-, aloittamis- ja lähettämisasteet (n ja %) kyselylinkin mukaan {#tbl-metatiedot-webropolasteet}</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="fu">### Webropolista vietyjen raporttien vastausmäärät kieli- ja linkkiversioiden mukaan {#sec-metatiedot-webropol-linkkijakieli}</span></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>Veimme Webropolista kaikki kyselytiedot eriteltynä suomen- ja ruotsinkielisten kyselyversioiden vastaajien välillä (ks. @sec-eksportointi). Tietoja ei ole saatavilla datatiedostosta.</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>| Kyselylinkki                                        | Suomenkielinen | Ruotsinkielinen | Yhteensä          |</span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>|-----------------------------------------------------|----------------|-----------------|-------------------|</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>| Johdon kautta                                       | 242 (97 %)     | 7 (3 %)         | **249 (100 %)**   |</span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>| Toimistojen, viestinnän ja yhteyshenkilöiden kautta | 388 (92 %)     | 34 (8 %)        | **422 (100 %)**   |</span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>| Median kautta                                       | 352 (93 %)     | 25 (7 %)        | **377 (100 %)**   |</span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>| **Yhteensä**                                        | **982 (94 %)** | **66 (6 %)**    | **1 048 (100 %)** |</span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>: Kyselylomakkeen vastausmäärät kyselylinkin ja kieliversion mukaan (n ja %) ennen puhdistamista ja anonymisointia {#tbl-metatiedot-linkkijakieli}</span>
 <span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a><span class="fu">## Datatiedoston metatietojen kuvailu {#sec-metatiedot-metatiedot}</span></span>
 <span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>Lopullisessa otoksessa on yhteensä <span class="in">`r nrow(data)`</span> vastaajaa.</span>
 <span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: metatiedot-01-avaaminen</span></span>
-<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Datan avaaminen"</span></span>
-<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"output/valmisdata.csv"</span>, <span class="at">tryLogical =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a>Lopullisessa otoksessa on yhteensä <span class="in">`r nrow(data)`</span> vastaajaa.</span>
-<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a><span class="fu">### Yhteydenottomenetelmät {#sec-metatiedot-metatiedot-yhteydenottomenetelmat}</span></span>
-<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-metatiedot-yhteydenottomenetelmat</span></span>
-<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Tutkimuksen vastaajat yhteydenottomenetelmittäin"</span></span>
-<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Kuvion rakentaminen"</span></span>
-<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
-<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a>    <span class="at">Linkkiversio =</span> <span class="fu">factor</span>(</span>
-<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a>      Linkkiversio,</span>
-<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Johdon kautta"</span>, <span class="st">"Henkilöstön kautta"</span>, <span class="st">"Median kautta"</span>)</span>
-<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> _, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Linkkiversio)) <span class="sc">+</span> </span>
-<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"count"</span>, <span class="at">fill =</span> <span class="st">"#c20e1a"</span>) <span class="sc">+</span></span>
-<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Määrä (n)"</span>, <span class="at">x =</span> <span class="st">"Yhteydenottomenetelmät"</span>) <span class="sc">+</span> </span>
-<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(</span>
-<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">after_stat</span>(count)),</span>
-<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a>    <span class="at">stat =</span> <span class="st">"count"</span>,</span>
-<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a>    <span class="at">vjust =</span> <span class="fl">1.5</span>,</span>
-<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"white"</span></span>
-<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a><span class="fu">### Kieliversio {#sec-metatiedot-metatiedot-kieliversio}</span></span>
-<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-metatiedot-kieliversio</span></span>
-<span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Tutkimuksen vastaajat kyselyn kielen mukaan"</span></span>
-<span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Kuvion rakentaminen"</span></span>
-<span id="cb5-109"><a href="#cb5-109" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
-<span id="cb5-111"><a href="#cb5-111" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb5-112"><a href="#cb5-112" aria-hidden="true" tabindex="-1"></a>    <span class="at">Kieliversio =</span> <span class="fu">factor</span>(</span>
-<span id="cb5-113"><a href="#cb5-113" aria-hidden="true" tabindex="-1"></a>      Kieliversio,</span>
-<span id="cb5-114"><a href="#cb5-114" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Suomi"</span>, <span class="st">"Ruotsi"</span>)</span>
-<span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb5-117"><a href="#cb5-117" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> _, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Kieliversio)) <span class="sc">+</span> </span>
-<span id="cb5-118"><a href="#cb5-118" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"count"</span>, <span class="at">fill =</span> <span class="st">"#c20e1a"</span>) <span class="sc">+</span></span>
-<span id="cb5-119"><a href="#cb5-119" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Määrä (n)"</span>, <span class="at">x =</span> <span class="st">"Kyselyn vastauskieli"</span>) <span class="sc">+</span> </span>
-<span id="cb5-120"><a href="#cb5-120" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(</span>
-<span id="cb5-121"><a href="#cb5-121" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">after_stat</span>(count)),</span>
-<span id="cb5-122"><a href="#cb5-122" aria-hidden="true" tabindex="-1"></a>    <span class="at">stat =</span> <span class="st">"count"</span>,</span>
-<span id="cb5-123"><a href="#cb5-123" aria-hidden="true" tabindex="-1"></a>    <span class="at">vjust =</span> <span class="fl">1.5</span>,</span>
-<span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"white"</span></span>
-<span id="cb5-125"><a href="#cb5-125" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb5-126"><a href="#cb5-126" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a><span class="fu">### Yhteydenottomenetelmät {#sec-metatiedot-metatiedot-yhteydenottomenetelmat}</span></span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-metatiedot-yhteydenottomenetelmat</span></span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Tutkimuksen vastaajat yhteydenottomenetelmittäin"</span></span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Kuvion rakentaminen"</span></span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a>    <span class="at">Linkkiversio =</span> <span class="fu">factor</span>(</span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a>      Linkkiversio,</span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Johdon kautta"</span>, <span class="st">"Henkilöstön kautta"</span>, <span class="st">"Median kautta"</span>)</span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> _, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Linkkiversio)) <span class="sc">+</span> </span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"count"</span>, <span class="at">fill =</span> <span class="st">"#c20e1a"</span>) <span class="sc">+</span></span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Määrä (n)"</span>, <span class="at">x =</span> <span class="st">"Yhteydenottomenetelmät"</span>) <span class="sc">+</span> </span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(</span>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">after_stat</span>(count)),</span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a>    <span class="at">stat =</span> <span class="st">"count"</span>,</span>
+<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a>    <span class="at">vjust =</span> <span class="fl">1.5</span>,</span>
+<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"black"</span></span>
+<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a><span class="fu">### Kieliversio {#sec-metatiedot-metatiedot-kieliversio}</span></span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-metatiedot-kieliversio</span></span>
+<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Tutkimuksen vastaajat kyselyn kielen mukaan"</span></span>
+<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Kuvion rakentaminen"</span></span>
+<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a>    <span class="at">Kieliversio =</span> <span class="fu">factor</span>(</span>
+<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a>      Kieliversio,</span>
+<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Suomi"</span>, <span class="st">"Ruotsi"</span>)</span>
+<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> _, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Kieliversio)) <span class="sc">+</span> </span>
+<span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"count"</span>, <span class="at">fill =</span> <span class="st">"#c20e1a"</span>) <span class="sc">+</span></span>
+<span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Määrä (n)"</span>, <span class="at">x =</span> <span class="st">"Kyselyn vastauskieli"</span>) <span class="sc">+</span> </span>
+<span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(</span>
+<span id="cb5-109"><a href="#cb5-109" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">after_stat</span>(count)),</span>
+<span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a>    <span class="at">stat =</span> <span class="st">"count"</span>,</span>
+<span id="cb5-111"><a href="#cb5-111" aria-hidden="true" tabindex="-1"></a>    <span class="at">vjust =</span> <span class="fl">1.5</span>,</span>
+<span id="cb5-112"><a href="#cb5-112" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"black"</span></span>
+<span id="cb5-113"><a href="#cb5-113" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-114"><a href="#cb5-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

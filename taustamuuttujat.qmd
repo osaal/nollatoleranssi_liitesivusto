@@ -4,7 +4,7 @@
 eval: true
 ---
 
-Tässä osiossa käymme läpi kyselytutkimuksen taustamuuttujat. Tiedot pohjautuvat anonymisoituun datatiedostoon, josta on poistettu epäilyttävät vastaajat. Osion voi toistaa lataamalla Tietoarkistossa oleva datakopio ja ensin suorittamalla [luvun -@sec-datatarkistus] koodit.
+Tässä osiossa käymme läpi kyselytutkimuksen taustamuuttujat. Tiedot pohjautuvat anonymisoituun datatiedostoon, josta on poistettu epäilyttävät vastaajat. Osion voi toistaa lataamalla Tietoarkistossa oleva datakopio ja suorittamalla [luvun -@sec-datatarkistus] koodit.
 
 ```{r}
 #| label: taustamuuttujat-00-paketit
@@ -34,7 +34,7 @@ data |>
   mutate(
     k31 = factor(
       k31,
-      labels = c("Nainen", "Mies", "Muu/EHV")
+      labels = c("Nainen", "Mies", "Muu/EHV†")
     )
   ) |>
   ggplot(data = _, mapping = aes(x = k31)) + 
@@ -42,17 +42,18 @@ data |>
   labs(
     y = "Määrä (n)",
     x = "Sukupuoli",
-    caption = "Muu/EHV: Muunsukupuolinen tai ei halunnut vastata"
+    caption = "† Muunsukupuolinen tai ei halunnut vastata"
   ) + 
-  geom_text(
+  geom_label(
     aes(label = after_stat(count)),
     stat = "count",
     vjust = 1.5,
-    colour = "white"
+    colour = "black"
   ) +
   theme(
     plot.caption = element_text(hjust = 0)
   )
+
 ```
 
 ## Organisaatiokuuluvuus {#sec-taustamuuttujat-organisaatiokuuluvuus}
@@ -78,15 +79,16 @@ data |>
     y = "Määrä (n)",
     x = "Organisaatioryhmä"
   ) + 
-  geom_text(
+  geom_label(
     aes(label = after_stat(count)),
     stat = "count",
     vjust = 1.5,
-    colour = "white"
+    colour = "black"
   ) + 
   scale_x_discrete(
     labels = function(x) str_wrap(x, width = 18)
   )
+
 ```
 
 ## Työrytmitys {#sec-taustamuuttujat-tyorytmitys}
@@ -120,11 +122,11 @@ k1 <- data |>
     y = "Määrä (n)",
     x = "Pelastuslaitos ja ensihoito (n = 568)"
   ) + 
-  geom_text(
+  geom_label(
     aes(label = after_stat(count)),
     stat = "count",
     vjust = 1.5,
-    colour = "white"
+    colour = "black"
   ) +
   theme(
     plot.caption = element_text(hjust = 0)
@@ -153,11 +155,11 @@ k2 <- data |>
     y = "Määrä (n)",
     x = "Järjestöt, liitot ja koulut (n = 74)"
   ) + 
-  geom_text(
+  geom_label(
     aes(label = after_stat(count)),
     stat = "count",
     vjust = 1.5,
-    colour = "white"
+    colour = "black"
   ) +
   theme(
     plot.caption = element_text(hjust = 0)
@@ -185,11 +187,11 @@ k3 <- data |>
     y = "Määrä (n)",
     x = "Sopimuspalokunnat (n = 318)\nOsallistuminen toimintaan"
   ) + 
-  geom_text(
+  geom_label(
     aes(label = after_stat(count)),
     stat = "count",
     vjust = 1.5,
-    colour = "white"
+    colour = "black"
   ) +
   theme(
     plot.caption = element_text(hjust = 0)
@@ -217,11 +219,11 @@ k4 <- data |>
     y = "Määrä (n)",
     x = "Sopimuspalokunnat, hälytysvalmius (n = 99)\nKuukausittainen varallaolo"
   ) + 
-  geom_text(
+  geom_label(
     aes(label = after_stat(count)),
     stat = "count",
     vjust = 1.5,
-    colour = "white"
+    colour = "black"
   ) +
   theme(
     plot.caption = element_text(hjust = 0)
@@ -259,15 +261,16 @@ data |>
     y = "Määrä (n)",
     x = "Organisaatioasema"
   ) + 
-  geom_text(
+  geom_label(
     aes(label = after_stat(count)),
     stat = "count",
     vjust = 1.5,
-    colour = "white"
+    colour = "black"
   ) + 
   scale_x_discrete(
     labels = function(x) str_wrap(x, width = 18)
   )
+
 ```
 
 ## Suorittavan henkilöstön ammattiryhmä {#sec-taustamuuttujat-ammattiryhma}
@@ -296,17 +299,13 @@ data |>
   labs(
     y = "Määrä (n)",
     x = "Ammattiryhmä",
-    caption = "Vain suorittava henkilöstö (n = 507)*
-    † 106 sopimuspalokuntalaista koodattiin suorittavaksi henkilöstöksi,
-    mutta he eivät pääseet vastaamaan ammattiryhmäkysymykseen.
-    * 67 pelastuslaitosten alinta johtoa koodattiin suorittavaksi henkilöstöksi,
-    mutta he eivät pääseet vastaamaan kysymykseen."
+    caption = "Vain suorittava henkilöstö (n = 507)\n† 106 sopimuspalokuntalaista sekä 67 pelastuslaitosten alinta johtoa koodattiin suorittavaksi henkilöstöksi,\nmutta he eivät pääseet vastaamaan kysymykseen."
   ) + 
-  geom_text(
+  geom_label(
     aes(label = after_stat(count)),
     stat = "count",
     vjust = 1.5,
-    colour = "white"
+    colour = "black"
   ) + 
   scale_x_discrete(
     labels = function(x) str_wrap(x, width = 18)
@@ -314,6 +313,7 @@ data |>
   theme(
     plot.caption = element_text(hjust = 0)
   )
+
 ```
 
 ## Uran pituus {#sec-taustamuuttujat-uranpituus}
@@ -342,11 +342,11 @@ data |>
     y = "Määrä (n)",
     x = "Uran pituus"
   ) + 
-  geom_text(
+  geom_label(
     aes(label = after_stat(count)),
     stat = "count",
     vjust = 1.5,
-    colour = "white"
+    colour = "black"
   ) + 
   scale_x_discrete(
     labels = function(x) str_wrap(x, width = 18)
@@ -354,6 +354,7 @@ data |>
   theme(
     plot.caption = element_text(hjust = 0)
   )
+
 ```
 
 ## Muutosaikeet {#sec-taustamuuttujat-muutosaikeet}
@@ -385,9 +386,7 @@ ggplot(df_long, aes(x = sub_var)) +
     ))
   ) +
   labs(
-    y = "Määrä (n)",
-    title = "Onko sinulla ollut viimeisen 12 kuukauden aikana aikeita tai suunnitelmia
-    muuttaa tilannettasi seuraavilla tavoilla, tai oletko jo muuttanut tilannettasi?"
+    y = "Määrä (n)"
   ) + 
   scale_x_discrete(
     labels = c(
@@ -403,11 +402,11 @@ ggplot(df_long, aes(x = sub_var)) +
     ),
     axis.title.x = element_blank()
   ) + 
-  geom_text(
+  geom_label(
     aes(label = after_stat(count)),
     stat = "count",
     vjust = 1.5,
-    colour = "white"
+    colour = "black"
   )
 
 ```

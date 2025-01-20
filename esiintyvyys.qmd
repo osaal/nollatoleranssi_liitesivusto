@@ -4,18 +4,18 @@
 eval: true
 ---
 
-Tässä osiossa käsitellään kyselytuloksia liittyen epäasiallisen ja väkivaltaisen kohtelun esiintyvyyteen:
+Tässä osiossa käsitellään epäasiallisen ja väkivaltaisen kohtelun esiintyvyyttä kahdella mittarisarjalla:
 
 -   Kohtelun yleisyysmittarit (`k3_1:k4_7`, `k12_1:k13_7`)
 -   Kohtelua selventävät mittarit (`k5_1_1:k11_16_2`, `k14_1_1:k20_7_2`)
 
-Tiedot pohjautuvat anonymisoituun datatiedostoon, josta on poistettu epäilyttävät vastaajat. Osion voi toistaa lataamalla Tietoarkistossa oleva datakopio ja ensin suorittamalla [luvun -@sec-datatarkistus] koodit.
+Tiedot pohjautuvat anonymisoituun datatiedostoon, josta on poistettu epäilyttävät vastaajat. Osion voi toistaa lataamalla Tietoarkistossa oleva datakopio ja suorittamalla [luvun -@sec-datatarkistus] koodit.
 
 ```{r}
 #| label: esiintyvyys-00-paketit
 #| code-summary: "Osiossa käytetyt paketit"
 
-library(tidyverse)
+library(tidyverse) # Yleinen datakäsittely
 
 ```
 
@@ -24,6 +24,7 @@ library(tidyverse)
 #| code-summary: "Datan avaaminen"
 
 data <- read.csv2("output/valmisdata.csv", tryLogical = FALSE)
+varit <- c("#873073", "#893deb", "#fe79ec", "#29d8fd", "#25919d", "#96da31", "#598322", "#cdba0e")
 
 ```
 
@@ -32,7 +33,7 @@ data <- read.csv2("output/valmisdata.csv", tryLogical = FALSE)
 ### Omakohtaisesti kohdattu {#sec-esiintyvyys-sisa-itse}
 
 ```{r}
-#| label: esiintyvyys-sisa-itse-kokonaismaara
+#| label: esiintyvyys-02-sisaitsekokonaismaara
 #| code-summary: "Ei ollenkaan kohtelua kohdanneiden laskeminen"
 
 # Lasketaan kaikki, jotka eivät ole kokeneet mitään sisäistä kohtelua. NA lasketaan mukaan tähän määrään.
@@ -48,7 +49,7 @@ eikokemusta.sisa.itse <- data |>
 
 ```
 
-Yhteensä `r eikokemusta.sisa.itse` eivät olleet kohdanneet yhtään sisäistä kohtelua viimeisen 12 kuukauden aikana, tai eivät vastanneet yhteen tai useampaan kysymykseen. Tällöin yhteensä `r nrow(data)-eikokemusta.sisa.itse` vastaajaa (`r round(((nrow(data)-eikokemusta.sisa.itse)/nrow(data))*100, digits = 0)` \%) oli kokenut vähintään yhden epäasiallisen tai väkivaltaisen kohtelun muodon organisaationsa sisällä viimeisen 12 kuukauden aikana.
+Yhteensä `r eikokemusta.sisa.itse` eivät olleet kohdanneet yhtään sisäistä kohtelua viimeisen 12 kuukauden aikana, tai eivät vastanneet yhteen tai useampaan kysymykseen. Tällöin yhteensä `r nrow(data)-eikokemusta.sisa.itse` vastaajaa (`r round(((nrow(data)-eikokemusta.sisa.itse)/nrow(data))*100, digits = 0)` %) oli kokenut vähintään yhden epäasiallisen tai väkivaltaisen kohtelun muodon organisaationsa sisällä viimeisen 12 kuukauden aikana.
 
 ```{r}
 #| label: fig-esiintyvyys-sisa-itse
@@ -99,67 +100,14 @@ data |>
       "Syrjintä"
     ), str_wrap, width = 18, USE.NAMES = FALSE)
   ) +
+  scale_fill_manual(
+    values = varit
+  ) +
   labs(
     x = "Suhde kaikista vastaajista (%)",
     fill = "Vastaukset"
   ) +
-  theme(axis.title.y = element_blank()) + 
-  geom_text(
-    aes(
-      y = 7,
-      x = 0.727,
-      hjust = 1,
-      label = "72,7 %"
-    )
-  ) + 
-  geom_text(
-    aes(
-      y = 6,
-      x = 0.565,
-      hjust = 1,
-      label = "56,5 %"
-    )
-  ) + 
-  geom_text(
-    aes(
-      y = 5,
-      x = 0.873,
-      hjust = 1,
-      label = "87,3 %"
-    )
-  ) + 
-  geom_text(
-    aes(
-      y = 4,
-      x = 0.968,
-      hjust = 1,
-      label = "96,8 %"
-    )
-  ) + 
-  geom_text(
-    aes(
-      y = 3,
-      x = 0.877,
-      hjust = 1,
-      label = "87,7 %"
-    )
-  ) + 
-  geom_text(
-    aes(
-      y = 2,
-      x = 0.920,
-      hjust = 1,
-      label = "92,0 %"
-    )
-  ) + 
-  geom_text(
-    aes(
-      y = 1,
-      x = 0.725,
-      hjust = 1,
-      label = "72,5 %"
-    )
-  )
+  theme(axis.title.y = element_blank())
 
 ```
 
@@ -266,67 +214,14 @@ data |>
       "Syrjintä"
     ), str_wrap, width = 18, USE.NAMES = FALSE)
   ) +
+  scale_fill_manual(
+    values = varit
+  ) +
   labs(
     x = "Suhde kaikista vastaajista (%)",
     fill = "Vastaukset"
   ) +
-  theme(axis.title.y = element_blank()) + 
-  geom_text(
-    aes(
-      y = 7,
-      x = 0.681,
-      hjust = 1,
-      label = "68,1 %"
-    )
-  ) + 
-  geom_text(
-    aes(
-      y = 6,
-      x = 0.544,
-      hjust = 1,
-      label = "54,4 %"
-    )
-  ) + 
-  geom_text(
-    aes(
-      y = 5,
-      x = 0.806,
-      hjust = 1,
-      label = "80,6 %"
-    )
-  ) + 
-  geom_text(
-    aes(
-      y = 4,
-      x = 0.955,
-      hjust = 1,
-      label = "95,5 %"
-    )
-  ) + 
-  geom_text(
-    aes(
-      y = 3,
-      x = 0.864,
-      hjust = 1,
-      label = "86,4 %"
-    )
-  ) + 
-  geom_text(
-    aes(
-      y = 2,
-      x = 0.919,
-      hjust = 1,
-      label = "91,9 %"
-    )
-  ) + 
-  geom_text(
-    aes(
-      y = 1,
-      x = 0.672,
-      hjust = 1,
-      label = "67,2 %"
-    )
-  )
+  theme(axis.title.y = element_blank())
 
 ```
 
@@ -386,7 +281,7 @@ data |>
 ### Omakohtaisesti kohdattu {#sec-esiintyvyys-ulko-itse}
 
 ```{r}
-#| label: esiintyvyys-ulko-itse-kokonaismaara
+#| label: esiintyvyys-03-ulkoitsekokonaismaara
 #| code-summary: "Ei ollenkaan kohtelua kohdanneiden laskeminen"
 
 # Lasketaan kaikki, jotka eivät ole kokeneet mitään ulkoista kohtelua. NA lasketaan mukaan tähän määrään.
@@ -402,7 +297,7 @@ eikokemusta.ulko.itse <- data |>
 
 ```
 
-Yhteensä `r eikokemusta.ulko.itse` eivät olleet kohdanneet yhtään ulkoista kohtelua viimeisen 12 kuukauden aikana, tai eivät vastanneet yhteen tai useampaan kysymykseen. Tällöin yhteensä `r nrow(data)-eikokemusta.ulko.itse` vastaajaa (`r round(((nrow(data)-eikokemusta.ulko.itse)/nrow(data))*100, digits = 0)` \%) oli kokenut vähintään yhden epäasiallisen tai väkivaltaisen kohtelun muodon organisaationsa ulkopuolelta viimeisen 12 kuukauden aikana.
+Yhteensä `r eikokemusta.ulko.itse` eivät olleet kohdanneet yhtään ulkoista kohtelua viimeisen 12 kuukauden aikana, tai eivät vastanneet yhteen tai useampaan kysymykseen. Tällöin yhteensä `r nrow(data)-eikokemusta.ulko.itse` vastaajaa (`r round(((nrow(data)-eikokemusta.ulko.itse)/nrow(data))*100, digits = 0)` %) oli kokenut vähintään yhden epäasiallisen tai väkivaltaisen kohtelun muodon organisaationsa ulkopuolelta viimeisen 12 kuukauden aikana.
 
 ```{r}
 #| label: fig-esiintyvyys-ulko-itse
@@ -453,67 +348,15 @@ data |>
       "Syrjintä"
     ), str_wrap, width = 18, USE.NAMES = FALSE)
   ) +
+  scale_fill_manual(
+    values = varit
+  ) +
   labs(
     x = "Suhde kaikista vastaajista (%)",
     fill = "Vastaukset"
   ) +
-  theme(axis.title.y = element_blank()) + 
-  geom_text(
-    aes(
-      y = 7,
-      x = 0.829,
-      hjust = 1,
-      label = "82,9 %"
-    )
-  ) + 
-  geom_text(
-    aes(
-      y = 6,
-      x = 0.547,
-      hjust = 1,
-      label = "54,7 %"
-    )
-  ) + 
-  geom_text(
-    aes(
-      y = 5,
-      x = 0.790,
-      hjust = 1,
-      label = "79,0 %"
-    )
-  ) + 
-  geom_text(
-    aes(
-      y = 4,
-      x = 0.818,
-      hjust = 1,
-      label = "81,8 %"
-    )
-  ) + 
-  geom_text(
-    aes(
-      y = 3,
-      x = 0.677,
-      hjust = 1,
-      label = "67,7 %"
-    )
-  ) + 
-  geom_text(
-    aes(
-      y = 2,
-      x = 0.884,
-      hjust = 1,
-      label = "88,4 %"
-    )
-  ) + 
-  geom_text(
-    aes(
-      y = 1,
-      x = 0.595,
-      hjust = 1,
-      label = "59,5 %"
-    )
-  )
+  theme(axis.title.y = element_blank())
+
 ```
 
 ```{r}
@@ -618,67 +461,15 @@ data |>
       "Syrjintä"
     ), str_wrap, width = 18, USE.NAMES = FALSE)
   ) +
+  scale_fill_manual(
+    values = varit[2:8]
+  ) +
   labs(
     x = "Suhde kaikista vastaajista (%)",
     fill = "Vastaukset"
   ) +
-  theme(axis.title.y = element_blank()) + 
-  geom_text(
-    aes(
-      y = 7,
-      x = 0.820,
-      hjust = 1,
-      label = "82,0 %"
-    )
-  ) + 
-  geom_text(
-    aes(
-      y = 6,
-      x = 0.546,
-      hjust = 1,
-      label = "54,6 %"
-    )
-  ) + 
-  geom_text(
-    aes(
-      y = 5,
-      x = 0.755,
-      hjust = 1,
-      label = "75,5 %"
-    )
-  ) + 
-  geom_text(
-    aes(
-      y = 4,
-      x = 0.791,
-      hjust = 1,
-      label = "79,1 %"
-    )
-  ) + 
-  geom_text(
-    aes(
-      y = 3,
-      x = 0.665,
-      hjust = 1,
-      label = "66,5 %"
-    )
-  ) + 
-  geom_text(
-    aes(
-      y = 2,
-      x = 0.873,
-      hjust = 1,
-      label = "87,3 %"
-    )
-  ) + 
-  geom_text(
-    aes(
-      y = 1,
-      x = 0.589,
-      hjust = 1,
-      label = "58,9 %"
-    )
-  )
+  theme(axis.title.y = element_blank())
+
 ```
 
 ```{r}
