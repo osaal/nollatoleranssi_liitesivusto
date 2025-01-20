@@ -869,106 +869,102 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">pairwise.display =</span> <span class="st">"significant"</span>,</span>
 <span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"robust"</span>,</span>
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Sisäinen"</span>,</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">centrality.plotting =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="dv">1</span>,</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">violin.args =</span> <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">0</span>, <span class="at">linewidth =</span> <span class="dv">0</span>)</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">49</span>) <span class="sc">+</span> </span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">6</span>)</span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(</span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> varit[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>)]</span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>vuodet_ulko_koettu <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">k41 =</span> <span class="fu">factor</span>(</span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>      k41,</span>
-<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>      <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>),</span>
-<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"&lt;= 6 vuotta"</span>, <span class="st">"6-14 vuotta"</span>, <span class="st">"14-25 vuotta"</span>, <span class="st">"&gt;= 25 vuotta"</span>)</span>
-<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggbetweenstats</span>(</span>
-<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"k41"</span>,</span>
-<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"EVK_ulko_koettu"</span>,</span>
-<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">bf.message =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="st">""</span>,</span>
-<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">""</span>,</span>
-<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">pairwise.display =</span> <span class="st">"significant"</span>,</span>
-<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"robust"</span>,</span>
-<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Ulkoinen"</span>,</span>
-<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">centrality.plotting =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="dv">1</span>,</span>
-<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">violin.args =</span> <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">0</span>, <span class="at">linewidth =</span> <span class="dv">0</span>)</span>
-<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">49</span>) <span class="sc">+</span> </span>
-<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">6</span>)</span>
-<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(</span>
-<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> varit[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>)]</span>
-<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a>vuodet_sisa_havaittu <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
-<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a>    <span class="at">k41 =</span> <span class="fu">factor</span>(</span>
-<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>      k41,</span>
-<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a>      <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>),</span>
-<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"&lt;= 6 vuotta"</span>, <span class="st">"6-14 vuotta"</span>, <span class="st">"14-25 vuotta"</span>, <span class="st">"&gt;= 25 vuotta"</span>)</span>
-<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggbetweenstats</span>(</span>
-<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"k41"</span>,</span>
-<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"EVK_sisä_havaittu"</span>,</span>
-<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a>    <span class="at">bf.message =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="st">"Uran pituus"</span>,</span>
-<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">"Kollegahavainnot"</span>,</span>
-<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a>    <span class="at">pairwise.display =</span> <span class="st">"significant"</span>,</span>
-<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"robust"</span>,</span>
-<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Sisäinen"</span>,</span>
-<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a>    <span class="at">centrality.plotting =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="dv">1</span>,</span>
-<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a>    <span class="at">violin.args =</span> <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">0</span>, <span class="at">linewidth =</span> <span class="dv">0</span>)</span>
-<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">49</span>) <span class="sc">+</span> </span>
-<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">6</span>)</span>
-<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb7-84"><a href="#cb7-84" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(</span>
-<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> varit[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>)]</span>
-<span id="cb7-86"><a href="#cb7-86" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb7-87"><a href="#cb7-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-88"><a href="#cb7-88" aria-hidden="true" tabindex="-1"></a>vuodet_ulko_havaittu <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
-<span id="cb7-89"><a href="#cb7-89" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb7-90"><a href="#cb7-90" aria-hidden="true" tabindex="-1"></a>    <span class="at">k41 =</span> <span class="fu">factor</span>(</span>
-<span id="cb7-91"><a href="#cb7-91" aria-hidden="true" tabindex="-1"></a>      k41,</span>
-<span id="cb7-92"><a href="#cb7-92" aria-hidden="true" tabindex="-1"></a>      <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>),</span>
-<span id="cb7-93"><a href="#cb7-93" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"&lt;= 6 vuotta"</span>, <span class="st">"6-14 vuotta"</span>, <span class="st">"14-25 vuotta"</span>, <span class="st">"&gt;= 25 vuotta"</span>)</span>
-<span id="cb7-94"><a href="#cb7-94" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb7-95"><a href="#cb7-95" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb7-96"><a href="#cb7-96" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggbetweenstats</span>(</span>
-<span id="cb7-97"><a href="#cb7-97" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"k41"</span>,</span>
-<span id="cb7-98"><a href="#cb7-98" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"EVK_ulko_havaittu"</span>,</span>
-<span id="cb7-99"><a href="#cb7-99" aria-hidden="true" tabindex="-1"></a>    <span class="at">bf.message =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb7-100"><a href="#cb7-100" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="st">"Uran pituus"</span>,</span>
-<span id="cb7-101"><a href="#cb7-101" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">""</span>,</span>
-<span id="cb7-102"><a href="#cb7-102" aria-hidden="true" tabindex="-1"></a>    <span class="at">pairwise.display =</span> <span class="st">"significant"</span>,</span>
-<span id="cb7-103"><a href="#cb7-103" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"robust"</span>,</span>
-<span id="cb7-104"><a href="#cb7-104" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Ulkoinen"</span>,</span>
-<span id="cb7-105"><a href="#cb7-105" aria-hidden="true" tabindex="-1"></a>    <span class="at">centrality.plotting =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb7-106"><a href="#cb7-106" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="dv">1</span>,</span>
-<span id="cb7-107"><a href="#cb7-107" aria-hidden="true" tabindex="-1"></a>    <span class="at">violin.args =</span> <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">0</span>, <span class="at">linewidth =</span> <span class="dv">0</span>)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="dv">1</span>,</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">violin.args =</span> <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">0</span>, <span class="at">linewidth =</span> <span class="dv">0</span>)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">49</span>) <span class="sc">+</span> </span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">6</span>)</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> varit[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>)]</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>vuodet_ulko_koettu <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">k41 =</span> <span class="fu">factor</span>(</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>      k41,</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>      <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>),</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"&lt;= 6 vuotta"</span>, <span class="st">"6-14 vuotta"</span>, <span class="st">"14-25 vuotta"</span>, <span class="st">"&gt;= 25 vuotta"</span>)</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggbetweenstats</span>(</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"k41"</span>,</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"EVK_ulko_koettu"</span>,</span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">bf.message =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="st">""</span>,</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">""</span>,</span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">pairwise.display =</span> <span class="st">"significant"</span>,</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"robust"</span>,</span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Ulkoinen"</span>,</span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="dv">1</span>,</span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">violin.args =</span> <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">0</span>, <span class="at">linewidth =</span> <span class="dv">0</span>)</span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">49</span>) <span class="sc">+</span> </span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">6</span>)</span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(</span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> varit[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>)]</span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>vuodet_sisa_havaittu <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a>    <span class="at">k41 =</span> <span class="fu">factor</span>(</span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a>      k41,</span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a>      <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>),</span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"&lt;= 6 vuotta"</span>, <span class="st">"6-14 vuotta"</span>, <span class="st">"14-25 vuotta"</span>, <span class="st">"&gt;= 25 vuotta"</span>)</span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggbetweenstats</span>(</span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"k41"</span>,</span>
+<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"EVK_sisä_havaittu"</span>,</span>
+<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a>    <span class="at">bf.message =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="st">"Uran pituus"</span>,</span>
+<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">"Kollegahavainnot"</span>,</span>
+<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a>    <span class="at">pairwise.display =</span> <span class="st">"significant"</span>,</span>
+<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"robust"</span>,</span>
+<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Sisäinen"</span>,</span>
+<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="dv">1</span>,</span>
+<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a>    <span class="at">violin.args =</span> <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">0</span>, <span class="at">linewidth =</span> <span class="dv">0</span>)</span>
+<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">49</span>) <span class="sc">+</span> </span>
+<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">6</span>)</span>
+<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(</span>
+<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> varit[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>)]</span>
+<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-84"><a href="#cb7-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a>vuodet_ulko_havaittu <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb7-86"><a href="#cb7-86" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb7-87"><a href="#cb7-87" aria-hidden="true" tabindex="-1"></a>    <span class="at">k41 =</span> <span class="fu">factor</span>(</span>
+<span id="cb7-88"><a href="#cb7-88" aria-hidden="true" tabindex="-1"></a>      k41,</span>
+<span id="cb7-89"><a href="#cb7-89" aria-hidden="true" tabindex="-1"></a>      <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>),</span>
+<span id="cb7-90"><a href="#cb7-90" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"&lt;= 6 vuotta"</span>, <span class="st">"6-14 vuotta"</span>, <span class="st">"14-25 vuotta"</span>, <span class="st">"&gt;= 25 vuotta"</span>)</span>
+<span id="cb7-91"><a href="#cb7-91" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-92"><a href="#cb7-92" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb7-93"><a href="#cb7-93" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggbetweenstats</span>(</span>
+<span id="cb7-94"><a href="#cb7-94" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"k41"</span>,</span>
+<span id="cb7-95"><a href="#cb7-95" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"EVK_ulko_havaittu"</span>,</span>
+<span id="cb7-96"><a href="#cb7-96" aria-hidden="true" tabindex="-1"></a>    <span class="at">bf.message =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb7-97"><a href="#cb7-97" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="st">"Uran pituus"</span>,</span>
+<span id="cb7-98"><a href="#cb7-98" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">""</span>,</span>
+<span id="cb7-99"><a href="#cb7-99" aria-hidden="true" tabindex="-1"></a>    <span class="at">pairwise.display =</span> <span class="st">"significant"</span>,</span>
+<span id="cb7-100"><a href="#cb7-100" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"robust"</span>,</span>
+<span id="cb7-101"><a href="#cb7-101" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Ulkoinen"</span>,</span>
+<span id="cb7-102"><a href="#cb7-102" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="dv">1</span>,</span>
+<span id="cb7-103"><a href="#cb7-103" aria-hidden="true" tabindex="-1"></a>    <span class="at">violin.args =</span> <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">0</span>, <span class="at">linewidth =</span> <span class="dv">0</span>)</span>
+<span id="cb7-104"><a href="#cb7-104" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb7-105"><a href="#cb7-105" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">49</span>) <span class="sc">+</span> </span>
+<span id="cb7-106"><a href="#cb7-106" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb7-107"><a href="#cb7-107" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">6</span>)</span>
 <span id="cb7-108"><a href="#cb7-108" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb7-109"><a href="#cb7-109" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">49</span>) <span class="sc">+</span> </span>
-<span id="cb7-110"><a href="#cb7-110" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb7-111"><a href="#cb7-111" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">6</span>)</span>
-<span id="cb7-112"><a href="#cb7-112" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb7-113"><a href="#cb7-113" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(</span>
-<span id="cb7-114"><a href="#cb7-114" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> varit[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>)]</span>
-<span id="cb7-115"><a href="#cb7-115" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb7-116"><a href="#cb7-116" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-117"><a href="#cb7-117" aria-hidden="true" tabindex="-1"></a>vuodet_sisa_koettu <span class="sc">+</span> vuodet_ulko_koettu <span class="sc">+</span> vuodet_sisa_havaittu <span class="sc">+</span> vuodet_ulko_havaittu</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-109"><a href="#cb7-109" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(</span>
+<span id="cb7-110"><a href="#cb7-110" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> varit[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>)]</span>
+<span id="cb7-111"><a href="#cb7-111" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-112"><a href="#cb7-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-113"><a href="#cb7-113" aria-hidden="true" tabindex="-1"></a>vuodet_sisa_koettu <span class="sc">+</span> vuodet_ulko_koettu <span class="sc">+</span> vuodet_sisa_havaittu <span class="sc">+</span> vuodet_ulko_havaittu</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div id="fig-ryhmavertailut-esiintyvyys-kokemusvuodet" class="quarto-figure quarto-figure-center anchored">
@@ -1724,108 +1720,104 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb8-453"><a href="#cb8-453" aria-hidden="true" tabindex="-1"></a>    <span class="at">pairwise.display =</span> <span class="st">"significant"</span>,</span>
 <span id="cb8-454"><a href="#cb8-454" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"robust"</span>,</span>
 <span id="cb8-455"><a href="#cb8-455" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Sisäinen"</span>,</span>
-<span id="cb8-456"><a href="#cb8-456" aria-hidden="true" tabindex="-1"></a>    <span class="at">centrality.plotting =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb8-457"><a href="#cb8-457" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="dv">1</span>,</span>
-<span id="cb8-458"><a href="#cb8-458" aria-hidden="true" tabindex="-1"></a>    <span class="at">violin.args =</span> <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">0</span>, <span class="at">linewidth =</span> <span class="dv">0</span>)</span>
-<span id="cb8-459"><a href="#cb8-459" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb8-460"><a href="#cb8-460" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">49</span>) <span class="sc">+</span> </span>
-<span id="cb8-461"><a href="#cb8-461" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb8-462"><a href="#cb8-462" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">6</span>)</span>
-<span id="cb8-463"><a href="#cb8-463" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb8-464"><a href="#cb8-464" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(</span>
-<span id="cb8-465"><a href="#cb8-465" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> varit[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>)]</span>
-<span id="cb8-466"><a href="#cb8-466" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb8-467"><a href="#cb8-467" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-468"><a href="#cb8-468" aria-hidden="true" tabindex="-1"></a>vuodet_ulko_koettu <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
-<span id="cb8-469"><a href="#cb8-469" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb8-470"><a href="#cb8-470" aria-hidden="true" tabindex="-1"></a>    <span class="at">k41 =</span> <span class="fu">factor</span>(</span>
-<span id="cb8-471"><a href="#cb8-471" aria-hidden="true" tabindex="-1"></a>      k41,</span>
-<span id="cb8-472"><a href="#cb8-472" aria-hidden="true" tabindex="-1"></a>      <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>),</span>
-<span id="cb8-473"><a href="#cb8-473" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"&lt;= 6 vuotta"</span>, <span class="st">"6-14 vuotta"</span>, <span class="st">"14-25 vuotta"</span>, <span class="st">"&gt;= 25 vuotta"</span>)</span>
-<span id="cb8-474"><a href="#cb8-474" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb8-475"><a href="#cb8-475" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb8-476"><a href="#cb8-476" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggbetweenstats</span>(</span>
-<span id="cb8-477"><a href="#cb8-477" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"k41"</span>,</span>
-<span id="cb8-478"><a href="#cb8-478" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"EVK_ulko_koettu"</span>,</span>
-<span id="cb8-479"><a href="#cb8-479" aria-hidden="true" tabindex="-1"></a>    <span class="at">bf.message =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb8-480"><a href="#cb8-480" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="st">""</span>,</span>
-<span id="cb8-481"><a href="#cb8-481" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">""</span>,</span>
-<span id="cb8-482"><a href="#cb8-482" aria-hidden="true" tabindex="-1"></a>    <span class="at">pairwise.display =</span> <span class="st">"significant"</span>,</span>
-<span id="cb8-483"><a href="#cb8-483" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"robust"</span>,</span>
-<span id="cb8-484"><a href="#cb8-484" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Ulkoinen"</span>,</span>
-<span id="cb8-485"><a href="#cb8-485" aria-hidden="true" tabindex="-1"></a>    <span class="at">centrality.plotting =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb8-486"><a href="#cb8-486" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="dv">1</span>,</span>
-<span id="cb8-487"><a href="#cb8-487" aria-hidden="true" tabindex="-1"></a>    <span class="at">violin.args =</span> <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">0</span>, <span class="at">linewidth =</span> <span class="dv">0</span>)</span>
-<span id="cb8-488"><a href="#cb8-488" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb8-489"><a href="#cb8-489" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">49</span>) <span class="sc">+</span> </span>
-<span id="cb8-490"><a href="#cb8-490" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb8-491"><a href="#cb8-491" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">6</span>)</span>
-<span id="cb8-492"><a href="#cb8-492" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb8-493"><a href="#cb8-493" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(</span>
-<span id="cb8-494"><a href="#cb8-494" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> varit[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>)]</span>
-<span id="cb8-495"><a href="#cb8-495" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb8-496"><a href="#cb8-496" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-497"><a href="#cb8-497" aria-hidden="true" tabindex="-1"></a>vuodet_sisa_havaittu <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
-<span id="cb8-498"><a href="#cb8-498" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb8-499"><a href="#cb8-499" aria-hidden="true" tabindex="-1"></a>    <span class="at">k41 =</span> <span class="fu">factor</span>(</span>
-<span id="cb8-500"><a href="#cb8-500" aria-hidden="true" tabindex="-1"></a>      k41,</span>
-<span id="cb8-501"><a href="#cb8-501" aria-hidden="true" tabindex="-1"></a>      <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>),</span>
-<span id="cb8-502"><a href="#cb8-502" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"&lt;= 6 vuotta"</span>, <span class="st">"6-14 vuotta"</span>, <span class="st">"14-25 vuotta"</span>, <span class="st">"&gt;= 25 vuotta"</span>)</span>
-<span id="cb8-503"><a href="#cb8-503" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb8-504"><a href="#cb8-504" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb8-505"><a href="#cb8-505" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggbetweenstats</span>(</span>
-<span id="cb8-506"><a href="#cb8-506" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"k41"</span>,</span>
-<span id="cb8-507"><a href="#cb8-507" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"EVK_sisä_havaittu"</span>,</span>
-<span id="cb8-508"><a href="#cb8-508" aria-hidden="true" tabindex="-1"></a>    <span class="at">bf.message =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb8-509"><a href="#cb8-509" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="st">"Uran pituus"</span>,</span>
-<span id="cb8-510"><a href="#cb8-510" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">"Kollegahavainnot"</span>,</span>
-<span id="cb8-511"><a href="#cb8-511" aria-hidden="true" tabindex="-1"></a>    <span class="at">pairwise.display =</span> <span class="st">"significant"</span>,</span>
-<span id="cb8-512"><a href="#cb8-512" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"robust"</span>,</span>
-<span id="cb8-513"><a href="#cb8-513" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Sisäinen"</span>,</span>
-<span id="cb8-514"><a href="#cb8-514" aria-hidden="true" tabindex="-1"></a>    <span class="at">centrality.plotting =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb8-515"><a href="#cb8-515" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="dv">1</span>,</span>
-<span id="cb8-516"><a href="#cb8-516" aria-hidden="true" tabindex="-1"></a>    <span class="at">violin.args =</span> <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">0</span>, <span class="at">linewidth =</span> <span class="dv">0</span>)</span>
-<span id="cb8-517"><a href="#cb8-517" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb8-518"><a href="#cb8-518" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">49</span>) <span class="sc">+</span> </span>
-<span id="cb8-519"><a href="#cb8-519" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb8-520"><a href="#cb8-520" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">6</span>)</span>
-<span id="cb8-521"><a href="#cb8-521" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb8-522"><a href="#cb8-522" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(</span>
-<span id="cb8-523"><a href="#cb8-523" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> varit[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>)]</span>
-<span id="cb8-524"><a href="#cb8-524" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb8-525"><a href="#cb8-525" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-526"><a href="#cb8-526" aria-hidden="true" tabindex="-1"></a>vuodet_ulko_havaittu <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
-<span id="cb8-527"><a href="#cb8-527" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb8-528"><a href="#cb8-528" aria-hidden="true" tabindex="-1"></a>    <span class="at">k41 =</span> <span class="fu">factor</span>(</span>
-<span id="cb8-529"><a href="#cb8-529" aria-hidden="true" tabindex="-1"></a>      k41,</span>
-<span id="cb8-530"><a href="#cb8-530" aria-hidden="true" tabindex="-1"></a>      <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>),</span>
-<span id="cb8-531"><a href="#cb8-531" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"&lt;= 6 vuotta"</span>, <span class="st">"6-14 vuotta"</span>, <span class="st">"14-25 vuotta"</span>, <span class="st">"&gt;= 25 vuotta"</span>)</span>
-<span id="cb8-532"><a href="#cb8-532" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb8-533"><a href="#cb8-533" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb8-534"><a href="#cb8-534" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggbetweenstats</span>(</span>
-<span id="cb8-535"><a href="#cb8-535" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"k41"</span>,</span>
-<span id="cb8-536"><a href="#cb8-536" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"EVK_ulko_havaittu"</span>,</span>
-<span id="cb8-537"><a href="#cb8-537" aria-hidden="true" tabindex="-1"></a>    <span class="at">bf.message =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb8-538"><a href="#cb8-538" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="st">"Uran pituus"</span>,</span>
-<span id="cb8-539"><a href="#cb8-539" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">""</span>,</span>
-<span id="cb8-540"><a href="#cb8-540" aria-hidden="true" tabindex="-1"></a>    <span class="at">pairwise.display =</span> <span class="st">"significant"</span>,</span>
-<span id="cb8-541"><a href="#cb8-541" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"robust"</span>,</span>
-<span id="cb8-542"><a href="#cb8-542" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Ulkoinen"</span>,</span>
-<span id="cb8-543"><a href="#cb8-543" aria-hidden="true" tabindex="-1"></a>    <span class="at">centrality.plotting =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb8-544"><a href="#cb8-544" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="dv">1</span>,</span>
-<span id="cb8-545"><a href="#cb8-545" aria-hidden="true" tabindex="-1"></a>    <span class="at">violin.args =</span> <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">0</span>, <span class="at">linewidth =</span> <span class="dv">0</span>)</span>
+<span id="cb8-456"><a href="#cb8-456" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="dv">1</span>,</span>
+<span id="cb8-457"><a href="#cb8-457" aria-hidden="true" tabindex="-1"></a>    <span class="at">violin.args =</span> <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">0</span>, <span class="at">linewidth =</span> <span class="dv">0</span>)</span>
+<span id="cb8-458"><a href="#cb8-458" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb8-459"><a href="#cb8-459" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">49</span>) <span class="sc">+</span> </span>
+<span id="cb8-460"><a href="#cb8-460" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb8-461"><a href="#cb8-461" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">6</span>)</span>
+<span id="cb8-462"><a href="#cb8-462" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb8-463"><a href="#cb8-463" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(</span>
+<span id="cb8-464"><a href="#cb8-464" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> varit[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>)]</span>
+<span id="cb8-465"><a href="#cb8-465" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-466"><a href="#cb8-466" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-467"><a href="#cb8-467" aria-hidden="true" tabindex="-1"></a>vuodet_ulko_koettu <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb8-468"><a href="#cb8-468" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb8-469"><a href="#cb8-469" aria-hidden="true" tabindex="-1"></a>    <span class="at">k41 =</span> <span class="fu">factor</span>(</span>
+<span id="cb8-470"><a href="#cb8-470" aria-hidden="true" tabindex="-1"></a>      k41,</span>
+<span id="cb8-471"><a href="#cb8-471" aria-hidden="true" tabindex="-1"></a>      <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>),</span>
+<span id="cb8-472"><a href="#cb8-472" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"&lt;= 6 vuotta"</span>, <span class="st">"6-14 vuotta"</span>, <span class="st">"14-25 vuotta"</span>, <span class="st">"&gt;= 25 vuotta"</span>)</span>
+<span id="cb8-473"><a href="#cb8-473" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-474"><a href="#cb8-474" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb8-475"><a href="#cb8-475" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggbetweenstats</span>(</span>
+<span id="cb8-476"><a href="#cb8-476" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"k41"</span>,</span>
+<span id="cb8-477"><a href="#cb8-477" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"EVK_ulko_koettu"</span>,</span>
+<span id="cb8-478"><a href="#cb8-478" aria-hidden="true" tabindex="-1"></a>    <span class="at">bf.message =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb8-479"><a href="#cb8-479" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="st">""</span>,</span>
+<span id="cb8-480"><a href="#cb8-480" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">""</span>,</span>
+<span id="cb8-481"><a href="#cb8-481" aria-hidden="true" tabindex="-1"></a>    <span class="at">pairwise.display =</span> <span class="st">"significant"</span>,</span>
+<span id="cb8-482"><a href="#cb8-482" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"robust"</span>,</span>
+<span id="cb8-483"><a href="#cb8-483" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Ulkoinen"</span>,</span>
+<span id="cb8-484"><a href="#cb8-484" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="dv">1</span>,</span>
+<span id="cb8-485"><a href="#cb8-485" aria-hidden="true" tabindex="-1"></a>    <span class="at">violin.args =</span> <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">0</span>, <span class="at">linewidth =</span> <span class="dv">0</span>)</span>
+<span id="cb8-486"><a href="#cb8-486" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb8-487"><a href="#cb8-487" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">49</span>) <span class="sc">+</span> </span>
+<span id="cb8-488"><a href="#cb8-488" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb8-489"><a href="#cb8-489" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">6</span>)</span>
+<span id="cb8-490"><a href="#cb8-490" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb8-491"><a href="#cb8-491" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(</span>
+<span id="cb8-492"><a href="#cb8-492" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> varit[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>)]</span>
+<span id="cb8-493"><a href="#cb8-493" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-494"><a href="#cb8-494" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-495"><a href="#cb8-495" aria-hidden="true" tabindex="-1"></a>vuodet_sisa_havaittu <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb8-496"><a href="#cb8-496" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb8-497"><a href="#cb8-497" aria-hidden="true" tabindex="-1"></a>    <span class="at">k41 =</span> <span class="fu">factor</span>(</span>
+<span id="cb8-498"><a href="#cb8-498" aria-hidden="true" tabindex="-1"></a>      k41,</span>
+<span id="cb8-499"><a href="#cb8-499" aria-hidden="true" tabindex="-1"></a>      <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>),</span>
+<span id="cb8-500"><a href="#cb8-500" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"&lt;= 6 vuotta"</span>, <span class="st">"6-14 vuotta"</span>, <span class="st">"14-25 vuotta"</span>, <span class="st">"&gt;= 25 vuotta"</span>)</span>
+<span id="cb8-501"><a href="#cb8-501" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-502"><a href="#cb8-502" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb8-503"><a href="#cb8-503" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggbetweenstats</span>(</span>
+<span id="cb8-504"><a href="#cb8-504" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"k41"</span>,</span>
+<span id="cb8-505"><a href="#cb8-505" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"EVK_sisä_havaittu"</span>,</span>
+<span id="cb8-506"><a href="#cb8-506" aria-hidden="true" tabindex="-1"></a>    <span class="at">bf.message =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb8-507"><a href="#cb8-507" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="st">"Uran pituus"</span>,</span>
+<span id="cb8-508"><a href="#cb8-508" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">"Kollegahavainnot"</span>,</span>
+<span id="cb8-509"><a href="#cb8-509" aria-hidden="true" tabindex="-1"></a>    <span class="at">pairwise.display =</span> <span class="st">"significant"</span>,</span>
+<span id="cb8-510"><a href="#cb8-510" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"robust"</span>,</span>
+<span id="cb8-511"><a href="#cb8-511" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Sisäinen"</span>,</span>
+<span id="cb8-512"><a href="#cb8-512" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="dv">1</span>,</span>
+<span id="cb8-513"><a href="#cb8-513" aria-hidden="true" tabindex="-1"></a>    <span class="at">violin.args =</span> <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">0</span>, <span class="at">linewidth =</span> <span class="dv">0</span>)</span>
+<span id="cb8-514"><a href="#cb8-514" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb8-515"><a href="#cb8-515" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">49</span>) <span class="sc">+</span> </span>
+<span id="cb8-516"><a href="#cb8-516" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb8-517"><a href="#cb8-517" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">6</span>)</span>
+<span id="cb8-518"><a href="#cb8-518" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb8-519"><a href="#cb8-519" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(</span>
+<span id="cb8-520"><a href="#cb8-520" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> varit[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>)]</span>
+<span id="cb8-521"><a href="#cb8-521" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-522"><a href="#cb8-522" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-523"><a href="#cb8-523" aria-hidden="true" tabindex="-1"></a>vuodet_ulko_havaittu <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb8-524"><a href="#cb8-524" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb8-525"><a href="#cb8-525" aria-hidden="true" tabindex="-1"></a>    <span class="at">k41 =</span> <span class="fu">factor</span>(</span>
+<span id="cb8-526"><a href="#cb8-526" aria-hidden="true" tabindex="-1"></a>      k41,</span>
+<span id="cb8-527"><a href="#cb8-527" aria-hidden="true" tabindex="-1"></a>      <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>),</span>
+<span id="cb8-528"><a href="#cb8-528" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"&lt;= 6 vuotta"</span>, <span class="st">"6-14 vuotta"</span>, <span class="st">"14-25 vuotta"</span>, <span class="st">"&gt;= 25 vuotta"</span>)</span>
+<span id="cb8-529"><a href="#cb8-529" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-530"><a href="#cb8-530" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb8-531"><a href="#cb8-531" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggbetweenstats</span>(</span>
+<span id="cb8-532"><a href="#cb8-532" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"k41"</span>,</span>
+<span id="cb8-533"><a href="#cb8-533" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"EVK_ulko_havaittu"</span>,</span>
+<span id="cb8-534"><a href="#cb8-534" aria-hidden="true" tabindex="-1"></a>    <span class="at">bf.message =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb8-535"><a href="#cb8-535" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="st">"Uran pituus"</span>,</span>
+<span id="cb8-536"><a href="#cb8-536" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">""</span>,</span>
+<span id="cb8-537"><a href="#cb8-537" aria-hidden="true" tabindex="-1"></a>    <span class="at">pairwise.display =</span> <span class="st">"significant"</span>,</span>
+<span id="cb8-538"><a href="#cb8-538" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"robust"</span>,</span>
+<span id="cb8-539"><a href="#cb8-539" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Ulkoinen"</span>,</span>
+<span id="cb8-540"><a href="#cb8-540" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="dv">1</span>,</span>
+<span id="cb8-541"><a href="#cb8-541" aria-hidden="true" tabindex="-1"></a>    <span class="at">violin.args =</span> <span class="fu">list</span>(<span class="at">width =</span> <span class="dv">0</span>, <span class="at">linewidth =</span> <span class="dv">0</span>)</span>
+<span id="cb8-542"><a href="#cb8-542" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb8-543"><a href="#cb8-543" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">49</span>) <span class="sc">+</span> </span>
+<span id="cb8-544"><a href="#cb8-544" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb8-545"><a href="#cb8-545" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">6</span>)</span>
 <span id="cb8-546"><a href="#cb8-546" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb8-547"><a href="#cb8-547" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">49</span>) <span class="sc">+</span> </span>
-<span id="cb8-548"><a href="#cb8-548" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb8-549"><a href="#cb8-549" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">6</span>)</span>
-<span id="cb8-550"><a href="#cb8-550" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb8-551"><a href="#cb8-551" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(</span>
-<span id="cb8-552"><a href="#cb8-552" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> varit[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>)]</span>
-<span id="cb8-553"><a href="#cb8-553" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb8-554"><a href="#cb8-554" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-555"><a href="#cb8-555" aria-hidden="true" tabindex="-1"></a>vuodet_sisa_koettu <span class="sc">+</span> vuodet_ulko_koettu <span class="sc">+</span> vuodet_sisa_havaittu <span class="sc">+</span> vuodet_ulko_havaittu</span>
-<span id="cb8-556"><a href="#cb8-556" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-557"><a href="#cb8-557" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-547"><a href="#cb8-547" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(</span>
+<span id="cb8-548"><a href="#cb8-548" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> varit[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>)]</span>
+<span id="cb8-549"><a href="#cb8-549" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-550"><a href="#cb8-550" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-551"><a href="#cb8-551" aria-hidden="true" tabindex="-1"></a>vuodet_sisa_koettu <span class="sc">+</span> vuodet_ulko_koettu <span class="sc">+</span> vuodet_sisa_havaittu <span class="sc">+</span> vuodet_ulko_havaittu</span>
+<span id="cb8-552"><a href="#cb8-552" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-553"><a href="#cb8-553" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

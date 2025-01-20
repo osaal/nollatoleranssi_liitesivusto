@@ -439,7 +439,6 @@ vuodet_sisa_koettu <- data |>
     pairwise.display = "significant",
     type = "robust",
     title = "Sisäinen",
-    centrality.plotting = FALSE,
     digits = 1,
     violin.args = list(width = 0, linewidth = 0)
   ) + 
@@ -468,7 +467,6 @@ vuodet_ulko_koettu <- data |>
     pairwise.display = "significant",
     type = "robust",
     title = "Ulkoinen",
-    centrality.plotting = FALSE,
     digits = 1,
     violin.args = list(width = 0, linewidth = 0)
   ) + 
@@ -497,7 +495,6 @@ vuodet_sisa_havaittu <- data |>
     pairwise.display = "significant",
     type = "robust",
     title = "Sisäinen",
-    centrality.plotting = FALSE,
     digits = 1,
     violin.args = list(width = 0, linewidth = 0)
   ) + 
@@ -526,7 +523,6 @@ vuodet_ulko_havaittu <- data |>
     pairwise.display = "significant",
     type = "robust",
     title = "Ulkoinen",
-    centrality.plotting = FALSE,
     digits = 1,
     violin.args = list(width = 0, linewidth = 0)
   ) + 
