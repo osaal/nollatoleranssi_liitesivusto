@@ -10,7 +10,7 @@ Tässä osiossa suoritetaan kaikki raportissa mainitut korrelaatiosuhteet epäas
 #| label: korrelaatiosuhteet-00-paketit
 #| code-summary: "Osiossa käytetyt paketit"
 
-library(tidyverse)
+library(tidyverse) # Yleinen datakäsittely
 library(patchwork) # Useiden kuvioiden yhdistämiselle
 library(ggstatsplot) # Tilastokuvioiden rakentamiselle
 
@@ -21,6 +21,7 @@ library(ggstatsplot) # Tilastokuvioiden rakentamiselle
 #| code-summary: "Datan avaaminen"
 
 data <- read.csv2("output/valmisdata.csv", tryLogical = FALSE)
+varit <- c("#873073", "#893deb", "#fe79ec", "#29d8fd", "#25919d", "#96da31", "#598322", "#cdba0e")
 
 ```
 
@@ -146,16 +147,27 @@ vakavuus.ulko <- lm(
   data = data
 )
 
-ggcoefstats(
-  vakavuus.sisa,
-  xlab = "Estimaatti",
-  ylab = "Muuttuja"
-)
-ggcoefstats(
-  vakavuus.ulko,
-  xlab = "Estimaatti",
-  ylab = "Muuttuja"
-)
+ggcoefstats(vakavuus.sisa, xlab = "Regressiokerroin (b)", ylab = "Muuttuja",
+            exclude.intercept = TRUE) +
+  scale_y_discrete(
+    labels = c(
+      "Fyysiset vaikutukset",
+      "Psyykkiset vaikutukset",
+      "Ammatilliset vaikutukset"
+    )
+  ) +
+  theme(axis.title.y = element_blank())
+
+ggcoefstats(vakavuus.ulko, xlab = "Regressiokerroin (b)", ylab = "Muuttuja",
+            exclude.intercept = TRUE) +
+  scale_y_discrete(
+    labels = c(
+      "Fyysiset vaikutukset",
+      "Psyykkiset vaikutukset",
+      "Ammatilliset vaikutukset"
+    )
+  ) +
+  theme(axis.title.y = element_blank())
 
 ```
 
@@ -190,16 +202,27 @@ kesto.ulko <- lm(
   data = data
 )
 
-ggcoefstats(
-  kesto.sisa,
-  xlab = "Estimaatti",
-  ylab = "Muuttuja"
-)
-ggcoefstats(
-  kesto.ulko,
-  xlab = "Estimaatti",
-  ylab = "Muuttuja"
-)
+ggcoefstats(kesto.sisa, xlab = "Regressiokerroin (b)", ylab = "Muuttuja",
+            exclude.intercept = TRUE) +
+  scale_y_discrete(
+    labels = c(
+      "Fyysisten vaikutusten\npitkäkestoisuus",
+      "Psyykkisten vaikutusten\npitkäkestoisuus",
+      "Ammatillisten vaikutusten\npitkäkestoisuus"
+    )
+  ) +
+  theme(axis.title.y = element_blank())
+
+ggcoefstats(kesto.ulko, xlab = "Regressiokerroin (b)", ylab = "Muuttuja",
+            exclude.intercept = TRUE) +
+  scale_y_discrete(
+    labels = c(
+      "Fyysisten vaikutusten\npitkäkestoisuus",
+      "Psyykkisten vaikutusten\npitkäkestoisuus",
+      "Ammatillisten vaikutusten\npitkäkestoisuus"
+    )
+  ) +
+  theme(axis.title.y = element_blank())
 
 ```
 
@@ -210,6 +233,7 @@ ggcoefstats(
 summary(kesto.sisa)
 
 summary(kesto.ulko)
+
 ```
 
 ## Työuupumuksen suhde kohteluun {#sec-korrelaatiosuhteet-tyouupumus}
@@ -233,16 +257,15 @@ uupumus.ulko <- lm(
   data = data
 )
 
-ggcoefstats(
-  uupumus.sisa,
-  xlab = "Estimaatti",
-  ylab = "Muuttuja"
-)
-ggcoefstats(
-  uupumus.ulko,
-  xlab = "Estimaatti",
-  ylab = "Muuttuja"
-)
+ggcoefstats(uupumus.sisa, xlab = "Estimaatti", ylab = "Muuttuja",
+            exclude.intercept = TRUE) +
+  scale_y_discrete(labels = "Työuupumus") +
+  theme(axis.title.y = element_blank())
+
+ggcoefstats(uupumus.ulko, xlab = "Estimaatti", ylab = "Muuttuja",
+            exclude.intercept = TRUE) +
+  scale_y_discrete(labels = "Työuupumus") +
+  theme(axis.title.y = element_blank())
 
 ```
 
@@ -255,6 +278,7 @@ anova(uupumus.sisa)
 
 summary(uupumus.ulko)
 anova(uupumus.ulko)
+
 ```
 
 ## Muutosaikeiden suhde kohteluun {#sec-korrelaatiosuhteet-muutosaikeet}
@@ -267,6 +291,18 @@ anova(uupumus.ulko)
 # Ajetaan yhdeksän logistista regressiomallia.
 # Riippuvaisina muuttujina erikseen jokainen muutosaie
 # Riippumattomina muuttujina sisäisesti ja ulkoisesti koettu kohtelu
+
+nimet <- c(
+  "Harkinnut tehtävänkuvan muutosta",
+  "Toteuttamassa tehtävänkuvan muutosta",
+  "Jo tehnyt tehtävänkuvan muutoksen",
+  "Harkinnut organisaation vaihtoa",
+  "Toteuttamassa organisaation vaihtoa",
+  "Jo tehnyt organisaation vaihdon",
+  "Harkinnut alalta lähtöä",
+  "Toteuttamassa alalta lähtöä",
+  "Jo tehnyt alalta lähdön"
+)
 
 mallit <- data |>
   mutate( # Muutetaan ensin NA nollaksi, jotta vastaamatta jättäneet lasketaan "ei-aikeita"-ryhmään
@@ -310,8 +346,21 @@ mallit <- data |>
 # Sarakkeet "summary" ja "coefs" sisältävät summary- ja coefficients-funktioiden tulokset
 # Sarake "p" sisältää kertoimien p-arvot
 
+nimet <- c(
+  "Harkinnut\ntehtävänkuvan muutosta",
+  "Toteuttamassa\ntehtävänkuvan muutosta",
+  "Jo tehnyt\ntehtävänkuvan muutoksen",
+  "Harkinnut\norganisaation vaihtoa",
+  "Toteuttamassa\norganisaation vaihtoa",
+  "Jo tehnyt\norganisaation vaihdon",
+  "Harkinnut\nalalta lähtöä",
+  "Toteuttamassa\nalalta lähtöä",
+  "Jo tehnyt\nalalta lähdön"
+)
+
 # Tämä piirtää taulukon, eli ei tarvita mallien asettamiseksi
 mallit |>
+  mutate(response_var = nimet) |>
   unnest_wider(coefs) |>
   unnest_wider(p, names_sep = "_") |>
   rename(
@@ -343,11 +392,8 @@ mallit |>
 
 ```{r}
 #| label: fig-korrelaatiosuhteet-06-jarjolemassaolo
-#| layout-nrow: 2
-#| fig-subcap: 
-#| -  "Ilmoituksiin liittyvän koetun agenssin puute"
-#| -  "Ilmoituksista syntyvien negatiiviset vaikutukset"
-#| code-summary: "Järjestelmien olemassaolon muuttujan rakentaminen"
+#| fig-cap: "Ilmoitusjärjestelmäasenteiden suhde järjestelmien olemassaoloon"
+#| code-summary: "Kuvion piirtäminen"
 #| fig-height: 12
 
 ilmo_1_sisa <- data |>
@@ -362,9 +408,20 @@ ilmo_1_sisa <- data |>
     y = "ilmo_1",
     bf.message = FALSE,
     xlab = "Organisaation sisäiset järjestelmät",
-    ylab = "Ilmoituksiin liittyvän agenssin koettu puute",
+    ylab = "Koettu agenssin puute",
     type = "robust",
-    pairwise.display = "none"
+    pairwise.display = "significant",
+    digits = 1,
+    violin.args = list(width = 0, linewidth = 0)
+  ) +
+  scale_colour_manual(
+    values = varit[c(1, 4, 7)]
+  ) +
+  theme(
+    axis.title.y.right = element_blank(),
+    axis.text.y.right = element_blank(),
+    axis.ticks.y.right = element_blank(),
+    plot.subtitle = element_text(size = 6)
   )
 
 ilmo_2_sisa <- data |>
@@ -379,10 +436,22 @@ ilmo_2_sisa <- data |>
     y = "ilmo_2",
     bf.message = FALSE,
     xlab = "Organisaation sisäiset järjestelmät",
-    ylab = "Ilmoituksista syntyvien negatiivisten vaikutukset",
+    ylab = "Negatiivisten vaikutusten pelko",
     type = "robust",
-    pairwise.display = "none"
+    pairwise.display = "significant",
+    digits = 1,
+    violin.args = list(width = 0, linewidth = 0)
+  ) +
+  scale_colour_manual(
+    values = varit[c(1, 4, 7)]
+  ) +
+  theme(
+    axis.title.y.right = element_blank(),
+    axis.text.y.right = element_blank(),
+    axis.ticks.y.right = element_blank(),
+    plot.subtitle = element_text(size = 6)
   )
+
 
 ilmo_1_ulko <- data |>
   mutate(
@@ -396,10 +465,22 @@ ilmo_1_ulko <- data |>
     y = "ilmo_1",
     bf.message = FALSE,
     xlab = "Organisaation ulkoiset järjestelmät",
-    ylab = "Ilmoituksiin liittyvän agenssin koettu puute",
+    ylab = "Koettu agenssin puute",
     type = "robust",
-    pairwise.display = "none"
+    pairwise.display = "significant",
+    digits = 1,
+    violin.args = list(width = 0, linewidth = 0)
+  ) +
+  scale_colour_manual(
+    values = varit[c(1, 4, 7)]
+  ) +
+  theme(
+    axis.title.y.right = element_blank(),
+    axis.text.y.right = element_blank(),
+    axis.ticks.y.right = element_blank(),
+    plot.subtitle = element_text(size = 6)
   )
+
 
 ilmo_2_ulko <- data |>
   mutate(
@@ -413,10 +494,22 @@ ilmo_2_ulko <- data |>
     y = "ilmo_2",
     bf.message = FALSE,
     xlab = "Organisaation ulkoiset järjestelmät",
-    ylab = "Ilmoituksista syntyvien negatiivisten vaikutukset",
+    ylab = "Negatiivisten vaikutusten pelko",
     type = "robust",
-    pairwise.display = "none"
+    pairwise.display = "significant",
+    digits = 1,
+    violin.args = list(width = 0, linewidth = 0)
+  ) +
+  scale_colour_manual(
+    values = varit[c(1, 4, 7)]
+  ) +
+  theme(
+    axis.title.y.right = element_blank(),
+    axis.text.y.right = element_blank(),
+    axis.ticks.y.right = element_blank(),
+    plot.subtitle = element_text(size = 6)
   )
+
 
 ilmo_1_molem <- data |>
   mutate(
@@ -430,10 +523,22 @@ ilmo_1_molem <- data |>
     y = "ilmo_1",
     bf.message = FALSE,
     xlab = "Molempien kattavat järjestelmät",
-    ylab = "Ilmoituksiin liittyvän agenssin koettu puute",
+    ylab = "Koettu agenssin puute",
     type = "robust",
-    pairwise.display = "none"
+    pairwise.display = "significant",
+    digits = 1,
+    violin.args = list(width = 0, linewidth = 0)
+  ) +
+  scale_colour_manual(
+    values = varit[c(1, 4, 7)]
+  ) +
+  theme(
+    axis.title.y.right = element_blank(),
+    axis.text.y.right = element_blank(),
+    axis.ticks.y.right = element_blank(),
+    plot.subtitle = element_text(size = 6)
   )
+
 
 ilmo_2_molem <- data |>
   mutate(
@@ -447,14 +552,25 @@ ilmo_2_molem <- data |>
     y = "ilmo_2",
     bf.message = FALSE,
     xlab = "Molempien kattavat järjestelmät",
-    ylab = "Ilmoituksista syntyvien negatiivisten vaikutukset",
+    ylab = "Negatiivisten vaikutusten pelko",
     type = "robust",
-    pairwise.display = "none"
+    pairwise.display = "significant",
+    digits = 1,
+    violin.args = list(width = 0, linewidth = 0)
+  ) +
+  scale_colour_manual(
+    values = varit[c(1, 4, 7)]
+  ) +
+  theme(
+    axis.title.y.right = element_blank(),
+    axis.text.y.right = element_blank(),
+    axis.ticks.y.right = element_blank(),
+    plot.subtitle = element_text(size = 6)
   )
 
-ilmo_1_sisa + ilmo_1_ulko + ilmo_1_molem + plot_layout(ncol = 1, axes = "collect")
 
-ilmo_2_sisa + ilmo_2_ulko + ilmo_2_molem + plot_layout(ncol = 1, axes = "collect")
+ilmo_1_sisa + ilmo_1_ulko + ilmo_1_molem + ilmo_2_sisa + ilmo_2_ulko + ilmo_2_molem +
+  plot_layout(ncol = 2, byrow = FALSE, axes = "collect_y")
 
 ```
 
@@ -465,7 +581,12 @@ ilmo_2_sisa + ilmo_2_ulko + ilmo_2_molem + plot_layout(ncol = 1, axes = "collect
 #| fig-cap: "Ilmoitusjärjestelmäasenteiden korrelaatio epäasiallisen ja väkivaltaisen kohtelun kokemusmäärän kanssa (Spearmanin korrelaatio)"
 #| code-summary: "Korrelaatiokuvion rakentaminen"
 
-ggcorrmat(
+nimi <- bquote(atop(
+  atop(scriptstyle(bold("Otoskoko:")), italic(n) ~ "=" ~ 960),
+  atop(scriptstyle(bold("Korrelaatio:")), "Spearman")
+))
+
+kuvio <- ggcorrmat(
   data = data,
   cor.vars = c("EVK_sisä_koettu", "EVK_ulko_koettu", "ilmo_1", "ilmo_2"),
   cor.vars.names = c(
@@ -475,7 +596,19 @@ ggcorrmat(
     "Negatiiviset vaikutukset"
   ),
   type = "nonparametric"
-)
+) +
+  scale_fill_gradient2( # Käytetään samoja asetuksia kuin ggcorrplot, mutta vaihdetaan otsikko
+    low = "#e69f00",
+    mid = "white",
+    high = "#009e73",
+    midpoint = 0,
+    limit = c(-1, 1),
+    name = nimi
+  )
+
+kuvio$labels$caption <- str2lang('atop(displaystyle(NULL), expr = paste(bold("X"), " = ei-merkitsevä tasolla ", italic("p"), " < ", 0.05, " (Korjaus: ", "Holm", ")"))')
+
+kuvio
 
 ```
 
@@ -507,27 +640,26 @@ correlation::correlation(
     .after = "rho"
   ) |>
   select(Parameter1, Parameter2, rho, CI, p) |>
-  knitr::kable(digits = 3)
+  knitr::kable(digits = 3, col.names = c(
+    "Parametri 1", "Parametri 2", "Kerroin", "Luottamusväli", "p-arvo"
+  ))
 
 ```
 
-## Ilmoitusjärjestelmäasenteiden suhde koulutuksen olemassaoloon
+## Ilmoitusjärjestelmäasenteiden suhde koulutuksen olemassaoloon {#sec-korrelaatiosuhteet-ilmoasenteet-koulutus}
 
 ```{r}
 #| label: fig-korrelaatiosuhteet-09-ilmoasenteetKoulutus
-#| layout-nrow: 2
-#| fig-subcap: 
-#| -  "Ilmoituksiin liittyvän koetun agenssin puute"
-#| -  "Ilmoituksista syntyvien negatiiviset vaikutukset"
-#| code-summary: "Ilmoitusjärjestelmiin liittyvien asenteiden suhde järjestelmäkoulutuksen olemassaoloon"
-#| fig-height: 16
+#| fig-cap: "Ilmoitusjärjestelmiin liittyvien asenteiden suhde järjestelmäkoulutuksen olemassaoloon"
+#| code-summary: "Kuvion piirtäminen"
+#| fig-height: 12
 
 ilmo_1_sisakoul <- data |>
   filter(k25_1 != -1) |>
   mutate(
     k25_1 = factor(
       k25_1,
-      labels = c("Käynyt koulutuksen", "Ei käynyt koulutusta", "Ei koulutusta", "En osaa sanoa")
+      labels = c("Käynyt", "Ei käynyt", "Ei ole", "En osaa sanoa")
     )
   ) |>
   ggbetweenstats(
@@ -535,8 +667,20 @@ ilmo_1_sisakoul <- data |>
     y = "ilmo_1",
     bf.message = FALSE,
     xlab = "Sisäisten järjestelmien koulutus",
-    ylab = "Ilmoituksiin liittyvän agenssin koettu puute",
-    type = "robust"
+    ylab = "Koettu agenssin puute",
+    type = "robust",
+    pairwise.display = "significant",
+    digits = 1,
+    violin.args = list(width = 0, linewidth = 0)
+  ) +
+  scale_colour_manual(
+    values = varit[c(7, 5, 3, 1)]
+  ) +
+  theme(
+    axis.title.y.right = element_blank(),
+    axis.text.y.right = element_blank(),
+    axis.ticks.y.right = element_blank(),
+    plot.subtitle = element_text(size = 6)
   )
 
 ilmo_2_sisakoul <- data |>
@@ -544,7 +688,7 @@ ilmo_2_sisakoul <- data |>
   mutate(
     k25_1 = factor(
       k25_1,
-      labels = c("Käynyt koulutuksen", "Ei käynyt koulutusta", "Ei koulutusta", "En osaa sanoa")
+      labels = c("Käynyt", "Ei käynyt", "Ei ole", "En osaa sanoa")
     )
   ) |>
   ggbetweenstats(
@@ -552,8 +696,20 @@ ilmo_2_sisakoul <- data |>
     y = "ilmo_2",
     bf.message = FALSE,
     xlab = "Sisäisten järjestelmien koulutus",
-    ylab = "Ilmoituksista syntyvien negatiivisten vaikutukset",
-    type = "robust"
+    ylab = "Negatiivisten vaikutusten pelko",
+    type = "robust",
+    pairwise.display = "significant",
+    digits = 1,
+    violin.args = list(width = 0, linewidth = 0)
+  ) +
+  scale_colour_manual(
+    values = varit[c(7, 5, 3, 1)]
+  ) +
+  theme(
+    axis.title.y.right = element_blank(),
+    axis.text.y.right = element_blank(),
+    axis.ticks.y.right = element_blank(),
+    plot.subtitle = element_text(size = 6)
   )
 
 ilmo_1_ulkokoul <- data |>
@@ -561,7 +717,7 @@ ilmo_1_ulkokoul <- data |>
   mutate(
     k25_2 = factor(
       k25_2,
-      labels = c("Käynyt koulutuksen", "Ei käynyt koulutusta", "Ei koulutusta", "En osaa sanoa")
+      labels = c("Käynyt", "Ei käynyt", "Ei ole", "En osaa sanoa")
     )
   ) |>
   ggbetweenstats(
@@ -569,8 +725,20 @@ ilmo_1_ulkokoul <- data |>
     y = "ilmo_1",
     bf.message = FALSE,
     xlab = "Ulkoisten järjestelmien koulutus",
-    ylab = "Ilmoituksiin liittyvän agenssin koettu puute",
-    type = "robust"
+    ylab = "Koettu agenssin puute",
+    type = "robust",
+    pairwise.display = "significant",
+    digits = 1,
+    violin.args = list(width = 0, linewidth = 0)
+  ) +
+  scale_colour_manual(
+    values = varit[c(7, 5, 3, 1)]
+  ) +
+  theme(
+    axis.title.y.right = element_blank(),
+    axis.text.y.right = element_blank(),
+    axis.ticks.y.right = element_blank(),
+    plot.subtitle = element_text(size = 6)
   )
 
 ilmo_2_ulkokoul <- data |>
@@ -578,7 +746,7 @@ ilmo_2_ulkokoul <- data |>
   mutate(
     k25_2 = factor(
       k25_2,
-      labels = c("Käynyt koulutuksen", "Ei käynyt koulutusta", "Ei koulutusta", "En osaa sanoa")
+      labels = c("Käynyt", "Ei käynyt", "Ei ole", "En osaa sanoa")
     )
   ) |>
   ggbetweenstats(
@@ -586,8 +754,20 @@ ilmo_2_ulkokoul <- data |>
     y = "ilmo_2",
     bf.message = FALSE,
     xlab = "Ulkoisten järjestelmien koulutus",
-    ylab = "Ilmoituksista syntyvien negatiivisten vaikutukset",
-    type = "robust"
+    ylab = "Negatiivisten vaikutusten pelko",
+    type = "robust",
+    pairwise.display = "significant",
+    digits = 1,
+    violin.args = list(width = 0, linewidth = 0)
+  ) +
+  scale_colour_manual(
+    values = varit[c(7, 5, 3, 1)]
+  ) +
+  theme(
+    axis.title.y.right = element_blank(),
+    axis.text.y.right = element_blank(),
+    axis.ticks.y.right = element_blank(),
+    plot.subtitle = element_text(size = 6)
   )
 
 ilmo_1_molemkoul <- data |>
@@ -595,7 +775,7 @@ ilmo_1_molemkoul <- data |>
   mutate(
     k25_3 = factor(
       k25_3,
-      labels = c("Käynyt koulutuksen", "Ei käynyt koulutusta", "Ei koulutusta", "En osaa sanoa")
+      labels = c("Käynyt", "Ei käynyt", "Ei ole", "En osaa sanoa")
     )
   ) |>
   ggbetweenstats(
@@ -603,8 +783,20 @@ ilmo_1_molemkoul <- data |>
     y = "ilmo_1",
     bf.message = FALSE,
     xlab = "Molempien järjestelmien koulutus",
-    ylab = "Ilmoituksiin liittyvän agenssin koettu puute",
-    type = "robust"
+    ylab = "Koettu agenssin puute",
+    type = "robust",
+    pairwise.display = "significant",
+    digits = 1,
+    violin.args = list(width = 0, linewidth = 0)
+  ) +
+  scale_colour_manual(
+    values = varit[c(7, 5, 3, 1)]
+  ) +
+  theme(
+    axis.title.y.right = element_blank(),
+    axis.text.y.right = element_blank(),
+    axis.ticks.y.right = element_blank(),
+    plot.subtitle = element_text(size = 6)
   )
 
 ilmo_2_molemkoul <- data |>
@@ -612,7 +804,7 @@ ilmo_2_molemkoul <- data |>
   mutate(
     k25_3 = factor(
       k25_3,
-      labels = c("Käynyt koulutuksen", "Ei käynyt koulutusta", "Ei koulutusta", "En osaa sanoa")
+      labels = c("Käynyt", "Ei käynyt", "Ei ole", "En osaa sanoa")
     )
   ) |>
   ggbetweenstats(
@@ -620,17 +812,28 @@ ilmo_2_molemkoul <- data |>
     y = "ilmo_2",
     bf.message = FALSE,
     xlab = "Molempien järjestelmien koulutus",
-    ylab = "Ilmoituksista syntyvien negatiivisten vaikutukset",
-    type = "robust"
+    ylab = "Negatiivisten vaikutusten pelko",
+    type = "robust",
+    pairwise.display = "significant",
+    digits = 1,
+    violin.args = list(width = 0, linewidth = 0)
+  ) +
+  scale_colour_manual(
+    values = varit[c(7, 5, 3, 1)]
+  ) +
+  theme(
+    axis.title.y.right = element_blank(),
+    axis.text.y.right = element_blank(),
+    axis.ticks.y.right = element_blank(),
+    plot.subtitle = element_text(size = 6)
   )
 
-ilmo_1_sisakoul + ilmo_1_ulkokoul + ilmo_1_molemkoul + plot_layout(ncol = 1, axes = "collect")
-
-ilmo_2_sisakoul + ilmo_2_ulkokoul + ilmo_2_molemkoul + plot_layout(ncol = 1, axes = "collect")
+ilmo_1_sisakoul + ilmo_1_ulkokoul + ilmo_1_molemkoul + ilmo_2_sisakoul + ilmo_2_ulkokoul + ilmo_2_molemkoul +
+  plot_layout(ncol = 2, byrow = FALSE, axes = "collect_y")
 
 ```
 
-## Toimintaohjelman käyttöönoton suhde kohteluun
+## Toimintaohjelman käyttöönoton suhde kohteluun {#sec-korrelaatiosuhteet-toimintaohjelma}
 
 ```{r}
 #| label: fig-korrelaatiosuhteet-tayvkayttoonottoEVK
@@ -648,53 +851,97 @@ ggscatterstats(
   x = "tayv_käytössä",
   y = "EVK_sisä_koettu",
   type = "robust"
-)
+) +
+  labs(
+    x = "Sisäisesti koettu kohtelu",
+    y = "Toimenpiteiden käyttöaste"
+  )
 
 ggscatterstats(
   data = data,
   x = "tayv_käytössä",
   y = "EVK_sisä_havaittu",
   type = "robust"
-)
+) +
+  labs(
+    x = "Sisäisesti havaittu kohtelu",
+    y = "Toimenpiteiden käyttöaste"
+  )
 
 ggscatterstats(
   data = data,
   x = "tayv_käytössä",
   y = "EVK_ulko_koettu",
   type = "robust"
-)
+) +
+  labs(
+    x = "Ulkoisesti koettu kohtelu",
+    y = "Toimenpiteiden käyttöaste"
+  )
 
 ggscatterstats(
   data = data,
   x = "tayv_käytössä",
   y = "EVK_ulko_havaittu",
   type = "robust"
-)
+) +
+  labs(
+    x = "Ulkoisesti havaittu kohtelu",
+    y = "Toimenpiteiden käyttöaste"
+  )
 
 ```
 
-## Toimintaohjelman käyttöönoton suhde kohtelun vakavuuteen
+## Toimintaohjelman käyttöönoton suhde kohtelun vaikutuksiin {#sec-korrelaatiosuhteet-toimintaohjelma-vaikutukset}
 
 ```{r}
-#| label: fig-korrelaatiosuhteet-tayvkayttoonottovakavuus
-#| fig-cap: "Toimintaohjelman käyttöönoton korrelaatio vaikutusten pitkäkestoisuuden kanssa"
-#| layout-nrow: 1
-#| fig-subcap: 
-#| -  "Sisäinen"
-#| -  "Ulkoinen"
+#| label: fig-korrelaatiosuhteet-tayvkayttoonotto-vaikutukset
+#| fig-cap: "Toimintaohjelman käyttöönoton korrelaatio vaikutusten kanssa"
+#| layout-ncol: 2
+#| fig-subcap:
+#| -  "Vaikutusten vakavuus"
+#| -  "Vaikutusten pitkäkestoisuus"
 #| code-summary: "Kuvioiden rakentaminen"
 
 vakavuus.tayv <- lm(
+  tayv_käytössä ~ k21_1 + k21_2 + k21_3,
+  data = data
+)
+
+pitkakestoisuus.tayv <- lm(
   tayv_käytössä ~ k22_1 + k22_2 + k22_3,
   data = data
 )
 
-ggcoefstats(
-  vakavuus.tayv,
-  xlab = "Estimaatti",
-  ylab = "Muuttuja"
-)
+ggcoefstats(vakavuus.tayv, xlab = "Regressiokerroin (b)", ylab = "Muuttuja",
+            exclude.intercept = TRUE) +
+  scale_y_discrete(
+    labels = c(
+      "Fyysiset vaikutukset",
+      "Psyykkiset vaikutukset",
+      "Ammatilliset vaikutukset"
+    )
+  ) +
+  theme(axis.title.y = element_blank())
+
+ggcoefstats(pitkakestoisuus.tayv, xlab = "Regressiokerroin (b)", ylab = "Muuttuja",
+            exclude.intercept = TRUE) +
+  scale_y_discrete(
+    labels = c(
+      "Fyysisten vaikutusten\npitkäkestoisuus",
+      "Psyykkisten vaikutusten\npitkäkestoisuus",
+      "Ammatillisten vaikutusten\npitkäkestoisuus"
+    )
+  ) +
+  theme(axis.title.y = element_blank())
+
+```
+
+```{r}
+#| label: korrelaatiosuhteet-06-tayvkayttoonotto-vaikutukset
+#| code-summary: "Mallien kuvailut"
 
 summary(vakavuus.tayv)
+summary(pitkakestoisuus.tayv)
 
 ```
