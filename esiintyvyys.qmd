@@ -16,6 +16,7 @@ Tiedot pohjautuvat anonymisoituun datatiedostoon, josta on poistettu epäilyttä
 #| code-summary: "Osiossa käytetyt paketit"
 
 library(tidyverse) # Yleinen datakäsittely
+library(patchwork) # Kuvioiden asettaminen
 
 ```
 
@@ -28,36 +29,29 @@ varit <- c("#873073", "#893deb", "#fe79ec", "#29d8fd", "#25919d", "#96da31", "#5
 
 ```
 
-## Organisaation sisällä esiintyvä epäasiallinen ja väkivaltainen kohtelu {#sec-esiintyvyys-sisa}
-
-### Omakohtaisesti kohdattu {#sec-esiintyvyys-sisa-itse}
+## Epäasiallisen ja väkivaltaisen kohtelun yleisesiintyvyys {#sec-esiintyvyys-yleisesiintyvyys}
 
 ```{r}
-#| label: esiintyvyys-02-sisaitsekokonaismaara
-#| code-summary: "Ei ollenkaan kohtelua kohdanneiden laskeminen"
+#| label: fig-esiintyvyys-vahintaankerran
+#| fig-cap: "Epäasiallisen ja väkivaltaisen kohtelun kokemukset ja havainnot viimeisen 12 kuukauden aikana (%)"
+#| code-summary: "Kuvion piirtäminen"
+#| fig-height: 8
 
-# Lasketaan kaikki, jotka eivät ole kokeneet mitään sisäistä kohtelua. NA lasketaan mukaan tähän määrään.
-
-eikokemusta.sisa.itse <- data |>
-  filter(
-    if_all(
-      k3_1:k3_7,
-      ~ .x == 0 | is.na(.x)
+### Omakohtaisesti koettu
+# Organisaation sisältä tulleet
+kuvio1a <- data |>
+  select(k3_1:k3_7) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        0 ~ 0,
+        c(1:7) ~ 1,
+        .default = NA
+      )
     )
   ) |>
-  nrow()
-
-```
-
-Yhteensä `r eikokemusta.sisa.itse` eivät olleet kohdanneet yhtään sisäistä kohtelua viimeisen 12 kuukauden aikana, tai eivät vastanneet yhteen tai useampaan kysymykseen. Tällöin yhteensä `r nrow(data)-eikokemusta.sisa.itse` vastaajaa (`r round(((nrow(data)-eikokemusta.sisa.itse)/nrow(data))*100, digits = 0)` %) oli kokenut vähintään yhden epäasiallisen tai väkivaltaisen kohtelun muodon organisaationsa sisällä viimeisen 12 kuukauden aikana.
-
-```{r}
-#| label: fig-esiintyvyys-sisa-itse
-#| fig-cap: "Omakohtaisesti kohdattu organisaation sisäinen epäasiallinen ja väkivaltainen kohtelu"
-#| code-summary: "Kuvion piirtäminen"
-
-data |>
-  select(k3_1:k3_7) |>
   pivot_longer(
     cols = k3_1:k3_7,
     names_to = "variable",
@@ -71,16 +65,10 @@ data |>
     x = prop,
     fill = factor(
       value,
-      levels = rev(sort(unique(value))),
+      levels = c(1, 0),
       labels = sapply(c(
-        "Useita kertoja päivässä",
-        "Kerran päivässä",
-        "Useita kertoja viikossa",
-        "Kerran viikossa",
-        "Useita kertoja kuukaudessa",
-        "Kerran kuukaudessa",
-        "Harvemmin kuin kerran kuukaudessa",
-        "En kertaakaan"
+        "Vähintään kerran",
+        "En ollenkaan"
       ), str_wrap, width = 18, USE.NAMES = FALSE
     ))
   )) +
@@ -100,16 +88,285 @@ data |>
       "Syrjintä"
     ), str_wrap, width = 18, USE.NAMES = FALSE)
   ) +
-  scale_fill_manual(
-    values = varit
+  labs(
+    x = "Kokemusten määrä viimeisen 12 kuukauden aikana (%)",
+    y = "Omakohtaiset kokemukset",
+    fill = "Arvo",
+    title = "Sisäinen"
+  ) +
+  theme(
+    axis.title.x = element_blank(),
+    legend.position = "none"
+  ) + 
+  geom_label(
+    data = . %>% filter(!is.na(value)),
+    aes(
+      label = ifelse(
+        !is.na(value),
+        scales::percent(prop, accuracy = 0.1),
+        ""
+      )
+    ),
+    position = position_stack(vjust = 0.5),
+    size = 3,
+    fill = "#ffffff"
+  ) + 
+  scale_fill_manual(values = c("#C20E1A", "#C5B568"))
+
+# Organisaation ulkopuolelta tulleet
+ kuvio1b <- data |>
+  select(k12_1:k12_7) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        0 ~ 0,
+        c(1:7) ~ 1,
+        .default = NA
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k12_1:k12_7,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = c(1, 0),
+      labels = sapply(c(
+        "Vähintään kerran",
+        "En ollenkaan"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Verbaalinen väkivalta",
+      "Omaisuuden vahingoittaminen tai varastaminen",
+      "Uhkailu",
+      "Fyysinen väkivalta",
+      "Seksuaalinen häirintä tai väkivalta",
+      "Vihamielisyys tai epäkohtelias käyttäytyminen",
+      "Syrjintä"
+    ), str_wrap, width = 18, USE.NAMES = FALSE)
   ) +
   labs(
-    x = "Suhde kaikista vastaajista (%)",
-    fill = "Vastaukset"
+    x = "Kokemusten määrä viimeisen 12 kuukauden aikana (%)",
+    fill = "Arvo",
+    title = "Ulkoinen"
   ) +
-  theme(axis.title.y = element_blank())
+  theme(
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+    axis.text.y = element_blank()
+  ) + 
+  geom_label(
+    data = . %>% filter(!is.na(value)),
+    aes(
+      label = ifelse(
+        !is.na(value),
+        scales::percent(prop, accuracy = 0.1),
+        ""
+      )
+    ),
+    position = position_stack(vjust = 0.5),
+    size = 3,
+    fill = "#ffffff"
+  ) + 
+  scale_fill_manual(values = c("#C20E1A", "#C5B568"))
+
+### Kollegahavainnot
+# Organisaation sisältä tulleet
+kuvio2a <- data |>
+  select(k4_1:k4_7) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        0 ~ 0,
+        c(1:7) ~ 1,
+        .default = NA
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k4_1:k4_7,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = c(1, 0),
+      labels = sapply(c(
+        "Vähintään kerran",
+        "En ollenkaan"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Verbaalinen väkivalta",
+      "Omaisuuden vahingoittaminen tai varastaminen",
+      "Uhkailu",
+      "Fyysinen väkivalta",
+      "Seksuaalinen häirintä tai väkivalta",
+      "Vihamielisyys tai epäkohtelias käyttäytyminen",
+      "Syrjintä"
+    ), str_wrap, width = 18, USE.NAMES = FALSE)
+  ) +
+  labs(
+    x = "Havaintojen määrä viimeisen 12 kuukauden aikana (%)",
+    y = "Kollegahavainnot",
+    fill = "Arvo"
+  ) +
+  theme(
+    axis.title.x = element_blank(),
+    legend.position = "none"
+  ) + 
+  geom_label(
+    data = . %>% filter(!is.na(value)),
+    aes(
+      label = ifelse(
+        !is.na(value),
+        scales::percent(prop, accuracy = 0.1),
+        ""
+      )
+    ),
+    position = position_stack(vjust = 0.5),
+    size = 3,
+    fill = "#ffffff"
+  ) + 
+  scale_fill_manual(values = c("#C20E1A", "#C5B568"))
+
+# Organisaation ulkopuolelta tulleet
+kuvio2b <- data |>
+  select(k13_1:k13_7) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        0 ~ 0,
+        c(1:7) ~ 1,
+        .default = NA
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k13_1:k13_7,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = c(1, 0),
+      labels = sapply(c(
+        "Vähintään kerran",
+        "En ollenkaan"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Verbaalinen väkivalta",
+      "Omaisuuden vahingoittaminen tai varastaminen",
+      "Uhkailu",
+      "Fyysinen väkivalta",
+      "Seksuaalinen häirintä tai väkivalta",
+      "Vihamielisyys tai epäkohtelias käyttäytyminen",
+      "Syrjintä"
+    ), str_wrap, width = 18, USE.NAMES = FALSE)
+  ) +
+  labs(
+    x = "Havaintojen määrä viimeisen 12 kuukauden aikana (%)",
+    fill = "Arvo"
+  ) +
+  theme(
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+    axis.text.y = element_blank()
+  ) + 
+  geom_label(
+    data = . %>% filter(!is.na(value)),
+    aes(
+      label = ifelse(
+        !is.na(value),
+        scales::percent(prop, accuracy = 0.1),
+        ""
+      )
+    ),
+    position = position_stack(vjust = 0.5),
+    size = 3,
+    fill = "#ffffff"
+  ) + 
+  scale_fill_manual(values = c("#C20E1A", "#C5B568"))
+ 
+kuvio1a + kuvio1b + kuvio2a + kuvio2b + plot_layout(
+  ncol = 2,
+  byrow = TRUE,
+  axis_titles = "collect",
+  guides = "collect"
+) &
+  theme(legend.position = "bottom")
 
 ```
+
+### Sisäiset omakohtaiset kokemukset {#sec-esiintyvyys-yleisesiintyvyys-sisaitse}
+
+```{r}
+#| label: esiintyvyys-02-sisaitsekokonaismaara
+#| code-summary: "Ei ollenkaan kohtelua kohdanneiden laskeminen"
+
+# Lasketaan kaikki, jotka eivät ole kokeneet mitään sisäistä kohtelua. NA lasketaan mukaan tähän määrään.
+
+eikokemusta.sisa.itse <- data |>
+  filter(
+    if_all(
+      k3_1:k3_7,
+      ~ .x == 0 | is.na(.x)
+    )
+  ) |>
+  nrow()
+
+```
+
+Yhteensä `r eikokemusta.sisa.itse` eivät olleet kohdanneet yhtään sisäistä kohtelua viimeisen 12 kuukauden aikana, tai eivät vastanneet yhteen tai useampaan kysymykseen. Tällöin yhteensä `r nrow(data)-eikokemusta.sisa.itse` vastaajaa (`r round(((nrow(data)-eikokemusta.sisa.itse)/nrow(data))*100, digits = 0)` %) oli kokenut vähintään yhden epäasiallisen tai väkivaltaisen kohtelun muodon organisaationsa sisällä viimeisen 12 kuukauden aikana.
 
 ```{r}
 #| label: tbl-esiintyvyys-sisa-itse
@@ -163,67 +420,7 @@ data |>
   
 ```
 
-### Havaittu kollegan kohdanneen {#sec-esiintyvyys-sisa-kollega}
-
-```{r}
-#| label: fig-esiintyvyys-sisa-kollega
-#| fig-cap: "Kollegan kohtaama organisaation sisäinen epäasiallinen ja väkivaltainen kohtelu"
-#| code-summary: "Kuvion piirtäminen"
-
-data |>
-  select(k4_1:k4_7) |>
-  pivot_longer(
-    cols = k4_1:k4_7,
-    names_to = "variable",
-    values_to = "value"
-  ) |>
-  group_by(variable, value) |>
-  summarise(count = n()) |>
-  mutate(prop = count/sum(count)) |>
-  ggplot(aes(
-    y = variable,
-    x = prop,
-    fill = factor(
-      value,
-      levels = rev(sort(unique(value))),
-      labels = sapply(c(
-        "Useita kertoja päivässä",
-        "Kerran päivässä",
-        "Useita kertoja viikossa",
-        "Kerran viikossa",
-        "Useita kertoja kuukaudessa",
-        "Kerran kuukaudessa",
-        "Harvemmin kuin kerran kuukaudessa",
-        "En kertaakaan"
-      ), str_wrap, width = 18, USE.NAMES = FALSE
-    ))
-  )) +
-  geom_bar(stat = "identity") +
-  scale_x_continuous(labels = scales::label_percent(
-    suffix = " %",
-    decimal.mark = ","
-  )) +
-  scale_y_discrete(
-    labels = sapply(c(
-      "Verbaalinen väkivalta",
-      "Omaisuuden vahingoittaminen tai varastaminen",
-      "Uhkailu",
-      "Fyysinen väkivalta",
-      "Seksuaalinen häirintä tai väkivalta",
-      "Vihamielisyys tai epäkohtelias käyttäytyminen",
-      "Syrjintä"
-    ), str_wrap, width = 18, USE.NAMES = FALSE)
-  ) +
-  scale_fill_manual(
-    values = varit
-  ) +
-  labs(
-    x = "Suhde kaikista vastaajista (%)",
-    fill = "Vastaukset"
-  ) +
-  theme(axis.title.y = element_blank())
-
-```
+### Sisäiset kollegahavainnot {#sec-esiintyvyys-yleisesiintyvyys-sisakollega}
 
 ```{r}
 #| label: tbl-esiintyvyys-sisa-kollega
@@ -276,9 +473,7 @@ data |>
   knitr::kable(digits = 3)
 ```
 
-## Organisaation ulkopuolelta tullut epäasiallinen ja väkivaltainen kohtelu {#sec-esiintyvyys-ulko}
-
-### Omakohtaisesti kohdattu {#sec-esiintyvyys-ulko-itse}
+### Ulkoiset omakohtaiset kokemukset {#sec-esiintyvyys-yleisesiintyvyys-ulkoitse}
 
 ```{r}
 #| label: esiintyvyys-03-ulkoitsekokonaismaara
@@ -298,66 +493,6 @@ eikokemusta.ulko.itse <- data |>
 ```
 
 Yhteensä `r eikokemusta.ulko.itse` eivät olleet kohdanneet yhtään ulkoista kohtelua viimeisen 12 kuukauden aikana, tai eivät vastanneet yhteen tai useampaan kysymykseen. Tällöin yhteensä `r nrow(data)-eikokemusta.ulko.itse` vastaajaa (`r round(((nrow(data)-eikokemusta.ulko.itse)/nrow(data))*100, digits = 0)` %) oli kokenut vähintään yhden epäasiallisen tai väkivaltaisen kohtelun muodon organisaationsa ulkopuolelta viimeisen 12 kuukauden aikana.
-
-```{r}
-#| label: fig-esiintyvyys-ulko-itse
-#| fig-cap: "Omakohtaisesti kohdattu organisaation ulkopuolelta tuleva epäasiallinen ja väkivaltainen kohtelu"
-#| code-summary: "Kuvion piirtäminen"
-
-data |>
-  select(k12_1:k12_7) |>
-  pivot_longer(
-    cols = k12_1:k12_7,
-    names_to = "variable",
-    values_to = "value"
-  ) |>
-  group_by(variable, value) |>
-  summarise(count = n()) |>
-  mutate(prop = count/sum(count)) |>
-  ggplot(aes(
-    y = variable,
-    x = prop,
-    fill = factor(
-      value,
-      levels = rev(sort(unique(value))),
-      labels = sapply(c(
-        "Useita kertoja päivässä",
-        "Kerran päivässä",
-        "Useita kertoja viikossa",
-        "Kerran viikossa",
-        "Useita kertoja kuukaudessa",
-        "Kerran kuukaudessa",
-        "Harvemmin kuin kerran kuukaudessa",
-        "En kertaakaan"
-      ), str_wrap, width = 18, USE.NAMES = FALSE
-    ))
-  )) +
-  geom_bar(stat = "identity") +
-  scale_x_continuous(labels = scales::label_percent(
-    suffix = " %",
-    decimal.mark = ","
-  )) +
-  scale_y_discrete(
-    labels = sapply(c(
-      "Verbaalinen väkivalta",
-      "Omaisuuden vahingoittaminen tai varastaminen",
-      "Uhkailu",
-      "Fyysinen väkivalta",
-      "Seksuaalinen häirintä tai väkivalta",
-      "Vihamielisyys tai epäkohtelias käyttäytyminen",
-      "Syrjintä"
-    ), str_wrap, width = 18, USE.NAMES = FALSE)
-  ) +
-  scale_fill_manual(
-    values = varit
-  ) +
-  labs(
-    x = "Suhde kaikista vastaajista (%)",
-    fill = "Vastaukset"
-  ) +
-  theme(axis.title.y = element_blank())
-
-```
 
 ```{r}
 #| label: tbl-esiintyvyys-ulko-itse
@@ -410,67 +545,7 @@ data |>
   knitr::kable(digits = 3)
 ```
 
-### Havaittu kollegan kohdanneen {#sec-esiintyvyys-ulko-kollega}
-
-```{r}
-#| label: fig-esiintyvyys-ulko-kollega
-#| fig-cap: "Kollegan kohtaama organisaation ulkopuolelta tuleva epäasiallinen ja väkivaltainen kohtelu"
-#| code-summary: "Kuvion piirtäminen"
-
-data |>
-  select(k13_1:k13_7) |>
-  pivot_longer(
-    cols = k13_1:k13_7,
-    names_to = "variable",
-    values_to = "value"
-  ) |>
-  group_by(variable, value) |>
-  summarise(count = n()) |>
-  mutate(prop = count/sum(count)) |>
-  ggplot(aes(
-    y = variable,
-    x = prop,
-    fill = factor(
-      value,
-      levels = c(7:0), # "Useita kertoja päivässä" ei esiinny ollenkaan.
-      labels = sapply(c(
-        "Useita kertoja päivässä",
-        "Kerran päivässä",
-        "Useita kertoja viikossa",
-        "Kerran viikossa",
-        "Useita kertoja kuukaudessa",
-        "Kerran kuukaudessa",
-        "Harvemmin kuin kerran kuukaudessa",
-        "En kertaakaan"
-      ), str_wrap, width = 18, USE.NAMES = FALSE
-    ))
-  )) +
-  geom_bar(stat = "identity") +
-  scale_x_continuous(labels = scales::label_percent(
-    suffix = " %",
-    decimal.mark = ","
-  )) +
-  scale_y_discrete(
-    labels = sapply(c(
-      "Verbaalinen väkivalta",
-      "Omaisuuden vahingoittaminen tai varastaminen",
-      "Uhkailu",
-      "Fyysinen väkivalta",
-      "Seksuaalinen häirintä tai väkivalta",
-      "Vihamielisyys tai epäkohtelias käyttäytyminen",
-      "Syrjintä"
-    ), str_wrap, width = 18, USE.NAMES = FALSE)
-  ) +
-  scale_fill_manual(
-    values = varit[2:8]
-  ) +
-  labs(
-    x = "Suhde kaikista vastaajista (%)",
-    fill = "Vastaukset"
-  ) +
-  theme(axis.title.y = element_blank())
-
-```
+### Ulkoiset kollegahavainnot {#sec-esiintyvyys-yleisesiintyvyys-ulkokollega}
 
 ```{r}
 #| label: tbl-esiintyvyys-ulko-kollega
@@ -522,3 +597,3247 @@ data |>
   xtabs(prop ~ variable + value, data = _) |>
   knitr::kable(digits = 3)
 ```
+
+## Kohtelun omakohtaisesti koetut muodot {#sec-esiintyvyys-itsemuodot}
+
+### Yleisimmät muodot {#sec-esiintyvyys-itsemuodot-yleisimmat}
+
+```{r}
+#| label: fig-esiintyvyys-itsemuodot-yleisimmat
+#| code-summary: "Kuvioiden piirtäminen"
+#| fig-cap: "Omakohtaisesti koetun epäasiallisen ja väkivaltaisen kohtelun yleisimmät muodot"
+#| layout-ncol: 2
+#| fig-subcap: 
+#| -  "Organisaatiosisäinen"
+#| -  "Organisaatioulkoinen"
+
+ryhmat <- c(
+  "Verbaalinen",
+  "Omaisuus",
+  "Uhkailu",
+  "Fyysinen",
+  "Seksuaalinen",
+  "Vihamielisyys",
+  "Syrjintä"
+)
+
+varit_ryhmat <- setNames(
+  as.list(varit[1:7]),
+  ryhmat
+)
+
+# Nimet haettu Webropol-palvelun alkuperäisestä lomakkeesta. Nimistä poistettu ne muuttujat, jotka poistettiin anonymisoinnin yhteydessä.
+nimet.sisa <- sapply(c(
+  "Nöyryyttäminen, häpäiseminen",
+  "Nolaaminen",
+  "Nuhtelu toisten edessä",
+  "Työn loukkaava arvostelu",
+  "Huutaminen",
+  "Kiroilu tai kiroaminen",
+  "Loukkaava nimittely",
+  "Valheellinen syyttäminen",
+  "Ärsyttämismielessä sanotut asiat",
+  "Työvälineiden varastaminen",
+  "Työvälineiden piilottaminen",
+  "Työvälineiden rikkominen",
+  "Työvälineiden likaaminen",
+  "Työvälineiden luvaton käyttö",
+  "Henk.koht. omaisuuden varastaminen",
+  "Henk.koht. omaisuuden piilottaminen",
+  "Henk.koht. omaisuuden rikkominen",
+  "Henk.koht. omaisuuden likaaminen",
+  "Henk.koht. omaisuuden luvaton käyttö",
+  "Pelottelu",
+  "Työn tai liikkumisen estäminen",
+  "Äänen korottaminen",
+  "Vuorovaikutustilanteessa liian lähelle tuleminen",
+  "Törkeiden eleiden näyttäminen",
+  "Muu törkeä käyttäytyminen",
+  "Mulkoilu tai tuijottaminen",
+  "Fyysisellä väkivallalla uhkaaminen",
+  "Esineellä heittämisellä uhkaaminen",
+  "Tappamisella uhkaaminen",
+  "Seuraaminen",
+  "Tarkkailu",
+  "Läheisten väkivallalla uhkaaminen",
+  "Lyöminen",
+  "Tuuppaaminen tai tönäiseminen",
+  "Tarkoituksella henkilöön törmääminen liiallisella voimalla",
+  "Päälle sylkäiseminen",
+  "Esineellä heittäminen",
+  "Kiinni tarttuminen",
+  "Potkaiseminen",
+  "Kuristaminen",
+  "Raapiminen",
+  "Hiuksista tarttuminen",
+  "Voimankäyttövälineillä tai aseella vahingoittaminen",
+  "Vitsit tai nöyryyttävät kommentit",
+  "Keholliset eleet",
+  "Tapaamisen/numeron vaatiminen",
+  "Vihjailu",
+  "Sukuelinten, rintojen tai pakaroiden koskettelu(-yritys)",
+  "Muiden alueiden seksualisoiva koskettelu",
+  "Ei-toivottujen lahjojen antaminen",
+  "Ei-toivottujen kuvien lähettäminen tai kuvaaminen",
+  "Seksuaalissävytteisen materiaalin levittäminen tai esilläpito",
+  "Henkilön toiminnasta muille valittaminen",
+  "Henkilökohtaisen, luottamuksellisen tiedon jakaminen",
+  "Välinpitämättömyys tai tiedon pimittäminen",
+  "Useat tai jatkuva kritiikki, vähättely, virheiden hakeminen",
+  "Juoruilu, valheellisen tiedon levittäminen",
+  "Ehdotuksen tai ideoiden huomioimatta jättäminen tai vähättely",
+  "Työstä ei anneta tunnustusta",
+  "Aikaisemmista lupauksista luopuminen",
+  "Huumoriin kiedottu loukkaus",
+  "Sosiaalinen tai ammatillinen eristäminen",
+  "Maalittaminen",
+  "Tehtävään nimittäminen muuten kuin osaamiseen tai pätevyyteen perustuen",
+  "Epätasapuolinen johtamis- ja esihenkilötoiminta",
+  "Loukkaava kielenkäyttö, herjaaminen",
+  "Ryhmiin liittyvät yleistykset (esim. vähemmistövitsit)",
+  "Työhaastattelun yhteydessä kysymykset perhesuunnitelmista",
+  "Työvarusteiden epäsopivuus (esimerkiksi vääränkokoiset varusteet)",
+  "Työkollegoiden erilaiset odotukset henk.koht. ominaisuuksien perusteella",
+  "Pätevyyden vähättely henkilökohtaisten ominaisuuksien perusteella",
+  "Muuhun kuin vaativuuteen liittyvät palkitsemiserot",
+  "Kohtuullisten mukautusten epääminen vammaiselta henkilöltä",
+  "Käskyt tai ohjeet syrjiä toista henkilöä",
+  "Vastatoimiin ryhtyminen yhdenvertaisuusrikkomusten ilmoituksen takia",
+  "Syrjivä kohtelu ammattiyhdistystoimintaan osallistumisen takia",
+  "Irtisanominen tai sillä uhkaaminen henkilökohtaisten ominaisuuksien takia",
+  "Tehtävien jakaminen muun kuin osaamisen tai pätevyyteen perusteella",
+  "Muuhun kuin osaamiseen perustuvat palkkaerot"
+), str_wrap, width = 36, USE.NAMES = FALSE)
+
+sisa.kaikki <- data |>
+  select(k5_1_1:k11_16_1) |>
+  select(ends_with("_1")) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        NA ~ 0,
+        -1 ~ 0
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k5_1_1:k11_16_1,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  filter(value == 1) |>
+  select(!value) |>
+  ungroup() |>
+  mutate(
+    group = case_when(
+      str_detect(variable, "k5") ~ "Verbaalinen",
+      str_detect(variable, "k6") ~ "Omaisuus",
+      str_detect(variable, "k7") ~ "Uhkailu",
+      str_detect(variable, "k8") ~ "Fyysinen",
+      str_detect(variable, "k9") ~ "Seksuaalinen",
+      str_detect(variable, "k10") ~ "Vihamielisyys",
+      str_detect(variable, "k11") ~ "Syrjintä",
+      TRUE ~ "VIRHE"
+    )
+  ) |>
+  mutate(
+    group = factor(
+      group,
+      levels = ryhmat
+    )
+  )
+
+jarjestys.sisa <- sisa.kaikki |>
+  pull(variable)
+
+vanhat_nimet.sisa <- data |>
+  select(k5_1_1:k11_16_1) |>
+  select(ends_with("_1")) |>
+  colnames()
+
+nimet.sisa <- setNames(
+  as.list(nimet.sisa),
+  vanhat_nimet.sisa
+)[jarjestys.sisa]
+
+yleisimmat.sisa <- sisa.kaikki |>
+  arrange(desc(prop)) |>
+  slice_head(n = 10) |>
+  mutate(
+    variable = map_chr(
+      variable,
+      ~ nimet.sisa[[.x]]
+    )
+  )
+
+# Sisäisen kohtelun kymmenen yleisintä kokemusmuotoa (% kohtelumuodon kokeneista vastaajista)
+yleisimmat.sisa |>
+  ggplot(aes(
+    x = prop,
+    y = reorder(variable, prop),
+    fill = group
+  )) +
+  geom_bar(stat = "identity") + 
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) + 
+  labs(
+    x = "Suhde kohtelun ylämuodon kokeneista vastaajista (%)",
+    fill = "Ylämuoto"
+  ) + 
+  theme(axis.title.y = element_blank()) + 
+  geom_label(
+    aes(
+      label = scales::percent(prop, accuracy = 0.1)
+    ),
+    position = position_stack(vjust = 0.9),
+    size = 3,
+    fill = "#ffffff"
+  ) + 
+  scale_fill_manual(values = varit_ryhmat)
+
+# Nimet haettu Webropol-palvelun alkuperäisestä lomakkeesta. Nimistä poistettu ne muuttujat, jotka poistettiin anonymisoinnin yhteydessä.
+nimet.ulko <- sapply(c(
+  "Nöyryyttäminen, häpäiseminen",
+  "Nolaaminen",
+  "Nuhtelu toisten edessä",
+  "Työn loukkaava arvostelu",
+  "Huutaminen",
+  "Kiroilu tai kiroaminen",
+  "Loukkaava nimittely",
+  "Valheellinen syyttäminen",
+  "Ärsyttämismielessä sanotut asiat",
+  "Työvälineiden varastaminen",
+  "Työvälineiden piilottaminen",
+  "Työvälineiden rikkominen",
+  "Työvälineiden likaaminen",
+  "Työvälineiden luvaton käyttö",
+  "Henk.koht. omaisuuden varastaminen",
+  "Henk.koht. omaisuuden piilottaminen",
+  "Henk.koht. omaisuuden rikkominen",
+  "Henk.koht. omaisuuden likaaminen",
+  "Henk.koht. omaisuuden luvaton käyttö",
+  "Pelottelu",
+  "Työn tai liikkumisen estäminen",
+  "Äänen korottaminen",
+  "Vuorovaikutustilanteessa liian lähelle tuleminen",
+  "Törkeiden eleiden näyttäminen",
+  "Muu törkeä käyttäytyminen",
+  "Mulkoilu tai tuijottaminen",
+  "Fyysisellä väkivallalla uhkaaminen",
+  "Esineellä heittämisellä uhkaaminen",
+  "Aseella tai voimankäyttövälineellä uhkaaminen",
+  "Tappamisella uhkaaminen",
+  "Seuraaminen",
+  "Tarkkailu",
+  "Läheisiin väkivallalla uhkaaminen",
+  "Lyöminen",
+  "Tuuppaaminen tai tönäiseminen",
+  "Tarkoituksella henkilöön törmääminen liiallisella voimalla",
+  "Päälle sylkäiseminen",
+  "Esineellä heittäminen",
+  "Kiinni tarttuminen",
+  "Potkaiseminen",
+  "Kuristaminen",
+  "Raapiminen",
+  "Hiuksista tarttuminen",
+  "Voimankäyttövälineillä tai aseella vahingoittaminen",
+  "Vitsit tai nöyryyttävät kommentit",
+  "Keholliset eleet",
+  "Tapaamisen/numeron vaatiminen",
+  "Vihjailu",
+  "Sukuelinten, rintojen tai pakaroiden koskettelu(-yritys)",
+  "Muiden alueiden seksualisoiva koskettelu",
+  "Ei-toivottujen lahjojen antaminen",
+  "Ei-toivottujen kuvien lähettäminen tai kuvaaminen",
+  "Seksuaalissävytteisen materiaalin levittäminen tai esilläpito",
+  "Henkilön toiminnasta muille valittaminen",
+  "Henkilökohtaisen, luottamuksellisen tiedon jakaminen",
+  "Välinpitämättömyys tai tiedon pimittäminen",
+  "Useat tai jatkuva kritiikki, vähättely, virheiden hakeminen",
+  "Juoruilu, valheellisen tiedon levittäminen",
+  "Ehdotuksen tai ideoiden huomioimatta jättäminen tai vähättely",
+  "Työstä ei anneta tunnustusta",
+  "Aikaisemmista lupauksista luopuminen",
+  "Huumoriin kiedottu loukkaus",
+  "Sosiaalinen tai ammatillinen eristäminen",
+  "Maalittaminen",
+  "Loukkaava kielenkäyttö, herjaaminen",
+  "Ryhmiin liittyvät yleistykset (esim. vähemmistövitsit)",
+  "Ulkopuolisten erilaiset odotukset henk.koht. ominaisuuksien perusteella",
+  "Pätevyyden vähättely henkilökohtaisten ominaisuuksien perusteella",
+  "Kohtuullisten mukautusten epääminen vammaiselta henkilöltä",
+  "Käskyt tai ohjeet syrjiä toista henkilöä",
+  "Syrjivä kohtelu ammattiyhdistystoimintaan osallistumisen takia"
+), str_wrap, width = 36, USE.NAMES = FALSE)
+
+ulko.kaikki <- data |>
+  select(k14_1_1:k20_7_1) |>
+  select(ends_with("_1")) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        NA ~ 0,
+        -1 ~ 0
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k14_1_1:k20_7_1,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  filter(value == 1) |>
+  select(!value) |>
+  ungroup() |>
+  mutate(
+    group = case_when(
+      str_detect(variable, "k14") ~ "Verbaalinen",
+      str_detect(variable, "k15") ~ "Omaisuus",
+      str_detect(variable, "k16") ~ "Uhkailu",
+      str_detect(variable, "k17") ~ "Fyysinen",
+      str_detect(variable, "k18") ~ "Seksuaalinen",
+      str_detect(variable, "k19") ~ "Vihamielisyys",
+      str_detect(variable, "k20") ~ "Syrjintä",
+      TRUE ~ "VIRHE"
+    )
+  ) |>
+  mutate(
+    group = factor(
+      group,
+      levels = c(
+        "Verbaalinen",
+        "Omaisuus",
+        "Uhkailu",
+        "Fyysinen",
+        "Seksuaalinen",
+        "Vihamielisyys",
+        "Syrjintä"
+      )
+    )
+  )
+
+jarjestys.ulko <- ulko.kaikki |>
+  pull(variable)
+
+vanhat_nimet.ulko <- data |>
+  select(k14_1_1:k20_7_1) |>
+  select(ends_with("_1")) |>
+  colnames()
+
+nimet.ulko <- setNames(
+  as.list(nimet.ulko),
+  vanhat_nimet.ulko
+)[jarjestys.ulko]
+
+yleisimmat.ulko <- ulko.kaikki |>
+  arrange(desc(prop)) |>
+  slice_head(n = 10) |>
+  mutate(
+    variable = map_chr(
+      variable,
+      ~ nimet.ulko[[.x]]
+    )
+  )
+
+# Ulkoisen kohtelun kymmenen yleisintä kokemusmuotoa (% kohtelumuodon kokeneista vastaajista)
+yleisimmat.ulko |>
+  ggplot(aes(
+    x = prop,
+    y = reorder(variable, prop),
+    fill = group
+  )) +
+  geom_bar(stat = "identity") + 
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) + 
+  labs(
+    x = "Suhde kohtelun ylämuodon kokeneista vastaajista (%)",
+    fill = "Ylämuoto"
+  ) + 
+  theme(axis.title.y = element_blank()) + 
+  geom_label(
+    aes(
+      label = scales::percent(prop, accuracy = 0.1)
+    ),
+    position = position_stack(vjust = 0.9),
+    size = 3,
+    fill = "#ffffff"
+  ) + 
+  scale_fill_manual(values = varit_ryhmat)
+
+```
+
+### Organisaatiosisäinen {#sec-esiintyvyys-itsemuodot-sisainen}
+
+::: panel-tabset
+#### Verbaalinen väkivalta
+
+```{r}
+#| label: fig-esiintyvyys-itsemuodot-sisainen-verbaalinen
+#| code-summary: "Verbaalisen väkivallan muodot"
+#| fig-cap: "Esiintyvän verbaalisen väkivallan muodot"
+#| warning: false
+
+data |>
+  filter(between(k3_1, 1, 7)) |>
+  select(k5_1_1:k5_9_2) |>
+  select(ends_with("_1")) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        NA ~ 0,
+        -1 ~ NA
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k5_1_1:k5_9_1,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  mutate(variable = factor(variable, levels = unique(variable))) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = rev(sort(unique(value))),
+      labels = sapply(c(
+        "Kyllä",
+        "Ei"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Nöyryyttäminen, häpäiseminen",
+      "Nolaaminen",
+      "Nuhtelu toisten edessä",
+      "Työn loukkaava arvostelu",
+      "Huutaminen",
+      "Kiroilu tai kiroaminen",
+      "Loukkaava nimittely",
+      "Valheellinen syyttäminen",
+      "Ärsyttämismielessä sanotut asiat"
+    ), str_wrap, width = 36, USE.NAMES = FALSE)
+  ) +
+  labs(
+    x = "Suhde kaikista verbaalisen väkivallan kokeneista vastaajista (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(
+    axis.title.y = element_blank(),
+    legend.key = element_blank()
+  ) + 
+  geom_label(
+    aes(
+      label = ifelse(
+        !is.na(value),
+        scales::percent(prop, accuracy = 0.1),
+        ""
+      )
+    ),
+    position = position_stack(vjust = 0.5),
+    size = 3,
+    fill = "white"
+  ) + 
+  scale_fill_manual(values = c("#C20E1A", "#C5B568"))
+
+```
+
+#### Omaisuusväkivalta
+
+```{r}
+#| label: fig-esiintyvyys-itsemuodot-sisainen-omaisuus
+#| code-summary: "Omaisuuden vahingoittamisen tai varastamisen muodot"
+#| fig-cap: "Esiintyvän omaisuuden vahingoittamisen tai varastamisen muodot"
+#| warning: false
+
+data |>
+  filter(between(k3_2, 1, 7)) |>
+  select(k6_1_1:k6_10_2) |>
+  select(ends_with("_1")) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        NA ~ 0,
+        -1 ~ NA
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k6_1_1:k6_10_1,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  mutate(variable = factor(variable, levels = unique(variable))) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = rev(sort(unique(value))),
+      labels = sapply(c(
+        "Kyllä",
+        "Ei"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Työvälineiden varastaminen",
+      "Työvälineiden piilottaminen",
+      "Työvälineiden rikkominen",
+      "Työvälineiden likaaminen",
+      "Työvälineiden luvaton käyttö",
+      "Henk.koht. omaisuuden varastaminen",
+      "Henk.koht. omaisuuden piilottaminen",
+      "Henk.koht. omaisuuden rikkominen",
+      "Henk.koht. omaisuuden likaaminen",
+      "Henk.koht. omaisuuden luvaton käyttö"
+    ), str_wrap, width = 36, USE.NAMES = FALSE)
+  ) +
+  labs(
+    x = "Suhde kaikista omaisuuden vahingoittamista tai varastamista kokeneista vastaajista (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(
+    axis.title.y = element_blank(),
+    legend.key = element_blank()
+  ) +
+  geom_label(
+    aes(
+      label = ifelse(
+        !is.na(value),
+        scales::percent(prop, accuracy = 0.1),
+        ""
+      )
+    ),
+    position = position_stack(vjust = 0.5),
+    size = 3,
+    fill = "white"
+  ) + 
+  scale_fill_manual(values = c("#C20E1A", "#C5B568"))
+
+```
+
+#### Uhkailu
+
+```{r}
+#| label: fig-esiintyvyys-itsemuodot-sisainen-uhkailu
+#| code-summary: "Uhkailun muodot"
+#| fig-cap: "Esiintyvän uhkailun muodot"
+#| warning: false
+
+data |>
+  filter(between(k3_3, 1, 7)) |>
+  select(k7_1_1:k7_14_2) |>
+  select(ends_with("_1")) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        NA ~ 0,
+        -1 ~ NA
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k7_1_1:k7_14_1,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  mutate(variable = factor(variable, levels = unique(variable))) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = rev(sort(unique(value))),
+      labels = sapply(c(
+        "Kyllä",
+        "Ei"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Pelottelu",
+      "Työn tai liikkumisen estäminen",
+      "Äänen korottaminen",
+      "Vuorovaikutustilanteessa liian lähelle tuleminen",
+      "Törkeiden eleiden näyttäminen",
+      "Muu törkeä käyttäytyminen",
+      "Mulkoilu tai tuijottaminen",
+      "Fyysisellä väkivallalla uhkaaminen",
+      "Esineellä heittämisellä uhkaaminen",
+      "Tappamisella uhkaaminen",
+      "Seuraaminen",
+      "Tarkkailu",
+      "Läheisten väkivallalla uhkaaminen"
+    ), str_wrap, width = 36, USE.NAMES = FALSE)
+  ) +
+  labs(
+    x = "Suhde kaikista uhkailua kokeneista vastaajista (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(
+    axis.title.y = element_blank(),
+    legend.key = element_blank()
+  ) + 
+  geom_label(
+    aes(
+      label = ifelse(
+        !is.na(value),
+        scales::percent(prop, accuracy = 0.1),
+        ""
+      )
+    ),
+    position = position_stack(vjust = 0.5),
+    size = 3,
+    fill = "white"
+  ) + 
+  scale_fill_manual(values = c("#C20E1A", "#C5B568"))
+
+```
+
+#### Fyysinen väkivalta
+
+```{r}
+#| label: fig-esiintyvyys-itsemuodot-sisainen-fyysinen
+#| code-summary: "Fyysisen väkivallan muodot"
+#| fig-cap: "Esiintyvän fyysisen väkivallan muodot"
+#| warning: false
+
+data |>
+  filter(between(k3_4, 1, 7)) |>
+  select(k8_1_1:k8_11_1) |>
+  select(ends_with("_1")) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        NA ~ 0,
+        -1 ~ NA
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k8_1_1:k8_11_1,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  mutate(variable = factor(variable, levels = unique(variable))) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = rev(sort(unique(value))),
+      labels = sapply(c(
+        "Kyllä",
+        "Ei"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Lyöminen",
+      "Tuuppaaminen tai tönäiseminen",
+      "Tarkoituksella henkilöön törmääminen liiallisella voimalla",
+      "Päälle sylkäiseminen",
+      "Esineellä heittäminen",
+      "Kiinni tarttuminen",
+      "Potkaiseminen",
+      "Kuristaminen",
+      "Raapiminen",
+      "Hiuksista tarttuminen",
+      "Voimankäyttövälineillä tai aseella vahingoittaminen"
+    ), str_wrap, width = 36, USE.NAMES = FALSE)
+  ) +
+  labs(
+    x = "Suhde kaikista fyysistä väkivaltaa kokeneista vastaajista (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(
+    axis.title.y = element_blank(),
+    legend.key = element_blank()
+  ) + 
+  geom_label(
+    aes(
+      label = ifelse(
+        !is.na(value),
+        scales::percent(prop, accuracy = 0.1),
+        ""
+      )
+    ),
+    position = position_stack(vjust = 0.5),
+    size = 3,
+    fill = "white"
+  ) + 
+  scale_fill_manual(values = c("#C20E1A", "#C5B568"))
+
+```
+
+#### Seksuaalinen väkivalta
+
+```{r}
+#| label: fig-esiintyvyys-itsemuodot-sisainen-seksuaalinen
+#| code-summary: "Seksuaalisen väkivallan muodot"
+#| fig-cap: "Esiintyvän seksuaalisen väkivallan muodot"
+#| warning: false
+
+data |>
+  filter(between(k3_5, 1, 7)) |>
+  select(k9_1_1:k9_10_2) |>
+  select(ends_with("_1")) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        NA ~ 0,
+        -1 ~ NA
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k9_1_1:k9_10_1,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  mutate(variable = factor(variable, levels = unique(variable))) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = rev(sort(unique(value))),
+      labels = sapply(c(
+        "Kyllä",
+        "Ei"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Vitsit tai nöyryyttävät kommentit",
+      "Keholliset eleet",
+      "Tapaamisen/numeron vaatiminen",
+      "Vihjailu",
+      "Sukuelinten, rintojen tai pakaroiden koskettelu(-yritys)",
+      "Muiden alueiden seksualisoiva koskettelu",
+      "Ei-toivottujen lahjojen antaminen",
+      "Ei-toivottujen kuvien lähettäminen tai kuvaaminen",
+      "Seksuaalissävytteisen materiaalin levittäminen tai esilläpito"
+    ), str_wrap, width = 36, USE.NAMES = FALSE)
+  ) +
+  labs(
+    x = "Suhde kaikista seksuaalista väkivaltaa kokeneista vastaajista (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(
+    axis.title.y = element_blank(),
+    legend.key = element_blank()
+  ) + 
+  geom_label(
+    aes(
+      label = ifelse(
+        !is.na(value),
+        scales::percent(prop, accuracy = 0.1),
+        ""
+      )
+    ),
+    position = position_stack(vjust = 0.5),
+    size = 3,
+    fill = "white"
+  ) + 
+  scale_fill_manual(values = c("#C20E1A", "#C5B568"))
+
+```
+
+#### Vihamielisyys
+
+```{r}
+#| label: fig-esiintyvyys-itsemuodot-sisainen-vihamielisyys
+#| code-summary: "Vihamielisyyden muodot"
+#| fig-cap: "Esiintyvän vihamielisyyden muodot"
+#| warning: false
+
+data |>
+  filter(between(k3_6, 1, 7)) |>
+  select(k10_1_1:k10_11_2) |>
+  select(ends_with("_1")) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        NA ~ 0,
+        -1 ~ NA
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k10_1_1:k10_11_1,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  mutate(variable = factor(variable, levels = unique(variable))) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = rev(sort(unique(value))),
+      labels = sapply(c(
+        "Kyllä",
+        "Ei"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Henkilön toiminnasta muille valittaminen",
+      "Henkilökohtaisen, luottamuksellisen tiedon jakaminen",
+      "Välinpitämättömyys tai tiedon pimittäminen",
+      "Useat tai jatkuva kritiikki, vähättely, virheiden hakeminen",
+      "Juoruilu, valheellisen tiedon levittäminen",
+      "Ehdotuksen tai ideoiden huomioimatta jättäminen tai vähättely",
+      "Työstä ei anneta tunnustusta",
+      "Aikaisemmista lupauksista luopuminen",
+      "Huumoriin kiedottu loukkaus",
+      "Sosiaalinen tai ammatillinen eristäminen",
+      "Maalittaminen"
+    ), str_wrap, width = 36, USE.NAMES = FALSE)
+  ) +
+  labs(
+    x = "Suhde kaikista vihamielisyyttä kokeneista vastaajista (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(
+    axis.title.y = element_blank(),
+    legend.key = element_blank()
+  ) + 
+  geom_label(
+    aes(
+      label = ifelse(
+        !is.na(value),
+        scales::percent(prop, accuracy = 0.1),
+        ""
+      )
+    ),
+    position = position_stack(vjust = 0.5),
+    size = 3,
+    fill = "white"
+  ) + 
+  scale_fill_manual(values = c("#C20E1A", "#C5B568"))
+
+```
+
+#### Syrjintä
+
+```{r}
+#| label: fig-esiintyvyys-itsemuodot-sisainen-syrjinta
+#| code-summary: "Syrjinnän muodot"
+#| fig-cap: "Esiintyvän syrjinnän muodot"
+#| warning: false
+#| fig-height: 8
+
+data |>
+  filter(between(k3_7, 1, 7)) |>
+  select(k11_1_1:k11_16_2) |>
+  select(ends_with("_1")) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        NA ~ 0,
+        -1 ~ NA
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k11_1_1:k11_16_1,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  mutate(variable = factor(variable, levels = unique(variable))) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = rev(sort(unique(value))),
+      labels = sapply(c(
+        "Kyllä",
+        "Ei"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Tehtävään nimittäminen muuten kuin osaamiseen tai pätevyyteen perustuen",
+      "Epätasapuolinen johtamis- ja esihenkilötoiminta",
+      "Loukkaava kielenkäyttö, herjaaminen",
+      "Ryhmiin liittyvät yleistykset (esim. vähemmistövitsit)",
+      "Työhaastattelun yhteydessä kysymykset perhesuunnitelmista",
+      "Työvarusteiden epäsopivuus (esimerkiksi vääränkokoiset varusteet)",
+      "Työkollegoiden erilaiset odotukset henk.koht. ominaisuuksien perusteella",
+      "Pätevyyden vähättely henkilökohtaisten ominaisuuksien perusteella",
+      "Muuhun kuin vaativuuteen liittyvät palkitsemiserot",
+      "Kohtuullisten mukautusten epääminen vammaiselta henkilöltä",
+      "Käskyt tai ohjeet syrjiä toista henkilöä",
+      "Vastatoimiin ryhtyminen yhdenvertaisuusrikkomusten ilmoituksen takia",
+      "Syrjivä kohtelu ammattiyhdistystoimintaan osallistumisen takia",
+      "Irtisanominen tai sillä uhkaaminen henkilökohtaisten ominaisuuksien takia",
+      "Tehtävien jakaminen muun kuin osaamisen tai pätevyyteen perusteella",
+      "Muuhun kuin osaamiseen perustuvat palkkaerot"
+    ), str_wrap, width = 36, USE.NAMES = FALSE)
+  ) +
+  labs(
+    x = "Suhde kaikista syrjintää kokeneista vastaajista (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(
+    axis.title.y = element_blank(),
+    legend.key = element_blank()
+  ) + 
+  geom_label(
+    aes(
+      label = ifelse(
+        !is.na(value),
+        scales::percent(prop, accuracy = 0.1),
+        ""
+      )
+    ),
+    position = position_stack(vjust = 0.5),
+    size = 3,
+    fill = "white"
+  ) + 
+  scale_fill_manual(values = c("#C20E1A", "#C5B568"))
+
+```
+:::
+
+### Organisaatioulkoinen {#sec-esiintyvyys-itsemuodot-ulkoinen}
+
+::: panel-tabset
+#### Verbaalinen väkivalta
+
+```{r}
+#| label: fig-esiintyvyys-itsemuodot-ulkoinen-verbaalinen
+#| code-summary: "Verbaalisen väkivallan muodot"
+#| fig-cap: "Esiintyvän verbaalisen väkivallan muodot"
+#| warning: false
+
+data |>
+  filter(between(k12_1, 1, 7)) |>
+  select(k14_1_1:k14_9_2) |>
+  select(ends_with("_1")) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        NA ~ 0,
+        -1 ~ NA
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k14_1_1:k14_9_1,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  mutate(variable = factor(variable, levels = unique(variable))) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = rev(sort(unique(value))),
+      labels = sapply(c(
+        "Kyllä",
+        "Ei"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Nöyryyttäminen, häpäiseminen",
+      "Nolaaminen",
+      "Nuhtelu toisten edessä",
+      "Työn loukkaava arvostelu",
+      "Huutaminen",
+      "Kiroilu tai kiroaminen",
+      "Loukkaava nimittely",
+      "Valheellinen syyttäminen",
+      "Ärsyttämismielessä sanotut asiat"
+    ), str_wrap, width = 36, USE.NAMES = FALSE)
+  ) +
+  labs(
+    x = "Suhde kaikista verbaalisen väkivallan kokeneista vastaajista (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(
+    axis.title.y = element_blank(),
+    legend.key = element_blank()
+  ) + 
+  geom_label(
+    aes(
+      label = ifelse(
+        !is.na(value),
+        scales::percent(prop, accuracy = 0.1),
+        ""
+      )
+    ),
+    position = position_stack(vjust = 0.5),
+    size = 3,
+    fill = "white"
+  ) + 
+  scale_fill_manual(values = c("#C20E1A", "#C5B568"))
+
+```
+
+#### Omaisuusväkivalta
+
+```{r}
+#| label: fig-esiintyvyys-itsemuodot-ulkoinen-omaisuus
+#| code-summary: "Omaisuuden vahingoittamisen tai varastamisen muodot"
+#| fig-cap: "Esiintyvän omaisuuden vahingoittamisen tai varastamisen muodot"
+#| warning: false
+
+data |>
+  filter(between(k12_2, 1, 7)) |>
+  select(k15_1_1:k15_10_2) |>
+  select(ends_with("_1")) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        NA ~ 0,
+        -1 ~ NA
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k15_1_1:k15_10_1,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  mutate(variable = factor(variable, levels = unique(variable))) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = rev(sort(unique(value))),
+      labels = sapply(c(
+        "Kyllä",
+        "Ei"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Työvälineiden varastaminen",
+      "Työvälineiden piilottaminen",
+      "Työvälineiden rikkominen",
+      "Työvälineiden likaaminen",
+      "Työvälineiden luvaton käyttö",
+      "Henk.koht. omaisuuden varastaminen",
+      "Henk.koht. omaisuuden piilottaminen",
+      "Henk.koht. omaisuuden rikkominen",
+      "Henk.koht. omaisuuden likaaminen",
+      "Henk.koht. omaisuuden luvaton käyttö"
+    ), str_wrap, width = 36, USE.NAMES = FALSE)
+  ) +
+  labs(
+    x = "Suhde kaikista omaisuuden vahingoittamista tai varastamista kokeneista vastaajista (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(
+    axis.title.y = element_blank(),
+    legend.key = element_blank()
+  ) +
+  geom_label(
+    aes(
+      label = ifelse(
+        !is.na(value),
+        scales::percent(prop, accuracy = 0.1),
+        ""
+      )
+    ),
+    position = position_stack(vjust = 0.5),
+    size = 3,
+    fill = "white"
+  ) + 
+  scale_fill_manual(values = c("#C20E1A", "#C5B568"))
+
+```
+
+#### Uhkailu
+
+```{r}
+#| label: fig-esiintyvyys-itsemuodot-ulkoinen-uhkailu
+#| code-summary: "Uhkailun muodot"
+#| fig-cap: "Esiintyvän uhkailun muodot"
+#| warning: false
+
+data |>
+  filter(between(k12_3, 1, 7)) |>
+  select(k16_1_1:k16_14_2) |>
+  select(ends_with("_1")) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        NA ~ 0,
+        -1 ~ NA
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k16_1_1:k16_14_1,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  mutate(variable = factor(variable, levels = unique(variable))) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = rev(sort(unique(value))),
+      labels = sapply(c(
+        "Kyllä",
+        "Ei"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Pelottelu",
+      "Työn tai liikkumisen estäminen",
+      "Äänen korottaminen",
+      "Vuorovaikutustilanteessa liian lähelle tuleminen",
+      "Törkeiden eleiden näyttäminen",
+      "Muu törkeä käyttäytyminen",
+      "Mulkoilu tai tuijottaminen",
+      "Fyysisellä väkivallalla uhkaaminen",
+      "Esineellä heittämisellä uhkaaminen",
+      "Aseella tai voimankäyttövälineellä uhkaaminen",
+      "Tappamisella uhkaaminen",
+      "Seuraaminen",
+      "Tarkkailu",
+      "Läheisten väkivallalla uhkaaminen"
+    ), str_wrap, width = 36, USE.NAMES = FALSE)
+  ) +
+  labs(
+    x = "Suhde kaikista uhkailua kokeneista vastaajista (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(
+    axis.title.y = element_blank(),
+    legend.key = element_blank()
+  ) + 
+  geom_label(
+    aes(
+      label = ifelse(
+        !is.na(value),
+        scales::percent(prop, accuracy = 0.1),
+        ""
+      )
+    ),
+    position = position_stack(vjust = 0.5),
+    size = 3,
+    fill = "white"
+  ) + 
+  scale_fill_manual(values = c("#C20E1A", "#C5B568"))
+
+```
+
+#### Fyysinen väkivalta
+
+```{r}
+#| label: fig-esiintyvyys-itsemuodot-ulkoinen-fyysinen
+#| code-summary: "Fyysisen väkivallan muodot"
+#| fig-cap: "Esiintyvän fyysisen väkivallan muodot"
+#| warning: false
+
+data |>
+  filter(between(k12_4, 1, 7)) |>
+  select(k17_1_1:k17_11_1) |>
+  select(ends_with("_1")) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        NA ~ 0,
+        -1 ~ NA
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k17_1_1:k17_11_1,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  mutate(variable = factor(variable, levels = unique(variable))) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = rev(sort(unique(value))),
+      labels = sapply(c(
+        "Kyllä",
+        "Ei"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Lyöminen",
+      "Tuuppaaminen tai tönäiseminen",
+      "Tarkoituksella henkilöön törmääminen liiallisella voimalla",
+      "Päälle sylkäiseminen",
+      "Esineellä heittäminen",
+      "Kiinni tarttuminen",
+      "Potkaiseminen",
+      "Kuristaminen",
+      "Raapiminen",
+      "Hiuksista tarttuminen",
+      "Voimankäyttövälineillä tai aseella vahingoittaminen"
+    ), str_wrap, width = 36, USE.NAMES = FALSE)
+  ) +
+  labs(
+    x = "Suhde kaikista fyysistä väkivaltaa kokeneista vastaajista (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(
+    axis.title.y = element_blank(),
+    legend.key = element_blank()
+  ) + 
+  geom_label(
+    aes(
+      label = ifelse(
+        !is.na(value),
+        scales::percent(prop, accuracy = 0.1),
+        ""
+      )
+    ),
+    position = position_stack(vjust = 0.5),
+    size = 3,
+    fill = "white"
+  ) + 
+  scale_fill_manual(values = c("#C20E1A", "#C5B568"))
+
+```
+
+#### Seksuaalinen väkivalta
+
+```{r}
+#| label: fig-esiintyvyys-itsemuodot-ulkoinen-seksuaalinen
+#| code-summary: "Seksuaalisen väkivallan muodot"
+#| fig-cap: "Esiintyvän seksuaalisen väkivallan muodot"
+#| warning: false
+
+data |>
+  filter(between(k12_5, 1, 7)) |>
+  select(k18_1_1:k18_10_2) |>
+  select(ends_with("_1")) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        NA ~ 0,
+        -1 ~ NA
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k18_1_1:k18_10_1,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  mutate(variable = factor(variable, levels = unique(variable))) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = rev(sort(unique(value))),
+      labels = sapply(c(
+        "Kyllä",
+        "Ei"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Vitsit tai nöyryyttävät kommentit",
+      "Keholliset eleet",
+      "Tapaamisen/numeron vaatiminen",
+      "Vihjailu",
+      "Sukuelinten, rintojen tai pakaroiden koskettelu(-yritys)",
+      "Muiden alueiden seksualisoiva koskettelu",
+      "Ei-toivottujen lahjojen antaminen",
+      "Ei-toivottujen kuvien lähettäminen tai kuvaaminen",
+      "Seksuaalissävytteisen materiaalin levittäminen tai esilläpito"
+    ), str_wrap, width = 36, USE.NAMES = FALSE)
+  ) +
+  labs(
+    x = "Suhde kaikista seksuaalista väkivaltaa kokeneista vastaajista (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(
+    axis.title.y = element_blank(),
+    legend.key = element_blank()
+  ) + 
+  geom_label(
+    aes(
+      label = ifelse(
+        !is.na(value),
+        scales::percent(prop, accuracy = 0.1),
+        ""
+      )
+    ),
+    position = position_stack(vjust = 0.5),
+    size = 3,
+    fill = "white"
+  ) + 
+  scale_fill_manual(values = c("#C20E1A", "#C5B568"))
+
+```
+
+#### Vihamielisyys
+
+```{r}
+#| label: fig-esiintyvyys-itsemuodot-ulkoinen-vihamielisyys
+#| code-summary: "Vihamielisyyden muodot"
+#| fig-cap: "Esiintyvän vihamielisyyden muodot"
+#| warning: false
+
+data |>
+  filter(between(k12_6, 1, 7)) |>
+  select(k19_1_1:k19_11_2) |>
+  select(ends_with("_1")) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        NA ~ 0,
+        -1 ~ NA
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k19_1_1:k19_11_1,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  mutate(variable = factor(variable, levels = unique(variable))) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = rev(sort(unique(value))),
+      labels = sapply(c(
+        "Kyllä",
+        "Ei"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Henkilön toiminnasta muille valittaminen",
+      "Henkilökohtaisen, luottamuksellisen tiedon jakaminen",
+      "Välinpitämättömyys tai tiedon pimittäminen",
+      "Useat tai jatkuva kritiikki, vähättely, virheiden hakeminen",
+      "Juoruilu, valheellisen tiedon levittäminen",
+      "Ehdotuksen tai ideoiden huomioimatta jättäminen tai vähättely",
+      "Työstä ei anneta tunnustusta",
+      "Aikaisemmista lupauksista luopuminen",
+      "Huumoriin kiedottu loukkaus",
+      "Sosiaalinen tai ammatillinen eristäminen",
+      "Maalittaminen"
+    ), str_wrap, width = 36, USE.NAMES = FALSE)
+  ) +
+  labs(
+    x = "Suhde kaikista vihamielisyyttä kokeneista vastaajista (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(
+    axis.title.y = element_blank(),
+    legend.key = element_blank()
+  ) + 
+  geom_label(
+    aes(
+      label = ifelse(
+        !is.na(value),
+        scales::percent(prop, accuracy = 0.1),
+        ""
+      )
+    ),
+    position = position_stack(vjust = 0.5),
+    size = 3,
+    fill = "white"
+  ) + 
+  scale_fill_manual(values = c("#C20E1A", "#C5B568"))
+
+```
+
+#### Syrjintä
+
+```{r}
+#| label: fig-esiintyvyys-itsemuodot-ulkoinen-syrjinta
+#| code-summary: "Syrjinnän muodot"
+#| fig-cap: "Esiintyvän syrjinnän muodot"
+#| warning: false
+
+data |>
+  filter(between(k12_7, 1, 7)) |>
+  select(k20_1_1:k20_7_2) |>
+  select(ends_with("_1")) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        NA ~ 0,
+        -1 ~ NA
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k20_1_1:k20_7_1,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  mutate(variable = factor(variable, levels = unique(variable))) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = rev(sort(unique(value))),
+      labels = sapply(c(
+        "Kyllä",
+        "Ei"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Loukkaava kielenkäyttö, herjaaminen",
+      "Ryhmiin liittyvät yleistykset (esim. vähemmistövitsit)",
+      "Ulkopuolisten henkilöiden erilaiset odotukset henk.koht. ominaisuuksien perusteella",
+      "Pätevyyden vähättely henkilökohtaisten ominaisuuksien perusteella",
+      "Kohtuullisten mukautusten epääminen vammaiselta henkilöltä",
+      "Käskyt tai ohjeet syrjiä toista henkilöä",
+      "Syrjivä kohtelu ammattiyhdistystoimintaan osallistumisen takia"
+    ), str_wrap, width = 36, USE.NAMES = FALSE)
+  ) +
+  labs(
+    x = "Suhde kaikista syrjintää kokeneista vastaajista (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(
+    axis.title.y = element_blank(),
+    legend.key = element_blank()
+  ) + 
+  geom_label(
+    aes(
+      label = ifelse(
+        !is.na(value),
+        scales::percent(prop, accuracy = 0.1),
+        ""
+      )
+    ),
+    position = position_stack(vjust = 0.5),
+    size = 3,
+    fill = "white"
+  ) + 
+  scale_fill_manual(values = c("#C20E1A", "#C5B568"))
+
+```
+:::
+
+## Kohtelun kollegahavaitut muodot {#sec-esiintyvyys-kollegamuodot}
+
+### Yleisimmät muodot {#sec-esiintyvyys-kollegamuodot-yleisimmat}
+
+```{r}
+#| label: fig-esiintyvyys-kollegamuodot-yleisimmat
+#| code-summary: "Kuvioiden piirtäminen"
+#| fig-cap: "Kollegahavaitun epäasiallisen ja väkivaltaisen kohtelun yleisimmät muodot"
+#| layout-ncol: 2
+#| fig-subcap: 
+#| -  "Organisaatiosisäinen"
+#| -  "Organisaatioulkoinen"
+
+ryhmat <- c(
+  "Verbaalinen",
+  "Omaisuus",
+  "Uhkailu",
+  "Fyysinen",
+  "Seksuaalinen",
+  "Vihamielisyys",
+  "Syrjintä"
+)
+
+varit_ryhmat <- setNames(
+  as.list(varit[1:7]),
+  ryhmat
+)
+
+# Nimet haettu Webropol-palvelun alkuperäisestä lomakkeesta. Nimistä poistettu ne muuttujat, jotka poistettiin anonymisoinnin yhteydessä.
+nimet.sisa <- sapply(c(
+  "Nöyryyttäminen, häpäiseminen",
+  "Nolaaminen",
+  "Nuhtelu toisten edessä",
+  "Työn loukkaava arvostelu",
+  "Huutaminen",
+  "Kiroilu tai kiroaminen",
+  "Loukkaava nimittely",
+  "Valheellinen syyttäminen",
+  "Ärsyttämismielessä sanotut asiat",
+  "Työvälineiden varastaminen",
+  "Työvälineiden piilottaminen",
+  "Työvälineiden rikkominen",
+  "Työvälineiden likaaminen",
+  "Työvälineiden luvaton käyttö",
+  "Henk.koht. omaisuuden varastaminen",
+  "Henk.koht. omaisuuden piilottaminen",
+  "Henk.koht. omaisuuden rikkominen",
+  "Henk.koht. omaisuuden likaaminen",
+  "Henk.koht. omaisuuden luvaton käyttö",
+  "Pelottelu",
+  "Työn tai liikkumisen estäminen",
+  "Äänen korottaminen",
+  "Vuorovaikutustilanteessa liian lähelle tuleminen",
+  "Törkeiden eleiden näyttäminen",
+  "Muu törkeä käyttäytyminen",
+  "Mulkoilu tai tuijottaminen",
+  "Fyysisellä väkivallalla uhkaaminen",
+  "Esineellä heittämisellä uhkaaminen",
+  "Aseella tai voimankäyttövälineellä uhkaaminen",
+  "Tappamisella uhkaaminen",
+  "Seuraaminen",
+  "Tarkkailu",
+  "Läheisten väkivallalla uhkaaminen",
+  "Lyöminen",
+  "Tuuppaaminen tai tönäiseminen",
+  "Tarkoituksella henkilöön törmääminen liiallisella voimalla",
+  "Päälle sylkäiseminen",
+  "Esineellä heittäminen",
+  "Kiinni tarttuminen",
+  "Potkaiseminen",
+  "Kuristaminen",
+  "Raapiminen",
+  "Hiuksista tarttuminen",
+  "Vitsit tai nöyryyttävät kommentit",
+  "Keholliset eleet",
+  "Tapaamisen/numeron vaatiminen",
+  "Vihjailu",
+  "Pakotettu seksuaalinen teko tai raiskaus",
+  "Sukuelinten, rintojen tai pakaroiden koskettelu(-yritys)",
+  "Muiden alueiden seksualisoiva koskettelu",
+  "Ei-toivottujen lahjojen antaminen",
+  "Ei-toivottujen kuvien lähettäminen tai kuvaaminen",
+  "Seksuaalissävytteisen materiaalin levittäminen tai esilläpito",
+  "Henkilön toiminnasta muille valittaminen",
+  "Henkilökohtaisen, luottamuksellisen tiedon jakaminen",
+  "Välinpitämättömyys tai tiedon pimittäminen",
+  "Useat tai jatkuva kritiikki, vähättely, virheiden hakeminen",
+  "Juoruilu, valheellisen tiedon levittäminen",
+  "Ehdotuksen tai ideoiden huomioimatta jättäminen tai vähättely",
+  "Työstä ei anneta tunnustusta",
+  "Aikaisemmista lupauksista luopuminen",
+  "Huumoriin kiedottu loukkaus",
+  "Sosiaalinen tai ammatillinen eristäminen",
+  "Maalittaminen",
+  "Tehtävään nimittäminen muuten kuin osaamiseen tai pätevyyteen perustuen",
+  "Epätasapuolinen johtamis- ja esihenkilötoiminta",
+  "Loukkaava kielenkäyttö, herjaaminen",
+  "Ryhmiin liittyvät yleistykset (esim. vähemmistövitsit)",
+  "Työhaastattelun yhteydessä kysymykset perhesuunnitelmista",
+  "Työvarusteiden epäsopivuus (esimerkiksi vääränkokoiset varusteet)",
+  "Työkollegoiden erilaiset odotukset henk.koht. ominaisuuksien perusteella",
+  "Pätevyyden vähättely henkilökohtaisten ominaisuuksien perusteella",
+  "Muuhun kuin vaativuuteen liittyvät palkitsemiserot",
+  "Kohtuullisten mukautusten epääminen vammaiselta henkilöltä",
+  "Käskyt tai ohjeet syrjiä toista henkilöä",
+  "Vastatoimiin ryhtyminen yhdenvertaisuusrikkomusten ilmoituksen takia",
+  "Syrjivä kohtelu ammattiyhdistystoimintaan osallistumisen takia",
+  "Irtisanominen tai sillä uhkaaminen henkilökohtaisten ominaisuuksien takia",
+  "Tehtävien jakaminen muun kuin osaamisen tai pätevyyteen perusteella",
+  "Muuhun kuin osaamiseen perustuvat palkkaerot"
+), str_wrap, width = 36, USE.NAMES = FALSE)
+
+sisa.kaikki <- data |>
+  select(k5_1_2:k11_16_2) |>
+  select(ends_with("_2")) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        NA ~ 0,
+        -1 ~ 0
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k5_1_2:k11_16_2,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  filter(value == 1) |>
+  select(!value) |>
+  ungroup() |>
+  mutate(
+    group = case_when(
+      str_detect(variable, "k5") ~ "Verbaalinen",
+      str_detect(variable, "k6") ~ "Omaisuus",
+      str_detect(variable, "k7") ~ "Uhkailu",
+      str_detect(variable, "k8") ~ "Fyysinen",
+      str_detect(variable, "k9") ~ "Seksuaalinen",
+      str_detect(variable, "k10") ~ "Vihamielisyys",
+      str_detect(variable, "k11") ~ "Syrjintä",
+      TRUE ~ "VIRHE"
+    )
+  ) |>
+  mutate(
+    group = factor(
+      group,
+      levels = ryhmat
+    )
+  )
+
+jarjestys.sisa <- sisa.kaikki |>
+  pull(variable)
+
+vanhat_nimet.sisa <- data |>
+  select(k5_1_2:k11_16_2) |>
+  select(ends_with("_2")) |>
+  colnames()
+
+nimet.sisa <- setNames(
+  as.list(nimet.sisa),
+  vanhat_nimet.sisa
+)[jarjestys.sisa]
+
+yleisimmat.sisa <- sisa.kaikki |>
+  arrange(desc(prop)) |>
+  slice_head(n = 10) |>
+  mutate(
+    variable = map_chr(
+      variable,
+      ~ nimet.sisa[[.x]]
+    )
+  )
+
+# Sisäisen kohtelun kymmenen yleisintä kokemusmuotoa (% kohtelumuodon havanneista vastaajista)
+yleisimmat.sisa |>
+  ggplot(aes(
+    x = prop,
+    y = reorder(variable, prop),
+    fill = group
+  )) +
+  geom_bar(stat = "identity") + 
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) + 
+  labs(
+    x = "Suhde kohtelun ylämuodon havanneista vastaajista (%)",
+    fill = "Ylämuoto"
+  ) + 
+  theme(axis.title.y = element_blank()) + 
+  geom_label(
+    aes(
+      label = scales::percent(prop, accuracy = 0.1)
+    ),
+    position = position_stack(vjust = 0.9),
+    size = 3,
+    fill = "#ffffff"
+  ) + 
+  scale_fill_manual(values = varit_ryhmat)
+
+# Nimet haettu Webropol-palvelun alkuperäisestä lomakkeesta. Nimistä poistettu ne muuttujat, jotka poistettiin anonymisoinnin yhteydessä.
+nimet.ulko <- sapply(c(
+  "Nöyryyttäminen, häpäiseminen",
+  "Nolaaminen",
+  "Nuhtelu toisten edessä",
+  "Työn loukkaava arvostelu",
+  "Huutaminen",
+  "Kiroilu tai kiroaminen",
+  "Loukkaava nimittely",
+  "Valheellinen syyttäminen",
+  "Ärsyttämismielessä sanotut asiat",
+  "Työvälineiden varastaminen",
+  "Työvälineiden piilottaminen",
+  "Työvälineiden rikkominen",
+  "Työvälineiden likaaminen",
+  "Työvälineiden luvaton käyttö",
+  "Henk.koht. omaisuuden varastaminen",
+  "Henk.koht. omaisuuden piilottaminen",
+  "Henk.koht. omaisuuden rikkominen",
+  "Henk.koht. omaisuuden likaaminen",
+  "Henk.koht. omaisuuden luvaton käyttö",
+  "Pelottelu",
+  "Työn tai liikkumisen estäminen",
+  "Äänen korottaminen",
+  "Vuorovaikutustilanteessa liian lähelle tuleminen",
+  "Törkeiden eleiden näyttäminen",
+  "Muu törkeä käyttäytyminen",
+  "Mulkoilu tai tuijottaminen",
+  "Fyysisellä väkivallalla uhkaaminen",
+  "Esineellä heittämisellä uhkaaminen",
+  "Aseella tai voimankäyttövälineellä uhkaaminen",
+  "Tappamisella uhkaaminen",
+  "Seuraaminen",
+  "Tarkkailu",
+  "Läheisiin väkivallalla uhkaaminen",
+  "Lyöminen",
+  "Tuuppaaminen tai tönäiseminen",
+  "Tarkoituksella henkilöön törmääminen liiallisella voimalla",
+  "Päälle sylkäiseminen",
+  "Esineellä heittäminen",
+  "Kiinni tarttuminen",
+  "Potkaiseminen",
+  "Kuristaminen",
+  "Raapiminen",
+  "Hiuksista tarttuminen",
+  "Voimankäyttövälineillä tai aseella vahingoittaminen",
+  "Vitsit tai nöyryyttävät kommentit",
+  "Keholliset eleet",
+  "Tapaamisen/numeron vaatiminen",
+  "Vihjailu",
+  "Sukuelinten, rintojen tai pakaroiden koskettelu(-yritys)",
+  "Muiden alueiden seksualisoiva koskettelu",
+  "Ei-toivottujen lahjojen antaminen",
+  "Ei-toivottujen kuvien lähettäminen tai kuvaaminen",
+  "Seksuaalissävytteisen materiaalin levittäminen tai esilläpito",
+  "Henkilön toiminnasta muille valittaminen",
+  "Henkilökohtaisen, luottamuksellisen tiedon jakaminen",
+  "Välinpitämättömyys tai tiedon pimittäminen",
+  "Useat tai jatkuva kritiikki, vähättely, virheiden hakeminen",
+  "Juoruilu, valheellisen tiedon levittäminen",
+  "Ehdotuksen tai ideoiden huomioimatta jättäminen tai vähättely",
+  "Työstä ei anneta tunnustusta",
+  "Aikaisemmista lupauksista luopuminen",
+  "Huumoriin kiedottu loukkaus",
+  "Sosiaalinen tai ammatillinen eristäminen",
+  "Maalittaminen",
+  "Loukkaava kielenkäyttö, herjaaminen",
+  "Ryhmiin liittyvät yleistykset (esim. vähemmistövitsit)",
+  "Ulkopuolisten erilaiset odotukset henk.koht. ominaisuuksien perusteella",
+  "Pätevyyden vähättely henkilökohtaisten ominaisuuksien perusteella",
+  "Kohtuullisten mukautusten epääminen vammaiselta henkilöltä",
+  "Käskyt tai ohjeet syrjiä toista henkilöä",
+  "Syrjivä kohtelu ammattiyhdistystoimintaan osallistumisen takia"
+), str_wrap, width = 36, USE.NAMES = FALSE)
+
+ulko.kaikki <- data |>
+  select(k14_1_2:k20_7_2) |>
+  select(ends_with("_2")) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        NA ~ 0,
+        -1 ~ 0
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k14_1_2:k20_7_2,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  filter(value == 1) |>
+  select(!value) |>
+  ungroup() |>
+  mutate(
+    group = case_when(
+      str_detect(variable, "k14") ~ "Verbaalinen",
+      str_detect(variable, "k15") ~ "Omaisuus",
+      str_detect(variable, "k16") ~ "Uhkailu",
+      str_detect(variable, "k17") ~ "Fyysinen",
+      str_detect(variable, "k18") ~ "Seksuaalinen",
+      str_detect(variable, "k19") ~ "Vihamielisyys",
+      str_detect(variable, "k20") ~ "Syrjintä",
+      TRUE ~ "VIRHE"
+    )
+  ) |>
+  mutate(
+    group = factor(
+      group,
+      levels = c(
+        "Verbaalinen",
+        "Omaisuus",
+        "Uhkailu",
+        "Fyysinen",
+        "Seksuaalinen",
+        "Vihamielisyys",
+        "Syrjintä"
+      )
+    )
+  )
+
+jarjestys.ulko <- ulko.kaikki |>
+  pull(variable)
+
+vanhat_nimet.ulko <- data |>
+  select(k14_1_2:k20_7_2) |>
+  select(ends_with("_2")) |>
+  colnames()
+
+nimet.ulko <- setNames(
+  as.list(nimet.ulko),
+  vanhat_nimet.ulko
+)[jarjestys.ulko]
+
+yleisimmat.ulko <- ulko.kaikki |>
+  arrange(desc(prop)) |>
+  slice_head(n = 10) |>
+  mutate(
+    variable = map_chr(
+      variable,
+      ~ nimet.ulko[[.x]]
+    )
+  )
+
+# Ulkoisen kohtelun kymmenen yleisintä kokemusmuotoa (% kohtelumuodon havanneista vastaajista)
+yleisimmat.ulko |>
+  ggplot(aes(
+    x = prop,
+    y = reorder(variable, prop),
+    fill = group
+  )) +
+  geom_bar(stat = "identity") + 
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) + 
+  labs(
+    x = "Suhde kohtelun ylämuodon havanneista vastaajista (%)",
+    fill = "Ylämuoto"
+  ) + 
+  theme(axis.title.y = element_blank()) + 
+  geom_label(
+    aes(
+      label = scales::percent(prop, accuracy = 0.1)
+    ),
+    position = position_stack(vjust = 0.9),
+    size = 3,
+    fill = "#ffffff"
+  ) + 
+  scale_fill_manual(values = varit_ryhmat)
+
+```
+
+### Organisaatiosisäinen {#sec-esiintyvyys-kollegamuodot-sisainen}
+
+::: panel-tabset
+#### Verbaalinen väkivalta
+
+```{r}
+#| label: fig-esiintyvyys-kollegamuodot-sisainen-verbaalinen
+#| code-summary: "Verbaalisen väkivallan muodot"
+#| fig-cap: "Havaitun verbaalisen väkivallan muodot"
+#| warning: false
+
+data |>
+  filter(between(k4_1, 1, 7)) |>
+  select(k5_1_1:k5_9_2) |>
+  select(ends_with("_2")) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        NA ~ 0,
+        -1 ~ NA
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k5_1_2:k5_9_2,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  mutate(variable = factor(variable, levels = unique(variable))) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = rev(sort(unique(value))),
+      labels = sapply(c(
+        "Kyllä",
+        "Ei"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Nöyryyttäminen, häpäiseminen",
+      "Nolaaminen",
+      "Nuhtelu toisten edessä",
+      "Työn loukkaava arvostelu",
+      "Huutaminen",
+      "Kiroilu tai kiroaminen",
+      "Loukkaava nimittely",
+      "Valheellinen syyttäminen",
+      "Ärsyttämismielessä sanotut asiat"
+    ), str_wrap, width = 36, USE.NAMES = FALSE)
+  ) +
+  labs(
+    x = "Suhde kaikista verbaalista väkivaltaa havainneista vastaajista (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(
+    axis.title.y = element_blank(),
+    legend.key = element_blank()
+  ) + 
+  geom_label(
+    aes(
+      label = ifelse(
+        !is.na(value),
+        scales::percent(prop, accuracy = 0.1),
+        ""
+      )
+    ),
+    position = position_stack(vjust = 0.5),
+    size = 3,
+    fill = "white"
+  ) + 
+  scale_fill_manual(values = c("#C20E1A", "#C5B568"))
+
+```
+
+#### Omaisuusväkivalta
+
+```{r}
+#| label: fig-esiintyvyys-kollegamuodot-sisainen-omaisuus
+#| code-summary: "Omaisuuden vahingoittamisen tai varastamisen muodot"
+#| fig-cap: "Havaitun omaisuuden vahingoittamisen tai varastamisen muodot"
+#| warning: false
+
+data |>
+  filter(between(k4_2, 1, 7)) |>
+  select(k6_1_1:k6_10_2) |>
+  select(ends_with("_2")) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        NA ~ 0,
+        -1 ~ NA
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k6_1_2:k6_10_2,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  mutate(variable = factor(variable, levels = unique(variable))) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = rev(sort(unique(value))),
+      labels = sapply(c(
+        "Kyllä",
+        "Ei"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Työvälineiden varastaminen",
+      "Työvälineiden piilottaminen",
+      "Työvälineiden rikkominen",
+      "Työvälineiden likaaminen",
+      "Työvälineiden luvaton käyttö",
+      "Henk.koht. omaisuuden varastaminen",
+      "Henk.koht. omaisuuden piilottaminen",
+      "Henk.koht. omaisuuden rikkominen",
+      "Henk.koht. omaisuuden likaaminen",
+      "Henk.koht. omaisuuden luvaton käyttö"
+    ), str_wrap, width = 36, USE.NAMES = FALSE)
+  ) +
+  labs(
+    x = "Suhde kaikista omaisuuden vahingoittamista tai varastamista havanneista vastaajista (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(
+    axis.title.y = element_blank(),
+    legend.key = element_blank()
+  ) +
+  geom_label(
+    aes(
+      label = ifelse(
+        !is.na(value),
+        scales::percent(prop, accuracy = 0.1),
+        ""
+      )
+    ),
+    position = position_stack(vjust = 0.5),
+    size = 3,
+    fill = "white"
+  ) + 
+  scale_fill_manual(values = c("#C20E1A", "#C5B568"))
+
+```
+
+#### Uhkailu
+
+```{r}
+#| label: fig-esiintyvyys-kollegamuodot-sisainen-uhkailu
+#| code-summary: "Uhkailun muodot"
+#| fig-cap: "Havaitun uhkailun muodot"
+#| warning: false
+
+data |>
+  filter(between(k4_3, 1, 7)) |>
+  select(k7_1_1:k7_14_2) |>
+  select(ends_with("_2")) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        NA ~ 0,
+        -1 ~ NA
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k7_1_2:k7_14_2,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  mutate(variable = factor(variable, levels = unique(variable))) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = rev(sort(unique(value))),
+      labels = sapply(c(
+        "Kyllä",
+        "Ei"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Pelottelu",
+      "Työn tai liikkumisen estäminen",
+      "Äänen korottaminen",
+      "Vuorovaikutustilanteessa liian lähelle tuleminen",
+      "Törkeiden eleiden näyttäminen",
+      "Muu törkeä käyttäytyminen",
+      "Mulkoilu tai tuijottaminen",
+      "Fyysisellä väkivallalla uhkaaminen",
+      "Esineellä heittämisellä uhkaaminen",
+      "Aseella tai voimankäyttövälineellä uhkaaminen",
+      "Tappamisella uhkaaminen",
+      "Seuraaminen",
+      "Tarkkailu",
+      "Läheisten väkivallalla uhkaaminen"
+    ), str_wrap, width = 36, USE.NAMES = FALSE)
+  ) +
+  labs(
+    x = "Suhde kaikista uhkailua havanneista vastaajista (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(
+    axis.title.y = element_blank(),
+    legend.key = element_blank()
+  ) + 
+  geom_label(
+    aes(
+      label = ifelse(
+        !is.na(value),
+        scales::percent(prop, accuracy = 0.1),
+        ""
+      )
+    ),
+    position = position_stack(vjust = 0.5),
+    size = 3,
+    fill = "white"
+  ) + 
+  scale_fill_manual(values = c("#C20E1A", "#C5B568"))
+
+```
+
+#### Fyysinen väkivalta
+
+```{r}
+#| label: fig-esiintyvyys-kollegamuodot-sisainen-fyysinen
+#| code-summary: "Fyysisen väkivallan muodot"
+#| fig-cap: "Havaitun fyysisen väkivallan muodot"
+#| warning: false
+
+data |>
+  filter(between(k4_4, 1, 7)) |>
+  select(k8_1_1:k8_11_1) |>
+  select(ends_with("_2")) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        NA ~ 0,
+        -1 ~ NA
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k8_1_2:k8_10_2,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  mutate(variable = factor(variable, levels = unique(variable))) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = rev(sort(unique(value))),
+      labels = sapply(c(
+        "Kyllä",
+        "Ei"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Lyöminen",
+      "Tuuppaaminen tai tönäiseminen",
+      "Tarkoituksella henkilöön törmääminen liiallisella voimalla",
+      "Päälle sylkäiseminen",
+      "Esineellä heittäminen",
+      "Kiinni tarttuminen",
+      "Potkaiseminen",
+      "Kuristaminen",
+      "Raapiminen",
+      "Hiuksista tarttuminen"
+    ), str_wrap, width = 36, USE.NAMES = FALSE)
+  ) +
+  labs(
+    x = "Suhde kaikista fyysistä väkivaltaa havanneista vastaajista (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(
+    axis.title.y = element_blank(),
+    legend.key = element_blank()
+  ) + 
+  geom_label(
+    aes(
+      label = ifelse(
+        !is.na(value),
+        scales::percent(prop, accuracy = 0.1),
+        ""
+      )
+    ),
+    position = position_stack(vjust = 0.5),
+    size = 3,
+    fill = "white"
+  ) + 
+  scale_fill_manual(values = c("#C20E1A", "#C5B568"))
+
+```
+
+#### Seksuaalinen väkivalta
+
+```{r}
+#| label: fig-esiintyvyys-kollegamuodot-sisainen-seksuaalinen
+#| code-summary: "Seksuaalisen väkivallan muodot"
+#| fig-cap: "Havaitun seksuaalisen väkivallan muodot"
+#| warning: false
+
+data |>
+  filter(between(k4_5, 1, 7)) |>
+  select(k9_1_1:k9_10_2) |>
+  select(ends_with("_2")) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        NA ~ 0,
+        -1 ~ NA
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k9_1_2:k9_10_2,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  mutate(variable = factor(variable, levels = unique(variable))) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = rev(sort(unique(value))),
+      labels = sapply(c(
+        "Kyllä",
+        "Ei"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Vitsit tai nöyryyttävät kommentit",
+      "Keholliset eleet",
+      "Tapaamisen/numeron vaatiminen",
+      "Vihjailu",
+      "Pakotettu seksuaalinen teko tai raiskaus",
+      "Sukuelinten, rintojen tai pakaroiden koskettelu(-yritys)",
+      "Muiden alueiden seksualisoiva koskettelu",
+      "Ei-toivottujen lahjojen antaminen",
+      "Ei-toivottujen kuvien lähettäminen tai kuvaaminen",
+      "Seksuaalissävytteisen materiaalin levittäminen tai esilläpito"
+    ), str_wrap, width = 36, USE.NAMES = FALSE)
+  ) +
+  labs(
+    x = "Suhde kaikista seksuaalista väkivaltaa havanneista vastaajista (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(
+    axis.title.y = element_blank(),
+    legend.key = element_blank()
+  ) + 
+  geom_label(
+    aes(
+      label = ifelse(
+        !is.na(value),
+        scales::percent(prop, accuracy = 0.1),
+        ""
+      )
+    ),
+    position = position_stack(vjust = 0.5),
+    size = 3,
+    fill = "white"
+  ) + 
+  scale_fill_manual(values = c("#C20E1A", "#C5B568"))
+
+```
+
+#### Vihamielisyys
+
+```{r}
+#| label: fig-esiintyvyys-kollegamuodot-sisainen-vihamielisyys
+#| code-summary: "Vihamielisyyden muodot"
+#| fig-cap: "Havaitun vihamielisyyden muodot"
+#| warning: false
+
+data |>
+  filter(between(k4_6, 1, 7)) |>
+  select(k10_1_1:k10_11_2) |>
+  select(ends_with("_2")) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        NA ~ 0,
+        -1 ~ NA
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k10_1_2:k10_11_2,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  mutate(variable = factor(variable, levels = unique(variable))) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = rev(sort(unique(value))),
+      labels = sapply(c(
+        "Kyllä",
+        "Ei"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Henkilön toiminnasta muille valittaminen",
+      "Henkilökohtaisen, luottamuksellisen tiedon jakaminen",
+      "Välinpitämättömyys tai tiedon pimittäminen",
+      "Useat tai jatkuva kritiikki, vähättely, virheiden hakeminen",
+      "Juoruilu, valheellisen tiedon levittäminen",
+      "Ehdotuksen tai ideoiden huomioimatta jättäminen tai vähättely",
+      "Työstä ei anneta tunnustusta",
+      "Aikaisemmista lupauksista luopuminen",
+      "Huumoriin kiedottu loukkaus",
+      "Sosiaalinen tai ammatillinen eristäminen",
+      "Maalittaminen"
+    ), str_wrap, width = 36, USE.NAMES = FALSE)
+  ) +
+  labs(
+    x = "Suhde kaikista vihamielisyyttä havanneista vastaajista (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(
+    axis.title.y = element_blank(),
+    legend.key = element_blank()
+  ) + 
+  geom_label(
+    aes(
+      label = ifelse(
+        !is.na(value),
+        scales::percent(prop, accuracy = 0.1),
+        ""
+      )
+    ),
+    position = position_stack(vjust = 0.5),
+    size = 3,
+    fill = "white"
+  ) + 
+  scale_fill_manual(values = c("#C20E1A", "#C5B568"))
+
+```
+
+#### Syrjintä
+
+```{r}
+#| label: fig-esiintyvyys-kollegamuodot-sisainen-syrjinta
+#| code-summary: "Syrjinnän muodot"
+#| fig-cap: "Havaitun syrjinnän muodot"
+#| warning: false
+#| fig-height: 8
+
+data |>
+  filter(between(k4_7, 1, 7)) |>
+  select(k11_1_1:k11_16_2) |>
+  select(ends_with("_2")) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        NA ~ 0,
+        -1 ~ NA
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k11_1_2:k11_16_2,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  mutate(variable = factor(variable, levels = unique(variable))) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = rev(sort(unique(value))),
+      labels = sapply(c(
+        "Kyllä",
+        "Ei"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Tehtävään nimittäminen muuten kuin osaamiseen tai pätevyyteen perustuen",
+      "Epätasapuolinen johtamis- ja esihenkilötoiminta",
+      "Loukkaava kielenkäyttö, herjaaminen",
+      "Ryhmiin liittyvät yleistykset (esim. vähemmistövitsit)",
+      "Työhaastattelun yhteydessä kysymykset perhesuunnitelmista",
+      "Työvarusteiden epäsopivuus (esimerkiksi vääränkokoiset varusteet)",
+      "Työkollegoiden erilaiset odotukset henk.koht. ominaisuuksien perusteella",
+      "Pätevyyden vähättely henkilökohtaisten ominaisuuksien perusteella",
+      "Muuhun kuin vaativuuteen liittyvät palkitsemiserot",
+      "Kohtuullisten mukautusten epääminen vammaiselta henkilöltä",
+      "Käskyt tai ohjeet syrjiä toista henkilöä",
+      "Vastatoimiin ryhtyminen yhdenvertaisuusrikkomusten ilmoituksen takia",
+      "Syrjivä kohtelu ammattiyhdistystoimintaan osallistumisen takia",
+      "Irtisanominen tai sillä uhkaaminen henkilökohtaisten ominaisuuksien takia",
+      "Tehtävien jakaminen muun kuin osaamisen tai pätevyyteen perusteella",
+      "Muuhun kuin osaamiseen perustuvat palkkaerot"
+    ), str_wrap, width = 36, USE.NAMES = FALSE)
+  ) +
+  labs(
+    x = "Suhde kaikista syrjintää havanneista vastaajista (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(
+    axis.title.y = element_blank(),
+    legend.key = element_blank()
+  ) + 
+  geom_label(
+    aes(
+      label = ifelse(
+        !is.na(value),
+        scales::percent(prop, accuracy = 0.1),
+        ""
+      )
+    ),
+    position = position_stack(vjust = 0.5),
+    size = 3,
+    fill = "white"
+  ) + 
+  scale_fill_manual(values = c("#C20E1A", "#C5B568"))
+
+```
+:::
+
+### Organisaatioulkoinen {#sec-esiintyvyys-kollegamuodot-ulkoinen}
+
+::: panel-tabset
+#### Verbaalinen väkivalta
+
+```{r}
+#| label: fig-esiintyvyys-kollegamuodot-ulkoinen-verbaalinen
+#| code-summary: "Verbaalisen väkivallan muodot"
+#| fig-cap: "Havaitun verbaalisen väkivallan muodot"
+#| warning: false
+
+data |>
+  filter(between(k13_1, 1, 7)) |>
+  select(k14_1_1:k14_9_2) |>
+  select(ends_with("_2")) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        NA ~ 0,
+        -1 ~ NA
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k14_1_2:k14_9_2,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  mutate(variable = factor(variable, levels = unique(variable))) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = rev(sort(unique(value))),
+      labels = sapply(c(
+        "Kyllä",
+        "Ei"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Nöyryyttäminen, häpäiseminen",
+      "Nolaaminen",
+      "Nuhtelu toisten edessä",
+      "Työn loukkaava arvostelu",
+      "Huutaminen",
+      "Kiroilu tai kiroaminen",
+      "Loukkaava nimittely",
+      "Valheellinen syyttäminen",
+      "Ärsyttämismielessä sanotut asiat"
+    ), str_wrap, width = 36, USE.NAMES = FALSE)
+  ) +
+  labs(
+    x = "Suhde kaikista verbaalisen väkivallan havanneista vastaajista (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(
+    axis.title.y = element_blank(),
+    legend.key = element_blank()
+  ) + 
+  geom_label(
+    aes(
+      label = ifelse(
+        !is.na(value),
+        scales::percent(prop, accuracy = 0.1),
+        ""
+      )
+    ),
+    position = position_stack(vjust = 0.5),
+    size = 3,
+    fill = "white"
+  ) + 
+  scale_fill_manual(values = c("#C20E1A", "#C5B568"))
+
+```
+
+#### Omaisuusväkivalta
+
+```{r}
+#| label: fig-esiintyvyys-kollegamuodot-ulkoinen-omaisuus
+#| code-summary: "Omaisuuden vahingoittamisen tai varastamisen muodot"
+#| fig-cap: "Havaitun omaisuuden vahingoittamisen tai varastamisen muodot"
+#| warning: false
+
+data |>
+  filter(between(k13_2, 1, 7)) |>
+  select(k15_1_1:k15_10_2) |>
+  select(ends_with("_2")) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        NA ~ 0,
+        -1 ~ NA
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k15_1_2:k15_10_2,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  mutate(variable = factor(variable, levels = unique(variable))) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = rev(sort(unique(value))),
+      labels = sapply(c(
+        "Kyllä",
+        "Ei"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Työvälineiden varastaminen",
+      "Työvälineiden piilottaminen",
+      "Työvälineiden rikkominen",
+      "Työvälineiden likaaminen",
+      "Työvälineiden luvaton käyttö",
+      "Henk.koht. omaisuuden varastaminen",
+      "Henk.koht. omaisuuden piilottaminen",
+      "Henk.koht. omaisuuden rikkominen",
+      "Henk.koht. omaisuuden likaaminen",
+      "Henk.koht. omaisuuden luvaton käyttö"
+    ), str_wrap, width = 36, USE.NAMES = FALSE)
+  ) +
+  labs(
+    x = "Suhde kaikista omaisuuden vahingoittamista tai varastamista havanneista vastaajista (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(
+    axis.title.y = element_blank(),
+    legend.key = element_blank()
+  ) +
+  geom_label(
+    aes(
+      label = ifelse(
+        !is.na(value),
+        scales::percent(prop, accuracy = 0.1),
+        ""
+      )
+    ),
+    position = position_stack(vjust = 0.5),
+    size = 3,
+    fill = "white"
+  ) + 
+  scale_fill_manual(values = c("#C20E1A", "#C5B568"))
+
+```
+
+#### Uhkailu
+
+```{r}
+#| label: fig-esiintyvyys-kollegamuodot-ulkoinen-uhkailu
+#| code-summary: "Uhkailun muodot"
+#| fig-cap: "Havaitun uhkailun muodot"
+#| warning: false
+
+data |>
+  filter(between(k13_3, 1, 7)) |>
+  select(k16_1_1:k16_14_2) |>
+  select(ends_with("_2")) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        NA ~ 0,
+        -1 ~ NA
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k16_1_2:k16_14_2,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  mutate(variable = factor(variable, levels = unique(variable))) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = rev(sort(unique(value))),
+      labels = sapply(c(
+        "Kyllä",
+        "Ei"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Pelottelu",
+      "Työn tai liikkumisen estäminen",
+      "Äänen korottaminen",
+      "Vuorovaikutustilanteessa liian lähelle tuleminen",
+      "Törkeiden eleiden näyttäminen",
+      "Muu törkeä käyttäytyminen",
+      "Mulkoilu tai tuijottaminen",
+      "Fyysisellä väkivallalla uhkaaminen",
+      "Esineellä heittämisellä uhkaaminen",
+      "Aseella tai voimankäyttövälineellä uhkaaminen",
+      "Tappamisella uhkaaminen",
+      "Seuraaminen",
+      "Tarkkailu",
+      "Läheisten väkivallalla uhkaaminen"
+    ), str_wrap, width = 36, USE.NAMES = FALSE)
+  ) +
+  labs(
+    x = "Suhde kaikista uhkailua havanneista vastaajista (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(
+    axis.title.y = element_blank(),
+    legend.key = element_blank()
+  ) + 
+  geom_label(
+    aes(
+      label = ifelse(
+        !is.na(value),
+        scales::percent(prop, accuracy = 0.1),
+        ""
+      )
+    ),
+    position = position_stack(vjust = 0.5),
+    size = 3,
+    fill = "white"
+  ) + 
+  scale_fill_manual(values = c("#C20E1A", "#C5B568"))
+
+```
+
+#### Fyysinen väkivalta
+
+```{r}
+#| label: fig-esiintyvyys-kollegamuodot-ulkoinen-fyysinen
+#| code-summary: "Fyysisen väkivallan muodot"
+#| fig-cap: "Havaitun fyysisen väkivallan muodot"
+#| warning: false
+
+data |>
+  filter(between(k13_4, 1, 7)) |>
+  select(k17_1_1:k17_11_2) |>
+  select(ends_with("_2")) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        NA ~ 0,
+        -1 ~ NA
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k17_1_2:k17_11_2,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  mutate(variable = factor(variable, levels = unique(variable))) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = rev(sort(unique(value))),
+      labels = sapply(c(
+        "Kyllä",
+        "Ei"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Lyöminen",
+      "Tuuppaaminen tai tönäiseminen",
+      "Tarkoituksella henkilöön törmääminen liiallisella voimalla",
+      "Päälle sylkäiseminen",
+      "Esineellä heittäminen",
+      "Kiinni tarttuminen",
+      "Potkaiseminen",
+      "Kuristaminen",
+      "Raapiminen",
+      "Hiuksista tarttuminen",
+      "Voimankäyttövälineillä tai aseella vahingoittaminen"
+    ), str_wrap, width = 36, USE.NAMES = FALSE)
+  ) +
+  labs(
+    x = "Suhde kaikista fyysistä väkivaltaa havanneista vastaajista (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(
+    axis.title.y = element_blank(),
+    legend.key = element_blank()
+  ) + 
+  geom_label(
+    aes(
+      label = ifelse(
+        !is.na(value),
+        scales::percent(prop, accuracy = 0.1),
+        ""
+      )
+    ),
+    position = position_stack(vjust = 0.5),
+    size = 3,
+    fill = "white"
+  ) + 
+  scale_fill_manual(values = c("#C20E1A", "#C5B568"))
+
+```
+
+#### Seksuaalinen väkivalta
+
+```{r}
+#| label: fig-esiintyvyys-kollegamuodot-ulkoinen-seksuaalinen
+#| code-summary: "Seksuaalisen väkivallan muodot"
+#| fig-cap: "Havaitun seksuaalisen väkivallan muodot"
+#| warning: false
+
+data |>
+  filter(between(k13_5, 1, 7)) |>
+  select(k18_1_1:k18_10_2) |>
+  select(ends_with("_2")) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        NA ~ 0,
+        -1 ~ NA
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k18_1_2:k18_10_2,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  mutate(variable = factor(variable, levels = unique(variable))) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = rev(sort(unique(value))),
+      labels = sapply(c(
+        "Kyllä",
+        "Ei"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Vitsit tai nöyryyttävät kommentit",
+      "Keholliset eleet",
+      "Tapaamisen/numeron vaatiminen",
+      "Vihjailu",
+      "Sukuelinten, rintojen tai pakaroiden koskettelu(-yritys)",
+      "Muiden alueiden seksualisoiva koskettelu",
+      "Ei-toivottujen lahjojen antaminen",
+      "Ei-toivottujen kuvien lähettäminen tai kuvaaminen",
+      "Seksuaalissävytteisen materiaalin levittäminen tai esilläpito"
+    ), str_wrap, width = 36, USE.NAMES = FALSE)
+  ) +
+  labs(
+    x = "Suhde kaikista seksuaalista väkivaltaa havanneista vastaajista (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(
+    axis.title.y = element_blank(),
+    legend.key = element_blank()
+  ) + 
+  geom_label(
+    aes(
+      label = ifelse(
+        !is.na(value),
+        scales::percent(prop, accuracy = 0.1),
+        ""
+      )
+    ),
+    position = position_stack(vjust = 0.5),
+    size = 3,
+    fill = "white"
+  ) + 
+  scale_fill_manual(values = c("#C20E1A", "#C5B568"))
+
+```
+
+#### Vihamielisyys
+
+```{r}
+#| label: fig-esiintyvyys-kollegamuodot-ulkoinen-vihamielisyys
+#| code-summary: "Vihamielisyyden muodot"
+#| fig-cap: "Havaitun vihamielisyyden muodot"
+#| warning: false
+
+data |>
+  filter(between(k13_6, 1, 7)) |>
+  select(k19_1_1:k19_11_2) |>
+  select(ends_with("_2")) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        NA ~ 0,
+        -1 ~ NA
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k19_1_2:k19_11_2,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  mutate(variable = factor(variable, levels = unique(variable))) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = rev(sort(unique(value))),
+      labels = sapply(c(
+        "Kyllä",
+        "Ei"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Henkilön toiminnasta muille valittaminen",
+      "Henkilökohtaisen, luottamuksellisen tiedon jakaminen",
+      "Välinpitämättömyys tai tiedon pimittäminen",
+      "Useat tai jatkuva kritiikki, vähättely, virheiden hakeminen",
+      "Juoruilu, valheellisen tiedon levittäminen",
+      "Ehdotuksen tai ideoiden huomioimatta jättäminen tai vähättely",
+      "Työstä ei anneta tunnustusta",
+      "Aikaisemmista lupauksista luopuminen",
+      "Huumoriin kiedottu loukkaus",
+      "Sosiaalinen tai ammatillinen eristäminen",
+      "Maalittaminen"
+    ), str_wrap, width = 36, USE.NAMES = FALSE)
+  ) +
+  labs(
+    x = "Suhde kaikista vihamielisyyttä havanneista vastaajista (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(
+    axis.title.y = element_blank(),
+    legend.key = element_blank()
+  ) + 
+  geom_label(
+    aes(
+      label = ifelse(
+        !is.na(value),
+        scales::percent(prop, accuracy = 0.1),
+        ""
+      )
+    ),
+    position = position_stack(vjust = 0.5),
+    size = 3,
+    fill = "white"
+  ) + 
+  scale_fill_manual(values = c("#C20E1A", "#C5B568"))
+
+```
+
+#### Syrjintä
+
+```{r}
+#| label: fig-esiintyvyys-kollegamuodot-ulkoinen-syrjinta
+#| code-summary: "Syrjinnän muodot"
+#| fig-cap: "Havaitun syrjinnän muodot"
+#| warning: false
+
+data |>
+  filter(between(k13_7, 1, 7)) |>
+  select(k20_1_1:k20_7_2) |>
+  select(ends_with("_2")) |>
+  mutate(
+    across(
+      everything(),
+      ~ case_match(
+        .x,
+        1 ~ 1,
+        NA ~ 0,
+        -1 ~ NA
+      )
+    )
+  ) |>
+  pivot_longer(
+    cols = k20_1_2:k20_7_2,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  mutate(variable = factor(variable, levels = unique(variable))) |>
+  group_by(variable, value) |>
+  summarise(count = n()) |>
+  mutate(prop = count/sum(count)) |>
+  ggplot(aes(
+    y = variable,
+    x = prop,
+    fill = factor(
+      value,
+      levels = rev(sort(unique(value))),
+      labels = sapply(c(
+        "Kyllä",
+        "Ei"
+      ), str_wrap, width = 18, USE.NAMES = FALSE
+    ))
+  )) +
+  geom_bar(stat = "identity") +
+  scale_x_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
+  scale_y_discrete(
+    labels = sapply(c(
+      "Loukkaava kielenkäyttö, herjaaminen",
+      "Ryhmiin liittyvät yleistykset (esim. vähemmistövitsit)",
+      "Ulkopuolisten henkilöiden erilaiset odotukset henk.koht. ominaisuuksien perusteella",
+      "Pätevyyden vähättely henkilökohtaisten ominaisuuksien perusteella",
+      "Kohtuullisten mukautusten epääminen vammaiselta henkilöltä",
+      "Käskyt tai ohjeet syrjiä toista henkilöä",
+      "Syrjivä kohtelu ammattiyhdistystoimintaan osallistumisen takia"
+    ), str_wrap, width = 36, USE.NAMES = FALSE)
+  ) +
+  labs(
+    x = "Suhde kaikista syrjintää havanneista vastaajista (%)",
+    fill = "Vastaukset"
+  ) +
+  theme(
+    axis.title.y = element_blank(),
+    legend.key = element_blank()
+  ) + 
+  geom_label(
+    aes(
+      label = ifelse(
+        !is.na(value),
+        scales::percent(prop, accuracy = 0.1),
+        ""
+      )
+    ),
+    position = position_stack(vjust = 0.5),
+    size = 3,
+    fill = "white"
+  ) + 
+  scale_fill_manual(values = c("#C20E1A", "#C5B568"))
+
+```
+:::
