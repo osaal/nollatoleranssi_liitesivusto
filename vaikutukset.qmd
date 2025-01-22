@@ -18,7 +18,7 @@ Tiedot pohjautuvat anonymisoituun datatiedostoon, josta on poistettu epäilyttä
 #| label: vaikutukset-00-paketit
 #| code-summary: "Osiossa käytetyt paketit"
 
-library(tidyverse)
+library(tidyverse) # Yleinen datakäsittely
 
 ```
 
@@ -27,6 +27,7 @@ library(tidyverse)
 #| code-summary: "Datan avaaminen"
 
 data <- read.csv2("output/valmisdata.csv", tryLogical = FALSE)
+varit <- c("#873073", "#893deb", "#fe79ec", "#29d8fd", "#25919d", "#96da31", "#598322", "#cdba0e")
 
 ```
 
@@ -60,51 +61,54 @@ data |>
       )
     )
   ) |>
-  ggplot(aes(
-    y = variable,
-    x = prop,
-    fill = value_label
-  )) +
-  geom_bar(stat = "identity") +
+  ggplot(aes(x = variable, y = prop, fill = value_label)) +
+  geom_bar(stat = "identity", position = "stack") +
   geom_label(
-    aes(label = scales::percent(prop, accuracy = 0.1)),
-    position = position_stack(vjust = 0.5),
-    vjust = c(
-      # Lue alhaalta ylös, oikealta vasemmalle
-      # 0.5 = Keskitetty
-      # -0.75 = Yllä (huom. käänteinen)
-      # 1.75 = Alla (huom. käänteinen)
-      0.5, -0.75, 0.5, 1.75, 
-      0.5, 0.5, 0.5, 1.75, -0.75,
-      0.5, 0.5, 0.5, 1.75, -0.75
+    aes(
+      label = if_else(prop > 0.01, scales::percent(prop, accuracy = 1), NA),
+      group = value_label
     ),
-    show.legend = FALSE # Poistaa "a"-kirjaimen selityksestä
+    position = position_fill(vjust = 0.5),
+    fill = "white",
+    colour = "black",
+    label.size = NA
   ) +
-  scale_x_continuous(labels = scales::label_percent(
-    suffix = " %",
-    decimal.mark = ","
-  )) +
-  scale_y_discrete(
+  scale_fill_manual(
+    values = varit[c(7, 5, 3, 1)]
+  ) +
+  scale_x_discrete(
     labels = sapply(c(
       "Fyysiset vaikutukset",
       "Psyykkiset vaikutukset",
       "Ammatilliset vaikutukset"
     ), str_wrap, width = 18, USE.NAMES = FALSE)
   ) +
+  scale_y_continuous(labels = scales::label_percent(
+    suffix = " %",
+    decimal.mark = ","
+  )) +
   labs(
-    x = "Suhde omakohtaisesti kohtelun kohdanneista vastaajista (%)",
-    fill = "Vastaukset"
+    x = "",
+    y = "Suhde omakohtaisesti kohtelua kohdanneista vastaajista (%)",
+    fill = "Vastaukset",
+    caption = "Vain yli 1 prosentin arvot näytettynä"
   ) +
-  theme(axis.title.y = element_blank())
+  theme(
+    legend.position = "bottom",
+    axis.title.y = element_blank()
+  ) +
+  coord_flip() +
+  guides(
+    fill = guide_legend(nrow = 2, byrow = TRUE)
+  )
 
 ```
 
 ## Vaikutusten pitkäkestoisuus {#sec-vaikutukset-pitkakestoisuus}
 
 ```{r}
-#| label: fig-vaikutukset-pitkakestoisuus
-#| fig-cap: "Omakohtaisesti koetun kohtelun vaikutusten kesto"
-#| code-summary: "Kuvion piirtäminen"
+#| label: vaikutukset-02-pitkakestoisuus
+#| code-summary: "Pitkäkestoisuusmuuttujien laskentaa"
 
 ### Käytetty data
 # Fyysiset
@@ -156,60 +160,71 @@ data_vaikutukset <- rbind(data_fyys, data_psyy, data_amma) |>
       )
     )
   )
+
+# Käännetään muuttujat ympäri kuviota varten
+data_vaikutukset$variable <- factor(data_vaikutukset$variable, levels = rev(unique(data_vaikutukset$variable)))
+
 n_vaikutukset <- c(
   data_vaikutukset |> filter(variable == "k22_1") |> pull(count) |> sum(),
   data_vaikutukset |> filter(variable == "k22_2") |> pull(count) |> sum(),
   data_vaikutukset |> filter(variable == "k22_3") |> pull(count) |> sum()
 )
 
-# Kuvio
-data_vaikutukset |> ggplot(
-  aes(
-    y = variable,
-    x = prop,
-    fill = value_label
-  )) +
-  geom_bar(stat = "identity") +
-  scale_x_continuous(labels = scales::label_percent(
+```
+
+```{r}
+#| label: fig-vaikutukset-pitkakestoisuus
+#| fig-cap: "Omakohtaisesti koetun kohtelun vaikutusten kesto"
+#| code-summary: "Kuvion piirtäminen"
+
+data_vaikutukset |>
+  ggplot(aes(x = variable, y = prop, fill = value_label)) +
+  geom_bar(stat = "identity", position = "fill") +
+  geom_label(
+    aes(
+      label = if_else(prop > 0.05, scales::percent(prop, accuracy = 1), NA),
+      group = value_label
+    ),
+    position = position_stack(vjust = 0.5),
+    show.legend = FALSE,
+    fill = "white"
+  ) +
+  labs(
+    y = "Suhde vaikutuksen kokeneista vastaajista (%)",
+    x = "",
+    fill = "Vastaukset",
+    caption = "Vain yli 5 prosentin arvot näytettynä"
+  ) +
+  scale_x_discrete(
+    labels = rev(c(
+      paste0("Fyysiset vaikutukset\n(n = ", n_vaikutukset[1], ")"),
+      paste0("Psyykkiset vaikutukset\n(n = ", n_vaikutukset[2], ")"),
+      paste0("Ammatilliset vaikutukset\n(n = ", n_vaikutukset[3], ")")
+    ))
+  ) +
+  scale_y_continuous(labels = scales::label_percent(
     suffix = " %",
     decimal.mark = ","
   )) +
-  scale_y_discrete(
-    labels = c(
-      paste0("Fyysiset\nvaikutukset", "\n", "n = ", n_vaikutukset[[1]]),
-      paste0("Psyykkiset\nvaikutukset", "\n", "n = ", n_vaikutukset[[2]]),
-      paste0("Ammatilliset\nvaikutukset", "\n", "n = ", n_vaikutukset[[3]])
-    )
+  scale_fill_manual(
+    values = varit[c(7, 5, 3, 1)]
   ) +
-  labs(
-    x = "Suhde vaikutuksen kokeneista vastaajista (%)",
-    fill = "Vastaukset"
+  theme(
+    legend.position = "bottom",
+    axis.title.y = element_blank()
   ) +
-  theme(axis.title.y = element_blank()) +
-  geom_label(
-    aes(label = scales::percent(prop, accuracy = 0.1)),
-    position = position_stack(vjust = 0.5),
-    vjust = c(
-      # Lue alhaalta ylös, oikealta vasemmalle
-      # 0.5 = Keskitetty
-      # -0.75 = Yllä (huom. käänteinen)
-      0.5, 0.5, 0.5, -0.75, 0.5,
-      0.5, 0.5, 0.5, 0.5, 0.5,
-      0.5, 0.5, -0.75, 0.5, 0.5
-    ),
-    show.legend = FALSE # Poistaa "a"-kirjaimen selityksestä
+  coord_flip() +
+  guides(
+    fill = guide_legend(nrow = 2, byrow = TRUE)
   )
-  
-
 
 ```
 
 ## Vaikutukset jatkuvat yhä {#sec-vaikutukset-jatkuvat}
 
 ```{r}
-#| label: fig-vaikutukset-jatkuvat
-#| fig-cap: "Omakohtaisesti koetun kohtelun vaikutukset jatkuvat yhä"
-#| code-summary: "Kuvion piirtäminen"
+#| label: vaikutukset-03-jatkuvat
+#| code-summary: "Vaikutusten jatkuvuuden muuttujien laskentaa"
 
 ### Käytetty data
 # Fyysiset
@@ -257,53 +272,68 @@ data_vaikutukset <- rbind(data_fyys, data_psyy, data_amma) |>
       labels = "Kyllä"
     )
   )
+
+# Käännetään muuttujat ympäri kuviota varten
+data_vaikutukset$variable <- factor(data_vaikutukset$variable, levels = rev(unique(data_vaikutukset$variable)))
+
 n_vaikutukset <- c(
   data_vaikutukset |> filter(variable == "k22_1_1") |> pull(count) |> sum(),
   data_vaikutukset |> filter(variable == "k22_2_1") |> pull(count) |> sum(),
   data_vaikutukset |> filter(variable == "k22_3_1") |> pull(count) |> sum()
 )
 
-# Kuvio
-data_vaikutukset |> ggplot(
-  aes(
-    y = variable,
-    x = prop,
-    fill = value_label
-  )) +
-  geom_bar(stat = "identity") +
-  scale_x_continuous(labels = scales::label_percent(
+```
+
+```{r}
+#| label: fig-vaikutukset-jatkuvat
+#| fig-cap: "Omakohtaisesti koetun kohtelun vaikutukset jatkuvat yhä"
+#| code-summary: "Kuvion piirtäminen"
+
+data_vaikutukset |>
+  ggplot(aes(x = variable, y = prop, fill = value_label)) +
+  geom_bar(stat = "identity", position = "fill") +
+  geom_label(
+    aes(
+      label = scales::percent(prop, accuracy = 1),
+      group = value_label
+    ),
+    position = position_stack(vjust = 0.5),
+    show.legend = FALSE,
+    fill = "white"
+  ) +
+  labs(
+    y = "Suhde vaikutuksen kokeneista vastaajista (%)",
+    x = "",
+    fill = "Vastaukset"
+  ) +
+  scale_x_discrete(
+    labels = rev(c(
+      paste0("Fyysiset vaikutukset\n(n = ", n_vaikutukset[1], ")"),
+      paste0("Psyykkiset vaikutukset\n(n = ", n_vaikutukset[2], ")"),
+      paste0("Ammatilliset vaikutukset\n(n = ", n_vaikutukset[3], ")")
+    ))
+  ) +
+  scale_y_continuous(labels = scales::label_percent(
     suffix = " %",
     decimal.mark = ","
   )) +
-  scale_y_discrete(
-    labels = c(
-      paste0("Fyysiset\nvaikutukset", "\n", "n = ", n_vaikutukset[[1]]),
-      paste0("Psyykkiset\nvaikutukset", "\n", "n = ", n_vaikutukset[[2]]),
-      paste0("Ammatilliset\nvaikutukset", "\n", "n = ", n_vaikutukset[[3]])
-    )
+  scale_fill_manual(
+    values = varit[1]
   ) +
-  labs(
-    x = "Suhde vaikutuksen kokeneista vastaajista (%)",
-    fill = "Vastaukset"
+  theme(
+    legend.position = "bottom",
+    axis.title.y = element_blank()
   ) +
-  theme(axis.title.y = element_blank()) +
-  geom_label(
-    aes(label = scales::percent(prop, accuracy = 0.1)),
-    position = position_stack(vjust = 0.5),
-    vjust = rep(0.5, 6),
-    show.legend = FALSE # Poistaa "a"-kirjaimen selityksestä
-  )
+  coord_flip()
 
 ```
 
 ## Vastaajan reaktiot kohteluun {#sec-vaikutukset-reaktiot}
 
 ```{r}
-#| label: fig-vaikutukset-reaktiot
-#| fig-cap: "Reaktiot omakohtaisesti koettuun kohteluun"
-#| code-summary: "Kuvion piirtäminen"
+#| label: vaikutukset-04-reaktiot
+#| code-summary: "Reaktioiden muuttujien laskentaa"
 
-### Järjestyksen rakentaminen
 nimet <- sapply(c(
     "Ilmoitin kohtelusta esihenkilölleni",
     "Hain lääketieteellistä hoitoa",
@@ -356,14 +386,20 @@ reaktiot.jarj <- reaktiot.kaikki |>
   ) |>
   filter(!is.na(value))
 
-### Kuvio
+```
+
+```{r}
+#| label: fig-vaikutukset-reaktiot
+#| fig-cap: "Reaktiot omakohtaisesti koettuun kohteluun"
+#| code-summary: "Kuvion piirtäminen"
+
 reaktiot.jarj |>
   ggplot(aes(
     x = prop,
     y = reorder(variable, prop),
     fill = value
   )) +
-  geom_bar(stat = "identity") +
+  geom_bar(stat = "identity", fill = "#C20E1A") +
   scale_x_continuous(labels = scales::label_percent(
     suffix = " %",
     decimal.mark = ","
@@ -381,6 +417,7 @@ reaktiot.jarj |>
     show.legend = FALSE,
     fill = "#ffffff"
   )
+
 ```
 
 ## Työuupumus {#sec-vaikutukset-tyouupumus}
@@ -407,16 +444,26 @@ data |>
     )
   ) |>
   ggplot(aes(
-    y = variable,
-    x = prop,
+    x = variable,
+    y = prop,
     fill = value_label
   )) +
   geom_bar(stat = "identity") +
-  scale_x_continuous(labels = scales::label_percent(
+  geom_label(
+    aes(
+      label = if_else(prop > 0.04, scales::percent(prop, accuracy = 1), NA),
+      group = value_label
+    ),
+    position = position_fill(vjust = 0.5),
+    fill = "white",
+    colour = "black",
+    label.size = NA
+  ) +
+  scale_y_continuous(labels = scales::label_percent(
     suffix = " %",
     decimal.mark = ","
   )) +
-  scale_y_discrete(
+  scale_x_discrete(
     labels = sapply(c(
       "Tunnen itseni henkisesti uupuneeksi työssäni",
       "En ole kiinnostunut enkä innostunut työstäni",
@@ -424,26 +471,19 @@ data |>
       "En pysty hallitsemaan tunteitani työssäni"
     ), str_wrap, width = 18, USE.NAMES = FALSE)
   ) +
-  labs(
-    x = "Suhde kaikista vastaajista (%)",
-    fill = "Vastaukset"
+  scale_fill_manual(
+    values = varit[c(7, 5, 4, 3, 1)]
   ) +
-  theme(axis.title.y = element_blank()) +
-  geom_label(
-    aes(label = scales::percent(prop, accuracy = 0.1)),
-    position = position_stack(vjust = 0.5),
-    vjust = c(
-      # Lue alhaalta ylös, oikealta vasemmalle
-      # 0.5 = Keskitetty
-      # -0.75 = Yllä (huom. käänteinen)
-      # 1.75 = Alla (huom. käänteinen)
-      0.5, 0.5, 0.5, 1.75, 0.5, -0.75,
-      0.5, 0.5, 0.5, 1.75, 0.5, -0.75,
-      0.5, 0.5, 0.5, 1.75, 0.5, -0.75,
-      0.5, 0.5, 2, 1, 0, -1
-    ),
-    show.legend = FALSE # Poistaa "a"-kirjaimen selityksestä
-  )
+  labs(
+    y = "Suhde kaikista vastaajista (%)",
+    fill = "Vastaukset",
+    caption = "Vain yli 4 prosentin arvot näytettynä"
+  ) +
+  theme(
+    legend.position = "bottom",
+    axis.title.y = element_blank()
+  ) +
+  coord_flip()
 
 ```
 
@@ -482,7 +522,7 @@ uupumus |>
 ```
 
 ```{r}
-#| label: vaikutukset-02-tyouupumustesti
+#| label: vaikutukset-05-tyouupumustesti
 #| code-summary: "Yksisuuntaisen t-testin laskeminen"
 
 n <- uupumus |> filter(!is.na(mean)) |> nrow()
