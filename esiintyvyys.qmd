@@ -776,7 +776,7 @@ yleisimmat.sisa <- sisa.kaikki |>
     )
   )
 
-# Sisäisen kohtelun kymmenen yleisintä kokemusmuotoa (% kohtelumuodon kokeneista vastaajista)
+# Sisäisen kohtelun kymmenen yleisintä kokemusmuotoa
 yleisimmat.sisa |>
   ggplot(aes(
     x = prop,
@@ -789,7 +789,7 @@ yleisimmat.sisa |>
     decimal.mark = ","
   )) + 
   labs(
-    x = "Suhde kohtelun ylämuodon kokeneista vastaajista (%)",
+    x = "Suhde kaikista vastaajista (%)",
     fill = "Ylämuoto"
   ) + 
   theme(axis.title.y = element_blank()) + 
@@ -953,7 +953,7 @@ yleisimmat.ulko <- ulko.kaikki |>
     )
   )
 
-# Ulkoisen kohtelun kymmenen yleisintä kokemusmuotoa (% kohtelumuodon kokeneista vastaajista)
+# Ulkoisen kohtelun kymmenen yleisintä kokemusmuotoa
 yleisimmat.ulko |>
   ggplot(aes(
     x = prop,
@@ -966,7 +966,7 @@ yleisimmat.ulko |>
     decimal.mark = ","
   )) + 
   labs(
-    x = "Suhde kohtelun ylämuodon kokeneista vastaajista (%)",
+    x = "Suhde kaikista vastaajista (%)",
     fill = "Ylämuoto"
   ) + 
   theme(axis.title.y = element_blank()) + 
@@ -2398,7 +2398,7 @@ yleisimmat.sisa <- sisa.kaikki |>
     )
   )
 
-# Sisäisen kohtelun kymmenen yleisintä kokemusmuotoa (% kohtelumuodon havanneista vastaajista)
+# Sisäisen kohtelun kymmenen yleisintä kokemusmuotoa
 yleisimmat.sisa |>
   ggplot(aes(
     x = prop,
@@ -2411,7 +2411,7 @@ yleisimmat.sisa |>
     decimal.mark = ","
   )) + 
   labs(
-    x = "Suhde kohtelun ylämuodon havanneista vastaajista (%)",
+    x = "Suhde kaikista vastaajista (%)",
     fill = "Ylämuoto"
   ) + 
   theme(axis.title.y = element_blank()) + 
@@ -2575,7 +2575,7 @@ yleisimmat.ulko <- ulko.kaikki |>
     )
   )
 
-# Ulkoisen kohtelun kymmenen yleisintä kokemusmuotoa (% kohtelumuodon havanneista vastaajista)
+# Ulkoisen kohtelun kymmenen yleisintä kokemusmuotoa
 yleisimmat.ulko |>
   ggplot(aes(
     x = prop,
@@ -2588,7 +2588,7 @@ yleisimmat.ulko |>
     decimal.mark = ","
   )) + 
   labs(
-    x = "Suhde kohtelun ylämuodon havanneista vastaajista (%)",
+    x = "Suhde kaikista vastaajista (%)",
     fill = "Ylämuoto"
   ) + 
   theme(axis.title.y = element_blank()) + 
