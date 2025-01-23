@@ -16,8 +16,8 @@ Tiedot pohjautuvat anonymisoituun datatiedostoon, josta on poistettu epäilyttä
 #| label: ilmoitusjarjestelmat-00-paketit
 #| code-summary: "Osiossa käytetyt paketit"
 
-library(tidyverse)
-library(patchwork)
+library(tidyverse) # Yleinen datakäsittely
+library(patchwork) # Kuvioiden asettelu
 
 ```
 
@@ -26,6 +26,7 @@ library(patchwork)
 #| code-summary: "Datan avaaminen"
 
 data <- read.csv2("output/valmisdata.csv", tryLogical = FALSE)
+varit <- c("#873073", "#893deb", "#fe79ec", "#29d8fd", "#25919d", "#96da31", "#598322", "#cdba0e")
 
 ```
 
@@ -44,50 +45,49 @@ data |>
     values_to = "value"
   ) |>
   group_by(variable, value) |>
-  summarise(count = n()) |>
-  mutate(prop = count/sum(count)) |>
-  ggplot(aes(
-    y = variable,
-    x = prop,
-    fill = factor(
+  summarise(count = n(), .groups = "drop") |>
+  mutate(
+    prop = count/sum(count),
+    value_label = factor(
       value,
       levels = c(1, 3, 2),
-      labels = sapply(c(
+      labels = c(
         "Kyllä",
         "En osaa sanoa",
         "Ei"
-      ), str_wrap, width = 18, USE.NAMES = FALSE
-    ))
-  )) +
-  geom_bar(stat = "identity") +
-  scale_x_continuous(labels = scales::label_percent(
+      )
+    )
+  ) |>
+  ggplot(aes(x = variable, y = prop, fill = value_label)) +
+  geom_bar(stat = "identity", position = "stack") +
+  geom_label(
+    aes(
+      label = scales::percent(prop, accuracy = 1, decimal.mark = ","),
+      group = value_label
+    ),
+    position = position_stack(vjust = 0.5),
+    fill = "white"
+  ) +
+  scale_y_continuous(labels = scales::label_percent(
     suffix = " %",
     decimal.mark = ","
   )) +
-  scale_y_discrete(
+  scale_x_discrete(
     labels = sapply(c(
       "Organisaation sisällä tapahtuneille tilanteille",
       "Organisaation ulkopuolelta tulleelle kohtelulle",
       "Sekä sisäiset että ulkoiset tilanteet yhdessä järjestelmässä"
     ), str_wrap, width = 18, USE.NAMES = FALSE)
   ) +
+  scale_fill_manual(
+    values = varit[c(7, 4, 1)]
+  ) +
   labs(
     x = "Suhde kaikista vastaajista (%)",
     fill = "Vastaukset"
   ) +
-  theme(axis.title.y = element_blank()) +
-  geom_label(
-    aes(
-      label = scales::percent(prop, accuracy = 0.1, decimal.mark = ",")
-    ),
-    position = position_stack(vjust = 0.5),
-    show.legend = FALSE,
-    vjust = c(
-      #K----Ei----EOS---NA--#
-      0.50, -.25, 0.50, 1.25,
-      0.50, -.25, 0.50, 1.25,
-      0.50, -.25, 0.50, 1.25
-    )
+  theme(
+    axis.title.y = element_blank()
   )
 
 ```
@@ -108,12 +108,10 @@ sisa <- data |>
     values_to = "value"
   ) |>
   group_by(variable, value) |>
-  summarise(count = n()) |>
-  mutate(prop = count/sum(count)) |>
-  ggplot(aes(
-    y = variable,
-    x = prop,
-    fill = factor(
+  summarise(count = n(), .groups = "drop") |>
+  mutate(
+    prop = count/sum(count),
+    value_label = factor(
       value,
       levels = c(3, 2, 1, 0),
       labels = sapply(c(
@@ -123,29 +121,38 @@ sisa <- data |>
         "En osaa sanoa"
       ), str_wrap, width = 18, USE.NAMES = FALSE
     ))
-  )) +
-  geom_bar(stat = "identity") +
-  scale_x_continuous(labels = scales::label_percent(
+  ) |>
+  ggplot(aes(x = variable, y = prop, fill = value_label)) +
+  geom_bar(stat = "identity", position = "stack") +
+  scale_y_continuous(labels = scales::label_percent(
     suffix = " %",
     decimal.mark = ","
   )) +
-  scale_y_discrete(
+  scale_x_discrete(
     labels = sapply(c(
       "Organisaation sisällä tapahtuneille tilanteille"
     ), str_wrap, width = 18, USE.NAMES = FALSE)
   ) +
+  scale_fill_manual(
+    values = varit[c(7, 5, 3, 1)],
+    guide = guide_legend(reverse = TRUE)
+  ) +
   labs(
-    x = "Suhde vastaajista, joiden mielestä organisaatiolla on kyseinen järjestelmä käytössä (%)",
+    x = "",
+    y = "Suhde vastaajista, joiden mielestä organisaatiolla on kyseinen järjestelmä käytössä (%)",
     fill = "Vastaukset"
   ) +
-  theme(axis.title.y = element_blank(), legend.position = "bottom") +
+  theme(axis.title.x = element_blank(), legend.position = "bottom") +
   geom_label(
     aes(
-      label = scales::percent(prop, accuracy = 0.1, decimal.mark = ",")
+      label = scales::percent(prop, accuracy = 1, decimal.mark = ","),
+      group = value_label
     ),
     position = position_stack(vjust = 0.5),
-    show.legend = FALSE
-  )
+    show.legend = FALSE,
+    fill = "white"
+  ) +
+  coord_flip()
 
 ulko <- data |>
   filter(between(k25_2, 0, 3)) |>
@@ -156,12 +163,10 @@ ulko <- data |>
     values_to = "value"
   ) |>
   group_by(variable, value) |>
-  summarise(count = n()) |>
-  mutate(prop = count/sum(count)) |>
-  ggplot(aes(
-    y = variable,
-    x = prop,
-    fill = factor(
+  summarise(count = n(), .groups = "drop") |>
+  mutate(
+    prop = count/sum(count),
+    value_label = factor(
       value,
       levels = c(3, 2, 1, 0),
       labels = sapply(c(
@@ -171,29 +176,38 @@ ulko <- data |>
         "En osaa sanoa"
       ), str_wrap, width = 18, USE.NAMES = FALSE
     ))
-  )) +
-  geom_bar(stat = "identity") +
-  scale_x_continuous(labels = scales::label_percent(
+  ) |>
+  ggplot(aes(x = variable, y = prop, fill = value_label)) +
+  geom_bar(stat = "identity", position = "stack") +
+  scale_y_continuous(labels = scales::label_percent(
     suffix = " %",
     decimal.mark = ","
   )) +
-  scale_y_discrete(
+  scale_x_discrete(
     labels = sapply(c(
       "Organisaation ulkopuolelta tulleelle kohtelulle"
     ), str_wrap, width = 18, USE.NAMES = FALSE)
   ) +
+  scale_fill_manual(
+    values = varit[c(7, 5, 3, 1)],
+    guide = guide_legend(reverse = TRUE)
+  ) +
   labs(
-    x = "Suhde vastaajista, joiden mielestä organisaatiolla on kyseinen järjestelmä käytössä (%)",
+    x = "",
+    y = "Suhde vastaajista, joiden mielestä organisaatiolla on kyseinen järjestelmä käytössä (%)",
     fill = "Vastaukset"
   ) +
-  theme(axis.title.y = element_blank(), legend.position = "bottom") +
+  theme(axis.title.x = element_blank(), legend.position = "bottom") +
   geom_label(
     aes(
-      label = scales::percent(prop, accuracy = 0.1, decimal.mark = ",")
+      label = scales::percent(prop, accuracy = 1, decimal.mark = ","),
+      group = value_label
     ),
     position = position_stack(vjust = 0.5),
-    show.legend = FALSE
-  )
+    show.legend = FALSE,
+    fill = "white"
+  ) +
+  coord_flip()
 
 molemmat <- data |>
   filter(between(k25_3, 0, 3)) |>
@@ -204,12 +218,10 @@ molemmat <- data |>
     values_to = "value"
   ) |>
   group_by(variable, value) |>
-  summarise(count = n()) |>
-  mutate(prop = count/sum(count)) |>
-  ggplot(aes(
-    y = variable,
-    x = prop,
-    fill = factor(
+  summarise(count = n(), .groups = "drop") |>
+  mutate(
+    prop = count/sum(count),
+    value_label = factor(
       value,
       levels = c(3, 2, 1, 0),
       labels = sapply(c(
@@ -219,36 +231,50 @@ molemmat <- data |>
         "En osaa sanoa"
       ), str_wrap, width = 18, USE.NAMES = FALSE
     ))
-  )) +
-  geom_bar(stat = "identity") +
-  scale_x_continuous(labels = scales::label_percent(
+  ) |>
+  ggplot(aes(x = variable, y = prop, fill = value_label)) +
+  geom_bar(stat = "identity", position = "stack") +
+  scale_y_continuous(labels = scales::label_percent(
     suffix = " %",
     decimal.mark = ","
   )) +
-  scale_y_discrete(
+  scale_x_discrete(
     labels = sapply(c(
       "Sekä sisäiset että ulkoiset tilanteet yhdessä järjestelmässä"
     ), str_wrap, width = 18, USE.NAMES = FALSE)
   ) +
+  scale_fill_manual(
+    values = varit[c(7, 5, 3, 1)],
+    guide = guide_legend(reverse = TRUE)
+  ) +
   labs(
-    x = "Suhde vastaajista, joiden mielestä organisaatiolla on kyseinen järjestelmä käytössä (%)",
+    x = "",
+    y = "Suhde vastaajista, joiden mielestä organisaatiolla on kyseinen järjestelmä käytössä (%)",
     fill = "Vastaukset"
   ) +
-  theme(axis.title.y = element_blank(), legend.position = "bottom") +
+  theme(axis.title.x = element_blank(), legend.position = "bottom") +
   geom_label(
     aes(
-      label = scales::percent(prop, accuracy = 0.1, decimal.mark = ",")
+      label = scales::percent(prop, accuracy = 1, decimal.mark = ","),
+      group = value_label
     ),
     position = position_stack(vjust = 0.5),
-    show.legend = FALSE
-  )
+    show.legend = FALSE,
+    fill = "white"
+  ) +
+  coord_flip()
 
 sisa / ulko / molemmat +
   plot_layout(
     guides = "collect",
     axes = "collect"
   ) &
-  theme(legend.position = "bottom")
+  theme(
+    legend.position = "bottom"
+  ) &
+  guides(
+    fill = guide_legend(nrow = 2, byrow = TRUE)
+  )
 
 ```
 
@@ -305,14 +331,9 @@ uudet_nimet <- sapply(c(
 data_long |>
   group_by(variable, value) |>
   summarise(count = n()) |>
-  mutate(prop = count/sum(count)) |>
-  ggplot(aes(
-    y = factor(
-      variable,
-      levels = jarjestys,
-      labels = setNames(as.list(uudet_nimet), vanhat_nimet)[jarjestys]),
-    x = prop,
-    fill = factor(
+  mutate(
+    prop = count/sum(count),
+    value_label = factor(
       value,
       levels = sort(unique(value)),
       labels = sapply(c(
@@ -325,28 +346,42 @@ data_long |>
         "Erittäin samaa mieltä"
       ), str_wrap, width = 18, USE.NAMES = FALSE
     ))
+  ) |>
+  ggplot(aes(
+    x = factor(
+      variable,
+      levels = jarjestys,
+      labels = setNames(as.list(uudet_nimet), vanhat_nimet)[jarjestys]),
+    y = prop,
+    fill = value_label
   )) +
   geom_bar(stat = "identity") +
-  scale_x_continuous(labels = scales::label_percent(
+  scale_y_continuous(labels = scales::label_percent(
     suffix = " %",
     decimal.mark = ","
   )) +
+  scale_fill_manual(
+    values = varit[1:7]
+  ) +
   labs(
-    x = "Suhde kaikista vastaajista (%)
-    Järjestetty erittäin samaa mieltä olevien määrän mukaan laskevassa järjestyksessä",
+    x = "",
+    y = "Suhde kaikista vastaajista (%)",
+    caption = "Järjestetty erittäin samaa mieltä olevien määrän mukaan laskevassa järjestyksessä",
     fill = "Vastaukset"
   ) +
   theme(axis.title.y = element_blank()) + 
-  geom_vline(
+  geom_hline(
     linetype = 2,
-    xintercept = 0.25
+    yintercept = 0.25
   ) + 
-  geom_vline(
+  geom_hline(
     linetype = 2,
-    xintercept = 0.5
+    yintercept = 0.5
   ) + 
-  geom_vline(
+  geom_hline(
     linetype = 2,
-    xintercept = 0.75
-  )
+    yintercept = 0.75
+  ) +
+  coord_flip()
+
 ```
