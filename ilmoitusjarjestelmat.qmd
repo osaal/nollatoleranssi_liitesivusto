@@ -45,7 +45,7 @@ data |>
     values_to = "value"
   ) |>
   group_by(variable, value) |>
-  summarise(count = n(), .groups = "drop") |>
+  summarise(count = n()) |>
   mutate(
     prop = count/sum(count),
     value_label = factor(
@@ -90,6 +90,30 @@ data |>
     axis.title.y = element_blank()
   )
 
+```
+
+```{r}
+testi <- data |>
+  select(k24_1:k24_3) |>
+  pivot_longer(
+    cols = k24_1:k24_3,
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  group_by(variable, value) |>
+  summarise(count = n(), .groups = "drop") |>
+  mutate(
+    prop = count/sum(count),
+    value_label = factor(
+      value,
+      levels = c(1, 3, 2),
+      labels = c(
+        "Kyllä",
+        "En osaa sanoa",
+        "Ei"
+      )
+    )
+  )
 ```
 
 ## Ilmoitusjärjestelmien koulutukset {#sec-ilmoitusjarjestelmat-koulutus}
