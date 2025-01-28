@@ -415,7 +415,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(EGAnet) <span class="co"># EGA-mallien asettaminen</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork) <span class="co"># Kuvioiden asettelu</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggstatsplot) <span class="co"># Tilastokuvioiden piirtäminen</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># Yleinen datakäsittely</span></span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># Yleinen datakäsittely</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
@@ -514,7 +516,7 @@ Variable pairs with wTO &gt; 0.20 (small-to-moderate redundancy)
 </div>
 </div>
 <p>Uniikin varianssin analyysi tunnistaa yhden muuttujaparin, joiden varianssit verkostomallissa ovat liian päällekkäisiä: <code>k26_16</code> (“Kollegani näkisivät minut ongelmallisena tai vaikeana jos tekisin ilmoituksen”) ja <code>k26_18</code> (“Pelkään kollegoideni ryhtyvän vastatoimiin, jos tekisin ilmoituksen”).</p>
-<p>Malli ehdottaa poistettavaksi muuttujaa k26_18.</p>
+<p>Malli ehdottaa poistettavaksi muuttujaa k26_16.</p>
 <div class="cell">
 <details>
 <summary>EGA-mallin asettaminen</summary>
@@ -581,12 +583,12 @@ TEFI: -6.681</code></pre>
 <li><code>k26_9</code> Unohdan</li>
 <li><code>k26_11</code> Joku muu hoitaa</li>
 <li><code>k26_12</code> Valtakunnallinen prosessi (käännetty)</li>
+<li><code>k26_13</code> En halua pahaa</li>
 </ul>
 <p>Ryhmä B:</p>
 <ul>
 <li><code>k26_3</code> Pelkään esihenkilön vastatoimia</li>
 <li><code>k26_10</code> Ammattitaidon kyseenalaistaminen</li>
-<li><code>k26_13</code> En halua pahaa</li>
 <li><code>k26_15</code> Tekijä saa tietää</li>
 <li><code>k26_17</code> Pelkään työpaikan menettämistä</li>
 <li><code>k26_18</code> Pelkään kollegoiden vastatoimia</li>
@@ -633,8 +635,8 @@ Median dimensions: 2 [0.88, 3.12] 95% CI</code></pre>
 </div>
 </div>
 </div>
-<p>Stabiliteettiarvot yli noin 0.75 ovat luotettavia. Analyysi osoittaa, että muuttuja <code>k26_13</code> (Tekijä saa tietää) ei ole vakaa bootstrap-analyysissa, ja voi vaihdella otosten välillä. Muuttujat <code>k26_7</code> (Ei tilaisuutta) ja <code>k26_2</code> (Ei johda toimenpiteisiin) ovat vakauden rajalla. Muut muuttujat täyttävät vakauden raja-arvon.</p>
-<p>Ulottuvuuksien mediaani oli 2, mutta 95 prosentin luottamusväli oli laaja ja sisälsi myös yhden ja kolmen (95 % CI 0,98-3,02). Tuhannen bootstrap-ajon mallissa kahden ulottuvuuden malli esiintyi 76,9 prosenttia kerroista, kolmen ulottuvuuden malli 19,4 prosenttia kerroista ja neljän ulottuvuuden malli 3,7 prosenttia kerroista.</p>
+<p>Stabiliteettiarvot yli noin 0.75 ovat luotettavia. Analyysi osoittaa, että muuttuja <code>k26_13</code> (Tekijä saa tietää) ei ole vakaa bootstrap-analyysissa, ja voi vaihdella otosten välillä. Muuttujat <code>k26_7</code> (Ei tilaisuutta) ja <code>k26_2</code> (Ei johda toimenpiteisiin) ovat vakauden rajan alla. Muut muuttujat täyttävät vakauden raja-arvon.</p>
+<p>Ulottuvuuksien mediaani oli 2, mutta 95 prosentin luottamusväli oli laaja ja sisälsi myös yhden ja kolmen (95 % CI 0.88-3.12). Tuhannen bootstrap-ajon mallissa kahden ulottuvuuden malli esiintyi 74 prosenttia, kolmen ulottuvuuden malli 20 prosenttia, neljän ulottuvuuden malli 5 prosenttia ja viiden ulottuvuuden malli 0 prosenttia kerroista.</p>
 </section>
 <section id="summamuuttujien-tarkistus" class="level2" data-number="30.3">
 <h2 data-number="30.3" class="anchored" data-anchor-id="summamuuttujien-tarkistus"><span class="header-section-number">30.3</span> Summamuuttujien tarkistus</h2>
@@ -643,10 +645,10 @@ Median dimensions: 2 [0.88, 3.12] 95% CI</code></pre>
 <summary>Summamuuttujien rakentaminen</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">ilmo1_sum =</span> k26_1 <span class="sc">+</span> k26_2 <span class="sc">+</span> k26_7 <span class="sc">+</span> k26_8 <span class="sc">+</span> k26_9 <span class="sc">+</span> k26_11 <span class="sc">+</span> k26_12,</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">ilmo2_sum =</span> k26_3 <span class="sc">+</span> k26_10 <span class="sc">+</span> k26_13 <span class="sc">+</span> k26_15 <span class="sc">+</span> k26_17 <span class="sc">+</span> k26_18,</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">ilmo1 =</span> ilmo1_sum<span class="sc">/</span><span class="dv">7</span>,</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">ilmo2 =</span> ilmo2_sum<span class="sc">/</span><span class="dv">6</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">ilmo1_sum =</span> k26_1 <span class="sc">+</span> k26_2 <span class="sc">+</span> k26_7 <span class="sc">+</span> k26_8 <span class="sc">+</span> k26_9 <span class="sc">+</span> k26_11 <span class="sc">+</span> k26_12 <span class="sc">+</span> k26_13,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">ilmo2_sum =</span> k26_3 <span class="sc">+</span> k26_10 <span class="sc">+</span> k26_15 <span class="sc">+</span> k26_17 <span class="sc">+</span> k26_18,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">ilmo1 =</span> ilmo1_sum<span class="sc">/</span><span class="dv">8</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">ilmo2 =</span> ilmo2_sum<span class="sc">/</span><span class="dv">5</span></span>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
@@ -1040,241 +1042,243 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggstatsplot) <span class="co"># Tilastokuvioiden piirtäminen</span></span>
 <span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># Yleinen datakäsittely</span></span>
 <span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
 <span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: ilmoasenteet_validointi-01-avaaminen</span></span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Datan avaaminen"</span></span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"output/valmisdata.csv"</span>, <span class="at">tryLogical =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: ilmoasenteet_validointi-01-avaaminen</span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Datan avaaminen"</span></span>
 <span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"output/valmisdata.csv"</span>, <span class="at">tryLogical =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a><span class="fu">## Muuttujien valitseminen analyysiin {#sec-ilmoasenteet_validointi-muuttujat}</span></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>Päätimme jättää pois neljä muuttujaa patteristosta:</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a><span class="fu">## Muuttujien valitseminen analyysiin {#sec-ilmoasenteet_validointi-muuttujat}</span></span>
 <span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_4`</span>: Jos henkilöllä on alentunut toimintakyky, häntä ei voi syyttää toiminnastaan</span>
-<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_6`</span>: Konfliktitilanteet ovat osa työtäni</span>
-<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_14`</span>: Tilanteet ovat yksittäistapauksia</span>
-<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_5`</span>: Ilmoitan kaikki kohtaamani tilanteet</span>
-<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>Ensimmäiset kolme muuttujaa ovat yleisiä asenteita epäasiallisia ja väkivaltaisia kohtaamisia kohtaan. Viimeinen muuttuja liittyy ilmoitusjärjestelmiin, mutta kuvailee ennemmin vastaajan toimintaa eikä asenteita.</span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>Päätimme jättää pois neljä muuttujaa patteristosta:</span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_4`</span>: Jos henkilöllä on alentunut toimintakyky, häntä ei voi syyttää toiminnastaan</span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_6`</span>: Konfliktitilanteet ovat osa työtäni</span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_14`</span>: Tilanteet ovat yksittäistapauksia</span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_5`</span>: Ilmoitan kaikki kohtaamani tilanteet</span>
 <span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>Otimme mukaan neljätoista muuttujaa analyysiin:</span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>Ensimmäiset kolme muuttujaa ovat yleisiä asenteita epäasiallisia ja väkivaltaisia kohtaamisia kohtaan. Viimeinen muuttuja liittyy ilmoitusjärjestelmiin, mutta kuvailee ennemmin vastaajan toimintaa eikä asenteita.</span>
 <span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_1`</span>: Prosessit ovat liian raskaita tai työläitä</span>
-<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_2`</span>: Prosessit eivät johda toimenpiteisiin</span>
-<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_3`</span>: Pelkään esihenkilön vastatoimia</span>
-<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_7`</span>: Minulla ei ole tilaisuutta tai mahdollisuutta ilmoittaa</span>
-<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_8`</span>: Epäselvää, milloin minun tulisi ilmoittaa</span>
-<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_9`</span>: Unohdan ilmoittaa</span>
-<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_10`</span>: Pelkään ammattitaitoni kyseenalaistamista</span>
-<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_11`</span>: Ajattelin, että joku muu hoitaa ilmoituksen</span>
-<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_12`</span>: Valtakunnallisesta ilmoitusprosessista olisi hyötyä</span>
-<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_13`</span>: En halua pahaa tekijälle</span>
-<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_15`</span>: Pelkään, että tekijä saa tietää ilmoituksesta</span>
-<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_16`</span>: Kollegani näkisi minut ongelmallisena tai vaikeana</span>
-<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_17`</span>: Pelkään menettäväni työpaikkani</span>
-<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_18`</span>: Pelkään kollegoiden vastatoimia</span>
-<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a>Muuttuja <span class="in">`k26_12`</span> käännettiin ennen analyysia, sillä se on ainoa positiivisesti muotoiltu väite. Täten mahdolliset faktorit edustavat negatiivisia mielipiteitä.</span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>Otimme mukaan neljätoista muuttujaa analyysiin:</span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_1`</span>: Prosessit ovat liian raskaita tai työläitä</span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_2`</span>: Prosessit eivät johda toimenpiteisiin</span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_3`</span>: Pelkään esihenkilön vastatoimia</span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_7`</span>: Minulla ei ole tilaisuutta tai mahdollisuutta ilmoittaa</span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_8`</span>: Epäselvää, milloin minun tulisi ilmoittaa</span>
+<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_9`</span>: Unohdan ilmoittaa</span>
+<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_10`</span>: Pelkään ammattitaitoni kyseenalaistamista</span>
+<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_11`</span>: Ajattelin, että joku muu hoitaa ilmoituksen</span>
+<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_12`</span>: Valtakunnallisesta ilmoitusprosessista olisi hyötyä</span>
+<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_13`</span>: En halua pahaa tekijälle</span>
+<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_15`</span>: Pelkään, että tekijä saa tietää ilmoituksesta</span>
+<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_16`</span>: Kollegani näkisi minut ongelmallisena tai vaikeana</span>
+<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_17`</span>: Pelkään menettäväni työpaikkani</span>
+<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_18`</span>: Pelkään kollegoiden vastatoimia</span>
 <span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-65"><a href="#cb12-65" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: ilmoasenteet_validointi-02-koodaus</span></span>
-<span id="cb12-66"><a href="#cb12-66" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Yhden muuttujan kääntäminen ennen analyysia"</span></span>
-<span id="cb12-67"><a href="#cb12-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-68"><a href="#cb12-68" aria-hidden="true" tabindex="-1"></a><span class="co"># Tallennetaan muuttujien nimet helpottaakseen analyysia</span></span>
-<span id="cb12-69"><a href="#cb12-69" aria-hidden="true" tabindex="-1"></a>muuttujat <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb12-70"><a href="#cb12-70" aria-hidden="true" tabindex="-1"></a>  <span class="st">"k26_1"</span>, <span class="st">"k26_2"</span>, <span class="st">"k26_3"</span>, <span class="st">"k26_7"</span>, <span class="st">"k26_8"</span>,</span>
-<span id="cb12-71"><a href="#cb12-71" aria-hidden="true" tabindex="-1"></a>  <span class="st">"k26_9"</span>, <span class="st">"k26_10"</span>, <span class="st">"k26_11"</span>, <span class="st">"k26_12"</span>, <span class="st">"k26_13"</span>,</span>
-<span id="cb12-72"><a href="#cb12-72" aria-hidden="true" tabindex="-1"></a>  <span class="st">"k26_15"</span>, <span class="st">"k26_16"</span>, <span class="st">"k26_17"</span>, <span class="st">"k26_18"</span></span>
-<span id="cb12-73"><a href="#cb12-73" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-74"><a href="#cb12-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-75"><a href="#cb12-75" aria-hidden="true" tabindex="-1"></a><span class="co"># Käännetään muuttuja k26_12</span></span>
-<span id="cb12-76"><a href="#cb12-76" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
-<span id="cb12-77"><a href="#cb12-77" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb12-78"><a href="#cb12-78" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
-<span id="cb12-79"><a href="#cb12-79" aria-hidden="true" tabindex="-1"></a>      k26_12,</span>
-<span id="cb12-80"><a href="#cb12-80" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_match</span>(</span>
-<span id="cb12-81"><a href="#cb12-81" aria-hidden="true" tabindex="-1"></a>        .x,</span>
-<span id="cb12-82"><a href="#cb12-82" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span> <span class="sc">~</span> <span class="dv">7</span>,</span>
-<span id="cb12-83"><a href="#cb12-83" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="sc">~</span> <span class="dv">6</span>,</span>
-<span id="cb12-84"><a href="#cb12-84" aria-hidden="true" tabindex="-1"></a>        <span class="dv">3</span> <span class="sc">~</span> <span class="dv">5</span>,</span>
-<span id="cb12-85"><a href="#cb12-85" aria-hidden="true" tabindex="-1"></a>        <span class="dv">4</span> <span class="sc">~</span> <span class="dv">4</span>,</span>
-<span id="cb12-86"><a href="#cb12-86" aria-hidden="true" tabindex="-1"></a>        <span class="dv">5</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
-<span id="cb12-87"><a href="#cb12-87" aria-hidden="true" tabindex="-1"></a>        <span class="dv">6</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
-<span id="cb12-88"><a href="#cb12-88" aria-hidden="true" tabindex="-1"></a>        <span class="dv">7</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb12-89"><a href="#cb12-89" aria-hidden="true" tabindex="-1"></a>        <span class="cn">NA</span> <span class="sc">~</span> <span class="cn">NA</span></span>
-<span id="cb12-90"><a href="#cb12-90" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb12-91"><a href="#cb12-91" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb12-92"><a href="#cb12-92" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb12-93"><a href="#cb12-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-94"><a href="#cb12-94" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a>Muuttuja <span class="in">`k26_12`</span> käännettiin ennen analyysia, sillä se on ainoa positiivisesti muotoiltu väite. Täten mahdolliset faktorit edustavat negatiivisia mielipiteitä.</span>
+<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-66"><a href="#cb12-66" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-67"><a href="#cb12-67" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: ilmoasenteet_validointi-02-koodaus</span></span>
+<span id="cb12-68"><a href="#cb12-68" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Yhden muuttujan kääntäminen ennen analyysia"</span></span>
+<span id="cb12-69"><a href="#cb12-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-70"><a href="#cb12-70" aria-hidden="true" tabindex="-1"></a><span class="co"># Tallennetaan muuttujien nimet helpottaakseen analyysia</span></span>
+<span id="cb12-71"><a href="#cb12-71" aria-hidden="true" tabindex="-1"></a>muuttujat <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb12-72"><a href="#cb12-72" aria-hidden="true" tabindex="-1"></a>  <span class="st">"k26_1"</span>, <span class="st">"k26_2"</span>, <span class="st">"k26_3"</span>, <span class="st">"k26_7"</span>, <span class="st">"k26_8"</span>,</span>
+<span id="cb12-73"><a href="#cb12-73" aria-hidden="true" tabindex="-1"></a>  <span class="st">"k26_9"</span>, <span class="st">"k26_10"</span>, <span class="st">"k26_11"</span>, <span class="st">"k26_12"</span>, <span class="st">"k26_13"</span>,</span>
+<span id="cb12-74"><a href="#cb12-74" aria-hidden="true" tabindex="-1"></a>  <span class="st">"k26_15"</span>, <span class="st">"k26_16"</span>, <span class="st">"k26_17"</span>, <span class="st">"k26_18"</span></span>
+<span id="cb12-75"><a href="#cb12-75" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-76"><a href="#cb12-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-77"><a href="#cb12-77" aria-hidden="true" tabindex="-1"></a><span class="co"># Käännetään muuttuja k26_12</span></span>
+<span id="cb12-78"><a href="#cb12-78" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb12-79"><a href="#cb12-79" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb12-80"><a href="#cb12-80" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
+<span id="cb12-81"><a href="#cb12-81" aria-hidden="true" tabindex="-1"></a>      k26_12,</span>
+<span id="cb12-82"><a href="#cb12-82" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_match</span>(</span>
+<span id="cb12-83"><a href="#cb12-83" aria-hidden="true" tabindex="-1"></a>        .x,</span>
+<span id="cb12-84"><a href="#cb12-84" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span> <span class="sc">~</span> <span class="dv">7</span>,</span>
+<span id="cb12-85"><a href="#cb12-85" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="sc">~</span> <span class="dv">6</span>,</span>
+<span id="cb12-86"><a href="#cb12-86" aria-hidden="true" tabindex="-1"></a>        <span class="dv">3</span> <span class="sc">~</span> <span class="dv">5</span>,</span>
+<span id="cb12-87"><a href="#cb12-87" aria-hidden="true" tabindex="-1"></a>        <span class="dv">4</span> <span class="sc">~</span> <span class="dv">4</span>,</span>
+<span id="cb12-88"><a href="#cb12-88" aria-hidden="true" tabindex="-1"></a>        <span class="dv">5</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
+<span id="cb12-89"><a href="#cb12-89" aria-hidden="true" tabindex="-1"></a>        <span class="dv">6</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
+<span id="cb12-90"><a href="#cb12-90" aria-hidden="true" tabindex="-1"></a>        <span class="dv">7</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb12-91"><a href="#cb12-91" aria-hidden="true" tabindex="-1"></a>        <span class="cn">NA</span> <span class="sc">~</span> <span class="cn">NA</span></span>
+<span id="cb12-92"><a href="#cb12-92" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb12-93"><a href="#cb12-93" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb12-94"><a href="#cb12-94" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb12-95"><a href="#cb12-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-96"><a href="#cb12-96" aria-hidden="true" tabindex="-1"></a><span class="fu">## Eksploratiivinen verkostoanalyysi {#sec-ilmoasenteet_validointi-ega}</span></span>
+<span id="cb12-96"><a href="#cb12-96" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb12-97"><a href="#cb12-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-98"><a href="#cb12-98" aria-hidden="true" tabindex="-1"></a>Teimme eksploratiivisen verkostoanalyysin (engl. *exploratory graph analysis*, EGA) ymmärtääksemme muuttujien välisiä suhteita paremmin.</span>
+<span id="cb12-98"><a href="#cb12-98" aria-hidden="true" tabindex="-1"></a><span class="fu">## Eksploratiivinen verkostoanalyysi {#sec-ilmoasenteet_validointi-ega}</span></span>
 <span id="cb12-99"><a href="#cb12-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-102"><a href="#cb12-102" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-103"><a href="#cb12-103" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: ilmoasenteet_validointi-03-egaUVA</span></span>
-<span id="cb12-104"><a href="#cb12-104" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Uniikin varianssin analyysi"</span></span>
-<span id="cb12-105"><a href="#cb12-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-106"><a href="#cb12-106" aria-hidden="true" tabindex="-1"></a>ega.uva <span class="ot">&lt;-</span> <span class="fu">UVA</span>(</span>
-<span id="cb12-107"><a href="#cb12-107" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> data <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="fu">all_of</span>(muuttujat))</span>
-<span id="cb12-108"><a href="#cb12-108" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-109"><a href="#cb12-109" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-110"><a href="#cb12-110" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(ega.uva)</span>
+<span id="cb12-100"><a href="#cb12-100" aria-hidden="true" tabindex="-1"></a>Teimme eksploratiivisen verkostoanalyysin (engl. *exploratory graph analysis*, EGA) ymmärtääksemme muuttujien välisiä suhteita paremmin.</span>
+<span id="cb12-101"><a href="#cb12-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-104"><a href="#cb12-104" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-105"><a href="#cb12-105" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: ilmoasenteet_validointi-03-egaUVA</span></span>
+<span id="cb12-106"><a href="#cb12-106" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Uniikin varianssin analyysi"</span></span>
+<span id="cb12-107"><a href="#cb12-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-108"><a href="#cb12-108" aria-hidden="true" tabindex="-1"></a>ega.uva <span class="ot">&lt;-</span> <span class="fu">UVA</span>(</span>
+<span id="cb12-109"><a href="#cb12-109" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> data <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="fu">all_of</span>(muuttujat))</span>
+<span id="cb12-110"><a href="#cb12-110" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb12-111"><a href="#cb12-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-112"><a href="#cb12-112" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-112"><a href="#cb12-112" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(ega.uva)</span>
 <span id="cb12-113"><a href="#cb12-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-114"><a href="#cb12-114" aria-hidden="true" tabindex="-1"></a>Uniikin varianssin analyysi tunnistaa yhden muuttujaparin, joiden varianssit verkostomallissa ovat liian päällekkäisiä: <span class="in">`k26_16`</span> ("Kollegani näkisivät minut ongelmallisena tai vaikeana jos tekisin ilmoituksen") ja <span class="in">`k26_18`</span> ("Pelkään kollegoideni ryhtyvän vastatoimiin, jos tekisin ilmoituksen").</span>
+<span id="cb12-114"><a href="#cb12-114" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb12-115"><a href="#cb12-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-116"><a href="#cb12-116" aria-hidden="true" tabindex="-1"></a>Malli ehdottaa poistettavaksi muuttujaa <span class="in">`r ega.uva$keep_remove$keep`</span>.</span>
+<span id="cb12-116"><a href="#cb12-116" aria-hidden="true" tabindex="-1"></a>Uniikin varianssin analyysi tunnistaa yhden muuttujaparin, joiden varianssit verkostomallissa ovat liian päällekkäisiä: <span class="in">`k26_16`</span> ("Kollegani näkisivät minut ongelmallisena tai vaikeana jos tekisin ilmoituksen") ja <span class="in">`k26_18`</span> ("Pelkään kollegoideni ryhtyvän vastatoimiin, jos tekisin ilmoituksen").</span>
 <span id="cb12-117"><a href="#cb12-117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-120"><a href="#cb12-120" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-121"><a href="#cb12-121" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-ilmoasenteet_validointi-04-ega</span></span>
-<span id="cb12-122"><a href="#cb12-122" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Eksploratiivinen verkostoanalyysi, 14 muuttujaa, Walktrap-algoritmi, GLASSO-malli"</span></span>
-<span id="cb12-123"><a href="#cb12-123" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "EGA-mallin asettaminen"</span></span>
-<span id="cb12-124"><a href="#cb12-124" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-125"><a href="#cb12-125" aria-hidden="true" tabindex="-1"></a>ega.malli <span class="ot">&lt;-</span> <span class="fu">EGA</span>(</span>
-<span id="cb12-126"><a href="#cb12-126" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> ega.uva<span class="sc">$</span>reduced_data,</span>
-<span id="cb12-127"><a href="#cb12-127" aria-hidden="true" tabindex="-1"></a>  <span class="at">uni.method =</span> <span class="st">"LE"</span>,</span>
-<span id="cb12-128"><a href="#cb12-128" aria-hidden="true" tabindex="-1"></a>  <span class="at">corr =</span> <span class="st">"pearson"</span>,</span>
-<span id="cb12-129"><a href="#cb12-129" aria-hidden="true" tabindex="-1"></a>  <span class="at">na.data =</span> <span class="st">"pairwise"</span>,</span>
-<span id="cb12-130"><a href="#cb12-130" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> <span class="st">"glasso"</span>,</span>
-<span id="cb12-131"><a href="#cb12-131" aria-hidden="true" tabindex="-1"></a>  <span class="at">algorithm =</span> <span class="st">"walktrap"</span></span>
-<span id="cb12-132"><a href="#cb12-132" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-133"><a href="#cb12-133" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-134"><a href="#cb12-134" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(ega.malli)</span>
+<span id="cb12-118"><a href="#cb12-118" aria-hidden="true" tabindex="-1"></a>Malli ehdottaa poistettavaksi muuttujaa <span class="in">`r ega.uva$keep_remove$remove`</span>.</span>
+<span id="cb12-119"><a href="#cb12-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-122"><a href="#cb12-122" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-123"><a href="#cb12-123" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-ilmoasenteet_validointi-04-ega</span></span>
+<span id="cb12-124"><a href="#cb12-124" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Eksploratiivinen verkostoanalyysi, 14 muuttujaa, Walktrap-algoritmi, GLASSO-malli"</span></span>
+<span id="cb12-125"><a href="#cb12-125" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "EGA-mallin asettaminen"</span></span>
+<span id="cb12-126"><a href="#cb12-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-127"><a href="#cb12-127" aria-hidden="true" tabindex="-1"></a>ega.malli <span class="ot">&lt;-</span> <span class="fu">EGA</span>(</span>
+<span id="cb12-128"><a href="#cb12-128" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> ega.uva<span class="sc">$</span>reduced_data,</span>
+<span id="cb12-129"><a href="#cb12-129" aria-hidden="true" tabindex="-1"></a>  <span class="at">uni.method =</span> <span class="st">"LE"</span>,</span>
+<span id="cb12-130"><a href="#cb12-130" aria-hidden="true" tabindex="-1"></a>  <span class="at">corr =</span> <span class="st">"pearson"</span>,</span>
+<span id="cb12-131"><a href="#cb12-131" aria-hidden="true" tabindex="-1"></a>  <span class="at">na.data =</span> <span class="st">"pairwise"</span>,</span>
+<span id="cb12-132"><a href="#cb12-132" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> <span class="st">"glasso"</span>,</span>
+<span id="cb12-133"><a href="#cb12-133" aria-hidden="true" tabindex="-1"></a>  <span class="at">algorithm =</span> <span class="st">"walktrap"</span></span>
+<span id="cb12-134"><a href="#cb12-134" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb12-135"><a href="#cb12-135" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-136"><a href="#cb12-136" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-136"><a href="#cb12-136" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(ega.malli)</span>
 <span id="cb12-137"><a href="#cb12-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-138"><a href="#cb12-138" aria-hidden="true" tabindex="-1"></a>@fig-ilmoasenteet_validointi-04-ega osoittaa EGA-mallin estimoinnin rakenteen. Malli ehdottaa kahta muuttujaryhmää, A ja B.</span>
+<span id="cb12-138"><a href="#cb12-138" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb12-139"><a href="#cb12-139" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-140"><a href="#cb12-140" aria-hidden="true" tabindex="-1"></a>Ryhmä A:</span>
+<span id="cb12-140"><a href="#cb12-140" aria-hidden="true" tabindex="-1"></a>@fig-ilmoasenteet_validointi-04-ega osoittaa EGA-mallin estimoinnin rakenteen. Malli ehdottaa kahta muuttujaryhmää, A ja B.</span>
 <span id="cb12-141"><a href="#cb12-141" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-142"><a href="#cb12-142" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_1`</span> Liian raskaat</span>
-<span id="cb12-143"><a href="#cb12-143" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_2`</span> Ei johda toimenpiteisiin</span>
-<span id="cb12-144"><a href="#cb12-144" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_7`</span> Ei tilaisuutta</span>
-<span id="cb12-145"><a href="#cb12-145" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_8`</span> Epäselvää</span>
-<span id="cb12-146"><a href="#cb12-146" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_9`</span> Unohdan</span>
-<span id="cb12-147"><a href="#cb12-147" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_11`</span> Joku muu hoitaa</span>
-<span id="cb12-148"><a href="#cb12-148" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_12`</span> Valtakunnallinen prosessi (käännetty)</span>
-<span id="cb12-149"><a href="#cb12-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-150"><a href="#cb12-150" aria-hidden="true" tabindex="-1"></a>Ryhmä B:</span>
-<span id="cb12-151"><a href="#cb12-151" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-152"><a href="#cb12-152" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_3`</span> Pelkään esihenkilön vastatoimia</span>
-<span id="cb12-153"><a href="#cb12-153" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_10`</span> Ammattitaidon kyseenalaistaminen</span>
-<span id="cb12-154"><a href="#cb12-154" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_13`</span> En halua pahaa</span>
-<span id="cb12-155"><a href="#cb12-155" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_15`</span> Tekijä saa tietää</span>
-<span id="cb12-156"><a href="#cb12-156" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_17`</span> Pelkään työpaikan menettämistä</span>
-<span id="cb12-157"><a href="#cb12-157" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_18`</span> Pelkään kollegoiden vastatoimia</span>
-<span id="cb12-158"><a href="#cb12-158" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-161"><a href="#cb12-161" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-162"><a href="#cb12-162" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-ilmoasenteet_validointi-05-egastabiliteetti</span></span>
-<span id="cb12-163"><a href="#cb12-163" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "EGA-mallin ulottuvuuksien stabiliteetti"</span></span>
-<span id="cb12-164"><a href="#cb12-164" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "EGA-mallin ulottuvuuksien stabiliteetti"</span></span>
-<span id="cb12-165"><a href="#cb12-165" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-166"><a href="#cb12-166" aria-hidden="true" tabindex="-1"></a>ega.boot <span class="ot">&lt;-</span> <span class="fu">bootEGA</span>(</span>
-<span id="cb12-167"><a href="#cb12-167" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> ega.uva<span class="sc">$</span>reduced_data,</span>
-<span id="cb12-168"><a href="#cb12-168" aria-hidden="true" tabindex="-1"></a>  <span class="at">iter =</span> <span class="dv">1000</span>,</span>
-<span id="cb12-169"><a href="#cb12-169" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"resampling"</span>,</span>
-<span id="cb12-170"><a href="#cb12-170" aria-hidden="true" tabindex="-1"></a>  <span class="at">uni.method =</span> <span class="st">"LE"</span>,</span>
-<span id="cb12-171"><a href="#cb12-171" aria-hidden="true" tabindex="-1"></a>  <span class="at">corr =</span> <span class="st">"pearson"</span>,</span>
-<span id="cb12-172"><a href="#cb12-172" aria-hidden="true" tabindex="-1"></a>  <span class="at">na.data =</span> <span class="st">"pairwise"</span>,</span>
-<span id="cb12-173"><a href="#cb12-173" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> <span class="st">"glasso"</span>,</span>
-<span id="cb12-174"><a href="#cb12-174" aria-hidden="true" tabindex="-1"></a>  <span class="at">algorithm =</span> <span class="st">"walktrap"</span>,</span>
-<span id="cb12-175"><a href="#cb12-175" aria-hidden="true" tabindex="-1"></a>  <span class="at">seed =</span> <span class="dv">1234</span> <span class="co"># Mahdollistaa toistettavuuden</span></span>
-<span id="cb12-176"><a href="#cb12-176" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-177"><a href="#cb12-177" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-178"><a href="#cb12-178" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(ega.boot)</span>
+<span id="cb12-142"><a href="#cb12-142" aria-hidden="true" tabindex="-1"></a>Ryhmä A:</span>
+<span id="cb12-143"><a href="#cb12-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-144"><a href="#cb12-144" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_1`</span> Liian raskaat</span>
+<span id="cb12-145"><a href="#cb12-145" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_2`</span> Ei johda toimenpiteisiin</span>
+<span id="cb12-146"><a href="#cb12-146" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_7`</span> Ei tilaisuutta</span>
+<span id="cb12-147"><a href="#cb12-147" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_8`</span> Epäselvää</span>
+<span id="cb12-148"><a href="#cb12-148" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_9`</span> Unohdan</span>
+<span id="cb12-149"><a href="#cb12-149" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_11`</span> Joku muu hoitaa</span>
+<span id="cb12-150"><a href="#cb12-150" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_12`</span> Valtakunnallinen prosessi (käännetty)</span>
+<span id="cb12-151"><a href="#cb12-151" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_13`</span> En halua pahaa</span>
+<span id="cb12-152"><a href="#cb12-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-153"><a href="#cb12-153" aria-hidden="true" tabindex="-1"></a>Ryhmä B:</span>
+<span id="cb12-154"><a href="#cb12-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-155"><a href="#cb12-155" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_3`</span> Pelkään esihenkilön vastatoimia</span>
+<span id="cb12-156"><a href="#cb12-156" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_10`</span> Ammattitaidon kyseenalaistaminen</span>
+<span id="cb12-157"><a href="#cb12-157" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_15`</span> Tekijä saa tietää</span>
+<span id="cb12-158"><a href="#cb12-158" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_17`</span> Pelkään työpaikan menettämistä</span>
+<span id="cb12-159"><a href="#cb12-159" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_18`</span> Pelkään kollegoiden vastatoimia</span>
+<span id="cb12-160"><a href="#cb12-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-163"><a href="#cb12-163" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-164"><a href="#cb12-164" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-ilmoasenteet_validointi-05-egastabiliteetti</span></span>
+<span id="cb12-165"><a href="#cb12-165" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "EGA-mallin ulottuvuuksien stabiliteetti"</span></span>
+<span id="cb12-166"><a href="#cb12-166" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "EGA-mallin ulottuvuuksien stabiliteetti"</span></span>
+<span id="cb12-167"><a href="#cb12-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-168"><a href="#cb12-168" aria-hidden="true" tabindex="-1"></a>ega.boot <span class="ot">&lt;-</span> <span class="fu">bootEGA</span>(</span>
+<span id="cb12-169"><a href="#cb12-169" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> ega.uva<span class="sc">$</span>reduced_data,</span>
+<span id="cb12-170"><a href="#cb12-170" aria-hidden="true" tabindex="-1"></a>  <span class="at">iter =</span> <span class="dv">1000</span>,</span>
+<span id="cb12-171"><a href="#cb12-171" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"resampling"</span>,</span>
+<span id="cb12-172"><a href="#cb12-172" aria-hidden="true" tabindex="-1"></a>  <span class="at">uni.method =</span> <span class="st">"LE"</span>,</span>
+<span id="cb12-173"><a href="#cb12-173" aria-hidden="true" tabindex="-1"></a>  <span class="at">corr =</span> <span class="st">"pearson"</span>,</span>
+<span id="cb12-174"><a href="#cb12-174" aria-hidden="true" tabindex="-1"></a>  <span class="at">na.data =</span> <span class="st">"pairwise"</span>,</span>
+<span id="cb12-175"><a href="#cb12-175" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> <span class="st">"glasso"</span>,</span>
+<span id="cb12-176"><a href="#cb12-176" aria-hidden="true" tabindex="-1"></a>  <span class="at">algorithm =</span> <span class="st">"walktrap"</span>,</span>
+<span id="cb12-177"><a href="#cb12-177" aria-hidden="true" tabindex="-1"></a>  <span class="at">seed =</span> <span class="dv">1234</span> <span class="co"># Mahdollistaa toistettavuuden</span></span>
+<span id="cb12-178"><a href="#cb12-178" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb12-179"><a href="#cb12-179" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-180"><a href="#cb12-180" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-180"><a href="#cb12-180" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(ega.boot)</span>
 <span id="cb12-181"><a href="#cb12-181" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-182"><a href="#cb12-182" aria-hidden="true" tabindex="-1"></a>Stabiliteettiarvot yli noin 0.75 ovat luotettavia. Analyysi osoittaa, että muuttuja <span class="in">`k26_13`</span> (Tekijä saa tietää) ei ole vakaa bootstrap-analyysissa, ja voi vaihdella otosten välillä. Muuttujat <span class="in">`k26_7`</span> (Ei tilaisuutta) ja <span class="in">`k26_2`</span> (Ei johda toimenpiteisiin) ovat vakauden rajalla. Muut muuttujat täyttävät vakauden raja-arvon.</span>
+<span id="cb12-182"><a href="#cb12-182" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb12-183"><a href="#cb12-183" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-184"><a href="#cb12-184" aria-hidden="true" tabindex="-1"></a>Ulottuvuuksien mediaani oli 2, mutta 95 prosentin luottamusväli oli laaja ja sisälsi myös yhden ja kolmen (95 % CI 0,98-3,02). Tuhannen bootstrap-ajon mallissa kahden ulottuvuuden malli esiintyi 76,9 prosenttia kerroista, kolmen ulottuvuuden malli 19,4 prosenttia kerroista ja neljän ulottuvuuden malli 3,7 prosenttia kerroista.</span>
+<span id="cb12-184"><a href="#cb12-184" aria-hidden="true" tabindex="-1"></a>Stabiliteettiarvot yli noin 0.75 ovat luotettavia. Analyysi osoittaa, että muuttuja <span class="in">`k26_13`</span> (Tekijä saa tietää) ei ole vakaa bootstrap-analyysissa, ja voi vaihdella otosten välillä. Muuttujat <span class="in">`k26_7`</span> (Ei tilaisuutta) ja <span class="in">`k26_2`</span> (Ei johda toimenpiteisiin) ovat vakauden rajan alla. Muut muuttujat täyttävät vakauden raja-arvon.</span>
 <span id="cb12-185"><a href="#cb12-185" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-186"><a href="#cb12-186" aria-hidden="true" tabindex="-1"></a><span class="fu">## Summamuuttujien tarkistus</span></span>
+<span id="cb12-186"><a href="#cb12-186" aria-hidden="true" tabindex="-1"></a>Ulottuvuuksien mediaani oli 2, mutta 95 prosentin luottamusväli oli laaja ja sisälsi myös yhden ja kolmen (95 % CI <span class="in">`r round(ega.boot$summary.table$Lower.CI, 2)`</span>-<span class="in">`r round(ega.boot$summary.table$Upper.CI, 2)`</span>). Tuhannen bootstrap-ajon mallissa kahden ulottuvuuden malli esiintyi <span class="in">`r round(ega.boot$frequency$Frequency[1]*100, 0)`</span> prosenttia, kolmen ulottuvuuden malli <span class="in">`r round(ega.boot$frequency$Frequency[2]*100, 0)`</span> prosenttia, neljän ulottuvuuden malli <span class="in">`r round(ega.boot$frequency$Frequency[3]*100, 0)`</span> prosenttia ja viiden ulottuvuuden malli <span class="in">`r round(ega.boot$frequency$Frequency[4]*100, 0)`</span> prosenttia kerroista.</span>
 <span id="cb12-187"><a href="#cb12-187" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-190"><a href="#cb12-190" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-191"><a href="#cb12-191" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: ilmoasenteet_validointi-06-summamuuttuja</span></span>
-<span id="cb12-192"><a href="#cb12-192" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Summamuuttujien rakentaminen"</span></span>
-<span id="cb12-193"><a href="#cb12-193" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-194"><a href="#cb12-194" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
-<span id="cb12-195"><a href="#cb12-195" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb12-196"><a href="#cb12-196" aria-hidden="true" tabindex="-1"></a>    <span class="at">ilmo1_sum =</span> k26_1 <span class="sc">+</span> k26_2 <span class="sc">+</span> k26_7 <span class="sc">+</span> k26_8 <span class="sc">+</span> k26_9 <span class="sc">+</span> k26_11 <span class="sc">+</span> k26_12,</span>
-<span id="cb12-197"><a href="#cb12-197" aria-hidden="true" tabindex="-1"></a>    <span class="at">ilmo2_sum =</span> k26_3 <span class="sc">+</span> k26_10 <span class="sc">+</span> k26_13 <span class="sc">+</span> k26_15 <span class="sc">+</span> k26_17 <span class="sc">+</span> k26_18,</span>
-<span id="cb12-198"><a href="#cb12-198" aria-hidden="true" tabindex="-1"></a>    <span class="at">ilmo1 =</span> ilmo1_sum<span class="sc">/</span><span class="dv">7</span>,</span>
-<span id="cb12-199"><a href="#cb12-199" aria-hidden="true" tabindex="-1"></a>    <span class="at">ilmo2 =</span> ilmo2_sum<span class="sc">/</span><span class="dv">6</span></span>
-<span id="cb12-200"><a href="#cb12-200" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb12-201"><a href="#cb12-201" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-202"><a href="#cb12-202" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-188"><a href="#cb12-188" aria-hidden="true" tabindex="-1"></a><span class="fu">## Summamuuttujien tarkistus</span></span>
+<span id="cb12-189"><a href="#cb12-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-192"><a href="#cb12-192" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-193"><a href="#cb12-193" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: ilmoasenteet_validointi-06-summamuuttuja</span></span>
+<span id="cb12-194"><a href="#cb12-194" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Summamuuttujien rakentaminen"</span></span>
+<span id="cb12-195"><a href="#cb12-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-196"><a href="#cb12-196" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb12-197"><a href="#cb12-197" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb12-198"><a href="#cb12-198" aria-hidden="true" tabindex="-1"></a>    <span class="at">ilmo1_sum =</span> k26_1 <span class="sc">+</span> k26_2 <span class="sc">+</span> k26_7 <span class="sc">+</span> k26_8 <span class="sc">+</span> k26_9 <span class="sc">+</span> k26_11 <span class="sc">+</span> k26_12 <span class="sc">+</span> k26_13,</span>
+<span id="cb12-199"><a href="#cb12-199" aria-hidden="true" tabindex="-1"></a>    <span class="at">ilmo2_sum =</span> k26_3 <span class="sc">+</span> k26_10 <span class="sc">+</span> k26_15 <span class="sc">+</span> k26_17 <span class="sc">+</span> k26_18,</span>
+<span id="cb12-200"><a href="#cb12-200" aria-hidden="true" tabindex="-1"></a>    <span class="at">ilmo1 =</span> ilmo1_sum<span class="sc">/</span><span class="dv">8</span>,</span>
+<span id="cb12-201"><a href="#cb12-201" aria-hidden="true" tabindex="-1"></a>    <span class="at">ilmo2 =</span> ilmo2_sum<span class="sc">/</span><span class="dv">5</span></span>
+<span id="cb12-202"><a href="#cb12-202" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb12-203"><a href="#cb12-203" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-206"><a href="#cb12-206" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-207"><a href="#cb12-207" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-ilmoasenteet_validointi-07-jakaumakuviot</span></span>
-<span id="cb12-208"><a href="#cb12-208" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Ilmoitusjärjestelmiin kohdistuvien asenteiden summamuuttujien jakaumat"</span></span>
-<span id="cb12-209"><a href="#cb12-209" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-210"><a href="#cb12-210" aria-hidden="true" tabindex="-1"></a>ilmo1ka <span class="ot">&lt;-</span> <span class="fu">mean</span>(data<span class="sc">$</span>ilmo1, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb12-211"><a href="#cb12-211" aria-hidden="true" tabindex="-1"></a>ilmo2ka <span class="ot">&lt;-</span> <span class="fu">mean</span>(data<span class="sc">$</span>ilmo2, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb12-212"><a href="#cb12-212" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-213"><a href="#cb12-213" aria-hidden="true" tabindex="-1"></a>ilmo1_fig <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
-<span id="cb12-214"><a href="#cb12-214" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(ilmo1) <span class="sc">|&gt;</span></span>
-<span id="cb12-215"><a href="#cb12-215" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> ilmo1, <span class="at">y =</span> <span class="st">""</span>)) <span class="sc">+</span></span>
-<span id="cb12-216"><a href="#cb12-216" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"#C20E1A"</span>) <span class="sc">+</span> </span>
-<span id="cb12-217"><a href="#cb12-217" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="st">""</span>, <span class="at">x =</span> ilmo1ka), <span class="at">colour =</span> <span class="st">"#C5B568"</span>,</span>
-<span id="cb12-218"><a href="#cb12-218" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">3</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb12-219"><a href="#cb12-219" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="st">""</span>, <span class="at">x =</span> ilmo1ka), <span class="at">label =</span> <span class="fu">round</span>(ilmo1ka, <span class="dv">2</span>),</span>
-<span id="cb12-220"><a href="#cb12-220" aria-hidden="true" tabindex="-1"></a>            <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">fill =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
-<span id="cb12-221"><a href="#cb12-221" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb12-222"><a href="#cb12-222" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(</span>
-<span id="cb12-223"><a href="#cb12-223" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">7</span>)</span>
-<span id="cb12-224"><a href="#cb12-224" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb12-225"><a href="#cb12-225" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb12-226"><a href="#cb12-226" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Pisteet (keskiarvo 1-7)"</span>,</span>
-<span id="cb12-227"><a href="#cb12-227" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Heikoksi koettu hyöty-panos -suhde"</span></span>
-<span id="cb12-228"><a href="#cb12-228" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb12-229"><a href="#cb12-229" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb12-230"><a href="#cb12-230" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb12-231"><a href="#cb12-231" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.ticks.x =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb12-232"><a href="#cb12-232" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb12-233"><a href="#cb12-233" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-234"><a href="#cb12-234" aria-hidden="true" tabindex="-1"></a>ilmo2_fig <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
-<span id="cb12-235"><a href="#cb12-235" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(ilmo2) <span class="sc">|&gt;</span></span>
-<span id="cb12-236"><a href="#cb12-236" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> ilmo2, <span class="at">y =</span> <span class="st">""</span>)) <span class="sc">+</span></span>
-<span id="cb12-237"><a href="#cb12-237" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"#C20E1A"</span>) <span class="sc">+</span> </span>
-<span id="cb12-238"><a href="#cb12-238" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="st">""</span>, <span class="at">x =</span> ilmo2ka), <span class="at">colour =</span> <span class="st">"#C5B568"</span>,</span>
-<span id="cb12-239"><a href="#cb12-239" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">3</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb12-240"><a href="#cb12-240" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="st">""</span>, <span class="at">x =</span> ilmo2ka), <span class="at">label =</span> <span class="fu">round</span>(ilmo2ka, <span class="dv">2</span>),</span>
-<span id="cb12-241"><a href="#cb12-241" aria-hidden="true" tabindex="-1"></a>            <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">fill =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
-<span id="cb12-242"><a href="#cb12-242" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb12-243"><a href="#cb12-243" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(</span>
-<span id="cb12-244"><a href="#cb12-244" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">7</span>)</span>
-<span id="cb12-245"><a href="#cb12-245" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb12-246"><a href="#cb12-246" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb12-247"><a href="#cb12-247" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Pisteet (keskiarvo 1-7)"</span>,</span>
-<span id="cb12-248"><a href="#cb12-248" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Negatiivisten vaikutusten pelko"</span></span>
-<span id="cb12-249"><a href="#cb12-249" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb12-250"><a href="#cb12-250" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb12-251"><a href="#cb12-251" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb12-252"><a href="#cb12-252" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.ticks.x =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb12-253"><a href="#cb12-253" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb12-254"><a href="#cb12-254" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-255"><a href="#cb12-255" aria-hidden="true" tabindex="-1"></a>ilmo_korr <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
-<span id="cb12-256"><a href="#cb12-256" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggscatterstats</span>(</span>
-<span id="cb12-257"><a href="#cb12-257" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"ilmo1"</span>,</span>
-<span id="cb12-258"><a href="#cb12-258" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"ilmo2"</span>,</span>
-<span id="cb12-259"><a href="#cb12-259" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"robust"</span>,</span>
-<span id="cb12-260"><a href="#cb12-260" aria-hidden="true" tabindex="-1"></a>    <span class="at">bf.message =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb12-261"><a href="#cb12-261" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="dv">1</span>,</span>
-<span id="cb12-262"><a href="#cb12-262" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="st">"Heikoksi koettu hyöty-panos -suhde"</span>,</span>
-<span id="cb12-263"><a href="#cb12-263" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">"Negatiivisten vaikutusten pelko"</span></span>
-<span id="cb12-264"><a href="#cb12-264" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb12-265"><a href="#cb12-265" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-266"><a href="#cb12-266" aria-hidden="true" tabindex="-1"></a>(ilmo1_fig <span class="sc">+</span> ilmo2_fig <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">axes =</span> <span class="st">"collect_y"</span>)) <span class="sc">/</span> ilmo_korr</span>
-<span id="cb12-267"><a href="#cb12-267" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb12-268"><a href="#cb12-268" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-204"><a href="#cb12-204" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-205"><a href="#cb12-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-208"><a href="#cb12-208" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-209"><a href="#cb12-209" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-ilmoasenteet_validointi-07-jakaumakuviot</span></span>
+<span id="cb12-210"><a href="#cb12-210" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Ilmoitusjärjestelmiin kohdistuvien asenteiden summamuuttujien jakaumat"</span></span>
+<span id="cb12-211"><a href="#cb12-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-212"><a href="#cb12-212" aria-hidden="true" tabindex="-1"></a>ilmo1ka <span class="ot">&lt;-</span> <span class="fu">mean</span>(data<span class="sc">$</span>ilmo1, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb12-213"><a href="#cb12-213" aria-hidden="true" tabindex="-1"></a>ilmo2ka <span class="ot">&lt;-</span> <span class="fu">mean</span>(data<span class="sc">$</span>ilmo2, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb12-214"><a href="#cb12-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-215"><a href="#cb12-215" aria-hidden="true" tabindex="-1"></a>ilmo1_fig <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb12-216"><a href="#cb12-216" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(ilmo1) <span class="sc">|&gt;</span></span>
+<span id="cb12-217"><a href="#cb12-217" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> ilmo1, <span class="at">y =</span> <span class="st">""</span>)) <span class="sc">+</span></span>
+<span id="cb12-218"><a href="#cb12-218" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"#C20E1A"</span>) <span class="sc">+</span> </span>
+<span id="cb12-219"><a href="#cb12-219" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="st">""</span>, <span class="at">x =</span> ilmo1ka), <span class="at">colour =</span> <span class="st">"#C5B568"</span>,</span>
+<span id="cb12-220"><a href="#cb12-220" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">3</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb12-221"><a href="#cb12-221" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="st">""</span>, <span class="at">x =</span> ilmo1ka), <span class="at">label =</span> <span class="fu">round</span>(ilmo1ka, <span class="dv">2</span>),</span>
+<span id="cb12-222"><a href="#cb12-222" aria-hidden="true" tabindex="-1"></a>            <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">fill =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb12-223"><a href="#cb12-223" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb12-224"><a href="#cb12-224" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(</span>
+<span id="cb12-225"><a href="#cb12-225" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">7</span>)</span>
+<span id="cb12-226"><a href="#cb12-226" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb12-227"><a href="#cb12-227" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb12-228"><a href="#cb12-228" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Pisteet (keskiarvo 1-7)"</span>,</span>
+<span id="cb12-229"><a href="#cb12-229" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Heikoksi koettu hyöty-panos -suhde"</span></span>
+<span id="cb12-230"><a href="#cb12-230" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb12-231"><a href="#cb12-231" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb12-232"><a href="#cb12-232" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb12-233"><a href="#cb12-233" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.ticks.x =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb12-234"><a href="#cb12-234" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb12-235"><a href="#cb12-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-236"><a href="#cb12-236" aria-hidden="true" tabindex="-1"></a>ilmo2_fig <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb12-237"><a href="#cb12-237" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(ilmo2) <span class="sc">|&gt;</span></span>
+<span id="cb12-238"><a href="#cb12-238" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> ilmo2, <span class="at">y =</span> <span class="st">""</span>)) <span class="sc">+</span></span>
+<span id="cb12-239"><a href="#cb12-239" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"#C20E1A"</span>) <span class="sc">+</span> </span>
+<span id="cb12-240"><a href="#cb12-240" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="st">""</span>, <span class="at">x =</span> ilmo2ka), <span class="at">colour =</span> <span class="st">"#C5B568"</span>,</span>
+<span id="cb12-241"><a href="#cb12-241" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">3</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb12-242"><a href="#cb12-242" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="st">""</span>, <span class="at">x =</span> ilmo2ka), <span class="at">label =</span> <span class="fu">round</span>(ilmo2ka, <span class="dv">2</span>),</span>
+<span id="cb12-243"><a href="#cb12-243" aria-hidden="true" tabindex="-1"></a>            <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">fill =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb12-244"><a href="#cb12-244" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb12-245"><a href="#cb12-245" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(</span>
+<span id="cb12-246"><a href="#cb12-246" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">7</span>)</span>
+<span id="cb12-247"><a href="#cb12-247" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb12-248"><a href="#cb12-248" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb12-249"><a href="#cb12-249" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Pisteet (keskiarvo 1-7)"</span>,</span>
+<span id="cb12-250"><a href="#cb12-250" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Negatiivisten vaikutusten pelko"</span></span>
+<span id="cb12-251"><a href="#cb12-251" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb12-252"><a href="#cb12-252" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb12-253"><a href="#cb12-253" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb12-254"><a href="#cb12-254" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.ticks.x =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb12-255"><a href="#cb12-255" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb12-256"><a href="#cb12-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-257"><a href="#cb12-257" aria-hidden="true" tabindex="-1"></a>ilmo_korr <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb12-258"><a href="#cb12-258" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggscatterstats</span>(</span>
+<span id="cb12-259"><a href="#cb12-259" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"ilmo1"</span>,</span>
+<span id="cb12-260"><a href="#cb12-260" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"ilmo2"</span>,</span>
+<span id="cb12-261"><a href="#cb12-261" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"robust"</span>,</span>
+<span id="cb12-262"><a href="#cb12-262" aria-hidden="true" tabindex="-1"></a>    <span class="at">bf.message =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb12-263"><a href="#cb12-263" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="dv">1</span>,</span>
+<span id="cb12-264"><a href="#cb12-264" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="st">"Heikoksi koettu hyöty-panos -suhde"</span>,</span>
+<span id="cb12-265"><a href="#cb12-265" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">"Negatiivisten vaikutusten pelko"</span></span>
+<span id="cb12-266"><a href="#cb12-266" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb12-267"><a href="#cb12-267" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-268"><a href="#cb12-268" aria-hidden="true" tabindex="-1"></a>(ilmo1_fig <span class="sc">+</span> ilmo2_fig <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">axes =</span> <span class="st">"collect_y"</span>)) <span class="sc">/</span> ilmo_korr</span>
+<span id="cb12-269"><a href="#cb12-269" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-270"><a href="#cb12-270" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
