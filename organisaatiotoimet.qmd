@@ -16,8 +16,8 @@ Tiedot pohjautuvat anonymisoituun datatiedostoon, josta on poistettu epäilyttä
 #| label: organisaatiotoimet-00-paketit
 #| code-summary: "Osiossa käytetyt paketit"
 
-library(tidyverse)
-library(ggridges)
+library(tidyverse) # Yleinen datakäsittely
+library(ggridges) # Aaltokuvion piirtäminen
 
 ```
 
@@ -26,6 +26,7 @@ library(ggridges)
 #| code-summary: "Datan avaaminen"
 
 data <- read.csv2("output/valmisdata.csv", tryLogical = FALSE)
+varit <- c("#873073", "#893deb", "#fe79ec", "#29d8fd", "#25919d", "#96da31", "#598322", "#cdba0e")
 
 ```
 
@@ -100,6 +101,9 @@ data_long |>
     suffix = " %",
     decimal.mark = ","
   )) +
+  scale_fill_manual(
+    values = varit[c(1, 3, 4, 6, 7)]
+  ) +
   labs(
     x = "Suhde kaikista vastaajista (%)",
     caption = "Järjestetty laskevassa järjestyksessä aloittaen toimenpiteistä, jotka tiedetään parhaiten olevan käytössä",
@@ -123,7 +127,7 @@ data_long |>
 
 ```{r}
 #| label: tbl-organisaatiotoimet-kaytetyt
-#| tbl-cap: Organisaatioiden käyttämät toimet vastaajien käsityksen mukaan"
+#| tbl-cap: "Organisaatioiden käyttämät toimet vastaajien käsityksen mukaan"
 #| code-summary: "Taulukon rakentaminen"
 
 data |>
@@ -174,7 +178,6 @@ data |>
   knitr::kable(digits = 3)
 
 ```
-
 
 ## Toimien koettu vaikutus {#sec-organisaatiotoimet-vaikutus}
 
@@ -227,7 +230,7 @@ data_long |>
       levels = jarjestys,
       labels = setNames(as.list(uudet_nimet), vanhat_nimet)[jarjestys]
     ),
-    fill = stat(x)
+    fill = after_stat(x)
   )) +
   geom_density_ridges_gradient(
     scale = 2,
@@ -329,6 +332,9 @@ data_long |>
     suffix = " %",
     decimal.mark = ","
   )) +
+  scale_fill_manual(
+    values = varit[1:7]
+  ) +
   labs(
     x = "Suhde kaikista vastaajista (%)",
     caption = "Järjestetty laskevassa järjestyksessä erittäin hyödylliseksi koettujen ehdotusten mukaan",
@@ -347,6 +353,7 @@ data_long |>
     linetype = 2,
     xintercept = 0.75
   )
+
 ```
 
 ```{r}
@@ -405,4 +412,3 @@ data |>
   knitr::kable(digits = 3)
 
 ```
-

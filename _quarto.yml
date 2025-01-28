@@ -34,7 +34,7 @@ book:
         - anonymisointi.qmd
         - koodikirja.qmd
         - datatarkistus.qmd
-    - part: "Kyselyn tulokset"
+    - part: "Frekvenssitulokset"
       chapters:
         - metatiedot.qmd
         - taustamuuttujat.qmd
@@ -42,14 +42,12 @@ book:
         - vaikutukset.qmd
         - ilmoitusjarjestelmat.qmd
         - organisaatiotoimet.qmd
+    - part: "Tilastolliset mallit"
+      chapters:
         - ryhmavertailut.qmd
         - korrelaatiosuhteet.qmd
-    - part: "Monimuuttujamallit"
-      chapters:
         - kohtelu_validointi.qmd
         - ilmoasenteet_validointi.qmd
-        - tayvkayttoonotto_validointi.qmd
-        - tayvasenteet_validointi.qmd
         - muutosaie_sem.qmd
     - part: "Esitykset ja kirjoitukset"
       chapters:
@@ -70,8 +68,8 @@ book:
       - sidebar:kirjallisuuskatsaus
       - sidebar:katsauksenhaut
       - sidebar:kyselyprosessi
-      - sidebar:kyselyntulokset
-      - sidebar:monimuuttujamallit
+      - sidebar:frekvenssitulokset
+      - sidebar:tilastollisetmallit
       - sidebar:esitykset
       - text: "Lähteet"
         file: lahteet.qmd
@@ -112,8 +110,8 @@ book:
         - koodikirja.qmd
         - datatarkistus.qmd
     
-    - id: kyselyntulokset
-      title: "Kyselyn tulokset"
+    - id: frekvenssitulokset
+      title: "Frekvenssitulokset"
       contents:
         - metatiedot.qmd
         - taustamuuttujat.qmd
@@ -121,16 +119,14 @@ book:
         - vaikutukset.qmd
         - ilmoitusjarjestelmat.qmd
         - organisaatiotoimet.qmd
+    
+    - id: tilastollisetmallit
+      title: "Tilastolliset mallit"
+      contents:
         - ryhmavertailut.qmd
         - korrelaatiosuhteet.qmd
-    
-    - id: monimuuttujamallit
-      title: "Monimuuttujamallit"
-      contents:
         - kohtelu_validointi.qmd
         - ilmoasenteet_validointi.qmd
-        - tayvkayttoonotto_validointi.qmd
-        - tayvasenteet_validointi.qmd
         - muutosaie_sem.qmd
     
     - id: esitykset

@@ -4,7 +4,7 @@
 eval: true
 ---
 
-Tässä osiossa analysoimme ilmoitusjärjestelmiin kohdistuvien asennemuuttujien faktorirakennetta verkostoanalyysin ja konfirmatorisen faktorianalyysin avulla
+Tässä osiossa analysoimme ilmoitusjärjestelmiin kohdistuvien asennemuuttujien yhteisrakennetta eksploratiivisen verkostoanalyysin avulla. Tiedot pohjautuvat anonymisoituun datatiedostoon, josta on poistettu epäilyttävät vastaajat. Osion voi toistaa lataamalla Tietoarkistossa oleva datakopio ja ensin suorittamalla [luvun -@sec-datatarkistus] koodit.
 
 ```{r}
 #| label: ilmoasenteet_validointi-00-paketit
