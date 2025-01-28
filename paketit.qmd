@@ -1,0 +1,61 @@
+---
+eval: true
+---
+
+# Paketit {#sec-paketit}
+
+Tämä osio sisältää liitesivuston käyttämät ohjelmistoversiot ja muut tarvittavat selosteet toistettavuuden kannalta.
+
+## R-kielen ja Quarton versiot {#sec-paketit-rquarto}
+
+```{r}
+# R-kielen versio
+R.version
+
+# Quarton versio
+quarto::quarto_version()
+```
+
+## Manuaalinen listaus kaikista käytetyistä paketeista {#sec-paketit-manuaalinen}
+
+-  `tidyverse`, josta myös osapaketteina:
+    -  `magrittr`
+    -  `ggplot2`
+    -  `dplyr`
+    -  `tidyr`
+-  `PRISMA2020`: PRISMA-kuvioiden piirtäminen
+-  `ggstatsplot`: Tilastokuvioiden piirtäminen
+-  `metafor`: Meta-analyysi
+-  `knitr`: Quarto-dokumenttien taitto (ei tarvita analyysien toistoon)
+-  `PRISMAstatement`: PRISMA-kuvioiden piirtäminen
+-  `mice`: Puuttuvien vastausten analyysi
+-  `careless`: Sattumanvaraisten vastausten analyysi
+-  `patchwork`: Useamman `ggplot`-kuvion asettelu
+-  `ggridges`: Aaltokuvioiden piirtäminen
+-  `naniar`: Puuttuvien arvojen käsittely
+-  `HH`: Yleisiä tilastoanalyyseja (käytetty vain validointiartikkelin tuottamisen yhteydessä)
+-  `EFAtools`: Eksploratiivisen faktorianalyysin työkaluja
+-  `lavaan`: Eksploratiivinen ja konfirmatorinen faktorianalyysi
+-  `dynamic`: SEM-mallien globaalin sopivuuden raja-arvojen dynaaminen laskenta
+-  `semTools`: SEM-mallien työkaluja
+-  `moments`: Tilastomomenttien laskenta
+-  `EGAnet`: Eksploratiivinen verkostoanalyysi
+-  `psych`: Cronbachin alfan laskenta
+-  `tidySEM`: SEM-mallikuvioiden piirtäminen
+-  `ggthemes`: Väriteemoja ja lisätyökaluja `ggplot`-kuvioihin
+-  `scales`: Lukujen muunto prosenteiksi `ggplot`-kuvioissa
+-  `renv`: Pakettien hallinta
+
+Alla olevassa `renv`-tulosteessa esitetään pakettien käytetyt versiot.
+
+## Renv-järjestelmässä tallennetut paketit {#sec-paketit-renv}
+
+```{r}
+renv::diagnostics()
+```
+
+## Diagnostiikkatiedot {#sec-paketit-diagnostiikka}
+
+``` {r}
+devtools::session_info()
+```

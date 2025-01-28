@@ -58,6 +58,7 @@ book:
         - blogi4.qmd
 
     - lahteet.qmd
+    - paketit.qmd
   
   navbar:
     background: primary
@@ -73,6 +74,8 @@ book:
       - sidebar:esitykset
       - text: "Lähteet"
         file: lahteet.qmd
+      - text: "Paketit"
+        file: paketit.qmd
   
   sidebar:
     - id: kirjallisuuskatsaus
