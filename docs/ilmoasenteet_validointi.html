@@ -95,13 +95,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Hae"
   }
 }</script>
-<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
-<script src="site_libs/viz-1.8.2/viz.js"></script>
-<link href="site_libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
-<script src="site_libs/grViz-binding-1.0.10/grViz.js"></script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -390,17 +384,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#sec-ilmoasenteet_validointi-muuttujat" id="toc-sec-ilmoasenteet_validointi-muuttujat" class="nav-link active" data-scroll-target="#sec-ilmoasenteet_validointi-muuttujat"><span class="header-section-number">30.1</span> Muuttujien valitseminen analyysiin</a></li>
   <li><a href="#sec-ilmoasenteet_validointi-ega" id="toc-sec-ilmoasenteet_validointi-ega" class="nav-link" data-scroll-target="#sec-ilmoasenteet_validointi-ega"><span class="header-section-number">30.2</span> Eksploratiivinen verkostoanalyysi</a></li>
-  <li><a href="#sec-ilmoasenteet_validointi-cfa1" id="toc-sec-ilmoasenteet_validointi-cfa1" class="nav-link" data-scroll-target="#sec-ilmoasenteet_validointi-cfa1"><span class="header-section-number">30.3</span> EGA-mallin asettaminen CFA-malliin</a>
-  <ul class="collapse">
-  <li><a href="#sec-ilmoasenteet_validointi-cfa1-asettaminen" id="toc-sec-ilmoasenteet_validointi-cfa1-asettaminen" class="nav-link" data-scroll-target="#sec-ilmoasenteet_validointi-cfa1-asettaminen"><span class="header-section-number">30.3.1</span> Mallin asettaminen</a></li>
-  <li><a href="#sec-ilmoasenteet_validointi-cfa1-residuaalit" id="toc-sec-ilmoasenteet_validointi-cfa1-residuaalit" class="nav-link" data-scroll-target="#sec-ilmoasenteet_validointi-cfa1-residuaalit"><span class="header-section-number">30.3.2</span> Residuaalien tarkastus</a></li>
-  </ul></li>
-  <li><a href="#sec-ilmoasenteet_validointi-cfa2" id="toc-sec-ilmoasenteet_validointi-cfa2" class="nav-link" data-scroll-target="#sec-ilmoasenteet_validointi-cfa2"><span class="header-section-number">30.4</span> Uusi CFA-malli</a>
-  <ul class="collapse">
-  <li><a href="#sec-ilmoasenteet_validointi-cfa2-vertailu" id="toc-sec-ilmoasenteet_validointi-cfa2-vertailu" class="nav-link" data-scroll-target="#sec-ilmoasenteet_validointi-cfa2-vertailu"><span class="header-section-number">30.4.1</span> Mallien vertailu</a></li>
-  <li><a href="#sec-ilmoasenteet_validointi-cfa2-residuaalit" id="toc-sec-ilmoasenteet_validointi-cfa2-residuaalit" class="nav-link" data-scroll-target="#sec-ilmoasenteet_validointi-cfa2-residuaalit"><span class="header-section-number">30.4.2</span> Residuaalien tarkastus</a></li>
-  </ul></li>
-  <li><a href="#sec-ilmoasenteet_validointi-yhteenveto" id="toc-sec-ilmoasenteet_validointi-yhteenveto" class="nav-link" data-scroll-target="#sec-ilmoasenteet_validointi-yhteenveto"><span class="header-section-number">30.5</span> Yhteenveto</a></li>
+  <li><a href="#summamuuttujien-tarkistus" id="toc-summamuuttujien-tarkistus" class="nav-link" data-scroll-target="#summamuuttujien-tarkistus"><span class="header-section-number">30.3</span> Summamuuttujien tarkistus</a></li>
   </ul>
 </nav>
     </div>
@@ -428,20 +412,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details>
 <summary>Osiossa käytetyt paketit</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(EFAtools) <span class="co"># Useimmat datasopivuusfunktiot</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(HH) <span class="co"># VIF-suureen laskeminen</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan) <span class="co"># EFA- ja CFA-mallien asettaminen</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(EGAnet) <span class="co"># EGA-mallien asettaminen</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaanPlot) <span class="co"># CFA-mallien piirtäminen</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot) <span class="co"># Korrelaatio- ja kovarianssimatriisien piirtäminen</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semTools) <span class="co"># CFA-mallien vertailu</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(EGAnet) <span class="co"># EGA-mallien asettaminen</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork) <span class="co"># Kuvioiden asettelu</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggstatsplot) <span class="co"># Tilastokuvioiden piirtäminen</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># Yleinen datakäsittely</span></span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
 <details>
 <summary>Datan avaaminen</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"output/anonymisoitudata.csv"</span>, <span class="at">tryLogical =</span> <span class="cn">FALSE</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"output/valmisdata.csv"</span>, <span class="at">tryLogical =</span> <span class="cn">FALSE</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <section id="sec-ilmoasenteet_validointi-muuttujat" class="level2" data-number="30.1">
@@ -453,7 +433,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>k26_14</code>: Tilanteet ovat yksittäistapauksia</li>
 <li><code>k26_5</code>: Ilmoitan kaikki kohtaamani tilanteet</li>
 </ul>
-<p>Ensimmäiset kolme muuttujaa eivät ole ilmoitusjärjestelmiin kohdistuvia asenteita, vaan ennemmin yleisiä asenteita epäasiallisia ja väkivaltaisia kohtaamisia kohtaan. Viimeinen muuttuja liittyy ilmoitusjärjestelmiin, mutta kuvailee ennemmin vastaajan toimintaa eikä asenteita.</p>
+<p>Ensimmäiset kolme muuttujaa ovat yleisiä asenteita epäasiallisia ja väkivaltaisia kohtaamisia kohtaan. Viimeinen muuttuja liittyy ilmoitusjärjestelmiin, mutta kuvailee ennemmin vastaajan toimintaa eikä asenteita.</p>
 <p>Otimme mukaan neljätoista muuttujaa analyysiin:</p>
 <ul>
 <li><code>k26_1</code>: Prosessit ovat liian raskaita tai työläitä</li>
@@ -482,11 +462,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"k26_15"</span>, <span class="st">"k26_16"</span>, <span class="st">"k26_17"</span>, <span class="st">"k26_18"</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Käännetään muuttuja k26_13</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Käännetään muuttuja k26_12</span></span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>      k26_13,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>      k26_12,</span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_match</span>(</span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        .x,</span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span> <span class="sc">~</span> <span class="dv">7</span>,</span>
@@ -505,7 +485,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="sec-ilmoasenteet_validointi-ega" class="level2" data-number="30.2">
 <h2 data-number="30.2" class="anchored" data-anchor-id="sec-ilmoasenteet_validointi-ega"><span class="header-section-number">30.2</span> Eksploratiivinen verkostoanalyysi</h2>
-<p>Teimme ensin eksploratiivisen verkostoanalyysin (engl. <em>exploratory graph analysis</em>, EGA) ymmärtääksemme muuttujien välisiä suhteita paremmin.</p>
+<p>Teimme eksploratiivisen verkostoanalyysin (engl. <em>exploratory graph analysis</em>, EGA) ymmärtääksemme muuttujien välisiä suhteita paremmin.</p>
 <div class="cell">
 <details>
 <summary>Uniikin varianssin analyysi</summary>
@@ -523,14 +503,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 Variable pairs with wTO &gt; 0.25 (moderate-to-large redundancy)
 
  node_i node_j   wto
- k26_16 k26_18 0.259
+ k26_16 k26_18 0.262
 
 ----
 
 Variable pairs with wTO &gt; 0.20 (small-to-moderate redundancy)
 
  node_i node_j   wto
-  k26_3 k26_17 0.221</code></pre>
+  k26_3 k26_17 0.227</code></pre>
 </div>
 </div>
 <p>Uniikin varianssin analyysi tunnistaa yhden muuttujaparin, joiden varianssit verkostomallissa ovat liian päällekkäisiä: <code>k26_16</code> (“Kollegani näkisivät minut ongelmallisena tai vaikeana jos tekisin ilmoituksen”) ja <code>k26_18</code> (“Pelkään kollegoideni ryhtyvän vastatoimiin, jos tekisin ilmoituksen”).</p>
@@ -552,7 +532,7 @@ Variable pairs with wTO &gt; 0.20 (small-to-moderate redundancy)
 <div class="cell-output cell-output-stdout">
 <pre><code>Model: GLASSO (EBIC with gamma = 0.5)
 Correlations: pearson
-Lambda: 0.0724734367060774 (n = 100, ratio = 0.1)
+Lambda: 0.0718679716146387 (n = 100, ratio = 0.1)
 
 Number of nodes: 13
 Number of edges: 52
@@ -560,7 +540,7 @@ Edge density: 0.667
 
 Non-zero edge weights: 
      M    SD    Min   Max
- 0.070 0.099 -0.171 0.278
+ 0.089 0.081 -0.069 0.268
 
 ----
 
@@ -569,7 +549,7 @@ Algorithm:  Walktrap
 Number of communities:  2
 
  k26_1  k26_2  k26_3  k26_7  k26_8  k26_9 k26_10 k26_11 k26_12 k26_13 k26_15 
-     1      1      2      1      1      1      2      1      1      2      2 
+     1      1      2      1      1      1      2      1      1      1      2 
 k26_17 k26_18 
      2      2 
 
@@ -580,7 +560,7 @@ Unidimensional: No
 
 ----
 
-TEFI: -7.101</code></pre>
+TEFI: -6.681</code></pre>
 </div>
 <div class="cell-output-display">
 <div id="fig-ilmoasenteet_validointi-04-ega" class="quarto-figure quarto-figure-center anchored">
@@ -611,7 +591,6 @@ TEFI: -7.101</code></pre>
 <li><code>k26_17</code> Pelkään työpaikan menettämistä</li>
 <li><code>k26_18</code> Pelkään kollegoiden vastatoimia</li>
 </ul>
-<p>Muuttujien perusteella ryhmä A:n voi tulkita edustavan ilmoitusprosessiin liittyviä teknisiä ja käytännöllisiä haasteita. Ryhmä B:n voi tulkita edustavan ilmoituksen sosiaalisia vaikutuksia.</p>
 <div class="cell">
 <details>
 <summary>EGA-mallin ulottuvuuksien stabiliteetti</summary>
@@ -639,11 +618,11 @@ Unidimensional Method:  Leading Eigenvector
 
 EGA Type: EGA 
 Bootstrap Samples: 1000 (Resampling)
-                             
-                2     3     4
-Frequency:  0.769 0.194 0.037
+                                   
+                2     3     4     5
+Frequency:  0.745 0.201 0.053 0.001
 
-Median dimensions: 2 [0.98, 3.02] 95% CI</code></pre>
+Median dimensions: 2 [0.88, 3.12] 95% CI</code></pre>
 </div>
 <div class="cell-output-display">
 <div id="fig-ilmoasenteet_validointi-05-egastabiliteetti" class="quarto-figure quarto-figure-center anchored">
@@ -657,665 +636,90 @@ Median dimensions: 2 [0.98, 3.02] 95% CI</code></pre>
 <p>Stabiliteettiarvot yli noin 0.75 ovat luotettavia. Analyysi osoittaa, että muuttuja <code>k26_13</code> (Tekijä saa tietää) ei ole vakaa bootstrap-analyysissa, ja voi vaihdella otosten välillä. Muuttujat <code>k26_7</code> (Ei tilaisuutta) ja <code>k26_2</code> (Ei johda toimenpiteisiin) ovat vakauden rajalla. Muut muuttujat täyttävät vakauden raja-arvon.</p>
 <p>Ulottuvuuksien mediaani oli 2, mutta 95 prosentin luottamusväli oli laaja ja sisälsi myös yhden ja kolmen (95 % CI 0,98-3,02). Tuhannen bootstrap-ajon mallissa kahden ulottuvuuden malli esiintyi 76,9 prosenttia kerroista, kolmen ulottuvuuden malli 19,4 prosenttia kerroista ja neljän ulottuvuuden malli 3,7 prosenttia kerroista.</p>
 </section>
-<section id="sec-ilmoasenteet_validointi-cfa1" class="level2" data-number="30.3">
-<h2 data-number="30.3" class="anchored" data-anchor-id="sec-ilmoasenteet_validointi-cfa1"><span class="header-section-number">30.3</span> EGA-mallin asettaminen CFA-malliin</h2>
-<p>Kokeilimme asettaa CFA-mallin, jossa noudatetaan EGA-analyysin tuottamaa faktorirakennetta. Käytimme robustia ML-menetelmää FIML-poistomenetelmällä.</p>
-<section id="sec-ilmoasenteet_validointi-cfa1-asettaminen" class="level3" data-number="30.3.1">
-<h3 data-number="30.3.1" class="anchored" data-anchor-id="sec-ilmoasenteet_validointi-cfa1-asettaminen"><span class="header-section-number">30.3.1</span> Mallin asettaminen</h3>
+<section id="summamuuttujien-tarkistus" class="level2" data-number="30.3">
+<h2 data-number="30.3" class="anchored" data-anchor-id="summamuuttujien-tarkistus"><span class="header-section-number">30.3</span> Summamuuttujien tarkistus</h2>
 <div class="cell">
 <details>
-<summary>CFA-mallin määrittely ja asettaminen</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>cfa.malli <span class="ot">&lt;-</span>  <span class="st">'# latentit muuttujat</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="st">                f1 =~ k26_1 + k26_2 + k26_7 + k26_8 + k26_9 + k26_11 + k26_12</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="st">                f2 =~ k26_3 + k26_10 + k26_13 + k26_15 + k26_17 + k26_18</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="st">                </span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="st">                # faktorikovarianssit</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="st">                f1 ~~ f2</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="st">                '</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>cfa.tulos <span class="ot">&lt;-</span> <span class="fu">cfa</span>(</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> cfa.malli,</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> data,</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">estimator =</span> <span class="st">"MLR"</span>,</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">missing =</span> <span class="st">"fiml"</span></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cfa.tulos, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>, <span class="at">standardized =</span> <span class="cn">TRUE</span>, <span class="at">ci =</span> <span class="cn">TRUE</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<summary>Summamuuttujien rakentaminen</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">ilmo1_sum =</span> k26_1 <span class="sc">+</span> k26_2 <span class="sc">+</span> k26_7 <span class="sc">+</span> k26_8 <span class="sc">+</span> k26_9 <span class="sc">+</span> k26_11 <span class="sc">+</span> k26_12,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">ilmo2_sum =</span> k26_3 <span class="sc">+</span> k26_10 <span class="sc">+</span> k26_13 <span class="sc">+</span> k26_15 <span class="sc">+</span> k26_17 <span class="sc">+</span> k26_18,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">ilmo1 =</span> ilmo1_sum<span class="sc">/</span><span class="dv">7</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">ilmo2 =</span> ilmo2_sum<span class="sc">/</span><span class="dv">6</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<pre><code>lavaan 0.6-18 ended normally after 51 iterations
-
-  Estimator                                         ML
-  Optimization method                           NLMINB
-  Number of model parameters                        40
-
-                                                  Used       Total
-  Number of observations                          1007        1025
-  Number of missing patterns                        39            
-
-Model Test User Model:
-                                              Standard      Scaled
-  Test Statistic                               468.269     367.450
-  Degrees of freedom                                64          64
-  P-value (Chi-square)                           0.000       0.000
-  Scaling correction factor                                  1.274
-    Yuan-Bentler correction (Mplus variant)                       
-
-Model Test Baseline Model:
-
-  Test statistic                              5290.734    3885.915
-  Degrees of freedom                                78          78
-  P-value                                        0.000       0.000
-  Scaling correction factor                                  1.362
-
-User Model versus Baseline Model:
-
-  Comparative Fit Index (CFI)                    0.922       0.920
-  Tucker-Lewis Index (TLI)                       0.905       0.903
-                                                                  
-  Robust Comparative Fit Index (CFI)                         0.926
-  Robust Tucker-Lewis Index (TLI)                            0.910
-
-Loglikelihood and Information Criteria:
-
-  Loglikelihood user model (H0)             -22039.422  -22039.422
-  Scaling correction factor                                  1.266
-      for the MLR correction                                      
-  Loglikelihood unrestricted model (H1)     -21805.287  -21805.287
-  Scaling correction factor                                  1.271
-      for the MLR correction                                      
-                                                                  
-  Akaike (AIC)                               44158.844   44158.844
-  Bayesian (BIC)                             44355.433   44355.433
-  Sample-size adjusted Bayesian (SABIC)      44228.390   44228.390
-
-Root Mean Square Error of Approximation:
-
-  RMSEA                                          0.079       0.069
-  90 Percent confidence interval - lower         0.073       0.063
-  90 Percent confidence interval - upper         0.086       0.075
-  P-value H_0: RMSEA &lt;= 0.050                    0.000       0.000
-  P-value H_0: RMSEA &gt;= 0.080                    0.432       0.001
-                                                                  
-  Robust RMSEA                                               0.079
-  90 Percent confidence interval - lower                     0.071
-  90 Percent confidence interval - upper                     0.087
-  P-value H_0: Robust RMSEA &lt;= 0.050                         0.000
-  P-value H_0: Robust RMSEA &gt;= 0.080                         0.401
-
-Standardized Root Mean Square Residual:
-
-  SRMR                                           0.051       0.051
-
-Parameter Estimates:
-
-  Standard errors                             Sandwich
-  Information bread                           Observed
-  Observed information based on                Hessian
-
-Latent Variables:
-                   Estimate  Std.Err  z-value  P(&gt;|z|) ci.lower ci.upper
-  f1 =~                                                                 
-    k26_1             1.000                               1.000    1.000
-    k26_2             1.338    0.098   13.693    0.000    1.146    1.529
-    k26_7             1.006    0.088   11.452    0.000    0.834    1.179
-    k26_8             1.198    0.087   13.698    0.000    1.026    1.369
-    k26_9             0.887    0.071   12.443    0.000    0.748    1.027
-    k26_11            0.624    0.062   10.063    0.000    0.502    0.745
-    k26_12            0.343    0.069    4.954    0.000    0.207    0.479
-  f2 =~                                                                 
-    k26_3             1.000                               1.000    1.000
-    k26_10            0.973    0.029   33.105    0.000    0.915    1.030
-    k26_13           -0.500    0.034  -14.810    0.000   -0.566   -0.434
-    k26_15            0.893    0.033   27.018    0.000    0.828    0.958
-    k26_17            0.767    0.028   27.351    0.000    0.712    0.822
-    k26_18            0.878    0.034   25.799    0.000    0.812    0.945
-   Std.lv  Std.all
-                  
-    0.904    0.545
-    1.210    0.666
-    0.910    0.600
-    1.083    0.637
-    0.802    0.463
-    0.564    0.463
-    0.310    0.198
-                  
-    1.569    0.838
-    1.527    0.843
-   -0.785   -0.573
-    1.402    0.788
-    1.204    0.799
-    1.378    0.791
-
-Covariances:
-                   Estimate  Std.Err  z-value  P(&gt;|z|) ci.lower ci.upper
-  f1 ~~                                                                 
-    f2                1.109    0.083   13.410    0.000    0.947    1.272
-   Std.lv  Std.all
-                  
-    0.782    0.782
-
-Intercepts:
-                   Estimate  Std.Err  z-value  P(&gt;|z|) ci.lower ci.upper
-   .k26_1             3.890    0.053   73.872    0.000    3.787    3.993
-   .k26_2             3.883    0.057   67.580    0.000    3.770    3.996
-   .k26_7             2.335    0.048   48.343    0.000    2.240    2.429
-   .k26_8             3.046    0.054   56.490    0.000    2.940    3.152
-   .k26_9             3.119    0.055   56.582    0.000    3.011    3.227
-   .k26_11            2.007    0.039   51.478    0.000    1.930    2.083
-   .k26_12            5.215    0.050  105.095    0.000    5.118    5.313
-   .k26_3             2.755    0.059   46.345    0.000    2.639    2.872
-   .k26_10            2.666    0.058   46.209    0.000    2.553    2.779
-   .k26_13            5.781    0.044  132.178    0.000    5.695    5.867
-   .k26_15            2.693    0.057   47.634    0.000    2.582    2.804
-   .k26_17            2.145    0.048   44.378    0.000    2.050    2.239
-   .k26_18            2.700    0.055   48.722    0.000    2.592    2.809
-   Std.lv  Std.all
-    3.890    2.345
-    3.883    2.139
-    2.335    1.539
-    3.046    1.791
-    3.119    1.801
-    2.007    1.649
-    5.215    3.322
-    2.755    1.472
-    2.666    1.471
-    5.781    4.218
-    2.693    1.513
-    2.145    1.422
-    2.700    1.550
-
-Variances:
-                   Estimate  Std.Err  z-value  P(&gt;|z|) ci.lower ci.upper
-   .k26_1             1.934    0.091   21.371    0.000    1.757    2.112
-   .k26_2             1.831    0.123   14.836    0.000    1.589    2.073
-   .k26_7             1.472    0.112   13.188    0.000    1.254    1.691
-   .k26_8             1.718    0.107   16.086    0.000    1.509    1.928
-   .k26_9             2.354    0.114   20.731    0.000    2.132    2.577
-   .k26_11            1.162    0.083   13.979    0.000    0.999    1.325
-   .k26_12            2.368    0.107   22.087    0.000    2.158    2.578
-   .k26_3             1.042    0.091   11.491    0.000    0.864    1.220
-   .k26_10            0.953    0.084   11.312    0.000    0.788    1.118
-   .k26_13            1.263    0.079   16.069    0.000    1.109    1.417
-   .k26_15            1.201    0.104   11.596    0.000    0.998    1.404
-   .k26_17            0.824    0.059   14.071    0.000    0.709    0.938
-   .k26_18            1.135    0.088   12.865    0.000    0.962    1.308
-    f1                0.818    0.107    7.631    0.000    0.608    1.028
-    f2                2.462    0.147   16.719    0.000    2.174    2.751
-   Std.lv  Std.all
-    1.934    0.703
-    1.831    0.556
-    1.472    0.640
-    1.718    0.594
-    2.354    0.785
-    1.162    0.785
-    2.368    0.961
-    1.042    0.297
-    0.953    0.290
-    1.263    0.672
-    1.201    0.379
-    0.824    0.362
-    1.135    0.374
-    1.000    1.000
-    1.000    1.000</code></pre>
 </div>
-<details>
-<summary>CFA-mallin määrittely ja asettaminen</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>labels <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">k26_1 =</span> <span class="st">"Raskas prosessi"</span>,</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">k26_2 =</span> <span class="st">"Toimenpiteiden</span><span class="sc">\n</span><span class="st">puute"</span>,</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">k26_3 =</span> <span class="st">"Esihenkilön</span><span class="sc">\n</span><span class="st">vastatoimet"</span>,</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">k26_7 =</span> <span class="st">"Ei tilaisuutta"</span>,</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">k26_8 =</span> <span class="st">"Epäselvää"</span>,</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">k26_9 =</span> <span class="st">"Unohdan"</span>,</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">k26_10 =</span> <span class="st">"Ammattitaidon</span><span class="sc">\n</span><span class="st">kyseenalaistaminen"</span>,</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">k26_11 =</span> <span class="st">"Joku muu</span><span class="sc">\n</span><span class="st">hoitaa puolesta"</span>,</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">k26_12 =</span> <span class="st">"Valtakunnallinen</span><span class="sc">\n</span><span class="st">prosessi"</span>,</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">k26_13 =</span> <span class="st">"En halua</span><span class="sc">\n</span><span class="st">pahaa tekijälle"</span>,</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">k26_15 =</span> <span class="st">"Tekijä saa</span><span class="sc">\n</span><span class="st">tieteää"</span>,</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">k26_17 =</span> <span class="st">"Pelko työpaikan</span><span class="sc">\n</span><span class="st">menettämisestä"</span>,</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">k26_18 =</span> <span class="st">"Kollegoiden</span><span class="sc">\n</span><span class="st">vastatoimet"</span>,</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">f1 =</span> <span class="st">"f1"</span></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="fu">lavaanPlot2</span>(</span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>  cfa.tulos,</span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">labels =</span> labels,</span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">include =</span> <span class="st">"covs"</span>,</span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">coef_labels =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">stars =</span> <span class="fu">c</span>(<span class="st">"covs"</span>, <span class="st">"latent"</span>)</span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-158c307c29b06a68686b" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-158c307c29b06a68686b">{"x":{"diagram":"digraph {\n\n\n\n\n  \"1\" [label = \"f1\", shape = \"oval\", group = \"latent\"] \n  \"2\" [label = \"f2\", shape = \"oval\", group = \"latent\"] \n  \"3\" [label = \"Raskas prosessi\", shape = \"box\", group = \"obs\"] \n  \"4\" [label = \"Toimenpiteiden\npuute\", shape = \"box\", group = \"obs\"] \n  \"5\" [label = \"Ei tilaisuutta\", shape = \"box\", group = \"obs\"] \n  \"6\" [label = \"Epäselvää\", shape = \"box\", group = \"obs\"] \n  \"7\" [label = \"Unohdan\", shape = \"box\", group = \"obs\"] \n  \"8\" [label = \"Joku muu\nhoitaa puolesta\", shape = \"box\", group = \"obs\"] \n  \"9\" [label = \"Valtakunnallinen\nprosessi\", shape = \"box\", group = \"obs\"] \n  \"10\" [label = \"Esihenkilön\nvastatoimet\", shape = \"box\", group = \"obs\"] \n  \"11\" [label = \"Ammattitaidon\nkyseenalaistaminen\", shape = \"box\", group = \"obs\"] \n  \"12\" [label = \"En halua\npahaa tekijälle\", shape = \"box\", group = \"obs\"] \n  \"13\" [label = \"Tekijä saa\ntieteää\", shape = \"box\", group = \"obs\"] \n  \"14\" [label = \"Pelko työpaikan\nmenettämisestä\", shape = \"box\", group = \"obs\"] \n  \"15\" [label = \"Kollegoiden\nvastatoimet\", shape = \"box\", group = \"obs\"] \n\"3\"->\"1\" [dir = \"back\", label = \"1***\"] \n\"4\"->\"1\" [dir = \"back\", label = \"1.34***\"] \n\"5\"->\"1\" [dir = \"back\", label = \"1.01***\"] \n\"6\"->\"1\" [dir = \"back\", label = \"1.2***\"] \n\"7\"->\"1\" [dir = \"back\", label = \"0.89***\"] \n\"8\"->\"1\" [dir = \"back\", label = \"0.62***\"] \n\"9\"->\"1\" [dir = \"back\", label = \"0.34***\"] \n\"10\"->\"2\" [dir = \"back\", label = \"1***\"] \n\"11\"->\"2\" [dir = \"back\", label = \"0.97***\"] \n\"12\"->\"2\" [dir = \"back\", label = \"-0.5***\"] \n\"13\"->\"2\" [dir = \"back\", label = \"0.89***\"] \n\"14\"->\"2\" [dir = \"back\", label = \"0.77***\"] \n\"15\"->\"2\" [dir = \"back\", label = \"0.88***\"] \n\"2\"->\"1\" [dir = \"both\", label = \"1.11***\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
-</div>
-</div>
-<p>Malli asettui hyväksyttävästi eikä Heywood-tapauksia esiintynyt. Globaali khii neliö -suure on merkitsevä, mikä osoittaisi huonoa sopivuutta.</p>
-<p>Robustit sopivuusindeksit ovat seuraavat: <span class="math inline">\(\text{RMSEA} = .079 [.071, .087]\)</span>, <span class="math inline">\(\text{CFI} = .926\)</span>, <span class="math inline">\(\text{SRMR} = .051\)</span>. Yleisiä raja-arvoja vastaan malli ei sovi hyväksyttävästi, mutta on kuitenkin hyväksyttävyyden rajoilla.</p>
-<p>Ensimmäisen faktorin osalta standardisoidut lataukset ovat samoissa tasoissa (0.463-0.666), paitsi muuttujan <code>k26_12</code> (Valtakunnallinen prosessi) kohdalla (0.198).</p>
-<p>Toisen faktorin osalta standardisoidut lataukset ovat hyvinkin samanlaisia (0.788-0.843), paitsi muuttujan <code>k26_13</code> (En halua pahaa tekijälle) kohdalla (-0.537).</p>
-<p>Faktorien välinen korrelaatio on vahva (r = 0.782).</p>
-</section>
-<section id="sec-ilmoasenteet_validointi-cfa1-residuaalit" class="level3" data-number="30.3.2">
-<h3 data-number="30.3.2" class="anchored" data-anchor-id="sec-ilmoasenteet_validointi-cfa1-residuaalit"><span class="header-section-number">30.3.2</span> Residuaalien tarkastus</h3>
 <div class="cell">
 <details>
-<summary>Residuaalit</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>residuaalit <span class="ot">&lt;-</span> <span class="fu">lavResiduals</span>(cfa.tulos)<span class="sc">$</span>cov.z</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>residuaalit[<span class="fu">abs</span>(residuaalit) <span class="sc">&lt;</span> <span class="fl">1.96</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">abs</span>(residuaalit),</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">is.corr =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">na.label =</span> <span class="st">" "</span>,</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"color"</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<summary>Koodi</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ilmo1ka <span class="ot">&lt;-</span> <span class="fu">mean</span>(data<span class="sc">$</span>ilmo1, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>ilmo2ka <span class="ot">&lt;-</span> <span class="fu">mean</span>(data<span class="sc">$</span>ilmo2, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>ilmo1_fig <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(ilmo1) <span class="sc">|&gt;</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> ilmo1, <span class="at">y =</span> <span class="st">""</span>)) <span class="sc">+</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"#C20E1A"</span>) <span class="sc">+</span> </span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="st">""</span>, <span class="at">x =</span> ilmo1ka), <span class="at">colour =</span> <span class="st">"#C5B568"</span>,</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">3</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="st">""</span>, <span class="at">x =</span> ilmo1ka), <span class="at">label =</span> <span class="fu">round</span>(ilmo1ka, <span class="dv">2</span>),</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>            <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">fill =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">7</span>)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Pisteet (keskiarvo 1-7)"</span>,</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Heikoksi koettu hyöty-panos -suhde"</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.ticks.x =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>ilmo2_fig <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(ilmo2) <span class="sc">|&gt;</span></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> ilmo2, <span class="at">y =</span> <span class="st">""</span>)) <span class="sc">+</span></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"#C20E1A"</span>) <span class="sc">+</span> </span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="st">""</span>, <span class="at">x =</span> ilmo2ka), <span class="at">colour =</span> <span class="st">"#C5B568"</span>,</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">3</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="st">""</span>, <span class="at">x =</span> ilmo2ka), <span class="at">label =</span> <span class="fu">round</span>(ilmo2ka, <span class="dv">2</span>),</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>            <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">fill =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(</span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">7</span>)</span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Pisteet (keskiarvo 1-7)"</span>,</span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Negatiivisten vaikutusten pelko"</span></span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.ticks.x =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a>ilmo_korr <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggscatterstats</span>(</span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"ilmo1"</span>,</span>
+<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"ilmo2"</span>,</span>
+<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"robust"</span>,</span>
+<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">bf.message =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="dv">1</span>,</span>
+<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="st">"Heikoksi koettu hyöty-panos -suhde"</span>,</span>
+<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">"Negatiivisten vaikutusten pelko"</span></span>
+<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a>(ilmo1_fig <span class="sc">+</span> ilmo2_fig <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">axes =</span> <span class="st">"collect_y"</span>)) <span class="sc">/</span> ilmo_korr</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-ilmoasenteet_validointi-07-cfa-residuaalit" class="quarto-figure quarto-figure-center anchored">
+<div id="fig-ilmoasenteet_validointi-07-jakaumakuviot" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="ilmoasenteet_validointi_files/figure-html/fig-ilmoasenteet_validointi-07-cfa-residuaalit-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Kuva&nbsp;30.3: Z-standardisoitujen residuaalien kovarianssimatriisi, vain absoluuttiset residuaalit yli 1.96</figcaption>
+<p><img src="ilmoasenteet_validointi_files/figure-html/fig-ilmoasenteet_validointi-07-jakaumakuviot-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Kuva&nbsp;30.3: Ilmoitusjärjestelmiin kohdistuvien asenteiden summamuuttujien jakaumat</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p><a href="#fig-ilmoasenteet_validointi-07-cfa-residuaalit">Kuva&nbsp;<span>30.3</span></a> osoittaa useita ongelmallisia residuaaleja (&gt; |1.96|). Suurin ongelma näyttäisi olevan muuttujien <code>k26_2</code> (F1, ei johda toimenpiteisiin) ja <code>k26_11</code> (F1, joku muu hoitaa ilmoituksen puolestani) välillä.</p>
-<p>Myös muuttujat <code>k26_3</code> (F2, pelkään esihenkilön vastatoimia) ja <code>k26_9</code> (F1, unohdan tehdä ilmoituksen) osoittavat suurta virhekovarianssia.</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Faktorilataukset</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Virhekorrelaatiot</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div class="cell">
-<details>
-<summary>Koodi</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">modificationIndices</span>(cfa.tulos) <span class="sc">|&gt;</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mi)) <span class="sc">|&gt;</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(op <span class="sc">==</span> <span class="st">"=~"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(mi <span class="sc">&gt;</span> <span class="fl">36.745</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>  lhs op   rhs     mi    epc sepc.lv sepc.all sepc.nox
-1  f2 =~ k26_2 48.223  0.534   0.837    0.461    0.461
-2  f2 =~ k26_9 39.728 -0.455  -0.715   -0.413   -0.413
-3  f2 =~ k26_1 36.911 -0.418  -0.656   -0.396   -0.396</code></pre>
-</div>
-</div>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div class="cell">
-<details>
-<summary>Koodi</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">modificationIndices</span>(cfa.tulos) <span class="sc">|&gt;</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mi)) <span class="sc">|&gt;</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(op <span class="sc">==</span> <span class="st">"~~"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(mi <span class="sc">&gt;</span> <span class="fl">36.745</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>     lhs op    rhs     mi    epc sepc.lv sepc.all sepc.nox
-1  k26_2 ~~ k26_11 55.149 -0.408  -0.408   -0.280   -0.280
-2 k26_11 ~~ k26_13 36.901 -0.247  -0.247   -0.203   -0.203</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<p>Laskimme modifikaatioindeksin osoittavan ongelmallista sopivuutta, jos indeksi oli enemmän kuin kymmenen prosenttia globaalista khii neliö -suuresta (&gt; 36.745). Ongelmallisuuden rajan täyttivät kolme faktorilatausta ja kaksi virhekorrelaatiota.</p>
-<p>Muuttujat <code>k26_2</code> (Ei johda toimenpiteisiin), <code>k26_9</code> (Unohdan tehdä ilmoituksen) ja <code>k26_1</code> (Liian raskas prosessi) osoittivat suurta sopivuuden parannusta, jos ne annettaisiin ladata faktorille <code>f2</code>. Ensimmäisen muuttujan kohdalla odotettu standardisoitu lataus olisi positiivinen, 0.461. Toisen ja kolmannen muuttujan kohdalla odotettu standardisoidut lataukset olisivat negatiiviset, -0.413 ja -0.396.</p>
-<p>Muuttuja <code>k26_11</code> (Joku muu hoitaa) osoitti sopivuuden parannusta, jos sen annettaisiin virhekorreloida muuttujien <code>k26_2</code> (Ei johda toimenpiteisiin) ja <code>k26_13</code> (En halua pahaa tekijälle) kanssa. Odotetut standardisoidut ristikorrelaatiot olisivat molemmat negatiivisia, -0.280 ja -0.203.</p>
-<p>Muuttujan <code>k26_2</code> vapauttaminen molemmille faktoreille voi olla teoreettisesti motivoitua Kokemus toimenpiteiden puutteellisuudesta voidaan nähdä niin prosessiin liittyvänä esteenä kuin ilmoituksen sosiaalisena vaikutuksena.</p>
-<p>Muuttujien <code>k26_9</code> ja <code>k26_1</code> vapauttaminen molemmille faktoreille ei ole teoreettisesti motivoitua. Jos toinen faktori osoittaa ilmoituksen jälkeisiä odotettuja sosiaalisia vaikutuksia, unohtaminen tai prosessin koettu raskaus eivät sovi tähän tulkintaan.</p>
-<p>Muuttujan <code>k26_11</code> kahden virhekorrelaation vapauttaminen voisi olla teoreettisesti motivoitua, mutta virheet tulisi korreloida toisin päin kuin modifikaatioindeksit ehdottavat:</p>
-<ul>
-<li>Jos henkilö kokee, ettei ilmoitukset johda toimenpiteisiin (<code>k26_2</code>), hän ei välttämättä ole henkilökohtaisesti motivoitunut tekemään ilmoituksia, mutta voi hyväksyä, että joku muu hoitaisi ilmoituksen hänen puolestaan (<code>k26_11</code>). Jos henkilö on erittäin samaa mieltä toimenpiteiden olemattomuuden kanssa, hän voisi hyvin myös olla erittäin samaa mieltä siitä, että joku muu tekee ilmoituksen. Tämä ehdottaisi siis positiivista virhekorrelaatiota – mutta modifikaatioindeksi ehdottaa negatiivista virhekorrelaatiota, mikä ei sovi tulkintaan.</li>
-<li>Jos henkilö ei halua tehdä pahaa tekijälle (<code>k26_13</code>), hän voi kokea vastuunvapautuksen, jos joku muu hoitaisi ilmoituksen hänen puolestaan (<code>k26_11</code>). Toisin sanoen, virhekorrelaation tulisi olla positiviinen, mutta modifikaatioindeksi ehdottaa negatiivista korrelaatiota. Tämä mekanismi oletettavasti myös medioituisi muuttujan <code>k26_15</code> kautta, eli että tekijä saisi tietää: jos henkilö ei koe, että tekijä saa tietää ilmoituksesta, yhteyttä ei nähtäisi.</li>
-</ul>
-<p>Päätelmien pohjalta näemme, että muuttujan <code>k26_2</code> vapauttaminen molemmille faktoreille on motivoitua, mutta muut muutokset eivät ole.</p>
-</section>
-</section>
-<section id="sec-ilmoasenteet_validointi-cfa2" class="level2" data-number="30.4">
-<h2 data-number="30.4" class="anchored" data-anchor-id="sec-ilmoasenteet_validointi-cfa2"><span class="header-section-number">30.4</span> Uusi CFA-malli</h2>
-<div class="cell">
-<details>
-<summary>CFA-mallin määrittely ja asettaminen</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>cfa.malli<span class="fl">.2</span> <span class="ot">&lt;-</span>  <span class="st">'# latentit muuttujat</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="st">                f1 =~ k26_1 + k26_2 + k26_7 + k26_8 + k26_9 + k26_11 + k26_12</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="st">                f2 =~ k26_2 + k26_3 + k26_10 + k26_13 + k26_15 + k26_17 + k26_18</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="st">                </span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="st">                # faktorikovarianssit</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="st">                f1 ~~ f2</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="st">                '</span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>cfa.tulos<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">cfa</span>(</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> cfa.malli<span class="fl">.2</span>,</span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> data,</span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">estimator =</span> <span class="st">"MLR"</span>,</span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">missing =</span> <span class="st">"fiml"</span></span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cfa.tulos<span class="fl">.2</span>, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>, <span class="at">standardized =</span> <span class="cn">TRUE</span>, <span class="at">ci =</span> <span class="cn">TRUE</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>lavaan 0.6-18 ended normally after 56 iterations
-
-  Estimator                                         ML
-  Optimization method                           NLMINB
-  Number of model parameters                        41
-
-                                                  Used       Total
-  Number of observations                          1007        1025
-  Number of missing patterns                        39            
-
-Model Test User Model:
-                                              Standard      Scaled
-  Test Statistic                               421.817     331.948
-  Degrees of freedom                                63          63
-  P-value (Chi-square)                           0.000       0.000
-  Scaling correction factor                                  1.271
-    Yuan-Bentler correction (Mplus variant)                       
-
-Model Test Baseline Model:
-
-  Test statistic                              5290.734    3885.915
-  Degrees of freedom                                78          78
-  P-value                                        0.000       0.000
-  Scaling correction factor                                  1.362
-
-User Model versus Baseline Model:
-
-  Comparative Fit Index (CFI)                    0.931       0.929
-  Tucker-Lewis Index (TLI)                       0.915       0.913
-                                                                  
-  Robust Comparative Fit Index (CFI)                         0.934
-  Robust Tucker-Lewis Index (TLI)                            0.919
-
-Loglikelihood and Information Criteria:
-
-  Loglikelihood user model (H0)             -22016.196  -22016.196
-  Scaling correction factor                                  1.272
-      for the MLR correction                                      
-  Loglikelihood unrestricted model (H1)     -21805.287  -21805.287
-  Scaling correction factor                                  1.271
-      for the MLR correction                                      
-                                                                  
-  Akaike (AIC)                               44114.392   44114.392
-  Bayesian (BIC)                             44315.896   44315.896
-  Sample-size adjusted Bayesian (SABIC)      44185.677   44185.677
-
-Root Mean Square Error of Approximation:
-
-  RMSEA                                          0.075       0.065
-  90 Percent confidence interval - lower         0.068       0.059
-  90 Percent confidence interval - upper         0.082       0.071
-  P-value H_0: RMSEA &lt;= 0.050                    0.000       0.000
-  P-value H_0: RMSEA &gt;= 0.080                    0.128       0.000
-                                                                  
-  Robust RMSEA                                               0.075
-  90 Percent confidence interval - lower                     0.067
-  90 Percent confidence interval - upper                     0.083
-  P-value H_0: Robust RMSEA &lt;= 0.050                         0.000
-  P-value H_0: Robust RMSEA &gt;= 0.080                         0.137
-
-Standardized Root Mean Square Residual:
-
-  SRMR                                           0.049       0.049
-
-Parameter Estimates:
-
-  Standard errors                             Sandwich
-  Information bread                           Observed
-  Observed information based on                Hessian
-
-Latent Variables:
-                   Estimate  Std.Err  z-value  P(&gt;|z|) ci.lower ci.upper
-  f1 =~                                                                 
-    k26_1             1.000                               1.000    1.000
-    k26_2             0.636    0.119    5.345    0.000    0.403    0.869
-    k26_7             0.977    0.088   11.124    0.000    0.805    1.149
-    k26_8             1.228    0.093   13.189    0.000    1.045    1.410
-    k26_9             0.926    0.073   12.660    0.000    0.783    1.070
-    k26_11            0.656    0.066    9.917    0.000    0.526    0.785
-    k26_12            0.319    0.068    4.666    0.000    0.185    0.454
-  f2 =~                                                                 
-    k26_2             1.000                               1.000    1.000
-    k26_3             2.380    0.358    6.657    0.000    1.679    3.081
-    k26_10            2.306    0.359    6.428    0.000    1.603    3.009
-    k26_13           -1.177    0.202   -5.827    0.000   -1.572   -0.781
-    k26_15            2.117    0.324    6.537    0.000    1.482    2.751
-    k26_17            1.818    0.280    6.497    0.000    1.270    2.367
-    k26_18            2.080    0.323    6.446    0.000    1.447    2.712
-   Std.lv  Std.all
-                  
-    0.929    0.560
-    0.591    0.326
-    0.907    0.598
-    1.141    0.671
-    0.861    0.497
-    0.609    0.500
-    0.297    0.189
-                  
-    0.662    0.365
-    1.575    0.842
-    1.526    0.842
-   -0.779   -0.568
-    1.401    0.787
-    1.204    0.798
-    1.376    0.790
-
-Covariances:
-                   Estimate  Std.Err  z-value  P(&gt;|z|) ci.lower ci.upper
-  f1 ~~                                                                 
-    f2                0.438    0.067    6.570    0.000    0.307    0.568
-   Std.lv  Std.all
-                  
-    0.712    0.712
-
-Intercepts:
-                   Estimate  Std.Err  z-value  P(&gt;|z|) ci.lower ci.upper
-   .k26_1             3.890    0.053   73.895    0.000    3.787    3.994
-   .k26_2             3.882    0.057   67.589    0.000    3.769    3.995
-   .k26_7             2.335    0.048   48.338    0.000    2.240    2.430
-   .k26_8             3.046    0.054   56.494    0.000    2.941    3.152
-   .k26_9             3.120    0.055   56.611    0.000    3.012    3.228
-   .k26_11            2.008    0.039   51.430    0.000    1.931    2.084
-   .k26_12            5.215    0.050  105.110    0.000    5.118    5.312
-   .k26_3             2.755    0.059   46.358    0.000    2.638    2.871
-   .k26_10            2.665    0.058   46.223    0.000    2.552    2.778
-   .k26_13            5.781    0.044  132.182    0.000    5.695    5.867
-   .k26_15            2.693    0.057   47.646    0.000    2.582    2.804
-   .k26_17            2.144    0.048   44.391    0.000    2.050    2.239
-   .k26_18            2.700    0.055   48.733    0.000    2.591    2.808
-   Std.lv  Std.all
-    3.890    2.345
-    3.882    2.139
-    2.335    1.540
-    3.046    1.792
-    3.120    1.802
-    2.008    1.649
-    5.215    3.322
-    2.755    1.472
-    2.665    1.471
-    5.781    4.218
-    2.693    1.514
-    2.144    1.422
-    2.700    1.550
-
-Variances:
-                   Estimate  Std.Err  z-value  P(&gt;|z|) ci.lower ci.upper
-   .k26_1             1.888    0.094   20.176    0.000    1.705    2.072
-   .k26_2             1.951    0.106   18.442    0.000    1.744    2.158
-   .k26_7             1.476    0.118   12.558    0.000    1.246    1.706
-   .k26_8             1.590    0.109   14.544    0.000    1.376    1.804
-   .k26_9             2.258    0.117   19.301    0.000    2.029    2.488
-   .k26_11            1.111    0.082   13.519    0.000    0.950    1.272
-   .k26_12            2.376    0.107   22.128    0.000    2.166    2.587
-   .k26_3             1.023    0.089   11.430    0.000    0.847    1.198
-   .k26_10            0.953    0.084   11.329    0.000    0.788    1.118
-   .k26_13            1.272    0.078   16.217    0.000    1.118    1.426
-   .k26_15            1.202    0.104   11.522    0.000    0.998    1.407
-   .k26_17            0.826    0.058   14.195    0.000    0.712    0.940
-   .k26_18            1.140    0.089   12.873    0.000    0.966    1.314
-    f1                0.863    0.112    7.684    0.000    0.643    1.083
-    f2                0.438    0.135    3.239    0.001    0.173    0.703
-   Std.lv  Std.all
-    1.888    0.686
-    1.951    0.592
-    1.476    0.642
-    1.590    0.550
-    2.258    0.753
-    1.111    0.750
-    2.376    0.964
-    1.023    0.292
-    0.953    0.290
-    1.272    0.677
-    1.202    0.380
-    0.826    0.363
-    1.140    0.376
-    1.000    1.000
-    1.000    1.000</code></pre>
-</div>
-<details>
-<summary>CFA-mallin määrittely ja asettaminen</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lavaanPlot2</span>(</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  cfa.tulos<span class="fl">.2</span>,</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">labels =</span> labels,</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">include =</span> <span class="st">"covs"</span>,</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">coef_labels =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">stars =</span> <span class="fu">c</span>(<span class="st">"covs"</span>, <span class="st">"latent"</span>)</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-501767c656348c124868" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-501767c656348c124868">{"x":{"diagram":"digraph {\n\n\n\n\n  \"1\" [label = \"f1\", shape = \"oval\", group = \"latent\"] \n  \"2\" [label = \"f2\", shape = \"oval\", group = \"latent\"] \n  \"3\" [label = \"Raskas prosessi\", shape = \"box\", group = \"obs\"] \n  \"4\" [label = \"Toimenpiteiden\npuute\", shape = \"box\", group = \"obs\"] \n  \"5\" [label = \"Ei tilaisuutta\", shape = \"box\", group = \"obs\"] \n  \"6\" [label = \"Epäselvää\", shape = \"box\", group = \"obs\"] \n  \"7\" [label = \"Unohdan\", shape = \"box\", group = \"obs\"] \n  \"8\" [label = \"Joku muu\nhoitaa puolesta\", shape = \"box\", group = \"obs\"] \n  \"9\" [label = \"Valtakunnallinen\nprosessi\", shape = \"box\", group = \"obs\"] \n  \"10\" [label = \"Esihenkilön\nvastatoimet\", shape = \"box\", group = \"obs\"] \n  \"11\" [label = \"Ammattitaidon\nkyseenalaistaminen\", shape = \"box\", group = \"obs\"] \n  \"12\" [label = \"En halua\npahaa tekijälle\", shape = \"box\", group = \"obs\"] \n  \"13\" [label = \"Tekijä saa\ntieteää\", shape = \"box\", group = \"obs\"] \n  \"14\" [label = \"Pelko työpaikan\nmenettämisestä\", shape = \"box\", group = \"obs\"] \n  \"15\" [label = \"Kollegoiden\nvastatoimet\", shape = \"box\", group = \"obs\"] \n\"3\"->\"1\" [dir = \"back\", label = \"1***\"] \n\"4\"->\"1\" [dir = \"back\", label = \"0.64***\"] \n\"5\"->\"1\" [dir = \"back\", label = \"0.98***\"] \n\"6\"->\"1\" [dir = \"back\", label = \"1.23***\"] \n\"7\"->\"1\" [dir = \"back\", label = \"0.93***\"] \n\"8\"->\"1\" [dir = \"back\", label = \"0.66***\"] \n\"9\"->\"1\" [dir = \"back\", label = \"0.32***\"] \n\"4\"->\"2\" [dir = \"back\", label = \"1***\"] \n\"10\"->\"2\" [dir = \"back\", label = \"2.38***\"] \n\"11\"->\"2\" [dir = \"back\", label = \"2.31***\"] \n\"12\"->\"2\" [dir = \"back\", label = \"-1.18***\"] \n\"13\"->\"2\" [dir = \"back\", label = \"2.12***\"] \n\"14\"->\"2\" [dir = \"back\", label = \"1.82***\"] \n\"15\"->\"2\" [dir = \"back\", label = \"2.08***\"] \n\"2\"->\"1\" [dir = \"both\", label = \"0.44***\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
-</div>
-</div>
-<p>Malli asettui hyväksyttävästi eikä Heywood-tapauksia esiintynyt. Globaali khii neliö -suure on merkitsevä, mikä osoittaisi huonoa sopivuutta.</p>
-<p>Robustit sopivuusindeksit ovat seuraavat: <span class="math inline">\(\text{RMSEA} = .075 [.067, .083]\)</span>, <span class="math inline">\(\text{CFI} = .934\)</span>, <span class="math inline">\(\text{SRMR} = .049\)</span>. RMSEA ja CFI eivät täytä yleisiä raja-arvoja, mutta SRMR on hyväksyttävä.</p>
-<p>Ensimmäisen faktorin osalta standardisoidut lataukset vaihtelevat hieman enemmän kuin aikaisemmin (0.326-0.671), Muuttujan <code>k26_12</code> (Valtakunnallinen prosessi) lataus on vielä matalin kaikista (0.189).</p>
-<p>Toisen faktorin osalta standardisoidut lataukset ovat hyvinkin samanlaisia (0.787-0.842), paitsi muuttujien <code>k26_13</code> (En halua pahaa tekijälle) ja <code>k26_2</code> (Ei johda toimenpiteisiin) kohdalla (-0.568 ja 0.365).</p>
-<p>Faktorien välinen korrelaatio on vieläkin vahva (r = 0.712).</p>
-<section id="sec-ilmoasenteet_validointi-cfa2-vertailu" class="level3" data-number="30.4.1">
-<h3 data-number="30.4.1" class="anchored" data-anchor-id="sec-ilmoasenteet_validointi-cfa2-vertailu"><span class="header-section-number">30.4.1</span> Mallien vertailu</h3>
-<div class="cell">
-<details>
-<summary>Kahden CFA-mallin sopivuuksien vertailu</summary>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>vrt <span class="ot">&lt;-</span> <span class="fu">compareFit</span>(</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  cfa.tulos<span class="fl">.2</span>,</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  cfa.tulos,</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">moreIndices =</span> <span class="cn">TRUE</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(vrt)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>################### Nested Model Comparison #########################
-
-Scaled Chi-Squared Difference Test (method = "satorra.bentler.2001")
-
-lavaan-&gt;unknown():  
-   lavaan NOTE: The "Chisq" column contains standard test statistics, not the 
-   robust test that should be reported per model. A robust difference test is 
-   a function of two standard (not robust) statistics.
-            Df   AIC   BIC  Chisq Chisq diff Df diff Pr(&gt;Chisq)    
-cfa.tulos.2 63 44114 44316 421.82                                  
-cfa.tulos   64 44159 44355 468.27     30.886       1  2.736e-08 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-####################### Model Fit Indices ###########################
-            chisq.scaled df.scaled pvalue.scaled rmsea.robust cfi.robust
-cfa.tulos.2     331.948†        63          .000        .075†      .934†
-cfa.tulos       367.450         64          .000        .079       .926 
-            tli.robust  srmr        aic        bic
-cfa.tulos.2      .919† .049† 44114.392† 44315.896†
-cfa.tulos        .910  .051  44158.844  44355.433 
-
-################## Differences in Fit Indices #######################
-                        df.scaled rmsea.robust cfi.robust tli.robust  srmr
-cfa.tulos - cfa.tulos.2         1        0.004     -0.008     -0.009 0.002
-                           aic    bic
-cfa.tulos - cfa.tulos.2 44.452 39.538</code></pre>
-</div>
-</div>
-<p>Malli 2 sopii merkitsevästi paremmin kuin Malli 1. Kaikki Malli 2:n sopivuusindeksit ovat parantuneet verrattuna Malli 1:een. Parannukset ovat kuitenkin pieniä: <span class="math inline">\(\Delta \text{RMSEA} = -0.004, \Delta \text{CFI} = 0.008, \Delta \text{SRMR} = -0.002, \Delta \text{AIC} = -44.5\)</span>.</p>
-</section>
-<section id="sec-ilmoasenteet_validointi-cfa2-residuaalit" class="level3" data-number="30.4.2">
-<h3 data-number="30.4.2" class="anchored" data-anchor-id="sec-ilmoasenteet_validointi-cfa2-residuaalit"><span class="header-section-number">30.4.2</span> Residuaalien tarkastus</h3>
-<div class="cell">
-<details>
-<summary>Residuaalit</summary>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>residuaalit <span class="ot">&lt;-</span> <span class="fu">lavResiduals</span>(cfa.tulos<span class="fl">.2</span>)<span class="sc">$</span>cov.z</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>residuaalit[<span class="fu">abs</span>(residuaalit) <span class="sc">&lt;</span> <span class="fl">1.96</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">abs</span>(residuaalit),</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">is.corr =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">na.label =</span> <span class="st">" "</span>,</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"color"</span></span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<div id="fig-ilmoasenteet_validointi-11-cfa2-residuaalit" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ilmoasenteet_validointi_files/figure-html/fig-ilmoasenteet_validointi-11-cfa2-residuaalit-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Kuva&nbsp;30.4: Z-standardisoitujen residuaalien kovarianssimatriisi, vain absoluuttiset residuaalit yli 1.96</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p><a href="#fig-ilmoasenteet_validointi-11-cfa2-residuaalit">Kuva&nbsp;<span>30.4</span></a> osoittaa vieläkin useita ongelmallisia residuaaleja (&gt; |1.96|). Suurin ongelma näyttäisi olevan muuttujien <code>k26_2</code> (F1, ei johda toimenpiteisiin) ja <code>k26_11</code> (F1, joku muu hoitaa ilmoituksen puolestani) välillä.</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Faktorilataukset</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Virhekorrelaatiot</a></li></ul>
-<div class="tab-content">
-<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
-<div class="cell">
-<details>
-<summary>Koodi</summary>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">modificationIndices</span>(cfa.tulos<span class="fl">.2</span>) <span class="sc">|&gt;</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mi)) <span class="sc">|&gt;</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(op <span class="sc">==</span> <span class="st">"=~"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(mi <span class="sc">&gt;</span> <span class="fl">33.3948</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>  lhs op   rhs     mi   epc sepc.lv sepc.all sepc.nox
-1  f2 =~ k26_7 41.308 0.832   0.551    0.363    0.363</code></pre>
-</div>
-</div>
-</div>
-<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
-<div class="cell">
-<details>
-<summary>Koodi</summary>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">modificationIndices</span>(cfa.tulos<span class="fl">.2</span>) <span class="sc">|&gt;</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mi)) <span class="sc">|&gt;</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(op <span class="sc">==</span> <span class="st">"~~"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(mi <span class="sc">&gt;</span> <span class="fl">33.3948</span>)</span></code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>     lhs op    rhs     mi    epc sepc.lv sepc.all sepc.nox
-1  k26_2 ~~ k26_11 39.697 -0.334  -0.334   -0.227   -0.227
-2 k26_11 ~~ k26_13 33.931 -0.234  -0.234   -0.197   -0.197
-3  k26_1 ~~  k26_2 33.836  0.416   0.416    0.217    0.217</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<p>Laskimme tälle mallille raja-arvoksi modifikaatioindeksin yli 33.3948. Ongelmallisuuden rajan täytti yksi faktorilataus ja kolme virhekorrelaatiota.</p>
-<p>Muuttuja <code>k26_7</code> (Ei tilaisuutta) osoitti suurta sopivuuden parannusta, jos se annettaisiin ladata faktorille <code>f2</code>. Muuttujan odotettu standardisoitu lataus olisi positiivinen, 0.363.</p>
-<p>Muuttuja <code>k26_11</code> (Joku muu hoitaa) osoitti vieläkin sopivuuden parannusta, jos sen annettaisiin virhekorreloida muuttujien <code>k26_2</code> (Ei johda toimenpiteisiin) ja <code>k26_13</code> (En halua pahaa tekijälle) kanssa. Odotetut ristikorrelaatiot olivat kuta kuinkin samoissa tasoissa kuin aikaisemmin, -0.227 ja -0.197.</p>
-<p>Lisäksi muuttuja <code>k26_1</code> (Liian raskas prosessi) osoitti sopivuuden parannusta, jos sen annettaisiin virhekorreloida muuttujan <code>k26_2</code> (Ei johda toimenpiteisiin) kanssa. Odotettu standardisoitu ristikorrelaatio olisi positiivinen, 0.217.</p>
-<p>Muuttujan <code>k26_7</code> vapauttaminen molemmille faktoreille voi olla teoreettisesti motivoitua. Tilaisuuden puute voi ainakin osittain johtua sosiaalisesta työympäristössä; jos esimerkiksi henkilö joutuisi tekemään ilmoituksen jaetulla laitteella tai jaetussa ympäristössä (esim. kahvihuoneen tietokoneella), muut kollegat voisivat saada tietää ilmoituksesta, mikä taas voi yhtyä negatiivisiin asenteisiin ilmoituksen sosiaalisista vaikutuksista. Tämä implikoisi medioivaa suhdetta: jos henkilön taso faktorilla <code>f2</code> on matala, hän ei näkisi tätä ongelmana, jolloin muuttujan lataus faktorille <code>f2</code> pitäisi kadota.</p>
-<p>Muuttujan <code>k26_11</code> virhekorrelaatiot eivät ole motivoituja (ks. yllä).</p>
-<p>Muuttujan <code>k26_1</code> virhekorrelaation vapauttaminen muuttujan <code>k26_2</code> kanssa voi olla motivoitua. Nämä voivat yhdessä mitata henkilön agenssin kokemuksen puutetta. Toisaalta tämä teoria vaatisi, että muut agenssiin liittyvät asenteet (esim. valtakunnallisen prosessin suosiminen) yhteiskorreloisivat, eli muodostaisivat oman faktorin. On myös mahdollista, että faktori <code>f1</code> edustaa juuri agenssin tai prosessin kontrollin kokemusten puutetta – tuolloin virheen tulisi jo olla katettu faktorilla, eli virhekorrelaatio ei voi edustaa tätä tulkintaa.</p>
-<p>Emme jatka analyysia näiden vapauttamisella, sillä mahdolliset muutokset voivat kapitalisoida sattumaa tässä vaiheessa.</p>
-</section>
-</section>
-<section id="sec-ilmoasenteet_validointi-yhteenveto" class="level2" data-number="30.5">
-<h2 data-number="30.5" class="anchored" data-anchor-id="sec-ilmoasenteet_validointi-yhteenveto"><span class="header-section-number">30.5</span> Yhteenveto</h2>
-<p>Mittaristo näyttäisi edustavan kahden faktorin rakennetta. Ensimmäinen faktori voi edustaa joko ilmoitusprosessiin liittyviä teknisiä ja käytännöllisiä haasteita, tai syvemmällä tasolla henkilön kokemusta prosessin kontrollin ja siihen liittyvän agenssin puutetta. Toinen faktori edustaa tulkinnamme mukaan ilmoituksen koettuja negatiivisia sosiaalisia vaikutuksia.</p>
-<p>Malli kuitenkin sopii kohtalaisen heikosti. Mahdollisia selitteitä tälle voi olla, että otoksessamme esiintyy heterogeenisyyttä eri alaryhmien välillä, että mallista puuttuu tärkeitä muuttujia tai että malliin on lisätty kuulumattomia muuttujia. Jatkotutkimuksen tulisi selvittää näitä mahdollisuuksia suuremmilla otoksilla, jotta tarkemmat analyysit ovat mahdollisia; tällä hetkellä otoksemme ei kokemuksen mukaan mahdollista kovin tarkkoja kohderyhmävertailuja.</p>
 
 
 <!-- -->
@@ -1619,443 +1023,258 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Lähdekoodi</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb28" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Ilmoitusjärjestelmäasenteiden verkostoanalyysi {#sec-ilmoasenteet_validointi}</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>eval: true</span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>Tässä osiossa analysoimme ilmoitusjärjestelmiin kohdistuvien asennemuuttujien faktorirakennetta verkostoanalyysin ja konfirmatorisen faktorianalyysin avulla</span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: ilmoasenteet_validointi-00-paketit</span></span>
-<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Osiossa käytetyt paketit"</span></span>
-<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(EFAtools) <span class="co"># Useimmat datasopivuusfunktiot</span></span>
-<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(HH) <span class="co"># VIF-suureen laskeminen</span></span>
-<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan) <span class="co"># EFA- ja CFA-mallien asettaminen</span></span>
-<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(EGAnet) <span class="co"># EGA-mallien asettaminen</span></span>
-<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaanPlot) <span class="co"># CFA-mallien piirtäminen</span></span>
-<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot) <span class="co"># Korrelaatio- ja kovarianssimatriisien piirtäminen</span></span>
-<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semTools) <span class="co"># CFA-mallien vertailu</span></span>
-<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-24"><a href="#cb28-24" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb28-25"><a href="#cb28-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-28"><a href="#cb28-28" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb28-29"><a href="#cb28-29" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: ilmoasenteet_validointi-01-avaaminen</span></span>
-<span id="cb28-30"><a href="#cb28-30" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Datan avaaminen"</span></span>
-<span id="cb28-31"><a href="#cb28-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-32"><a href="#cb28-32" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"output/anonymisoitudata.csv"</span>, <span class="at">tryLogical =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb28-33"><a href="#cb28-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-34"><a href="#cb28-34" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb28-35"><a href="#cb28-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-36"><a href="#cb28-36" aria-hidden="true" tabindex="-1"></a><span class="fu">## Muuttujien valitseminen analyysiin {#sec-ilmoasenteet_validointi-muuttujat}</span></span>
-<span id="cb28-37"><a href="#cb28-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-38"><a href="#cb28-38" aria-hidden="true" tabindex="-1"></a>Päätimme jättää pois neljä muuttujaa patteristosta:</span>
-<span id="cb28-39"><a href="#cb28-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-40"><a href="#cb28-40" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_4`</span>: Jos henkilöllä on alentunut toimintakyky, häntä ei voi syyttää toiminnastaan</span>
-<span id="cb28-41"><a href="#cb28-41" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_6`</span>: Konfliktitilanteet ovat osa työtäni</span>
-<span id="cb28-42"><a href="#cb28-42" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_14`</span>: Tilanteet ovat yksittäistapauksia</span>
-<span id="cb28-43"><a href="#cb28-43" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_5`</span>: Ilmoitan kaikki kohtaamani tilanteet</span>
-<span id="cb28-44"><a href="#cb28-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-45"><a href="#cb28-45" aria-hidden="true" tabindex="-1"></a>Ensimmäiset kolme muuttujaa eivät ole ilmoitusjärjestelmiin kohdistuvia asenteita, vaan ennemmin yleisiä asenteita epäasiallisia ja väkivaltaisia kohtaamisia kohtaan. Viimeinen muuttuja liittyy ilmoitusjärjestelmiin, mutta kuvailee ennemmin vastaajan toimintaa eikä asenteita.</span>
-<span id="cb28-46"><a href="#cb28-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-47"><a href="#cb28-47" aria-hidden="true" tabindex="-1"></a>Otimme mukaan neljätoista muuttujaa analyysiin:</span>
-<span id="cb28-48"><a href="#cb28-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-49"><a href="#cb28-49" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_1`</span>: Prosessit ovat liian raskaita tai työläitä</span>
-<span id="cb28-50"><a href="#cb28-50" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_2`</span>: Prosessit eivät johda toimenpiteisiin</span>
-<span id="cb28-51"><a href="#cb28-51" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_3`</span>: Pelkään esihenkilön vastatoimia</span>
-<span id="cb28-52"><a href="#cb28-52" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_7`</span>: Minulla ei ole tilaisuutta tai mahdollisuutta ilmoittaa</span>
-<span id="cb28-53"><a href="#cb28-53" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_8`</span>: Epäselvää, milloin minun tulisi ilmoittaa</span>
-<span id="cb28-54"><a href="#cb28-54" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_9`</span>: Unohdan ilmoittaa</span>
-<span id="cb28-55"><a href="#cb28-55" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_10`</span>: Pelkään ammattitaitoni kyseenalaistamista</span>
-<span id="cb28-56"><a href="#cb28-56" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_11`</span>: Ajattelin, että joku muu hoitaa ilmoituksen</span>
-<span id="cb28-57"><a href="#cb28-57" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_12`</span>: Valtakunnallisesta ilmoitusprosessista olisi hyötyä</span>
-<span id="cb28-58"><a href="#cb28-58" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_13`</span>: En halua pahaa tekijälle</span>
-<span id="cb28-59"><a href="#cb28-59" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_15`</span>: Pelkään, että tekijä saa tietää ilmoituksesta</span>
-<span id="cb28-60"><a href="#cb28-60" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_16`</span>: Kollegani näkisi minut ongelmallisena tai vaikeana</span>
-<span id="cb28-61"><a href="#cb28-61" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_17`</span>: Pelkään menettäväni työpaikkani</span>
-<span id="cb28-62"><a href="#cb28-62" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_18`</span>: Pelkään kollegoiden vastatoimia</span>
-<span id="cb28-63"><a href="#cb28-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-64"><a href="#cb28-64" aria-hidden="true" tabindex="-1"></a>Muuttuja <span class="in">`k26_12`</span> käännettiin ennen analyysia, sillä se on ainoa positiivisesti muotoiltu väite. Täten mahdolliset faktorit edustavat negatiivisia mielipiteitä.</span>
-<span id="cb28-65"><a href="#cb28-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-68"><a href="#cb28-68" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb28-69"><a href="#cb28-69" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: ilmoasenteet_validointi-02-koodaus</span></span>
-<span id="cb28-70"><a href="#cb28-70" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Yhden muuttujan kääntäminen ennen analyysia"</span></span>
-<span id="cb28-71"><a href="#cb28-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-72"><a href="#cb28-72" aria-hidden="true" tabindex="-1"></a><span class="co"># Tallennetaan muuttujien nimet helpottaakseen analyysia</span></span>
-<span id="cb28-73"><a href="#cb28-73" aria-hidden="true" tabindex="-1"></a>muuttujat <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb28-74"><a href="#cb28-74" aria-hidden="true" tabindex="-1"></a>  <span class="st">"k26_1"</span>, <span class="st">"k26_2"</span>, <span class="st">"k26_3"</span>, <span class="st">"k26_7"</span>, <span class="st">"k26_8"</span>,</span>
-<span id="cb28-75"><a href="#cb28-75" aria-hidden="true" tabindex="-1"></a>  <span class="st">"k26_9"</span>, <span class="st">"k26_10"</span>, <span class="st">"k26_11"</span>, <span class="st">"k26_12"</span>, <span class="st">"k26_13"</span>,</span>
-<span id="cb28-76"><a href="#cb28-76" aria-hidden="true" tabindex="-1"></a>  <span class="st">"k26_15"</span>, <span class="st">"k26_16"</span>, <span class="st">"k26_17"</span>, <span class="st">"k26_18"</span></span>
-<span id="cb28-77"><a href="#cb28-77" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb28-78"><a href="#cb28-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-79"><a href="#cb28-79" aria-hidden="true" tabindex="-1"></a><span class="co"># Käännetään muuttuja k26_13</span></span>
-<span id="cb28-80"><a href="#cb28-80" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
-<span id="cb28-81"><a href="#cb28-81" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb28-82"><a href="#cb28-82" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
-<span id="cb28-83"><a href="#cb28-83" aria-hidden="true" tabindex="-1"></a>      k26_13,</span>
-<span id="cb28-84"><a href="#cb28-84" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_match</span>(</span>
-<span id="cb28-85"><a href="#cb28-85" aria-hidden="true" tabindex="-1"></a>        .x,</span>
-<span id="cb28-86"><a href="#cb28-86" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span> <span class="sc">~</span> <span class="dv">7</span>,</span>
-<span id="cb28-87"><a href="#cb28-87" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="sc">~</span> <span class="dv">6</span>,</span>
-<span id="cb28-88"><a href="#cb28-88" aria-hidden="true" tabindex="-1"></a>        <span class="dv">3</span> <span class="sc">~</span> <span class="dv">5</span>,</span>
-<span id="cb28-89"><a href="#cb28-89" aria-hidden="true" tabindex="-1"></a>        <span class="dv">4</span> <span class="sc">~</span> <span class="dv">4</span>,</span>
-<span id="cb28-90"><a href="#cb28-90" aria-hidden="true" tabindex="-1"></a>        <span class="dv">5</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
-<span id="cb28-91"><a href="#cb28-91" aria-hidden="true" tabindex="-1"></a>        <span class="dv">6</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
-<span id="cb28-92"><a href="#cb28-92" aria-hidden="true" tabindex="-1"></a>        <span class="dv">7</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb28-93"><a href="#cb28-93" aria-hidden="true" tabindex="-1"></a>        <span class="cn">NA</span> <span class="sc">~</span> <span class="cn">NA</span></span>
-<span id="cb28-94"><a href="#cb28-94" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb28-95"><a href="#cb28-95" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb28-96"><a href="#cb28-96" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb28-97"><a href="#cb28-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-98"><a href="#cb28-98" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb28-99"><a href="#cb28-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-100"><a href="#cb28-100" aria-hidden="true" tabindex="-1"></a><span class="fu">## Eksploratiivinen verkostoanalyysi {#sec-ilmoasenteet_validointi-ega}</span></span>
-<span id="cb28-101"><a href="#cb28-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-102"><a href="#cb28-102" aria-hidden="true" tabindex="-1"></a>Teimme ensin eksploratiivisen verkostoanalyysin (engl. *exploratory graph analysis*, EGA) ymmärtääksemme muuttujien välisiä suhteita paremmin.</span>
-<span id="cb28-103"><a href="#cb28-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-106"><a href="#cb28-106" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb28-107"><a href="#cb28-107" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: ilmoasenteet_validointi-03-egaUVA</span></span>
-<span id="cb28-108"><a href="#cb28-108" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Uniikin varianssin analyysi"</span></span>
-<span id="cb28-109"><a href="#cb28-109" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-110"><a href="#cb28-110" aria-hidden="true" tabindex="-1"></a>ega.uva <span class="ot">&lt;-</span> <span class="fu">UVA</span>(</span>
-<span id="cb28-111"><a href="#cb28-111" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> data <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="fu">all_of</span>(muuttujat))</span>
-<span id="cb28-112"><a href="#cb28-112" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb28-113"><a href="#cb28-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-114"><a href="#cb28-114" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(ega.uva)</span>
-<span id="cb28-115"><a href="#cb28-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-116"><a href="#cb28-116" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb28-117"><a href="#cb28-117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-118"><a href="#cb28-118" aria-hidden="true" tabindex="-1"></a>Uniikin varianssin analyysi tunnistaa yhden muuttujaparin, joiden varianssit verkostomallissa ovat liian päällekkäisiä: <span class="in">`k26_16`</span> ("Kollegani näkisivät minut ongelmallisena tai vaikeana jos tekisin ilmoituksen") ja <span class="in">`k26_18`</span> ("Pelkään kollegoideni ryhtyvän vastatoimiin, jos tekisin ilmoituksen").</span>
-<span id="cb28-119"><a href="#cb28-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-120"><a href="#cb28-120" aria-hidden="true" tabindex="-1"></a>Malli ehdottaa poistettavaksi muuttujaa <span class="in">`r ega.uva$keep_remove$keep`</span>.</span>
-<span id="cb28-121"><a href="#cb28-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-124"><a href="#cb28-124" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb28-125"><a href="#cb28-125" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-ilmoasenteet_validointi-04-ega</span></span>
-<span id="cb28-126"><a href="#cb28-126" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Eksploratiivinen verkostoanalyysi, 14 muuttujaa, Walktrap-algoritmi, GLASSO-malli"</span></span>
-<span id="cb28-127"><a href="#cb28-127" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "EGA-mallin asettaminen"</span></span>
-<span id="cb28-128"><a href="#cb28-128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-129"><a href="#cb28-129" aria-hidden="true" tabindex="-1"></a>ega.malli <span class="ot">&lt;-</span> <span class="fu">EGA</span>(</span>
-<span id="cb28-130"><a href="#cb28-130" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> ega.uva<span class="sc">$</span>reduced_data,</span>
-<span id="cb28-131"><a href="#cb28-131" aria-hidden="true" tabindex="-1"></a>  <span class="at">uni.method =</span> <span class="st">"LE"</span>,</span>
-<span id="cb28-132"><a href="#cb28-132" aria-hidden="true" tabindex="-1"></a>  <span class="at">corr =</span> <span class="st">"pearson"</span>,</span>
-<span id="cb28-133"><a href="#cb28-133" aria-hidden="true" tabindex="-1"></a>  <span class="at">na.data =</span> <span class="st">"pairwise"</span>,</span>
-<span id="cb28-134"><a href="#cb28-134" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> <span class="st">"glasso"</span>,</span>
-<span id="cb28-135"><a href="#cb28-135" aria-hidden="true" tabindex="-1"></a>  <span class="at">algorithm =</span> <span class="st">"walktrap"</span></span>
-<span id="cb28-136"><a href="#cb28-136" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb28-137"><a href="#cb28-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-138"><a href="#cb28-138" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(ega.malli)</span>
-<span id="cb28-139"><a href="#cb28-139" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-140"><a href="#cb28-140" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb28-141"><a href="#cb28-141" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-142"><a href="#cb28-142" aria-hidden="true" tabindex="-1"></a>@fig-ilmoasenteet_validointi-04-ega osoittaa EGA-mallin estimoinnin rakenteen. Malli ehdottaa kahta muuttujaryhmää, A ja B.</span>
-<span id="cb28-143"><a href="#cb28-143" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-144"><a href="#cb28-144" aria-hidden="true" tabindex="-1"></a>Ryhmä A:</span>
-<span id="cb28-145"><a href="#cb28-145" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-146"><a href="#cb28-146" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_1`</span> Liian raskaat</span>
-<span id="cb28-147"><a href="#cb28-147" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_2`</span> Ei johda toimenpiteisiin</span>
-<span id="cb28-148"><a href="#cb28-148" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_7`</span> Ei tilaisuutta</span>
-<span id="cb28-149"><a href="#cb28-149" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_8`</span> Epäselvää</span>
-<span id="cb28-150"><a href="#cb28-150" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_9`</span> Unohdan</span>
-<span id="cb28-151"><a href="#cb28-151" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_11`</span> Joku muu hoitaa</span>
-<span id="cb28-152"><a href="#cb28-152" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_12`</span> Valtakunnallinen prosessi (käännetty)</span>
-<span id="cb28-153"><a href="#cb28-153" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-154"><a href="#cb28-154" aria-hidden="true" tabindex="-1"></a>Ryhmä B:</span>
-<span id="cb28-155"><a href="#cb28-155" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-156"><a href="#cb28-156" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_3`</span> Pelkään esihenkilön vastatoimia</span>
-<span id="cb28-157"><a href="#cb28-157" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_10`</span> Ammattitaidon kyseenalaistaminen</span>
-<span id="cb28-158"><a href="#cb28-158" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_13`</span> En halua pahaa</span>
-<span id="cb28-159"><a href="#cb28-159" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_15`</span> Tekijä saa tietää</span>
-<span id="cb28-160"><a href="#cb28-160" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_17`</span> Pelkään työpaikan menettämistä</span>
-<span id="cb28-161"><a href="#cb28-161" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_18`</span> Pelkään kollegoiden vastatoimia</span>
-<span id="cb28-162"><a href="#cb28-162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-163"><a href="#cb28-163" aria-hidden="true" tabindex="-1"></a>Muuttujien perusteella ryhmä A:n voi tulkita edustavan ilmoitusprosessiin liittyviä teknisiä ja käytännöllisiä haasteita. Ryhmä B:n voi tulkita edustavan ilmoituksen sosiaalisia vaikutuksia.</span>
-<span id="cb28-164"><a href="#cb28-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-167"><a href="#cb28-167" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb28-168"><a href="#cb28-168" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-ilmoasenteet_validointi-05-egastabiliteetti</span></span>
-<span id="cb28-169"><a href="#cb28-169" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "EGA-mallin ulottuvuuksien stabiliteetti"</span></span>
-<span id="cb28-170"><a href="#cb28-170" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "EGA-mallin ulottuvuuksien stabiliteetti"</span></span>
-<span id="cb28-171"><a href="#cb28-171" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-172"><a href="#cb28-172" aria-hidden="true" tabindex="-1"></a>ega.boot <span class="ot">&lt;-</span> <span class="fu">bootEGA</span>(</span>
-<span id="cb28-173"><a href="#cb28-173" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> ega.uva<span class="sc">$</span>reduced_data,</span>
-<span id="cb28-174"><a href="#cb28-174" aria-hidden="true" tabindex="-1"></a>  <span class="at">iter =</span> <span class="dv">1000</span>,</span>
-<span id="cb28-175"><a href="#cb28-175" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"resampling"</span>,</span>
-<span id="cb28-176"><a href="#cb28-176" aria-hidden="true" tabindex="-1"></a>  <span class="at">uni.method =</span> <span class="st">"LE"</span>,</span>
-<span id="cb28-177"><a href="#cb28-177" aria-hidden="true" tabindex="-1"></a>  <span class="at">corr =</span> <span class="st">"pearson"</span>,</span>
-<span id="cb28-178"><a href="#cb28-178" aria-hidden="true" tabindex="-1"></a>  <span class="at">na.data =</span> <span class="st">"pairwise"</span>,</span>
-<span id="cb28-179"><a href="#cb28-179" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> <span class="st">"glasso"</span>,</span>
-<span id="cb28-180"><a href="#cb28-180" aria-hidden="true" tabindex="-1"></a>  <span class="at">algorithm =</span> <span class="st">"walktrap"</span>,</span>
-<span id="cb28-181"><a href="#cb28-181" aria-hidden="true" tabindex="-1"></a>  <span class="at">seed =</span> <span class="dv">1234</span> <span class="co"># Mahdollistaa toistettavuuden</span></span>
-<span id="cb28-182"><a href="#cb28-182" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb28-183"><a href="#cb28-183" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-184"><a href="#cb28-184" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(ega.boot)</span>
-<span id="cb28-185"><a href="#cb28-185" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-186"><a href="#cb28-186" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb28-187"><a href="#cb28-187" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-188"><a href="#cb28-188" aria-hidden="true" tabindex="-1"></a>Stabiliteettiarvot yli noin 0.75 ovat luotettavia. Analyysi osoittaa, että muuttuja <span class="in">`k26_13`</span> (Tekijä saa tietää) ei ole vakaa bootstrap-analyysissa, ja voi vaihdella otosten välillä. Muuttujat <span class="in">`k26_7`</span> (Ei tilaisuutta) ja <span class="in">`k26_2`</span> (Ei johda toimenpiteisiin) ovat vakauden rajalla. Muut muuttujat täyttävät vakauden raja-arvon.</span>
-<span id="cb28-189"><a href="#cb28-189" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-190"><a href="#cb28-190" aria-hidden="true" tabindex="-1"></a>Ulottuvuuksien mediaani oli 2, mutta 95 prosentin luottamusväli oli laaja ja sisälsi myös yhden ja kolmen (95 % CI 0,98-3,02). Tuhannen bootstrap-ajon mallissa kahden ulottuvuuden malli esiintyi 76,9 prosenttia kerroista, kolmen ulottuvuuden malli 19,4 prosenttia kerroista ja neljän ulottuvuuden malli 3,7 prosenttia kerroista.</span>
-<span id="cb28-191"><a href="#cb28-191" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-192"><a href="#cb28-192" aria-hidden="true" tabindex="-1"></a><span class="fu">## EGA-mallin asettaminen CFA-malliin {#sec-ilmoasenteet_validointi-cfa1}</span></span>
-<span id="cb28-193"><a href="#cb28-193" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-194"><a href="#cb28-194" aria-hidden="true" tabindex="-1"></a>Kokeilimme asettaa CFA-mallin, jossa noudatetaan EGA-analyysin tuottamaa faktorirakennetta. Käytimme robustia ML-menetelmää FIML-poistomenetelmällä.</span>
-<span id="cb28-195"><a href="#cb28-195" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-196"><a href="#cb28-196" aria-hidden="true" tabindex="-1"></a><span class="fu">### Mallin asettaminen {#sec-ilmoasenteet_validointi-cfa1-asettaminen}</span></span>
-<span id="cb28-197"><a href="#cb28-197" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-200"><a href="#cb28-200" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb28-201"><a href="#cb28-201" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: ilmoasenteet_validointi-06-cfamalli</span></span>
-<span id="cb28-202"><a href="#cb28-202" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "CFA-mallin määrittely ja asettaminen"</span></span>
-<span id="cb28-203"><a href="#cb28-203" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-204"><a href="#cb28-204" aria-hidden="true" tabindex="-1"></a>cfa.malli <span class="ot">&lt;-</span>  <span class="st">'# latentit muuttujat</span></span>
-<span id="cb28-205"><a href="#cb28-205" aria-hidden="true" tabindex="-1"></a><span class="st">                f1 =~ k26_1 + k26_2 + k26_7 + k26_8 + k26_9 + k26_11 + k26_12</span></span>
-<span id="cb28-206"><a href="#cb28-206" aria-hidden="true" tabindex="-1"></a><span class="st">                f2 =~ k26_3 + k26_10 + k26_13 + k26_15 + k26_17 + k26_18</span></span>
-<span id="cb28-207"><a href="#cb28-207" aria-hidden="true" tabindex="-1"></a><span class="st">                </span></span>
-<span id="cb28-208"><a href="#cb28-208" aria-hidden="true" tabindex="-1"></a><span class="st">                # faktorikovarianssit</span></span>
-<span id="cb28-209"><a href="#cb28-209" aria-hidden="true" tabindex="-1"></a><span class="st">                f1 ~~ f2</span></span>
-<span id="cb28-210"><a href="#cb28-210" aria-hidden="true" tabindex="-1"></a><span class="st">                '</span></span>
-<span id="cb28-211"><a href="#cb28-211" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-212"><a href="#cb28-212" aria-hidden="true" tabindex="-1"></a>cfa.tulos <span class="ot">&lt;-</span> <span class="fu">cfa</span>(</span>
-<span id="cb28-213"><a href="#cb28-213" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> cfa.malli,</span>
-<span id="cb28-214"><a href="#cb28-214" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> data,</span>
-<span id="cb28-215"><a href="#cb28-215" aria-hidden="true" tabindex="-1"></a>  <span class="at">estimator =</span> <span class="st">"MLR"</span>,</span>
-<span id="cb28-216"><a href="#cb28-216" aria-hidden="true" tabindex="-1"></a>  <span class="at">missing =</span> <span class="st">"fiml"</span></span>
-<span id="cb28-217"><a href="#cb28-217" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb28-218"><a href="#cb28-218" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-219"><a href="#cb28-219" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cfa.tulos, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>, <span class="at">standardized =</span> <span class="cn">TRUE</span>, <span class="at">ci =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb28-220"><a href="#cb28-220" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-221"><a href="#cb28-221" aria-hidden="true" tabindex="-1"></a>labels <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb28-222"><a href="#cb28-222" aria-hidden="true" tabindex="-1"></a>  <span class="at">k26_1 =</span> <span class="st">"Raskas prosessi"</span>,</span>
-<span id="cb28-223"><a href="#cb28-223" aria-hidden="true" tabindex="-1"></a>  <span class="at">k26_2 =</span> <span class="st">"Toimenpiteiden</span><span class="sc">\n</span><span class="st">puute"</span>,</span>
-<span id="cb28-224"><a href="#cb28-224" aria-hidden="true" tabindex="-1"></a>  <span class="at">k26_3 =</span> <span class="st">"Esihenkilön</span><span class="sc">\n</span><span class="st">vastatoimet"</span>,</span>
-<span id="cb28-225"><a href="#cb28-225" aria-hidden="true" tabindex="-1"></a>  <span class="at">k26_7 =</span> <span class="st">"Ei tilaisuutta"</span>,</span>
-<span id="cb28-226"><a href="#cb28-226" aria-hidden="true" tabindex="-1"></a>  <span class="at">k26_8 =</span> <span class="st">"Epäselvää"</span>,</span>
-<span id="cb28-227"><a href="#cb28-227" aria-hidden="true" tabindex="-1"></a>  <span class="at">k26_9 =</span> <span class="st">"Unohdan"</span>,</span>
-<span id="cb28-228"><a href="#cb28-228" aria-hidden="true" tabindex="-1"></a>  <span class="at">k26_10 =</span> <span class="st">"Ammattitaidon</span><span class="sc">\n</span><span class="st">kyseenalaistaminen"</span>,</span>
-<span id="cb28-229"><a href="#cb28-229" aria-hidden="true" tabindex="-1"></a>  <span class="at">k26_11 =</span> <span class="st">"Joku muu</span><span class="sc">\n</span><span class="st">hoitaa puolesta"</span>,</span>
-<span id="cb28-230"><a href="#cb28-230" aria-hidden="true" tabindex="-1"></a>  <span class="at">k26_12 =</span> <span class="st">"Valtakunnallinen</span><span class="sc">\n</span><span class="st">prosessi"</span>,</span>
-<span id="cb28-231"><a href="#cb28-231" aria-hidden="true" tabindex="-1"></a>  <span class="at">k26_13 =</span> <span class="st">"En halua</span><span class="sc">\n</span><span class="st">pahaa tekijälle"</span>,</span>
-<span id="cb28-232"><a href="#cb28-232" aria-hidden="true" tabindex="-1"></a>  <span class="at">k26_15 =</span> <span class="st">"Tekijä saa</span><span class="sc">\n</span><span class="st">tieteää"</span>,</span>
-<span id="cb28-233"><a href="#cb28-233" aria-hidden="true" tabindex="-1"></a>  <span class="at">k26_17 =</span> <span class="st">"Pelko työpaikan</span><span class="sc">\n</span><span class="st">menettämisestä"</span>,</span>
-<span id="cb28-234"><a href="#cb28-234" aria-hidden="true" tabindex="-1"></a>  <span class="at">k26_18 =</span> <span class="st">"Kollegoiden</span><span class="sc">\n</span><span class="st">vastatoimet"</span>,</span>
-<span id="cb28-235"><a href="#cb28-235" aria-hidden="true" tabindex="-1"></a>  <span class="at">f1 =</span> <span class="st">"f1"</span></span>
-<span id="cb28-236"><a href="#cb28-236" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb28-237"><a href="#cb28-237" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-238"><a href="#cb28-238" aria-hidden="true" tabindex="-1"></a><span class="fu">lavaanPlot2</span>(</span>
-<span id="cb28-239"><a href="#cb28-239" aria-hidden="true" tabindex="-1"></a>  cfa.tulos,</span>
-<span id="cb28-240"><a href="#cb28-240" aria-hidden="true" tabindex="-1"></a>  <span class="at">labels =</span> labels,</span>
-<span id="cb28-241"><a href="#cb28-241" aria-hidden="true" tabindex="-1"></a>  <span class="at">include =</span> <span class="st">"covs"</span>,</span>
-<span id="cb28-242"><a href="#cb28-242" aria-hidden="true" tabindex="-1"></a>  <span class="at">coef_labels =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb28-243"><a href="#cb28-243" aria-hidden="true" tabindex="-1"></a>  <span class="at">stars =</span> <span class="fu">c</span>(<span class="st">"covs"</span>, <span class="st">"latent"</span>)</span>
-<span id="cb28-244"><a href="#cb28-244" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb28-245"><a href="#cb28-245" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-246"><a href="#cb28-246" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb28-247"><a href="#cb28-247" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-248"><a href="#cb28-248" aria-hidden="true" tabindex="-1"></a>Malli asettui hyväksyttävästi eikä Heywood-tapauksia esiintynyt. Globaali khii neliö -suure on merkitsevä, mikä osoittaisi huonoa sopivuutta.</span>
-<span id="cb28-249"><a href="#cb28-249" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-250"><a href="#cb28-250" aria-hidden="true" tabindex="-1"></a>Robustit sopivuusindeksit ovat seuraavat: $\text{RMSEA} = .079 <span class="co">[</span><span class="ot">.071, .087</span><span class="co">]</span>$, $\text{CFI} = .926$, $\text{SRMR} = .051$. Yleisiä raja-arvoja vastaan malli ei sovi hyväksyttävästi, mutta on kuitenkin hyväksyttävyyden rajoilla.</span>
-<span id="cb28-251"><a href="#cb28-251" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-252"><a href="#cb28-252" aria-hidden="true" tabindex="-1"></a>Ensimmäisen faktorin osalta standardisoidut lataukset ovat samoissa tasoissa (0.463-0.666), paitsi muuttujan <span class="in">`k26_12`</span> (Valtakunnallinen prosessi) kohdalla (0.198).</span>
-<span id="cb28-253"><a href="#cb28-253" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-254"><a href="#cb28-254" aria-hidden="true" tabindex="-1"></a>Toisen faktorin osalta standardisoidut lataukset ovat hyvinkin samanlaisia (0.788-0.843), paitsi muuttujan <span class="in">`k26_13`</span> (En halua pahaa tekijälle) kohdalla (-0.537).</span>
-<span id="cb28-255"><a href="#cb28-255" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-256"><a href="#cb28-256" aria-hidden="true" tabindex="-1"></a>Faktorien välinen korrelaatio on vahva (r = 0.782).</span>
-<span id="cb28-257"><a href="#cb28-257" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-258"><a href="#cb28-258" aria-hidden="true" tabindex="-1"></a><span class="fu">### Residuaalien tarkastus {#sec-ilmoasenteet_validointi-cfa1-residuaalit}</span></span>
-<span id="cb28-259"><a href="#cb28-259" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-262"><a href="#cb28-262" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb28-263"><a href="#cb28-263" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-ilmoasenteet_validointi-07-cfa-residuaalit</span></span>
-<span id="cb28-264"><a href="#cb28-264" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Z-standardisoitujen residuaalien kovarianssimatriisi, vain absoluuttiset residuaalit yli 1.96"</span></span>
-<span id="cb28-265"><a href="#cb28-265" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Residuaalit"</span></span>
-<span id="cb28-266"><a href="#cb28-266" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-267"><a href="#cb28-267" aria-hidden="true" tabindex="-1"></a>residuaalit <span class="ot">&lt;-</span> <span class="fu">lavResiduals</span>(cfa.tulos)<span class="sc">$</span>cov.z</span>
-<span id="cb28-268"><a href="#cb28-268" aria-hidden="true" tabindex="-1"></a>residuaalit[<span class="fu">abs</span>(residuaalit) <span class="sc">&lt;</span> <span class="fl">1.96</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb28-269"><a href="#cb28-269" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-270"><a href="#cb28-270" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(</span>
-<span id="cb28-271"><a href="#cb28-271" aria-hidden="true" tabindex="-1"></a>  <span class="fu">abs</span>(residuaalit),</span>
-<span id="cb28-272"><a href="#cb28-272" aria-hidden="true" tabindex="-1"></a>  <span class="at">is.corr =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb28-273"><a href="#cb28-273" aria-hidden="true" tabindex="-1"></a>  <span class="at">na.label =</span> <span class="st">" "</span>,</span>
-<span id="cb28-274"><a href="#cb28-274" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"color"</span></span>
-<span id="cb28-275"><a href="#cb28-275" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb28-276"><a href="#cb28-276" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-277"><a href="#cb28-277" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb28-278"><a href="#cb28-278" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-279"><a href="#cb28-279" aria-hidden="true" tabindex="-1"></a>@fig-ilmoasenteet_validointi-07-cfa-residuaalit osoittaa useita ongelmallisia residuaaleja (<span class="sc">\&gt;</span> \|1.96\|). Suurin ongelma näyttäisi olevan muuttujien <span class="in">`k26_2`</span> (F1, ei johda toimenpiteisiin) ja <span class="in">`k26_11`</span> (F1, joku muu hoitaa ilmoituksen puolestani) välillä.</span>
-<span id="cb28-280"><a href="#cb28-280" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-281"><a href="#cb28-281" aria-hidden="true" tabindex="-1"></a>Myös muuttujat <span class="in">`k26_3`</span> (F2, pelkään esihenkilön vastatoimia) ja <span class="in">`k26_9`</span> (F1, unohdan tehdä ilmoituksen) osoittavat suurta virhekovarianssia.</span>
-<span id="cb28-282"><a href="#cb28-282" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-283"><a href="#cb28-283" aria-hidden="true" tabindex="-1"></a>::: panel-tabset</span>
-<span id="cb28-284"><a href="#cb28-284" aria-hidden="true" tabindex="-1"></a><span class="fu">### Faktorilataukset {#sec-ilmoasenteet_validointi-cfa1-mod-faktorit}</span></span>
-<span id="cb28-285"><a href="#cb28-285" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-288"><a href="#cb28-288" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb28-289"><a href="#cb28-289" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: ilmoasenteet_validointi-08-cfamod-faktorit</span></span>
-<span id="cb28-290"><a href="#cb28-290" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-291"><a href="#cb28-291" aria-hidden="true" tabindex="-1"></a><span class="fu">modificationIndices</span>(cfa.tulos) <span class="sc">|&gt;</span></span>
-<span id="cb28-292"><a href="#cb28-292" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mi)) <span class="sc">|&gt;</span></span>
-<span id="cb28-293"><a href="#cb28-293" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(op <span class="sc">==</span> <span class="st">"=~"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb28-294"><a href="#cb28-294" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(mi <span class="sc">&gt;</span> <span class="fl">36.745</span>)</span>
-<span id="cb28-295"><a href="#cb28-295" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-296"><a href="#cb28-296" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb28-297"><a href="#cb28-297" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-298"><a href="#cb28-298" aria-hidden="true" tabindex="-1"></a><span class="fu">### Virhekorrelaatiot {#sec-ilmoasenteet_validointi-cfa1-mod-virheet}</span></span>
-<span id="cb28-299"><a href="#cb28-299" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-302"><a href="#cb28-302" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb28-303"><a href="#cb28-303" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: ilmoasenteet_validointi-09-cfamod-virheet</span></span>
-<span id="cb28-304"><a href="#cb28-304" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-305"><a href="#cb28-305" aria-hidden="true" tabindex="-1"></a><span class="fu">modificationIndices</span>(cfa.tulos) <span class="sc">|&gt;</span></span>
-<span id="cb28-306"><a href="#cb28-306" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mi)) <span class="sc">|&gt;</span></span>
-<span id="cb28-307"><a href="#cb28-307" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(op <span class="sc">==</span> <span class="st">"~~"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb28-308"><a href="#cb28-308" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(mi <span class="sc">&gt;</span> <span class="fl">36.745</span>)</span>
-<span id="cb28-309"><a href="#cb28-309" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-310"><a href="#cb28-310" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb28-311"><a href="#cb28-311" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb28-312"><a href="#cb28-312" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-313"><a href="#cb28-313" aria-hidden="true" tabindex="-1"></a>Laskimme modifikaatioindeksin osoittavan ongelmallista sopivuutta, jos indeksi oli enemmän kuin kymmenen prosenttia globaalista khii neliö -suuresta (<span class="sc">\&gt;</span> 36.745). Ongelmallisuuden rajan täyttivät kolme faktorilatausta ja kaksi virhekorrelaatiota.</span>
-<span id="cb28-314"><a href="#cb28-314" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-315"><a href="#cb28-315" aria-hidden="true" tabindex="-1"></a>Muuttujat <span class="in">`k26_2`</span> (Ei johda toimenpiteisiin), <span class="in">`k26_9`</span> (Unohdan tehdä ilmoituksen) ja <span class="in">`k26_1`</span> (Liian raskas prosessi) osoittivat suurta sopivuuden parannusta, jos ne annettaisiin ladata faktorille <span class="in">`f2`</span>. Ensimmäisen muuttujan kohdalla odotettu standardisoitu lataus olisi positiivinen, 0.461. Toisen ja kolmannen muuttujan kohdalla odotettu standardisoidut lataukset olisivat negatiiviset, -0.413 ja -0.396.</span>
-<span id="cb28-316"><a href="#cb28-316" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-317"><a href="#cb28-317" aria-hidden="true" tabindex="-1"></a>Muuttuja <span class="in">`k26_11`</span> (Joku muu hoitaa) osoitti sopivuuden parannusta, jos sen annettaisiin virhekorreloida muuttujien <span class="in">`k26_2`</span> (Ei johda toimenpiteisiin) ja <span class="in">`k26_13`</span> (En halua pahaa tekijälle) kanssa. Odotetut standardisoidut ristikorrelaatiot olisivat molemmat negatiivisia, -0.280 ja -0.203.</span>
-<span id="cb28-318"><a href="#cb28-318" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-319"><a href="#cb28-319" aria-hidden="true" tabindex="-1"></a>Muuttujan <span class="in">`k26_2`</span> vapauttaminen molemmille faktoreille voi olla teoreettisesti motivoitua Kokemus toimenpiteiden puutteellisuudesta voidaan nähdä niin prosessiin liittyvänä esteenä kuin ilmoituksen sosiaalisena vaikutuksena.</span>
-<span id="cb28-320"><a href="#cb28-320" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-321"><a href="#cb28-321" aria-hidden="true" tabindex="-1"></a>Muuttujien <span class="in">`k26_9`</span> ja <span class="in">`k26_1`</span> vapauttaminen molemmille faktoreille ei ole teoreettisesti motivoitua. Jos toinen faktori osoittaa ilmoituksen jälkeisiä odotettuja sosiaalisia vaikutuksia, unohtaminen tai prosessin koettu raskaus eivät sovi tähän tulkintaan.</span>
-<span id="cb28-322"><a href="#cb28-322" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-323"><a href="#cb28-323" aria-hidden="true" tabindex="-1"></a>Muuttujan <span class="in">`k26_11`</span> kahden virhekorrelaation vapauttaminen voisi olla teoreettisesti motivoitua, mutta virheet tulisi korreloida toisin päin kuin modifikaatioindeksit ehdottavat:</span>
-<span id="cb28-324"><a href="#cb28-324" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-325"><a href="#cb28-325" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Jos henkilö kokee, ettei ilmoitukset johda toimenpiteisiin (<span class="in">`k26_2`</span>), hän ei välttämättä ole henkilökohtaisesti motivoitunut tekemään ilmoituksia, mutta voi hyväksyä, että joku muu hoitaisi ilmoituksen hänen puolestaan (<span class="in">`k26_11`</span>). Jos henkilö on erittäin samaa mieltä toimenpiteiden olemattomuuden kanssa, hän voisi hyvin myös olla erittäin samaa mieltä siitä, että joku muu tekee ilmoituksen. Tämä ehdottaisi siis positiivista virhekorrelaatiota -- mutta modifikaatioindeksi ehdottaa negatiivista virhekorrelaatiota, mikä ei sovi tulkintaan.</span>
-<span id="cb28-326"><a href="#cb28-326" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Jos henkilö ei halua tehdä pahaa tekijälle (<span class="in">`k26_13`</span>), hän voi kokea vastuunvapautuksen, jos joku muu hoitaisi ilmoituksen hänen puolestaan (<span class="in">`k26_11`</span>). Toisin sanoen, virhekorrelaation tulisi olla positiviinen, mutta modifikaatioindeksi ehdottaa negatiivista korrelaatiota. Tämä mekanismi oletettavasti myös medioituisi muuttujan <span class="in">`k26_15`</span> kautta, eli että tekijä saisi tietää: jos henkilö ei koe, että tekijä saa tietää ilmoituksesta, yhteyttä ei nähtäisi.</span>
-<span id="cb28-327"><a href="#cb28-327" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-328"><a href="#cb28-328" aria-hidden="true" tabindex="-1"></a>Päätelmien pohjalta näemme, että muuttujan <span class="in">`k26_2`</span> vapauttaminen molemmille faktoreille on motivoitua, mutta muut muutokset eivät ole.</span>
-<span id="cb28-329"><a href="#cb28-329" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-330"><a href="#cb28-330" aria-hidden="true" tabindex="-1"></a><span class="fu">## Uusi CFA-malli {#sec-ilmoasenteet_validointi-cfa2}</span></span>
-<span id="cb28-331"><a href="#cb28-331" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-334"><a href="#cb28-334" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb28-335"><a href="#cb28-335" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: ilmoasenteet_validointi-10-cfamalli2</span></span>
-<span id="cb28-336"><a href="#cb28-336" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "CFA-mallin määrittely ja asettaminen"</span></span>
-<span id="cb28-337"><a href="#cb28-337" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-338"><a href="#cb28-338" aria-hidden="true" tabindex="-1"></a>cfa.malli<span class="fl">.2</span> <span class="ot">&lt;-</span>  <span class="st">'# latentit muuttujat</span></span>
-<span id="cb28-339"><a href="#cb28-339" aria-hidden="true" tabindex="-1"></a><span class="st">                f1 =~ k26_1 + k26_2 + k26_7 + k26_8 + k26_9 + k26_11 + k26_12</span></span>
-<span id="cb28-340"><a href="#cb28-340" aria-hidden="true" tabindex="-1"></a><span class="st">                f2 =~ k26_2 + k26_3 + k26_10 + k26_13 + k26_15 + k26_17 + k26_18</span></span>
-<span id="cb28-341"><a href="#cb28-341" aria-hidden="true" tabindex="-1"></a><span class="st">                </span></span>
-<span id="cb28-342"><a href="#cb28-342" aria-hidden="true" tabindex="-1"></a><span class="st">                # faktorikovarianssit</span></span>
-<span id="cb28-343"><a href="#cb28-343" aria-hidden="true" tabindex="-1"></a><span class="st">                f1 ~~ f2</span></span>
-<span id="cb28-344"><a href="#cb28-344" aria-hidden="true" tabindex="-1"></a><span class="st">                '</span></span>
-<span id="cb28-345"><a href="#cb28-345" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-346"><a href="#cb28-346" aria-hidden="true" tabindex="-1"></a>cfa.tulos<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">cfa</span>(</span>
-<span id="cb28-347"><a href="#cb28-347" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> cfa.malli<span class="fl">.2</span>,</span>
-<span id="cb28-348"><a href="#cb28-348" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> data,</span>
-<span id="cb28-349"><a href="#cb28-349" aria-hidden="true" tabindex="-1"></a>  <span class="at">estimator =</span> <span class="st">"MLR"</span>,</span>
-<span id="cb28-350"><a href="#cb28-350" aria-hidden="true" tabindex="-1"></a>  <span class="at">missing =</span> <span class="st">"fiml"</span></span>
-<span id="cb28-351"><a href="#cb28-351" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb28-352"><a href="#cb28-352" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-353"><a href="#cb28-353" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cfa.tulos<span class="fl">.2</span>, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>, <span class="at">standardized =</span> <span class="cn">TRUE</span>, <span class="at">ci =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb28-354"><a href="#cb28-354" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-355"><a href="#cb28-355" aria-hidden="true" tabindex="-1"></a><span class="fu">lavaanPlot2</span>(</span>
-<span id="cb28-356"><a href="#cb28-356" aria-hidden="true" tabindex="-1"></a>  cfa.tulos<span class="fl">.2</span>,</span>
-<span id="cb28-357"><a href="#cb28-357" aria-hidden="true" tabindex="-1"></a>  <span class="at">labels =</span> labels,</span>
-<span id="cb28-358"><a href="#cb28-358" aria-hidden="true" tabindex="-1"></a>  <span class="at">include =</span> <span class="st">"covs"</span>,</span>
-<span id="cb28-359"><a href="#cb28-359" aria-hidden="true" tabindex="-1"></a>  <span class="at">coef_labels =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb28-360"><a href="#cb28-360" aria-hidden="true" tabindex="-1"></a>  <span class="at">stars =</span> <span class="fu">c</span>(<span class="st">"covs"</span>, <span class="st">"latent"</span>)</span>
-<span id="cb28-361"><a href="#cb28-361" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb28-362"><a href="#cb28-362" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb28-363"><a href="#cb28-363" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-364"><a href="#cb28-364" aria-hidden="true" tabindex="-1"></a>Malli asettui hyväksyttävästi eikä Heywood-tapauksia esiintynyt. Globaali khii neliö -suure on merkitsevä, mikä osoittaisi huonoa sopivuutta.</span>
-<span id="cb28-365"><a href="#cb28-365" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-366"><a href="#cb28-366" aria-hidden="true" tabindex="-1"></a>Robustit sopivuusindeksit ovat seuraavat: $\text{RMSEA} = .075 <span class="co">[</span><span class="ot">.067, .083</span><span class="co">]</span>$, $\text{CFI} = .934$, $\text{SRMR} = .049$. RMSEA ja CFI eivät täytä yleisiä raja-arvoja, mutta SRMR on hyväksyttävä.</span>
-<span id="cb28-367"><a href="#cb28-367" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-368"><a href="#cb28-368" aria-hidden="true" tabindex="-1"></a>Ensimmäisen faktorin osalta standardisoidut lataukset vaihtelevat hieman enemmän kuin aikaisemmin (0.326-0.671), Muuttujan <span class="in">`k26_12`</span> (Valtakunnallinen prosessi) lataus on vielä matalin kaikista (0.189).</span>
-<span id="cb28-369"><a href="#cb28-369" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-370"><a href="#cb28-370" aria-hidden="true" tabindex="-1"></a>Toisen faktorin osalta standardisoidut lataukset ovat hyvinkin samanlaisia (0.787-0.842), paitsi muuttujien <span class="in">`k26_13`</span> (En halua pahaa tekijälle) ja <span class="in">`k26_2`</span> (Ei johda toimenpiteisiin) kohdalla (-0.568 ja 0.365).</span>
-<span id="cb28-371"><a href="#cb28-371" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-372"><a href="#cb28-372" aria-hidden="true" tabindex="-1"></a>Faktorien välinen korrelaatio on vieläkin vahva (r = 0.712).</span>
-<span id="cb28-373"><a href="#cb28-373" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-374"><a href="#cb28-374" aria-hidden="true" tabindex="-1"></a><span class="fu">### Mallien vertailu {#sec-ilmoasenteet_validointi-cfa2-vertailu}</span></span>
-<span id="cb28-375"><a href="#cb28-375" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-378"><a href="#cb28-378" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb28-379"><a href="#cb28-379" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: ilmoasenteet_validointi-11-cfavertailu</span></span>
-<span id="cb28-380"><a href="#cb28-380" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Kahden CFA-mallin sopivuuksien vertailu"</span></span>
-<span id="cb28-381"><a href="#cb28-381" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-382"><a href="#cb28-382" aria-hidden="true" tabindex="-1"></a>vrt <span class="ot">&lt;-</span> <span class="fu">compareFit</span>(</span>
-<span id="cb28-383"><a href="#cb28-383" aria-hidden="true" tabindex="-1"></a>  cfa.tulos<span class="fl">.2</span>,</span>
-<span id="cb28-384"><a href="#cb28-384" aria-hidden="true" tabindex="-1"></a>  cfa.tulos,</span>
-<span id="cb28-385"><a href="#cb28-385" aria-hidden="true" tabindex="-1"></a>  <span class="at">moreIndices =</span> <span class="cn">TRUE</span></span>
-<span id="cb28-386"><a href="#cb28-386" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb28-387"><a href="#cb28-387" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-388"><a href="#cb28-388" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(vrt)</span>
-<span id="cb28-389"><a href="#cb28-389" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-390"><a href="#cb28-390" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb28-391"><a href="#cb28-391" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-392"><a href="#cb28-392" aria-hidden="true" tabindex="-1"></a>Malli 2 sopii merkitsevästi paremmin kuin Malli 1. Kaikki Malli 2:n sopivuusindeksit ovat parantuneet verrattuna Malli 1:een. Parannukset ovat kuitenkin pieniä: $\Delta \text{RMSEA} = -0.004, \Delta \text{CFI} = 0.008, \Delta \text{SRMR} = -0.002, \Delta \text{AIC} = -44.5$.</span>
-<span id="cb28-393"><a href="#cb28-393" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-394"><a href="#cb28-394" aria-hidden="true" tabindex="-1"></a><span class="fu">### Residuaalien tarkastus {#sec-ilmoasenteet_validointi-cfa2-residuaalit}</span></span>
-<span id="cb28-395"><a href="#cb28-395" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-398"><a href="#cb28-398" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb28-399"><a href="#cb28-399" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-ilmoasenteet_validointi-11-cfa2-residuaalit</span></span>
-<span id="cb28-400"><a href="#cb28-400" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Z-standardisoitujen residuaalien kovarianssimatriisi, vain absoluuttiset residuaalit yli 1.96"</span></span>
-<span id="cb28-401"><a href="#cb28-401" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Residuaalit"</span></span>
-<span id="cb28-402"><a href="#cb28-402" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-403"><a href="#cb28-403" aria-hidden="true" tabindex="-1"></a>residuaalit <span class="ot">&lt;-</span> <span class="fu">lavResiduals</span>(cfa.tulos<span class="fl">.2</span>)<span class="sc">$</span>cov.z</span>
-<span id="cb28-404"><a href="#cb28-404" aria-hidden="true" tabindex="-1"></a>residuaalit[<span class="fu">abs</span>(residuaalit) <span class="sc">&lt;</span> <span class="fl">1.96</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb28-405"><a href="#cb28-405" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-406"><a href="#cb28-406" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(</span>
-<span id="cb28-407"><a href="#cb28-407" aria-hidden="true" tabindex="-1"></a>  <span class="fu">abs</span>(residuaalit),</span>
-<span id="cb28-408"><a href="#cb28-408" aria-hidden="true" tabindex="-1"></a>  <span class="at">is.corr =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb28-409"><a href="#cb28-409" aria-hidden="true" tabindex="-1"></a>  <span class="at">na.label =</span> <span class="st">" "</span>,</span>
-<span id="cb28-410"><a href="#cb28-410" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"color"</span></span>
-<span id="cb28-411"><a href="#cb28-411" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb28-412"><a href="#cb28-412" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-413"><a href="#cb28-413" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb28-414"><a href="#cb28-414" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-415"><a href="#cb28-415" aria-hidden="true" tabindex="-1"></a>@fig-ilmoasenteet_validointi-11-cfa2-residuaalit osoittaa vieläkin useita ongelmallisia residuaaleja (<span class="sc">\&gt;</span> \|1.96\|). Suurin ongelma näyttäisi olevan muuttujien <span class="in">`k26_2`</span> (F1, ei johda toimenpiteisiin) ja <span class="in">`k26_11`</span> (F1, joku muu hoitaa ilmoituksen puolestani) välillä.</span>
-<span id="cb28-416"><a href="#cb28-416" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-417"><a href="#cb28-417" aria-hidden="true" tabindex="-1"></a>::: panel-tabset</span>
-<span id="cb28-418"><a href="#cb28-418" aria-hidden="true" tabindex="-1"></a><span class="fu">### Faktorilataukset {#sec-ilmoasenteet_validointi-cfa2-mod-faktorit}</span></span>
-<span id="cb28-419"><a href="#cb28-419" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-422"><a href="#cb28-422" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb28-423"><a href="#cb28-423" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: ilmoasenteet_validointi-12-cfamod2-faktorit</span></span>
-<span id="cb28-424"><a href="#cb28-424" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-425"><a href="#cb28-425" aria-hidden="true" tabindex="-1"></a><span class="fu">modificationIndices</span>(cfa.tulos<span class="fl">.2</span>) <span class="sc">|&gt;</span></span>
-<span id="cb28-426"><a href="#cb28-426" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mi)) <span class="sc">|&gt;</span></span>
-<span id="cb28-427"><a href="#cb28-427" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(op <span class="sc">==</span> <span class="st">"=~"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb28-428"><a href="#cb28-428" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(mi <span class="sc">&gt;</span> <span class="fl">33.3948</span>)</span>
-<span id="cb28-429"><a href="#cb28-429" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-430"><a href="#cb28-430" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb28-431"><a href="#cb28-431" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-432"><a href="#cb28-432" aria-hidden="true" tabindex="-1"></a><span class="fu">### Virhekorrelaatiot {#sec-ilmoasenteet_validointi-cfa2-mod-virheet}</span></span>
-<span id="cb28-433"><a href="#cb28-433" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-436"><a href="#cb28-436" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb28-437"><a href="#cb28-437" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: ilmoasenteet_validointi-12-cfamod2-virheet</span></span>
-<span id="cb28-438"><a href="#cb28-438" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-439"><a href="#cb28-439" aria-hidden="true" tabindex="-1"></a><span class="fu">modificationIndices</span>(cfa.tulos<span class="fl">.2</span>) <span class="sc">|&gt;</span></span>
-<span id="cb28-440"><a href="#cb28-440" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mi)) <span class="sc">|&gt;</span></span>
-<span id="cb28-441"><a href="#cb28-441" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(op <span class="sc">==</span> <span class="st">"~~"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb28-442"><a href="#cb28-442" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(mi <span class="sc">&gt;</span> <span class="fl">33.3948</span>)</span>
-<span id="cb28-443"><a href="#cb28-443" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-444"><a href="#cb28-444" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb28-445"><a href="#cb28-445" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb28-446"><a href="#cb28-446" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-447"><a href="#cb28-447" aria-hidden="true" tabindex="-1"></a>Laskimme tälle mallille raja-arvoksi modifikaatioindeksin yli 33.3948. Ongelmallisuuden rajan täytti yksi faktorilataus ja kolme virhekorrelaatiota.</span>
-<span id="cb28-448"><a href="#cb28-448" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-449"><a href="#cb28-449" aria-hidden="true" tabindex="-1"></a>Muuttuja <span class="in">`k26_7`</span> (Ei tilaisuutta) osoitti suurta sopivuuden parannusta, jos se annettaisiin ladata faktorille <span class="in">`f2`</span>. Muuttujan odotettu standardisoitu lataus olisi positiivinen, 0.363.</span>
-<span id="cb28-450"><a href="#cb28-450" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-451"><a href="#cb28-451" aria-hidden="true" tabindex="-1"></a>Muuttuja <span class="in">`k26_11`</span> (Joku muu hoitaa) osoitti vieläkin sopivuuden parannusta, jos sen annettaisiin virhekorreloida muuttujien <span class="in">`k26_2`</span> (Ei johda toimenpiteisiin) ja <span class="in">`k26_13`</span> (En halua pahaa tekijälle) kanssa. Odotetut ristikorrelaatiot olivat kuta kuinkin samoissa tasoissa kuin aikaisemmin, -0.227 ja -0.197.</span>
-<span id="cb28-452"><a href="#cb28-452" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-453"><a href="#cb28-453" aria-hidden="true" tabindex="-1"></a>Lisäksi muuttuja <span class="in">`k26_1`</span> (Liian raskas prosessi) osoitti sopivuuden parannusta, jos sen annettaisiin virhekorreloida muuttujan <span class="in">`k26_2`</span> (Ei johda toimenpiteisiin) kanssa. Odotettu standardisoitu ristikorrelaatio olisi positiivinen, 0.217.</span>
-<span id="cb28-454"><a href="#cb28-454" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-455"><a href="#cb28-455" aria-hidden="true" tabindex="-1"></a>Muuttujan <span class="in">`k26_7`</span> vapauttaminen molemmille faktoreille voi olla teoreettisesti motivoitua. Tilaisuuden puute voi ainakin osittain johtua sosiaalisesta työympäristössä; jos esimerkiksi henkilö joutuisi tekemään ilmoituksen jaetulla laitteella tai jaetussa ympäristössä (esim. kahvihuoneen tietokoneella), muut kollegat voisivat saada tietää ilmoituksesta, mikä taas voi yhtyä negatiivisiin asenteisiin ilmoituksen sosiaalisista vaikutuksista. Tämä implikoisi medioivaa suhdetta: jos henkilön taso faktorilla <span class="in">`f2`</span> on matala, hän ei näkisi tätä ongelmana, jolloin muuttujan lataus faktorille <span class="in">`f2`</span> pitäisi kadota.</span>
-<span id="cb28-456"><a href="#cb28-456" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-457"><a href="#cb28-457" aria-hidden="true" tabindex="-1"></a>Muuttujan <span class="in">`k26_11`</span> virhekorrelaatiot eivät ole motivoituja (ks. yllä).</span>
-<span id="cb28-458"><a href="#cb28-458" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-459"><a href="#cb28-459" aria-hidden="true" tabindex="-1"></a>Muuttujan <span class="in">`k26_1`</span> virhekorrelaation vapauttaminen muuttujan <span class="in">`k26_2`</span> kanssa voi olla motivoitua. Nämä voivat yhdessä mitata henkilön agenssin kokemuksen puutetta. Toisaalta tämä teoria vaatisi, että muut agenssiin liittyvät asenteet (esim. valtakunnallisen prosessin suosiminen) yhteiskorreloisivat, eli muodostaisivat oman faktorin. On myös mahdollista, että faktori <span class="in">`f1`</span> edustaa juuri agenssin tai prosessin kontrollin kokemusten puutetta -- tuolloin virheen tulisi jo olla katettu faktorilla, eli virhekorrelaatio ei voi edustaa tätä tulkintaa.</span>
-<span id="cb28-460"><a href="#cb28-460" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-461"><a href="#cb28-461" aria-hidden="true" tabindex="-1"></a>Emme jatka analyysia näiden vapauttamisella, sillä mahdolliset muutokset voivat kapitalisoida sattumaa tässä vaiheessa.</span>
-<span id="cb28-462"><a href="#cb28-462" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-463"><a href="#cb28-463" aria-hidden="true" tabindex="-1"></a><span class="fu">## Yhteenveto {#sec-ilmoasenteet_validointi-yhteenveto}</span></span>
-<span id="cb28-464"><a href="#cb28-464" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-465"><a href="#cb28-465" aria-hidden="true" tabindex="-1"></a>Mittaristo näyttäisi edustavan kahden faktorin rakennetta. Ensimmäinen faktori voi edustaa joko ilmoitusprosessiin liittyviä teknisiä ja käytännöllisiä haasteita, tai syvemmällä tasolla henkilön kokemusta prosessin kontrollin ja siihen liittyvän agenssin puutetta. Toinen faktori edustaa tulkinnamme mukaan ilmoituksen koettuja negatiivisia sosiaalisia vaikutuksia.</span>
-<span id="cb28-466"><a href="#cb28-466" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-467"><a href="#cb28-467" aria-hidden="true" tabindex="-1"></a>Malli kuitenkin sopii kohtalaisen heikosti. Mahdollisia selitteitä tälle voi olla, että otoksessamme esiintyy heterogeenisyyttä eri alaryhmien välillä, että mallista puuttuu tärkeitä muuttujia tai että malliin on lisätty kuulumattomia muuttujia. Jatkotutkimuksen tulisi selvittää näitä mahdollisuuksia suuremmilla otoksilla, jotta tarkemmat analyysit ovat mahdollisia; tällä hetkellä otoksemme ei kokemuksen mukaan mahdollista kovin tarkkoja kohderyhmävertailuja.</span>
+<div class="sourceCode" id="cb12" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Ilmoitusjärjestelmäasenteiden verkostoanalyysi {#sec-ilmoasenteet_validointi}</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>eval: true</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>Tässä osiossa analysoimme ilmoitusjärjestelmiin kohdistuvien asennemuuttujien faktorirakennetta verkostoanalyysin ja konfirmatorisen faktorianalyysin avulla</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: ilmoasenteet_validointi-00-paketit</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Osiossa käytetyt paketit"</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(EGAnet) <span class="co"># EGA-mallien asettaminen</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork) <span class="co"># Kuvioiden asettelu</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggstatsplot) <span class="co"># Tilastokuvioiden piirtäminen</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># Yleinen datakäsittely</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: ilmoasenteet_validointi-01-avaaminen</span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Datan avaaminen"</span></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"output/valmisdata.csv"</span>, <span class="at">tryLogical =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a><span class="fu">## Muuttujien valitseminen analyysiin {#sec-ilmoasenteet_validointi-muuttujat}</span></span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>Päätimme jättää pois neljä muuttujaa patteristosta:</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_4`</span>: Jos henkilöllä on alentunut toimintakyky, häntä ei voi syyttää toiminnastaan</span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_6`</span>: Konfliktitilanteet ovat osa työtäni</span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_14`</span>: Tilanteet ovat yksittäistapauksia</span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_5`</span>: Ilmoitan kaikki kohtaamani tilanteet</span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>Ensimmäiset kolme muuttujaa ovat yleisiä asenteita epäasiallisia ja väkivaltaisia kohtaamisia kohtaan. Viimeinen muuttuja liittyy ilmoitusjärjestelmiin, mutta kuvailee ennemmin vastaajan toimintaa eikä asenteita.</span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>Otimme mukaan neljätoista muuttujaa analyysiin:</span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_1`</span>: Prosessit ovat liian raskaita tai työläitä</span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_2`</span>: Prosessit eivät johda toimenpiteisiin</span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_3`</span>: Pelkään esihenkilön vastatoimia</span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_7`</span>: Minulla ei ole tilaisuutta tai mahdollisuutta ilmoittaa</span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_8`</span>: Epäselvää, milloin minun tulisi ilmoittaa</span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_9`</span>: Unohdan ilmoittaa</span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_10`</span>: Pelkään ammattitaitoni kyseenalaistamista</span>
+<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_11`</span>: Ajattelin, että joku muu hoitaa ilmoituksen</span>
+<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_12`</span>: Valtakunnallisesta ilmoitusprosessista olisi hyötyä</span>
+<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_13`</span>: En halua pahaa tekijälle</span>
+<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_15`</span>: Pelkään, että tekijä saa tietää ilmoituksesta</span>
+<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_16`</span>: Kollegani näkisi minut ongelmallisena tai vaikeana</span>
+<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_17`</span>: Pelkään menettäväni työpaikkani</span>
+<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_18`</span>: Pelkään kollegoiden vastatoimia</span>
+<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a>Muuttuja <span class="in">`k26_12`</span> käännettiin ennen analyysia, sillä se on ainoa positiivisesti muotoiltu väite. Täten mahdolliset faktorit edustavat negatiivisia mielipiteitä.</span>
+<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-65"><a href="#cb12-65" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: ilmoasenteet_validointi-02-koodaus</span></span>
+<span id="cb12-66"><a href="#cb12-66" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Yhden muuttujan kääntäminen ennen analyysia"</span></span>
+<span id="cb12-67"><a href="#cb12-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-68"><a href="#cb12-68" aria-hidden="true" tabindex="-1"></a><span class="co"># Tallennetaan muuttujien nimet helpottaakseen analyysia</span></span>
+<span id="cb12-69"><a href="#cb12-69" aria-hidden="true" tabindex="-1"></a>muuttujat <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb12-70"><a href="#cb12-70" aria-hidden="true" tabindex="-1"></a>  <span class="st">"k26_1"</span>, <span class="st">"k26_2"</span>, <span class="st">"k26_3"</span>, <span class="st">"k26_7"</span>, <span class="st">"k26_8"</span>,</span>
+<span id="cb12-71"><a href="#cb12-71" aria-hidden="true" tabindex="-1"></a>  <span class="st">"k26_9"</span>, <span class="st">"k26_10"</span>, <span class="st">"k26_11"</span>, <span class="st">"k26_12"</span>, <span class="st">"k26_13"</span>,</span>
+<span id="cb12-72"><a href="#cb12-72" aria-hidden="true" tabindex="-1"></a>  <span class="st">"k26_15"</span>, <span class="st">"k26_16"</span>, <span class="st">"k26_17"</span>, <span class="st">"k26_18"</span></span>
+<span id="cb12-73"><a href="#cb12-73" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-74"><a href="#cb12-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-75"><a href="#cb12-75" aria-hidden="true" tabindex="-1"></a><span class="co"># Käännetään muuttuja k26_12</span></span>
+<span id="cb12-76"><a href="#cb12-76" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb12-77"><a href="#cb12-77" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb12-78"><a href="#cb12-78" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
+<span id="cb12-79"><a href="#cb12-79" aria-hidden="true" tabindex="-1"></a>      k26_12,</span>
+<span id="cb12-80"><a href="#cb12-80" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_match</span>(</span>
+<span id="cb12-81"><a href="#cb12-81" aria-hidden="true" tabindex="-1"></a>        .x,</span>
+<span id="cb12-82"><a href="#cb12-82" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span> <span class="sc">~</span> <span class="dv">7</span>,</span>
+<span id="cb12-83"><a href="#cb12-83" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="sc">~</span> <span class="dv">6</span>,</span>
+<span id="cb12-84"><a href="#cb12-84" aria-hidden="true" tabindex="-1"></a>        <span class="dv">3</span> <span class="sc">~</span> <span class="dv">5</span>,</span>
+<span id="cb12-85"><a href="#cb12-85" aria-hidden="true" tabindex="-1"></a>        <span class="dv">4</span> <span class="sc">~</span> <span class="dv">4</span>,</span>
+<span id="cb12-86"><a href="#cb12-86" aria-hidden="true" tabindex="-1"></a>        <span class="dv">5</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
+<span id="cb12-87"><a href="#cb12-87" aria-hidden="true" tabindex="-1"></a>        <span class="dv">6</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
+<span id="cb12-88"><a href="#cb12-88" aria-hidden="true" tabindex="-1"></a>        <span class="dv">7</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb12-89"><a href="#cb12-89" aria-hidden="true" tabindex="-1"></a>        <span class="cn">NA</span> <span class="sc">~</span> <span class="cn">NA</span></span>
+<span id="cb12-90"><a href="#cb12-90" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb12-91"><a href="#cb12-91" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb12-92"><a href="#cb12-92" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb12-93"><a href="#cb12-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-94"><a href="#cb12-94" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-95"><a href="#cb12-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-96"><a href="#cb12-96" aria-hidden="true" tabindex="-1"></a><span class="fu">## Eksploratiivinen verkostoanalyysi {#sec-ilmoasenteet_validointi-ega}</span></span>
+<span id="cb12-97"><a href="#cb12-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-98"><a href="#cb12-98" aria-hidden="true" tabindex="-1"></a>Teimme eksploratiivisen verkostoanalyysin (engl. *exploratory graph analysis*, EGA) ymmärtääksemme muuttujien välisiä suhteita paremmin.</span>
+<span id="cb12-99"><a href="#cb12-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-102"><a href="#cb12-102" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-103"><a href="#cb12-103" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: ilmoasenteet_validointi-03-egaUVA</span></span>
+<span id="cb12-104"><a href="#cb12-104" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Uniikin varianssin analyysi"</span></span>
+<span id="cb12-105"><a href="#cb12-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-106"><a href="#cb12-106" aria-hidden="true" tabindex="-1"></a>ega.uva <span class="ot">&lt;-</span> <span class="fu">UVA</span>(</span>
+<span id="cb12-107"><a href="#cb12-107" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> data <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="fu">all_of</span>(muuttujat))</span>
+<span id="cb12-108"><a href="#cb12-108" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-109"><a href="#cb12-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-110"><a href="#cb12-110" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(ega.uva)</span>
+<span id="cb12-111"><a href="#cb12-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-112"><a href="#cb12-112" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-113"><a href="#cb12-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-114"><a href="#cb12-114" aria-hidden="true" tabindex="-1"></a>Uniikin varianssin analyysi tunnistaa yhden muuttujaparin, joiden varianssit verkostomallissa ovat liian päällekkäisiä: <span class="in">`k26_16`</span> ("Kollegani näkisivät minut ongelmallisena tai vaikeana jos tekisin ilmoituksen") ja <span class="in">`k26_18`</span> ("Pelkään kollegoideni ryhtyvän vastatoimiin, jos tekisin ilmoituksen").</span>
+<span id="cb12-115"><a href="#cb12-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-116"><a href="#cb12-116" aria-hidden="true" tabindex="-1"></a>Malli ehdottaa poistettavaksi muuttujaa <span class="in">`r ega.uva$keep_remove$keep`</span>.</span>
+<span id="cb12-117"><a href="#cb12-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-120"><a href="#cb12-120" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-121"><a href="#cb12-121" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-ilmoasenteet_validointi-04-ega</span></span>
+<span id="cb12-122"><a href="#cb12-122" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Eksploratiivinen verkostoanalyysi, 14 muuttujaa, Walktrap-algoritmi, GLASSO-malli"</span></span>
+<span id="cb12-123"><a href="#cb12-123" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "EGA-mallin asettaminen"</span></span>
+<span id="cb12-124"><a href="#cb12-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-125"><a href="#cb12-125" aria-hidden="true" tabindex="-1"></a>ega.malli <span class="ot">&lt;-</span> <span class="fu">EGA</span>(</span>
+<span id="cb12-126"><a href="#cb12-126" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> ega.uva<span class="sc">$</span>reduced_data,</span>
+<span id="cb12-127"><a href="#cb12-127" aria-hidden="true" tabindex="-1"></a>  <span class="at">uni.method =</span> <span class="st">"LE"</span>,</span>
+<span id="cb12-128"><a href="#cb12-128" aria-hidden="true" tabindex="-1"></a>  <span class="at">corr =</span> <span class="st">"pearson"</span>,</span>
+<span id="cb12-129"><a href="#cb12-129" aria-hidden="true" tabindex="-1"></a>  <span class="at">na.data =</span> <span class="st">"pairwise"</span>,</span>
+<span id="cb12-130"><a href="#cb12-130" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> <span class="st">"glasso"</span>,</span>
+<span id="cb12-131"><a href="#cb12-131" aria-hidden="true" tabindex="-1"></a>  <span class="at">algorithm =</span> <span class="st">"walktrap"</span></span>
+<span id="cb12-132"><a href="#cb12-132" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-133"><a href="#cb12-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-134"><a href="#cb12-134" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(ega.malli)</span>
+<span id="cb12-135"><a href="#cb12-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-136"><a href="#cb12-136" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-137"><a href="#cb12-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-138"><a href="#cb12-138" aria-hidden="true" tabindex="-1"></a>@fig-ilmoasenteet_validointi-04-ega osoittaa EGA-mallin estimoinnin rakenteen. Malli ehdottaa kahta muuttujaryhmää, A ja B.</span>
+<span id="cb12-139"><a href="#cb12-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-140"><a href="#cb12-140" aria-hidden="true" tabindex="-1"></a>Ryhmä A:</span>
+<span id="cb12-141"><a href="#cb12-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-142"><a href="#cb12-142" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_1`</span> Liian raskaat</span>
+<span id="cb12-143"><a href="#cb12-143" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_2`</span> Ei johda toimenpiteisiin</span>
+<span id="cb12-144"><a href="#cb12-144" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_7`</span> Ei tilaisuutta</span>
+<span id="cb12-145"><a href="#cb12-145" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_8`</span> Epäselvää</span>
+<span id="cb12-146"><a href="#cb12-146" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_9`</span> Unohdan</span>
+<span id="cb12-147"><a href="#cb12-147" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_11`</span> Joku muu hoitaa</span>
+<span id="cb12-148"><a href="#cb12-148" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_12`</span> Valtakunnallinen prosessi (käännetty)</span>
+<span id="cb12-149"><a href="#cb12-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-150"><a href="#cb12-150" aria-hidden="true" tabindex="-1"></a>Ryhmä B:</span>
+<span id="cb12-151"><a href="#cb12-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-152"><a href="#cb12-152" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_3`</span> Pelkään esihenkilön vastatoimia</span>
+<span id="cb12-153"><a href="#cb12-153" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_10`</span> Ammattitaidon kyseenalaistaminen</span>
+<span id="cb12-154"><a href="#cb12-154" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_13`</span> En halua pahaa</span>
+<span id="cb12-155"><a href="#cb12-155" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_15`</span> Tekijä saa tietää</span>
+<span id="cb12-156"><a href="#cb12-156" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_17`</span> Pelkään työpaikan menettämistä</span>
+<span id="cb12-157"><a href="#cb12-157" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`k26_18`</span> Pelkään kollegoiden vastatoimia</span>
+<span id="cb12-158"><a href="#cb12-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-161"><a href="#cb12-161" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-162"><a href="#cb12-162" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-ilmoasenteet_validointi-05-egastabiliteetti</span></span>
+<span id="cb12-163"><a href="#cb12-163" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "EGA-mallin ulottuvuuksien stabiliteetti"</span></span>
+<span id="cb12-164"><a href="#cb12-164" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "EGA-mallin ulottuvuuksien stabiliteetti"</span></span>
+<span id="cb12-165"><a href="#cb12-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-166"><a href="#cb12-166" aria-hidden="true" tabindex="-1"></a>ega.boot <span class="ot">&lt;-</span> <span class="fu">bootEGA</span>(</span>
+<span id="cb12-167"><a href="#cb12-167" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> ega.uva<span class="sc">$</span>reduced_data,</span>
+<span id="cb12-168"><a href="#cb12-168" aria-hidden="true" tabindex="-1"></a>  <span class="at">iter =</span> <span class="dv">1000</span>,</span>
+<span id="cb12-169"><a href="#cb12-169" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"resampling"</span>,</span>
+<span id="cb12-170"><a href="#cb12-170" aria-hidden="true" tabindex="-1"></a>  <span class="at">uni.method =</span> <span class="st">"LE"</span>,</span>
+<span id="cb12-171"><a href="#cb12-171" aria-hidden="true" tabindex="-1"></a>  <span class="at">corr =</span> <span class="st">"pearson"</span>,</span>
+<span id="cb12-172"><a href="#cb12-172" aria-hidden="true" tabindex="-1"></a>  <span class="at">na.data =</span> <span class="st">"pairwise"</span>,</span>
+<span id="cb12-173"><a href="#cb12-173" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> <span class="st">"glasso"</span>,</span>
+<span id="cb12-174"><a href="#cb12-174" aria-hidden="true" tabindex="-1"></a>  <span class="at">algorithm =</span> <span class="st">"walktrap"</span>,</span>
+<span id="cb12-175"><a href="#cb12-175" aria-hidden="true" tabindex="-1"></a>  <span class="at">seed =</span> <span class="dv">1234</span> <span class="co"># Mahdollistaa toistettavuuden</span></span>
+<span id="cb12-176"><a href="#cb12-176" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-177"><a href="#cb12-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-178"><a href="#cb12-178" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(ega.boot)</span>
+<span id="cb12-179"><a href="#cb12-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-180"><a href="#cb12-180" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-181"><a href="#cb12-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-182"><a href="#cb12-182" aria-hidden="true" tabindex="-1"></a>Stabiliteettiarvot yli noin 0.75 ovat luotettavia. Analyysi osoittaa, että muuttuja <span class="in">`k26_13`</span> (Tekijä saa tietää) ei ole vakaa bootstrap-analyysissa, ja voi vaihdella otosten välillä. Muuttujat <span class="in">`k26_7`</span> (Ei tilaisuutta) ja <span class="in">`k26_2`</span> (Ei johda toimenpiteisiin) ovat vakauden rajalla. Muut muuttujat täyttävät vakauden raja-arvon.</span>
+<span id="cb12-183"><a href="#cb12-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-184"><a href="#cb12-184" aria-hidden="true" tabindex="-1"></a>Ulottuvuuksien mediaani oli 2, mutta 95 prosentin luottamusväli oli laaja ja sisälsi myös yhden ja kolmen (95 % CI 0,98-3,02). Tuhannen bootstrap-ajon mallissa kahden ulottuvuuden malli esiintyi 76,9 prosenttia kerroista, kolmen ulottuvuuden malli 19,4 prosenttia kerroista ja neljän ulottuvuuden malli 3,7 prosenttia kerroista.</span>
+<span id="cb12-185"><a href="#cb12-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-186"><a href="#cb12-186" aria-hidden="true" tabindex="-1"></a><span class="fu">## Summamuuttujien tarkistus</span></span>
+<span id="cb12-187"><a href="#cb12-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-190"><a href="#cb12-190" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-191"><a href="#cb12-191" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: ilmoasenteet_validointi-06-summamuuttuja</span></span>
+<span id="cb12-192"><a href="#cb12-192" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Summamuuttujien rakentaminen"</span></span>
+<span id="cb12-193"><a href="#cb12-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-194"><a href="#cb12-194" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb12-195"><a href="#cb12-195" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb12-196"><a href="#cb12-196" aria-hidden="true" tabindex="-1"></a>    <span class="at">ilmo1_sum =</span> k26_1 <span class="sc">+</span> k26_2 <span class="sc">+</span> k26_7 <span class="sc">+</span> k26_8 <span class="sc">+</span> k26_9 <span class="sc">+</span> k26_11 <span class="sc">+</span> k26_12,</span>
+<span id="cb12-197"><a href="#cb12-197" aria-hidden="true" tabindex="-1"></a>    <span class="at">ilmo2_sum =</span> k26_3 <span class="sc">+</span> k26_10 <span class="sc">+</span> k26_13 <span class="sc">+</span> k26_15 <span class="sc">+</span> k26_17 <span class="sc">+</span> k26_18,</span>
+<span id="cb12-198"><a href="#cb12-198" aria-hidden="true" tabindex="-1"></a>    <span class="at">ilmo1 =</span> ilmo1_sum<span class="sc">/</span><span class="dv">7</span>,</span>
+<span id="cb12-199"><a href="#cb12-199" aria-hidden="true" tabindex="-1"></a>    <span class="at">ilmo2 =</span> ilmo2_sum<span class="sc">/</span><span class="dv">6</span></span>
+<span id="cb12-200"><a href="#cb12-200" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb12-201"><a href="#cb12-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-202"><a href="#cb12-202" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-203"><a href="#cb12-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-206"><a href="#cb12-206" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-207"><a href="#cb12-207" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-ilmoasenteet_validointi-07-jakaumakuviot</span></span>
+<span id="cb12-208"><a href="#cb12-208" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Ilmoitusjärjestelmiin kohdistuvien asenteiden summamuuttujien jakaumat"</span></span>
+<span id="cb12-209"><a href="#cb12-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-210"><a href="#cb12-210" aria-hidden="true" tabindex="-1"></a>ilmo1ka <span class="ot">&lt;-</span> <span class="fu">mean</span>(data<span class="sc">$</span>ilmo1, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb12-211"><a href="#cb12-211" aria-hidden="true" tabindex="-1"></a>ilmo2ka <span class="ot">&lt;-</span> <span class="fu">mean</span>(data<span class="sc">$</span>ilmo2, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb12-212"><a href="#cb12-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-213"><a href="#cb12-213" aria-hidden="true" tabindex="-1"></a>ilmo1_fig <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb12-214"><a href="#cb12-214" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(ilmo1) <span class="sc">|&gt;</span></span>
+<span id="cb12-215"><a href="#cb12-215" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> ilmo1, <span class="at">y =</span> <span class="st">""</span>)) <span class="sc">+</span></span>
+<span id="cb12-216"><a href="#cb12-216" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"#C20E1A"</span>) <span class="sc">+</span> </span>
+<span id="cb12-217"><a href="#cb12-217" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="st">""</span>, <span class="at">x =</span> ilmo1ka), <span class="at">colour =</span> <span class="st">"#C5B568"</span>,</span>
+<span id="cb12-218"><a href="#cb12-218" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">3</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb12-219"><a href="#cb12-219" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="st">""</span>, <span class="at">x =</span> ilmo1ka), <span class="at">label =</span> <span class="fu">round</span>(ilmo1ka, <span class="dv">2</span>),</span>
+<span id="cb12-220"><a href="#cb12-220" aria-hidden="true" tabindex="-1"></a>            <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">fill =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb12-221"><a href="#cb12-221" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb12-222"><a href="#cb12-222" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(</span>
+<span id="cb12-223"><a href="#cb12-223" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">7</span>)</span>
+<span id="cb12-224"><a href="#cb12-224" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb12-225"><a href="#cb12-225" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb12-226"><a href="#cb12-226" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Pisteet (keskiarvo 1-7)"</span>,</span>
+<span id="cb12-227"><a href="#cb12-227" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Heikoksi koettu hyöty-panos -suhde"</span></span>
+<span id="cb12-228"><a href="#cb12-228" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb12-229"><a href="#cb12-229" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb12-230"><a href="#cb12-230" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb12-231"><a href="#cb12-231" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.ticks.x =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb12-232"><a href="#cb12-232" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb12-233"><a href="#cb12-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-234"><a href="#cb12-234" aria-hidden="true" tabindex="-1"></a>ilmo2_fig <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb12-235"><a href="#cb12-235" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(ilmo2) <span class="sc">|&gt;</span></span>
+<span id="cb12-236"><a href="#cb12-236" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> ilmo2, <span class="at">y =</span> <span class="st">""</span>)) <span class="sc">+</span></span>
+<span id="cb12-237"><a href="#cb12-237" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"#C20E1A"</span>) <span class="sc">+</span> </span>
+<span id="cb12-238"><a href="#cb12-238" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="st">""</span>, <span class="at">x =</span> ilmo2ka), <span class="at">colour =</span> <span class="st">"#C5B568"</span>,</span>
+<span id="cb12-239"><a href="#cb12-239" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">3</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb12-240"><a href="#cb12-240" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="st">""</span>, <span class="at">x =</span> ilmo2ka), <span class="at">label =</span> <span class="fu">round</span>(ilmo2ka, <span class="dv">2</span>),</span>
+<span id="cb12-241"><a href="#cb12-241" aria-hidden="true" tabindex="-1"></a>            <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">fill =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb12-242"><a href="#cb12-242" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb12-243"><a href="#cb12-243" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(</span>
+<span id="cb12-244"><a href="#cb12-244" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">7</span>)</span>
+<span id="cb12-245"><a href="#cb12-245" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb12-246"><a href="#cb12-246" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb12-247"><a href="#cb12-247" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Pisteet (keskiarvo 1-7)"</span>,</span>
+<span id="cb12-248"><a href="#cb12-248" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Negatiivisten vaikutusten pelko"</span></span>
+<span id="cb12-249"><a href="#cb12-249" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb12-250"><a href="#cb12-250" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb12-251"><a href="#cb12-251" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb12-252"><a href="#cb12-252" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.ticks.x =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb12-253"><a href="#cb12-253" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb12-254"><a href="#cb12-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-255"><a href="#cb12-255" aria-hidden="true" tabindex="-1"></a>ilmo_korr <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb12-256"><a href="#cb12-256" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggscatterstats</span>(</span>
+<span id="cb12-257"><a href="#cb12-257" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"ilmo1"</span>,</span>
+<span id="cb12-258"><a href="#cb12-258" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"ilmo2"</span>,</span>
+<span id="cb12-259"><a href="#cb12-259" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"robust"</span>,</span>
+<span id="cb12-260"><a href="#cb12-260" aria-hidden="true" tabindex="-1"></a>    <span class="at">bf.message =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb12-261"><a href="#cb12-261" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="dv">1</span>,</span>
+<span id="cb12-262"><a href="#cb12-262" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="st">"Heikoksi koettu hyöty-panos -suhde"</span>,</span>
+<span id="cb12-263"><a href="#cb12-263" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">"Negatiivisten vaikutusten pelko"</span></span>
+<span id="cb12-264"><a href="#cb12-264" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb12-265"><a href="#cb12-265" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-266"><a href="#cb12-266" aria-hidden="true" tabindex="-1"></a>(ilmo1_fig <span class="sc">+</span> ilmo2_fig <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">axes =</span> <span class="st">"collect_y"</span>)) <span class="sc">/</span> ilmo_korr</span>
+<span id="cb12-267"><a href="#cb12-267" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-268"><a href="#cb12-268" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Kopioi leikepöydälle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

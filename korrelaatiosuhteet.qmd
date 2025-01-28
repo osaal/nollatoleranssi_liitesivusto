@@ -79,21 +79,13 @@ data <- data |>
       k26_12 == 7 ~ 1,
       is.na(k26_12) ~ NA
     ),
-    ilmo_1 = sum(
-      c_across(
-        c(k26_1, k26_2, k26_7:k26_9, k26_11, k26_12_inv)
-      ),
-      na.rm = TRUE
-    ),
-    ilmo_2 = sum(
-      c_across(
-        c(k26_3, k26_10, k26_13, k26_15, k26_17:k26_18)
-      ),
-      na.rm = TRUE
-    )
+    ilmo1_sum = k26_1 + k26_2 + k26_7 + k26_8 + k26_9 + k26_11 + k26_12_inv,
+    ilmo2_sum = k26_3 + k26_10 + k26_13 + k26_15 + k26_17 + k26_18,
+    ilmo1 = ilmo1_sum/7,
+    ilmo2 = ilmo2_sum/6
   ) |>
   ungroup() |>
-  select(!k26_12_inv)
+  select(!c(k26_12_inv, ilmo1_sum, ilmo2_sum))
 
 ### Toimintaohjelman käyttöönoton summamuuttuja
 data <- data |>
@@ -405,10 +397,10 @@ ilmo_1_sisa <- data |>
   ) |>
   ggbetweenstats(
     x = "k24_1",
-    y = "ilmo_1",
+    y = "ilmo1",
     bf.message = FALSE,
     xlab = "Organisaation sisäiset järjestelmät",
-    ylab = "Koettu agenssin puute",
+    ylab = "Heikoksi koettu hyöty-panos -suhde",
     type = "robust",
     pairwise.display = "significant",
     digits = 1,
@@ -433,7 +425,7 @@ ilmo_2_sisa <- data |>
   ) |>
   ggbetweenstats(
     x = "k24_1",
-    y = "ilmo_2",
+    y = "ilmo2",
     bf.message = FALSE,
     xlab = "Organisaation sisäiset järjestelmät",
     ylab = "Negatiivisten vaikutusten pelko",
@@ -462,10 +454,10 @@ ilmo_1_ulko <- data |>
   ) |>
   ggbetweenstats(
     x = "k24_2",
-    y = "ilmo_1",
+    y = "ilmo1",
     bf.message = FALSE,
     xlab = "Organisaation ulkoiset järjestelmät",
-    ylab = "Koettu agenssin puute",
+    ylab = "Heikoksi koettu hyöty-panos -suhde",
     type = "robust",
     pairwise.display = "significant",
     digits = 1,
@@ -491,7 +483,7 @@ ilmo_2_ulko <- data |>
   ) |>
   ggbetweenstats(
     x = "k24_2",
-    y = "ilmo_2",
+    y = "ilmo2",
     bf.message = FALSE,
     xlab = "Organisaation ulkoiset järjestelmät",
     ylab = "Negatiivisten vaikutusten pelko",
@@ -520,10 +512,10 @@ ilmo_1_molem <- data |>
   ) |>
   ggbetweenstats(
     x = "k24_3",
-    y = "ilmo_1",
+    y = "ilmo1",
     bf.message = FALSE,
     xlab = "Molempien kattavat järjestelmät",
-    ylab = "Koettu agenssin puute",
+    ylab = "Heikoksi koettu hyöty-panos -suhde",
     type = "robust",
     pairwise.display = "significant",
     digits = 1,
@@ -549,7 +541,7 @@ ilmo_2_molem <- data |>
   ) |>
   ggbetweenstats(
     x = "k24_3",
-    y = "ilmo_2",
+    y = "ilmo2",
     bf.message = FALSE,
     xlab = "Molempien kattavat järjestelmät",
     ylab = "Negatiivisten vaikutusten pelko",
@@ -588,12 +580,12 @@ nimi <- bquote(atop(
 
 kuvio <- ggcorrmat(
   data = data,
-  cor.vars = c("EVK_sisä_koettu", "EVK_ulko_koettu", "ilmo_1", "ilmo_2"),
+  cor.vars = c("EVK_sisä_koettu", "EVK_ulko_koettu", "ilmo1", "ilmo2"),
   cor.vars.names = c(
     "Sisäinen",
     "Ulkoinen",
-    "Agenssin puute",
-    "Negatiiviset vaikutukset"
+    "Heikko hyöty-panos -suhde",
+    "Negatiivisten vaikutusten pelko"
   ),
   type = "nonparametric"
 ) +
@@ -619,12 +611,12 @@ kuvio
 
 correlation::correlation(
   data = data,
-  select = c("EVK_sisä_koettu", "EVK_ulko_koettu", "ilmo_1", "ilmo_2"),
+  select = c("EVK_sisä_koettu", "EVK_ulko_koettu", "ilmo1", "ilmo2"),
   rename = c(
     "Sisäinen",
     "Ulkoinen",
-    "Agenssin puute",
-    "Negatiiviset vaikutukset"
+    "Heikko hyöty-panos -suhde",
+    "Negatiivisten vaikutusten pelko"
   ),
   method = "spearman",
   p_adjust = "holm"
@@ -664,10 +656,10 @@ ilmo_1_sisakoul <- data |>
   ) |>
   ggbetweenstats(
     x = "k25_1",
-    y = "ilmo_1",
+    y = "ilmo1",
     bf.message = FALSE,
     xlab = "Sisäisten järjestelmien koulutus",
-    ylab = "Koettu agenssin puute",
+    ylab = "Heikoksi koettu hyöty-panos -suhde",
     type = "robust",
     pairwise.display = "significant",
     digits = 1,
@@ -693,7 +685,7 @@ ilmo_2_sisakoul <- data |>
   ) |>
   ggbetweenstats(
     x = "k25_1",
-    y = "ilmo_2",
+    y = "ilmo2",
     bf.message = FALSE,
     xlab = "Sisäisten järjestelmien koulutus",
     ylab = "Negatiivisten vaikutusten pelko",
@@ -722,10 +714,10 @@ ilmo_1_ulkokoul <- data |>
   ) |>
   ggbetweenstats(
     x = "k25_2",
-    y = "ilmo_1",
+    y = "ilmo1",
     bf.message = FALSE,
     xlab = "Ulkoisten järjestelmien koulutus",
-    ylab = "Koettu agenssin puute",
+    ylab = "Heikoksi koettu hyöty-panos -suhde",
     type = "robust",
     pairwise.display = "significant",
     digits = 1,
@@ -751,7 +743,7 @@ ilmo_2_ulkokoul <- data |>
   ) |>
   ggbetweenstats(
     x = "k25_2",
-    y = "ilmo_2",
+    y = "ilmo2",
     bf.message = FALSE,
     xlab = "Ulkoisten järjestelmien koulutus",
     ylab = "Negatiivisten vaikutusten pelko",
@@ -780,10 +772,10 @@ ilmo_1_molemkoul <- data |>
   ) |>
   ggbetweenstats(
     x = "k25_3",
-    y = "ilmo_1",
+    y = "ilmo1",
     bf.message = FALSE,
     xlab = "Molempien järjestelmien koulutus",
-    ylab = "Koettu agenssin puute",
+    ylab = "Heikoksi koettu hyöty-panos -suhde",
     type = "robust",
     pairwise.display = "significant",
     digits = 1,
@@ -809,7 +801,7 @@ ilmo_2_molemkoul <- data |>
   ) |>
   ggbetweenstats(
     x = "k25_3",
-    y = "ilmo_2",
+    y = "ilmo2",
     bf.message = FALSE,
     xlab = "Molempien järjestelmien koulutus",
     ylab = "Negatiivisten vaikutusten pelko",
