@@ -825,6 +825,89 @@ ilmo_1_sisakoul + ilmo_1_ulkokoul + ilmo_1_molemkoul + ilmo_2_sisakoul + ilmo_2_
 
 ```
 
+## Ilmoittamisasteen suhde kohteluun ja ilmoitusjärjestelmäasenteisiin
+
+```{r}
+#| label: fig-korrelaatiosuhteet-ilmoitusXEVKasenteet
+#| fig-cap: "Ilmoittamisasteen suhde epäasialliseen ja väkivaltaiseen kohteluun sekä ilmoitusjärjestelmiin kohdistuviin asenteisiin"
+#| code-summary: "Kuvion piirtäminen"
+
+ilmo_sisa <- ggbetweenstats(
+  data = data |>
+    filter(k23_5 == 1 | is.na(k23_5)) |>
+    mutate(k23_5 = case_match(k23_5, 1 ~ 1, NA ~ 0)) |>
+    mutate(k23_5 = factor(k23_5, levels = c(1, 0), labels = c("Kyllä", "Ei"))),
+  x = "k23_5",
+  y = "EVK_sisä_koettu",
+  bf.message = FALSE,
+  xlab = "",
+  ylab = "Sisäinen kohtelu",
+  type = "robust",
+  digits = 1,
+  violin.args = list(width = 0, linewidth = 0)
+) +
+  ylim(0, 49) +
+  scale_colour_manual(values = c("#C20E1A", "#C5B568")) +
+  theme(plot.subtitle = element_text(size = 6))
+
+ilmo_ulko <- ggbetweenstats(
+  data = data |>
+    filter(k23_5 == 1 | is.na(k23_5)) |>
+    mutate(k23_5 = case_match(k23_5, 1 ~ 1, NA ~ 0)) |>
+    mutate(k23_5 = factor(k23_5, levels = c(1, 0), labels = c("Kyllä", "Ei"))),
+  x = "k23_5",
+  y = "EVK_ulko_koettu",
+  bf.message = FALSE,
+  xlab = "",
+  ylab = "Ulkoinen kohtelu",
+  type = "robust",
+  digits = 1,
+  violin.args = list(width = 0, linewidth = 0)
+) +
+  ylim(0, 49) +
+  scale_colour_manual(values = c("#C20E1A", "#C5B568")) +
+  theme(plot.subtitle = element_text(size = 6))
+
+ilmo_asenne1 <- ggbetweenstats(
+  data = data |>
+    filter(k23_5 == 1 | is.na(k23_5)) |>
+    mutate(k23_5 = case_match(k23_5, 1 ~ 1, NA ~ 0)) |>
+    mutate(k23_5 = factor(k23_5, levels = c(1, 0), labels = c("Kyllä", "Ei"))),
+  x = "k23_5",
+  y = "ilmo1",
+  bf.message = FALSE,
+  xlab = "Ilmoitti kohtelusta",
+  ylab = "Heikko hyöty-panos -suhde",
+  type = "robust",
+  digits = 1,
+  violin.args = list(width = 0, linewidth = 0)
+) +
+  ylim(1, 7) +
+  scale_colour_manual(values = c("#C20E1A", "#C5B568")) +
+  theme(plot.subtitle = element_text(size = 6))
+
+ilmo_asenne2 <- ggbetweenstats(
+  data = data |>
+    filter(k23_5 == 1 | is.na(k23_5)) |>
+    mutate(k23_5 = case_match(k23_5, 1 ~ 1, NA ~ 0)) |>
+    mutate(k23_5 = factor(k23_5, levels = c(1, 0), labels = c("Kyllä", "Ei"))),
+  x = "k23_5",
+  y = "ilmo2",
+  bf.message = FALSE,
+  xlab = "Ilmoitti kohtelusta",
+  ylab = "Negatiivisten vaikutusten pelko",
+  type = "robust",
+  digits = 1,
+  violin.args = list(width = 0, linewidth = 0)
+) +
+  ylim(1, 7) +
+  scale_colour_manual(values = c("#C20E1A", "#C5B568")) +
+  theme(plot.subtitle = element_text(size = 6))
+
+(ilmo_sisa + ilmo_ulko) / (ilmo_asenne1 + ilmo_asenne2)
+
+```
+
 ## Toimintaohjelman käyttöönoton suhde kohteluun {#sec-korrelaatiosuhteet-toimintaohjelma}
 
 ```{r}
