@@ -598,6 +598,71 @@ data |>
   knitr::kable(digits = 3)
 ```
 
+## Tarkennusmittareiden liitetaulukointi {#sec-esiintyvyys-tarkennusliite}
+
+```{r}
+#| label: esiintyvyys-tarkennusliite-taulukointi
+#| code-summary: "Esiintyvyysmittareiden taulukointi liitteitä varten"
+
+count_occurrence <- function(data, var) {
+  data |>
+    select(.data[[var]]) |>
+    filter(.data[[var]] == 1 | is.na(.data[[var]])) |>
+    nrow()
+}
+
+variables <- c("k5_1_1", "k6_1_1", "k7_1_1", "k8_1_1", "k9_1_1", "k10_1_1", "k11_1_1",
+               "k14_1_1", "k15_1_1", "k16_1_1", "k17_1_1", "k18_1_1", "k19_1_1", "k20_1_1") |> sort()
+
+group_totals <- map_int(
+  variables,
+  ~ count_occurrence(data = data, var = .x),
+)
+
+data_long <- data |>
+  select(k5_1_1:k11_16_2, k14_1_1:k20_7_2) |>
+  pivot_longer(
+    cols = everything(),
+    names_to = "variable",
+    values_to = "value"
+  ) |>
+  mutate(
+    group = str_extract(variable, "^k\\d+")
+  ) |>
+  group_by(variable, group) |>
+  summarise(
+    count_one = sum(value == 1, na.rm = TRUE),
+    count_na = sum(is.na(value)),
+    count_negone = sum(value == -1, na.rm = TRUE),
+    .groups = "drop"
+  ) |>
+  mutate(
+    prop_one = count_one / group_totals[match(group, unique(group))],
+    prop_na = count_na / group_totals[match(group, unique(group))],
+    prop_negone = count_negone / (group_totals[match(group, unique(group))] + count_negone),
+    prop_valid = group_totals[match(group, unique(group))] / (group_totals[match(group, unique(group))] + count_negone)
+  ) |>
+  select(variable, prop_one, prop_na, prop_negone, prop_valid) |>
+  pivot_longer(
+    cols = c(prop_one, prop_na, prop_negone, prop_valid),
+    names_to = "value_type",
+    values_to = "ratio"
+  ) |>
+  mutate(
+    value_type = recode(
+      value_type,
+      "prop_one" = "1", "prop_na" = "NA", "prop_negone" = "-1", "prop_valid" = "valid"
+    )
+  ) |>
+  pivot_wider(names_from = value_type, values_from = ratio)
+
+write.csv2(
+  data_long,
+  file = "output/tarkennusmittarit.csv"
+)
+
+```
+
 ## Kohtelun omakohtaisesti koetut muodot {#sec-esiintyvyys-itsemuodot}
 
 ### Yleisimmät muodot {#sec-esiintyvyys-itsemuodot-yleisimmat}

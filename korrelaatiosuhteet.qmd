@@ -825,7 +825,7 @@ ilmo_1_sisakoul + ilmo_1_ulkokoul + ilmo_1_molemkoul + ilmo_2_sisakoul + ilmo_2_
 
 ```
 
-## Ilmoittamisasteen suhde kohteluun ja ilmoitusjärjestelmäasenteisiin
+## Ilmoittamisasteen suhde kohteluun ja ilmoitusjärjestelmäasenteisiin {#sec-korrelaatiosuhteet-ilmoittamisaste}
 
 ```{r}
 #| label: fig-korrelaatiosuhteet-ilmoitusXEVKasenteet

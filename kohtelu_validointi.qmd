@@ -5,7 +5,9 @@ eval: true
 cache: true
 ---
 
-Tässä osiossa suoritamme tilastollisen validoinnin epäasiallisen ja väkivaltaisen kohtelun esiintyvyyden mittarille. Osio liittyy rekisteröityyn tutkimusraporttiin "Epäasiallisen ja väkivaltaisen kohtelun suomen- ja ruotsinkielisen mittarin validointi pelastus- ja ensihoitoalalla" (Saal, Silfverhuth & Huovinen, 2024). Viittaamme raportin rekisteröityihin protokolliin tekstissä.
+Tässä osiossa suoritamme tilastollisen validoinnin epäasiallisen ja väkivaltaisen kohtelun esiintyvyyden mittarille. Osio liittyy rekisteröityyn tutkimusraporttiin "Epäasiallisen ja väkivaltaisen kohtelun suomen- ja ruotsinkielisen mittarin validointi pelastus- ja ensihoitoalalla". Viittaamme raportin rekisteröityihin protokolliin tekstissä.
+
+Tiedoston versio edustaa raportin toisen vaiheen lähetettyä käsikirjoitusta, ennen vertaisarviointia.
 
 ```{r}
 #| label: kohtelu_validointi-00-paketit

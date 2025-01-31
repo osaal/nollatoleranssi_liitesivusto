@@ -386,28 +386,27 @@ flow_exclusions(
 
 ## Kokotekstin pohjalta poistetut tutkimukset ja syyt {#sec-haku2-poistetut}
 
-Seulonnan jälkeen poistettuja tutkimusjulkaisuja oli yhteensä 4 kappaletta. @tbl-haku2-poistetut sisältää jokaisen julkaisun poistosyyn. Syyt ovat listattuna ensisijaisen syyn mukaan. Teimme päätöksen poisjättämisestä, jos vähintään yksi inkluusiokriteeri ei täyttynyt.
+Seulonnan jälkeen poistettuja tutkimusjulkaisuja oli yhteensä 5 kappaletta. @tbl-haku2-poistetut sisältää jokaisen julkaisun poistosyyn. Syyt ovat listattuna ensisijaisen syyn mukaan. Teimme päätöksen poisjättämisestä, jos vähintään yksi inkluusiokriteeri ei täyttynyt.
 
 | Kohde          | Syy(t) poistoon                                               |
 |----------------|---------------------------------------------------------------|
 | @harju2020     | Väärä tutkimusaihe                                            |
 | @lindström2020 | Ei-empiirinen tutkimus, väärä tutkimusaihe                    |
 | @markkola2021  | Ei-empiirinen tutkimus, väärä kohderyhmä, väärä julkaisumuoto |
+| @niemi2020     | Väärä tutkimusaihe                                            |
 | @pasma2014     | Väärä kohderyhmä, väärä tutkimusaihe                          |
 
 : Haku 2:n poistetut kohteet syineen {#tbl-haku2-poistetut}
 
 ## Valitut tutkimusjulkaisut {#sec-haku2-valitut}
 
-Haun pohjalta valitsimme kuusi tutkimusjulkaisua. Julkaisut ovat:
+Haun pohjalta valitsimme viisi tutkimusjulkaisua. Julkaisut ovat:
 
 -   @huttunen2019 "Pelastushenkilöstön kokema seksuaalinen ahdistelu työtehtävillä ja työpaikoilla. Tutkimus toteutettuna Rescuebase -applikaatiolla"
 
 -   @kettunen2022 "Kohti yhdenvertaisempaa pelastusalaa - yhdenvertaisuussuunnitelma Pohjois-Karjalan pelastuslaitokselle"
 
 -   @luoma2020 "Päätöksenteon ilmiöt yhdenvertaisuuskokemuksissa pelastusalalla Suomessa"
-
--   @niemi2020 "De inhemska språken hos förstavårdspersonalen vid Österbottens räddningsverk - en fallstudie om språkanvändning, språkfärdigheter och inställningen till språk och tvåspråkighet"
 
 -   @saari2013 "'Se kuuluu palokuntakulttuuriin' - katsaus Länsi-Uudenmaan pelastuslaitoksen tasa-arvotilanteeseen"
 
